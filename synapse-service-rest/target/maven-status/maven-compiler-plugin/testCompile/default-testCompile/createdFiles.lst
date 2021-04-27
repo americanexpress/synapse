@@ -1,0 +1,6 @@
+com/americanexpress/synapse/service/rest/ServiceRestUnitTestSuite.class
+com/americanexpress/synapse/service/rest/controller/healthcheck/HealthCheckControllerTest.class
+com/americanexpress/synapse/service/rest/SynapseSampleApplication.class
+com/americanexpress/synapse/service/rest/controller/exceptionhandler/InputValidationErrorHandlerTest.class
+com/americanexpress/synapse/service/rest/interceptor/BaseHttpInterceptorTest.class
+com/americanexpress/synapse/service/rest/controller/exceptionhandler/ControllerExceptionHandlerTest.class

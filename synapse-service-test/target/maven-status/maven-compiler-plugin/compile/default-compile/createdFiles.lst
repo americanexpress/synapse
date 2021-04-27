@@ -1,0 +1,9 @@
+com/americanexpress/synapse/service/test/controller/BaseReadMonoControllerUnitTest.class
+com/americanexpress/synapse/service/test/controller/BaseUpdateControllerUnitTest.class
+com/americanexpress/synapse/service/test/controller/BaseCreateControllerUnitTest.class
+com/americanexpress/synapse/service/test/controller/BaseControllerTest.class
+com/americanexpress/synapse/service/test/controller/BaseControllerUnitTest.class
+com/americanexpress/synapse/service/test/controller/BaseControllerIT.class
+com/americanexpress/synapse/service/test/controller/BaseReadPolyControllerUnitTest.class
+com/americanexpress/synapse/service/test/controller/BaseDeleteControllerUnitTest.class
+com/americanexpress/synapse/service/test/controller/BaseGetMonoControllerUnitTest.class

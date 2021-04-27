@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Set the system property or JVM argument -DLog4jContextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector to make all loggers asynchronous -->
+<Configuration name="Synapse Logging" xmlns:xi="http://www.w3.org/2001/XInclude" monitorInterval="600000">
+    <jmxConfigurator/>
+    <xi:include href="./log4j2-xinclude-properties.xml"/>
+    <Properties>
+        <!-- Set the SMTP properties -->
+        <Property name="smtpSubject">E1 - Synapse Error</Property>
+        <Property name="smtpTo"></Property>
+        <Property name="smtpFrom"></Property>
+        <Property name="smtpHost"></Property>
+    </Properties>
+    <Appenders>
+        <!-- Use Console for testing locally -->
+        <!-- <Console name="Console"> -->
+        <!-- 	<PatternLayout pattern="${DefaultPatternLayout}"/> -->
+        <!-- </Console> -->
+        <Console name="ErrorConsole">
+            <PatternLayout pattern="${PatternLayoutWithRequest}" charset="UTF-8"/>
+        </Console>
+        <SMTP smtpProtocol="smtp"
+              name="Email"
+              subject="${smtpSubject}"
+              to="${smtpTo}"
+              from="${smtpFrom}"
+              smtpHost="${smtpHost}"
+              smtpPort="25"
+              bufferSize="50">
+        </SMTP>
+    </Appenders>
+    <Loggers>
+        <Logger name="org.springframework" level="OFF"/>
+        <Logger name="org.springframework.core.log" level="OFF"/>
+        <Logger name="org.springframework.core.io.support.PropertiesLoaderSupport" level="OFF"/>
+        <Logger name="springfox.documentation" level="OFF"/>
+        <Logger name="net.sf.ehcache" level="OFF"/>
+        <Logger name="org.apache" level="OFF"/>
+        <Logger name="org.apache.logging.log4j.core.appender.RollingRandomAccessFileAppender" level="OFF"/>
+        <Logger name="org.apache.http.impl.conn" level="OFF"/>
+        <Logger name="org.springframework.ws.client.MessageTracing" level="DEBUG"/>
+        <Logger name="org.springframework.ws.server.MessageTracing" level="DEBUG"/>
+        <Logger name="org.springframework.data" level="ERROR"/>
+        <Logger name="log4j.logger.org.springframework.security.ldap" level="ERROR"/>
+        <Logger name="org.springframework.ldap" level="ERROR"/>
+        <Logger name="com.zaxxer.hikari.pool.PoolBase" level="DEBUG"/>
+        <Logger name="com.zaxxer.hikari.pool.HikariPool" level="DEBUG"/>
+        <Logger name="com.zaxxer.hikari.HikariDataSource" level="DEBUG"/>
+        <Logger name="org.hibernate" level="TRACE"/>
+        <Logger name="org.hibernate.SQL" level="TRACE"/>
+        <Logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="OFF"/>
+        <Logger name="com.couchbase.client.core" level="INFO"/>
+        <Logger name="com.couchbase.client" level="INFO"/>
+        <Logger name="com.americanexpress.synapse.service.rest.metrics" level="INFO"/>
+        <Logger name="com.americanexpress.synapse.client.rest.interceptor" level="INFO"/>
+        <Root includeLocation="true">
+            <!-- Use Console for testing locally -->
+            <!-- <AppenderRef ref="Console" level="TRACE"/> -->
+            <AppenderRef ref="ErrorConsole" level="WARN"/>
+            <AppenderRef ref="Email" level="ERROR"/>
+        </Root>
+    </Loggers>
+</Configuration>

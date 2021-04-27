@@ -1,0 +1,9 @@
+com/americanexpress/synapse/client/test/handler/BaseRestResponseErrorHandlerTest.class
+com/americanexpress/synapse/client/test/client/BaseRestClientUnitTest.class
+com/americanexpress/synapse/client/test/client/BaseRestClientIT.class
+com/americanexpress/synapse/client/test/BaseClientTest.class
+com/americanexpress/synapse/client/test/RequestOperations.class
+com/americanexpress/synapse/client/test/factory/BaseClientHttpHeadersFactoryTest.class
+com/americanexpress/synapse/client/test/model/MockClientResponse.class
+com/americanexpress/synapse/client/test/client/BaseRestClientTest.class
+com/americanexpress/synapse/client/test/ResponseOperations.class

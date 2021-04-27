@@ -1,0 +1,10 @@
+com/americanexpress/synapse/framework/test/model/ProfileConstants.class
+com/americanexpress/synapse/framework/test/model/MockEmail.class
+com/americanexpress/synapse/framework/test/model/BaseModelsTest.class
+com/americanexpress/synapse/framework/test/MockFixedValues.class
+com/americanexpress/synapse/framework/test/model/BaseModelsTest$1.class
+com/americanexpress/synapse/framework/test/model/BaseModelsTest$FilterBasedOnSubClassesCondition.class
+com/americanexpress/synapse/framework/test/model/MockPortalUser.class
+com/americanexpress/synapse/framework/test/model/BaseModelsTest$FilterTestClasses.class
+com/americanexpress/synapse/framework/test/model/BaseModelsTest$FilterBasedOnInheritanceTestClasses.class
+com/americanexpress/synapse/framework/test/CommonAssertionMessages.class

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- By default, Log4J2 uses a file called log4j2-test if no other Log4J2 configuration file was provided -->
+<!-- Set the system property or JVM argument -DLog4jContextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector to make all loggers asynchronous -->
+<Configuration name="Synapse Logging" xmlns:xi="http://www.w3.org/2001/XInclude" monitorInterval="600000">
+    <jmxConfigurator/>
+    <xi:include href="./log4j2-xinclude-properties.xml"/>
+    <xi:include href="./log4j2-xinclude-appenders.xml"/>
+    <Loggers>
+        <!-- Used for all Spring logs. If org.springframework level="OFF", the logs won't be displayed in the console, including those used in Spring-Data for the schema.sql and data.sql files -->
+        <Logger name="org.springframework" level="WARN"/>
+        <Logger name="org.springframework.core.log" level="WARN"/>
+        <Logger name="springfox.documentation.schema.property" level="OFF"/>
+        <Logger name="org.springframework.core.io.support.PropertiesLoaderSupport" level="OFF"/>
+        <Logger name="springfox.documentation" level="OFF"/>
+        <Logger name="net.sf.ehcache" level="OFF"/>
+        <Logger name="org.apache" level="OFF"/>
+        <Logger name="org.apache.logging.log4j.core.appender.RollingRandomAccessFileAppender" level="OFF"/>
+        <Logger name="org.apache.http.impl.conn" level="OFF"/>
+        <Logger name="org.springframework.ws.client.MessageTracing" level="ERROR"/>
+        <Logger name="org.springframework.ws.server.MessageTracing" level="ERROR"/>
+        <Logger name="org.springframework.data" level="ERROR"/>
+        <Logger name="log4j.logger.org.springframework.security.ldap" level="ERROR"/>
+        <Logger name="org.springframework.ldap" level="ERROR"/>
+        <Logger name="com.zaxxer.hikari.pool.PoolBase" level="TRACE"/>
+        <Logger name="com.zaxxer.hikari.pool.HikariPool" level="TRACE"/>
+        <Logger name="com.zaxxer.hikari.HikariDataSource" level="TRACE"/>
+        <Logger name="org.hibernate" level="WARN"/>
+        <!-- To show SQL queries, use level="DEBUG"-->
+        <Logger name="org.hibernate.SQL" level="DEBUG"/>
+        <!-- To show the SQL parameters, use level="TRACE" -->
+        <Logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE"/>
+        <Logger name="com.couchbase.client.core" level="OFF"/>
+        <Logger name="org.springframework.data.couchbase.repository.query" level="TRACE"/>
+        <Logger name="com.couchbase.client" level="DEBUG"/>
+        <Logger name="com.americanexpress.synapse.service.rest.metrics" level="INFO"/>
+        <Logger name="com.americanexpress.synapse.client.rest.interceptor" level="INFO"/>
+        <Root level="TRACE" includeLocation="true">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>
