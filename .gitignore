@@ -1,0 +1,11 @@
+**/target
+*.settings
+/.classpath
+/.project
+*.idea
+/ideaFiles
+**/*.iml
+**/*.iws
+**/*.ipr
+*.ppf
+*.paf
