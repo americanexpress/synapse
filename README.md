@@ -125,6 +125,7 @@ These are several of the benefits it provides on-top of what Spring already prov
 - Alexei Morgado
 - Paolo Claudio
 - Darien Liburd
+- Shahzada Azam
 
 ## Building an Enterprise Ready RESTful Web Service utilizing Synapse
 
