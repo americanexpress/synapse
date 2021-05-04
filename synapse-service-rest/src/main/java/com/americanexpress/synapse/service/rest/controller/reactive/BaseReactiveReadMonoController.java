@@ -36,6 +36,7 @@ import javax.validation.Valid;
  * @param <I> input request type
  * @param <O> output response type
  * @param <S> service type
+ *
  * @author Gabriel Jimenez
  */
 public abstract class BaseReactiveReadMonoController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadMonoService<I, O>> extends BaseController<S> {
