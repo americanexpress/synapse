@@ -55,7 +55,7 @@ It provides several out-of-the-box functionalities like:
     - An open to extension base configuration java file with the standard connection parameters needed to connect to couchbase using Spring Data. The connection parameters will be provided by the property files on the module(s) that you as a developer are creating that will use this base-data-postgres module as a dependency.
     - An open to extension BaseEntity containing the generated key identifier and the common auditing fields maintained by the Spring Data framework itself (createdBy, lastModifiedBy, createdDate, lastModifiedDate and version). 
     
-#### synapse-data-relational-database
+#### synapse-data-postgres
 - This is the synapse data relational database abstraction framework used whenever there is a need to connect to postgres database. 
 It provides several out-of-the-box functionalities like:
 
@@ -126,6 +126,7 @@ These are several of the benefits it provides on-top of what Spring already prov
 - Paolo Claudio
 - Darien Liburd
 - Shahzada Azam
+- Krishna Kuchikulla
 
 ## Building an Enterprise Ready RESTful Web Service utilizing Synapse
 

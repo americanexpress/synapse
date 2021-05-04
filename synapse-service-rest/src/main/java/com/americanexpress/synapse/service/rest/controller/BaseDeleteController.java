@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * to Delete (DELETE) a resource.
  *
  * @param <S> service type
+ *
  * @author Gabriel Jimenez
  */
 public abstract class BaseDeleteController<S extends BaseDeleteService> extends BaseController<S> {

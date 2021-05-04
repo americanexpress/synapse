@@ -32,6 +32,7 @@ import java.net.URI;
  * @param <I> input request type
  * @param <O> output response type
  * @param <S> service type
+ *
  * @author Gabriel Jimenez
  */
 public abstract class BaseCreateController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseCreateService<I, O>> extends BaseController<S> {

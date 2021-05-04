@@ -39,6 +39,7 @@ import java.util.List;
  * @param <I> input request type
  * @param <O> output response type
  * @param <S> service type
+ *
  * @author Gabriel Jimenez
  */
 public abstract class BaseReactiveReadPolyController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadPolyService<I, O>> extends BaseController<S> {
