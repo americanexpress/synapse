@@ -1,12 +1,12 @@
 # Synapse
 Tired of having the developers in your team not following the same standards and each of them doing things their own way? 
-Tired of having a very disorganized architecture almost impossible to maintain after just a few months of starting your project?
-Tired of struggling on how to start a new project in Spring and setting up all the foundational architecture? 
-Tired of getting this same foundational frameworks robust and reliable? 
-If any of these is your case, then Synapse is what you need.
+Tired of having a disorganized architecture almost impossible to maintain after just a few months of starting your project?
+Tired of struggling on how to start a new project and setting up all the foundational architecture? 
+Tired of spending countless hours in getting your foundational frameworks robust and reliable? 
+If any of these sound like situations you have experienced or experiences that you simply want to avoid, then Synapse is what you need.
 
-Synapse is a very light framework built around Spring. It is designed with the purpose of helping developers create web services in a quick and easy way following very strict conventions.
-The framework provides an abstraction layer that forces developers to follow SOLID principles and avoid common mistakes done during the development process.
+Synapse is a lightweight framework built around Spring. It is designed with the purpose of helping developers create web services in a quick and easy way following strict conventions.
+The framework provides an abstraction layer that forces developers to follow SOLID principles and avoid common mistakes during the development process.
 It is based on keeping things SIMPLE and clear. The framework strongly encourages convention over configuration, while highlighting the criticality of structure. Synapse will cover at least 95% of all the scenarios you need when creating an enterprise grade application, but it is also very open to extension. 
 So if you feel the need to create something new not covered here, you also have the flexibility of doing it.
 
