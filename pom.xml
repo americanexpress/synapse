@@ -71,23 +71,29 @@
     </properties>
 
     <modules>
+        <!--Synapse Framework-->
         <module>synapse-framework-logging</module>
         <module>synapse-framework-exception</module>
         <module>synapse-framework-test</module>
         <module>synapse-framework-api-docs</module>
 
+        <!--Synapse Service-->
         <module>synapse-service-rest</module>
         <module>synapse-service-test</module>
 
+        <!--Synapse Client-->
         <module>synapse-client-rest</module>
         <module>synapse-client-soap</module>
         <module>synapse-client-test</module>
 
+        <!--Synapse Data-->
         <module>synapse-data-couchbase</module>
         <module>synapse-data-postgres</module>
 
+        <!--Synapse Publisher-->
         <module>synapse-publisher-kafka</module>
 
+        <!--Synapse Utility-->
         <module>synapse-utilities-common</module>
     </modules>
 
@@ -157,6 +163,7 @@
                 <artifactId>synapse-data-postgres</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            
             <!-- UTILITY-->
             <dependency>
                 <groupId>com.americanexpress</groupId>
@@ -261,7 +268,7 @@
             <dependency>
                 <groupId>net.sf.ehcache</groupId>
                 <artifactId>ehcache</artifactId>
-                <version>2.10.6.4.2</version>
+                <version>2.10.9.2</version>
             </dependency>
             <dependency>
                 <groupId>org.ehcache</groupId>
@@ -294,6 +301,14 @@
                 <artifactId>postgresql</artifactId>
                 <version>${postgresql.version}</version>
             </dependency>
+
+            <!-- PERSISTENCE DEPENDENCIES -->
+            <dependency>
+                <groupId>javax.persistence</groupId>
+                <artifactId>javax.persistence-api</artifactId>
+                <version>2.2</version>
+            </dependency>
+
 
             <dependency>
                 <groupId>com.openpojo</groupId>
