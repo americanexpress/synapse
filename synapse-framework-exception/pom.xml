@@ -19,7 +19,7 @@
     <parent>
         <groupId>com.americanexpress</groupId>
         <artifactId>synapse</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0-RELEASE</version>
     </parent>
 
     <artifactId>synapse-framework-exception</artifactId>
