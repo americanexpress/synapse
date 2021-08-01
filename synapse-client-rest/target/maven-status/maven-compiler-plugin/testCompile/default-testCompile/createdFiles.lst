@@ -1,8 +1,8 @@
-com/americanexpress/synapse/client/rest/factory/BaseHttpHeadersFactoryTest.class
-com/americanexpress/synapse/client/rest/client/QueryParameterUriCreatorTest.class
-com/americanexpress/synapse/client/rest/client/PathVariableUriCreatorTest.class
-com/americanexpress/synapse/client/rest/model/ClientTraceTest.class
-com/americanexpress/synapse/client/rest/factory/ClientHeadersFileReaderFactoryTest.class
-com/americanexpress/synapse/client/rest/model/ClientRoutingTest.class
-com/americanexpress/synapse/client/rest/UnitTestSuite.class
-com/americanexpress/synapse/client/rest/model/ClientHeadersTest.class
+io\americanexpress\synapse\client\rest\UnitTestSuite.class
+io\americanexpress\synapse\client\rest\model\ClientHeadersTest.class
+io\americanexpress\synapse\client\rest\client\QueryParameterUriCreatorTest.class
+io\americanexpress\synapse\client\rest\model\ClientRoutingTest.class
+io\americanexpress\synapse\client\rest\factory\BaseHttpHeadersFactoryTest.class
+io\americanexpress\synapse\client\rest\factory\ClientHeadersFileReaderFactoryTest.class
+io\americanexpress\synapse\client\rest\model\ClientTraceTest.class
+io\americanexpress\synapse\client\rest\client\PathVariableUriCreatorTest.class

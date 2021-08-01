@@ -1,6 +1,6 @@
-com/americanexpress/synapse/publisher/kafka/config/BaseKafkaConfig.class
-com/americanexpress/synapse/publisher/kafka/config/BaseKafkaProperties$BaseKafkaProducer.class
-com/americanexpress/synapse/publisher/kafka/config/BaseKafkaProperties$BaseKafkaTemplate.class
-com/americanexpress/synapse/publisher/kafka/config/BaseKafkaProperties$BaseKafkaSsl.class
-com/americanexpress/synapse/publisher/kafka/publisher/BaseKafkaPublisher.class
-com/americanexpress/synapse/publisher/kafka/config/BaseKafkaProperties.class
+io\americanexpress\synapse\publisher\kafka\config\BaseKafkaProperties$BaseKafkaProducer.class
+io\americanexpress\synapse\publisher\kafka\config\BaseKafkaProperties.class
+io\americanexpress\synapse\publisher\kafka\config\BaseKafkaConfig.class
+io\americanexpress\synapse\publisher\kafka\config\BaseKafkaProperties$BaseKafkaSsl.class
+io\americanexpress\synapse\publisher\kafka\config\BaseKafkaProperties$BaseKafkaTemplate.class
+io\americanexpress\synapse\publisher\kafka\publisher\BaseKafkaPublisher.class

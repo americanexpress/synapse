@@ -1,2 +1,2 @@
-com/americanexpress/synapse/data/postgres/entity/BaseEntity.class
-com/americanexpress/synapse/data/postgres/config/BasePostgresDataConfig.class
+io\americanexpress\synapse\data\postgres\entity\BaseEntity.class
+io\americanexpress\synapse\data\postgres\config\BasePostgresDataConfig.class

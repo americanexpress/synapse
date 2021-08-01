@@ -1,2 +1,2 @@
-com/americanexpress/synapse/framework/exception/FrameworkExceptionUnitTestSuite.class
-com/americanexpress/synapse/framework/exception/ErrorMessagePropertyReaderTest.class
+io\americanexpress\synapse\framework\exception\FrameworkExceptionUnitTestSuite.class
+io\americanexpress\synapse\framework\exception\ErrorMessagePropertyReaderTest.class

@@ -16,7 +16,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.americanexpress</groupId>
+        <groupId>io.americanexpress</groupId>
         <artifactId>synapse</artifactId>
         <version>1.0.0-RELEASE</version>
     </parent>
@@ -24,14 +24,15 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>synapse-framework-test</artifactId>
 
+    <!--Dependencies-->
     <dependencies>
-        <!--SYNAPSE DEPENDENCIES-->
+        <!--Synapse Dependencies-->
         <dependency>
-            <groupId>com.americanexpress</groupId>
+            <groupId>io.americanexpress</groupId>
             <artifactId>synapse-framework-logging</artifactId>
         </dependency>
 
-        <!--THIRD PARTY DEPENDENCIES-->
+        <!--External Dependencies-->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>

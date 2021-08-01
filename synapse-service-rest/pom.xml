@@ -17,32 +17,32 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
-        <groupId>com.americanexpress</groupId>
+        <groupId>io.americanexpress</groupId>
         <artifactId>synapse</artifactId>
         <version>1.0.0-RELEASE</version>
     </parent>
 
-    <artifactId>synapse-service-rest</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
     <modelVersion>4.0.0</modelVersion>
+    <artifactId>synapse-service-rest</artifactId>
 
+    <!--Dependencies-->
     <dependencies>
-        <!-- SYNAPSE DEPENDENCIES -->
+        <!--Synapse-->
         <dependency>
-            <groupId>com.americanexpress</groupId>
+            <groupId>io.americanexpress</groupId>
             <artifactId>synapse-framework-exception</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.americanexpress</groupId>
+            <groupId>io.americanexpress</groupId>
             <artifactId>synapse-framework-api-docs</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.americanexpress</groupId>
+            <groupId>io.americanexpress</groupId>
             <artifactId>synapse-utilities-common</artifactId>
         </dependency>
 
-        <!-- EXTERNAL DEPENDENCIES -->
-        <!-- JUNIT DEPENDENCIES -->
+        <!--External Dependencies-->
+        <!-- JUnit -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -52,19 +52,19 @@
             <artifactId>junit-jupiter-engine</artifactId>
         </dependency>
 
-        <!-- MOCKITO DEPENDENCIES -->
+        <!--Mockito -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
         </dependency>
 
-        <!-- SPRING DEPENDENCIES -->
+        <!--Spring-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
         </dependency>
 
-        <!-- SPRING BOOT DEPENDENCIES -->
+        <!--Spring Boot-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
@@ -112,13 +112,13 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-        <!-- SLF4J DEPENDENCIES -->
+        <!--SLF4J-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-ext</artifactId>
         </dependency>
 
-        <!-- TOMCAT DEPENDENCIES -->
+        <!--TOMCAT-->
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-core</artifactId>

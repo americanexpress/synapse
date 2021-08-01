@@ -1,6 +1,6 @@
-/Users/sazam2/Documents/Workspace/amex/customer360ui_synapse/synapse-service-rest/src/test/java/com/americanexpress/synapse/service/rest/SynapseSampleApplication.java
-/Users/sazam2/Documents/Workspace/amex/customer360ui_synapse/synapse-service-rest/src/test/java/com/americanexpress/synapse/service/rest/controller/healthcheck/HealthCheckControllerTest.java
-/Users/sazam2/Documents/Workspace/amex/customer360ui_synapse/synapse-service-rest/src/test/java/com/americanexpress/synapse/service/rest/controller/exceptionhandler/ControllerExceptionHandlerTest.java
-/Users/sazam2/Documents/Workspace/amex/customer360ui_synapse/synapse-service-rest/src/test/java/com/americanexpress/synapse/service/rest/interceptor/BaseHttpInterceptorTest.java
-/Users/sazam2/Documents/Workspace/amex/customer360ui_synapse/synapse-service-rest/src/test/java/com/americanexpress/synapse/service/rest/controller/exceptionhandler/InputValidationErrorHandlerTest.java
-/Users/sazam2/Documents/Workspace/amex/customer360ui_synapse/synapse-service-rest/src/test/java/com/americanexpress/synapse/service/rest/ServiceRestUnitTestSuite.java
+C:\Users\cuzto\Documents\GitHub\synapse\synapse-service-rest\src\test\java\io\americanexpress\synapse\service\rest\controller\healthcheck\HealthCheckControllerTest.java
+C:\Users\cuzto\Documents\GitHub\synapse\synapse-service-rest\src\test\java\io\americanexpress\synapse\service\rest\interceptor\BaseHttpInterceptorTest.java
+C:\Users\cuzto\Documents\GitHub\synapse\synapse-service-rest\src\test\java\io\americanexpress\synapse\service\rest\controller\exceptionhandler\InputValidationErrorHandlerTest.java
+C:\Users\cuzto\Documents\GitHub\synapse\synapse-service-rest\src\test\java\io\americanexpress\synapse\service\rest\SynapseSampleApplication.java
+C:\Users\cuzto\Documents\GitHub\synapse\synapse-service-rest\src\test\java\io\americanexpress\synapse\service\rest\ServiceRestUnitTestSuite.java
+C:\Users\cuzto\Documents\GitHub\synapse\synapse-service-rest\src\test\java\io\americanexpress\synapse\service\rest\controller\exceptionhandler\ControllerExceptionHandlerTest.java

@@ -1,8 +1,8 @@
-/Users/sazam2/Documents/Workspace/amex/customer360ui_synapse/synapse-client-rest/src/test/java/com/americanexpress/synapse/client/rest/client/PathVariableUriCreatorTest.java
-/Users/sazam2/Documents/Workspace/amex/customer360ui_synapse/synapse-client-rest/src/test/java/com/americanexpress/synapse/client/rest/UnitTestSuite.java
-/Users/sazam2/Documents/Workspace/amex/customer360ui_synapse/synapse-client-rest/src/test/java/com/americanexpress/synapse/client/rest/factory/ClientHeadersFileReaderFactoryTest.java
-/Users/sazam2/Documents/Workspace/amex/customer360ui_synapse/synapse-client-rest/src/test/java/com/americanexpress/synapse/client/rest/model/ClientTraceTest.java
-/Users/sazam2/Documents/Workspace/amex/customer360ui_synapse/synapse-client-rest/src/test/java/com/americanexpress/synapse/client/rest/model/ClientHeadersTest.java
-/Users/sazam2/Documents/Workspace/amex/customer360ui_synapse/synapse-client-rest/src/test/java/com/americanexpress/synapse/client/rest/factory/BaseHttpHeadersFactoryTest.java
-/Users/sazam2/Documents/Workspace/amex/customer360ui_synapse/synapse-client-rest/src/test/java/com/americanexpress/synapse/client/rest/model/ClientRoutingTest.java
-/Users/sazam2/Documents/Workspace/amex/customer360ui_synapse/synapse-client-rest/src/test/java/com/americanexpress/synapse/client/rest/client/QueryParameterUriCreatorTest.java
+C:\Users\cuzto\Documents\GitHub\synapse\synapse-client-rest\src\test\java\io\americanexpress\synapse\client\rest\client\PathVariableUriCreatorTest.java
+C:\Users\cuzto\Documents\GitHub\synapse\synapse-client-rest\src\test\java\io\americanexpress\synapse\client\rest\model\ClientHeadersTest.java
+C:\Users\cuzto\Documents\GitHub\synapse\synapse-client-rest\src\test\java\io\americanexpress\synapse\client\rest\UnitTestSuite.java
+C:\Users\cuzto\Documents\GitHub\synapse\synapse-client-rest\src\test\java\io\americanexpress\synapse\client\rest\model\ClientTraceTest.java
+C:\Users\cuzto\Documents\GitHub\synapse\synapse-client-rest\src\test\java\io\americanexpress\synapse\client\rest\factory\ClientHeadersFileReaderFactoryTest.java
+C:\Users\cuzto\Documents\GitHub\synapse\synapse-client-rest\src\test\java\io\americanexpress\synapse\client\rest\factory\BaseHttpHeadersFactoryTest.java
+C:\Users\cuzto\Documents\GitHub\synapse\synapse-client-rest\src\test\java\io\americanexpress\synapse\client\rest\client\QueryParameterUriCreatorTest.java
+C:\Users\cuzto\Documents\GitHub\synapse\synapse-client-rest\src\test\java\io\americanexpress\synapse\client\rest\model\ClientRoutingTest.java

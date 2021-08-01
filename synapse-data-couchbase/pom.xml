@@ -14,27 +14,28 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.americanexpress</groupId>
+        <groupId>io.americanexpress</groupId>
         <artifactId>synapse</artifactId>
         <version>1.0.0-RELEASE</version>
     </parent>
 
+    <modelVersion>4.0.0</modelVersion>
     <artifactId>synapse-data-couchbase</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
 
+    <!--Dependencies-->
     <dependencies>
-        <!-- SYNAPSE DEPENDENCIES -->
+        <!--Synapse-->
         <dependency>
-            <groupId>com.americanexpress</groupId>
+            <groupId>io.americanexpress</groupId>
             <artifactId>synapse-framework-exception</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.americanexpress</groupId>
+            <groupId>io.americanexpress</groupId>
             <artifactId>synapse-framework-logging</artifactId>
         </dependency>
-        <!-- EXTERNAL DEPENDENCIES -->
+
+        <!--External Dependencies-->
         <dependency>
             <groupId>com.couchbase.client</groupId>
             <artifactId>java-client</artifactId>

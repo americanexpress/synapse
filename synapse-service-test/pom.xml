@@ -16,22 +16,23 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
-        <groupId>com.americanexpress</groupId>
+        <groupId>io.americanexpress</groupId>
         <artifactId>synapse</artifactId>
         <version>1.0.0-RELEASE</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
+    <modelVersion>4.0.0</modelVersion>
     <artifactId>synapse-service-test</artifactId>
 
+    <!--Dependencies-->
     <dependencies>
-        <!--CUSTOM DEPENDENCIES-->
+        <!--Synapse Dependencies-->
         <dependency>
-            <groupId>com.americanexpress</groupId>
+            <groupId>io.americanexpress</groupId>
             <artifactId>synapse-service-rest</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.americanexpress</groupId>
+            <groupId>io.americanexpress</groupId>
             <artifactId>synapse-framework-test</artifactId>
         </dependency>
 
