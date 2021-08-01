@@ -159,3 +159,6 @@ buildNumber.properties
 
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
+/synapse-service-test/target/
+/synapse-utilities-common/target/
+/synapse-client-test/target/
