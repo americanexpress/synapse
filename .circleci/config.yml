@@ -24,7 +24,7 @@ jobs:
           command: mvn test
       # Then deploy your code!
       - run:
-          name: Test
+          name: Deploy
           command: mvn deploy
 
 workflows:
