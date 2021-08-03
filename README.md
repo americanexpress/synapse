@@ -1,8 +1,9 @@
 # Synapse
-Tired of having the developers in your team not following the same standards and each of them doing things their own way? 
-Tired of having a disorganized architecture almost impossible to maintain after just a few months of starting your project?
-Tired of struggling on how to start a new project and setting up all the foundational architecture? 
-Tired of spending countless hours in getting your foundational frameworks robust and reliable? 
+- Tired of having the developers in your team not following the same standards and each of them doing things their own way? 
+- Tired of having a disorganized architecture almost impossible to maintain after just a few months of starting your project?
+- Tired of struggling on how to start a new project and setting up all the foundational architecture? 
+- Tired of spending countless hours in getting your foundational frameworks robust and reliable? 
+
 If any of these sound like situations you have experienced or experiences that you simply want to avoid, then Synapse is what you need.
 
 Synapse is a lightweight framework built around Spring. It is designed with the purpose of helping developers create web services in a quick and easy way following strict conventions.
@@ -153,12 +154,13 @@ The name parameter value overrides the default value of World and is reflected i
 ### What You Need
 - About 15 minutes
 - A favorite text editor or IDE
-- JDK 1.8
+- JDK 1.8+
 - Gradle 4+ or Maven 3.2+
 
 You can also import the code straight into your IDE:
-- Spring Tool Suite (STS)
 - IntelliJ IDEA
+- Spring Tool Suite (STS)
+
 
 
 The following listing shows the pom.xml file that is created when you choose Maven:
