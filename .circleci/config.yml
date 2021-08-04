@@ -25,7 +25,7 @@ jobs:
       # Then deploy your code!
       - run:
           name: Deploy
-          command: mvn -s .circleci.settings.xml -DskipTests deploy
+          command: mvn -s .circleci/settings.xml -DskipTests deploy
 
 workflows:
   # Below is the definition of your workflow.
