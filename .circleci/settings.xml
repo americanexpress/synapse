@@ -3,7 +3,7 @@
           xmlns='http://maven.apache.org/SETTINGS/1.0.0' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
     <servers>
         <server>
-            <id>bintray-americanexpress-maven</id>
+            <id>ossrh</id>
             <username>${env.MAVEN_REPO_USERNAME}</username>
             <password>${env.MAVEN_REPO_PASSWORD}</password>
         </server>
