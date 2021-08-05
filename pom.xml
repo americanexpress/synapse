@@ -744,15 +744,15 @@
     </licenses>
 
     <distributionManagement>
+<!--        <repository>-->
+<!--            <id>ossrh</id>-->
+<!--            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>-->
+<!--        </repository>-->
         <repository>
-            <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <id>bintray-americanexpress-maven</id>
+            <name>americanexpress-maven</name>
+            <url>https://api.bintray.com/maven/americanexpress/maven/com.americanexpress.synapse/;publish=1</url>
         </repository>
-        <!--            <repository>-->
-        <!--                <id>bintray-americanexpress-maven</id>-->
-        <!--                <name>americanexpress-maven</name>-->
-        <!--                <url>https://api.bintray.com/maven/americanexpress/maven/com.americanexpress.synapse/;publish=1</url>-->
-        <!--            </repository>-->
 
         <snapshotRepository>
             <id>ossrh</id>
