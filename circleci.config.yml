@@ -35,7 +35,7 @@ jobs:
       - run:
 #          <<: [ *context ]
           name: Deploy
-          command: mvn -s .circleci/settings.xml -DskipTests deploy -P release
+          command: mvn -s .circleci.settings.xml -DskipTests deploy -P release
 
 
 workflows:
