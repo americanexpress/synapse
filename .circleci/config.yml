@@ -27,16 +27,6 @@ jobs:
           name: Deploy
           command: mvn -s .circleci/settings.xml -DskipTests deploy -P release
 
-workflows_setup:
-  - &context
-    context:
-      - maven_central_credentials
-      - code_signing_credentials
-
-  - &default_branch
-      "main"
-
-
 workflows:
   # Below is the definition of your workflow.
   # Inside the workflow, you provide the jobs you want to run, e.g this workflow runs the build-and-test job above.
