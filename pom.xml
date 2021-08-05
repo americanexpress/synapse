@@ -751,7 +751,7 @@
         <repository>
             <id>bintray-americanexpress-maven</id>
             <name>americanexpress-maven</name>
-            <url>https://api.bintray.com/maven/americanexpress/maven/com.americanexpress.synapse/;publish=1</url>
+            <url>https://api.bintray.com/maven/americanexpress/maven/io.americanexpress.synapse/;publish=1</url>
         </repository>
 
         <snapshotRepository>
