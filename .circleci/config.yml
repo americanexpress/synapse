@@ -35,3 +35,12 @@ workflows:
   deploy-workflow:
     jobs:
       - build--test--deploy
+
+workflows_setup:
+  - &context
+    context:
+      - maven_central_credentials
+      - code_signing_credentials
+
+  - &default_branch
+      "main"
