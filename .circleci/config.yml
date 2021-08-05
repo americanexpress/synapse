@@ -33,7 +33,7 @@ jobs:
           command: mvn test
       # Then deploy your code!
       - run:
-          <<: [ *context ]
+#          <<: [ *context ]
           name: Deploy
           command: mvn -s .circleci/settings.xml -DskipTests deploy -P release
 
