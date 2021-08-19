@@ -81,7 +81,7 @@
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <jaxws-maven-plugin.version>2.5</jaxws-maven-plugin.version>
-        <maven-checkstyle-plugin.version>3.1.1</maven-checkstyle-plugin.version>
+        <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
     </properties>
 
     <modules>
@@ -572,8 +572,9 @@
                             </dependencies>
                         </plugin>
                         <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-pmd-plugin</artifactId>
-                            <version>3.6</version>
+                            <version>3.14.0</version>
                         </plugin>
                         <plugin>
                             <artifactId>cobertura-maven-plugin</artifactId>
