@@ -36,6 +36,36 @@ jobs:
           <<: [ *context ]
           name: Deploy
           command: mvn -s .circleci/settings.xml -DskipTests deploy -P release -Dgpg
+  publish:
+    permissions:
+      contents: read
+      packages: write
+    docker:
+      - image: cimg/openjdk:11.0
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Java for publishing to Maven Central Repository
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+          server-id: ossrh
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_PASSWORD
+      - name: Publish to the Maven Central Repository
+        run: mvn --batch-mode deploy
+        env:
+          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+      - name: Set up Java for publishing to GitHub Packages
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+      - name: Publish to GitHub Packages
+        run: mvn --batch-mode deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
 workflows:
@@ -46,33 +76,5 @@ workflows:
   deploy-workflow:
     jobs:
       - build--test--deploy
-      name: Publish package to the Maven Central Repository and GitHub Packages
+      - publish
 
-      publish:
-        permissions:
-          contents: read
-          packages: write
-        steps:
-          - uses: actions/checkout@v2
-          - name: Set up Java for publishing to Maven Central Repository
-            uses: actions/setup-java@v2
-            with:
-              java-version: '11'
-              distribution: 'adopt'
-              server-id: ossrh
-              server-username: MAVEN_USERNAME
-              server-password: MAVEN_PASSWORD
-          - name: Publish to the Maven Central Repository
-            run: mvn --batch-mode deploy
-            env:
-              MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-              MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
-          - name: Set up Java for publishing to GitHub Packages
-            uses: actions/setup-java@v2
-            with:
-              java-version: '11'
-              distribution: 'adopt'
-          - name: Publish to GitHub Packages
-            run: mvn --batch-mode deploy
-            env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
