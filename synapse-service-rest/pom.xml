@@ -25,6 +25,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>synapse-service-rest</artifactId>
 
+
     <!--Dependencies-->
     <dependencies>
         <!--Synapse-->
@@ -58,13 +59,25 @@
             <artifactId>mockito-junit-jupiter</artifactId>
         </dependency>
 
+
+<!--        Quarkus - -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-spring-web</artifactId>
+            <version>2.1.1.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-spring-data-jpa</artifactId>
+            <version>2.1.1.Final</version>
+        </dependency>
         <!--Spring-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
         </dependency>
 
-        <!--Spring Boot-->
+<!--        Spring Boot-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>

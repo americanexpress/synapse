@@ -12,6 +12,7 @@ io\americanexpress\synapse\service\rest\service\BaseService.class
 io\americanexpress\synapse\service\rest\controller\reactive\BaseReactiveReadPolyController.class
 io\americanexpress\synapse\service\rest\controller\exceptionhandler\ControllerExceptionHandler.class
 io\americanexpress\synapse\service\rest\service\BaseDeleteService.class
+META-INF\panache-archive.marker
 io\americanexpress\synapse\service\rest\controller\helpers\PolyResponseEntityCreator.class
 io\americanexpress\synapse\service\rest\controller\BaseCreateController.class
 io\americanexpress\synapse\service\rest\model\ServiceHeaderKey.class

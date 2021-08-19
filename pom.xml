@@ -430,6 +430,14 @@
                 <artifactId>slf4j-ext</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
+            <!--Quarkus-->
+            <dependency>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-bom</artifactId>
+                <version>1.9.2.Final</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -744,20 +752,21 @@
     </licenses>
 
     <distributionManagement>
-<!--        <repository>-->
-<!--            <id>ossrh</id>-->
-<!--            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>-->
-<!--        </repository>-->
-        <repository>
-            <id>bintray-americanexpress-maven</id>
-            <name>americanexpress-maven</name>
-            <url>https://api.bintray.com/maven/americanexpress/maven/io.americanexpress.synapse/;publish=1</url>
-        </repository>
+
+        <!--        <repository>-->
+        <!--            <id>bintray-americanexpress-maven</id>-->
+        <!--            <name>americanexpress-maven</name>-->
+        <!--            <url>https://api.bintray.com/maven/americanexpress/maven/io.americanexpress.synapse/;publish=1</url>-->
+        <!--        </repository>-->
 
         <snapshotRepository>
             <id>ossrh</id>
             <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
 
     </distributionManagement>
 
