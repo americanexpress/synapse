@@ -1,7 +1,0 @@
-<Properties>
-    <Property name="ApplicationName">Synapse</Property>
-    <Property name="LogDirectory">${sys:user.home}/logs/${ApplicationName}/</Property>
-    <Property name="BasePatternLayout">%highlight{${LOG_LEVEL_PATTERN:-%5p}}{FATAL=red blink, ERROR=red, WARN=yellow bold, INFO=white, DEBUG=green bold, TRACE=blue bold} %style{%01.15t}{magenta} %style{%-30.40C{1.}.%M %L}{cyan} </Property>
-    <Property name="DefaultPatternLayout">%d{DEFAULT} %X{SEVERITY_LEVEL} ${BasePatternLayout} - %msg %n</Property>
-    <Property name="PatternLayoutWithRequest">%d{DEFAULT} %X{SEVERITY_LEVEL} ${BasePatternLayout} - %msg request = %X{request} %n</Property>
-</Properties>

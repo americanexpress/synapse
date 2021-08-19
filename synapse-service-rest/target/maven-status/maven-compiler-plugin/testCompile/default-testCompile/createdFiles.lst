@@ -1,7 +1,0 @@
-io\americanexpress\synapse\service\rest\SynapseSampleApplication.class
-io\americanexpress\synapse\service\rest\controller\healthcheck\HealthCheckControllerTest.class
-io\americanexpress\synapse\service\rest\controller\exceptionhandler\ControllerExceptionHandlerTest.class
-META-INF\panache-archive.marker
-io\americanexpress\synapse\service\rest\interceptor\BaseHttpInterceptorTest.class
-io\americanexpress\synapse\service\rest\ServiceRestUnitTestSuite.class
-io\americanexpress\synapse\service\rest\controller\exceptionhandler\InputValidationErrorHandlerTest.class

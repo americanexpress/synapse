@@ -1,9 +1,0 @@
-io\americanexpress\synapse\client\test\client\BaseRestClientUnitTest.class
-io\americanexpress\synapse\client\test\model\MockClientResponse.class
-io\americanexpress\synapse\client\test\BaseClientTest.class
-io\americanexpress\synapse\client\test\client\BaseRestClientTest.class
-io\americanexpress\synapse\client\test\handler\BaseRestResponseErrorHandlerTest.class
-io\americanexpress\synapse\client\test\factory\BaseClientHttpHeadersFactoryTest.class
-io\americanexpress\synapse\client\test\ResponseOperations.class
-io\americanexpress\synapse\client\test\client\BaseRestClientIT.class
-io\americanexpress\synapse\client\test\RequestOperations.class

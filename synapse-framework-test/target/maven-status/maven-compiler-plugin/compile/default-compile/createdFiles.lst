@@ -1,9 +1,0 @@
-io\americanexpress\synapse\framework\test\model\ProfileConstants.class
-io\americanexpress\synapse\framework\test\MockFixedValues.class
-io\americanexpress\synapse\framework\test\model\BaseModelsTest$FilterTestClasses.class
-io\americanexpress\synapse\framework\test\CommonAssertionMessages.class
-io\americanexpress\synapse\framework\test\model\BaseModelsTest$FilterBasedOnSubClassesCondition.class
-io\americanexpress\synapse\framework\test\model\BaseModelsTest$FilterBasedOnInheritanceTestClasses.class
-io\americanexpress\synapse\framework\test\model\MockEmail.class
-io\americanexpress\synapse\framework\test\model\BaseModelsTest.class
-io\americanexpress\synapse\framework\test\model\MockPortalUser.class
