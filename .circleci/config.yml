@@ -22,13 +22,13 @@ jobs:
           name: maven test
           command: mvn test
 
-  publish-snapshot:
-    <<: *common_job_config
-    steps:
-      - checkout
-      - run:
-          name: Publish -SNAPSHOT
-          command: mvn -s .circleci/settings.xml -DskipTests nexus-staging -Dsnapshot=false --stacktrace
+#  publish-snapshot:
+#    <<: *common_job_config
+#    steps:
+#      - checkout
+#      - run:
+#          name: Publish -SNAPSHOT
+#          command: mvn -s .circleci/settings.xml -DskipTests nexus-staging -Dsnapshot=false --stacktrace
 
   publish-release:
     <<: *common_job_config
