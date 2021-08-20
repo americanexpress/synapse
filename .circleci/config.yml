@@ -19,8 +19,8 @@ jobs:
       # TODO: need to merge with destination branch before building
       - checkout
       - run:
-          name: gradle test
-          command: ./gradlew cleanTest test --stacktrace
+          name: maven test
+          command: mvn test
 
   publish-snapshot:
     <<: *common_job_config
