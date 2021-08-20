@@ -2,6 +2,43 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
+executors:
+  java11:
+    docker:
+      - image: cimg/openjdk:11.0
+
+anchors:
+  - &common_job_config
+    executor: java11
+
+
+jobs:
+  test:
+    <<: *common_job_config
+    steps:
+      # TODO: need to merge with destination branch before building
+      - checkout
+      - run:
+          name: gradle test
+          command: ./gradlew cleanTest test --stacktrace
+
+  publish-snapshot:
+    <<: *common_job_config
+    steps:
+      - checkout
+      - run:
+          name: Publish -SNAPSHOT
+          command: mvn -s .circleci/settings.xml -DskipTests nexus-staging -Dsnapshot=false --stacktrace
+
+  publish-release:
+    <<: *common_job_config
+    steps:
+      - checkout
+      - run:
+          name: Publish Release
+          command: mvn -s .circleci/settings.xml -DskipTests deploy -P release -Dsnapshot=false --stacktrace
+
+
 workflows_setup:
   - &context
     context:
@@ -11,70 +48,35 @@ workflows_setup:
   - &default_branch
       "main"
 
-jobs:
-  # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
-  build--test--deploy:
-    # These next lines define a Docker executor: https://circleci.com/docs/2.0/executor-types/
-    # You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # Be sure to update the Docker image tag below to openjdk version of your application.
-    # A list of available CircleCI Docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/openjdk
-    docker:
-      - image: cimg/openjdk:11.0
-    steps:
-      # Checkout the code as the first step.
-      - checkout
-      # Use mvn clean and package as the standard maven build phase
-      - run:
-          name: Build
-          command: mvn -B -DskipTests clean package
-      # Then run your tests!
-      - run:
-          name: Test
-          command: mvn test
-      # Then deploy your code!
-      - run:
-          <<: [ *context ]
-          name: Deploy
-          command: mvn -s .circleci/settings.xml -DskipTests deploy -P release -Dgpg
-  publish:
-    permissions:
-      contents: read
-      packages: write
-    docker:
-      - image: cimg/openjdk:11.0
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Java for publishing to Maven Central Repository
-        uses: actions/setup-java@v2
-        with:
-          java-version: '11'
-          distribution: 'adopt'
-          server-id: ossrh
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_PASSWORD
-      - name: Publish to the Maven Central Repository
-        run: mvn --batch-mode deploy
-        env:
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
-      - name: Set up Java for publishing to GitHub Packages
-        uses: actions/setup-java@v2
-        with:
-          java-version: '11'
-          distribution: 'adopt'
-      - name: Publish to GitHub Packages
-        run: mvn --batch-mode deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
 workflows:
-  # Below is the definition of your workflow.
-  # Inside the workflow, you provide the jobs you want to run, e.g this workflow runs the build-and-test job above.
-  # CircleCI will run this workflow on every commit.
-  # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows
-  deploy-workflow:
+  pull_request_workflow:
     jobs:
-      - build--test--deploy
-      - publish
+      - test:
+          filters:
+            branches:
+              ignore: *default_branch
+
+  default_branch_workflow:
+    when:
+      # TODO: publish -SNAPSHOT for branches with branch name in the version
+      equal: [ *default_branch, << pipeline.git.branch >> ]
+    jobs:
+      - test
+      - publish-snapshot:
+          <<: [ *context ]
+          requires:
+            - test
+
+
+  publish_release:
+    jobs:
+      - publish-release:
+          <<: [ *context ]
+          filters:
+            tags:
+              only: /^\d+\.\d+\.\d+/
+            branches:
+              ignore: /.*/
+
+
 
