@@ -28,7 +28,7 @@ jobs:
           mvn test
       - store_test_results: # We use this timing data to optimize the future runs
           path: target/surefire-reports
-          
+
   # Deploy
   deploy:
     docker:
@@ -40,7 +40,7 @@ jobs:
       - checkout
       - run: mvn -s .circleci/settings.xml -DskipTests deploy -P release
 
-
+# Workflows that will schedule and execute jobs.
 workflows:
   build-test-deploy:
     jobs:
