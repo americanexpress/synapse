@@ -52,4 +52,4 @@ workflows:
       - deploy:
           requires:
             - build
-            - test
+#            - test
