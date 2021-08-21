@@ -13,7 +13,7 @@ jobs:
       - save_cache: # saves the project dependencies
           paths:
             - ~/.m2
-          key: unify-jdocs-{{ checksum "pom.xml" }}
+          key: synapse-{{ checksum "pom.xml" }}
       - run: mvn clean install -DskipTests
   # Test
   test:
