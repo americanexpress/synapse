@@ -2,6 +2,10 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
+
+
+
+
 jobs:
   # Build
   build:
@@ -43,6 +47,16 @@ jobs:
       - run: echo ${MAVEN_REPO_USERNAME}
       - run: echo ${MAVEN_REPO_PASSWORD}
       - run: mvn --settings ".circle.settings.xml" -DskipTests deploy -P release
+
+
+workflows_setup:
+  - &context
+    context:
+      - maven_central_credentials
+      - code_signing_credentials
+
+  - &default_branch
+      "main"
 
 
 # Workflows that will schedule and execute jobs.
