@@ -28,7 +28,7 @@ jobs:
       - image: circleci/openjdk:stretch
         auth:
           username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+          password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
       - run: mvn -Dmaven.test.skip=true package
@@ -37,12 +37,12 @@ jobs:
     docker:
       - image: circleci/openjdk:stretch
         auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+          username: $MAVEN_REPO_USERNAME
+          password: $MAVEN_REPO_PASSWORD
     steps:
       - checkout
       - run: mvn deploy package
-          
+
 
 workflows:
   version: 2
@@ -53,4 +53,7 @@ workflows:
       - test:
           requires:
             - build
-      - deploy
+      - deploy:
+          requires:
+            - build
+            - test
