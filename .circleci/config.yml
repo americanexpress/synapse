@@ -37,8 +37,8 @@ jobs:
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
-      - run: mvn -s .circleci/settings.xml -DskipTests deploy -P release
-          command: echo ${MAVEN_REPO_USERNAME}
+      - run: mvn -s .circleci/settings.xml -DskipTests deploy -P release |
+          echo ${MAVEN_REPO_USERNAME}
 
 # Workflows that will schedule and execute jobs.
 workflows:
