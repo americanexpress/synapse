@@ -24,7 +24,7 @@ jobs:
       - run: mvn test
       - store_test_results: # We use this timing data to optimize the future runs
           path: target/surefire-reports
-#      - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy -P release
+  #      - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy -P release
 
   # Test
   test-job:
@@ -76,13 +76,16 @@ workflows:
       - build-test-job
       - maven-central-deploy-job:
           context: maven_central_credentials
-
+          requires:
+            - build-test-job
 
   american-express-build-test-deploy-workflow:
     jobs:
       - build-test-job
       - american-express-deploy-job:
           context: gradle
+          requires:
+            - build-test-job
 
 
       #          <<: [ *context ]
