@@ -24,7 +24,7 @@ jobs:
       - run: mvn test
       - store_test_results: # We use this timing data to optimize the future runs
           path: target/surefire-reports
-      - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy -P release
+#      - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy -P release
 
   # Test
   test-job:
