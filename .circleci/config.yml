@@ -2,37 +2,43 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
-executors:
-  java11:
+jobs:
+  test:
+    parallelism: 2 # parallel containers to split the tests among
     docker:
-      - image: cimg/openjdk:11.0
+      - image: circleci/openjdk:stretch
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - checkout
+      - run: |
+          ./mvnw \
+          -Dtest=$(for file in $(circleci tests glob "src/test/**/**.java" \
+          | circleci tests split --split-by=timings); \
+          do basename $file \
+          | sed -e "s/.java/,/"; \
+          done | tr -d '\r\n') \
+          -e test
+      - store_test_results: # We use this timing data to optimize the future runs
+          path: target/surefire-reports
 
-pparameters:
-  executor:
-    type: executor
-    default: maven-executor
-  mvn-build-test-command:
-    type: string
-    default: echo "mvn-build-test-command not provided" 1>&2 && exit 1
-  mvn-collect-artifacts-command:
-    type: string
-    default: 'echo "mvn-collect-artifacts-command not provided, proceeding without..."'
-  steps:
-    - checkout
-    - restore_cache:
-        key: 'maven-github-release-{{ checksum ".circleci/config.yml" }}'
-    - run:
-        name: Build and test script
-        command: << parameters.mvn-build-test-command >>
-    - persist_to_workspace:
-        root: .
-        paths:
-          - .
-    - run:
-        name: Optional collect artifacts script
-        shell: /bin/bash -eo pipefail -O globstar
-        command: << parameters.mvn-collect-artifacts-command >>
-    - store_artifacts:
-        path: artifacts
-    - store_test_results:
-        path: artifacts/junit
+  build:
+    docker:
+      - image: circleci/openjdk:stretch
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - checkout
+      - run: ./mvnw -Dmaven.test.skip=true package
+
+workflows:
+  version: 2
+
+  build-then-test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
