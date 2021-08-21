@@ -53,6 +53,7 @@ workflows_setup:
   - &context
     context:
       - maven_central_credentials
+      - gradle
       - code_signing_credentials
 
   - &default_branch
@@ -65,6 +66,7 @@ workflows:
     jobs:
       - build:
           <<: [ *context ]
+
       #      - test:
       #          requires:
       #            - build
