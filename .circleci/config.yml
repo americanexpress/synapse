@@ -73,14 +73,14 @@ jobs:
 workflows:
   maven-central-build-test-deploy-workflow:
     jobs:
-      - build-test-job:
+      - build-test-job
       - maven-central-deploy-job:
           context: maven_central_credentials
 
 
   american-express-build-test-deploy-workflow:
     jobs:
-      - build-test-job:
+      - build-test-job
       - american-express-deploy-job:
           context: gradle
 
