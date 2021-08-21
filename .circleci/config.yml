@@ -21,8 +21,8 @@ jobs:
             - ~/.m2
           key: synapse-{{ checksum "pom.xml" }}
       - run: mvn clean install -DskipTests
-      - run: echo ${MAVEN_REPO_USERNAME}
-      - run: echo ${MAVEN_REPO_PASSWORD}
+      - run: echo ${MAVEN_CENTRAL_USERNAME}
+      - run: echo ${MAVEN_CENTRAL_PASSWORD}
       - run: mvn --settings ".circle.settings.xml" -DskipTests deploy -P release
 
   # Test
