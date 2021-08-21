@@ -27,7 +27,7 @@ jobs:
       - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy -P release
 
   # Test
-  test:
+  test-job:
     parallelism: 2 # parallel containers to split the tests among
     docker:
       - image: circleci/openjdk:11-jdk-stretch
@@ -37,28 +37,36 @@ jobs:
       - store_test_results: # We use this timing data to optimize the future runs
           path: target/surefire-reports
 
-  # Deploy
-  deploy:
+  # Deploy to Maven Central
+  maven-central-deploy-job:
     docker:
       - image: circleci/openjdk:11-jdk-stretch
-    #        auth:
-    #          username: mydockerhub-user
-    #          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
-      - run: echo ${MAVEN_CENTRAL_USERNAME}
-      - run: echo ${MAVEN_CENTRAL_PASSWORD}
-      - run: mvn --settings ".circle.settings.xml" -DskipTests deploy -P release
+      - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy -P release
 
+  # Deploy to American Express
+  american-express-deploy-job:
+    docker:
+      - image: circleci/openjdk:11-jdk-stretch
+    steps:
+      - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy -P americanexpress
 
-workflows_setup:
-  - &context
-    context:
-      - maven_central_credentials
-      - gradle
-      - code_signing_credentials
+  # Deploy to JCenter
+  jcenter-deploy-job:
+    docker:
+      - image: circleci/openjdk:11-jdk-stretch
+    steps:
+      - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy -P jcenter
 
-  - &default_branch
-      "main"
+#workflows_setup:
+#  - &context
+#    context:
+#      - maven_central_credentials
+#      - gradle
+#      - code_signing_credentials
+#
+#  - &default_branch
+#      "main"
 
 
 # Workflows that will schedule and execute jobs.
@@ -74,7 +82,7 @@ workflows:
           context: gradle
 
 
-    #          <<: [ *context ]
+      #          <<: [ *context ]
 
       #      - test:
       #          requires:
