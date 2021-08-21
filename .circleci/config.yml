@@ -38,6 +38,7 @@ jobs:
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - run: echo ${MAVEN_REPO_USERNAME}
+      - run: echo ${MAVEN_REPO_PASSWORD}
       - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy -P release
 
 
