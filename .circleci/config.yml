@@ -8,7 +8,7 @@ version: 2.1
 
 jobs:
   # Build, Test, and Deploy
-  build-test-deploy-job:
+  build-test-job:
     docker:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
@@ -73,12 +73,15 @@ jobs:
 workflows:
   maven-central-build-test-deploy-workflow:
     jobs:
-      - build-test-deploy-job:
+      - build-test-job:
+      - maven-central-deploy-job:
           context: maven_central_credentials
+
 
   american-express-build-test-deploy-workflow:
     jobs:
-      - build-test-deploy-job:
+      - build-test-job:
+      - american-express-deploy-job:
           context: gradle
 
 
