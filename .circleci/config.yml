@@ -42,6 +42,7 @@ jobs:
     docker:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
+      - checkout
       - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy -P release
 
   # Deploy to American Express
@@ -49,6 +50,7 @@ jobs:
     docker:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
+      - checkout
       - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy -P americanexpress
 
   # Deploy to JCenter
@@ -56,6 +58,7 @@ jobs:
     docker:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
+      - checkout
       - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy -P jcenter
 
 #workflows_setup:
