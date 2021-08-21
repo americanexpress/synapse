@@ -68,7 +68,8 @@ workflows:
   build-test-deploy-workflow:
     jobs:
       - build-test-deploy-job:
-          <<: [ *context ]
+          context: maven_central_credentials
+#          <<: [ *context ]
 
       #      - test:
       #          requires:
