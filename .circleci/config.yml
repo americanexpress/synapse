@@ -56,10 +56,10 @@ workflows:
             branches:
               ignore: *default_branch
 
-  default_branch_workflow:
-    when:
-#      # TODO: publish -SNAPSHOT for branches with branch name in the version
-      equal: [ *default_branch, << pipeline.git.branch >> ]
+#  default_branch_workflow:
+#    when:
+##      # TODO: publish -SNAPSHOT for branches with branch name in the version
+#      equal: [ *default_branch, << pipeline.git.branch >> ]
 #    jobs:
 #      - test
 #      - publish-snapshot:
