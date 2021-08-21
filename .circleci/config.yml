@@ -7,76 +7,50 @@ executors:
     docker:
       - image: cimg/openjdk:11.0
 
-anchors:
-  - &common_job_config
-    executor: java11
 
+parameters:
+  mvn-deploy-command:
+    type: string
+  internal_versioncommand:
+    type: string
+  new_version:
+    default: true
+    type: boolean
+steps:
+  - attach_workspace:
+      at: .
+  - restore_cache:
+      key: 'maven-github-release-{{ checksum ".circleci/config.yml" }}'
+  - configure-gpg
+  - configure-git
+  - run:
+      name: >-
+        Release new version to Maven Central and push new project version to
+        repo
+      command: >
+        echo "Starting new release..."
 
-jobs:
-  test:
-    <<: *common_job_config
-    steps:
-      # TODO: need to merge with destination branch before building
-      - checkout
-      - run:
-          name: maven test
-          command: mvn test
+        << parameters.internal_versioncommand >>
 
-#  publish-snapshot:
-#    <<: *common_job_config
-#    steps:
-#      - checkout
-#      - run:
-#          name: Publish -SNAPSHOT
-#          command: mvn -s .circleci/settings.xml -DskipTests nexus-staging -Dsnapshot=false --stacktrace
+        MVN_VERSION=$(mvn -q -Dexec.executable="echo"
+        -Dexec.args='${project.version}' --non-recursive exec:exec)
 
-  publish-release:
-    <<: *common_job_config
-    steps:
-      - checkout
-      - run:
-          name: Publish Release
-          command: mvn -s .circleci/settings.xml -DskipTests deploy -P release -Dsnapshot=false --stacktrace
+        echo "Releasing version ${MVN_VERSION}..."
 
+        << parameters.mvn-deploy-command >>
 
-workflows_setup:
-  - &context
-    context:
-      - maven_central_credentials
-      - code_signing_credentials
+        if [[ << parameters.new_version >> = true ]]; then
+          echo "Pushing new version and tag..."
+          git commit -am "released ${MVN_VERSION} [skip ci]"
+          git tag -a ${MVN_VERSION} -m "Release ${MVN_VERSION}"
+          ssh-agent sh -c 'ssh-add ~/.ssh/id_rsa; git push $CIRCLE_REPOSITORY_URL'
+          ssh-agent sh -c 'ssh-add ~/.ssh/id_rsa; git push origin --tags'
+        else
+          echo "Version ${MVN_VERSION} is a SNAPSHOT, no version change or tag to commit..."
+        fi
 
-  - &default_branch
-      "main"
-
-workflows:
-  pull_request_workflow:
-    jobs:
-      - test:
-          filters:
-            branches:
-              ignore: *default_branch
-
-#  default_branch_workflow:
-#    when:
-##      # TODO: publish -SNAPSHOT for branches with branch name in the version
-#      equal: [ *default_branch, << pipeline.git.branch >> ]
-#    jobs:
-#      - test
-#      - publish-snapshot:
-#          <<: [ *context ]
-#          requires:
-#            - test
-
-
-  publish_release:
-    jobs:
-      - publish-release:
-          <<: [ *context ]
-          filters:
-            tags:
-              only: /^\d+\.\d+\.\d+/
-            branches:
-              ignore: /.*/
-
-
-
+        echo "Successfully released ${MVN_VERSION}"
+  - save_cache:
+      paths:
+        - ~/.m2
+      key: 'maven-github-release-{{ checksum ".circleci/config.yml" }}'
