@@ -63,7 +63,8 @@ workflows_setup:
 workflows:
   build-test-deploy:
     jobs:
-      - build
+      - build:
+          <<: [ *context ]
       #      - test:
       #          requires:
       #            - build
