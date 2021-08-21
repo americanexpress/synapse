@@ -34,8 +34,8 @@ jobs:
     docker:
       - image: circleci/openjdk:stretch
         auth:
-          username: $MAVEN_REPO_USERNAME
-          password: $MAVEN_REPO_PASSWORD
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
       - run: mvn -s .circleci/settings.xml -DskipTests deploy -P release
