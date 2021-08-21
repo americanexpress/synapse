@@ -9,20 +9,23 @@ jobs:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
       - checkout
+      - restore_cache:
+          key: synapse-{{ checksum "pom.xml" }}
       - run: mvn -B clean package -DskipTests
       - save_cache: # saves the project dependencies
           paths:
             - ~/.m2
           key: synapse-{{ checksum "pom.xml" }}
       - run: mvn clean install -DskipTests
+      - run: echo ${MAVEN_REPO_USERNAME}
+      - run: echo ${MAVEN_REPO_PASSWORD}
+      - run: mvn --settings ".circle.settings.xml" -DskipTests deploy -P release
+
   # Test
   test:
     parallelism: 2 # parallel containers to split the tests among
     docker:
       - image: circleci/openjdk:11-jdk-stretch
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
       - run: mvn test
@@ -33,9 +36,9 @@ jobs:
   deploy:
     docker:
       - image: circleci/openjdk:11-jdk-stretch
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    #        auth:
+    #          username: mydockerhub-user
+    #          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - run: echo ${MAVEN_REPO_USERNAME}
       - run: echo ${MAVEN_REPO_PASSWORD}
@@ -47,9 +50,9 @@ workflows:
   build-test-deploy:
     jobs:
       - build
-#      - test:
-#          requires:
-#            - build
+      #      - test:
+      #          requires:
+      #            - build
       - deploy:
           requires:
             - build
