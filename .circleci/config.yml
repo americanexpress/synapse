@@ -6,7 +6,7 @@ jobs:
   # Build
   build:
     docker:
-      - image: circleci/openjdk:stretch
+      - image: circleci/openjdk:11-jdk-stretch
     steps:
       - checkout
       - run: mvn -B clean package -DskipTests
@@ -19,7 +19,7 @@ jobs:
   test:
     parallelism: 2 # parallel containers to split the tests among
     docker:
-      - image: circleci/openjdk:stretch
+      - image: circleci/openjdk:11-jdk-stretch
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
@@ -32,7 +32,7 @@ jobs:
   # Deploy
   deploy:
     docker:
-      - image: circleci/openjdk:stretch
+      - image: circleci/openjdk:11-jdk-stretch
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
