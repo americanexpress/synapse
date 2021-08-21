@@ -7,7 +7,7 @@ version: 2.1
 
 
 jobs:
-  # Build
+  # Build, Test, and Deploy
   build-test-deploy-job:
     docker:
       - image: circleci/openjdk:11-jdk-stretch
@@ -24,8 +24,6 @@ jobs:
       - run: mvn test
       - store_test_results: # We use this timing data to optimize the future runs
           path: target/surefire-reports
-      - run: echo ${MAVEN_CENTRAL_USERNAME}
-      - run: echo ${MAVEN_CENTRAL_PASSWORD}
       - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy -P release
 
   # Test
@@ -65,11 +63,18 @@ workflows_setup:
 
 # Workflows that will schedule and execute jobs.
 workflows:
-  build-test-deploy-workflow:
+  maven-central-build-test-deploy-workflow:
     jobs:
       - build-test-deploy-job:
           context: maven_central_credentials
-#          <<: [ *context ]
+
+  american-express-build-test-deploy-workflow:
+    jobs:
+      - build-test-deploy-job:
+          context: gradle
+
+
+    #          <<: [ *context ]
 
       #      - test:
       #          requires:
