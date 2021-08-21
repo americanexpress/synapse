@@ -24,8 +24,7 @@ jobs:
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
-      - run: |
-          mvn test
+      - run: mvn test
       - store_test_results: # We use this timing data to optimize the future runs
           path: target/surefire-reports
 
@@ -39,15 +38,17 @@ jobs:
     steps:
       - checkout
       - run: mvn -s .circleci/settings.xml -DskipTests deploy -P release
-
+          name: "Print an env var stored in a Context"
+          command: echo ${env.MAVEN_REPO_USERNAME}
 # Workflows that will schedule and execute jobs.
 workflows:
   build-test-deploy:
     jobs:
-      - build
-      - test:
-          requires:
-            - build
+      - build:
+          context: maven
+#      - test:
+#          requires:
+#            - build
       - deploy:
           requires:
             - build
