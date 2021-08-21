@@ -39,7 +39,7 @@ jobs:
     steps:
       - run: echo ${MAVEN_REPO_USERNAME}
       - run: echo ${MAVEN_REPO_PASSWORD}
-      - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy -P release
+      - run: mvn --settings ".circle.settings.xml" -DskipTests deploy -P release
 
 
 # Workflows that will schedule and execute jobs.
