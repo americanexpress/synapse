@@ -26,7 +26,7 @@ jobs:
           path: target/surefire-reports
       - run: echo ${MAVEN_CENTRAL_USERNAME}
       - run: echo ${MAVEN_CENTRAL_PASSWORD}
-      - run: mvn --settings ".circle.settings.xml" -DskipTests deploy -P release
+      - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy -P release
 
   # Test
   test:
