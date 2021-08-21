@@ -39,7 +39,7 @@ jobs:
       - checkout
       - run: mvn -s .circleci/settings.xml -DskipTests deploy -P release
           name: "Print an env var stored in a Context"
-          command: echo ${env.MAVEN_REPO_USERNAME}
+          command: echo ${MAVEN_REPO_USERNAME}
 # Workflows that will schedule and execute jobs.
 workflows:
   build-test-deploy:
