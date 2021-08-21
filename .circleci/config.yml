@@ -7,9 +7,6 @@ jobs:
   build:
     docker:
       - image: circleci/openjdk:stretch
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
       - run: mvn -B clean package -DskipTests
