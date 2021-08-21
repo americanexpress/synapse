@@ -7,50 +7,33 @@ executors:
     docker:
       - image: cimg/openjdk:11.0
 
-
 parameters:
-  mvn-deploy-command:
+  executor:
+    type: executor
+    default: maven-executor
+  mvn-build-test-command:
     type: string
-  internal_versioncommand:
+    default: echo "mvn-build-test-command not provided" 1>&2 && exit 1
+  mvn-collect-artifacts-command:
     type: string
-  new_version:
-    default: true
-    type: boolean
+    default: 'echo "mvn-collect-artifacts-command not provided, proceeding without..."'
+executor: <<parameters.executor>>
 steps:
-  - attach_workspace:
-      at: .
+  - checkout
   - restore_cache:
       key: 'maven-github-release-{{ checksum ".circleci/config.yml" }}'
-  - configure-gpg
-  - configure-git
   - run:
-      name: >-
-        Release new version to Maven Central and push new project version to
-        repo
-      command: >
-        echo "Starting new release..."
-
-        << parameters.internal_versioncommand >>
-
-        MVN_VERSION=$(mvn -q -Dexec.executable="echo"
-        -Dexec.args='${project.version}' --non-recursive exec:exec)
-
-        echo "Releasing version ${MVN_VERSION}..."
-
-        << parameters.mvn-deploy-command >>
-
-        if [[ << parameters.new_version >> = true ]]; then
-          echo "Pushing new version and tag..."
-          git commit -am "released ${MVN_VERSION} [skip ci]"
-          git tag -a ${MVN_VERSION} -m "Release ${MVN_VERSION}"
-          ssh-agent sh -c 'ssh-add ~/.ssh/id_rsa; git push $CIRCLE_REPOSITORY_URL'
-          ssh-agent sh -c 'ssh-add ~/.ssh/id_rsa; git push origin --tags'
-        else
-          echo "Version ${MVN_VERSION} is a SNAPSHOT, no version change or tag to commit..."
-        fi
-
-        echo "Successfully released ${MVN_VERSION}"
-  - save_cache:
+      name: Build and test script
+      command: << parameters.mvn-build-test-command >>
+  - persist_to_workspace:
+      root: .
       paths:
-        - ~/.m2
-      key: 'maven-github-release-{{ checksum ".circleci/config.yml" }}'
+        - .
+  - run:
+      name: Optional collect artifacts script
+      shell: /bin/bash -eo pipefail -O globstar
+      command: << parameters.mvn-collect-artifacts-command >>
+  - store_artifacts:
+      path: artifacts
+  - store_test_results:
+      path: artifacts/junit
