@@ -44,8 +44,7 @@ jobs:
 workflows:
   build-test-deploy:
     jobs:
-      - build:
-          context: maven
+      - build
 #      - test:
 #          requires:
 #            - build
