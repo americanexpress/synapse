@@ -37,7 +37,6 @@ jobs:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
-      - checkout
       - command: echo ${MAVEN_REPO_USERNAME}
       - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy -P release
 
