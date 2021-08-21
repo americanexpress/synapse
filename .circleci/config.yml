@@ -7,7 +7,7 @@ executors:
     docker:
       - image: cimg/openjdk:11.0
 
-parameters:
+pparameters:
   executor:
     type: executor
     default: maven-executor
@@ -17,23 +17,22 @@ parameters:
   mvn-collect-artifacts-command:
     type: string
     default: 'echo "mvn-collect-artifacts-command not provided, proceeding without..."'
-executor: <<parameters.executor>>
-steps:
-  - checkout
-  - restore_cache:
-      key: 'maven-github-release-{{ checksum ".circleci/config.yml" }}'
-  - run:
-      name: Build and test script
-      command: << parameters.mvn-build-test-command >>
-  - persist_to_workspace:
-      root: .
-      paths:
-        - .
-  - run:
-      name: Optional collect artifacts script
-      shell: /bin/bash -eo pipefail -O globstar
-      command: << parameters.mvn-collect-artifacts-command >>
-  - store_artifacts:
-      path: artifacts
-  - store_test_results:
-      path: artifacts/junit
+  steps:
+    - checkout
+    - restore_cache:
+        key: 'maven-github-release-{{ checksum ".circleci/config.yml" }}'
+    - run:
+        name: Build and test script
+        command: << parameters.mvn-build-test-command >>
+    - persist_to_workspace:
+        root: .
+        paths:
+          - .
+    - run:
+        name: Optional collect artifacts script
+        shell: /bin/bash -eo pipefail -O globstar
+        command: << parameters.mvn-collect-artifacts-command >>
+    - store_artifacts:
+        path: artifacts
+    - store_test_results:
+        path: artifacts/junit
