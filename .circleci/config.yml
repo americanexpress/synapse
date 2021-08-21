@@ -8,7 +8,7 @@ version: 2.1
 
 jobs:
   # Build
-  build:
+  build-test-deploy-job:
     docker:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
@@ -21,6 +21,9 @@ jobs:
             - ~/.m2
           key: synapse-{{ checksum "pom.xml" }}
       - run: mvn clean install -DskipTests
+      - run: mvn test
+      - store_test_results: # We use this timing data to optimize the future runs
+          path: target/surefire-reports
       - run: echo ${MAVEN_CENTRAL_USERNAME}
       - run: echo ${MAVEN_CENTRAL_PASSWORD}
       - run: mvn --settings ".circle.settings.xml" -DskipTests deploy -P release
@@ -62,15 +65,15 @@ workflows_setup:
 
 # Workflows that will schedule and execute jobs.
 workflows:
-  build-test-deploy:
+  build-test-deploy-workflow:
     jobs:
-      - build:
+      - build-test-deploy-job:
           <<: [ *context ]
 
       #      - test:
       #          requires:
       #            - build
-      - deploy:
-          requires:
-            - build
+#      - deploy:
+#          requires:
+#            - build
 #            - test
