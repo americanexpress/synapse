@@ -76,12 +76,11 @@ public abstract class BaseRestClient<I extends BaseClientRequest, O extends Base
      *
      * @param clientHeaders      headers for the back end service
      * @param clientRequest      body of the request
-     * @param responseEntityType type of client response
      * @param pathVariables      variables needed to be added to URI
      * @return the response body from the back end service
      */
-    public O callService(ClientHeaders clientHeaders, I clientRequest, Class<?> responseEntityType, String... pathVariables) {
-        return callService(clientHeaders, clientRequest, responseEntityType, null, pathVariables);
+    public O callMonoService(ClientHeaders clientHeaders, I clientRequest, String... pathVariables) {
+        return callMonoService(clientHeaders, clientRequest, null, pathVariables);
     }
 
     /**
@@ -89,18 +88,17 @@ public abstract class BaseRestClient<I extends BaseClientRequest, O extends Base
      *
      * @param clientHeaders      headers for the back end service
      * @param clientRequest      body of the request
-     * @param responseEntityType type of client response
      * @param queryParameters    parameters needed to be added to URI
      * @param pathVariables      variables needed to be added to URI
      * @return the response body from the back end service
      */
-    public O callService(ClientHeaders clientHeaders, I clientRequest, Class<?> responseEntityType, List<QueryParameter> queryParameters, String... pathVariables) {
+    public O callMonoService(ClientHeaders clientHeaders, I clientRequest, List<QueryParameter> queryParameters, String... pathVariables) {
 
         // Create the request
         RequestEntity<I> requestEntity = createRequestEntity(clientHeaders, clientRequest, queryParameters, pathVariables);
 
         // Call the service
-        ResponseEntity<?> responseEntity = restTemplate.exchange(requestEntity, responseEntityType);
+        ResponseEntity<?> responseEntity = restTemplate.exchange(requestEntity, clientResponseType);
 
         // Cast the class type of the response
         @SuppressWarnings("unchecked")
@@ -117,8 +115,8 @@ public abstract class BaseRestClient<I extends BaseClientRequest, O extends Base
      * @param pathVariables      variables needed to be added to URI
      * @return the response body from the back end service
      */
-    public List<O> callService(ClientHeaders clientHeaders, I clientRequest, ParameterizedTypeReference<List<O>> responseEntityType, String... pathVariables) {
-        return callService(clientHeaders, clientRequest, responseEntityType, null, pathVariables);
+    public List<O> callPolyService(ClientHeaders clientHeaders, I clientRequest, ParameterizedTypeReference<List<O>> responseEntityType, String... pathVariables) {
+        return callPolyService(clientHeaders, clientRequest, responseEntityType, null, pathVariables);
     }
 
     /**
@@ -131,7 +129,7 @@ public abstract class BaseRestClient<I extends BaseClientRequest, O extends Base
      * @param pathVariables      variables needed to be added to URI
      * @return the response body from the back end service
      */
-    public List<O> callService(ClientHeaders clientHeaders, I clientRequest, ParameterizedTypeReference<List<O>> responseEntityType, List<QueryParameter> queryParameters, String... pathVariables) {
+    public List<O> callPolyService(ClientHeaders clientHeaders, I clientRequest, ParameterizedTypeReference<List<O>> responseEntityType, List<QueryParameter> queryParameters, String... pathVariables) {
 
         // Create the request
         RequestEntity<I> requestEntity = createRequestEntity(clientHeaders, clientRequest, queryParameters, pathVariables);
