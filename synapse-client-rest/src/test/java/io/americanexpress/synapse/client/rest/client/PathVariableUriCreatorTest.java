@@ -24,22 +24,25 @@ import org.apache.commons.lang3.StringUtils;
 class PathVariableUriCreatorTest {
 
     @Test
-    void create_givenNullPathVariables_expectedUnchangedUrl() {
+    void create_givenNullPathVariables_expectedEmptyString() {
         String actual = PathVariableUriCreator.create();
         assertEquals(StringUtils.EMPTY, actual, CommonAssertionMessages.VALUE_NOT_EQUAL);
     }
 
     @Test
-    void create_givenPathVariable_expectedUrlWithPathVariable() {
+    void create_givenPathVariable_expectedPathVariable() {
         String pathVariable = "sample";
+        String expected = "/" + pathVariable;
         String actual = PathVariableUriCreator.create(pathVariable);
-        assertEquals("/" + pathVariable, actual, CommonAssertionMessages.VALUE_NOT_EQUAL);
+        assertEquals(expected, actual, CommonAssertionMessages.VALUE_NOT_EQUAL);
     }
 
     @Test
-    void create_givenMultiplePathVariables_expectedUrlWithMultiplePathVariables() {
-        String[] pathVariables = {"first", "second"};
-        String actual = PathVariableUriCreator.create(pathVariables);
-        assertEquals("/first/second", actual, CommonAssertionMessages.VALUE_NOT_EQUAL);
+    void create_givenMultiplePathVariables_expectedMultiplePathVariables() {
+    	String pathVariable1 = "first";
+    	String pathVariable2 = "second";
+        String expected = "/" + pathVariable1 + "/" + pathVariable2;
+        String actual = PathVariableUriCreator.create(pathVariable1, pathVariable2);
+        assertEquals(expected, actual, CommonAssertionMessages.VALUE_NOT_EQUAL);
     }
 }
