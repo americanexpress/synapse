@@ -31,6 +31,14 @@ class QueryParameterUriCreatorTest {
         String actual = QueryParameterUriCreator.create(null);
         assertEquals(StringUtils.EMPTY, actual, CommonAssertionMessages.VALUE_NOT_EQUAL);
     }
+    
+    @Test
+    void createQueryParameterUri_queryParametersContainsNull() {
+    	List<QueryParameter> queryParameters = new ArrayList<>();
+    	queryParameters.add(null);
+        String actual = QueryParameterUriCreator.create(queryParameters);
+        assertEquals(StringUtils.EMPTY, actual, CommonAssertionMessages.VALUE_NOT_EQUAL);
+    }
 
     @Test
     void createQueryParameterUri_nullValue() {

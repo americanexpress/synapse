@@ -35,19 +35,27 @@ final class PathVariableUriCreator {
 	}
 	
     /**
-     * Get the new URI if there are path variables present.
+     * Get the new URI if there are path variables present in the format of
+     * <code>/pathVariable1/pathVariable2</code>
      *
      * @param pathVariables variables that need to be added to the URI
      * @return the new URI containing the path variables if any are present; empty string otherwise
      */
     public static String create(String... pathVariables) {
 
-    	// If there are any path variables, join them together separated by /
+    	// If there are any path variables, join them together
     	// Otherwise, return an empty string
     	return Optional.ofNullable(pathVariables)
     		.filter(ArrayUtils::isNotEmpty)
-    		.map(pathVariableValues -> "/" + Arrays.stream(pathVariableValues)
-    			.collect(Collectors.joining("/")))
+    		.map(pathVariableElements -> {
+    			
+    			// Join each path variable in the form of pathVariable1/pathVariable2
+    			String formattedPathVariables = Arrays.stream(pathVariableElements)
+    				.filter(StringUtils::isNotBlank)
+    				.collect(Collectors.joining("/"));
+    			
+    			return StringUtils.isNotBlank(formattedPathVariables) ? "/" + formattedPathVariables : StringUtils.EMPTY;
+    		})
     		.orElse(StringUtils.EMPTY);
     }
 }

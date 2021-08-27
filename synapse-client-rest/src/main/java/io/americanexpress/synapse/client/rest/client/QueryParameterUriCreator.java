@@ -19,7 +19,9 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
-import java.util.StringJoiner;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * {@code QueryParameterUriCreator} class is used to create a new URI that includes query parameters.
@@ -36,36 +38,30 @@ final class QueryParameterUriCreator {
 	}
 	
     /**
-     * Get the new URI if there are query parameters present.
+     * Get the new URI if there are query parameters present in the format of
+     * <code>?key1=value1&key2=value2</code>
      *
      * @param queryParameters parameters that need to be added to the URI
      * @return the new URI containing the query parameters if any are present; empty string otherwise
      **/
     public static String create(List<QueryParameter> queryParameters) {
     	
-        // Set new uri to old URI
-        StringBuilder uriBuilder = new StringBuilder();
-        if (CollectionUtils.isNotEmpty(queryParameters)) {
-
-            // Needed in between query parameters and end of original URI
-            StringJoiner queryParameterJoiner = new StringJoiner("&");
-            for (QueryParameter queryParameter : queryParameters) {
-                String key = queryParameter.getKey();
-                String value = queryParameter.getValue();
-
-                // Additional check so that no one can make a query parameter null = null
-                if (StringUtils.isNotBlank(key) && StringUtils.isNotBlank(value)) {
-                    String formattedQueryParameter = queryParameter.formattedQueryParameter(key, value);
-                    queryParameterJoiner.add(formattedQueryParameter);
-                }
-            }
-            String joinedQueryParameters = queryParameterJoiner.toString();
-
-            // Meaning we were able to add a key=value string to the StringJoiner
-            if (StringUtils.isNotBlank(joinedQueryParameters)) {
-                uriBuilder.append("?" + joinedQueryParameters);
-            }
-        }
-        return uriBuilder.toString();
+    	// If there are any query parameters, join them together 
+    	// Otherwise, return an empty string
+    	return Optional.ofNullable(queryParameters)
+    		.filter(CollectionUtils::isNotEmpty)
+    		.map(queryParameterElements -> {
+    			
+    			// Join each query parameter in the form key1=value1 delimited by &
+    			String formattedQueryParameters = queryParameterElements.stream()
+	    			.filter(queryParameterElement -> Objects.nonNull(queryParameterElement)
+	    				&& StringUtils.isNotBlank(queryParameterElement.getKey())
+	    				&& StringUtils.isNotBlank(queryParameterElement.getValue()))
+	    			.map(QueryParameter::format)
+	    			.collect(Collectors.joining("&"));
+    			
+    			return StringUtils.isNotBlank(formattedQueryParameters) ? "?" + formattedQueryParameters : StringUtils.EMPTY;
+    		})
+    		.orElse(StringUtils.EMPTY);
     }
 }

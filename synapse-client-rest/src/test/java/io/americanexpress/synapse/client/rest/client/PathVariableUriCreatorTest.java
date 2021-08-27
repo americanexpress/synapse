@@ -28,6 +28,13 @@ class PathVariableUriCreatorTest {
         String actual = PathVariableUriCreator.create();
         assertEquals(StringUtils.EMPTY, actual, CommonAssertionMessages.VALUE_NOT_EQUAL);
     }
+    
+    @Test
+    void create_givenPathVariablesContainsNull_expectedEmptyString() {
+    	String[] pathVariables = {null};
+        String actual = PathVariableUriCreator.create(pathVariables);
+        assertEquals(StringUtils.EMPTY, actual, CommonAssertionMessages.VALUE_NOT_EQUAL);
+    }
 
     @Test
     void create_givenPathVariable_expectedPathVariable() {
