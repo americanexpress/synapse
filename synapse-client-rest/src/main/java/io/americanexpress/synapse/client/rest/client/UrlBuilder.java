@@ -1,6 +1,9 @@
 package io.americanexpress.synapse.client.rest.client;
 
 import java.util.List;
+import java.util.Optional;
+
+import org.apache.commons.lang3.StringUtils;
 
 import io.americanexpress.synapse.client.rest.model.QueryParameter;
 
@@ -26,9 +29,12 @@ final class UrlBuilder {
 	 * @return the new URL if any path variables and/or query parameters are present; otherwise the same url will be returned
 	 */
 	static String build(String url, List<QueryParameter> queryParameters, String... pathVariables) {
-		StringBuilder urlBuilder = new StringBuilder(url);
-        urlBuilder.append(PathVariableUriCreator.create(pathVariables));
-        urlBuilder.append(QueryParameterUriCreator.create(queryParameters));
-        return urlBuilder.toString();
+		return Optional.ofNullable(url)
+			.filter(StringUtils::isNotBlank)
+			.map(uniformResourceLocator -> new StringBuilder(uniformResourceLocator)
+				.append(PathVariableUriCreator.create(pathVariables))
+				.append(QueryParameterUriCreator.create(queryParameters))
+				.toString())
+			.orElse(url);
 	}
 }
