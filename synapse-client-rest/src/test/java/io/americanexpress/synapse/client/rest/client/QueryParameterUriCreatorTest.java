@@ -20,6 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,13 +28,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class QueryParameterUriCreatorTest {
 
     @Test
-    void createQueryParameterUri_nullQueryParameters() {
+    void create_givenNullQueryParameters_expectedEmptyString() {
         String actual = QueryParameterUriCreator.create(null);
         assertEquals(StringUtils.EMPTY, actual, CommonAssertionMessages.VALUE_NOT_EQUAL);
     }
     
     @Test
-    void createQueryParameterUri_queryParametersContainsNull() {
+    void create_givenQueryParametersContainsNull_expectedEmptyString() {
     	List<QueryParameter> queryParameters = new ArrayList<>();
     	queryParameters.add(null);
         String actual = QueryParameterUriCreator.create(queryParameters);
@@ -41,49 +42,45 @@ class QueryParameterUriCreatorTest {
     }
 
     @Test
-    void createQueryParameterUri_nullValue() {
-        List<QueryParameter> queryParameters = new ArrayList<>();
-        QueryParameter queryParameter = new QueryParameter("name", null);
-        queryParameters.add(queryParameter);
+    void create_givenQueryParameterNullKeyAndNullValue_expectedEmptyString() {
+        List<QueryParameter> queryParameters = Arrays.asList(new QueryParameter(null, null));
+        String actual = QueryParameterUriCreator.create(queryParameters);
+        assertEquals(StringUtils.EMPTY, actual, CommonAssertionMessages.VALUE_NOT_EQUAL);
+    }
+    
+    @Test
+    void create_givenQueryParameterNullKey_expectedEmptyString() {
+        List<QueryParameter> queryParameters = Arrays.asList(new QueryParameter(null, "bob"));
+        String actual = QueryParameterUriCreator.create(queryParameters);
+        assertEquals(StringUtils.EMPTY, actual, CommonAssertionMessages.VALUE_NOT_EQUAL);
+    }
+    
+    @Test
+    void create_givenQueryParameterNullValue_expectedEmptyString() {
+        List<QueryParameter> queryParameters = Arrays.asList(new QueryParameter("name", null));
         String actual = QueryParameterUriCreator.create(queryParameters);
         assertEquals(StringUtils.EMPTY, actual, CommonAssertionMessages.VALUE_NOT_EQUAL);
     }
 
     @Test
-    void createQueryParameterUri_nullKey() {
-        List<QueryParameter> queryParameters = new ArrayList<>();
-        QueryParameter queryParameter = new QueryParameter(null, "bob");
-        queryParameters.add(queryParameter);
+    void create_givenQueryParameter_expectedQueryParameter() {
+    	String key = "name";
+    	String value = "Bob";
+        List<QueryParameter> queryParameters = Arrays.asList(new QueryParameter(key, value));
+        String expected = "?" + key + "=" + value;
         String actual = QueryParameterUriCreator.create(queryParameters);
-        assertEquals(StringUtils.EMPTY, actual, CommonAssertionMessages.VALUE_NOT_EQUAL);
+        assertEquals(expected, actual, CommonAssertionMessages.VALUE_NOT_EQUAL);
     }
 
     @Test
-    void createQueryParameterUri_nullKeyAndValue() {
-        List<QueryParameter> queryParameters = new ArrayList<>();
-        QueryParameter queryParameter = new QueryParameter(null, null);
-        queryParameters.add(queryParameter);
+    void create_givenMultipleQueryParameters_expectedMultipleQueryParameters() {
+    	String key1 = "name";
+    	String value1 = "Sparky";
+    	String key2 = "age";
+    	String value2 = "3";
+        List<QueryParameter> queryParameters = Arrays.asList(new QueryParameter(key1, value1), new QueryParameter(key2, value2));
+        String expected = "?" + key1 + "=" + value1 + "&" + key2 + "=" + value2;
         String actual = QueryParameterUriCreator.create(queryParameters);
-        assertEquals(StringUtils.EMPTY, actual, CommonAssertionMessages.VALUE_NOT_EQUAL);
-    }
-
-    @Test
-    void createQueryParameterUri_clean() {
-        List<QueryParameter> queryParameters = new ArrayList<>();
-        QueryParameter queryParameter = new QueryParameter("name", "bob");
-        queryParameters.add(queryParameter);
-        String actual = QueryParameterUriCreator.create(queryParameters);
-        assertEquals("?name=bob", actual, CommonAssertionMessages.VALUE_NOT_EQUAL);
-    }
-
-    @Test
-    void createQueryParameterUri_cleanMoreThanOneParameter() {
-        List<QueryParameter> queryParameters = new ArrayList<>();
-        QueryParameter queryParameter = new QueryParameter("name", "bob");
-        QueryParameter queryParameter1 = new QueryParameter("age", "57");
-        queryParameters.add(queryParameter);
-        queryParameters.add(queryParameter1);
-        String actual = QueryParameterUriCreator.create(queryParameters);
-        assertEquals("?name=bob&age=57", actual, CommonAssertionMessages.VALUE_NOT_EQUAL);
+        assertEquals(expected, actual, CommonAssertionMessages.VALUE_NOT_EQUAL);
     }
 }
