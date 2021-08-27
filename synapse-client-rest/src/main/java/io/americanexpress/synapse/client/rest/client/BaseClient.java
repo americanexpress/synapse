@@ -13,7 +13,8 @@
  */
 package io.americanexpress.synapse.client.rest.client;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.ext.XLogger;
+import org.slf4j.ext.XLoggerFactory;
 import org.springframework.http.HttpMethod;
 
 import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
@@ -31,6 +32,16 @@ import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
 abstract class BaseClient<I extends BaseClientRequest, O extends BaseClientResponse, H extends BaseClientHttpHeadersFactory<I>> {
 
 	/**
+     * Logger used for this client.
+     */
+    protected final XLogger logger = XLoggerFactory.getXLogger(getClass());
+	
+	/**
+     * HTTP headers factory used to produce the custom HTTP headers required to consume the back end service.
+     */
+    protected H httpHeadersFactory;
+	
+	/**
      * HTTP method of the back end service.
      */
     protected HttpMethod httpMethod;
@@ -41,22 +52,14 @@ abstract class BaseClient<I extends BaseClientRequest, O extends BaseClientRespo
     protected String url;
 
     /**
-     * HTTP headers factory used to produce the custom HTTP headers required to consume the back end services.
+     * Argument constructor creates a new instance of BaseClient with given values.
+     * @param httpHeadersFactory HTTP headers factory used to produce the custom HTTP headers required to consume the back end service
+     * @param httpMethod HTTP method of the back end service
      */
-    @Autowired
-    protected H httpHeadersFactory;
-
-    /**
-     * Used to create query parameters for the URI.
-     */
-    @Autowired
-    protected QueryParameterUriCreator queryParameterUriCreator;
-
-    /**
-     * Used to create path variables for the URI.
-     */
-    @Autowired
-    protected PathVariableUriCreator pathVariableUriCreator;
+    protected BaseClient(H httpHeadersFactory, HttpMethod httpMethod) {
+    	this.httpHeadersFactory = httpHeadersFactory;
+    	this.httpMethod = httpMethod;
+    }
     
     /**
      * Set the httpMethod.

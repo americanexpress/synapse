@@ -14,35 +14,40 @@
 package io.americanexpress.synapse.client.rest.client;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.springframework.stereotype.Component;
+import org.apache.commons.lang3.StringUtils;
 
-import java.util.StringJoiner;
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
- * PathVariableUriCreator class is used to create a new URI that includes query parameters.
- *
+ * {@code PathVariableUriCreator} class is used to create a new URI that includes query parameters.
+ * @author Paolo Claudio
  */
-@Component
-class PathVariableUriCreator {
+final class PathVariableUriCreator {
 
+	/**
+	 * Default constructor creates a new instance of PathVariableUriCreator with default values.
+	 */
+	private PathVariableUriCreator() {
+		
+		// A class containing only static methods is a utility class that requires a private no-argument default constructor
+	}
+	
     /**
-     * Get the new URI if there are query parameters present.
+     * Get the new URI if there are path variables present.
      *
      * @param pathVariables variables that need to be added to the URI
-     * @return new URI
-     **/
-    public String createPathVariableUri(String... pathVariables) {
+     * @return the new URI containing the path variables if any are present; empty string otherwise
+     */
+    public static String create(String... pathVariables) {
 
-        // Set new uri to old URI
-        StringBuilder uriBuilder = new StringBuilder();
-        if (ArrayUtils.isNotEmpty(pathVariables)) {
-            uriBuilder.append("/");
-            StringJoiner joiner = new StringJoiner("/");
-            for (String pathVariable : pathVariables) {
-                joiner.add(pathVariable);
-            }
-            uriBuilder.append(joiner);
-        }
-        return uriBuilder.toString();
+    	// If there are any path variables, join them together separated by /
+    	// Otherwise, return an empty string
+    	return Optional.ofNullable(pathVariables)
+    		.filter(ArrayUtils::isNotEmpty)
+    		.map(pathVariableValues -> "/" + Arrays.stream(pathVariableValues)
+    			.collect(Collectors.joining("/")))
+    		.orElse(StringUtils.EMPTY);
     }
 }

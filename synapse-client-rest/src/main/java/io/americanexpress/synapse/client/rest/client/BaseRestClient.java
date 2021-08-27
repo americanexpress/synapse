@@ -41,23 +41,20 @@ import java.util.List;
 public abstract class BaseRestClient<I extends BaseClientRequest, O extends BaseClientResponse, H extends BaseClientHttpHeadersFactory<I>> extends BaseClient<I, O, H> {
 
     /**
-     * Logger used for this client.
-     */
-    protected final XLogger logger = XLoggerFactory.getXLogger(getClass());
-
-    /**
      * Template for performing REST operations using default serialization options set in the BaseRestClientConfig.
      * This can be overridden in child classes if different serialization options need to be set while connecting to back end services.
      */
     protected RestTemplate restTemplate;
 
     /**
-     * Default constructor creates an instance of BaseRestClient with default values.
+     * Argument constructor creates a new instance of BaseRestClient with given values.
+     * @param httpHeadersFactory HTTP headers factory used to produce the custom HTTP headers required to consume the back end service
+     * @param httpMethod HTTP method of the back end service
      */
-    protected BaseRestClient() {
-        this.httpMethod = HttpMethod.POST;
-    }
-
+    protected BaseRestClient(H httpHeadersFactory, HttpMethod httpMethod) {
+		super(httpHeadersFactory, httpMethod);
+	}
+    
     /**
      * Get the restTemplate.
      *
@@ -150,22 +147,22 @@ public abstract class BaseRestClient<I extends BaseClientRequest, O extends Base
      * Create the request entity used for the back end service.
      *
      * @param clientHeaders   headers for the back end service
-     * @param request         body of the request
+     * @param clientRequest   body of the request
      * @param queryParameters parameters needed to be added to URI
      * @param pathVariables   to add to the URI
      * @return the request entity for the back end service
      */
-    private RequestEntity<I> createRequestEntity(ClientHeaders clientHeaders, I request, List<QueryParameter> queryParameters, String... pathVariables) {
+    private RequestEntity<I> createRequestEntity(ClientHeaders clientHeaders, I clientRequest, List<QueryParameter> queryParameters, String... pathVariables) {
         StringBuilder urlBuilder = new StringBuilder(url);
-        urlBuilder.append(pathVariableUriCreator.createPathVariableUri(pathVariables));
+        urlBuilder.append(PathVariableUriCreator.create(pathVariables));
         urlBuilder.append(queryParameterUriCreator.createQueryParameterUri(queryParameters));
         String updatedUrl = urlBuilder.toString();
         URI uri = URI.create(updatedUrl);
 
         // Create the HTTP headers for the service
-        HttpHeaders httpHeaders = httpHeadersFactory.create(clientHeaders, request, updatedUrl);
+        HttpHeaders httpHeaders = httpHeadersFactory.create(clientHeaders, clientRequest, updatedUrl);
 
         // Create the request
-        return new RequestEntity<>(request, httpHeaders, httpMethod, uri);
+        return new RequestEntity<>(clientRequest, httpHeaders, httpMethod, uri);
     }
 }

@@ -15,37 +15,31 @@ package io.americanexpress.synapse.client.rest.client;
 
 import org.junit.jupiter.api.Test;
 
+import io.americanexpress.synapse.framework.test.CommonAssertionMessages;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class PathVariableUriCreatorTest {
+import org.apache.commons.lang3.StringUtils;
 
-    private static final String MOCK_URL = "http://example.com";
+class PathVariableUriCreatorTest {
 
     @Test
-    public void createPathVariableUri_nullQueryParameters() {
-        StringBuilder urlBuilder = new StringBuilder(MOCK_URL);
-        PathVariableUriCreator pathVariableUriCreator = new PathVariableUriCreator();
-        String actual = pathVariableUriCreator.createPathVariableUri();
-        urlBuilder.append(actual);
-        assertEquals(MOCK_URL, urlBuilder.toString(), "It will be empty so that nothing is added to the original URI");
+    void create_givenNullPathVariables_expectedUnchangedUrl() {
+        String actual = PathVariableUriCreator.create();
+        assertEquals(StringUtils.EMPTY, actual, CommonAssertionMessages.VALUE_NOT_EQUAL);
     }
 
     @Test
-    public void createPathVariableUri_clean() {
-        StringBuilder urlBuilder = new StringBuilder(MOCK_URL);
-        PathVariableUriCreator pathVariableUriCreator = new PathVariableUriCreator();
-        String actual = pathVariableUriCreator.createPathVariableUri("111111");
-        urlBuilder.append(actual);
-        assertEquals(MOCK_URL + "/111111", urlBuilder.toString());
+    void create_givenPathVariable_expectedUrlWithPathVariable() {
+        String pathVariable = "sample";
+        String actual = PathVariableUriCreator.create(pathVariable);
+        assertEquals("/" + pathVariable, actual, CommonAssertionMessages.VALUE_NOT_EQUAL);
     }
 
     @Test
-    public void createPathVariableUri_cleanMoreThanOneVariable() {
-        StringBuilder urlBuilder = new StringBuilder(MOCK_URL);
-        PathVariableUriCreator pathVariableUriCreator = new PathVariableUriCreator();
-        String[] pathVariables = {"111111", "123"};
-        String actual = pathVariableUriCreator.createPathVariableUri(pathVariables);
-        urlBuilder.append(actual);
-        assertEquals(MOCK_URL + "/111111/123", urlBuilder.toString());
+    void create_givenMultiplePathVariables_expectedUrlWithMultiplePathVariables() {
+        String[] pathVariables = {"first", "second"};
+        String actual = PathVariableUriCreator.create(pathVariables);
+        assertEquals("/first/second", actual, CommonAssertionMessages.VALUE_NOT_EQUAL);
     }
 }
