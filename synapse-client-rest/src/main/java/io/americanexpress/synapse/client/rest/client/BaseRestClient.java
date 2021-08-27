@@ -18,8 +18,6 @@ import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
 import io.americanexpress.synapse.client.rest.model.ClientHeaders;
 import io.americanexpress.synapse.client.rest.model.QueryParameter;
-import org.slf4j.ext.XLogger;
-import org.slf4j.ext.XLoggerFactory;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -155,7 +153,7 @@ public abstract class BaseRestClient<I extends BaseClientRequest, O extends Base
     private RequestEntity<I> createRequestEntity(ClientHeaders clientHeaders, I clientRequest, List<QueryParameter> queryParameters, String... pathVariables) {
         StringBuilder urlBuilder = new StringBuilder(url);
         urlBuilder.append(PathVariableUriCreator.create(pathVariables));
-        urlBuilder.append(queryParameterUriCreator.createQueryParameterUri(queryParameters));
+        urlBuilder.append(QueryParameterUriCreator.create(queryParameters));
         String updatedUrl = urlBuilder.toString();
         URI uri = URI.create(updatedUrl);
 

@@ -14,47 +14,52 @@
 package io.americanexpress.synapse.client.rest.client;
 
 import io.americanexpress.synapse.client.rest.model.QueryParameter;
+
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Component;
-import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 import java.util.StringJoiner;
 
 /**
- * QueryParameterUriCreator class is used to create a new URI that includes query parameters.
- *
+ * {@code QueryParameterUriCreator} class is used to create a new URI that includes query parameters.
+ * @author Paolo Claudio
  */
-@Component
-class QueryParameterUriCreator {
+final class QueryParameterUriCreator {
 
+	/**
+	 * Default constructor creates a new instance of QueryParameterUriCreator with default values.
+	 */
+	private QueryParameterUriCreator() {
+		
+		// A class containing only static methods is a utility class that requires a private no-argument default constructor
+	}
+	
     /**
      * Get the new URI if there are query parameters present.
      *
      * @param queryParameters parameters that need to be added to the URI
-     * @return new URI
+     * @return the new URI containing the query parameters if any are present; empty string otherwise
      **/
-    public String createQueryParameterUri(List<QueryParameter> queryParameters) {
+    public static String create(List<QueryParameter> queryParameters) {
+    	
         // Set new uri to old URI
         StringBuilder uriBuilder = new StringBuilder();
-        if (!CollectionUtils.isEmpty(queryParameters)) {
+        if (CollectionUtils.isNotEmpty(queryParameters)) {
 
             // Needed in between query parameters and end of original URI
-            StringJoiner joiner = new StringJoiner("&");
-            String formattedQueryParameter;
-            String key;
-            String value;
+            StringJoiner queryParameterJoiner = new StringJoiner("&");
             for (QueryParameter queryParameter : queryParameters) {
-                key = queryParameter.getKey();
-                value = queryParameter.getValue();
+                String key = queryParameter.getKey();
+                String value = queryParameter.getValue();
 
                 // Additional check so that no one can make a query parameter null = null
                 if (StringUtils.isNotBlank(key) && StringUtils.isNotBlank(value)) {
-                    formattedQueryParameter = queryParameter.formattedQueryParameter(key, value);
-                    joiner.add(formattedQueryParameter);
+                    String formattedQueryParameter = queryParameter.formattedQueryParameter(key, value);
+                    queryParameterJoiner.add(formattedQueryParameter);
                 }
             }
-            String joinedQueryParameters = joiner.toString();
+            String joinedQueryParameters = queryParameterJoiner.toString();
 
             // Meaning we were able to add a key=value string to the StringJoiner
             if (StringUtils.isNotBlank(joinedQueryParameters)) {

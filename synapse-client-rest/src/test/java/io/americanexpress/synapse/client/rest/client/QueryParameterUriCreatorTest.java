@@ -21,77 +21,71 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class QueryParameterUriCreatorTest {
+class QueryParameterUriCreatorTest {
 
     private static final String MOCK_URL = "http://example.com";
 
     @Test
-    public void createQueryParameterUri_nullQueryParameters() {
+    void createQueryParameterUri_nullQueryParameters() {
         StringBuilder urlBuilder = new StringBuilder(MOCK_URL);
-        QueryParameterUriCreator queryParameterUriCreator = new QueryParameterUriCreator();
-        String actual = queryParameterUriCreator.createQueryParameterUri(null);
+        String actual = QueryParameterUriCreator.create(null);
         urlBuilder.append(actual);
         assertEquals(MOCK_URL, urlBuilder.toString(), "It will be empty so that nothing is added to the original URI");
     }
 
     @Test
-    public void createQueryParameterUri_nullValue() {
+    void createQueryParameterUri_nullValue() {
         StringBuilder urlBuilder = new StringBuilder(MOCK_URL);
-        QueryParameterUriCreator queryParameterUriCreator = new QueryParameterUriCreator();
         List<QueryParameter> queryParameters = new ArrayList<>();
         QueryParameter queryParameter = new QueryParameter("name", null);
         queryParameters.add(queryParameter);
-        String actual = queryParameterUriCreator.createQueryParameterUri(queryParameters);
+        String actual = QueryParameterUriCreator.create(queryParameters);
         urlBuilder.append(actual);
         assertEquals(MOCK_URL, urlBuilder.toString());
     }
 
     @Test
-    public void createQueryParameterUri_nullKey() {
+    void createQueryParameterUri_nullKey() {
         StringBuilder urlBuilder = new StringBuilder(MOCK_URL);
-        QueryParameterUriCreator queryParameterUriCreator = new QueryParameterUriCreator();
         List<QueryParameter> queryParameters = new ArrayList<>();
         QueryParameter queryParameter = new QueryParameter(null, "bob");
         queryParameters.add(queryParameter);
-        String actual = queryParameterUriCreator.createQueryParameterUri(queryParameters);
+        String actual = QueryParameterUriCreator.create(queryParameters);
         urlBuilder.append(actual);
         assertEquals(MOCK_URL, urlBuilder.toString());
     }
 
     @Test
-    public void createQueryParameterUri_nullKeyAndValue() {
+    void createQueryParameterUri_nullKeyAndValue() {
         StringBuilder urlBuilder = new StringBuilder(MOCK_URL);
-        QueryParameterUriCreator queryParameterUriCreator = new QueryParameterUriCreator();
         List<QueryParameter> queryParameters = new ArrayList<>();
         QueryParameter queryParameter = new QueryParameter(null, null);
         queryParameters.add(queryParameter);
-        String actual = queryParameterUriCreator.createQueryParameterUri(queryParameters);
+        String actual = QueryParameterUriCreator.create(queryParameters);
         urlBuilder.append(actual);
         assertEquals(MOCK_URL, urlBuilder.toString());
     }
 
     @Test
-    public void createQueryParameterUri_clean() {
+    void createQueryParameterUri_clean() {
         StringBuilder urlBuilder = new StringBuilder(MOCK_URL);
-        QueryParameterUriCreator queryParameterUriCreator = new QueryParameterUriCreator();
         List<QueryParameter> queryParameters = new ArrayList<>();
         QueryParameter queryParameter = new QueryParameter("name", "bob");
         queryParameters.add(queryParameter);
-        String actual = queryParameterUriCreator.createQueryParameterUri(queryParameters);
+        String actual = QueryParameterUriCreator.create(queryParameters);
         urlBuilder.append(actual);
         assertEquals(MOCK_URL + "?name=bob", urlBuilder.toString());
     }
 
     @Test
-    public void createQueryParameterUri_cleanMoreThanOneParameter() {
+    void createQueryParameterUri_cleanMoreThanOneParameter() {
         StringBuilder urlBuilder = new StringBuilder(MOCK_URL);
-        QueryParameterUriCreator queryParameterUriCreator = new QueryParameterUriCreator();
         List<QueryParameter> queryParameters = new ArrayList<>();
         QueryParameter queryParameter = new QueryParameter("name", "bob");
         QueryParameter queryParameter1 = new QueryParameter("age", "57");
         queryParameters.add(queryParameter);
         queryParameters.add(queryParameter1);
-        String actual = queryParameterUriCreator.createQueryParameterUri(queryParameters);
+        String actual = QueryParameterUriCreator.create(queryParameters);
         urlBuilder.append(actual);
         assertEquals(MOCK_URL + "?name=bob&age=57", urlBuilder.toString());
     }
