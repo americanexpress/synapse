@@ -21,7 +21,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * {@code PathVariableUriCreator} class is used to create a new URI that includes query parameters.
+ * {@code PathVariableUriCreator} class creates a new URI that includes query parameters.
  * @author Paolo Claudio
  */
 final class PathVariableUriCreator {
@@ -41,7 +41,7 @@ final class PathVariableUriCreator {
      * @param pathVariables variables that need to be added to the URI
      * @return the new URI containing the path variables if any are present; empty string otherwise
      */
-    public static String create(String... pathVariables) {
+    static String create(String... pathVariables) {
 
     	// If there are any path variables, join them together
     	// Otherwise, return an empty string

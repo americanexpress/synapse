@@ -24,7 +24,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * {@code QueryParameterUriCreator} class is used to create a new URI that includes query parameters.
+ * {@code QueryParameterUriCreator} class creates a new URI that includes query parameters.
  * @author Paolo Claudio
  */
 final class QueryParameterUriCreator {
@@ -44,7 +44,7 @@ final class QueryParameterUriCreator {
      * @param queryParameters parameters that need to be added to the URI
      * @return the new URI containing the query parameters if any are present; empty string otherwise
      **/
-    public static String create(List<QueryParameter> queryParameters) {
+    static String create(List<QueryParameter> queryParameters) {
     	
     	// If there are any query parameters, join them together 
     	// Otherwise, return an empty string

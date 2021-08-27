@@ -151,10 +151,9 @@ public abstract class BaseRestClient<I extends BaseClientRequest, O extends Base
      * @return the request entity for the back end service
      */
     private RequestEntity<I> createRequestEntity(ClientHeaders clientHeaders, I clientRequest, List<QueryParameter> queryParameters, String... pathVariables) {
-        StringBuilder urlBuilder = new StringBuilder(url);
-        urlBuilder.append(PathVariableUriCreator.create(pathVariables));
-        urlBuilder.append(QueryParameterUriCreator.create(queryParameters));
-        String updatedUrl = urlBuilder.toString();
+        
+    	// Get the updated URL which may change in each client request due to path variables and/or query parameters
+    	String updatedUrl = UrlBuilder.build(url, queryParameters, pathVariables);
         URI uri = URI.create(updatedUrl);
 
         // Create the HTTP headers for the service
