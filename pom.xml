@@ -740,36 +740,26 @@
                     </plugins>
                 </pluginManagement>
             </build>
-            <distributionManagement>
-                <snapshotRepository>
-                    <id>ossrh</id>
-                    <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
-                </snapshotRepository>
-                <repository>
-                    <id>ossrh</id>
-                    <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-                </repository>
-            </distributionManagement>
         </profile>
 
 
-<!--        &lt;!&ndash;Profile americanexpress&ndash;&gt;-->
-<!--        <profile>-->
-<!--            <id>americanexpress</id>-->
-<!--            <activation>-->
-<!--                <property>-->
-<!--                    <name>performRelease</name>-->
-<!--                    <value>true</value>-->
-<!--                </property>-->
-<!--            </activation>-->
-<!--            <distributionManagement>-->
-<!--                <repository>-->
-<!--                    <id>bintray-americanexpress-maven</id>-->
-<!--                    <name>americanexpress-maven</name>-->
-<!--                    <url>https://api.bintray.com/maven/americanexpress/maven/io.americanexpress.synapse/;publish=1</url>-->
-<!--                </repository>-->
-<!--            </distributionManagement>-->
-<!--        </profile>-->
+        <!--Profile americanexpress-->
+        <profile>
+            <id>americanexpress</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <distributionManagement>
+                <repository>
+                    <id>bintray-americanexpress-maven</id>
+                    <name>americanexpress-maven</name>
+                    <url>https://api.bintray.com/maven/americanexpress/maven/io.americanexpress.synapse/;publish=1</url>
+                </repository>
+            </distributionManagement>
+        </profile>
     </profiles>
 
     <distributionManagement>
