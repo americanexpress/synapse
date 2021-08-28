@@ -38,7 +38,7 @@ jobs:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
       - checkout
-      - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy
+      - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy
 
   # Deploy to American Express
   american-express-deploy-job:
