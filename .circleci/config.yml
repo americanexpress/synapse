@@ -81,7 +81,7 @@ workflows:
 
   release-maven-central-build-test-deploy-workflow:
     jobs:
-      - build-test-job
+      - build-test-job:
           filters:
             branches:
               only:
