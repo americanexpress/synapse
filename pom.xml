@@ -689,6 +689,7 @@
                                 <autoVersionSubmodules>true</autoVersionSubmodules>
                                 <useReleaseProfile>false</useReleaseProfile>
                                 <releaseProfiles>release</releaseProfiles>
+                                <releaseVersion>@{project.artifactId}-@{project.version}-RELEASE</releaseVersion>
                                 <goals>deploy</goals>
                             </configuration>
                         </plugin>
