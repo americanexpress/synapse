@@ -39,6 +39,10 @@ jobs:
     steps:
       - checkout
       - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy
+          - branches:
+               only:
+                 - develop
+                 - /feature-.*/
 
   # RELEASE Deploy to Maven Central
   release-maven-central-deploy-job:
@@ -59,10 +63,6 @@ jobs:
     steps:
       - checkout
       - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy -P americanexpress
-          - branches:
-               only:
-                 - develop
-                 - /feature-.*/
 
   # Deploy to JCenter
   jcenter-deploy-job:
