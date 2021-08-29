@@ -2,15 +2,16 @@
 - Tired of having the developers in your team not following the same standards and each of them doing things their own way? 
 - Tired of having a disorganized architecture almost impossible to maintain after just a few months of starting your project?
 - Tired of struggling on how to start a new project and setting up all the foundational architecture? 
-- Tired of spending countless hours in getting your foundational frameworks robust and reliable? 
+- Tired of spending countless hours, days, or months in getting your foundational frameworks robust and reliable? 
 
 If any of these sound like situations you have experienced or experiences that you simply want to avoid, then Synapse is what you need.
 
-Synapse is a lightweight framework built around Spring. It is designed with the purpose of helping developers create web services in a quick and easy way following strict conventions.
-The framework provides an abstraction layer that forces developers to follow SOLID principles and avoid common mistakes during the development process.
-It is based on keeping things SIMPLE and clear. The framework strongly encourages convention over configuration, while highlighting the criticality of structure. Synapse will cover at least 95% of all the scenarios you need when creating an enterprise grade application, but it is also very open to extension. 
-So if you feel the need to create something new not covered here, you also have the flexibility of doing it.
-
+Synapse is a set of lightweight modules designed to help developers build out applications. The modules serve as a wide range tool-suite for developers to facilitate rapid development, with high quality built-in.
+It is designed with the purpose of helping developers create web services in a quick and easy way following strict conventions.
+Synapse provides an abstraction layer that enforces developers to follow SOLID principles and avoid common mistakes during the development process.
+It is based on keeping things SIMPLE and clear. The framework strongly encourages convention over configuration, while highlighting the criticality of structure. 
+Although Synapse will cover a majority of the scenarios you will need when creating an enterprise-grade application, it is also very open to extension. 
+We encourage you to extend and implement the abstraction layer of this framework. Furthermore, if you feel the need to create a new feature not covered here, you also have that flexibility.
 
 ## Synapse Architecture
 ![Synapse Architecture](synapse-architecture.png)
