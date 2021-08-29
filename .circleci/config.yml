@@ -39,10 +39,6 @@ jobs:
     steps:
       - checkout
       - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy
-          - branches:
-               only:
-                 - develop
-                 - /feature-.*/
 
   # RELEASE Deploy to Maven Central
   release-maven-central-deploy-job:
@@ -51,10 +47,6 @@ jobs:
     steps:
       - checkout
       - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy -P release
-          - branches:
-              only:
-                - main
-                - /release-.*/
 
   # Deploy to American Express
   american-express-deploy-job:
@@ -78,6 +70,11 @@ workflows:
     jobs:
       - build-test-job
       - snapshot-maven-central-deploy-job:
+          filters:
+            branches:
+              only:
+                - develop
+                - /feature-.*/
           context: maven_central_credentials
           requires:
             - build-test-job
@@ -86,6 +83,11 @@ workflows:
     jobs:
       - build-test-job
       - release-maven-central-deploy-job:
+          filters:
+            branches:
+              only:
+                - main
+                - /release-.*/
           context: maven_central_credentials
           requires:
             - build-test-job
