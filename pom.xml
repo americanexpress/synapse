@@ -772,7 +772,7 @@
 
     <scm>
         <url>https://github.com/americanexpress/synapse</url>
-        <connection>scm:git:git://github.com/americanexpress/synapse.git</connection>
+        <connection>scm:git:https://github.com/americanexpress/synapse.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/americanexpress/synapse.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
