@@ -46,8 +46,9 @@ jobs:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
       - checkout
-#      - run: mvn release:clean release:prepare -DgenerateBackupPoms=false -Dtag=synapse-1.0.0-RELEASE -DreleaseVersion=1.0.0-RELEASE -DdevelopmentVersion=1.0.0-SNAPSHOT
-      - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy -P release
+      - run: mvn --settings ".circleci/settings.xml" release:clean release:prepare release:perform -DgenerateBackupPoms=false -Dtag=synapse-1.0.0-RELEASE -DreleaseVersion=1.0.0-RELEASE -DdevelopmentVersion=1.0.0-SNAPSHOT
+      - run: mvn release:perform
+#  - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy -P release
 
   # Deploy to American Express
   american-express-deploy-job:
@@ -57,19 +58,17 @@ jobs:
       - checkout
       - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy -P americanexpress
 
-  # Deploy to JCenter
-  jcenter-deploy-job:
-    docker:
-      - image: circleci/openjdk:11-jdk-stretch
-    steps:
-      - checkout
-      - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy -P jcenter
 
 # Workflows that will schedule and execute jobs.
 workflows:
   snapshot-maven-central-build-test-deploy-workflow:
     jobs:
-      - build-test-job
+      - build-test-job:
+          filters:
+            branches:
+              only:
+                - develop
+                - /feature-.*/
       - snapshot-maven-central-deploy-job:
           filters:
             branches:
@@ -98,10 +97,10 @@ workflows:
           requires:
             - build-test-job
 
-  american-express-build-test-deploy-workflow:
-    jobs:
-      - build-test-job
-      - american-express-deploy-job:
-          context: gradle
-          requires:
-            - build-test-job
+#  american-express-build-test-deploy-workflow:
+#    jobs:
+#      - build-test-job
+#      - american-express-deploy-job:
+#          context: gradle
+#          requires:
+#            - build-test-job

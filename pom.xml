@@ -774,7 +774,6 @@
         <url>https://github.com/americanexpress/synapse</url>
         <connection>scm:git:git://github.com/americanexpress/synapse.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/americanexpress/synapse.git</developerConnection>
-        <tag>synapse-1.0.0-RELEASE</tag>
     </scm>
 
     <issueManagement>
