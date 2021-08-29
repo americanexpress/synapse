@@ -32,13 +32,21 @@ jobs:
       - store_test_results: # We use this timing data to optimize the future runs
           path: target/surefire-reports
 
-  # Deploy to Maven Central
-  maven-central-deploy-job:
+  # SNAPSHOT Deploy to Maven Central
+  snapshot-maven-central-deploy-job:
     docker:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
       - checkout
       - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy
+
+  # RELEASE Deploy to Maven Central
+  release-maven-central-deploy-job:
+    docker:
+      - image: circleci/openjdk:11-jdk-stretch
+    steps:
+      - checkout
+      - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy -P release
 
   # Deploy to American Express
   american-express-deploy-job:
@@ -58,11 +66,27 @@ jobs:
 
 # Workflows that will schedule and execute jobs.
 workflows:
-  maven-central-build-test-deploy-workflow:
+  snapshot-maven-central-build-test-deploy-workflow:
     jobs:
       - build-test-job
       - maven-central-deploy-job:
           context: maven_central_credentials
+          branches:
+            only:
+              - develop
+              - /feature-.*/
+          requires:
+            - build-test-job
+
+  release-maven-central-build-test-deploy-workflow:
+    jobs:
+      - build-test-job
+      - maven-central-deploy-job:
+          context: maven_central_credentials
+          branches:
+            only:
+              - main
+              - /release-.*/
           requires:
             - build-test-job
 

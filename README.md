@@ -2,7 +2,7 @@
 - Tired of having the developers in your team not following the same standards and each of them doing things their own way? 
 - Tired of having a disorganized architecture almost impossible to maintain after just a few months of starting your project?
 - Tired of struggling on how to start a new project and setting up all the foundational architecture? 
-- Tired of spending countless hours, days, and months in getting your foundational frameworks robust and reliable? 
+- Tired of spending countless hours, days, or months in getting your foundational frameworks robust and reliable? 
 
 If any of these sound like situations you have experienced or experiences that you simply want to avoid, then Synapse is what you need.
 
