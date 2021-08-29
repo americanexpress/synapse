@@ -69,7 +69,7 @@ workflows:
   snapshot-maven-central-build-test-deploy-workflow:
     jobs:
       - build-test-job
-      - maven-central-deploy-job:
+      - snapshot-maven-central-deploy-job:
           context: maven_central_credentials
           branches:
             only:
@@ -81,7 +81,7 @@ workflows:
   release-maven-central-build-test-deploy-workflow:
     jobs:
       - build-test-job
-      - maven-central-deploy-job:
+      - release-maven-central-deploy-job:
           context: maven_central_credentials
           branches:
             only:
