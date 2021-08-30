@@ -35,12 +35,17 @@ public class ClientLoggingExchangeFilterFunction implements ExchangeFilterFuncti
      * Used to log the message.
      */
     private final XLogger logger = XLoggerFactory.getXLogger(this.getClass());
-
+    
     /**
-     * Used to format the log message.
-     */
-    //private final LogFormatter formatter = new DefaultLogFormatter();
-	
+	 * Apply this filter to the given request and exchange function.
+	 * <p>The given {@linkplain ExchangeFunction} represents the next entity
+	 * in the chain, to be invoked via
+	 * {@linkplain ExchangeFunction#exchange(ClientRequest) invoked} in order to
+	 * proceed with the exchange, or not invoked to shortcut the chain.
+	 * @param request the current request
+	 * @param next the next exchange function in the chain
+	 * @return the filtered response
+	 */
     @Override
 	public Mono<ClientResponse> filter(ClientRequest clientRequest, ExchangeFunction exchangeFunction) {
     	
@@ -48,23 +53,11 @@ public class ClientLoggingExchangeFilterFunction implements ExchangeFilterFuncti
     	ClientResponse clientResponse = clientResponseMono.block();
     	
     	if(clientResponse.statusCode().isError()) {
+    		// TODO: write a client log formatter for reactive clients
     		logger.info(clientRequest.toString());
     		logger.info(clientResponse.toString());
     	}
     	
 		return clientResponseMono;
 	}
-    
-//	public Mono<ClientRequest> processRequest(ClientRequest clientRequest) {
-//    	logger.info(clientRequest.toString());
-//    	return Mono.just(clientRequest);
-//    }
-//	
-//	public Mono<ClientResponse> processResponse(ClientResponse clientResponse) {
-//		
-//		if(clientResponse.statusCode().isError()) {
-//			
-//		}
-//		return null;
-//	}
 }
