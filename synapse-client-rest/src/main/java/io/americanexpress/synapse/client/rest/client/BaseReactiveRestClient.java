@@ -16,7 +16,6 @@ package io.americanexpress.synapse.client.rest.client;
 import java.util.List;
 
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
@@ -35,12 +34,12 @@ import reactor.core.publisher.Mono;
  * @param <H> httpHeadersFactory used to set the HTTP headers for each web service call
  * @author Paolo Claudio
  */
-public abstract class BaseReactiveRestClient <I extends BaseClientRequest, O extends BaseClientResponse, H extends BaseClientHttpHeadersFactory<I>> extends BaseClient<I, O, H> {
+abstract class BaseReactiveRestClient<I extends BaseClientRequest, O extends BaseClientResponse, H extends BaseClientHttpHeadersFactory<I>> extends BaseClient<I, O, H> {
 
 	/**
 	 * Used to connect to a back end web service in a non-blocking, reactive manner.
 	 */
-	private WebClient webClient;
+	protected WebClient webClient;
 	
 	/**
 	 * Argument constructor creates a new instance of BaseReactiveRestClient with given values.
@@ -56,10 +55,6 @@ public abstract class BaseReactiveRestClient <I extends BaseClientRequest, O ext
 	 * @return the webClient
 	 */
 	public WebClient getWebClient() {
-		webClient.get().retrieve().onStatus(HttpStatus::isError, x -> {
-			
-			return Mono.error(Exception::new);
-		});
 		return webClient;
 	}
 	
