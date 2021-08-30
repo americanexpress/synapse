@@ -18,6 +18,7 @@ import java.util.List;
 import org.springframework.http.HttpMethod;
 
 import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
+import io.americanexpress.synapse.client.rest.helper.UrlBuilder;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
 import io.americanexpress.synapse.client.rest.model.ClientHeaders;

@@ -1,4 +1,4 @@
-package io.americanexpress.synapse.client.rest.interceptor;
+package io.americanexpress.synapse.client.rest.helper;
 
 import java.io.IOException;
 import java.net.URI;

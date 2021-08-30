@@ -19,6 +19,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
+import io.americanexpress.synapse.client.rest.helper.UrlBuilder;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
 import io.americanexpress.synapse.client.rest.model.ClientHeaders;

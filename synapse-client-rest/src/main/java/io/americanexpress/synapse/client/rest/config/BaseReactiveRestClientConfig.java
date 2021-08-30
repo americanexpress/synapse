@@ -2,7 +2,7 @@ package io.americanexpress.synapse.client.rest.config;
 
 import io.americanexpress.synapse.client.rest.client.BaseReactiveRestClient;
 import io.americanexpress.synapse.client.rest.handler.BaseRestResponseErrorHandler;
-import io.americanexpress.synapse.client.rest.interceptor.ClientLoggingExchangeFilterFunction;
+import io.americanexpress.synapse.client.rest.helper.ClientLoggingExchangeFilterFunction;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

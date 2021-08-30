@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.client.rest.interceptor;
+package io.americanexpress.synapse.client.rest.helper;
 
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;

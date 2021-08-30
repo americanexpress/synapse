@@ -2,7 +2,7 @@ package io.americanexpress.synapse.client.rest.config;
 
 import io.americanexpress.synapse.client.rest.client.BaseRestClient;
 import io.americanexpress.synapse.client.rest.handler.BaseRestResponseErrorHandler;
-import io.americanexpress.synapse.client.rest.interceptor.ClientLoggingCustomizer;
+import io.americanexpress.synapse.client.rest.helper.ClientLoggingCustomizer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
