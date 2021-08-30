@@ -23,7 +23,7 @@ import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Component;
 
 /**
- * {@code RestClient} annotation indicates that an annotated class is a "RestClient".
+ * {@code ReactiveRestClient} annotation indicates that an annotated class is a "ReactiveRestClient".
  * This annotation serves as a specialization of @Component, allowing for implementation classes
  * to be auto-detected through classpath scanning.
  *
@@ -33,7 +33,7 @@ import org.springframework.stereotype.Component;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Component
-public @interface RestClient {
+public @interface ReactiveRestClient {
 
     /**
      * The value may indicate a suggestion for a logical component name to be turned into a Spring bean in case of an auto-detected component.
