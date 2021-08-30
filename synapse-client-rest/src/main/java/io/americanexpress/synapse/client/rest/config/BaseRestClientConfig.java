@@ -4,9 +4,16 @@ import io.americanexpress.synapse.client.rest.client.BaseRestClient;
 import io.americanexpress.synapse.client.rest.handler.BaseRestResponseErrorHandler;
 import io.americanexpress.synapse.client.rest.interceptor.ClientLoggingCustomizer;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -52,7 +59,12 @@ public abstract class BaseRestClientConfig extends BaseClientConfig {
         RestTemplate restTemplate = new RestTemplateBuilder()
         	.customizers(clientLoggingCustomizer)
         	.build();
-        restTemplate.setMessageConverters(getMessageConverters());
+        
+        List<HttpMessageConverter<?>> messagesConverters = new ArrayList<>();
+        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter(getObjectMapper());
+        converter.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML));
+        messagesConverters.add(converter);
+        restTemplate.setMessageConverters(messagesConverters);
         return restTemplate;
     }
 }

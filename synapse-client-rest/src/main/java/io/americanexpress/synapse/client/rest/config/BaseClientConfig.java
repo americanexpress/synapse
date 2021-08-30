@@ -1,9 +1,5 @@
 package io.americanexpress.synapse.client.rest.config;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +7,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.env.Environment;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -50,14 +43,6 @@ abstract class BaseClientConfig {
      */
     protected ObjectMapper getObjectMapper() {
         return defaultObjectMapper;
-    }
-    
-    protected List<HttpMessageConverter<?>> getMessageConverters() {
-    	List<HttpMessageConverter<?>> messagesConverters = new ArrayList<>();
-        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter(getObjectMapper());
-        converter.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML));
-        messagesConverters.add(converter);
-        return messagesConverters;
     }
     
     /**

@@ -6,6 +6,7 @@ import io.americanexpress.synapse.client.rest.interceptor.ClientLoggingExchangeF
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.web.reactive.function.client.WebClient;
 
 /**
@@ -14,6 +15,7 @@ import org.springframework.web.reactive.function.client.WebClient;
  *
  * @author Paolo Claudio
  */
+@Import(BaseClientConfig.class)
 @Configuration
 public abstract class BaseReactiveRestClientConfig extends BaseClientConfig {
 	
@@ -46,11 +48,9 @@ public abstract class BaseReactiveRestClientConfig extends BaseClientConfig {
      * @param destinationUrl of the provider
      * @return the default web client
      */
-    public WebClient defaultWebClient(String destinationUrl) {    	
+    public WebClient defaultWebClient(String destinationUrl) {
     	 WebClient webClient = WebClient.builder()
-        	.codecs(clientCodecConfigurer -> clientCodecConfigurer.customCodecs()
-        		.register(getMessageConverters()))
-        	.filter(clientLoggingExchangeFilterFunction::filter)
+    		.filter(clientLoggingExchangeFilterFunction::filter)
         	.baseUrl(destinationUrl)
         	.build();	 
     	 return webClient;
