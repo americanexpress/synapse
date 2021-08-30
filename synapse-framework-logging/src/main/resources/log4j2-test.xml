@@ -34,6 +34,7 @@
         <Logger name="com.couchbase.client" level="DEBUG"/>
         <Logger name="com.americanexpress.synapse.service.rest.metrics" level="INFO"/>
         <Logger name="com.americanexpress.synapse.client.rest.interceptor" level="INFO"/>
+        <Logger name="reactor.netty.channel.ChannelOperations" level="ERROR"/>
         <Root level="TRACE" includeLocation="true">
             <AppenderRef ref="Console"/>
         </Root>

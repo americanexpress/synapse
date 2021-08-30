@@ -43,12 +43,12 @@
 
         <!--Spring Versions-->
         <spring.version>5.1.13.RELEASE</spring.version>
-        <spring-boot-framework.version>2.1.9.RELEASE</spring-boot-framework.version>
-        <spring-boot-admin.version>2.1.5</spring-boot-admin.version>
+        <spring-boot-framework.version>2.1.16.RELEASE</spring-boot-framework.version>
+        <spring-boot-admin.version>2.1.16</spring-boot-admin.version>
         <spring-couchbase.version>3.1.9.RELEASE</spring-couchbase.version>
-        <spring-boot-maven-plugin.version>2.1.5.RELEASE</spring-boot-maven-plugin.version>
-        <spring-boot-ws-framework.version>1.4.7.RELEASE</spring-boot-ws-framework.version>
-        <spring-boot-framework.version>2.1.5.RELEASE</spring-boot-framework.version>
+        <spring-boot-maven-plugin.version>2.1.16.RELEASE</spring-boot-maven-plugin.version>
+        <spring-boot-ws-framework.version>2.1.16.RELEASE</spring-boot-ws-framework.version>
+        <spring-boot-framework.version>2.1.16.RELEASE</spring-boot-framework.version>
         <spring-kafka.version>2.6.2</spring-kafka.version>
 
         <!--Swagger Dependency Versions-->
@@ -211,6 +211,11 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
+            	<groupId>org.springframework</groupId>
+            	<artifactId>spring-web</artifactId>
+            	<version>${spring.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-core</artifactId>
                 <version>${spring.version}</version>
@@ -220,11 +225,7 @@
                 <artifactId>spring-security-test</artifactId>
                 <version>${spring.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.hobsoft.spring</groupId>
-                <artifactId>spring-rest-template-logger</artifactId>
-                <version>2.0.0</version>
-            </dependency>
+            
 
             <!--Spring Boot Dependencies-->
             <dependency>
@@ -250,6 +251,11 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+            <dependency>
+	        	<groupId>org.springframework.boot</groupId>
+    	    	<artifactId>spring-boot-starter-webflux</artifactId>
+    	    	<version>${spring-boot-framework.version}</version>
+        	</dependency>
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
