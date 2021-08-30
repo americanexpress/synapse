@@ -40,7 +40,7 @@ public abstract class BaseDeleteReactiveRestClient<I extends BaseClientRequest, 
 	 * @param httpHeadersFactory HTTP headers factory used to produce the custom HTTP headers required to consume the back end service
 	 */
 	protected BaseDeleteReactiveRestClient(H httpHeadersFactory) {
-		super(httpHeadersFactory, HttpMethod.GET);
+		super(httpHeadersFactory, HttpMethod.DELETE);
 	}
 	
 	/**
