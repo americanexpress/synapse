@@ -13,10 +13,9 @@
  */
 package io.americanexpress.synapse.client.rest.interceptor;
 
-import org.hobsoft.spring.resttemplatelogger.DefaultLogFormatter;
-import org.hobsoft.spring.resttemplatelogger.LogFormatter;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.client.ClientHttpRequestExecution;
@@ -27,7 +26,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 /**
- * ClientLoggingInterceptor class logs the client requests and responses when errors occur.
+ * {@code ClientLoggingInterceptor} class logs the client requests and responses when errors occur.
  *
  * @author Paolo Claudio
  */
@@ -42,7 +41,16 @@ public class ClientLoggingInterceptor implements ClientHttpRequestInterceptor {
     /**
      * Used to format the log message.
      */
-    private final LogFormatter formatter = new DefaultLogFormatter();
+    private final ClientLogFormatter clientLogFormatter;
+    
+    /**
+     * Argument constructor creates a new instance of ClientLogFormatter with given values.
+     * @param clientLogFormatter used to format the log message
+     */
+    @Autowired
+    public ClientLoggingInterceptor(ClientLogFormatter clientLogFormatter) {
+    	this.clientLogFormatter = clientLogFormatter;
+    }
 
     /**
      * Intercept the request and response for clients when failures occur and log them.
@@ -61,8 +69,8 @@ public class ClientLoggingInterceptor implements ClientHttpRequestInterceptor {
 
         HttpStatus.Series httpStatusSeries = response.getStatusCode().series();
         if (httpStatusSeries == HttpStatus.Series.CLIENT_ERROR || httpStatusSeries == HttpStatus.Series.SERVER_ERROR) {
-            logger.info(formatter.formatRequest(request, body));
-            logger.info(formatter.formatResponse(response));
+            logger.info(clientLogFormatter.formatClientRequest(request, body));
+            logger.info(clientLogFormatter.formatClientResponse(response));
         }
 
         return response;

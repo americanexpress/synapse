@@ -13,8 +13,6 @@
  */
 package io.americanexpress.synapse.client.rest.interceptor;
 
-import org.hobsoft.spring.resttemplatelogger.DefaultLogFormatter;
-import org.hobsoft.spring.resttemplatelogger.LogFormatter;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 import org.springframework.stereotype.Component;
@@ -41,13 +39,14 @@ public class ClientLoggingExchangeFilterFunction implements ExchangeFilterFuncti
     /**
      * Used to format the log message.
      */
-    private final LogFormatter formatter = new DefaultLogFormatter();
+    //private final LogFormatter formatter = new DefaultLogFormatter();
 	
     @Override
 	public Mono<ClientResponse> filter(ClientRequest clientRequest, ExchangeFunction exchangeFunction) {
     	
     	Mono<ClientResponse> clientResponseMono = exchangeFunction.exchange(clientRequest);
     	ClientResponse clientResponse = clientResponseMono.block();
+    	
     	if(clientResponse.statusCode().isError()) {
     		logger.info(clientRequest.toString());
     		logger.info(clientResponse.toString());
