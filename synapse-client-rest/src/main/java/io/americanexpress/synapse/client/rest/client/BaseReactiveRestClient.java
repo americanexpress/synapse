@@ -34,7 +34,7 @@ import reactor.core.publisher.Mono;
  * @param <H> httpHeadersFactory used to set the HTTP headers for each web service call
  * @author Paolo Claudio
  */
-abstract class BaseReactiveRestClient<I extends BaseClientRequest, O extends BaseClientResponse, H extends BaseClientHttpHeadersFactory<I>> extends BaseClient<I, O, H> {
+public abstract class BaseReactiveRestClient<I extends BaseClientRequest, O extends BaseClientResponse, H extends BaseClientHttpHeadersFactory<I>> extends BaseClient<I, O, H> {
 
 	/**
 	 * Used to connect to a back end web service in a non-blocking, reactive manner.

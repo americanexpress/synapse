@@ -26,20 +26,20 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
- * {@code BaseGetReactiveRestClient} class specifies the prototypes for all reactive GET REST clients.
+ * {@code BaseDeleteReactiveRestClient} class specifies the prototypes for all reactive DELETE REST clients.
  *
  * @param <I> input request type
  * @param <O> output response type
  * @param <H> httpHeadersFactory used to set the HTTP headers for each web service call
  * @author Paolo Claudio
  */
-public abstract class BaseGetReactiveRestClient<I extends BaseClientRequest, O extends BaseClientResponse, H extends BaseClientHttpHeadersFactory<I>> extends BaseReactiveRestClient<I, O, H> {
+public abstract class BaseDeleteReactiveRestClient<I extends BaseClientRequest, O extends BaseClientResponse, H extends BaseClientHttpHeadersFactory<I>> extends BaseReactiveRestClient<I, O, H> {
 
 	/**
-	 * Argument constructor creates a new instance of BaseGetReactiveRestClient with given values.
+	 * Argument constructor creates a new instance of BaseDeleteReactiveRestClient with given values.
 	 * @param httpHeadersFactory HTTP headers factory used to produce the custom HTTP headers required to consume the back end service
 	 */
-	protected BaseGetReactiveRestClient(H httpHeadersFactory) {
+	protected BaseDeleteReactiveRestClient(H httpHeadersFactory) {
 		super(httpHeadersFactory, HttpMethod.GET);
 	}
 	
@@ -58,7 +58,7 @@ public abstract class BaseGetReactiveRestClient<I extends BaseClientRequest, O e
 		// Get the updated URL which may change in each client request due to path variables and/or query parameters
 		String updatedUrl = UrlBuilder.build(url, queryParameters, pathVariables);
 		
-		return webClient.get()
+		return webClient.delete()
 			.uri(updatedUrl)
 			.headers(httpHeaders ->
 				httpHeaders.addAll(httpHeadersFactory.create(clientHeaders, clientRequest, updatedUrl)))
@@ -81,7 +81,7 @@ public abstract class BaseGetReactiveRestClient<I extends BaseClientRequest, O e
 		// Get the updated URL which may change in each client request due to path variables and/or query parameters
 		String updatedUrl = UrlBuilder.build(url, queryParameters, pathVariables);
 		
-		return webClient.get()
+		return webClient.delete()
 			.uri(updatedUrl)
 			.headers(httpHeaders ->
 				httpHeaders.addAll(httpHeadersFactory.create(clientHeaders, clientRequest, updatedUrl)))
