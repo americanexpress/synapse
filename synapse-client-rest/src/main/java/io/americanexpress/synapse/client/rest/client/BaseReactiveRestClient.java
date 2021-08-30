@@ -16,6 +16,7 @@ package io.americanexpress.synapse.client.rest.client;
 import java.util.List;
 
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
@@ -55,6 +56,10 @@ public abstract class BaseReactiveRestClient <I extends BaseClientRequest, O ext
 	 * @return the webClient
 	 */
 	public WebClient getWebClient() {
+		webClient.get().retrieve().onStatus(HttpStatus::isError, x -> {
+			
+			return Mono.error(Exception::new);
+		});
 		return webClient;
 	}
 	
