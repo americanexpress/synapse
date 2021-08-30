@@ -17,7 +17,6 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.americanexpress.synapse.client.rest.interceptor.ClientLoggingCustomizer;
 import io.americanexpress.synapse.framework.exception.config.ExceptionConfig;
 import io.americanexpress.synapse.utilities.common.config.UtilitiesCommonConfig;
 
@@ -30,12 +29,6 @@ abstract class BaseClientConfig {
      * Logger used for this config.
      */
     protected final XLogger logger = XLoggerFactory.getXLogger(getClass());
-
-    /**
-     * Used to log the client request and response.
-     */
-    @Autowired
-    protected ClientLoggingCustomizer clientLoggingCustomizer;
 
     /**
      * Spring environment variable

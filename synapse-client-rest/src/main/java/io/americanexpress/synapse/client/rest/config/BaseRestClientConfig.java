@@ -2,6 +2,9 @@ package io.americanexpress.synapse.client.rest.config;
 
 import io.americanexpress.synapse.client.rest.client.BaseRestClient;
 import io.americanexpress.synapse.client.rest.handler.BaseRestResponseErrorHandler;
+import io.americanexpress.synapse.client.rest.interceptor.ClientLoggingCustomizer;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
@@ -15,6 +18,12 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public abstract class BaseRestClientConfig extends BaseClientConfig {
 
+	/**
+     * Used to log the client request and response.
+     */
+    @Autowired
+    protected ClientLoggingCustomizer clientLoggingCustomizer;
+	
     /**
      * Initialize the client.
      *
