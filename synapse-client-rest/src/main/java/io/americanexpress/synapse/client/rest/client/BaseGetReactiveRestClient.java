@@ -16,8 +16,10 @@ package io.americanexpress.synapse.client.rest.client;
 import java.util.List;
 
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 
 import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
+import io.americanexpress.synapse.client.rest.handler.BaseReactiveRestResponseErrorHandler;
 import io.americanexpress.synapse.client.rest.helper.UrlBuilder;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
@@ -39,9 +41,10 @@ public abstract class BaseGetReactiveRestClient<I extends BaseClientRequest, O e
 	/**
 	 * Argument constructor creates a new instance of BaseGetReactiveRestClient with given values.
 	 * @param httpHeadersFactory HTTP headers factory used to produce the custom HTTP headers required to consume the back end service
+	 * @param reactiveRestResponseErrorHandler used to handle errors from the reactive REST client
 	 */
-	protected BaseGetReactiveRestClient(H httpHeadersFactory) {
-		super(httpHeadersFactory, HttpMethod.GET);
+	protected BaseGetReactiveRestClient(H httpHeadersFactory, BaseReactiveRestResponseErrorHandler reactiveRestResponseErrorHandler) {
+		super(httpHeadersFactory, HttpMethod.GET, reactiveRestResponseErrorHandler);
 	}
 	
 	/**
@@ -64,6 +67,7 @@ public abstract class BaseGetReactiveRestClient<I extends BaseClientRequest, O e
 			.headers(httpHeaders ->
 				httpHeaders.addAll(httpHeadersFactory.create(clientHeaders, clientRequest, updatedUrl)))
 			.retrieve()
+			.onStatus(HttpStatus::isError, reactiveRestResponseErrorHandler::apply)
 			.bodyToMono(clientResponseType);
 	}
 	

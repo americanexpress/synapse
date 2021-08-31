@@ -18,6 +18,7 @@ import java.util.List;
 import org.springframework.http.HttpMethod;
 
 import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
+import io.americanexpress.synapse.client.rest.handler.BaseReactiveRestResponseErrorHandler;
 import io.americanexpress.synapse.client.rest.helper.UrlBuilder;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
@@ -39,9 +40,10 @@ public abstract class BaseDeleteReactiveRestClient<I extends BaseClientRequest, 
 	/**
 	 * Argument constructor creates a new instance of BaseDeleteReactiveRestClient with given values.
 	 * @param httpHeadersFactory HTTP headers factory used to produce the custom HTTP headers required to consume the back end service
+	 * @param reactiveRestResponseErrorHandler used to handle errors from the reactive REST client
 	 */
-	protected BaseDeleteReactiveRestClient(H httpHeadersFactory) {
-		super(httpHeadersFactory, HttpMethod.DELETE);
+	protected BaseDeleteReactiveRestClient(H httpHeadersFactory, BaseReactiveRestResponseErrorHandler reactiveRestResponseErrorHandler) {
+		super(httpHeadersFactory, HttpMethod.DELETE, reactiveRestResponseErrorHandler);
 	}
 	
 	/**

@@ -36,7 +36,7 @@ public abstract class BaseRestClientConfig extends BaseClientConfig {
      *
      * @param destinationUrl             of the provider
      * @param restClient                 used to connect to the provider
-     * @param restResponseErrorHandler   used to handler errors from the provider
+     * @param restResponseErrorHandler   used to handle errors from the provider
      */
     @SuppressWarnings("rawtypes")
     protected void initializeClient(String destinationUrl, BaseRestClient restClient, BaseRestResponseErrorHandler restResponseErrorHandler) {

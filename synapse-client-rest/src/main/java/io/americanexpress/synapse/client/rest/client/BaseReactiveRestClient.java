@@ -16,9 +16,11 @@ package io.americanexpress.synapse.client.rest.client;
 import java.util.List;
 
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
+import io.americanexpress.synapse.client.rest.handler.BaseReactiveRestResponseErrorHandler;
 import io.americanexpress.synapse.client.rest.helper.UrlBuilder;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
@@ -36,7 +38,12 @@ import reactor.core.publisher.Mono;
  * @author Paolo Claudio
  */
 public abstract class BaseReactiveRestClient<I extends BaseClientRequest, O extends BaseClientResponse, H extends BaseClientHttpHeadersFactory<I>> extends BaseClient<I, O, H> {
-
+	
+	/**
+	 * Used to handle errors from the reactive REST client.
+	 */
+	protected final BaseReactiveRestResponseErrorHandler reactiveRestResponseErrorHandler;
+	
 	/**
 	 * Used to connect to a back end web service in a non-blocking, reactive manner.
 	 */
@@ -46,9 +53,11 @@ public abstract class BaseReactiveRestClient<I extends BaseClientRequest, O exte
 	 * Argument constructor creates a new instance of BaseReactiveRestClient with given values.
 	 * @param httpHeadersFactory HTTP headers factory used to produce the custom HTTP headers required to consume the back end service
      * @param httpMethod HTTP method of the back end service
+     * @param reactiveRestResponseErrorHandler used to handle errors from the reactive REST client
 	 */
-	protected BaseReactiveRestClient(H httpHeadersFactory, HttpMethod httpMethod) {
+	protected BaseReactiveRestClient(H httpHeadersFactory, HttpMethod httpMethod, BaseReactiveRestResponseErrorHandler reactiveRestResponseErrorHandler) {
 		super(httpHeadersFactory, httpMethod);
+		this.reactiveRestResponseErrorHandler = reactiveRestResponseErrorHandler;
 	}
 	
 	/**
@@ -99,6 +108,7 @@ public abstract class BaseReactiveRestClient<I extends BaseClientRequest, O exte
 				httpHeaders.addAll(httpHeadersFactory.create(clientHeaders, clientRequest, updatedUrl)))
 			.body(Mono.just(clientRequest), clientRequestType)
 			.retrieve()
+			.onStatus(HttpStatus::isError, reactiveRestResponseErrorHandler::apply)
 			.bodyToMono(clientResponseType);
 	}
 	

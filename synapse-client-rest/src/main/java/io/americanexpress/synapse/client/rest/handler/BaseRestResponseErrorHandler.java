@@ -15,11 +15,8 @@ package io.americanexpress.synapse.client.rest.handler;
 
 import io.americanexpress.synapse.framework.exception.ApplicationClientException;
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
-import org.slf4j.ext.XLogger;
-import org.slf4j.ext.XLoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.client.ClientHttpResponse;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.client.ResponseErrorHandler;
 
@@ -27,19 +24,14 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 
 /**
- * BaseRestResponseErrorHandler is the base class that handles all the errors thrown by the Rest Clients.
+ * {@code BaseRestResponseErrorHandler} is the base class that handles all the errors thrown by the Rest Clients.
  * This class throws a custom ApplicationException wrapping the original error messages sent by the web service called and propagating it all the way to the ControllersExceptionHandler.
  * 99% of the time the children classes will NOT have to override these methods, but they could if needed.
  *
  * @author Alexei Morgado
  */
-@Component
-public abstract class BaseRestResponseErrorHandler implements ResponseErrorHandler {
-
-    protected final XLogger logger = XLoggerFactory.getXLogger(this.getClass());
-
-    protected final String EXTERNAL_PROVIDER_ERROR = "There was an error from the external provider in " + this.getClass().getName() + ". Error message: ";
-
+public abstract class BaseRestResponseErrorHandler extends BaseResponseErrorHandler implements ResponseErrorHandler {
+	
     @Override
     public boolean hasError(ClientHttpResponse httpResponse)
             throws IOException {
@@ -73,9 +65,4 @@ public abstract class BaseRestResponseErrorHandler implements ResponseErrorHandl
     protected String getResponseBodyAsString(ClientHttpResponse response) throws IOException {
         return StreamUtils.copyToString(response.getBody(), Charset.defaultCharset());
     }
-
-    protected String buildDeveloperMessage(HttpStatus statusCode, String responseBody) {
-        return EXTERNAL_PROVIDER_ERROR + " " + statusCode.toString() + " " + responseBody;
-    }
-
 }

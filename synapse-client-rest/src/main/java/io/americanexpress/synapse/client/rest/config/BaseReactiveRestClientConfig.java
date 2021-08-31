@@ -1,7 +1,6 @@
 package io.americanexpress.synapse.client.rest.config;
 
 import io.americanexpress.synapse.client.rest.client.BaseReactiveRestClient;
-import io.americanexpress.synapse.client.rest.handler.BaseRestResponseErrorHandler;
 import io.americanexpress.synapse.client.rest.helper.ClientLoggingExchangeFilterFunction;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +29,9 @@ public abstract class BaseReactiveRestClientConfig extends BaseClientConfig {
      *
      * @param destinationUrl             of the provider
      * @param reactiveRestClient         used to connect to the provider
-     * @param restResponseErrorHandler   used to handler errors from the provider
      */
     @SuppressWarnings("rawtypes")
-    protected void initializeClient(String destinationUrl, BaseReactiveRestClient reactiveRestClient, BaseRestResponseErrorHandler restResponseErrorHandler) {
+    protected void initializeClient(String destinationUrl, BaseReactiveRestClient reactiveRestClient) {
 
         // Set the destination URL for the client
         reactiveRestClient.setUrl(destinationUrl);
