@@ -3,7 +3,6 @@ package io.americanexpress.synapse.client.rest.config;
 import io.americanexpress.synapse.client.rest.client.BaseReactiveRestClient;
 import io.americanexpress.synapse.client.rest.helper.ClientLoggingExchangeFilterFunction;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -17,12 +16,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Import(BaseClientConfig.class)
 @Configuration
 public abstract class BaseReactiveRestClientConfig extends BaseClientConfig {
-	
-	/**
-	 * Used to log the request and response.
-	 */
-	@Autowired
-	private ClientLoggingExchangeFilterFunction clientLoggingExchangeFilterFunction;
 	
     /**
      * Initialize the client.
@@ -48,7 +41,8 @@ public abstract class BaseReactiveRestClientConfig extends BaseClientConfig {
      */
     public WebClient defaultWebClient(String destinationUrl) {
     	 WebClient webClient = WebClient.builder()
-    		.filter(clientLoggingExchangeFilterFunction::filter)
+    		.filter(ClientLoggingExchangeFilterFunction.logClientRequest())
+    		.filter(ClientLoggingExchangeFilterFunction.logClientResponse())
         	.baseUrl(destinationUrl)
         	.build();	 
     	 return webClient;

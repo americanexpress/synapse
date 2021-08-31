@@ -36,7 +36,7 @@ public class ClientLoggingInterceptor implements ClientHttpRequestInterceptor {
     /**
      * Used to log the message.
      */
-    private final XLogger logger = XLoggerFactory.getXLogger(this.getClass());
+    private final XLogger logger = XLoggerFactory.getXLogger(getClass());
 
     /**
      * Used to format the log message.

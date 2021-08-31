@@ -35,7 +35,7 @@ public class ClientLogFormatter {
 		HttpMethod httpMethod = httpRequest.getMethod();
 		HttpHeaders httpHeaders = httpRequest.getHeaders();
 		String formattedClientRequest = new String(bodyBytes, getCharset(httpRequest));
-		return String.format("Client Request: URI=%s, HTTP Method=%s, URI=%s, Request=%s",
+		return String.format("Client Request: URI=%s, HTTP Method=%s, HTTP Headers=%s, Request=%s",
 			uri, httpMethod, httpHeaders, formattedClientRequest);
 	}
 

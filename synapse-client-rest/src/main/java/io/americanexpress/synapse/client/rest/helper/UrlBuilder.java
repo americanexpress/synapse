@@ -14,7 +14,7 @@ import io.americanexpress.synapse.client.rest.model.QueryParameter;
 public final class UrlBuilder {
 	
 	/**
-	 * Default constructor creates a new instance of PathVariableUriCreator with default values.
+	 * Default constructor creates a new instance of UrlBuilder with default values.
 	 */
 	private UrlBuilder() {
 		

@@ -15,11 +15,7 @@ package io.americanexpress.synapse.client.rest.helper;
 
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
-import org.springframework.stereotype.Component;
-import org.springframework.web.reactive.function.client.ClientRequest;
-import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
-import org.springframework.web.reactive.function.client.ExchangeFunction;
 
 import reactor.core.publisher.Mono;
 
@@ -28,36 +24,42 @@ import reactor.core.publisher.Mono;
  * @author Paolo Claudio
  *
  */
-@Component
-public class ClientLoggingExchangeFilterFunction implements ExchangeFilterFunction {
+public class ClientLoggingExchangeFilterFunction {
 
 	/**
      * Used to log the message.
      */
-    private final XLogger logger = XLoggerFactory.getXLogger(this.getClass());
+    private static final XLogger logger = XLoggerFactory.getXLogger(ClientLoggingExchangeFilterFunction.class);
     
     /**
-	 * Apply this filter to the given request and exchange function.
-	 * <p>The given {@linkplain ExchangeFunction} represents the next entity
-	 * in the chain, to be invoked via
-	 * {@linkplain ExchangeFunction#exchange(ClientRequest) invoked} in order to
-	 * proceed with the exchange, or not invoked to shortcut the chain.
-	 * @param request the current request
-	 * @param next the next exchange function in the chain
-	 * @return the filtered response
-	 */
-    @Override
-	public Mono<ClientResponse> filter(ClientRequest clientRequest, ExchangeFunction exchangeFunction) {
-    	
-    	Mono<ClientResponse> clientResponseMono = exchangeFunction.exchange(clientRequest);
-    	ClientResponse clientResponse = clientResponseMono.block();
-    	
-    	if(clientResponse.statusCode().isError()) {
-    		// TODO: write a client log formatter for reactive clients
-    		logger.info(clientRequest.toString());
-    		logger.info(clientResponse.toString());
-    	}
-    	
-		return clientResponseMono;
-	}
+     * Default constructor creates a new instance of ClientLoggingExchangeFilterFunction with default values.
+     */
+    private ClientLoggingExchangeFilterFunction() {
+
+    	// A class containing only static methods is a utility class that requires a private no-argument default constructor
+    }
+    
+    /**
+     * Log the client request.
+     * @return the exchange filter function containing the client request logging
+     */
+    public static ExchangeFilterFunction logClientRequest() {
+    	return ExchangeFilterFunction.ofRequestProcessor(clientRequest -> {
+            logger.info("Client Request: URI={}, HTTP Method={}, HTTP Headers={}",
+            	clientRequest.url(), clientRequest.method(), clientRequest.headers());
+            return Mono.just(clientRequest);
+        });
+    }
+    
+    /**
+     * Log the client response.
+     * @return the exchange filter function conatining the client response logging
+     */
+    public static ExchangeFilterFunction logClientResponse() {
+    	return ExchangeFilterFunction.ofResponseProcessor(clientResponse -> {
+            logger.info("Client Response: HTTP Status={}, HTTP Headers={}",
+            	clientResponse.statusCode(), clientResponse.headers());
+            return Mono.just(clientResponse);
+        });
+    }
 }
