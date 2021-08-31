@@ -1,11 +1,6 @@
 # Use the latest 2.1 version of CircleCI pipeline process engine.
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
-
-
-
-
-
 jobs:
   # Build, Test, and Deploy
   build-test-job:
@@ -37,13 +32,33 @@ jobs:
       - store_test_results: # We use this timing data to optimize the future runs
           path: target/surefire-reports
 
-  # Deploy to Maven Central
-  maven-central-deploy-job:
+  # SNAPSHOT Deploy to Maven Central
+  snapshot-maven-central-deploy-job:
     docker:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
       - checkout
-      - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy -P release
+      - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy
+
+  # RELEASE Deploy to Maven Central
+  release-maven-central-deploy-job:
+    docker:
+      - image: circleci/openjdk:11-jdk-stretch
+    steps:
+      - checkout
+#      - run: mvn --settings ".circleci/settings.xml" release:clean release:prepare release:perform -DgenerateBackupPoms=false -Dtag=synapse-1.0.0-RELEASE -DreleaseVersion=1.0.0-RELEASE -DdevelopmentVersion=1.0.0-SNAPSHOT
+      - run: mvn release:perform
+#  - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy -P release
+
+  # SNAPSHOT to RELEASE Deploy to Maven Central
+  snapshot-release-maven-central-deploy-job:
+    docker:
+      - image: circleci/openjdk:11-jdk-stretch
+    steps:
+      - checkout
+      #      - run: mvn --settings ".circleci/settings.xml" release:clean release:prepare release:perform -DgenerateBackupPoms=false -Dtag=synapse-1.0.0-RELEASE -DreleaseVersion=1.0.0-RELEASE -DdevelopmentVersion=1.0.0-SNAPSHOT
+      - run: mvn release:perform
+  #  - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy -P release
 
   # Deploy to American Express
   american-express-deploy-job:
@@ -53,50 +68,65 @@ jobs:
       - checkout
       - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy -P americanexpress
 
-  # Deploy to JCenter
-  jcenter-deploy-job:
-    docker:
-      - image: circleci/openjdk:11-jdk-stretch
-    steps:
-      - checkout
-      - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy -P jcenter
-
-#workflows_setup:
-#  - &context
-#    context:
-#      - maven_central_credentials
-#      - gradle
-#      - code_signing_credentials
-#
-#  - &default_branch
-#      "main"
-
 
 # Workflows that will schedule and execute jobs.
 workflows:
-  maven-central-build-test-deploy-workflow:
+  snapshot-maven-central-build-test-deploy-workflow:
     jobs:
-      - build-test-job
-      - maven-central-deploy-job:
+      - build-test-job:
+          filters:
+            branches:
+              only:
+                - develop
+                - /feature-.*/
+      - snapshot-maven-central-deploy-job:
+          filters:
+            branches:
+              only:
+                - develop
+                - /feature-.*/
           context: maven_central_credentials
           requires:
             - build-test-job
 
-  american-express-build-test-deploy-workflow:
+  release-maven-central-build-test-deploy-workflow:
     jobs:
-      - build-test-job
-      - american-express-deploy-job:
-          context: gradle
+      - build-test-job:
+          filters:
+            branches:
+              only:
+                - main
+                - /release-.*/
+      - release-maven-central-deploy-job:
+          filters:
+            branches:
+              only:
+                - main
+                - /release-.*/
+          context: maven_central_credentials
           requires:
             - build-test-job
 
+  snapshot-release-maven-central-build-test-deploy-workflow:
+    jobs:
+      - build-test-job:
+          filters:
+            branches:
+              only:
+                - /release-.*/
+      - release-maven-central-deploy-job:
+          filters:
+            branches:
+              only:
+                - /release-.*/
+          context: maven_central_credentials
+          requires:
+            - build-test-job
 
-      #          <<: [ *context ]
-
-      #      - test:
-      #          requires:
-      #            - build
-#      - deploy:
+#  american-express-build-test-deploy-workflow:
+#    jobs:
+#      - build-test-job
+#      - american-express-deploy-job:
+#          context: gradle
 #          requires:
-#            - build
-#            - test
+#            - build-test-job
