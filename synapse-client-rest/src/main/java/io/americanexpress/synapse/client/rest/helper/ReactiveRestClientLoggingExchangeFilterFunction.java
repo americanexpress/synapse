@@ -20,22 +20,22 @@ import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import reactor.core.publisher.Mono;
 
 /**
- * {@code ClientLoggingExchangeFilterFunction} class logs the client requests and responses when errors occur reactively.
+ * {@code ReactiveRestClientLoggingExchangeFilterFunction} class logs the client requests and responses when errors occur reactively.
  * 
  * @author Paolo Claudio
  *
  */
-public class ClientLoggingExchangeFilterFunction {
+public class ReactiveRestClientLoggingExchangeFilterFunction {
 
 	/**
      * Used to log the message.
      */
-    private static final XLogger logger = XLoggerFactory.getXLogger(ClientLoggingExchangeFilterFunction.class);
+    private static final XLogger logger = XLoggerFactory.getXLogger(ReactiveRestClientLoggingExchangeFilterFunction.class);
     
     /**
-     * Default constructor creates a new instance of ClientLoggingExchangeFilterFunction with default values.
+     * Default constructor creates a new instance of ReactiveRestClientLoggingExchangeFilterFunction with default values.
      */
-    private ClientLoggingExchangeFilterFunction() {
+    private ReactiveRestClientLoggingExchangeFilterFunction() {
 
     	// A class containing only static methods is a utility class that requires a private no-argument default constructor
     }

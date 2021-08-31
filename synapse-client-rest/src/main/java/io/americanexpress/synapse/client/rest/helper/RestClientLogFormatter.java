@@ -30,13 +30,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StreamUtils;
 
 /**
- * {@code ClientLogFormatter} class is used to log client requests and responses.
+ * {@code RestClientLogFormatter} class is used to log client requests and responses.
  * 
  * @author Paolo Claudio
  *
  */
 @Component
-public class ClientLogFormatter {
+public class RestClientLogFormatter {
 	
 	/**
 	 * Format the client request.

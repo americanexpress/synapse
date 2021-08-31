@@ -15,7 +15,7 @@ package io.americanexpress.synapse.client.rest.config;
 
 import io.americanexpress.synapse.client.rest.client.BaseRestClient;
 import io.americanexpress.synapse.client.rest.handler.BaseRestResponseErrorHandler;
-import io.americanexpress.synapse.client.rest.helper.ClientLoggingCustomizer;
+import io.americanexpress.synapse.client.rest.helper.RestClientLoggingCustomizer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,7 +42,7 @@ public abstract class BaseRestClientConfig extends BaseClientConfig {
      * Used to log the client request and response.
      */
     @Autowired
-    protected ClientLoggingCustomizer clientLoggingCustomizer;
+    protected RestClientLoggingCustomizer restClientLoggingCustomizer;
 	
     /**
      * Initialize the client.
@@ -70,7 +70,7 @@ public abstract class BaseRestClientConfig extends BaseClientConfig {
      */
     public RestTemplate defaultRestTemplate() {
         RestTemplate restTemplate = new RestTemplateBuilder()
-        	.customizers(clientLoggingCustomizer)
+        	.customizers(restClientLoggingCustomizer)
         	.build();
         
         List<HttpMessageConverter<?>> messagesConverters = new ArrayList<>();

@@ -26,12 +26,12 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 /**
- * {@code ClientLoggingInterceptor} class logs the client requests and responses when errors occur.
+ * {@code RestClientLoggingInterceptor} class logs the client requests and responses when errors occur.
  * 
  * @author Paolo Claudio
  */
 @Component
-public class ClientLoggingInterceptor implements ClientHttpRequestInterceptor {
+public class RestClientLoggingInterceptor implements ClientHttpRequestInterceptor {
 
     /**
      * Used to log the message.
@@ -41,15 +41,15 @@ public class ClientLoggingInterceptor implements ClientHttpRequestInterceptor {
     /**
      * Used to format the log message.
      */
-    private final ClientLogFormatter clientLogFormatter;
+    private final RestClientLogFormatter restClientLogFormatter;
     
     /**
-     * Argument constructor creates a new instance of ClientLogFormatter with given values.
-     * @param clientLogFormatter used to format the log message
+     * Argument constructor creates a new instance of RestClientLoggingInterceptor with given values.
+     * @param restClientLogFormatter used to format the log message
      */
     @Autowired
-    public ClientLoggingInterceptor(ClientLogFormatter clientLogFormatter) {
-    	this.clientLogFormatter = clientLogFormatter;
+    public RestClientLoggingInterceptor(RestClientLogFormatter restClientLogFormatter) {
+    	this.restClientLogFormatter = restClientLogFormatter;
     }
 
     /**
@@ -69,8 +69,8 @@ public class ClientLoggingInterceptor implements ClientHttpRequestInterceptor {
 
         HttpStatus.Series httpStatusSeries = response.getStatusCode().series();
         if (httpStatusSeries == HttpStatus.Series.CLIENT_ERROR || httpStatusSeries == HttpStatus.Series.SERVER_ERROR) {
-            logger.info(clientLogFormatter.formatClientRequest(request, body));
-            logger.info(clientLogFormatter.formatClientResponse(response));
+            logger.info(restClientLogFormatter.formatClientRequest(request, body));
+            logger.info(restClientLogFormatter.formatClientResponse(response));
         }
 
         return response;

@@ -20,28 +20,36 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * ClientLoggingCustomizer class is only to add the BufferingClientHttpRequestFactory to the ClientLoggingInterceptor so the response could be read twice.
+ * {@code RestClientLoggingCustomizer} class is used to handle the intercepting
+ * of the client requests and responses for logging.
  *
  * @author Paolo Claudio
  */
 @Component
-public class ClientLoggingCustomizer implements RestTemplateCustomizer {
+public class RestClientLoggingCustomizer implements RestTemplateCustomizer {
 
-    private final ClientLoggingInterceptor clientLoggingInterceptor;
+	/**
+	 * Used to intercept the client request and response.
+	 */
+    private final RestClientLoggingInterceptor restClientLoggingInterceptor;
 
+    /**
+     * Argument constructor creates a new instance of RestClientLoggingCustomizer with given values.
+     * @param restClientLoggingInterceptor used to intercept the client request and response
+     */
     @Autowired
-    public ClientLoggingCustomizer(ClientLoggingInterceptor clientLoggingInterceptor) {
-        this.clientLoggingInterceptor = clientLoggingInterceptor;
+    public RestClientLoggingCustomizer(RestClientLoggingInterceptor restClientLoggingInterceptor) {
+        this.restClientLoggingInterceptor = restClientLoggingInterceptor;
     }
 
     /**
-     * Add the BufferingClientHttpRequestFactory to the ClientLoggingInterceptor.
+     * Customize the rest template.
      *
-     * @param restTemplate
+     * @param restTemplate the rest template
      */
     @Override
     public void customize(RestTemplate restTemplate) {
         restTemplate.setRequestFactory(new BufferingClientHttpRequestFactory(restTemplate.getRequestFactory()));
-        restTemplate.getInterceptors().add(clientLoggingInterceptor);
+        restTemplate.getInterceptors().add(restClientLoggingInterceptor);
     }
 }
