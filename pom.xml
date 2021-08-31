@@ -45,7 +45,7 @@
         <spring-boot-admin.version>2.1.16</spring-boot-admin.version>
         <spring-couchbase.version>3.1.9.RELEASE</spring-couchbase.version>
         <spring-boot-maven-plugin.version>2.1.16.RELEASE</spring-boot-maven-plugin.version>
-        <spring-boot-ws-framework.version>2.1.16.RELEASE</spring-boot-ws-framework.version>
+        <spring-boot-ws-framework.version>1.4.7.RELEASE</spring-boot-ws-framework.version>
         <spring-boot-framework.version>2.1.16.RELEASE</spring-boot-framework.version>
         <spring-kafka.version>2.6.2</spring-kafka.version>
 
