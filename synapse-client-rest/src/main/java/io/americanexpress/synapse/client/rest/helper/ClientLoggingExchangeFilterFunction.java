@@ -21,6 +21,7 @@ import reactor.core.publisher.Mono;
 
 /**
  * {@code ClientLoggingExchangeFilterFunction} class logs the client requests and responses when errors occur reactively.
+ * 
  * @author Paolo Claudio
  *
  */

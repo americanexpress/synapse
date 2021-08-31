@@ -27,7 +27,7 @@ import java.io.IOException;
 
 /**
  * {@code ClientLoggingInterceptor} class logs the client requests and responses when errors occur.
- *
+ * 
  * @author Paolo Claudio
  */
 @Component

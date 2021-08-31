@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 
 /**
  * {@code PathVariableUriCreator} class creates a new URI that includes query parameters.
+ * 
  * @author Paolo Claudio
  */
 final class PathVariableUriCreator {

@@ -25,6 +25,7 @@ import java.util.stream.Collectors;
 
 /**
  * {@code QueryParameterUriCreator} class creates a new URI that includes query parameters.
+ * 
  * @author Paolo Claudio
  */
 final class QueryParameterUriCreator {

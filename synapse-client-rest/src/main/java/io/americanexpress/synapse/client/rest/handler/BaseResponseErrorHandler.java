@@ -1,15 +1,47 @@
+/*
+ * Copyright 2020 American Express Travel Related Services Company, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
+ */
 package io.americanexpress.synapse.client.rest.handler;
 
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 import org.springframework.http.HttpStatus;
 
+/**
+ * {@code BaseResponseErrorHandler} class specifies the prototypes
+ * for handling response errors by the clients.
+ * 
+ * @author Paolo Claudio
+ *
+ */
 abstract class BaseResponseErrorHandler {
 
+	/**
+	 * Used to log messages.
+	 */
 	protected final XLogger logger = XLoggerFactory.getXLogger(getClass());
 
-    protected final String EXTERNAL_PROVIDER_ERROR = "There was an error from the external provider in " + this.getClass().getName() + ". Error message: ";
+	/**
+	 * External provider error message.
+	 */
+    protected final String EXTERNAL_PROVIDER_ERROR = "There was an error from the external provider in " + getClass().getName() + ". Error message: ";
 
+    /**
+     * Build the developer message.
+     * @param statusCode containing the HTTP status code
+     * @param responseBody the response body
+     * @return the developer message
+     */
     protected String buildDeveloperMessage(HttpStatus statusCode, String responseBody) {
         return EXTERNAL_PROVIDER_ERROR + " " + statusCode.toString() + " " + responseBody;
     }

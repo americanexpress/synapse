@@ -25,7 +25,7 @@ import java.util.function.Function;
 /**
  * {@code BaseReactiveRestResponseErrorHandler} class specifies the prototypes
  * for handling errors by the reactive REST clients.
- *
+ * 
  * @author Paolo Claudio
  */
 public abstract class BaseReactiveRestResponseErrorHandler extends BaseResponseErrorHandler implements Function<ClientResponse, Mono<? extends Throwable>> {
