@@ -11,12 +11,11 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.client.rest.interceptor;
+package io.americanexpress.synapse.client.rest.helper;
 
-import org.hobsoft.spring.resttemplatelogger.DefaultLogFormatter;
-import org.hobsoft.spring.resttemplatelogger.LogFormatter;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.client.ClientHttpRequestExecution;
@@ -27,22 +26,31 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 /**
- * ClientLoggingInterceptor class logs the client requests and responses when errors occur.
- *
+ * {@code RestClientLoggingInterceptor} class logs the client requests and responses when errors occur.
+ * 
  * @author Paolo Claudio
  */
 @Component
-public class ClientLoggingInterceptor implements ClientHttpRequestInterceptor {
+public class RestClientLoggingInterceptor implements ClientHttpRequestInterceptor {
 
     /**
      * Used to log the message.
      */
-    private final XLogger logger = XLoggerFactory.getXLogger(this.getClass());
+    private final XLogger logger = XLoggerFactory.getXLogger(getClass());
 
     /**
      * Used to format the log message.
      */
-    private final LogFormatter formatter = new DefaultLogFormatter();
+    private final RestClientLogFormatter restClientLogFormatter;
+    
+    /**
+     * Argument constructor creates a new instance of RestClientLoggingInterceptor with given values.
+     * @param restClientLogFormatter used to format the log message
+     */
+    @Autowired
+    public RestClientLoggingInterceptor(RestClientLogFormatter restClientLogFormatter) {
+    	this.restClientLogFormatter = restClientLogFormatter;
+    }
 
     /**
      * Intercept the request and response for clients when failures occur and log them.
@@ -61,8 +69,8 @@ public class ClientLoggingInterceptor implements ClientHttpRequestInterceptor {
 
         HttpStatus.Series httpStatusSeries = response.getStatusCode().series();
         if (httpStatusSeries == HttpStatus.Series.CLIENT_ERROR || httpStatusSeries == HttpStatus.Series.SERVER_ERROR) {
-            logger.info(formatter.formatRequest(request, body));
-            logger.info(formatter.formatResponse(response));
+            logger.info(restClientLogFormatter.formatClientRequest(request, body));
+            logger.info(restClientLogFormatter.formatClientResponse(response));
         }
 
         return response;

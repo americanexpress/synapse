@@ -56,7 +56,7 @@ public class QueryParameter extends BaseModel {
         this.value = value;
     }
 
-    public String formattedQueryParameter(String key, String value) {
+    public String format() {
         return key + "=" + value;
     }
 

@@ -13,7 +13,7 @@
  */
 package io.americanexpress.synapse.client.rest.factory;
 
-import io.americanexpress.synapse.client.rest.client.ClientHeaderKey;
+import io.americanexpress.synapse.client.rest.model.ClientHeaderKey;
 import io.americanexpress.synapse.client.rest.model.ClientHeaders;
 import io.americanexpress.synapse.client.rest.model.ClientRouting;
 import io.americanexpress.synapse.client.rest.model.ClientTrace;
