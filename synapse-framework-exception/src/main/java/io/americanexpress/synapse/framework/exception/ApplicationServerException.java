@@ -5,6 +5,11 @@ package io.americanexpress.synapse.framework.exception;
  */
 public class ApplicationServerException extends RuntimeException {
 
+	/**
+	 * Default serial version UID.
+	 */
+	private static final long serialVersionUID = 1L;
+	
     /**
      * Argument constructor creates a new instance of ApplicationException with given values.
      * Use this constructor when checked exceptions are caught in order to pass the original exception.

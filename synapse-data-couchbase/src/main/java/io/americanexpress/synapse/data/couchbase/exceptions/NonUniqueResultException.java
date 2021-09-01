@@ -20,6 +20,12 @@ import io.americanexpress.synapse.data.couchbase.parameter.Parameters;
  * The type Non unique result exception.
  */
 public class NonUniqueResultException extends RuntimeException {
+	
+	/**
+	 * Default serial version UID.
+	 */
+	private static final long serialVersionUID = 1L;
+	
     /**
      * Instantiates a new Non unique result exception.
      *
