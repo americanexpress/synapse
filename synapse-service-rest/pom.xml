@@ -62,12 +62,10 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-spring-web</artifactId>
-            <version>2.1.1.Final</version>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-spring-data-jpa</artifactId>
-            <version>2.1.1.Final</version>
         </dependency>
         <!--Spring-->
         <dependency>

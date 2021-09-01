@@ -85,7 +85,6 @@
         <dependency>
             <groupId>com.openpojo</groupId>
             <artifactId>openpojo</artifactId>
-            <version>0.8.13</version>
         </dependency>
         <dependency>
             <groupId>commons-codec</groupId>

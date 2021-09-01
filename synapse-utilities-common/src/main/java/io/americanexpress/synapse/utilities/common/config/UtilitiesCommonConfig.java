@@ -27,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
@@ -103,7 +103,7 @@ public class UtilitiesCommonConfig {
         mapper.setSerializationInclusion(Include.ALWAYS);
         mapper.enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
         mapper.enable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING);
-        mapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+        mapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
 
         return mapper;
     }
@@ -133,7 +133,7 @@ public class UtilitiesCommonConfig {
     public ObjectMapper camelCaseObjectMapper() {
         final ObjectMapper mapper = getInitialObjectMapper();
         mapper.setSerializationInclusion(Include.NON_EMPTY);
-        mapper.setPropertyNamingStrategy(PropertyNamingStrategy.LOWER_CAMEL_CASE);
+        mapper.setPropertyNamingStrategy(PropertyNamingStrategies.LOWER_CAMEL_CASE);
         return mapper;
     }
 
