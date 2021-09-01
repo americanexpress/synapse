@@ -71,7 +71,6 @@ class ControllerExceptionHandlerTest {
 
     @Test
     void handleApplicationException_whenApplicationExceptionContainsNoCause_expected400() {
-        HttpServletRequest mockedRequest = new MockHttpServletRequest();
         ResponseEntity<ErrorResponse> errorResponseEntity = CONTROLLER_EXCEPTION_HANDLER.handleApplicationClientException(new ApplicationClientException("There was an error from the external provider", ErrorCode.GENERIC_4XX_ERROR));
         assertErrorResponse(errorResponseEntity, ErrorCode.GENERIC_4XX_ERROR, ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE, "Your client has issued a malformed or illegal request.", HttpStatus.BAD_REQUEST);
     }
@@ -91,7 +90,7 @@ class ControllerExceptionHandlerTest {
         FieldError fieldError = new FieldError("name", "Valid", FIELD_DEFAULT_MESSAGE);
         fieldErrors.add(fieldError);
         when(bindingResult.getFieldErrors()).thenReturn(fieldErrors);
-        methodParameter.setTypeIndexForCurrentLevel(1);
+        methodParameter.withTypeIndex(1);
 
         ResponseEntity<ErrorResponse> errorResponseEntity = CONTROLLER_EXCEPTION_HANDLER.handleMethodArgumentNotValidException(new MethodArgumentNotValidException(methodParameter, bindingResult));
         assertErrorResponse(errorResponseEntity, ErrorCode.GENERIC_4XX_ERROR, ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE, FIELD_DEFAULT_MESSAGE, HttpStatus.BAD_REQUEST);

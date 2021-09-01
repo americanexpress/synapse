@@ -248,6 +248,8 @@ public abstract class BaseControllerTest<O extends BaseServiceResponse> {
      */
     protected Class<O> getResponseType() {
         final Type type = getClass().getGenericSuperclass();
-        return ((Class<O>) ((ParameterizedType) type).getActualTypeArguments()[0]);
+        @SuppressWarnings("unchecked")
+		Class<O> responseType = ((Class<O>) ((ParameterizedType) type).getActualTypeArguments()[0]);
+        return responseType;
     }
 }
