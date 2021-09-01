@@ -19,10 +19,11 @@ import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
 import io.americanexpress.synapse.client.rest.model.ClientHeaders;
 import io.americanexpress.synapse.client.rest.model.QueryParameter;
-import io.americanexpress.synapse.client.test.model.MockClientResponse;
 import io.americanexpress.synapse.framework.exception.ApplicationClientException;
 import io.americanexpress.synapse.framework.exception.ApplicationServerException;
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
+import io.americanexpress.synapse.framework.test.CommonAssertionMessages;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -49,78 +50,34 @@ public abstract class BaseRestClientUnitTest<I extends BaseClientRequest,
         H extends BaseClientHttpHeadersFactory<I>,
         C extends BaseRestClient<I, O, H>> extends BaseRestClientTest<I, O, H, C> {
 
-    protected MockRestServiceServer mockServer;
-
-    protected O response;
+	protected O clientResponse;
 
     protected ClientHeaders clientHeaders;
+	
+	protected MockRestServiceServer mockServer;
 
-    protected abstract I mockDefaultClientRequest();
-
-    protected abstract O mockDefaultClientResponse();
-
-    protected abstract ClientHeaders getDefaultClientHeaders() throws Exception;
-
-    protected ResponseActions responseAction;
-
-    private List<QueryParameter> mockQueryParameter() {
-        List<QueryParameter> queryParameters = new ArrayList<>();
-        QueryParameter queryParameter = new QueryParameter("name", "bob");
-        queryParameters.add(queryParameter);
-        return queryParameters;
-    }
-
-    private String mockPathVariable() {
-        return "11111111111";
-    }
-
-    private MockRestServiceServer getMockServer() {
-        return MockRestServiceServer
-                .bindTo(client.getRestTemplate())
-                .ignoreExpectOrder(true)
-                .bufferContent()
-                .build();
-    }
-
-    private ResponseActions getResponseActions(MockRestServiceServer mockServer, String url) {
-        URI uri = URI.create(url);
-        return mockServer.expect(ExpectedCount.once(), requestTo(uri))
-                .andExpect(method(client.getHttpMethod()));
-    }
-
-    private static final String RESPONSE_IS_NULL = "Response is null.";
-
+    protected ResponseActions responseActions;
 
     @BeforeEach
-    public void init() throws Exception {
-        this.request = mockDefaultClientRequest();
-        this.response = mockDefaultClientResponse();
+    void init() throws Exception {
+        this.clientRequest = mockDefaultClientRequest();
+        this.clientResponse = mockDefaultClientResponse();
         this.clientHeaders = getDefaultClientHeaders();
         mockServer = getMockServer();
-        responseAction = getResponseActions(mockServer, url);
-    }
-
-    protected void callServiceAndAssertErrorResponse() {
-        try {
-            client.callService(clientHeaders, request, MockClientResponse.class);
-            mockServer.verify();
-        } catch (ApplicationClientException e) {
-            assertEquals(ErrorCode.GENERIC_4XX_ERROR, e.getErrorCode());
-            throw e;
-        }
+        responseActions = getResponseActions(mockServer, url);
     }
 
     @Test
-    public void callService_clean() throws JsonProcessingException {
-        responseAction.andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(response)));
-        O actual = client.callService(clientHeaders, request, MockClientResponse.class);
+    void callMonoService_givenValidClientRequest_expectedNonNullClientResponse() throws JsonProcessingException {
+        responseActions.andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(clientResponse)));
+        O actual = restClient.callMonoService(clientHeaders, clientRequest);
         mockServer.verify();
-        assertNotNull(actual, RESPONSE_IS_NULL);
+        assertNotNull(actual, CommonAssertionMessages.RESPONSE_IS_NULL);
         logger.debug("Client response {}", actual);
     }
 
     @Test
-    public void callService_cleanPathVariable() throws JsonProcessingException {
+    void callMonoService_givenClientRequestWithPathVariable_expectedNonNullClientResponse() throws JsonProcessingException {
 
         // Create a mock server to test only this path variable URI
         // since it requires changing the expectations of the mockServer
@@ -133,19 +90,20 @@ public abstract class BaseRestClientUnitTest<I extends BaseClientRequest,
 
         ResponseActions pathVariableResponseActions = getResponseActions(pathVariableMockServer, url + "/" + mockPathVariable());
 
-        pathVariableResponseActions.andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(response)));
+        pathVariableResponseActions.andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(clientResponse)));
 
         // Act on the path variable mock server
-        O actual = client.callService(clientHeaders, request, MockClientResponse.class, mockPathVariable());
+        O actual = restClient.callMonoService(clientHeaders, clientRequest, mockPathVariable());
 
         // Assert that the expectations have been met
         pathVariableMockServer.verify();
-        assertNotNull(actual, RESPONSE_IS_NULL);
+        assertNotNull(actual, CommonAssertionMessages.RESPONSE_IS_NULL);
         logger.debug("Client response {}", actual);
     }
 
     @Test
-    public void callService_cleanQueryParameter() throws JsonProcessingException {
+    void callMonoService_givenClientRequestWithQueryParameter_expectedNonNullClientResponse() throws JsonProcessingException {
+    	
         // Create a mock server to test only this path variable URI
         // since it requires changing the expectations of the mockServer
         // that occurs @BeforeEach unit test method
@@ -157,17 +115,18 @@ public abstract class BaseRestClientUnitTest<I extends BaseClientRequest,
 
         ResponseActions pathVariableResponseActions = getResponseActions(queryParameterMockServer, url + "?name=bob");
 
-        pathVariableResponseActions.andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(response)));
+        pathVariableResponseActions.andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(clientResponse)));
 
         // Act on the path variable mock server
-        O actual = client.callService(clientHeaders, request, MockClientResponse.class, mockQueryParameter());
+        O actual = restClient.callMonoService(clientHeaders, clientRequest, mockQueryParameter());
         queryParameterMockServer.verify();
-        assertNotNull(actual, RESPONSE_IS_NULL);
+        assertNotNull(actual, CommonAssertionMessages.RESPONSE_IS_NULL);
         logger.debug("Client response {}", actual);
     }
 
     @Test
-    public void callService_cleanPathVariableAndQueryParameter() throws JsonProcessingException {
+    void callMonoService_givenClientRequestWithPathVariableAndQueryParameter_expectedNonNullClientResponse() throws JsonProcessingException {
+    	
         // Create a mock server to test only this path variable URI
         // since it requires changing the expectations of the mockServer
         // that occurs @BeforeEach unit test method
@@ -179,24 +138,65 @@ public abstract class BaseRestClientUnitTest<I extends BaseClientRequest,
 
         ResponseActions pathVariableResponseActions = getResponseActions(queryParameterMockServer, url + "/" + mockPathVariable() + "?name=bob");
 
-        pathVariableResponseActions.andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(response)));
+        pathVariableResponseActions.andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(clientResponse)));
 
         // Act on the path variable mock server
-        O actual = client.callService(clientHeaders, request, MockClientResponse.class, mockQueryParameter(), mockPathVariable());
+        O actual = restClient.callMonoService(clientHeaders, clientRequest, mockQueryParameter(), mockPathVariable());
         queryParameterMockServer.verify();
-        assertNotNull(actual, RESPONSE_IS_NULL);
+        assertNotNull(actual, CommonAssertionMessages.RESPONSE_IS_NULL);
         logger.debug("Client response {}", actual);
     }
 
     @Test
-    public void callService_clientError() throws IOException {
-        responseAction.andRespond(withStatus(HttpStatus.BAD_REQUEST).contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(response)));
-        Assertions.assertThrows(ApplicationClientException.class, this::callServiceAndAssertErrorResponse);
+    void callMonoService_givenClientError_expectedApplicationClientException() throws IOException {
+        responseActions.andRespond(withStatus(HttpStatus.BAD_REQUEST).contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(clientResponse)));
+        Assertions.assertThrows(ApplicationClientException.class, this::callMonoServiceAndAssertErrorResponse, CommonAssertionMessages.EXCEPTION_NOT_THROWN);
     }
 
     @Test
-    public void callService_serverError() throws IOException {
-        responseAction.andRespond(withStatus(HttpStatus.INTERNAL_SERVER_ERROR).contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(response)));
-        Assertions.assertThrows(ApplicationServerException.class, this::callServiceAndAssertErrorResponse);
+    void callMonoService_givenServerError_expectedApplicationClientException() throws IOException {
+        responseActions.andRespond(withStatus(HttpStatus.INTERNAL_SERVER_ERROR).contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(clientResponse)));
+        Assertions.assertThrows(ApplicationServerException.class, this::callMonoServiceAndAssertErrorResponse, CommonAssertionMessages.EXCEPTION_NOT_THROWN);
     }
+    
+    private MockRestServiceServer getMockServer() {
+        return MockRestServiceServer
+            .bindTo(restClient.getRestTemplate())
+            .ignoreExpectOrder(true)
+            .bufferContent()
+            .build();
+    }
+    
+    private ResponseActions getResponseActions(MockRestServiceServer mockServer, String url) {
+        URI uri = URI.create(url);
+        return mockServer.expect(ExpectedCount.once(), requestTo(uri))
+        	.andExpect(method(restClient.getHttpMethod()));
+    }
+    
+    private List<QueryParameter> mockQueryParameter() {
+        List<QueryParameter> queryParameters = new ArrayList<>();
+        QueryParameter queryParameter = new QueryParameter("name", "bob");
+        queryParameters.add(queryParameter);
+        return queryParameters;
+    }
+    
+    private String mockPathVariable() {
+        return "11111111111";
+    }
+    
+    private void callMonoServiceAndAssertErrorResponse() {
+        try {
+            restClient.callMonoService(clientHeaders, clientRequest);
+            mockServer.verify();
+        } catch (ApplicationClientException applicationClientException) {
+            assertEquals(ErrorCode.GENERIC_4XX_ERROR, applicationClientException.getErrorCode());
+            throw applicationClientException;
+        }
+    }
+    
+    protected abstract I mockDefaultClientRequest();
+
+    protected abstract O mockDefaultClientResponse();
+
+    protected abstract ClientHeaders getDefaultClientHeaders() throws Exception;
 }
