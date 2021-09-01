@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Constructor;
 
-import static io.americanexpress.synapse.client.rest.client.ClientHeaderValue.*;
+import static io.americanexpress.synapse.client.rest.model.ClientHeaderValue.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
