@@ -13,7 +13,6 @@
  */
 package io.americanexpress.synapse.client.test.client;
 
-import io.americanexpress.synapse.client.client.test.BaseClientTest;
 import io.americanexpress.synapse.client.rest.client.BaseRestClient;
 import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
@@ -22,19 +21,19 @@ import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class BaseRestClientTest<I extends BaseClientRequest,
+abstract class BaseRestClientTest<I extends BaseClientRequest,
         O extends BaseClientResponse,
         H extends BaseClientHttpHeadersFactory<I>,
         C extends BaseRestClient<I, O, H>> extends BaseClientTest {
 
     @BeforeEach
-    public void setup() {
-        this.url = client.getUrl();
+    private void initialize() {
+        this.url = restClient.getUrl();
     }
 
     @Autowired
-    protected C client;
+    protected C restClient;
 
-    protected I request;
+    protected I clientRequest;
 
 }

@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.client;
+package io.americanexpress.synapse.client.test.client;
 
 import io.americanexpress.synapse.utilities.common.io.ClasspathObjectFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,9 +22,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
-public abstract class BaseClientTest {
+abstract class BaseClientTest {
 
-    protected final XLogger logger = XLoggerFactory.getXLogger(this.getClass());
+    protected final XLogger logger = XLoggerFactory.getXLogger(getClass());
 
     @Autowired
     protected ClasspathObjectFactory classpathObjectFactory;

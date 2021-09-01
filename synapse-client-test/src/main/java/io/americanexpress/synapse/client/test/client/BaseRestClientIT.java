@@ -24,6 +24,6 @@ public abstract class BaseRestClientIT<I extends BaseClientRequest,
         H extends BaseClientHttpHeadersFactory<I>,
         C extends BaseRestClient<I, O, H>> extends BaseRestClientTest<I, O, H, C> {
 
-    protected abstract void callService_success() throws Exception;
+    protected abstract void callMonoService_givenValidRequest_expectedSuccessResponse() throws Exception;
 
 }
