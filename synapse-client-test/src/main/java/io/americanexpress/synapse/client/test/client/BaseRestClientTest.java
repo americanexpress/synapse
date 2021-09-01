@@ -13,11 +13,12 @@
  */
 package io.americanexpress.synapse.client.test.client;
 
+import io.americanexpress.synapse.client.client.test.BaseClientTest;
 import io.americanexpress.synapse.client.rest.client.BaseRestClient;
 import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
-import io.americanexpress.synapse.client.test.BaseClientTest;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 

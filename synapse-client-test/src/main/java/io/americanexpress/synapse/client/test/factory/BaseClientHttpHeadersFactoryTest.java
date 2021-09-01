@@ -13,12 +13,13 @@
  */
 package io.americanexpress.synapse.client.test.factory;
 
+import io.americanexpress.synapse.client.client.test.BaseClientTest;
 import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.ClientHeaders;
 import io.americanexpress.synapse.client.rest.model.ClientRouting;
 import io.americanexpress.synapse.client.rest.model.ClientTrace;
-import io.americanexpress.synapse.client.test.BaseClientTest;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
