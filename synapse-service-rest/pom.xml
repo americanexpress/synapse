@@ -67,12 +67,6 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-spring-data-jpa</artifactId>
         </dependency>
-        <!--Spring-->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-        </dependency>
-
 <!--        Spring Boot-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
