@@ -17,7 +17,7 @@
     <parent>
         <groupId>io.americanexpress</groupId>
         <artifactId>synapse</artifactId>
-        <version>1.0.0-RELEASE</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>synapse-framework-exception</artifactId>
@@ -26,11 +26,7 @@
     <!--Dependencies-->
     <dependencies>
         <!--External Dependencies-->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-        </dependency>
-        <dependency>
+          <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
         </dependency>

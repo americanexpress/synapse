@@ -11,15 +11,19 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.client.test;
+package io.americanexpress.synapse.client.test.client;
 
 
+import io.americanexpress.synapse.client.rest.client.BaseRestClient;
+import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
-import io.americanexpress.synapse.client.rest.model.ClientHeaders;
+import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
 
-public interface RequestOperations<I extends BaseClientRequest> {
+public abstract class BaseRestClientIT<I extends BaseClientRequest,
+        O extends BaseClientResponse,
+        H extends BaseClientHttpHeadersFactory<I>,
+        C extends BaseRestClient<I, O, H>> extends BaseRestClientTest<I, O, H, C> {
 
-    I mockDefaultClientRequest();
+    protected abstract void callMonoService_givenValidRequest_expectedSuccessResponse() throws Exception;
 
-    ClientHeaders getDefaultClientHeaders() throws Exception;
 }

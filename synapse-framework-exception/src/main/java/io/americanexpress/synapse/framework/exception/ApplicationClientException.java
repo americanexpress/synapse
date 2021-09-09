@@ -8,6 +8,11 @@ import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 public class ApplicationClientException extends RuntimeException {
 
     /**
+	 * Default serial version UID.
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Used to provide a human readable message to the developer to understand a recoverable solution to the error.
      */
     private final String developerMessage;

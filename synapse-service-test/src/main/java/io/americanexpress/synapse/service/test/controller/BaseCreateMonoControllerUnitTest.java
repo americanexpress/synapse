@@ -21,7 +21,7 @@ import org.springframework.http.HttpStatus;
  * @param <I> the type parameter
  * @param <S> the type parameter
  */
-public abstract class BaseCreateControllerUnitTest<O extends BaseServiceResponse, I extends BaseServiceRequest, S extends BaseCreateService<I, O>> extends BaseControllerUnitTest<O>{
+public abstract class BaseCreateMonoControllerUnitTest<O extends BaseServiceResponse, I extends BaseServiceRequest, S extends BaseCreateService<I, O>> extends BaseControllerUnitTest<O>{
 
     /**
      * The Service.

@@ -11,16 +11,20 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.service.rest.controller;
+package io.americanexpress.synapse.service.rest.controller.reactive;
 
+import io.americanexpress.synapse.service.rest.controller.BaseController;
+import io.americanexpress.synapse.service.rest.controller.helpers.MonoResponseEntityCreator;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.rest.service.BaseCreateService;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -35,7 +39,8 @@ import java.net.URI;
  *
  * @author Gabriel Jimenez
  */
-public abstract class BaseCreateController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseCreateService<I, O>> extends BaseController<S> {
+public abstract class BaseReactiveCreateMonoController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseCreateService<I, O>> extends BaseController<S> {
+
 
     /**
      * Create a single resource.
@@ -44,11 +49,11 @@ public abstract class BaseCreateController<I extends BaseServiceRequest, O exten
      * @return response to the consumer
      */
     @PostMapping
-    public ResponseEntity<O> create(@Valid @RequestBody I serviceRequest) {
+    public Mono<ResponseEntity<O>> create(@Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
 
         final O serviceResponse = service.create(serviceRequest);
-        ResponseEntity<O> responseEntity = createPostResponseEntity(serviceResponse);
+        Mono<ResponseEntity<O>> responseEntity = Mono.just(createPostResponseEntity(serviceResponse));
 
         logger.exit();
         return responseEntity;

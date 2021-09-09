@@ -17,7 +17,6 @@ package io.americanexpress.synapse.utilities.common.validator;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * @author Gabriel Jimenez
@@ -38,7 +37,7 @@ public class CheckDateValidator implements ConstraintValidator<CheckDateFormat, 
         }
 
         try {
-            Date date = new SimpleDateFormat(pattern).parse(object);
+            new SimpleDateFormat(pattern).parse(object);
             return true;
         } catch (Exception e) {
             return false;
