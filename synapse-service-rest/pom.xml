@@ -24,7 +24,6 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>synapse-service-rest</artifactId>
 
-
     <!--Dependencies-->
     <dependencies>
         <!--Synapse-->

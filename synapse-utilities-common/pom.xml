@@ -82,7 +82,7 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-ext</artifactId>
         </dependency>
-          <dependency>
+        <dependency>
             <groupId>com.openpojo</groupId>
             <artifactId>openpojo</artifactId>
         </dependency>
@@ -93,6 +93,10 @@
         <dependency>
             <groupId>org.jasypt</groupId>
             <artifactId>jasypt</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
         </dependency>
     </dependencies>
 

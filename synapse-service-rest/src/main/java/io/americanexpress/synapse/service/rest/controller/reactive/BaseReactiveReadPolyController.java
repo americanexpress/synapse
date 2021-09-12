@@ -21,7 +21,6 @@ import io.americanexpress.synapse.service.rest.service.BaseReadPolyService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +39,6 @@ import java.util.List;
  * @param <I> input request type
  * @param <O> output response type
  * @param <S> service type
- *
  * @author Gabriel Jimenez
  */
 public abstract class BaseReactiveReadPolyController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadPolyService<I, O>> extends BaseController<S> {
@@ -56,8 +54,7 @@ public abstract class BaseReactiveReadPolyController<I extends BaseServiceReques
      * @param serviceRequest body from the consumer
      * @return a list of resources from the back end service
      */
-//    response = ResponseEntity.class
-    @Operation(tags = "Reactive Read Poly", summary = "Gets a collection of resources")
+    @ApiOperation(value = "Reactive Read Poly", notes = "Gets a collection of resources", response = ResponseEntity.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Ok"),
             @ApiResponse(code = 204, message = "No Content"),

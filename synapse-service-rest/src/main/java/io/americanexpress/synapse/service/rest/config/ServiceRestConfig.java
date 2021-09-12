@@ -33,14 +33,13 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * <code>BaseServiceRestConfig</code> class sets common configurations for the service layer.
+ * <code>ServiceRestConfig</code> class sets common configurations for the service layer.
  *
  * @author Gabriel Jimenez
  */
 @Configuration
 @ComponentScan(basePackages = "io.americanexpress.synapse.service.rest")
 @Import({ExceptionConfig.class, ApiDocsConfig.class, UtilitiesCommonConfig.class})
-//@Import({ExceptionConfig.class, UtilitiesCommonConfig.class})
 public class ServiceRestConfig implements WebMvcConfigurer {
 
     /**
