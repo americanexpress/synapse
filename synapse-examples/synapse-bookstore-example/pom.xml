@@ -18,18 +18,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>io.americanexpress</groupId>
-        <artifactId>synapse</artifactId>
+        <artifactId>synapse-examples</artifactId>
         <version>0.1.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>synapse-samples</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <artifactId>bookstore-example</artifactId>
     <packaging>pom</packaging>
 
-    <!--Modules-->
     <modules>
-        <module>synapse-bookstore-sample</module>
+        <module>service-book-example</module>
     </modules>
 
 

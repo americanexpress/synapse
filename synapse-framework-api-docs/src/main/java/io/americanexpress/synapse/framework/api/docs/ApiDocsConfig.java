@@ -40,7 +40,8 @@ import java.util.List;
  * @author Gabriel Jimenez
  */
 @Configuration
-@EnableSwagger2
+//@EnableSwagger2
+//@EnableOpenApi
 public class ApiDocsConfig {
 
     private static final String CORRELATION_ID = "Correlation-ID";
@@ -48,7 +49,7 @@ public class ApiDocsConfig {
     private static final String HEADER = "Header";
 
     // These variables are defaulted to below values, but could be overridden and changes by client utilizing this framework.
-    private String teamName = "Synapse";
+    private String teamName = "Team Synapse";
     private String teamWebsite = "https://americanexpress.io/synapse/";
     private String teamEmailAddress = "synapse@aexp.com";
     private String title = "Synapse APIs";
