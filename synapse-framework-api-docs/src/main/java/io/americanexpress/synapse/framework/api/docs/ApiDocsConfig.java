@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.oas.annotations.EnableOpenApi;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.ApiKey;
 import springfox.documentation.service.AuthorizationScope;
@@ -40,7 +39,7 @@ import java.util.List;
  * @author Gabriel Jimenez
  */
 @Configuration
-//@EnableSwagger2
+@EnableSwagger2
 //@EnableOpenApi
 public class ApiDocsConfig {
 
@@ -156,7 +155,6 @@ public class ApiDocsConfig {
         return Lists.newArrayList(new SecurityReference(CORRELATION_ID, authorizationScopes),
                 new SecurityReference(CLIENT_APP_ID, authorizationScopes));
     }
-
 
 }
 

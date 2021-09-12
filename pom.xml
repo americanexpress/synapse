@@ -43,7 +43,7 @@
         <!--Spring Versions-->
         <spring-framework.version>5.3.9</spring-framework.version>
         <spring-security.version>5.5.2</spring-security.version>
-        <spring-boot-framework.version>2.5.1</spring-boot-framework.version>
+        <spring-boot-framework.version>2.5.4</spring-boot-framework.version>
         <spring-boot-ws-framework.version>1.4.7.RELEASE</spring-boot-ws-framework.version>
 
         <!--SpringFox-->
@@ -495,6 +495,11 @@
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-spring-webflux</artifactId>
+                <version>3.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-boot-starter</artifactId>
                 <version>${springfox-swagger.version}</version>
             </dependency>
 
@@ -828,13 +833,6 @@
         </profile>
     </profiles>
 
-    <repositories>
-        <repository>
-            <id>jcenter-snapshots</id>
-            <name>jcenter</name>
-            <url>http://oss.jfrog.org/artifactory/oss-snapshot-local/</url>
-        </repository>
-    </repositories>
 
     <distributionManagement>
         <snapshotRepository>
