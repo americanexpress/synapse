@@ -47,7 +47,7 @@
         <spring-boot-ws-framework.version>1.4.7.RELEASE</spring-boot-ws-framework.version>
 
         <!--SpringFox-->
-        <springfox-swagger.version>2.9.2</springfox-swagger.version>
+        <springfox-swagger.version>3.0.0</springfox-swagger.version>
 
         <!--Mock Dependency Versions-->
         <mockito.version>2.23.4</mockito.version>
@@ -490,6 +490,11 @@
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
+                <version>${springfox-swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-spring-webflux</artifactId>
                 <version>${springfox-swagger.version}</version>
             </dependency>
 

@@ -16,11 +16,11 @@ package io.americanexpress.synapse.framework.api.docs;
 import com.google.common.collect.Lists;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.oas.annotations.EnableOpenApi;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.ApiKey;
 import springfox.documentation.service.AuthorizationScope;
@@ -41,9 +41,7 @@ import java.util.List;
  */
 @Configuration
 @EnableSwagger2
-//@EnableSwagger2WebMvc
-//@EnableSwagger2WebFlux
-@PropertySource("classpath:/synapse-framework-api-docs-application.properties")
+@EnableOpenApi
 public class ApiDocsConfig {
 
     private static final String CORRELATION_ID = "Correlation-ID";
@@ -97,39 +95,6 @@ public class ApiDocsConfig {
         this.description = description;
     }
 
-//    @Bean
-//    public GroupedOpenApi publicApi() {
-//        return GroupedOpenApi.builder().group("user").pathsToExclude("/api/v2/**").pathsToMatch("/api/v1/**").build();
-//    }
-//
-//    @Bean
-//    public GroupedOpenApi adminApi() {
-//        return GroupedOpenApi.builder().group("admin").pathsToExclude("/api/v1/**").pathsToMatch("/api/v2/**").build();
-//    }
-//    @Bean
-//    public OpenAPI customOpenAPI(@Value("${application-version}") String applicationVersion) {
-//
-//        return new OpenAPI()
-//                .components(new Components())
-//                .info(new Info()
-//                        .title("Synapse API")
-//                        .contact(this.getContactInfo())
-//                        .version(applicationVersion)
-//                        .license(new License()
-//                                .name("Apache 2.0")
-//                                .url("https://americanexpress.io")));
-//    }
-
-//    private Contact getContactInfo() {
-//        Contact contact = new Contact();
-//        contact.setEmail(this.getTeamName());
-//        contact.setName(this.getTeamName());
-//        contact.setUrl(this.getTeamWebsite());
-//        contact.setEmail(this.getTeamEmailAddress());
-//        return contact;
-//    }
-
-
     /**
      * Used to get basic information on the page.
      *
@@ -144,7 +109,7 @@ public class ApiDocsConfig {
                 .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
                 .paths(PathSelectors.any())
                 .build()
-                .securitySchemes(this.getApiKeys())
+//                .securitySchemes()
                 .securityContexts(Lists.newArrayList(this.getSecurityContext()));
     }
 
