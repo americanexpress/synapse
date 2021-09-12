@@ -13,11 +13,11 @@
  */
 package io.americanexpress.synapse.service.rest.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.americanexpress.synapse.framework.api.docs.ApiDocsConfig;
 import io.americanexpress.synapse.framework.exception.config.ExceptionConfig;
 import io.americanexpress.synapse.service.rest.interceptor.MetricInterceptor;
 import io.americanexpress.synapse.utilities.common.config.UtilitiesCommonConfig;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -38,8 +38,9 @@ import java.util.List;
  * @author Gabriel Jimenez
  */
 @Configuration
-@ComponentScan(basePackages = "com.americanexpress.synapse.service.rest")
+@ComponentScan(basePackages = "io.americanexpress.synapse.service.rest")
 @Import({ExceptionConfig.class, ApiDocsConfig.class, UtilitiesCommonConfig.class})
+//@Import({ExceptionConfig.class, UtilitiesCommonConfig.class})
 public class ServiceRestConfig implements WebMvcConfigurer {
 
     /**

@@ -11,27 +11,23 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.service.rest.controller.reactive;
+package io.americanexpress.synapse.service.rest.controller;
 
-import io.americanexpress.synapse.service.rest.controller.BaseController;
-import io.americanexpress.synapse.service.rest.controller.helpers.MonoResponseEntityCreator;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.rest.service.BaseCreateService;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
 import java.net.URI;
 
 /**
- * BaseCrudController class specifies the prototypes for listening for requests from the consumer
- * to Create (POST), Update (PUT/PATCH) or Delete (DELETE) a resource.
+ * <code>BaseCreateMonoController</code> class specifies the abstraction for listening for requests from the consumer
+ * to Create (POST) a resource. This controller expects only one entry as request.
  *
  * @param <I> input request type
  * @param <O> output response type
@@ -39,8 +35,7 @@ import java.net.URI;
  *
  * @author Gabriel Jimenez
  */
-public abstract class BaseReactiveCreateMonoController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseCreateService<I, O>> extends BaseController<S> {
-
+public abstract class BaseCreateController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseCreateService<I, O>> extends BaseController<S> {
 
     /**
      * Create a single resource.
@@ -49,11 +44,11 @@ public abstract class BaseReactiveCreateMonoController<I extends BaseServiceRequ
      * @return response to the consumer
      */
     @PostMapping
-    public Mono<ResponseEntity<O>> create(@Valid @RequestBody I serviceRequest) {
+    public ResponseEntity<O> create(@Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
 
         final O serviceResponse = service.create(serviceRequest);
-        Mono<ResponseEntity<O>> responseEntity = Mono.just(createPostResponseEntity(serviceResponse));
+        ResponseEntity<O> responseEntity = createPostResponseEntity(serviceResponse);
 
         logger.exit();
         return responseEntity;

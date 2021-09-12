@@ -13,24 +13,18 @@
  */
 package io.americanexpress.synapse.framework.api.docs;
 
-import com.google.common.collect.Lists;
+import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
+import org.springdoc.core.GroupedOpenApi;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.bind.annotation.RestController;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.ApiKey;
-import springfox.documentation.service.AuthorizationScope;
-import springfox.documentation.service.Contact;
-import springfox.documentation.service.SecurityReference;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spi.service.contexts.SecurityContext;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.util.List;
 
 /**
  * This class is used to configure Swagger documentation.
@@ -38,19 +32,19 @@ import java.util.List;
  * @author Gabriel Jimenez
  */
 @Configuration
-@EnableSwagger2
+@PropertySource("classpath:/synapse-framework-api-docs-application.properties")
 public class ApiDocsConfig {
-
-    private String teamName = "Synapse";
-    private String teamWebsite = "https://synapse-team-website";
-    private String teamEmailAddress = "Gabriel.A.Jimenez@aexp.com";
-    private String title = "Synapse APIs";
-    private String description = "These are the specifications of the Synapse APIs";
 
     private static final String CORRELATION_ID = "Correlation-ID";
     private static final String CLIENT_APP_ID = "Client-App-ID";
     private static final String HEADER = "Header";
 
+    // These variables are defaulted to below values, but could be overridden and changes by client utilizing this framework.
+    private String teamName = "Synapse";
+    private String teamWebsite = "https://americanexpress.io/synapse/";
+    private String teamEmailAddress = "synapse@aexp.com";
+    private String title = "Synapse APIs";
+    private String description = "These are the specifications of the Synapse APIs";
 
     public String getTeamName() {
         return teamName;
@@ -92,67 +86,100 @@ public class ApiDocsConfig {
         this.description = description;
     }
 
-    /**
-     * Used to get basic information on the page.
-     *
-     * @return group name, headers, end points, etc.
-     */
     @Bean
-    public Docket synapseApis() {
-        //Register the REST controllers to use Swagger
-        return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(getApiInformation())
-                .select()
-                .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
-                .paths(PathSelectors.any())
-                .build()
-                .securitySchemes(getApiKeys())
-                .securityContexts(Lists.newArrayList(getSecurityContext()));
+    public GroupedOpenApi publicApi() {
+        return GroupedOpenApi.builder().group("user").pathsToExclude("/api/v2/**").pathsToMatch("/api/v1/**").build();
     }
 
-    /**
-     * Used to return the API information such as contact details, description, etc.
-     *
-     * @return the API information
-     */
-    private ApiInfo getApiInformation() {
-        Contact contact = new Contact(getTeamName(), getTeamWebsite(), getTeamEmailAddress());
-        return new ApiInfoBuilder().title(getTitle())
-                .description(getDescription())
-                .contact(contact)
-                .version("1.0")
-                .build();
+    @Bean
+    public GroupedOpenApi adminApi() {
+        return GroupedOpenApi.builder().group("admin").pathsToExclude("/api/v1/**").pathsToMatch("/api/v2/**").build();
+    }
+    @Bean
+    public OpenAPI customOpenAPI(@Value("${application-version}") String applicationVersion) {
+
+        return new OpenAPI()
+                .components(new Components())
+                .info(new Info()
+                        .title("Synapse API")
+                        .contact(this.getContactInfo())
+                        .version(applicationVersion)
+                        .license(new License()
+                                .name("Apache 2.0")
+                                .url("https://americanexpress.io")));
     }
 
-    /**
-     * Used to get the headers for the API.
-     *
-     * @return the API keys
-     */
-    private List<ApiKey> getApiKeys() {
-        return Lists.newArrayList(new ApiKey(CORRELATION_ID, CORRELATION_ID, HEADER),
-                new ApiKey(CLIENT_APP_ID, CLIENT_APP_ID, HEADER));
+    private Contact getContactInfo() {
+        Contact contact = new Contact();
+        contact.setEmail(this.getTeamName());
+        contact.setName(this.getTeamName());
+        contact.setUrl(this.getTeamWebsite());
+        contact.setEmail(this.getTeamEmailAddress());
+        return contact;
     }
 
-    /**
-     * Used to provide default authorization to each API operation.
-     *
-     * @return the security context
-     */
-    private SecurityContext getSecurityContext() {
-        return SecurityContext.builder().securityReferences(getDefaultSecurityReferences()).forPaths(PathSelectors.any()).build();
-    }
+//
+//    /**
+//     * Used to get basic information on the page.
+//     *
+//     * @return group name, headers, end points, etc.
+//     */
+//    @Bean
+//    public Docket synapseApis() {
+//        //Register the REST controllers to use Swagger
+//        return new Docket(DocumentationType.SWAGGER_2)
+//                .apiInfo(this.getApiInformation())
+//                .select()
+//                .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
+//                .paths(PathSelectors.any())
+//                .build()
+//                .securitySchemes(this.getApiKeys())
+//                .securityContexts(Lists.newArrayList(this.getSecurityContext()));
+//    }
 
-    /**
-     * Gets the default security references to pass headers values for authorization.
-     *
-     * @return the list of new headers those are need for global authorization
-     */
-    private List<SecurityReference> getDefaultSecurityReferences() {
-        AuthorizationScope[] authorizationScopes = {};
-        return Lists.newArrayList(new SecurityReference(CORRELATION_ID, authorizationScopes),
-                new SecurityReference(CLIENT_APP_ID, authorizationScopes));
-    }
+//    /**
+//     * Used to return the API information such as contact details, description, etc.
+//     *
+//     * @return the API information
+//     */
+//    private ApiInfo getApiInformation() {
+//        Contact contact = new Contact(this.getTeamName(), this.getTeamWebsite(), this.getTeamEmailAddress());
+//        return new ApiInfoBuilder().title(this.getTitle())
+//                .description(this.getDescription())
+//                .contact(contact)
+//                .version("1.0")
+//                .build();
+//    }
+
+//    /**
+//     * Used to get the headers for the API.
+//     *
+//     * @return the API keys
+//     */
+//    private List<ApiKey> getApiKeys() {
+//        return Lists.newArrayList(new ApiKey(CORRELATION_ID, CORRELATION_ID, HEADER),
+//                new ApiKey(CLIENT_APP_ID, CLIENT_APP_ID, HEADER));
+//    }
+//
+//    /**
+//     * Used to provide default authorization to each API operation.
+//     *
+//     * @return the security context
+//     */
+//    private SecurityContext getSecurityContext() {
+//        return SecurityContext.builder().securityReferences(getDefaultSecurityReferences()).forPaths(PathSelectors.any()).build();
+//    }
+//
+//    /**
+//     * Gets the default security references to pass headers values for authorization.
+//     *
+//     * @return the list of new headers those are need for global authorization
+//     */
+//    private List<SecurityReference> getDefaultSecurityReferences() {
+//        AuthorizationScope[] authorizationScopes = {};
+//        return Lists.newArrayList(new SecurityReference(CORRELATION_ID, authorizationScopes),
+//                new SecurityReference(CLIENT_APP_ID, authorizationScopes));
+//    }
 
 
 }

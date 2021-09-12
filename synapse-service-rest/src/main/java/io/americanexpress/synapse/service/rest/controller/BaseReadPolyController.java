@@ -17,9 +17,13 @@ import io.americanexpress.synapse.service.rest.controller.helpers.PolyResponseEn
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.rest.service.BaseReadPolyService;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+//import io.swagger.annotations.ApiOperation;
+//import io.swagger.annotations.ApiResponse;
+//import io.swagger.annotations.ApiResponses;
+//import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +36,7 @@ import java.util.List;
 
 /**
  * <code>BaseReadPolyController</code> class specifies the prototypes for listening for requests from the consumer
- * to Read (POST) a resource.
+ * to Read (POST) a resource. This Controller expects only one object in request and a list of objects as response, hence, "Poly" in the name.
  *
  * @param <I> input request type
  * @param <O> output response type
@@ -70,28 +74,26 @@ public abstract class BaseReadPolyController<I extends BaseServiceRequest, O ext
     /**
      * Get a list of multiple resources from the back end service.
      *
-     * @param serviceRequest body from the consumer
+     * @param serviceRequest      body from the consumer
      * @param httpServletResponse HttpServletResponse
      * @return a list of resources from the back end service
      */
-    @ApiOperation(value = "Gets a collection of resources", response = ResponseEntity.class)
+    @Operation(tags = "Read Poly", summary = "Gets a collection of resources")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Ok"),
-            @ApiResponse(code = 204, message = "No Content"),
-            @ApiResponse(code = 400, message = "Bad Request"),
-            @ApiResponse(code = 401, message = "Unauthorized"),
-            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(responseCode = "200", description = "Ok"),
+            @ApiResponse(responseCode = "204", description = "No Content"),
+            @ApiResponse(responseCode = "400", description = "Bad Request"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
     })
     @PostMapping(MULTIPLE_RESULTS)
     public ResponseEntity<List<O>> read(@Valid @RequestBody I serviceRequest, HttpServletResponse httpServletResponse) {
         logger.entry(serviceRequest);
 
         final Page<O> page = service.read(serviceRequest);
-
         final ResponseEntity<List<O>> responseEntity = polyResponseEntityCreator.create(page, httpServletResponse);
 
         logger.exit(responseEntity);
-
         return responseEntity;
     }
 

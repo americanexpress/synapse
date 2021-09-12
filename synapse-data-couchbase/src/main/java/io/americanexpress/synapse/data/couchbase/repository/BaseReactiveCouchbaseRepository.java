@@ -5,7 +5,7 @@ import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.reactive.ReactiveSortingRepository;
 
 /**
- * @author dliburd
+ * @author Darien Liburd
  */
 @NoRepositoryBean
 public interface BaseReactiveCouchbaseRepository<E extends BaseCouchbaseEntity, I> extends ReactiveSortingRepository<E, I> {
