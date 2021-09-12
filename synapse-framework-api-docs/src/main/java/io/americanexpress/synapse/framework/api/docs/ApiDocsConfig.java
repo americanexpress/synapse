@@ -41,7 +41,6 @@ import java.util.List;
  */
 @Configuration
 @EnableSwagger2
-@EnableOpenApi
 public class ApiDocsConfig {
 
     private static final String CORRELATION_ID = "Correlation-ID";
