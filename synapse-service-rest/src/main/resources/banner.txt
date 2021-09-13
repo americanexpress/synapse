@@ -33,3 +33,4 @@ ${Ansi.BLUE}               \ \___  \  \ \____ \  \ \ \-.  \  \ \  __ \  \ \  _-/
 ${Ansi.BLUE}                \/\_____\  \/\_____\  \ \_\\"\_\  \ \_\ \_\  \ \_\    \/\_____\  \ \_____\
 ${Ansi.BLUE}                 \/_____/   \/_____/   \/_/ \/_/   \/_/\/_/   \/_/     \/_____/   \/_____/
 ${Ansi.BLUE} :: Synapse :: :: Application${application.title} :: ${application.formatted-version} :: Spring Boot${spring-boot.formatted-version} :: ${Ansi.DEFAULT}
+``

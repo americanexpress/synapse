@@ -62,13 +62,14 @@
             <artifactId>mockito-junit-jupiter</artifactId>
         </dependency>
 
-
         <!--Quarkus-->
         <!--        <dependency>-->
         <!--            <groupId>io.quarkus</groupId>-->
         <!--            <artifactId>quarkus-spring-web</artifactId>-->
         <!--        </dependency>-->
-        <!--Spring-->
+
+
+        <!--Spring Boot-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
@@ -81,7 +82,6 @@
             <groupId>org.springframework.plugin</groupId>
             <artifactId>spring-plugin-core</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -92,7 +92,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!--Spring-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-rest</artifactId>
@@ -121,10 +120,10 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.boot</groupId>-->
-        <!--            <artifactId>spring-boot-starter-actuator</artifactId>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
 
         <!--SLF4J-->
         <dependency>
