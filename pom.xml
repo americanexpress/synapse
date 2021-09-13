@@ -56,6 +56,9 @@
         <junit.version>1.7.0</junit.version>
         <junit.jupiter.version>5.6.2</junit.jupiter.version>
 
+        <!--Jackson-->
+        <jackson.version>2.12.5</jackson.version>
+
         <!--Plugins-->
         <jaxws-maven-plugin.version>2.5</jaxws-maven-plugin.version>
     </properties>
@@ -253,11 +256,18 @@
                 <version>${spring-boot-framework.version}</version>
             </dependency>
 
-            <!--Tomcat Dependencies-->
+            <!--Tomcat-->
             <dependency>
                 <groupId>org.apache.tomcat.embed</groupId>
                 <artifactId>tomcat-embed-core</artifactId>
                 <version>9.0.45</version>
+            </dependency>
+
+            <!--Netty-->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-codec-http</artifactId>
+                <version>4.1.59.Final</version>
             </dependency>
 
             <!--Apache Dependencies-->
@@ -341,16 +351,23 @@
                 <artifactId>google-http-client</artifactId>
                 <version>1.35.0</version>
             </dependency>
+            <!--Jackson-->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>2.12.5</version>
             </dependency>
             <dependency>
-                <groupId>io.netty</groupId>
-                <artifactId>netty-codec-http</artifactId>
-                <version>4.1.59.Final</version>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.12.5</version>
             </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.dataformat</groupId>
+                <artifactId>jackson-dataformat-xml</artifactId>
+                <version>2.12.5</version>
+            </dependency>
+
 
             <!--Mock Dependencies-->
             <dependency>
