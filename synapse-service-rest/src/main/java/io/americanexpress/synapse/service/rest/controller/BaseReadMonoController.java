@@ -29,7 +29,8 @@ import javax.validation.Valid;
 
 /**
  * <code>BaseReadMonoController</code> class specifies the prototypes for listening for requests from the consumer
- * to Read (POST) a resource.
+ * to Read (POST) a resource. This Controller expects only one object in request and one object in the response, hence, "Mono" in the name.
+ * *
  *
  * @param <I> input request type
  * @param <O> output response type
@@ -49,7 +50,7 @@ public abstract class BaseReadMonoController<I extends BaseServiceRequest, O ext
      * @param serviceRequest body from the consumer
      * @return a single resource from the back end service
      */
-    @ApiOperation(value = "Gets one resource", response = ResponseEntity.class)
+    @ApiOperation(value = "Read Mono", notes = "Gets one resource")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "OK"),
             @ApiResponse(code = 204, message = "No Content"),

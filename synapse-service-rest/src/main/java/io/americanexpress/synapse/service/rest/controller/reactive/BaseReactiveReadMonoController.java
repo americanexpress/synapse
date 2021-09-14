@@ -36,7 +36,6 @@ import javax.validation.Valid;
  * @param <I> input request type
  * @param <O> output response type
  * @param <S> service type
- *
  * @author Gabriel Jimenez
  */
 public abstract class BaseReactiveReadMonoController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadMonoService<I, O>> extends BaseController<S> {
@@ -52,13 +51,13 @@ public abstract class BaseReactiveReadMonoController<I extends BaseServiceReques
      * @param serviceRequest body from the consumer
      * @return a single resource from the back end service
      */
-    @ApiOperation(value = "Gets one resource", response = ResponseEntity.class)
+    @ApiOperation(value = "Reactive Read Mono", notes = "Gets one resource")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 200, message = "Ok"),
             @ApiResponse(code = 204, message = "No Content"),
             @ApiResponse(code = 400, message = "Bad Request"),
             @ApiResponse(code = 401, message = "Unauthorized"),
-            @ApiResponse(code = 403, message = "Forbidden")
+            @ApiResponse(code = 403, message = "Forbidden"),
     })
     @PostMapping(INQUIRY_RESULTS)
     public Mono<ResponseEntity<O>> read(@Valid @RequestBody I serviceRequest) {

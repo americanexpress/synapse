@@ -32,7 +32,7 @@ import java.util.List;
 
 /**
  * <code>BaseReadPolyController</code> class specifies the prototypes for listening for requests from the consumer
- * to Read (POST) a resource.
+ * to Read (POST) a resource. This Controller expects only one object in request and a list of objects as response, hence, "Poly" in the name.
  *
  * @param <I> input request type
  * @param <O> output response type
@@ -70,11 +70,11 @@ public abstract class BaseReadPolyController<I extends BaseServiceRequest, O ext
     /**
      * Get a list of multiple resources from the back end service.
      *
-     * @param serviceRequest body from the consumer
+     * @param serviceRequest      body from the consumer
      * @param httpServletResponse HttpServletResponse
      * @return a list of resources from the back end service
      */
-    @ApiOperation(value = "Gets a collection of resources", response = ResponseEntity.class)
+    @ApiOperation(value = "Read Poly", notes = "Gets a collection of resources")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Ok"),
             @ApiResponse(code = 204, message = "No Content"),
@@ -87,11 +87,9 @@ public abstract class BaseReadPolyController<I extends BaseServiceRequest, O ext
         logger.entry(serviceRequest);
 
         final Page<O> page = service.read(serviceRequest);
-
         final ResponseEntity<List<O>> responseEntity = polyResponseEntityCreator.create(page, httpServletResponse);
 
         logger.exit(responseEntity);
-
         return responseEntity;
     }
 

@@ -5,7 +5,7 @@ import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
- * @author dliburd
+ * @author Darien Liburd
  */
 @NoRepositoryBean
 public interface BaseCrudCouchbaseRepository<T extends BaseCouchbaseEntity, I> extends PagingAndSortingRepository<T, I> {

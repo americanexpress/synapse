@@ -7,7 +7,7 @@ import org.springframework.data.couchbase.repository.config.EnableCouchbaseRepos
 /**
  * The type Base couchbase data config.
  *
- * @author dliburd
+ * @author Darien Liburd
  */
 @EnableCouchbaseRepositories
 public abstract class BaseCrudCouchbaseDataConfig extends io.americanexpress.synapse.data.couchbase.config.BaseCouchbaseDataConfig {

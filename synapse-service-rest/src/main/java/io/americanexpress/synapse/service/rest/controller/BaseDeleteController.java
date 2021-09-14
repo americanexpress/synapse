@@ -20,11 +20,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- * <code>BaseDeleteController</code> class specifies the prototypes for listening for requests from the consumer
- * to Delete (DELETE) a resource.
+ * <code>BaseDeleteMonoController</code> class specifies the prototypes for listening for requests from the consumer
+ * to Delete (DELETE) a resource. This controller expects only one entry per request.
  *
  * @param <S> service type
- *
  * @author Gabriel Jimenez
  */
 public abstract class BaseDeleteController<S extends BaseDeleteService> extends BaseController<S> {
