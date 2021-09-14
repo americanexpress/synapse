@@ -13,10 +13,12 @@
  */
 package io.americanexpress.synapse.service.rest.controller;
 
+import io.americanexpress.synapse.service.rest.controller.helpers.CreateResponseEntityCreator;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.rest.service.BaseCreateService;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,10 +34,13 @@ import java.net.URI;
  * @param <I> input request type
  * @param <O> output response type
  * @param <S> service type
- *
  * @author Gabriel Jimenez
  */
 public abstract class BaseCreateController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseCreateService<I, O>> extends BaseController<S> {
+
+
+    @Autowired
+    private CreateResponseEntityCreator<O> createResponseEntityCreator;
 
     /**
      * Create a single resource.
@@ -48,38 +53,38 @@ public abstract class BaseCreateController<I extends BaseServiceRequest, O exten
         logger.entry(serviceRequest);
 
         final O serviceResponse = service.create(serviceRequest);
-        ResponseEntity<O> responseEntity = createPostResponseEntity(serviceResponse);
+        ResponseEntity<O> responseEntity = createResponseEntityCreator.create(serviceResponse);
 
         logger.exit();
         return responseEntity;
     }
 
-    /**
-     * Create the POST response entity by specifying the creation location in the HTTP headers.
-     *
-     * @param serviceResponse body to set in the response entity
-     * @return the POST response entity
-     */
-    protected ResponseEntity<O> createPostResponseEntity(O serviceResponse) {
-
-        // Default URI location in case the response identifier is null
-        String responseIdentifier = "0";
-
-        if (serviceResponse != null) {
-            String identifier = serviceResponse.getIdentifier();
-            if (StringUtils.isNotBlank(identifier)) {
-                responseIdentifier = identifier.trim();
-            }
-        }
-
-        // Build the resource location to specify in the response
-        URI location = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{identifier}")
-                .buildAndExpand(responseIdentifier)
-                .toUri();
-        return ResponseEntity.created(location).build();
-    }
+//    /**
+//     * Create the POST response entity by specifying the creation location in the HTTP headers.
+//     *
+//     * @param serviceResponse body to set in the response entity
+//     * @return the POST response entity
+//     */
+//    protected ResponseEntity<O> createPostResponseEntity(O serviceResponse) {
+//
+//        // Default URI location in case the response identifier is null
+//        String responseIdentifier = "0";
+//
+//        if (serviceResponse != null) {
+//            String identifier = serviceResponse.getIdentifier();
+//            if (StringUtils.isNotBlank(identifier)) {
+//                responseIdentifier = identifier.trim();
+//            }
+//        }
+//
+//        // Build the resource location to specify in the response
+//        URI location = ServletUriComponentsBuilder
+//                .fromCurrentRequest()
+//                .path("/{identifier}")
+//                .buildAndExpand(responseIdentifier)
+//                .toUri();
+//        return ResponseEntity.created(location).build();
+//    }
 
 
 }
