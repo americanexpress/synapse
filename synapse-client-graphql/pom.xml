@@ -30,7 +30,7 @@
 		<!--Synapse Dependencies -->
 		<dependency>
 			<groupId>io.americanexpress</groupId>
-			<artifactId>synapse-utilities-common</artifactId>
+			<artifactId>synapse-client-rest</artifactId>
 		</dependency>
 
 		<!--External Dependencies -->
@@ -41,6 +41,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>com.graphql-java</groupId>
+		    <artifactId>graphql-java-tools</artifactId>
 		</dependency>
 	</dependencies>
 

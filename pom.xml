@@ -197,7 +197,6 @@
                 <version>${spring.version}</version>
             </dependency>
             
-
             <!--Spring Boot Dependencies-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -421,6 +420,7 @@
                 <artifactId>lombok</artifactId>
                 <version>1.18.18</version>
             </dependency>
+            
             <!--Quarkus-->
             <dependency>
                 <groupId>io.quarkus</groupId>
@@ -446,6 +446,13 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+            
+            <!-- GraphQL -->
+            <dependency>
+			    <groupId>com.graphql-java</groupId>
+			    <artifactId>graphql-java-tools</artifactId>
+			    <version>5.2.4</version>
+			</dependency>
         </dependencies>
     </dependencyManagement>
 
