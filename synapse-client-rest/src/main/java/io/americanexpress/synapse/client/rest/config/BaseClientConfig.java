@@ -33,7 +33,7 @@ import io.americanexpress.synapse.utilities.common.config.UtilitiesCommonConfig;
  * @author Paolo Claudio
  */
 @Configuration
-@ComponentScan(basePackages = "com.americanexpress.synapse.client.rest")
+@ComponentScan(basePackages = "io.americanexpress.synapse.client.rest")
 @Import({ExceptionConfig.class, UtilitiesCommonConfig.class})
 abstract class BaseClientConfig {
 
