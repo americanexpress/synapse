@@ -20,7 +20,7 @@ import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 /**
  * {@code GraphQLClientRequest} class represents the client request
  * to a GraphQL API.
- * @author Paolo
+ * @author Paolo Claudio
  *
  */
 public class GraphQLClientRequest implements BaseClientRequest {
