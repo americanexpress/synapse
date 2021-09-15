@@ -48,7 +48,9 @@ jobs:
       - checkout
       #      - run: mvn --settings ".circleci/settings.xml" release:clean release:prepare release:perform -DgenerateBackupPoms=false -Dtag=synapse-1.0.0-RELEASE -DreleaseVersion=1.0.0-RELEASE -DdevelopmentVersion=1.0.0-SNAPSHOT
       #      - run: mvn release:perform
-      - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy -P release
+     # - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy -P release
+      - run: mvn --settings ".circleci/settings.xml" -B release:clean release:prepare release:perform -P release -Darguments=-Dgpg.passphrase=${ORG_GRADLE_PROJECT_signingKey_base64}
+
 
   # SNAPSHOT to RELEASE Deploy to Maven Central
   snapshot-release-maven-central-deploy-job:
@@ -56,7 +58,7 @@ jobs:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
       - checkout
-      - run: mvn --settings ".circleci/settings.xml" -B release:clean release:prepare release:perform -P release -e -X
+      - run: mvn --settings ".circleci/settings.xml" -B release:clean release:prepare release:perform -P release -Darguments=-Dgpg.passphrase=${ORG_GRADLE_PROJECT_signingKey_base64}
 
   # Deploy to American Express
   american-express-deploy-job:
