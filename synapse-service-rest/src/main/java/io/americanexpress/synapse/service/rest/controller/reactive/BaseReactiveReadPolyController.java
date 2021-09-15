@@ -39,7 +39,6 @@ import java.util.List;
  * @param <I> input request type
  * @param <O> output response type
  * @param <S> service type
- *
  * @author Gabriel Jimenez
  */
 public abstract class BaseReactiveReadPolyController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadPolyService<I, O>> extends BaseController<S> {
@@ -55,7 +54,7 @@ public abstract class BaseReactiveReadPolyController<I extends BaseServiceReques
      * @param serviceRequest body from the consumer
      * @return a list of resources from the back end service
      */
-    @ApiOperation(value = "Gets a collection of resources", response = ResponseEntity.class)
+    @ApiOperation(value = "Reactive Read Poly", notes = "Gets a collection of resources", response = ResponseEntity.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Ok"),
             @ApiResponse(code = 204, message = "No Content"),

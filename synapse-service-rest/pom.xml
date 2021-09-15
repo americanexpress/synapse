@@ -12,17 +12,17 @@
     or implied. See the License for the specific language governing permissions and limitations under
     the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
         <groupId>io.americanexpress</groupId>
         <artifactId>synapse</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>0.1.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>synapse-service-rest</artifactId>
-
 
     <!--Dependencies-->
     <dependencies>
@@ -39,6 +39,11 @@
             <groupId>io.americanexpress</groupId>
             <artifactId>synapse-utilities-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.americanexpress</groupId>
+            <artifactId>synapse-framework-test</artifactId>
+        </dependency>
+
 
         <!--External Dependencies-->
         <!-- JUnit -->
@@ -57,20 +62,25 @@
             <artifactId>mockito-junit-jupiter</artifactId>
         </dependency>
 
+        <!--Quarkus-->
+        <!--        <dependency>-->
+        <!--            <groupId>io.quarkus</groupId>-->
+        <!--            <artifactId>quarkus-spring-web</artifactId>-->
+        <!--        </dependency>-->
 
-<!--        Quarkus - -->
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-spring-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-spring-data-jpa</artifactId>
-        </dependency>
-<!--        Spring Boot-->
+
+        <!--Spring Boot-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.plugin</groupId>
+            <artifactId>spring-plugin-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -127,15 +137,25 @@
             <artifactId>tomcat-embed-core</artifactId>
         </dependency>
 
-        <!-- APACHE COMMONS DEPENDENCIES -->
+        <!--Apache Commons-->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>1.6.2</version>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <!--            <plugin>-->
+            <!--                <groupId>org.springframework.boot</groupId>-->
+            <!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--            </plugin>-->
             <plugin>
                 <artifactId>maven-checkstyle-plugin</artifactId>
             </plugin>

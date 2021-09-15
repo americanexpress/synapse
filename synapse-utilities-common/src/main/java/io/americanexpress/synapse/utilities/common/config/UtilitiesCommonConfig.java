@@ -49,7 +49,7 @@ import java.time.LocalDateTime;
  * @author Gabriel Jimenez
  */
 @Configuration
-@ComponentScan(basePackages = "com.americanexpress.synapse.utilities.common")
+@ComponentScan(basePackages = "io.americanexpress.synapse.utilities.common")
 @Import(ExceptionConfig.class)
 public class UtilitiesCommonConfig {
 
