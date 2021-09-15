@@ -13,6 +13,15 @@ It is based on keeping things SIMPLE and clear. The framework strongly encourage
 Although Synapse will cover a majority of the scenarios you will need when creating an enterprise-grade application, it is also very open to extension. 
 We encourage you to extend and implement the abstraction layer of this framework. Furthermore, if you feel the need to create a new feature not covered here, you also have that flexibility.
 
+## 📖 Table of Contents
+
+- [Quick Start](#-quick-start)
+- [Documentation](#-documentation)
+- [License](#%EF%B8%8F-license)
+- [Code Of Conduct](#%EF%B8%8F-code-of-conduct)
+- [Community](#community)
+- [Contributing](#-contributing)
+
 ## Synapse Architecture
 ![Synapse Architecture](synapse-architecture.png)
 
@@ -130,7 +139,8 @@ These are several of the benefits it provides on-top of what Spring already prov
 - Shahzada Azam
 - Krishna Kuchikulla
 
-## Building an Enterprise Ready RESTful Web Service utilizing Synapse
+## 🚀‍ Quick Start 
+### Building an Enterprise Ready RESTful Web Service utilizing Synapse
 
 ### What you will build
 
@@ -455,8 +465,10 @@ Now make sure to set your environment to `local`:
 Congratulations! You built a simple web application utilizing Synapse and learned how it can ramp up your development pace. 
 You also turned on some handy production services. This is only a small sampling of what Synapse can do.
 
+## 📜 Documentation
+https://americanexpress.io/synapse/
 
-## Contributing
+## 🏆 Contributing 
 We welcome Your interest in the American Express Open Source Community on Github. Any Contributor to
 any Open Source Project managed by the American Express Open Source Community must accept and sign
 an Agreement indicating agreement to the terms below. Except for the rights granted in this 
@@ -464,12 +476,10 @@ Agreement to American Express and to recipients of software distributed by Ameri
 reserve all right, title, and interest, if any, in and to Your Contributions. Please
 [fill out the Agreement](https://cla-assistant.io/americanexpress/synapse).
 
-## License
-
+## 🗝️ License
 Any contributions made under this project will be governed by the
 [Apache License 2.0](./LICENSE).
 
-## Code of Conduct
-
+## 🗣️ Code of Conduct
 This project adheres to the [American Express Community Guidelines](./CODE_OF_CONDUCT.md). By
 participating, you are expected to honor these guidelines.

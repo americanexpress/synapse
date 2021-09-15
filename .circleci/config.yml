@@ -76,13 +76,13 @@ workflows:
             branches:
               only:
                 - develop
-                - /feature-.*/
+                - /feature.*/
       - snapshot-maven-central-deploy-job:
           filters:
             branches:
               only:
                 - develop
-                - /feature-.*/
+                - /feature.*/
           context: maven_central_credentials
           requires:
             - build-test-job
@@ -111,12 +111,12 @@ workflows:
           filters:
             branches:
               only:
-                - /release-.*/
+                - release.*/
       - snapshot-release-maven-central-deploy-job:
           filters:
             branches:
               only:
-                - /release-.*/
+                - release.*/
           context: maven_central_credentials
           requires:
             - build-test-job

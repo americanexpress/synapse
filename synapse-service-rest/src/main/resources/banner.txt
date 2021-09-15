@@ -32,4 +32,5 @@ ${Ansi.BLUE}               /\  ___\   /\ \_\ \   /\ "-.\ \   /\  __ \   /\  == \
 ${Ansi.BLUE}               \ \___  \  \ \____ \  \ \ \-.  \  \ \  __ \  \ \  _-/ \ \___  \  \ \  __\
 ${Ansi.BLUE}                \/\_____\  \/\_____\  \ \_\\"\_\  \ \_\ \_\  \ \_\    \/\_____\  \ \_____\
 ${Ansi.BLUE}                 \/_____/   \/_____/   \/_/ \/_/   \/_/\/_/   \/_/     \/_____/   \/_____/
-${Ansi.BLUE} :: Synapse :: Spring Boot${spring-boot.formatted-version} :: ${Ansi.DEFAULT}
+${Ansi.BLUE} :: Synapse :: :: Application${application.title} :: ${application.formatted-version} :: Spring Boot${spring-boot.formatted-version} :: ${Ansi.DEFAULT}
+``

@@ -32,6 +32,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.List;
 
+
 /**
  * This class is used to configure Swagger documentation.
  *
@@ -39,18 +40,19 @@ import java.util.List;
  */
 @Configuration
 @EnableSwagger2
+//@EnableOpenApi
 public class ApiDocsConfig {
-
-    private String teamName = "Synapse";
-    private String teamWebsite = "https://synapse-team-website";
-    private String teamEmailAddress = "Gabriel.A.Jimenez@aexp.com";
-    private String title = "Synapse APIs";
-    private String description = "These are the specifications of the Synapse APIs";
 
     private static final String CORRELATION_ID = "Correlation-ID";
     private static final String CLIENT_APP_ID = "Client-App-ID";
     private static final String HEADER = "Header";
 
+    // These variables are defaulted to below values, but could be overridden and changes by client utilizing this framework.
+    private String teamName = "Team Synapse";
+    private String teamWebsite = "https://americanexpress.io/synapse/";
+    private String teamEmailAddress = "synapse@aexp.com";
+    private String title = "Synapse APIs";
+    private String description = "These are the specifications of the Synapse APIs";
 
     public String getTeamName() {
         return teamName;
@@ -98,16 +100,16 @@ public class ApiDocsConfig {
      * @return group name, headers, end points, etc.
      */
     @Bean
-    public Docket synapseApis() {
+    public Docket synapseApi() {
         //Register the REST controllers to use Swagger
         return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(getApiInformation())
+                .apiInfo(this.getApiInformation())
                 .select()
                 .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
                 .paths(PathSelectors.any())
                 .build()
-                .securitySchemes(getApiKeys())
-                .securityContexts(Lists.newArrayList(getSecurityContext()));
+//                .securitySchemes()
+                .securityContexts(Lists.newArrayList(this.getSecurityContext()));
     }
 
     /**
@@ -116,9 +118,9 @@ public class ApiDocsConfig {
      * @return the API information
      */
     private ApiInfo getApiInformation() {
-        Contact contact = new Contact(getTeamName(), getTeamWebsite(), getTeamEmailAddress());
-        return new ApiInfoBuilder().title(getTitle())
-                .description(getDescription())
+        Contact contact = new Contact(this.getTeamName(), this.getTeamWebsite(), this.getTeamEmailAddress());
+        return new ApiInfoBuilder().title(this.getTitle())
+                .description(this.getDescription())
                 .contact(contact)
                 .version("1.0")
                 .build();
@@ -153,7 +155,6 @@ public class ApiDocsConfig {
         return Lists.newArrayList(new SecurityReference(CORRELATION_ID, authorizationScopes),
                 new SecurityReference(CLIENT_APP_ID, authorizationScopes));
     }
-
 
 }
 

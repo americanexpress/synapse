@@ -11,55 +11,55 @@ import java.time.Duration;
 /**
  * The type Base couchbase data config.
  *
- * @author dliburd
+ * @author Darien Liburd
  */
 public abstract class BaseCouchbaseDataConfig extends AbstractCouchbaseConfiguration {
 
-	private final Environment environment;
+    private final Environment environment;
 
-	private final ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
 
-	protected BaseCouchbaseDataConfig(Environment environment, ObjectMapper objectMapper) {
-		this.environment = environment;
-		this.objectMapper = objectMapper;
-	}
+    protected BaseCouchbaseDataConfig(Environment environment, ObjectMapper objectMapper) {
+        this.environment = environment;
+        this.objectMapper = objectMapper;
+    }
 
-	@Override
-	protected void configureEnvironment(ClusterEnvironment.Builder builder) {
-		builder.timeoutConfig()
-				.connectTimeout(Duration.ofSeconds(25))
-				.queryTimeout(Duration.ofSeconds(10))
-				.kvTimeout(Duration.ofSeconds(3))
-				.build();
+    @Override
+    protected void configureEnvironment(ClusterEnvironment.Builder builder) {
+        builder.timeoutConfig()
+                .connectTimeout(Duration.ofSeconds(25))
+                .queryTimeout(Duration.ofSeconds(10))
+                .kvTimeout(Duration.ofSeconds(3))
+                .build();
 
-		builder.jsonSerializer(JacksonJsonSerializer.create(objectMapper)).build();
+        builder.jsonSerializer(JacksonJsonSerializer.create(objectMapper)).build();
 
-		builder.loggerConfig().enableDiagnosticContext(true).build();
-	}
+        builder.loggerConfig().enableDiagnosticContext(true).build();
+    }
 
-	@Override
-	public String getConnectionString() {
-		return environment.getRequiredProperty("spring.couchbase.connection-string");
-	}
+    @Override
+    public String getConnectionString() {
+        return environment.getRequiredProperty("spring.couchbase.connection-string");
+    }
 
-	@Override
-	public String getUserName() {
-		return environment.getRequiredProperty("spring.couchbase.username");
-	}
+    @Override
+    public String getUserName() {
+        return environment.getRequiredProperty("spring.couchbase.username");
+    }
 
-	@Override
-	public String getPassword() {
-		return environment.getRequiredProperty("spring.couchbase.password");
-	}
+    @Override
+    public String getPassword() {
+        return environment.getRequiredProperty("spring.couchbase.password");
+    }
 
-	@Override
-	public String getBucketName() {
-		return environment.getRequiredProperty("spring.couchbase.bucket-name");
-	}
+    @Override
+    public String getBucketName() {
+        return environment.getRequiredProperty("spring.couchbase.bucket-name");
+    }
 
-	@Override
-	public String typeKey() {
-		return "_dataType";
-	}
+    @Override
+    public String typeKey() {
+        return "_dataType";
+    }
 
 }

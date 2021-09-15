@@ -13,13 +13,14 @@
     or implied. See the License for the specific language governing permissions and limitations under
     the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.americanexpress</groupId>
     <artifactId>synapse</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>0.1.0-SNAPSHOT</version>
 
     <description>
         Synapse is a set of lightweight foundational framework modules for rapid development built-in with enterprise
@@ -40,9 +41,13 @@
         <maven.compiler.target>11</maven.compiler.target>
 
         <!--Spring Versions-->
-        <spring.version>5.2.9.RELEASE</spring.version>
-        <spring-boot-framework.version>2.3.9.RELEASE</spring-boot-framework.version>
+        <spring-framework.version>5.3.9</spring-framework.version>
+        <spring-security.version>5.5.2</spring-security.version>
+        <spring-boot-framework.version>2.5.4</spring-boot-framework.version>
         <spring-boot-ws-framework.version>1.4.7.RELEASE</spring-boot-ws-framework.version>
+
+        <!--SpringFox-->
+        <springfox-swagger.version>3.0.0</springfox-swagger.version>
 
         <!--Mock Dependency Versions-->
         <mockito.version>2.23.4</mockito.version>
@@ -50,6 +55,9 @@
         <!--JUnit Versions-->
         <junit.version>1.7.0</junit.version>
         <junit.jupiter.version>5.6.2</junit.jupiter.version>
+
+        <!--Jackson-->
+        <jackson.version>2.12.4</jackson.version>
 
         <!--Plugins-->
         <jaxws-maven-plugin.version>2.5</jaxws-maven-plugin.version>
@@ -80,6 +88,9 @@
 
         <!--Synapse Utility-->
         <module>synapse-utilities-common</module>
+
+        <!--Example-->
+        <module>synapse-examples</module>
     </modules>
 
 
@@ -108,7 +119,6 @@
                 <artifactId>synapse-framework-api-docs</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
             <!--Service-->
             <dependency>
                 <groupId>io.americanexpress</groupId>
@@ -120,7 +130,6 @@
                 <artifactId>synapse-service-test</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
             <!--Client-->
             <dependency>
                 <groupId>io.americanexpress</groupId>
@@ -137,7 +146,6 @@
                 <artifactId>synapse-client-soap</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
             <!--Data-->
             <dependency>
                 <groupId>io.americanexpress</groupId>
@@ -149,20 +157,25 @@
                 <artifactId>synapse-data-postgres</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
             <!--Utility-->
             <dependency>
                 <groupId>io.americanexpress</groupId>
                 <artifactId>synapse-utilities-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
             <!-- Publisher -->
             <dependency>
                 <groupId>io.americanexpress</groupId>
                 <artifactId>synapse-publisher-kafka</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <!--Examples-->
+            <dependency>
+                <groupId>io.americanexpress</groupId>
+                <artifactId>service-book-example</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
 
             <!--External Dependencies-->
             <dependency>
@@ -174,30 +187,36 @@
 
             <!--Spring Dependencies-->
             <dependency>
+                <groupId>org.springframework.plugin</groupId>
+                <artifactId>spring-plugin-core</artifactId>
+                <version>2.0.0.RELEASE</version>
+            </dependency>
+            <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-framework-bom</artifactId>
-                <version>${spring.version}</version>
+                <version>${spring-framework.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
             <dependency>
-            	<groupId>org.springframework</groupId>
-            	<artifactId>spring-web</artifactId>
-            	<version>${spring.version}</version>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring-framework.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-core</artifactId>
-                <version>${spring.version}</version>
+                <version>${spring-security.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-test</artifactId>
-                <version>${spring.version}</version>
+                <version>${spring-security.version}</version>
             </dependency>
-            
+
 
             <!--Spring Boot Dependencies-->
+
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-ws</artifactId>
@@ -211,6 +230,16 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>30.1.1-jre</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-rest</artifactId>
+                <version>${spring-boot-framework.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter</artifactId>
                 <version>${spring-boot-framework.version}</version>
@@ -222,21 +251,23 @@
                 </exclusions>
             </dependency>
             <dependency>
-	        	<groupId>org.springframework.boot</groupId>
-    	    	<artifactId>spring-boot-starter-webflux</artifactId>
-    	    	<version>${spring-boot-framework.version}</version>
-        	</dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>2.9.2</version>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-webflux</artifactId>
+                <version>${spring-boot-framework.version}</version>
             </dependency>
 
-            <!--Tomcat Dependencies-->
+            <!--Tomcat-->
             <dependency>
                 <groupId>org.apache.tomcat.embed</groupId>
                 <artifactId>tomcat-embed-core</artifactId>
                 <version>9.0.45</version>
+            </dependency>
+
+            <!--Netty-->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-codec-http</artifactId>
+                <version>4.1.59.Final</version>
             </dependency>
 
             <!--Apache Dependencies-->
@@ -320,16 +351,23 @@
                 <artifactId>google-http-client</artifactId>
                 <version>1.35.0</version>
             </dependency>
+            <!--Jackson-->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
-                <version>2.12.3</version>
+                <version>${jackson.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.netty</groupId>
-                <artifactId>netty-codec-http</artifactId>
-                <version>4.1.59.Final</version>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.dataformat</groupId>
+                <artifactId>jackson-dataformat-xml</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
 
             <!--Mock Dependencies-->
             <dependency>
@@ -445,6 +483,50 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+            <!--Springfox-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${springfox-swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-core</artifactId>
+                <version>${springfox-swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-spi</artifactId>
+                <version>${springfox-swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-spring-web</artifactId>
+                <version>${springfox-swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${springfox-swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-spring-webflux</artifactId>
+                <version>3.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-boot-starter</artifactId>
+                <version>${springfox-swagger.version}</version>
+            </dependency>
+
+            <!--Swagger-->
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>1.6.2</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -767,6 +849,7 @@
             </distributionManagement>
         </profile>
     </profiles>
+
 
     <distributionManagement>
         <snapshotRepository>
