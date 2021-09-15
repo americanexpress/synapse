@@ -56,7 +56,7 @@ jobs:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
       - checkout
-      - run: mvn --settings ".circleci/settings.xml" -B release:clean release:prepare release:perform -P release -e -X
+      - run: mvn --settings ".circleci/settings.xml" -B release:clean release:prepare release:perform -P release -Darguments=-Dgpg.passphrase=${ORG_GRADLE_PROJECT_signingKey_base64}
 
   # Deploy to American Express
   american-express-deploy-job:
