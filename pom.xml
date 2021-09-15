@@ -75,6 +75,7 @@
         <module>synapse-service-test</module>
 
         <!--Synapse Client-->
+        <module>synapse-client-graphql</module>
         <module>synapse-client-rest</module>
         <module>synapse-client-soap</module>
         <module>synapse-client-test</module>
@@ -131,6 +132,11 @@
                 <version>${project.version}</version>
             </dependency>
             <!--Client-->
+            <dependency>
+                <groupId>io.americanexpress</groupId>
+                <artifactId>synapse-client-graphql</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>io.americanexpress</groupId>
                 <artifactId>synapse-client-rest</artifactId>
@@ -255,6 +261,13 @@
                 <artifactId>spring-boot-starter-webflux</artifactId>
                 <version>${spring-boot-framework.version}</version>
             </dependency>
+
+			<!-- GraphQL -->
+			<dependency>
+			    <groupId>com.graphql-java</groupId>
+			    <artifactId>graphql-java-tools</artifactId>
+			    <version>5.2.4</version>
+			</dependency>
 
             <!--Tomcat-->
             <dependency>

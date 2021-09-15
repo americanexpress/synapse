@@ -24,6 +24,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -36,6 +37,7 @@ import org.springframework.web.client.RestTemplate;
  * @author Paolo Claudio
  */
 @Configuration
+@Import(BaseClientConfig.class)
 public abstract class BaseRestClientConfig extends BaseClientConfig {
 
 	/**
