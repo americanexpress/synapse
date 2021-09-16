@@ -795,7 +795,6 @@
                                         <goal>sign</goal>
                                     </goals>
                                     <configuration>
-<!--                                        <serverId>gpg-passphrase</serverId>-->
                                         <keyname>gpg-passphrase</keyname>
                                         <passphraseServerId>gpg-passphrase</passphraseServerId>
                                     </configuration>
