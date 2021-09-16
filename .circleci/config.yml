@@ -49,6 +49,7 @@ jobs:
       #      - run: mvn --settings ".circleci/settings.xml" release:clean release:prepare release:perform -DgenerateBackupPoms=false -Dtag=synapse-1.0.0-RELEASE -DreleaseVersion=1.0.0-RELEASE -DdevelopmentVersion=1.0.0-SNAPSHOT
       #      - run: mvn release:perform
       # - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy -P release
+
       - run: mvn --settings ".circleci/settings.xml" -B release:clean release:perform -P release
 
 
