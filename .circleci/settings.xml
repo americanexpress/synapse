@@ -13,9 +13,9 @@
             <password>${env.MAVEN_REPO_PASSWORD}</password>
         </server>
         <server>
-            <id>gpg-signing</id>
-            <username>${env.ORG_GRADLE_PROJECT_signingKey_base64}</username>
-            <password>${env.ORG_GRADLE_PROJECT_signingPassword}</password>
+            <id>gpg-passphrase</id>
+            <privateKey>${env.ORG_GRADLE_PROJECT_signingKey_base64}</privateKey>
+            <passphrase>${env.ORG_GRADLE_PROJECT_signingPassword}</passphrase>
         </server>
     </servers>
 </settings>

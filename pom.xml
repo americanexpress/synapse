@@ -794,9 +794,17 @@
                                     <goals>
                                         <goal>sign</goal>
                                     </goals>
+                                    <configuration>
+<!--                                        <serverId>gpg-passphrase</serverId>-->
+                                        <keyname>gpg-passphrase</keyname>
+                                        <passphraseServerId>gpg-passphrase</passphraseServerId>
+                                    </configuration>
                                 </execution>
                             </executions>
                         </plugin>
+
+
+
                         <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-javadoc-plugin</artifactId>
