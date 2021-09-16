@@ -19,7 +19,6 @@ We encourage you to extend and implement the abstraction layer of this framework
 - [Documentation](#-documentation)
 - [License](#%EF%B8%8F-license)
 - [Code Of Conduct](#%EF%B8%8F-code-of-conduct)
-- [Community](#community)
 - [Contributing](#-contributing)
 
 ## Synapse Architecture
