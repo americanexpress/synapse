@@ -74,6 +74,7 @@
         <module>synapse-framework-api-docs</module>
 
         <!--Synapse Service-->
+        <module>synapse-service-graphql</module>
         <module>synapse-service-rest</module>
         <module>synapse-service-test</module>
 
@@ -124,6 +125,11 @@
                 <version>${project.version}</version>
             </dependency>
             <!--Service-->
+            <dependency>
+                <groupId>io.americanexpress</groupId>
+                <artifactId>synapse-service-graphql</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>io.americanexpress</groupId>
                 <artifactId>synapse-service-rest</artifactId>
