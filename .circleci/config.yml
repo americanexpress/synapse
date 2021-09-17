@@ -56,7 +56,7 @@ jobs:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
       - checkout
-      - run: mvn --settings ".circleci/settings.xml" -B release:clean release:prepare release:perform -P release -e -X
+      - run: mvn --settings ".circleci/settings.xml" -B release:clean release:prepare release:perform -P release
 
   # Deploy to American Express
   american-express-deploy-job:
@@ -83,7 +83,9 @@ workflows:
               only:
                 - develop
                 - /feature.*/
-          context: maven_central_credentials
+          context:
+            - maven_central_credentials
+            - code_signing_credentials
           requires:
             - build-test-job
 
@@ -100,7 +102,9 @@ workflows:
             branches:
               only:
                 - main
-          context: maven_central_credentials
+          context:
+            - maven_central_credentials
+            - code_signing_credentials
           requires:
             - build-test-job
 

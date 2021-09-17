@@ -262,12 +262,12 @@
                 <version>${spring-boot-framework.version}</version>
             </dependency>
 
-			<!-- GraphQL -->
-			<dependency>
-			    <groupId>com.graphql-java</groupId>
-			    <artifactId>graphql-java-tools</artifactId>
-			    <version>5.2.4</version>
-			</dependency>
+            <!-- GraphQL -->
+            <dependency>
+                <groupId>com.graphql-java</groupId>
+                <artifactId>graphql-java-tools</artifactId>
+                <version>5.2.4</version>
+            </dependency>
 
             <!--Tomcat-->
             <dependency>
@@ -807,6 +807,10 @@
                                     <goals>
                                         <goal>sign</goal>
                                     </goals>
+                                    <configuration>
+                                        <keyname>gpg-passphrase</keyname>
+                                        <passphraseServerId>gpg-passphrase</passphraseServerId>
+                                    </configuration>
                                 </execution>
                             </executions>
                         </plugin>
