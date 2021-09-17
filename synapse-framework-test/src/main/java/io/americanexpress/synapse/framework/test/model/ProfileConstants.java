@@ -17,6 +17,6 @@ public class ProfileConstants {
 
     public static final String TEST = "test";
 
-    public static final String NOT_TEST = "!test";
+    public static final String NON_TEST = "!test";
 
 }

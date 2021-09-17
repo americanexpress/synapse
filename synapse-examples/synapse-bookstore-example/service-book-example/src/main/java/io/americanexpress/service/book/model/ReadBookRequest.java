@@ -16,9 +16,11 @@ package io.americanexpress.service.book.model;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 public class ReadBookRequest extends BaseServiceRequest {
 
     private String title;

@@ -28,6 +28,7 @@
 
     <modules>
         <module>service-book-example</module>
+        <module>data-bookstore-example</module>
     </modules>
 
 
