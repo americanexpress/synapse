@@ -115,12 +115,12 @@ workflows:
           filters:
             branches:
               only:
-                - release.*/
+                - /release.*/
       - snapshot-release-maven-central-deploy-job:
           filters:
             branches:
               only:
-                - release.*/
+                - /release.*/
           context:
             - maven_central_credentials
             - code_signing_credentials
