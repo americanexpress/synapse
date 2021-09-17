@@ -57,8 +57,8 @@ jobs:
     steps:
       - run:
           command: |
-            git config user.name "$GITHUB_USERNAME"
-            git config user.email "$GITHUB_EMAIL"
+            git config user.name "Gabriel Jimenez"
+            git config user.email "gabriel.a.jimenez@aexp.com"
           name: Configure GIT with user info for pushing
       - run: mvn --settings ".circleci/settings.xml" -B release:clean release:prepare release:perform -P release
 
