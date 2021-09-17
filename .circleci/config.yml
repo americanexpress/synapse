@@ -56,9 +56,9 @@ jobs:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
       - run:
-          command: |
-            git config user.name "Gabriel Jimenez"
-            git config user.email "gabriel.a.jimenez@aexp.com"
+          commands:
+            - git config user.name "Gabriel Jimenez"
+            - git config user.email "gabriel.a.jimenez@aexp.com"
           name: Configure GIT with user info for pushing
       - run: mvn --settings ".circleci/settings.xml" -B release:clean release:prepare release:perform -P release
 
