@@ -121,7 +121,9 @@ workflows:
             branches:
               only:
                 - release.*/
-          context: maven_central_credentials
+          context:
+            - maven_central_credentials
+            - code_signing_credentials
           requires:
             - build-test-job
 
