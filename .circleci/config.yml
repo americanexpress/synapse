@@ -23,7 +23,7 @@ jobs:
 
   # Test
   test-job:
-    parallelism: 2 # parallel containers to split the tests among
+    parallelism: 2 # parallel containers
     docker:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
@@ -34,6 +34,7 @@ jobs:
 
   # SNAPSHOT Deploy to Maven Central
   snapshot-maven-central-deploy-job:
+    parallelism: 2 # parallel containers
     docker:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
@@ -42,6 +43,7 @@ jobs:
 
   # RELEASE Deploy to Maven Central
   release-maven-central-deploy-job:
+    parallelism: 2 # parallel containers
     docker:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
@@ -49,10 +51,10 @@ jobs:
       #      - run: mvn --settings ".circleci/settings.xml" release:clean release:prepare release:perform -DgenerateBackupPoms=false -Dtag=synapse-1.0.0-RELEASE -DreleaseVersion=1.0.0-RELEASE -DdevelopmentVersion=1.0.0-SNAPSHOT
       #      - run: mvn release:perform
       - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy -P release
-    parallelism: 4
 
   # SNAPSHOT to RELEASE Deploy to Maven Central
   snapshot-release-maven-central-deploy-job:
+    parallelism: 2 # parallel containers
     docker:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
@@ -66,16 +68,15 @@ jobs:
           fingerprints:
             - "0a:8a:6d:3a:22:28:74:a8:9e:a6:72:5d:bc:2b:aa:fe"
       - run: mvn --settings ".circleci/settings.xml" -B release:clean release:prepare release:perform -P release
-    parallelism: 4
 
   # Deploy to American Express
   american-express-deploy-job:
+    parallelism: 2 # parallel containers
     docker:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
       - checkout
       - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy -P americanexpress
-    parallelism: 4
 
 # Workflows that will schedule and execute jobs.
 workflows:
