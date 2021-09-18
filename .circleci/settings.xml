@@ -7,11 +7,13 @@
             <username>${env.MAVEN_CENTRAL_USERNAME}</username>
             <password>${env.MAVEN_CENTRAL_PASSWORD}</password>
         </server>
+
         <server>
             <id>github</id>
             <username>${env.GITHUB_USERNAME}</username>
             <password>${env.GITHUB_EMAIL}</password>
         </server>
+
         <server>
             <id>gpg-passphrase</id>
             <privateKey>${env.ORG_GRADLE_PROJECT_signingKey_base64}</privateKey>
