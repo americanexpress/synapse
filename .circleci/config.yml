@@ -57,6 +57,11 @@ jobs:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
       - checkout
+      - run:
+          name: Configure Git
+          command: |
+            git config user.email "gabriel.a.jimenez@aexp.com"
+            git config user.name "Gabriel Jimenez"
       - add_ssh_keys:
           fingerprints:
             - "0a:8a:6d:3a:22:28:74:a8:9e:a6:72:5d:bc:2b:aa:fe"
