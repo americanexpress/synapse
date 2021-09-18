@@ -60,7 +60,6 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "0a:8a:6d:3a:22:28:74:a8:9e:a6:72:5d:bc:2b:aa:fe"
-            - "7c:e5:b4:1f:5d:44:c6:1a:a5:a2:b9:53:6d:15:d3:1c"
       - run: mvn --settings ".circleci/settings.xml" -B release:clean release:prepare release:perform -P release
     parallelism: 4
 
