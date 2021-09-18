@@ -23,7 +23,6 @@ jobs:
 
   # Test
   test-job:
-    parallelism: 2 # parallel containers
     docker:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
@@ -34,7 +33,6 @@ jobs:
 
   # SNAPSHOT Deploy to Maven Central
   snapshot-maven-central-deploy-job:
-    parallelism: 2 # parallel containers
     docker:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
@@ -43,7 +41,6 @@ jobs:
 
   # RELEASE Deploy to Maven Central
   release-maven-central-deploy-job:
-    parallelism: 2 # parallel containers
     docker:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
@@ -54,7 +51,6 @@ jobs:
 
   # SNAPSHOT to RELEASE Deploy to Maven Central
   snapshot-release-maven-central-deploy-job:
-    parallelism: 2 # parallel containers
     docker:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
@@ -71,7 +67,6 @@ jobs:
 
   # Deploy to American Express
   american-express-deploy-job:
-    parallelism: 2 # parallel containers
     docker:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
