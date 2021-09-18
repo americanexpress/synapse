@@ -7,17 +7,17 @@
             <username>${env.MAVEN_CENTRAL_USERNAME}</username>
             <password>${env.MAVEN_CENTRAL_PASSWORD}</password>
         </server>
-        <server>
-            <id>bintray-americanexpress-maven</id>
-            <username>${env.MAVEN_REPO_USERNAME}</username>
-            <password>${env.MAVEN_REPO_PASSWORD}</password>
-        </server>
+<!--        <server>-->
+<!--            <id>bintray-americanexpress-maven</id>-->
+<!--            <username>${env.MAVEN_REPO_USERNAME}</username>-->
+<!--            <password>${env.MAVEN_REPO_PASSWORD}</password>-->
+<!--        </server>-->
 
-        <server>
-            <id>github</id>
-            <username>${env.GITHUB_USERNAME}</username>
-            <password>${env.GITHUB_EMAIL}</password>
-        </server>
+<!--        <server>-->
+<!--            <id>github</id>-->
+<!--            <username>${env.GITHUB_USERNAME}</username>-->
+<!--            <password>${env.GITHUB_EMAIL}</password>-->
+<!--        </server>-->
 
         <server>
             <id>gpg-passphrase</id>
