@@ -55,11 +55,9 @@ jobs:
     docker:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
-      - run:
-          commands:
-            - git config user.name "Gabriel Jimenez"
-            - git config user.email "gabriel.a.jimenez@aexp.com"
-          name: Configure GIT with user info for pushing
+      - add_ssh_keys:
+          fingerprints:
+            - "0a:8a:6d:3a:22:28:74:a8:9e:a6:72:5d:bc:2b:aa:fe"
       - run: mvn --settings ".circleci/settings.xml" -B release:clean release:prepare release:perform -P release
 
   # Deploy to American Express
