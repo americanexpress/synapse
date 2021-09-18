@@ -19,7 +19,7 @@
     <groupId>io.americanexpress</groupId>
     <artifactId>synapse</artifactId>
     <packaging>pom</packaging>
-    <version>0.1.1-SNAPSHOT</version>
+    <version>0.1.1</version>
 
     <description>
         Synapse is a set of lightweight foundational framework modules for rapid development built-in with enterprise
@@ -886,7 +886,7 @@
         <url>https://github.com/americanexpress/synapse</url>
         <connection>scm:git:https://github.com/americanexpress/synapse.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/americanexpress/synapse.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>synapse-0.1.1</tag>
     </scm>
 
     <issueManagement>
