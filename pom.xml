@@ -178,7 +178,7 @@
             <!--Examples-->
             <dependency>
                 <groupId>io.americanexpress</groupId>
-                <artifactId>service-book-example</artifactId>
+                <artifactId>service-book-rest-example</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
