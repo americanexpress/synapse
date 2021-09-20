@@ -90,9 +90,8 @@
         <!--Synapse Utility-->
         <module>synapse-utilities-common</module>
 
-        <!--Example-->
+        <!--Synapse Examples-->
         <module>synapse-examples</module>
-        <module>service</module>
     </modules>
 
 
