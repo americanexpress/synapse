@@ -30,7 +30,7 @@
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
-    <!--Modules-->
+    <!--Application Category Modules-->
     <modules>
         <module>service</module>
         <module>data</module>

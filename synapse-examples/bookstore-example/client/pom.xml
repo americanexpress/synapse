@@ -25,6 +25,7 @@
     <artifactId>client</artifactId>
     <packaging>pom</packaging>
 
+    <!--Client Modules-->
     <modules>
     </modules>
 

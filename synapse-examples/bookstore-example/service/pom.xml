@@ -26,7 +26,7 @@
     <packaging>pom</packaging>
 
 
-    <!--Modules-->
+    <!--Service Modules-->
     <modules>
         <module>service-book-rest-example</module>
     </modules>

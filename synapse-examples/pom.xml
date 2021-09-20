@@ -25,7 +25,7 @@
     <artifactId>synapse-examples</artifactId>
     <packaging>pom</packaging>
 
-    <!--Modules-->
+    <!--Platform Modules-->
     <modules>
         <module>bookstore-example</module>
     </modules>
