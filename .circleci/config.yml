@@ -75,6 +75,7 @@ jobs:
 
 # Workflows that will schedule and execute jobs.
 workflows:
+  # Snapshot Branch
   # This workflow is to start automatically when creating any new feature branches and when pushing any changes to feature or develop branches
   snapshot-maven-central-build-test-deploy-workflow:
     jobs:
@@ -96,6 +97,7 @@ workflows:
           requires:
             - build-test-job
 
+  # Main Branch
   # This workflow is to start automatically when merging any changes to the main branch
   release-maven-central-build-test-deploy-workflow:
     jobs:
@@ -115,6 +117,7 @@ workflows:
           requires:
             - build-test-job
 
+  # Release Branch
   # This workflow is to start automatically when creating any new release branches and when pushing any changes to release branches
   snapshot-release-maven-central-build-test-deploy-workflow:
     jobs:
