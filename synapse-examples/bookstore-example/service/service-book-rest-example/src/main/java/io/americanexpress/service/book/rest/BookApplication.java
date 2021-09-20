@@ -11,18 +11,22 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.service;
+package io.americanexpress.service.book.rest;
 
-import io.americanexpress.service.book.model.ReadBookResponse;
-import io.americanexpress.synapse.service.rest.service.BaseGetMonoService;
-import org.springframework.stereotype.Service;
 
-@Service
-public class GetBookService extends BaseGetMonoService<ReadBookResponse> {
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-    @Override
-    protected ReadBookResponse executeRead(String identifier) {
-        return new ReadBookResponse("Synapse", "Gabriel");
+@SpringBootApplication
+public class BookApplication {
+
+    /**
+     * Run the SpringBoot application.
+     *
+     * @param args
+     */
+    public static void main(String args[]) {
+        SpringApplication.run(BookApplication.class, args);
     }
 
 

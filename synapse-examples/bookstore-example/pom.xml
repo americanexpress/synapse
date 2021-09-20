@@ -13,32 +13,29 @@
     or implied. See the License for the specific language governing permissions and limitations under
     the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>io.americanexpress</groupId>
-        <artifactId>synapse-bookstore-example</artifactId>
+        <artifactId>synapse-examples</artifactId>
         <version>0.1.0-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
-    <artifactId>service-book-example</artifactId>
 
-    <!--Properties-->
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>bookstore-example</artifactId>
+    <packaging>pom</packaging>
+
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
-    <!--Dependencies-->
-    <dependencies>
-        <dependency>
-            <groupId>io.americanexpress</groupId>
-            <artifactId>synapse-service-rest</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-    </dependencies>
+    <!--Platform Category Modules-->
+    <modules>
+        <module>service</module>
+        <module>data</module>
+        <module>client</module>
+    </modules>
+
+
 </project>

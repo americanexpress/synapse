@@ -11,10 +11,10 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.service;
+package io.americanexpress.service.book.rest.service;
 
-import io.americanexpress.service.book.model.ReadBookRequest;
-import io.americanexpress.service.book.model.ReadBookResponse;
+import io.americanexpress.service.book.rest.model.ReadBookRequest;
+import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.synapse.service.rest.service.BaseReadPolyService;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
