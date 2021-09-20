@@ -11,23 +11,16 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book;
+package io.americanexpress.service.book.rest.model;
 
+import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+@EqualsAndHashCode(callSuper = true)
+@Data
+public class ReadBookRequest extends BaseServiceRequest {
 
-@SpringBootApplication
-public class BookApplication {
-
-    /**
-     * Run the SpringBoot application.
-     *
-     * @param args
-     */
-    public static void main(String args[]) {
-        SpringApplication.run(BookApplication.class, args);
-    }
-
-
+    private String title;
+    private String author;
 }

@@ -11,16 +11,19 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.model;
+package io.americanexpress.service.book.rest.service;
 
-import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import io.americanexpress.service.book.rest.model.ReadBookResponse;
+import io.americanexpress.synapse.service.rest.service.BaseGetMonoService;
+import org.springframework.stereotype.Service;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
-public class ReadBookRequest extends BaseServiceRequest {
+@Service
+public class GetBookService extends BaseGetMonoService<ReadBookResponse> {
 
-    private String title;
-    private String author;
+    @Override
+    protected ReadBookResponse executeRead(String identifier) {
+        return new ReadBookResponse("Synapse", "Gabriel");
+    }
+
+
 }

@@ -19,8 +19,9 @@
         <artifactId>synapse-bookstore-example</artifactId>
         <version>0.1.0-SNAPSHOT</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>service-book-example</artifactId>
+    <artifactId>service-book-rest-example</artifactId>
 
     <!--Properties-->
     <properties>

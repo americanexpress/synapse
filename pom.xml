@@ -13,7 +13,8 @@
     or implied. See the License for the specific language governing permissions and limitations under
     the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.americanexpress</groupId>
@@ -91,6 +92,7 @@
 
         <!--Example-->
         <module>synapse-examples</module>
+        <module>service</module>
     </modules>
 
 
@@ -261,7 +263,19 @@
                 <version>${spring-boot-framework.version}</version>
             </dependency>
 
-            <!-- GraphQL -->
+            <!--Wavefront-->
+            <dependency>
+                <groupId>com.wavefront</groupId>
+                <artifactId>wavefront-spring-boot-starter</artifactId>
+                <version>2.1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-sleuth</artifactId>
+                <version>3.0.0</version>
+            </dependency>
+
+            <!--GraphQL-->
             <dependency>
                 <groupId>com.graphql-java</groupId>
                 <artifactId>graphql-java-tools</artifactId>
@@ -304,7 +318,7 @@
                 <version>2.6</version>
             </dependency>
 
-            <!-- EHCACHE DEPENDENCIES -->
+            <!--EhCache-->
             <dependency>
                 <groupId>net.sf.ehcache</groupId>
                 <artifactId>ehcache</artifactId>
@@ -316,7 +330,7 @@
                 <version>3.8.1</version>
             </dependency>
 
-            <!-- HIBERNATE DEPENDENCIES -->
+            <!--Hibernate-->
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-ehcache</artifactId>
@@ -328,21 +342,21 @@
                 <version>3.5.6-Final</version>
             </dependency>
 
-            <!-- JASPYT DEPENDENCIES -->
+            <!--Jasypt-->
             <dependency>
                 <groupId>org.jasypt</groupId>
                 <artifactId>jasypt</artifactId>
                 <version>1.9.3</version>
             </dependency>
 
-            <!-- POSTGRES DEPENDENCIES -->
+            <!--Postgres-->
             <dependency>
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
                 <version>42.2.5</version>
             </dependency>
 
-            <!-- PERSISTENCE DEPENDENCIES -->
+            <!--Persistence-->
             <dependency>
                 <groupId>javax.persistence</groupId>
                 <artifactId>javax.persistence-api</artifactId>
@@ -363,12 +377,8 @@
                 <artifactId>google-http-client</artifactId>
                 <version>1.35.0</version>
             </dependency>
+
             <!--Jackson-->
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
@@ -398,7 +408,7 @@
                 <version>${mockito.version}</version>
             </dependency>
 
-            <!-- UNIT TESTING DEPENDENCIES-->
+            <!--Junit-->
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter</artifactId>
@@ -455,21 +465,28 @@
                 <artifactId>junit-platform-commons</artifactId>
                 <version>${junit.version}</version>
             </dependency>
+
+            <!--Slf4j-->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-ext</artifactId>
                 <version>1.7.7</version>
             </dependency>
+
+            <!--Couchbase-->
             <dependency>
                 <groupId>com.couchbase.client</groupId>
                 <artifactId>java-client</artifactId>
                 <version>3.1.4</version>
             </dependency>
+
+            <!--Lombok-->
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>1.18.18</version>
             </dependency>
+
             <!--Quarkus-->
             <dependency>
                 <groupId>io.quarkus</groupId>
@@ -495,7 +512,8 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-            <!--Springfox-->
+
+            <!--Springfox Swagger-->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
@@ -532,7 +550,7 @@
                 <version>${springfox-swagger.version}</version>
             </dependency>
 
-            <!--Swagger-->
+            <!--Swagger Annotations-->
             <dependency>
                 <groupId>io.swagger</groupId>
                 <artifactId>swagger-annotations</artifactId>
@@ -792,7 +810,7 @@
                                 <autoVersionSubmodules>true</autoVersionSubmodules>
                                 <useReleaseProfile>false</useReleaseProfile>
                                 <releaseProfiles>release</releaseProfiles>
-                                <goals>deploy</goals>
+                                <goals>deploy nexus-staging:release</goals>
                             </configuration>
                         </plugin>
                         <plugin>
