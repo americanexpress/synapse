@@ -50,8 +50,6 @@ public class ServiceRestConfig implements WebMvcConfigurer {
 
     protected final MetricInterceptor interceptor;
 
-    private static final String DEFAULT_OBJECT_MAPPER = "defaultObjectMapper";
-
     @Autowired
     public ServiceRestConfig(ObjectMapper defaultObjectMapper, MetricInterceptor interceptor) {
         this.defaultObjectMapper = defaultObjectMapper;
