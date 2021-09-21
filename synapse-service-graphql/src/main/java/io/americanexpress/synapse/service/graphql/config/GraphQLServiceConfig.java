@@ -35,4 +35,94 @@ public class GraphQLServiceConfig {
 	public GraphQLScalarType date() {
 		return ExtendedScalars.Date;
 	}
+	
+	/**
+	 * Get the date time scalar.
+	 * @return the date time scalar
+	 */
+	@Bean
+	public GraphQLScalarType dateTime() {
+		return ExtendedScalars.DateTime;
+	}
+	
+	/**
+	 * Get the time scalar.
+	 * @return the time scalar
+	 */
+	@Bean
+	public GraphQLScalarType time() {
+		return ExtendedScalars.Time;
+	}
+	
+	/**
+	 * Get the positive int scalar.
+	 * @return the positive int scalar
+	 */
+	@Bean
+	public GraphQLScalarType positiveInt() {
+		return ExtendedScalars.PositiveInt;
+	}
+	
+	/**
+	 * Get the negative int scalar.
+	 * @return the negative int scalar
+	 */
+	@Bean
+	public GraphQLScalarType negativeInt() {
+		return ExtendedScalars.NegativeInt;
+	}
+	
+	/**
+	 * Get the non-positive int scalar.
+	 * @return the non-positive int scalar
+	 */
+	@Bean
+	public GraphQLScalarType nonPositiveInt() {
+		return ExtendedScalars.NonPositiveInt;
+	}
+	
+	/**
+	 * Get the non-negative int scalar.
+	 * @return the non-negative int scalar
+	 */
+	@Bean
+	public GraphQLScalarType nonNegativeInt() {
+		return ExtendedScalars.NonNegativeInt;
+	}
+	
+	/**
+	 * Get the positive float scalar.
+	 * @return the positive float scalar
+	 */
+	@Bean
+	public GraphQLScalarType positiveFloat() {
+		return ExtendedScalars.PositiveFloat;
+	}
+	
+	/**
+	 * Get the negative float scalar.
+	 * @return the negative float scalar
+	 */
+	@Bean
+	public GraphQLScalarType negativeFloat() {
+		return ExtendedScalars.NegativeFloat;
+	}
+	
+	/**
+	 * Get the non-positive float scalar.
+	 * @return the non-positive float scalar
+	 */
+	@Bean
+	public GraphQLScalarType nonPositiveFloat() {
+		return ExtendedScalars.NonPositiveFloat;
+	}
+	
+	/**
+	 * Get the non-negative float scalar.
+	 * @return the non-negative float scalar
+	 */
+	@Bean
+	public GraphQLScalarType nonNegativeFloat() {
+		return ExtendedScalars.NonNegativeFloat;
+	}
 }
