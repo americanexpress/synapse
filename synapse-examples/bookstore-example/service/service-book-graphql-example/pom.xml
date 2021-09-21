@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
+
     Copyright 2020 American Express Travel Related Services Company, Inc.
 
     Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
@@ -12,24 +13,22 @@
     or implied. See the License for the specific language governing permissions and limitations under
     the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>io.americanexpress</groupId>
-        <artifactId>bookstore-example</artifactId>
+        <artifactId>service</artifactId>
         <version>0.1.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>service</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>service-book-graphql-example</artifactId>
 
-
-    <!--Service Modules-->
-    <modules>
-        <module>service-book-graphql-example</module>
-        <module>service-book-rest-example</module>
-    </modules>
-
+    <!--Dependencies-->
+    <dependencies>
+        <dependency>
+            <groupId>io.americanexpress</groupId>
+            <artifactId>synapse-service-graphql</artifactId>
+        </dependency>
+    </dependencies>
 </project>
