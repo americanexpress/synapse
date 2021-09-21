@@ -14,6 +14,7 @@
 package io.americanexpress.synapse.service.graphql.pagination;
 
 import java.util.List;
+import java.util.UUID;
 
 import graphql.relay.ConnectionCursor;
 import graphql.relay.DefaultConnectionCursor;
@@ -39,8 +40,8 @@ public final class ConnectionCursorUtil {
 	 * @param cursor the cursor
 	 * @return the {@link ConnectionCursor}
 	 */
-	public static ConnectionCursor from(String cursor) {
-		return new DefaultConnectionCursor(cursor);
+	public static ConnectionCursor from(UUID uuid) {
+		return new DefaultConnectionCursor(UUIDUtil.toString(uuid));
 	}
 	
 	/**

@@ -22,7 +22,7 @@ import graphql.relay.Connection;
  *
  * @param <T> type of element
  */
-public interface Pageable<T extends Identifiable> {
+public interface Pageable<T extends UniversallyUniqueIdentifiable> {
 
 	/**
 	 * Prototype to get the {@code first} number of paginated elements

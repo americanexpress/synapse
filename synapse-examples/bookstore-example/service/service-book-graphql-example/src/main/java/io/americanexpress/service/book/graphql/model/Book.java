@@ -13,19 +13,21 @@
  */
 package io.americanexpress.service.book.graphql.model;
 
-import io.americanexpress.synapse.service.graphql.model.Identifiable;
+import java.util.UUID;
+
+import io.americanexpress.synapse.service.graphql.model.UniversallyUniqueIdentifiable;
 
 /**
  * {@code Book} class is the model that represents books.
  * @author Paolo Claudio
  *
  */
-public class Book implements Identifiable {
+public class Book implements UniversallyUniqueIdentifiable {
 
 	/**
-	 * ID of this book, represented as an opaque cursor.
+	 * ID of this book.
 	 */
-	private String id;
+	private UUID id;
 	
 	/**
 	 * Title of the book.
@@ -50,7 +52,7 @@ public class Book implements Identifiable {
      * @param title of the book
      * @param author of the book
      */
-    public Book(String id, String title, String author) {
+    public Book(UUID id, String title, String author) {
     	this.id = id;
         this.title = title;
         this.author = author;
@@ -61,7 +63,7 @@ public class Book implements Identifiable {
      * @return the id
      */
     @Override
-    public String getId() {
+    public UUID getId() {
 		return id;
 	}
 
@@ -69,7 +71,7 @@ public class Book implements Identifiable {
      * Set the id.
      * @param id the id to set
      */
-	public void setId(String id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 

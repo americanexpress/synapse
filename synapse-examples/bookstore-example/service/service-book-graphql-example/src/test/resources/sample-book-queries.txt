@@ -24,11 +24,55 @@ query getBookById {
   }
 }
 
-# Get books using pagination
-query getPaginatedBooks {
+# Get all books using pagination
+query getAllPaginatedBooks {
+
+  # Get all books
+  getPaginatedElements {
+    edges {
+      node {
+        id
+        title
+        author
+      }
+      cursor
+    }
+    pageInfo {
+      startCursor
+      endCursor
+      hasPreviousPage
+      hasNextPage
+    }
+  }
+}
+
+# Get the first 2 books using pagination
+query getFirst2Books {
+
+  # Get the first 2 books
+  getPaginatedElements(first: 2) {
+    edges {
+      node {
+        id
+        title
+        author
+      }
+      cursor
+    }
+    pageInfo {
+      startCursor
+      endCursor
+      hasPreviousPage
+      hasNextPage
+    }
+  }
+}
+
+# Get the first 2 books after a specified opaque cursor
+query getFirst2BooksAfter {
 
   # Get the first 2 elements after this specified opaque cursor
-  getPaginatedElements(first: 2, after: "d8fad5e7-d7d4-44ed-8758-2bad187a75ce") {
+  getPaginatedElements(first: 2, after: "ZDhmYWQ1ZTctZDdkNC00NGVkLTg3NTgtMmJhZDE4N2E3NWNl") {
     edges {
       node {
         id

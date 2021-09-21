@@ -14,7 +14,6 @@
 package io.americanexpress.service.book.graphql.resolver;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,6 +24,7 @@ import io.americanexpress.service.book.graphql.model.Book;
 import io.americanexpress.service.book.graphql.service.BookService;
 import io.americanexpress.synapse.service.graphql.model.Pageable;
 import io.americanexpress.synapse.service.graphql.pagination.ConnectionUtil;
+import io.americanexpress.synapse.service.graphql.pagination.UUIDUtil;
 
 /**
  * {@code BookQueryResolver} class resolves the GraphQL queries for books
@@ -80,8 +80,7 @@ public class BookQueryResolver implements GraphQLQueryResolver, Pageable<Book> {
 		// For example purposes, we filter the books after this opaque cursor in-memory
 		// but in your own implementation, please consider filtering at the database
 		if(after != null && !after.isBlank()) {
-			books = books.stream()
-				.collect(Collectors.toList());
+			books = bookService.getAllAfter(UUIDUtil.toUUID(after));
 		}
 		
 		return ConnectionUtil.create(books, first, after);

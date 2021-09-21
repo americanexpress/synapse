@@ -15,13 +15,15 @@ package io.americanexpress.service.book.graphql.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import io.americanexpress.service.book.graphql.model.Book;
 
 /**
- * {@code BookService} class interacts with {@link Book} objects.
+ * {@code BookService} class services {@link Book} objects.
  * @author Paolo Claudio
  *
  */
@@ -40,11 +42,11 @@ public class BookService {
 	 */
 	private static final List<Book> initialize() {
 		List<Book> books = new ArrayList<>();
-		books.add(new Book("c2ab9a0c-e5d8-4271-a377-a23250ee3a9e", "Alice's Allegories", "Alice Doe"));
-		books.add(new Book("d8fad5e7-d7d4-44ed-8758-2bad187a75ce", "Bob's Biography", "Bob Doe"));
-		books.add(new Book("36d779f8-6c38-441f-b564-8313925a4bc1", "Catie's Comics", "Catie Doe"));
-		books.add(new Book("5d910000-6e39-496b-9004-ab7df33e6323", "David's Dictionary", "David Doe"));
-		books.add(new Book("2b0c31de-2258-442a-8b93-20f8358ff0a7", "Emma's Encyclopedia", "Emma Doe"));
+		books.add(new Book(UUID.fromString("c2ab9a0c-e5d8-4271-a377-a23250ee3a9e"), "Alice's Allegories", "Alice Doe"));
+		books.add(new Book(UUID.fromString("d8fad5e7-d7d4-44ed-8758-2bad187a75ce"), "Bob's Biography", "Bob Doe"));
+		books.add(new Book(UUID.fromString("2b0c31de-2258-442a-8b93-20f8358ff0a7"), "Catie's Comics", "Catie Doe"));
+		books.add(new Book(UUID.fromString("36d779f8-6c38-441f-b564-8313925a4bc1"), "David's Dictionary", "David Doe"));
+		books.add(new Book(UUID.fromString("5d910000-6e39-496b-9004-ab7df33e6323"), "Emma's Encyclopedia", "Emma Doe"));
 		return books;
 	}
 	
@@ -66,5 +68,22 @@ public class BookService {
 			.filter(book -> book.getId().equals(id))
 			.findFirst()
 			.orElse(null);
+	}
+	
+	/**
+	 * Get all books after this given book's ID.
+	 * @param after id of this book
+	 * @return the books after this given book's ID
+	 */
+	public List<Book> getAllAfter(UUID after) {
+		
+		// For example purposes, since the sample in-memory books
+		// are in sorted alphabetical order by ID,
+		// we get the elements after this given ID.
+		// In your real implementation, please consider
+		// performing this operation in the database.
+		return BOOKS.stream()
+			.filter(book -> book.getId().compareTo(after) > 0)
+			.collect(Collectors.toList());
 	}
 }

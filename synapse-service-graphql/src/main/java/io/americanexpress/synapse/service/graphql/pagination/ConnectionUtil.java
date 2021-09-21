@@ -23,7 +23,7 @@ import graphql.relay.DefaultEdge;
 import graphql.relay.DefaultPageInfo;
 import graphql.relay.Edge;
 import graphql.relay.PageInfo;
-import io.americanexpress.synapse.service.graphql.model.Identifiable;
+import io.americanexpress.synapse.service.graphql.model.UniversallyUniqueIdentifiable;
 
 /**
  * {@code ConnectionUtil} class provides utilities for {@link Connection}.
@@ -42,24 +42,30 @@ public final class ConnectionUtil {
 	
 	/**
 	 * Create the {@link Connection}.
-	 * @param <T> type of {@link Identifiable} element
+	 * @param <T> type of {@link UniversallyUniqueIdentifiable} element
 	 * @param elements used to create the edges of the connection
 	 * @param first number of elements
 	 * @param after the opaque cursor
 	 * @return the {@link Connection}
 	 */
-	public static <T extends Identifiable> Connection<T> create(List<T> elements, long first, String after) {
+	public static <T extends UniversallyUniqueIdentifiable> Connection<T> create(List<T> elements, long first, String after) {
+		
+		// Get the limit of this stream which is either the number of elements
+		// specified by "first"; otherwise the full elements size
+		long limit = first > 0 ? first : elements.size();
 		
 		// Create the edges for the connection
 		List<Edge<T>> edges = elements.stream()
+			.limit(limit)
 			.map(element -> new DefaultEdge<>(element, ConnectionCursorUtil.from(element.getId())))
-			.limit(first)
 			.collect(Collectors.toList());
 		
 		// Create the page information for the connection
 		ConnectionCursor startCursor = ConnectionCursorUtil.getStartCursor(edges);
 		ConnectionCursor endCursor = ConnectionCursorUtil.getEndCursor(edges);
-		PageInfo pageInfo = new DefaultPageInfo(startCursor, endCursor, after != null, edges.size() >= first);
+		boolean hasPreviousPage = after != null;
+		boolean hasNextPage = edges.size() >= first;
+		PageInfo pageInfo = new DefaultPageInfo(startCursor, endCursor, hasPreviousPage, hasNextPage);
 		
 		return new DefaultConnection<>(edges, pageInfo);
 	}

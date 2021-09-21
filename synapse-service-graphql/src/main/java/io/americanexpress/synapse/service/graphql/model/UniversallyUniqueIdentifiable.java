@@ -13,17 +13,21 @@
  */
 package io.americanexpress.synapse.service.graphql.model;
 
+import java.util.UUID;
+
 /**
- * {@code Identifiable} interface specifies the prototypes
+ * {@code UniversallyUniqueIdentifiable} interface specifies the prototypes
  * for models to be considered identifiable for pagination.
+ * Models that are universally unique identifiable implement
+ * a UUID.
  * @author Paolo Claudio
  *
  */
-public interface Identifiable {
+public interface UniversallyUniqueIdentifiable {
 
 	/**
 	 * Prototype to get the ID needed for pagination.
 	 * @return the ID needed for pagination
 	 */
-	String getId();
+	UUID getId();
 }
