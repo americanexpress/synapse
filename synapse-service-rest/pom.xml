@@ -62,11 +62,15 @@
             <artifactId>mockito-junit-jupiter</artifactId>
         </dependency>
 
-        <!--Quarkus-->
-        <!--        <dependency>-->
-        <!--            <groupId>io.quarkus</groupId>-->
-        <!--            <artifactId>quarkus-spring-web</artifactId>-->
-        <!--        </dependency>-->
+        <!--Wavefront -->
+        <dependency>
+            <groupId>com.wavefront</groupId>
+            <artifactId>wavefront-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
 
 
         <!--Spring Boot-->

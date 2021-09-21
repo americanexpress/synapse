@@ -34,15 +34,15 @@
 		</dependency>
 		<dependency>
 		    <groupId>com.graphql-java</groupId>
+		    <artifactId>voyager-spring-boot-autoconfigure</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>com.graphql-java</groupId>
 		    <artifactId>graphql-java-tools</artifactId>
 		</dependency>
 		<dependency>
 		  	<groupId>com.graphql-java</groupId>
 		  	<artifactId>graphql-java-extended-scalars</artifactId>
-		</dependency>
-        <dependency>
-		    <groupId>com.graphql-java</groupId>
-		    <artifactId>voyager-spring-boot-autoconfigure</artifactId>
 		</dependency>
     </dependencies>
 

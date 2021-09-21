@@ -11,12 +11,9 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.model;
+package io.americanexpress.service.book.rest.model;
 
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.util.Objects;
 

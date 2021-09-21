@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.config;
+package io.americanexpress.service.book.rest.config;
 
 
 import io.americanexpress.synapse.service.rest.config.ServiceRestConfig;
@@ -23,7 +23,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @PropertySource("classpath:/service-book-application.properties")
-@ComponentScan(basePackages = "io.americanexpress.service.book")
+@ComponentScan(basePackages = "io.americanexpress.service.book.rest")
 @Import({ServiceRestConfig.class})
 public class BookConfig implements WebMvcConfigurer {
 

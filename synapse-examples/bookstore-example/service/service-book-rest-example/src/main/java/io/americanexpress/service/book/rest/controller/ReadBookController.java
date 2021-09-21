@@ -11,13 +11,13 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.controller;
+package io.americanexpress.service.book.rest.controller;
 
 
-import io.americanexpress.service.book.config.BookConfig;
-import io.americanexpress.service.book.model.ReadBookRequest;
-import io.americanexpress.service.book.model.ReadBookResponse;
-import io.americanexpress.service.book.service.ReadBookService;
+import io.americanexpress.service.book.rest.config.BookConfig;
+import io.americanexpress.service.book.rest.model.ReadBookRequest;
+import io.americanexpress.service.book.rest.model.ReadBookResponse;
+import io.americanexpress.service.book.rest.service.ReadBookService;
 import io.americanexpress.synapse.service.rest.controller.BaseReadPolyController;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;

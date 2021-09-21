@@ -45,11 +45,11 @@
         <spring-security.version>5.5.2</spring-security.version>
         <spring-boot-framework.version>2.5.4</spring-boot-framework.version>
         <spring-boot-ws-framework.version>1.4.7.RELEASE</spring-boot-ws-framework.version>
-        
+
         <!--SpringFox-->
         <springfox-swagger.version>3.0.0</springfox-swagger.version>
 
-		<!--GraphQL Versions-->
+		<!-- GraphQL -->
 		<spring-boot-graphql.version>5.0.2</spring-boot-graphql.version>
 
         <!--Mock Dependency Versions-->
@@ -94,7 +94,7 @@
         <!--Synapse Utility-->
         <module>synapse-utilities-common</module>
 
-        <!--Example-->
+        <!--Synapse Examples-->
         <module>synapse-examples</module>
     </modules>
 
@@ -187,7 +187,7 @@
             <!--Examples-->
             <dependency>
                 <groupId>io.americanexpress</groupId>
-                <artifactId>service-book-example</artifactId>
+                <artifactId>service-book-rest-example</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -229,7 +229,9 @@
                 <version>${spring-security.version}</version>
             </dependency>
 
+
             <!--Spring Boot Dependencies-->
+
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-ws</artifactId>
@@ -269,14 +271,21 @@
                 <version>${spring-boot-framework.version}</version>
             </dependency>
 
-			<!-- GraphQL -->
-			<dependency>
+            <!--Wavefront-->
+            <dependency>
+                <groupId>com.wavefront</groupId>
+                <artifactId>wavefront-spring-boot-starter</artifactId>
+                <version>2.2.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-sleuth</artifactId>
+                <version>3.0.3</version>
+            </dependency>
+
+            <!--GraphQL-->
+            <dependency>
 			    <groupId>com.graphql-java</groupId>
-			    <artifactId>graphql-java-tools</artifactId>
-			    <version>5.2.4</version>
-			</dependency>
-			<dependency>
-		   		<groupId>com.graphql-java</groupId>
 			    <artifactId>graphql-spring-boot-starter</artifactId>
 			    <version>${spring-boot-graphql.version}</version>
 			</dependency>
@@ -291,15 +300,14 @@
 			    <version>${spring-boot-graphql.version}</version>
 			</dependency>
 			<dependency>
+			    <groupId>com.graphql-java</groupId>
+			    <artifactId>graphql-java-tools</artifactId>
+			    <version>5.2.4</version>
+			</dependency>
+			<dependency>
 			  	<groupId>com.graphql-java</groupId>
 			  	<artifactId>graphql-java-extended-scalars</artifactId>
 			  	<version>16.0.1</version>
-			  	<exclusions>
-			  		<exclusion>
-			  			<groupId>com.graphql-java</groupId>
-			  			<artifactId>graphql-java</artifactId>
-			  		</exclusion>
-			  	</exclusions>
 			</dependency>
 
             <!--Tomcat-->
@@ -338,7 +346,7 @@
                 <version>2.6</version>
             </dependency>
 
-            <!-- EHCACHE DEPENDENCIES -->
+            <!--EhCache-->
             <dependency>
                 <groupId>net.sf.ehcache</groupId>
                 <artifactId>ehcache</artifactId>
@@ -350,7 +358,7 @@
                 <version>3.8.1</version>
             </dependency>
 
-            <!-- HIBERNATE DEPENDENCIES -->
+            <!--Hibernate-->
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-ehcache</artifactId>
@@ -362,21 +370,21 @@
                 <version>3.5.6-Final</version>
             </dependency>
 
-            <!-- JASPYT DEPENDENCIES -->
+            <!--Jasypt-->
             <dependency>
                 <groupId>org.jasypt</groupId>
                 <artifactId>jasypt</artifactId>
                 <version>1.9.3</version>
             </dependency>
 
-            <!-- POSTGRES DEPENDENCIES -->
+            <!--Postgres-->
             <dependency>
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
                 <version>42.2.5</version>
             </dependency>
 
-            <!-- PERSISTENCE DEPENDENCIES -->
+            <!--Persistence-->
             <dependency>
                 <groupId>javax.persistence</groupId>
                 <artifactId>javax.persistence-api</artifactId>
@@ -397,12 +405,8 @@
                 <artifactId>google-http-client</artifactId>
                 <version>1.35.0</version>
             </dependency>
+
             <!--Jackson-->
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
@@ -432,7 +436,7 @@
                 <version>${mockito.version}</version>
             </dependency>
 
-            <!-- UNIT TESTING DEPENDENCIES-->
+            <!--Junit-->
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter</artifactId>
@@ -489,21 +493,28 @@
                 <artifactId>junit-platform-commons</artifactId>
                 <version>${junit.version}</version>
             </dependency>
+
+            <!--Slf4j-->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-ext</artifactId>
                 <version>1.7.7</version>
             </dependency>
+
+            <!--Couchbase-->
             <dependency>
                 <groupId>com.couchbase.client</groupId>
                 <artifactId>java-client</artifactId>
                 <version>3.1.4</version>
             </dependency>
+
+            <!--Lombok-->
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>1.18.18</version>
             </dependency>
+
             <!--Quarkus-->
             <dependency>
                 <groupId>io.quarkus</groupId>
@@ -529,7 +540,8 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-            <!--Springfox-->
+
+            <!--Springfox Swagger-->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
@@ -566,7 +578,7 @@
                 <version>${springfox-swagger.version}</version>
             </dependency>
 
-            <!--Swagger-->
+            <!--Swagger Annotations-->
             <dependency>
                 <groupId>io.swagger</groupId>
                 <artifactId>swagger-annotations</artifactId>
@@ -826,7 +838,7 @@
                                 <autoVersionSubmodules>true</autoVersionSubmodules>
                                 <useReleaseProfile>false</useReleaseProfile>
                                 <releaseProfiles>release</releaseProfiles>
-                                <goals>deploy</goals>
+                                <goals>deploy nexus-staging:release</goals>
                             </configuration>
                         </plugin>
                         <plugin>
@@ -840,6 +852,14 @@
                                     <goals>
                                         <goal>sign</goal>
                                     </goals>
+                                    <configuration>
+                                        <gpgArguments>
+                                            <arg>--pinentry-mode</arg>
+                                            <arg>loopback</arg>
+                                        </gpgArguments>
+                                        <keyname>gpg-passphrase</keyname>
+                                        <passphraseServerId>gpg-passphrase</passphraseServerId>
+                                    </configuration>
                                 </execution>
                             </executions>
                         </plugin>
@@ -912,7 +932,7 @@
         <url>https://github.com/americanexpress/synapse</url>
         <connection>scm:git:https://github.com/americanexpress/synapse.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/americanexpress/synapse.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>synapse-0.1.0</tag>
     </scm>
 
     <issueManagement>

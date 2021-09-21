@@ -23,7 +23,6 @@ jobs:
 
   # Test
   test-job:
-    parallelism: 2 # parallel containers to split the tests among
     docker:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
@@ -56,7 +55,15 @@ jobs:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
       - checkout
-      - run: mvn --settings ".circleci/settings.xml" -B release:clean release:prepare release:perform -P release -e -X
+      - run:
+          name: Configure Git
+          command: |
+            git config user.email "gabriel.a.jimenez@aexp.com"
+            git config user.name "Gabriel Jimenez"
+      - add_ssh_keys:
+          fingerprints:
+            - "0a:8a:6d:3a:22:28:74:a8:9e:a6:72:5d:bc:2b:aa:fe"
+      - run: mvn --settings ".circleci/settings.xml" -B release:clean release:prepare release:perform -P release
 
   # Deploy to American Express
   american-express-deploy-job:
@@ -68,6 +75,7 @@ jobs:
 
 # Workflows that will schedule and execute jobs.
 workflows:
+  # Snapshot Branch
   # This workflow is to start automatically when creating any new feature branches and when pushing any changes to feature or develop branches
   snapshot-maven-central-build-test-deploy-workflow:
     jobs:
@@ -83,10 +91,13 @@ workflows:
               only:
                 - develop
                 - /feature.*/
-          context: maven_central_credentials
+          context:
+            - maven_central_credentials
+            - code_signing_credentials
           requires:
             - build-test-job
 
+  # Main Branch
   # This workflow is to start automatically when merging any changes to the main branch
   release-maven-central-build-test-deploy-workflow:
     jobs:
@@ -100,10 +111,13 @@ workflows:
             branches:
               only:
                 - main
-          context: maven_central_credentials
+          context:
+            - maven_central_credentials
+            - code_signing_credentials
           requires:
             - build-test-job
 
+  # Release Branch
   # This workflow is to start automatically when creating any new release branches and when pushing any changes to release branches
   snapshot-release-maven-central-build-test-deploy-workflow:
     jobs:
@@ -111,13 +125,15 @@ workflows:
           filters:
             branches:
               only:
-                - release.*/
+                - /release.*/
       - snapshot-release-maven-central-deploy-job:
           filters:
             branches:
               only:
-                - release.*/
-          context: maven_central_credentials
+                - /release.*/
+          context:
+            - maven_central_credentials
+            - code_signing_credentials
           requires:
             - build-test-job
 
