@@ -17,8 +17,14 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
+import io.americanexpress.service.book.graphql.BookService;
 import io.americanexpress.synapse.service.graphql.config.GraphQLServiceConfig;
 
+/**
+ * {@code BookServiceConfig} class sets the configurations for the {@link BookService}.
+ * @author Paolo Claudio
+ *
+ */
 @Import(GraphQLServiceConfig.class)
 @Configuration
 @ComponentScan(basePackages = "io.americanexpress.service.book.graphql")

@@ -16,9 +16,18 @@ package io.americanexpress.service.book.graphql;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * {@code BookApplication} class starts the application.
+ * @author Paolo Claudio
+ *
+ */
 @SpringBootApplication
 public class BookApplication {
 
+	/**
+	 * Run the application.
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(BookApplication.class, args);
 	}
