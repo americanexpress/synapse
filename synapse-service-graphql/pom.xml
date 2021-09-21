@@ -44,6 +44,10 @@
 		  	<groupId>com.graphql-java</groupId>
 		  	<artifactId>graphql-java-extended-scalars</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.graphql-java-kickstart</groupId>
+			<artifactId>graphql-spring-boot-starter</artifactId>
+		</dependency>
     </dependencies>
 
     <build>

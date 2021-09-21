@@ -13,12 +13,14 @@
  */
 package io.americanexpress.service.book.graphql.model;
 
+import io.americanexpress.synapse.service.graphql.model.Identifiable;
+
 /**
  * {@code Book} class is the model that represents books.
  * @author Paolo Claudio
  *
  */
-public class Book {
+public class Book implements Identifiable {
 
 	/**
 	 * ID of this book, represented as an opaque cursor.
@@ -58,6 +60,7 @@ public class Book {
      * Get the id.
      * @return the id
      */
+    @Override
     public String getId() {
 		return id;
 	}

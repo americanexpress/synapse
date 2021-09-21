@@ -5,6 +5,7 @@ schema {
 type Query {
 	getBooks: [Book]
 	getBook(id: ID) : Book
+	getPaginatedElements(first: Int, after: String): BookConnection @connection(for: "Book")
 }
 
 type Book {
