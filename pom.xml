@@ -65,33 +65,23 @@
 
     <modules>
         <!--Synapse Framework-->
-        <module>synapse-framework-logging</module>
-        <module>synapse-framework-exception</module>
-        <module>synapse-framework-test</module>
-        <module>synapse-framework-api-docs</module>
+        <module>framework</module>
 
         <!--Synapse Service-->
-        <module>synapse-service-rest</module>
-        <module>synapse-service-test</module>
+        <module>service</module>
 
         <!--Synapse Client-->
-        <module>synapse-client-graphql</module>
-        <module>synapse-client-rest</module>
-        <module>synapse-client-soap</module>
-        <module>synapse-client-test</module>
+        <module>client</module>
 
         <!--Synapse Data-->
-        <module>synapse-data-couchbase</module>
-        <module>synapse-data-postgres</module>
+        <module>data</module>
 
         <!--Synapse Publisher-->
-        <module>synapse-publisher-kafka</module>
+        <module>publisher</module>
 
         <!--Synapse Utility-->
-        <module>synapse-utilities-common</module>
+        <module>utility</module>
 
-        <!--Synapse Examples-->
-        <module>synapse-examples</module>
     </modules>
 
 
