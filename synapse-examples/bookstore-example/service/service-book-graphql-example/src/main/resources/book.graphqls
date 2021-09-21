@@ -4,9 +4,11 @@ schema {
 
 type Query {
 	getBooks: [Book]
+	getBook(id: ID) : Book
 }
 
 type Book {
+	id: ID
 	title: String
 	author: String
 }

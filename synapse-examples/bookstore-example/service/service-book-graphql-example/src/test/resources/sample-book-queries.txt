@@ -1,0 +1,21 @@
+# How to Run These Sample Queries:
+# 1. Run BookApplication as a Java application.
+# 2. On your web browser, navigate to GraphiQL via http://localhost:8080/graphiql
+# 3. In GraphiQL, paste these all of these queries below.
+# 4. Press the "play" button and select the query that you wish to run.
+
+query getAllBooks {
+	getBooks {
+		id
+		title
+		author
+	}
+}
+
+query getBookById {
+	getBook(id: "c2ab9a0c-e5d8-4271-a377-a23250ee3a9e") {
+		id
+		title
+		author
+	}
+}

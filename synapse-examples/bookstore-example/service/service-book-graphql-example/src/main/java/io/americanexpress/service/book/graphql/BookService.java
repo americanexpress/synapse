@@ -40,8 +40,8 @@ public class BookService {
 	 */
 	private static List<Book> initialize() {
 		List<Book> books = new ArrayList<>();
-		books.add(new Book("John's Story", "John Doe"));
-		books.add(new Book("Jane's Story", "Jane Doe"));
+		books.add(new Book("c2ab9a0c-e5d8-4271-a377-a23250ee3a9e", "John's Story", "John Doe"));
+		books.add(new Book("d8fad5e7-d7d4-44ed-8758-2bad187a75ce", "Jane's Story", "Jane Doe"));
 		return books;
 	}
 	
@@ -51,5 +51,17 @@ public class BookService {
 	 */
 	public List<Book> getAll() {
 		return BOOKS;
+	}
+	
+	/**
+	 * Get the book.
+	 * @param id of the book
+	 * @return the book if found by its ID; null otherwise
+	 */
+	public Book get(String id) {
+		return BOOKS.stream()
+			.filter(book -> book.getId().equals(id))
+			.findFirst()
+			.orElse(null);
 	}
 }

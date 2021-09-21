@@ -21,6 +21,11 @@ package io.americanexpress.service.book.graphql.model;
 public class Book {
 
 	/**
+	 * ID of this book, represented as an opaque cursor.
+	 */
+	private String id;
+	
+	/**
 	 * Title of the book.
 	 */
     private String title;
@@ -39,13 +44,31 @@ public class Book {
 
     /**
      * Argument constructor creates a new instance of Book with given values.
+     * @param id of the book
      * @param title of the book
      * @param author of the book
      */
-    public Book(String title, String author) {
+    public Book(String id, String title, String author) {
+    	this.id = id;
         this.title = title;
         this.author = author;
     }
+    
+    /**
+     * Get the id.
+     * @return the id
+     */
+    public String getId() {
+		return id;
+	}
+
+    /**
+     * Set the id.
+     * @param id the id to set
+     */
+	public void setId(String id) {
+		this.id = id;
+	}
 
     /**
      * Get the title.
