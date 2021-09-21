@@ -1,15 +1,32 @@
+# GraphQL schema provides the root query
 schema {
+
+	# Root query
 	query: Query
 }
 
+# Query the books
 type Query {
+
+	# Get all books
 	getBooks: [Book]
-	getBook(id: ID) : Book
+	
+	# Get one book by ID
+	getBook(id: ID): Book
+	
+	# Get books using pagination
 	getPaginatedElements(first: Int, after: String): BookConnection @connection(for: "Book")
 }
 
+# Book represents the model containing an ID, title and author
 type Book {
+
+	# ID of the book
 	id: ID
+	
+	# Title of the book
 	title: String
+	
+	# Author of the book
 	author: String
 }

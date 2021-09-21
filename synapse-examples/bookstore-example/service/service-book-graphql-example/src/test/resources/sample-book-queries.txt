@@ -4,18 +4,44 @@
 # 3. In GraphiQL, paste these all of these queries below.
 # 4. Press the "play" button and select the query that you wish to run.
 
+# Get all books without pagination
 query getAllBooks {
-	getBooks {
-		id
-		title
-		author
-	}
+  getBooks {
+    id
+    title
+    author
+  }
 }
 
+# Get one book by ID
 query getBookById {
-	getBook(id: "c2ab9a0c-e5d8-4271-a377-a23250ee3a9e") {
-		id
-		title
-		author
-	}
+
+  # Get the book by this specified opaque cursor
+  getBook(id: "c2ab9a0c-e5d8-4271-a377-a23250ee3a9e") {
+    id
+    title
+    author
+  }
+}
+
+# Get books using pagination
+query getPaginatedBooks {
+
+  # Get the first 2 elements after this specified opaque cursor
+  getPaginatedElements(first: 2, after: "d8fad5e7-d7d4-44ed-8758-2bad187a75ce") {
+    edges {
+      node {
+        id
+        title
+        author
+      }
+      cursor
+    }
+    pageInfo {
+      startCursor
+      endCursor
+      hasPreviousPage
+      hasNextPage
+    }
+  }
 }
