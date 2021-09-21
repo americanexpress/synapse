@@ -11,28 +11,15 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.service.graphql.config;
+package io.americanexpress.service.book.graphql;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import graphql.scalars.ExtendedScalars;
-import graphql.schema.GraphQLScalarType;
+@SpringBootApplication
+public class BookApplication {
 
-/**
- * {@code ServiceGraphQLConfig} class sets common configurations for the GraphQL service.
- *
- * @author Paolo Claudio
- */
-@Configuration
-public class ServiceGraphQLConfig {
-
-	/**
-	 * Get the date scalar.
-	 * @return the date scalar
-	 */
-	@Bean
-	public GraphQLScalarType date() {
-		return ExtendedScalars.Date;
+	public static void main(String[] args) {
+		SpringApplication.run(BookApplication.class, args);
 	}
 }
