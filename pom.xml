@@ -50,7 +50,7 @@
         <springfox-swagger.version>3.0.0</springfox-swagger.version>
 
 		<!-- GraphQL -->
-		<spring-boot-graphql.version>5.0.2</spring-boot-graphql.version>
+		<spring-boot-graphql.version>11.0.0</spring-boot-graphql.version>
 
         <!--Mock Dependency Versions-->
         <mockito.version>2.23.4</mockito.version>
@@ -190,8 +190,7 @@
                 <artifactId>service-book-rest-example</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
-
+            
             <!--External Dependencies-->
             <dependency>
                 <groupId>com.github.stefanbirkner</groupId>
@@ -228,10 +227,8 @@
                 <artifactId>spring-security-test</artifactId>
                 <version>${spring-security.version}</version>
             </dependency>
-
-
+            
             <!--Spring Boot Dependencies-->
-
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-ws</artifactId>
@@ -284,21 +281,6 @@
             </dependency>
 
             <!--GraphQL-->
-            <dependency>
-			    <groupId>com.graphql-java</groupId>
-			    <artifactId>graphql-spring-boot-starter</artifactId>
-			    <version>${spring-boot-graphql.version}</version>
-			</dependency>
-			<dependency>
-			    <groupId>com.graphql-java</groupId>
-			    <artifactId>graphiql-spring-boot-starter</artifactId>
-			    <version>${spring-boot-graphql.version}</version>
-			</dependency>
-			<dependency>
-			    <groupId>com.graphql-java</groupId>
-			    <artifactId>voyager-spring-boot-autoconfigure</artifactId>
-			    <version>${spring-boot-graphql.version}</version>
-			</dependency>
 			<dependency>
 			    <groupId>com.graphql-java</groupId>
 			    <artifactId>graphql-java-tools</artifactId>
@@ -318,7 +300,17 @@
 			<dependency>
 				<groupId>com.graphql-java-kickstart</groupId>
 				<artifactId>graphql-spring-boot-starter</artifactId>
-				<version>7.1.0</version>
+				<version>${spring-boot-graphql.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.graphql-java-kickstart</groupId>
+				<artifactId>graphiql-spring-boot-starter</artifactId>
+				<version>${spring-boot-graphql.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.graphql-java-kickstart</groupId>
+				<artifactId>voyager-spring-boot-starter</artifactId>
+				<version>${spring-boot-graphql.version}</version>
 			</dependency>
 
             <!--Tomcat-->

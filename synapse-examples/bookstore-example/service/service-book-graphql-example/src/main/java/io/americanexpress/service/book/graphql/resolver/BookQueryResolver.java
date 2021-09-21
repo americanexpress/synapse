@@ -21,8 +21,8 @@ import org.springframework.stereotype.Component;
 
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import graphql.relay.Connection;
-import io.americanexpress.service.book.graphql.BookService;
 import io.americanexpress.service.book.graphql.model.Book;
+import io.americanexpress.service.book.graphql.service.BookService;
 import io.americanexpress.synapse.service.graphql.model.Pageable;
 import io.americanexpress.synapse.service.graphql.pagination.ConnectionUtil;
 

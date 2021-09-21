@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.graphql;
+package io.americanexpress.service.book.graphql.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +40,11 @@ public class BookService {
 	 */
 	private static final List<Book> initialize() {
 		List<Book> books = new ArrayList<>();
-		books.add(new Book("c2ab9a0c-e5d8-4271-a377-a23250ee3a9e", "John's Story", "John Doe"));
-		books.add(new Book("d8fad5e7-d7d4-44ed-8758-2bad187a75ce", "Jane's Story", "Jane Doe"));
+		books.add(new Book("c2ab9a0c-e5d8-4271-a377-a23250ee3a9e", "Alice's Allegories", "Alice Doe"));
+		books.add(new Book("d8fad5e7-d7d4-44ed-8758-2bad187a75ce", "Bob's Biography", "Bob Doe"));
+		books.add(new Book("36d779f8-6c38-441f-b564-8313925a4bc1", "Catie's Comics", "Catie Doe"));
+		books.add(new Book("5d910000-6e39-496b-9004-ab7df33e6323", "David's Dictionary", "David Doe"));
+		books.add(new Book("2b0c31de-2258-442a-8b93-20f8358ff0a7", "Emma's Encyclopedia", "Emma Doe"));
 		return books;
 	}
 	

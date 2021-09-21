@@ -24,22 +24,6 @@
     <artifactId>synapse-service-graphql</artifactId>
 
     <dependencies>
-    	<dependency>
-		    <groupId>com.graphql-java</groupId>
-		    <artifactId>graphql-spring-boot-starter</artifactId>
-		</dependency>
-		<dependency>
-		    <groupId>com.graphql-java</groupId>
-		    <artifactId>graphiql-spring-boot-starter</artifactId>
-		</dependency>
-		<dependency>
-		    <groupId>com.graphql-java</groupId>
-		    <artifactId>voyager-spring-boot-autoconfigure</artifactId>
-		</dependency>
-		<dependency>
-		    <groupId>com.graphql-java</groupId>
-		    <artifactId>graphql-java-tools</artifactId>
-		</dependency>
 		<dependency>
 		  	<groupId>com.graphql-java</groupId>
 		  	<artifactId>graphql-java-extended-scalars</artifactId>
@@ -47,6 +31,14 @@
 		<dependency>
 			<groupId>com.graphql-java-kickstart</groupId>
 			<artifactId>graphql-spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.graphql-java-kickstart</groupId>
+			<artifactId>graphiql-spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.graphql-java-kickstart</groupId>
+			<artifactId>voyager-spring-boot-starter</artifactId>
 		</dependency>
     </dependencies>
 

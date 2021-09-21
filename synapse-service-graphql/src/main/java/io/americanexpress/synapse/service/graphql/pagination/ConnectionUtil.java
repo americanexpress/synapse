@@ -27,7 +27,7 @@ import io.americanexpress.synapse.service.graphql.model.Identifiable;
 
 /**
  * {@code ConnectionUtil} class provides utilities for {@link Connection}.
- * @author Paolo
+ * @author Paolo Claudio
  *
  */
 public final class ConnectionUtil {
