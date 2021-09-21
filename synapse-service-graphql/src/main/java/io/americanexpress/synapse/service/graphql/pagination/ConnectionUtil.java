@@ -48,7 +48,7 @@ public final class ConnectionUtil {
 	 * @param after the opaque cursor
 	 * @return the {@link Connection}
 	 */
-	public static <T extends UniversallyUniqueIdentifiable> Connection<T> create(List<T> elements, long first, String after) {
+	public static final <T extends UniversallyUniqueIdentifiable> Connection<T> create(List<T> elements, long first, String after) {
 		
 		// Get the limit of this stream which is either the number of elements
 		// specified by "first"; otherwise the full elements size
