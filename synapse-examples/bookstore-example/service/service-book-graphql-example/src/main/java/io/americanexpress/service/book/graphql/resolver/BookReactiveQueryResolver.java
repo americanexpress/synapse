@@ -15,6 +15,7 @@ package io.americanexpress.service.book.graphql.resolver;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,18 +24,20 @@ import graphql.kickstart.tools.GraphQLQueryResolver;
 import graphql.relay.Connection;
 import io.americanexpress.service.book.graphql.model.Book;
 import io.americanexpress.service.book.graphql.service.BookService;
-import io.americanexpress.synapse.service.graphql.model.Pageable;
+import io.americanexpress.synapse.service.graphql.model.ReactivePageable;
 import io.americanexpress.synapse.service.graphql.pagination.ConnectionUtil;
 import io.americanexpress.synapse.service.graphql.pagination.UUIDUtil;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 /**
- * {@code BookQueryResolver} class resolves the GraphQL queries for books
+ * {@code BookReactiveQueryResolver} class resolves the reactive GraphQL queries for books
  * defined in {@code book.graphqls}.
  * @author Paolo Claudio
  *
  */
-//@Component
-public class BookQueryResolver implements GraphQLQueryResolver, Pageable<Book> {
+@Component
+public class BookReactiveQueryResolver implements GraphQLQueryResolver, ReactivePageable<Book> {
 
 	/**
 	 * Used to get the books.
@@ -42,11 +45,11 @@ public class BookQueryResolver implements GraphQLQueryResolver, Pageable<Book> {
 	private final BookService bookService;
 	
 	/**
-	 * Argument constructor creates a new instance of BookQueryResolver with given values.
+	 * Argument constructor creates a new instance of BookReactiveQueryResolver with given values.
 	 * @param bookService used to get the books
 	 */
 	@Autowired
-	public BookQueryResolver(BookService bookService) {
+	public BookReactiveQueryResolver(BookService bookService) {
 		this.bookService = bookService;
 	}
 	
@@ -54,8 +57,10 @@ public class BookQueryResolver implements GraphQLQueryResolver, Pageable<Book> {
 	 * Get the books.
 	 * @return the books
 	 */
-	public List<Book> getBooks() {
-		return bookService.getAll();
+	public CompletableFuture<List<Book>> getBooks() {
+		return Flux.fromIterable(bookService.getAll())
+			.collectList()
+			.toFuture();
 	}
 	
 	/**
@@ -63,8 +68,9 @@ public class BookQueryResolver implements GraphQLQueryResolver, Pageable<Book> {
 	 * @param id of the book
 	 * @return the book if found by its ID; null otherwise
 	 */
-	public Book getBook(UUID id) {
-		return bookService.get(id);
+	public CompletableFuture<Book> getBook(UUID id) {
+		return Mono.fromSupplier(() -> bookService.get(id))
+			.toFuture();
 	}
 	
 	/**
@@ -75,15 +81,18 @@ public class BookQueryResolver implements GraphQLQueryResolver, Pageable<Book> {
 	 * @return the paginated elements
 	 */
 	@Override
-	public Connection<Book> getPaginatedElements(int first, String after) {
-		List<Book> books = bookService.getAll();
-		
-		// For example purposes, we filter the books after this opaque cursor in-memory
-		// but in your own implementation, please consider filtering at the database
-		if(after != null && !after.isBlank()) {
-			books = bookService.getAllAfter(UUIDUtil.toUUID(after));
-		}
-		
-		return ConnectionUtil.create(books, first, after);
+	public CompletableFuture<Connection<Book>> getPaginatedElements(int first, String after) {
+		return Mono.fromSupplier(() -> {
+			List<Book> books = bookService.getAll();
+			
+			// For example purposes, we filter the books after this opaque cursor in-memory
+			// but in your own implementation, please consider filtering at the database
+			if(after != null && !after.isBlank()) {
+				books = bookService.getAllAfter(UUIDUtil.toUUID(after));
+			}
+			
+			return ConnectionUtil.create(books, first, after);
+		})
+		.toFuture();
 	}
 }

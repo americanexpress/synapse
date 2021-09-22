@@ -24,6 +24,10 @@
     <artifactId>synapse-service-graphql</artifactId>
 
     <dependencies>
+    	<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
 		<dependency>
 		  	<groupId>com.graphql-java</groupId>
 		  	<artifactId>graphql-java-extended-scalars</artifactId>
