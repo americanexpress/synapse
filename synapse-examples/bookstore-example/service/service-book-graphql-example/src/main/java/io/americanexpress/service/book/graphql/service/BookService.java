@@ -131,7 +131,6 @@ public class BookService {
 		return existingBook;
 	}
 	
-	
 	/**
 	 * Delete an existing book.
 	 * @param id of the book to be deleted
