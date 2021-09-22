@@ -63,7 +63,7 @@ public class BookService {
 	 * @param id of the book
 	 * @return the book if found by its ID; null otherwise
 	 */
-	public Book get(String id) {
+	public Book get(UUID id) {
 		return BOOKS.stream()
 			.filter(book -> book.getId().equals(id))
 			.findFirst()

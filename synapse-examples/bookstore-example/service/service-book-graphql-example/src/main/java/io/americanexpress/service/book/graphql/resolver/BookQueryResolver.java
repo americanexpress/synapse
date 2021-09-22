@@ -14,6 +14,7 @@
 package io.americanexpress.service.book.graphql.resolver;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -62,7 +63,7 @@ public class BookQueryResolver implements GraphQLQueryResolver, Pageable<Book> {
 	 * @param id of the book
 	 * @return the book if found by its ID; null otherwise
 	 */
-	public Book getBook(String id) {
+	public Book getBook(UUID id) {
 		return bookService.get(id);
 	}
 	
