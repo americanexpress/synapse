@@ -60,9 +60,18 @@ public class BookMutationResolver implements GraphQLMutationResolver {
 	 * Update an existing book.
 	 * @param id of the book
 	 * @param book to be updated
-	 * @return the updated book
+	 * @return the updated book if found; null otherwise
 	 */
 	public Book updateBook(UUID id, Book book) {
 		return bookService.update(id, book);
+	}
+	
+	/**
+	 * Delete an existing book.
+	 * @param id of the book
+	 * @return the deleted book if found; null otherwise
+	 */
+	public Book deleteBook(UUID id) {
+		return bookService.delete(id);
 	}
 }

@@ -71,7 +71,7 @@ public class BookReactiveQueryResolver implements GraphQLQueryResolver, Reactive
 	/**
 	 * Get the book.
 	 * @param id of the book
-	 * @return the book if found by its ID; null otherwise
+	 * @return the book if found; null otherwise
 	 */
 	public CompletableFuture<Book> getBookReactively(UUID id) {
 		return Mono.fromSupplier(() -> bookService.get(id))

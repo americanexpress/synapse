@@ -68,7 +68,7 @@ public class BookService {
 	/**
 	 * Get the book.
 	 * @param id of the book
-	 * @return the book if found by its ID; null otherwise
+	 * @return the book if found; null otherwise
 	 */
 	public Book get(UUID id) {
 		return BOOKS.stream()
@@ -115,7 +115,7 @@ public class BookService {
 	 * Update an existing book.
 	 * @param id of the book to be updated
 	 * @param book to be updated
-	 * @return the updated book
+	 * @return the updated book if found; null otherwise
 	 */
 	public Book update(UUID id, Book book) {
 		
@@ -128,6 +128,22 @@ public class BookService {
 			existingBook.setAuthor(book.getAuthor());
 		}
 		
+		return existingBook;
+	}
+	
+	
+	/**
+	 * Delete an existing book.
+	 * @param id of the book to be deleted
+	 * @return the deleted book if found; null otherwise
+	 */
+	public Book delete(UUID id) {
+		
+		// For example purposes, we will delete the book in-memory.
+		// In your real implementation, please consider
+		// performing this operation in the database.
+		Book existingBook = get(id);
+		BOOKS.remove(existingBook);
 		return existingBook;
 	}
 }

@@ -52,3 +52,14 @@ mutation updateBook($id: ID!, $book: BookInput!) {
     author
   }
 }
+
+# Delete an existing book
+mutation deleteBook {
+  
+  # Delete an existing book
+  deleteBook(id: "d8fad5e7-d7d4-44ed-8758-2bad187a75ce") {
+    id
+    title
+    author
+  }
+}
