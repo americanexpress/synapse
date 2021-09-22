@@ -13,6 +13,8 @@
  */
 package io.americanexpress.service.book.graphql.resolver.mutation;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -51,6 +53,16 @@ public class BookMutationResolver implements GraphQLMutationResolver {
 	 * @return the created book
 	 */
 	public Book createBook(Book book) {
-		return bookService.add(book);
+		return bookService.create(book);
+	}
+	
+	/**
+	 * Update an existing book.
+	 * @param id of the book
+	 * @param book to be updated
+	 * @return the updated book
+	 */
+	public Book updateBook(UUID id, Book book) {
+		return bookService.update(id, book);
 	}
 }

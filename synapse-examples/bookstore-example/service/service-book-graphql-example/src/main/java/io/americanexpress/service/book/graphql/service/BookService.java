@@ -95,11 +95,11 @@ public class BookService {
 	}
 	
 	/**
-	 * Add a new book.
+	 * Create a new book.
 	 * @param book to be added
 	 * @return the new book
 	 */
-	public Book add(Book book) {
+	public Book create(Book book) {
 		
 		// For example purposes, since the sample in-memory books
 		// have a randomly generated ID,
@@ -109,5 +109,25 @@ public class BookService {
 		book.setId(UUID.randomUUID());
 		BOOKS.add(book);
 		return book;
+	}
+	
+	/**
+	 * Update an existing book.
+	 * @param id of the book to be updated
+	 * @param book to be updated
+	 * @return the updated book
+	 */
+	public Book update(UUID id, Book book) {
+		
+		// For example purposes, we will update the book in-memory.
+		// In your real implementation, please consider
+		// performing this operation in the database.
+		Book existingBook = get(id);
+		if(existingBook != null) {
+			existingBook.setTitle(book.getTitle());
+			existingBook.setAuthor(book.getAuthor());
+		}
+		
+		return existingBook;
 	}
 }

@@ -23,25 +23,12 @@ type Book {
 	author: String
 }
 
-# Create a new book
-input CreateBookInput {
+# Create or delete a book
+input BookInput {
 
 	# Title of the book
 	title: String!
 	
 	# Author of the book
 	author: String!
-}
-
-# Update an existing book
-input UpdateBookInput {
-
-	# ID of the book to be updated
-	id: ID!
-	
-	# Title of the book to be updated
-	title: String
-	
-	# Author of the book to be updated
-	author: String
 }

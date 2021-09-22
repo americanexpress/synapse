@@ -14,6 +14,8 @@
 extend type Mutation {
 
 	# Create a new book
-	createBook(book: CreateBookInput!): Book
-	
+	createBook(book: BookInput!): Book
+
+	# Update an existing book
+	updateBook(id: ID!, book: BookInput!): Book	
 }
