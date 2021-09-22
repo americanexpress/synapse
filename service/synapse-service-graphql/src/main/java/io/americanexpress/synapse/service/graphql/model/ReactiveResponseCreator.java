@@ -27,7 +27,7 @@ import reactor.core.publisher.Mono;
 public final class ReactiveResponseCreator {
 
 	/**
-	 * Default constructor creates a new instance of ConnectionUtil with default values.
+	 * Default constructor creates a new instance of ReactiveResponseCreator with default values.
 	 */
 	private ReactiveResponseCreator() {
 		
