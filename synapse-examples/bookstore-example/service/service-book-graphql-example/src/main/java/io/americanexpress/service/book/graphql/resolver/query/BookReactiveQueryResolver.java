@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.graphql.resolver;
+package io.americanexpress.service.book.graphql.resolver.query;
 
 import java.util.List;
 import java.util.UUID;
@@ -32,7 +32,12 @@ import reactor.core.publisher.Mono;
 
 /**
  * {@code BookReactiveQueryResolver} class resolves the reactive GraphQL queries for books
- * defined in {@code book.graphqls}.
+ * defined in {@code bookReactive.graphqls}.
+ * <p>
+ * Note: for example purposes, we have added the word "Reactively" to distinguish the reactive queries
+ * from the non-reactive queries, but you do not need add this word in your implementation.
+ * <p>
+ * To see the non-reactive version of this class, please refer to {@link BookQueryResolver}.
  * @author Paolo Claudio
  *
  */
@@ -57,7 +62,7 @@ public class BookReactiveQueryResolver implements GraphQLQueryResolver, Reactive
 	 * Get the books.
 	 * @return the books
 	 */
-	public CompletableFuture<List<Book>> getBooks() {
+	public CompletableFuture<List<Book>> getBooksReactively() {
 		return Flux.fromIterable(bookService.getAll())
 			.collectList()
 			.toFuture();
@@ -68,7 +73,7 @@ public class BookReactiveQueryResolver implements GraphQLQueryResolver, Reactive
 	 * @param id of the book
 	 * @return the book if found by its ID; null otherwise
 	 */
-	public CompletableFuture<Book> getBook(UUID id) {
+	public CompletableFuture<Book> getBookReactively(UUID id) {
 		return Mono.fromSupplier(() -> bookService.get(id))
 			.toFuture();
 	}
@@ -81,7 +86,7 @@ public class BookReactiveQueryResolver implements GraphQLQueryResolver, Reactive
 	 * @return the paginated elements
 	 */
 	@Override
-	public CompletableFuture<Connection<Book>> getPaginatedElements(int first, String after) {
+	public CompletableFuture<Connection<Book>> getPaginatedElementsReactively(int first, String after) {
 		return Mono.fromSupplier(() -> {
 			List<Book> books = bookService.getAll();
 			

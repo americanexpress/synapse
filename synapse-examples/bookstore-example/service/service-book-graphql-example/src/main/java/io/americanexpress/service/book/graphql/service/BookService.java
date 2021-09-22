@@ -55,7 +55,14 @@ public class BookService {
 	 * @return the books
 	 */
 	public List<Book> getAll() {
-		return BOOKS;
+		
+		// For example purposes, we sort the sample in-memory books
+		// in alphabetical order by ID.
+		// In your real implementation, please consider
+		// performing this operation in the database.
+		return BOOKS.stream()
+			.sorted((book1, book2) -> book1.getId().compareTo(book2.getId()))
+			.collect(Collectors.toList());
 	}
 	
 	/**
@@ -82,7 +89,7 @@ public class BookService {
 		// we get the elements after this given ID.
 		// In your real implementation, please consider
 		// performing this operation in the database.
-		return BOOKS.stream()
+		return getAll().stream()
 			.filter(book -> book.getId().compareTo(after) > 0)
 			.collect(Collectors.toList());
 	}

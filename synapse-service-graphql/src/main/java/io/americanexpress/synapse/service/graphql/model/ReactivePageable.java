@@ -33,5 +33,5 @@ public interface ReactivePageable<T extends UniversallyUniqueIdentifiable> {
 	 * @param after the opaque cursor
 	 * @return the paginated elements
 	 */
-	CompletableFuture<Connection<T>> getPaginatedElements(int first, String after);
+	CompletableFuture<Connection<T>> getPaginatedElementsReactively(int first, String after);
 }

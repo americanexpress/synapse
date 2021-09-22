@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.graphql.resolver;
+package io.americanexpress.service.book.graphql.resolver.query;
 
 import java.util.List;
 import java.util.UUID;
@@ -30,10 +30,12 @@ import io.americanexpress.synapse.service.graphql.pagination.UUIDUtil;
 /**
  * {@code BookQueryResolver} class resolves the GraphQL queries for books
  * defined in {@code book.graphqls}.
+ * <p>
+ * To see the reactive version of this class, please refer to {@link BookReactiveQueryResolver}.
  * @author Paolo Claudio
  *
  */
-//@Component
+@Component
 public class BookQueryResolver implements GraphQLQueryResolver, Pageable<Book> {
 
 	/**

@@ -10,28 +10,14 @@
  # or implied. See the License for the specific language governing permissions and limitations under
  # the License.
 
-# Query the books
-extend type Query {
+# GraphQL schema provides the root query
+schema {
 
-	# Get all books
-	getBooks: [Book]
-	
-	# Get one book by ID
-	getBook(id: ID): Book
-	
-	# Get books using pagination
-	getPaginatedElements(first: Int, after: String): BookConnection @connection(for: "Book")
+	# Root query
+	query: Query
 }
 
-# Book represents the model containing an ID, title and author
-type Book {
+# Root query to be extended by children queries
+type Query {
 
-	# ID of the book
-	id: ID
-	
-	# Title of the book
-	title: String
-	
-	# Author of the book
-	author: String
 }
