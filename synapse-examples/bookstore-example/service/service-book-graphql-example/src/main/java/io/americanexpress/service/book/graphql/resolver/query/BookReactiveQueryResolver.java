@@ -25,9 +25,9 @@ import graphql.relay.Connection;
 import io.americanexpress.service.book.graphql.model.Book;
 import io.americanexpress.service.book.graphql.service.BookService;
 import io.americanexpress.synapse.service.graphql.model.ReactivePageable;
+import io.americanexpress.synapse.service.graphql.model.ReactiveResponseCreator;
 import io.americanexpress.synapse.service.graphql.pagination.ConnectionUtil;
 import io.americanexpress.synapse.service.graphql.pagination.UUIDUtil;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
@@ -63,9 +63,7 @@ public class BookReactiveQueryResolver implements GraphQLQueryResolver, Reactive
 	 * @return the books
 	 */
 	public CompletableFuture<List<Book>> getBooksReactively() {
-		return Flux.fromIterable(bookService.getAll())
-			.collectList()
-			.toFuture();
+		return ReactiveResponseCreator.create(bookService.getAll());
 	}
 	
 	/**
@@ -74,8 +72,7 @@ public class BookReactiveQueryResolver implements GraphQLQueryResolver, Reactive
 	 * @return the book if found; null otherwise
 	 */
 	public CompletableFuture<Book> getBookReactively(UUID id) {
-		return Mono.fromSupplier(() -> bookService.get(id))
-			.toFuture();
+		return ReactiveResponseCreator.create(bookService.get(id));
 	}
 	
 	/**
