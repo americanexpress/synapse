@@ -49,8 +49,8 @@
         <!--SpringFox-->
         <springfox-swagger.version>3.0.0</springfox-swagger.version>
 
-		<!-- GraphQL -->
-		<spring-boot-graphql.version>11.0.0</spring-boot-graphql.version>
+        <!-- GraphQL -->
+        <spring-boot-graphql.version>11.0.0</spring-boot-graphql.version>
 
         <!--Mock Dependency Versions-->
         <mockito.version>2.23.4</mockito.version>
@@ -67,35 +67,12 @@
     </properties>
 
     <modules>
-        <!--Synapse Framework-->
-        <module>synapse-framework-logging</module>
-        <module>synapse-framework-exception</module>
-        <module>synapse-framework-test</module>
-        <module>synapse-framework-api-docs</module>
-
-        <!--Synapse Service-->
-        <module>synapse-service-graphql</module>
-        <module>synapse-service-rest</module>
-        <module>synapse-service-test</module>
-
-        <!--Synapse Client-->
-        <module>synapse-client-graphql</module>
-        <module>synapse-client-rest</module>
-        <module>synapse-client-soap</module>
-        <module>synapse-client-test</module>
-
-        <!--Synapse Data-->
-        <module>synapse-data-couchbase</module>
-        <module>synapse-data-postgres</module>
-
-        <!--Synapse Publisher-->
-        <module>synapse-publisher-kafka</module>
-
-        <!--Synapse Utility-->
-        <module>synapse-utilities-common</module>
-
-        <!--Synapse Examples-->
-        <module>synapse-examples</module>
+        <module>framework</module>
+        <module>service</module>
+        <module>client</module>
+        <module>data</module>
+        <module>publisher</module>
+        <module>utility</module>
     </modules>
 
 
@@ -190,7 +167,7 @@
                 <artifactId>service-book-rest-example</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            
+
             <!--External Dependencies-->
             <dependency>
                 <groupId>com.github.stefanbirkner</groupId>
@@ -227,7 +204,7 @@
                 <artifactId>spring-security-test</artifactId>
                 <version>${spring-security.version}</version>
             </dependency>
-            
+
             <!--Spring Boot Dependencies-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -281,37 +258,37 @@
             </dependency>
 
             <!--GraphQL-->
-			<dependency>
-			    <groupId>com.graphql-java</groupId>
-			    <artifactId>graphql-java-tools</artifactId>
-			    <version>5.2.4</version>
-			</dependency>
-			<dependency>
-			  	<groupId>com.graphql-java</groupId>
-			  	<artifactId>graphql-java-extended-scalars</artifactId>
-			  	<version>16.0.1</version>
-			  	<exclusions>
-			  		<exclusion>
-			  			<groupId>com.graphql-java</groupId>
-			    		<artifactId>graphql-java</artifactId>
-			  		</exclusion>
-			  	</exclusions>
-			</dependency>
-			<dependency>
-				<groupId>com.graphql-java-kickstart</groupId>
-				<artifactId>graphql-spring-boot-starter</artifactId>
-				<version>${spring-boot-graphql.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.graphql-java-kickstart</groupId>
-				<artifactId>graphiql-spring-boot-starter</artifactId>
-				<version>${spring-boot-graphql.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.graphql-java-kickstart</groupId>
-				<artifactId>voyager-spring-boot-starter</artifactId>
-				<version>${spring-boot-graphql.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>com.graphql-java</groupId>
+                <artifactId>graphql-java-tools</artifactId>
+                <version>5.2.4</version>
+            </dependency>
+            <dependency>
+                <groupId>com.graphql-java</groupId>
+                <artifactId>graphql-java-extended-scalars</artifactId>
+                <version>16.0.1</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.graphql-java</groupId>
+                        <artifactId>graphql-java</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.graphql-java-kickstart</groupId>
+                <artifactId>graphql-spring-boot-starter</artifactId>
+                <version>${spring-boot-graphql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.graphql-java-kickstart</groupId>
+                <artifactId>graphiql-spring-boot-starter</artifactId>
+                <version>${spring-boot-graphql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.graphql-java-kickstart</groupId>
+                <artifactId>voyager-spring-boot-starter</artifactId>
+                <version>${spring-boot-graphql.version}</version>
+            </dependency>
 
             <!--Tomcat-->
             <dependency>
