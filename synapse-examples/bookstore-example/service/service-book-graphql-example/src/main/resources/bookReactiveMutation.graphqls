@@ -10,6 +10,9 @@
  # or implied. See the License for the specific language governing permissions and limitations under
  # the License.
 
+# Note: for example purposes, we have added the word "Reactively" to distinguish the reactive mutations
+# from the non-reactive mutations, but you do not need add this word in your implementation.
+
 # Create, update or delete books
 extend type Mutation {
 

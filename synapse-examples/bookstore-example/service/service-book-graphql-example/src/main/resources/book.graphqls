@@ -23,7 +23,7 @@ type Book {
 	author: String
 }
 
-# Create or delete a book
+# Create or update a book
 input BookInput {
 
 	# Title of the book

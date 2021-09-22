@@ -26,7 +26,7 @@ import io.americanexpress.service.book.graphql.service.BookService;
  * {@code BookMutationResolver} class resolves the GraphQL mutations for books
  * defined in {@code bookMutation.graphqls}.
  * <p>
- * To see the reactive version of this class, please refer to {@link }.
+ * To see the reactive version of this class, please refer to {@link BookReactiveMutationResolver}.
  * @author Paolo Claudio
  *
  */
