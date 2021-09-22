@@ -29,7 +29,7 @@ import io.americanexpress.synapse.service.graphql.pagination.UUIDUtil;
 
 /**
  * {@code BookQueryResolver} class resolves the GraphQL queries for books
- * defined in {@code book.graphqls}.
+ * defined in {@code bookQuery.graphqls}.
  * <p>
  * To see the reactive version of this class, please refer to {@link BookReactiveQueryResolver}.
  * @author Paolo Claudio

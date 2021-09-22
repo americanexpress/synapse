@@ -32,7 +32,7 @@ import reactor.core.publisher.Mono;
 
 /**
  * {@code BookReactiveQueryResolver} class resolves the reactive GraphQL queries for books
- * defined in {@code bookReactive.graphqls}.
+ * defined in {@code bookReactiveQuery.graphqls}.
  * <p>
  * Note: for example purposes, we have added the word "Reactively" to distinguish the reactive queries
  * from the non-reactive queries, but you do not need add this word in your implementation.

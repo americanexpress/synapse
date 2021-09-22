@@ -10,14 +10,22 @@
  # or implied. See the License for the specific language governing permissions and limitations under
  # the License.
 
-# GraphQL schema provides the root query
+# GraphQL schema provides the root query and root mutation
 schema {
 
 	# Root query
 	query: Query
+	
+	# Root mutation
+	mutation: Mutation
 }
 
 # Root query to be extended by children queries
 type Query {
+
+}
+
+# Root mutation to be extended by children mutations
+type Mutation {
 
 }

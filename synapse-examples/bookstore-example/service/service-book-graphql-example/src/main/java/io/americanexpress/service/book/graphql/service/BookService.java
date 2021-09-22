@@ -93,4 +93,21 @@ public class BookService {
 			.filter(book -> book.getId().compareTo(after) > 0)
 			.collect(Collectors.toList());
 	}
+	
+	/**
+	 * Add a new book.
+	 * @param book to be added
+	 * @return the new book
+	 */
+	public Book add(Book book) {
+		
+		// For example purposes, since the sample in-memory books
+		// have a randomly generated ID,
+		// we will create one here.
+		// In your real implementation, please consider
+		// performing this operation in the database.
+		book.setId(UUID.randomUUID());
+		BOOKS.add(book);
+		return book;
+	}
 }

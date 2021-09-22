@@ -10,38 +10,10 @@
  # or implied. See the License for the specific language governing permissions and limitations under
  # the License.
 
-# Book represents the model containing an ID, title and author
-type Book {
+# Create, update or delete the books
+extend type Mutation {
 
-	# ID of the book
-	id: ID
+	# Create a new book
+	createBook(book: CreateBookInput!): Book
 	
-	# Title of the book
-	title: String
-	
-	# Author of the book
-	author: String
-}
-
-# Create a new book
-input CreateBookInput {
-
-	# Title of the book
-	title: String!
-	
-	# Author of the book
-	author: String!
-}
-
-# Update an existing book
-input UpdateBookInput {
-
-	# ID of the book to be updated
-	id: ID!
-	
-	# Title of the book to be updated
-	title: String
-	
-	# Author of the book to be updated
-	author: String
 }
