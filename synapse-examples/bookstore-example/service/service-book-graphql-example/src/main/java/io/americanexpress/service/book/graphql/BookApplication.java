@@ -19,7 +19,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * {@code BookApplication} class starts the application.
  * To test this sample application, please refer to the instructions
- * in {@code /src/test/resources/sample-book-queries.txt}.
+ * in {@code /src/test/resources/}.
  * @author Paolo Claudio
  *
  */

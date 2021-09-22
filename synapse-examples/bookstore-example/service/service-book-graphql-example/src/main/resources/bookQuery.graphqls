@@ -10,15 +10,15 @@
  # or implied. See the License for the specific language governing permissions and limitations under
  # the License.
 
-# Book represents the model containing an ID, title and author
-type Book {
+# Query the books
+extend type Query {
 
-	# ID of the book
-	id: ID
+	# Get all books
+	getBooks: [Book]
 	
-	# Title of the book
-	title: String
+	# Get one book by ID
+	getBook(id: ID): Book
 	
-	# Author of the book
-	author: String
+	# Get books using pagination
+	getPaginatedElements(first: Int, after: String): BookConnection @connection(for: "Book")
 }
