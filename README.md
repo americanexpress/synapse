@@ -23,7 +23,7 @@ We encourage you to extend and implement the abstraction layer of this framework
 - [Contributing](#-contributing)
 
 ## Synapse Architecture
-![Synapse Architecture](synapse-architecture.png)
+![Synapse Architecture](docs/assets/synapse-architecture.png)
 
 ### Synapse Modules:
 #### synapse-service-rest
@@ -198,7 +198,7 @@ The following listing shows the pom.xml file that is created when you choose Mav
 
     <dependencies>
         <dependency>
-            <groupId>com.ameericanexpress</groupId>
+            <groupId>com.americanexpress</groupId>
             <artifactId>synapse-service-rest</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
