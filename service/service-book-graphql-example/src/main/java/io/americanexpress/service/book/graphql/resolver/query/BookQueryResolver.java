@@ -11,9 +11,10 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.graphql.resolver;
+package io.americanexpress.service.book.graphql.resolver.query;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -28,7 +29,9 @@ import io.americanexpress.synapse.service.graphql.pagination.UUIDUtil;
 
 /**
  * {@code BookQueryResolver} class resolves the GraphQL queries for books
- * defined in {@code book.graphqls}.
+ * defined in {@code bookQuery.graphqls}.
+ * <p>
+ * To see the reactive version of this class, please refer to {@link BookReactiveQueryResolver}.
  * @author Paolo Claudio
  *
  */
@@ -60,9 +63,9 @@ public class BookQueryResolver implements GraphQLQueryResolver, Pageable<Book> {
 	/**
 	 * Get the book.
 	 * @param id of the book
-	 * @return the book if found by its ID; null otherwise
+	 * @return the book if found; null otherwise
 	 */
-	public Book getBook(String id) {
+	public Book getBook(UUID id) {
 		return bookService.get(id);
 	}
 	
@@ -75,7 +78,7 @@ public class BookQueryResolver implements GraphQLQueryResolver, Pageable<Book> {
 	 */
 	@Override
 	public Connection<Book> getPaginatedElements(int first, String after) {
-		List<Book> books = getBooks();
+		List<Book> books = bookService.getAll();
 		
 		// For example purposes, we filter the books after this opaque cursor in-memory
 		// but in your own implementation, please consider filtering at the database

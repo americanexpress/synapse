@@ -10,25 +10,18 @@
  # or implied. See the License for the specific language governing permissions and limitations under
  # the License.
 
-# Book represents the model containing an ID, title and author
-type Book {
+# Note: for example purposes, we have added the word "Reactively" to distinguish the reactive queries
+# from the non-reactive queries, but you do not need add this word in your implementation.
 
-	# ID of the book
-	id: ID
-	
-	# Title of the book
-	title: String
-	
-	# Author of the book
-	author: String
-}
+# Query the books
+extend type Query {
 
-# Create or update a book
-input BookInput {
-
-	# Title of the book
-	title: String!
+	# Get all books
+	getBooksReactively: [Book]
 	
-	# Author of the book
-	author: String!
+	# Get one book by ID
+	getBookReactively(id: ID): Book
+	
+	# Get books using pagination
+	getPaginatedElementsReactively(first: Int, after: String): BookConnection @connection(for: "Book")
 }

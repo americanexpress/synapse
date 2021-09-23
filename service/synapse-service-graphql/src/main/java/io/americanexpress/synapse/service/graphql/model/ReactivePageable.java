@@ -11,26 +11,27 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.graphql;
+package io.americanexpress.synapse.service.graphql.model;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import java.util.concurrent.CompletableFuture;
+
+import graphql.relay.Connection;
 
 /**
- * {@code BookApplication} class starts the application.
- * To test this sample application, please refer to the instructions
- * in {@code /src/test/resources}.
+ * {@code ReactivePageable} interface specifies the prototypes
+ * for models that can be used for reactive pagination.
  * @author Paolo Claudio
  *
+ * @param <T> type of element
  */
-@SpringBootApplication
-public class BookApplication {
+public interface ReactivePageable<T extends UniversallyUniqueIdentifiable> {
 
 	/**
-	 * Run the application.
-	 * @param args the arguments
+	 * Prototype to get the {@code first} number of paginated elements
+	 * {@code after} this opaque cursor.
+	 * @param first number of elements
+	 * @param after the opaque cursor
+	 * @return the paginated elements
 	 */
-	public static void main(String[] args) {
-		SpringApplication.run(BookApplication.class, args);
-	}
+	CompletableFuture<Connection<T>> getPaginatedElementsReactively(int first, String after);
 }

@@ -10,25 +10,22 @@
  # or implied. See the License for the specific language governing permissions and limitations under
  # the License.
 
-# Book represents the model containing an ID, title and author
-type Book {
+# GraphQL schema provides the root query and root mutation
+schema {
 
-	# ID of the book
-	id: ID
+	# Root query
+	query: Query
 	
-	# Title of the book
-	title: String
-	
-	# Author of the book
-	author: String
+	# Root mutation
+	mutation: Mutation
 }
 
-# Create or update a book
-input BookInput {
+# Root query to be extended by children queries
+type Query {
 
-	# Title of the book
-	title: String!
-	
-	# Author of the book
-	author: String!
+}
+
+# Root mutation to be extended by children mutations
+type Mutation {
+
 }

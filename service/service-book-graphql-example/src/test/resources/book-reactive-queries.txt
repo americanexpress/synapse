@@ -1,0 +1,106 @@
+ # Copyright 2020 American Express Travel Related Services Company, Inc.
+ #
+ # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+ # in compliance with the License. You may obtain a copy of the License at
+ #
+ # http://www.apache.org/licenses/LICENSE-2.0
+ #
+ # Unless required by applicable law or agreed to in writing, software distributed under the License
+ # is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ # or implied. See the License for the specific language governing permissions and limitations under
+ # the License.
+
+# How to Run These Sample Queries:
+# 1. Run BookApplication as a Java application.
+# 2. On your web browser, navigate to GraphiQL via http://localhost:8080/graphiql
+# 3. In GraphiQL, paste these all of these queries below.
+# 4. Press the "play" button and select the query that you wish to run.
+
+# Note: for example purposes, we have added the word "Reactively" to distinguish the reactive queries
+# from the non-reactive queries, but you do not need add this word in your implementation.
+
+# Get all books without pagination
+query getAllBooksReactively {
+  getBooksReactively {
+    id
+    title
+    author
+  }
+}
+
+# Get one book by ID
+query getBookByIdReactively {
+
+  # Get the book by this specified opaque cursor
+  getBookReactively(id: "c2ab9a0c-e5d8-4271-a377-a23250ee3a9e") {
+    id
+    title
+    author
+  }
+}
+
+# Get all books using pagination
+query getAllPaginatedBooksReactively {
+
+  # Get all books
+  getPaginatedElementsReactively {
+    edges {
+      node {
+        id
+        title
+        author
+      }
+      cursor
+    }
+    pageInfo {
+      startCursor
+      endCursor
+      hasPreviousPage
+      hasNextPage
+    }
+  }
+}
+
+# Get the first 2 books using pagination
+query getFirst2BooksReactively {
+
+  # Get the first 2 books
+  getPaginatedElementsReactively(first: 2) {
+    edges {
+      node {
+        id
+        title
+        author
+      }
+      cursor
+    }
+    pageInfo {
+      startCursor
+      endCursor
+      hasPreviousPage
+      hasNextPage
+    }
+  }
+}
+
+# Get the first 2 books after a specified opaque cursor
+query getFirst2BooksAfterReactively {
+
+  # Get the first 2 elements after this specified opaque cursor
+  getPaginatedElementsReactively(first: 2, after: "ZDhmYWQ1ZTctZDdkNC00NGVkLTg3NTgtMmJhZDE4N2E3NWNl") {
+    edges {
+      node {
+        id
+        title
+        author
+      }
+      cursor
+    }
+    pageInfo {
+      startCursor
+      endCursor
+      hasPreviousPage
+      hasNextPage
+    }
+  }
+}

@@ -10,25 +10,18 @@
  # or implied. See the License for the specific language governing permissions and limitations under
  # the License.
 
-# Book represents the model containing an ID, title and author
-type Book {
+# Note: for example purposes, we have added the word "Reactively" to distinguish the reactive mutations
+# from the non-reactive mutations, but you do not need add this word in your implementation.
 
-	# ID of the book
-	id: ID
-	
-	# Title of the book
-	title: String
-	
-	# Author of the book
-	author: String
-}
+# Create, update or delete books
+extend type Mutation {
 
-# Create or update a book
-input BookInput {
+	# Create a new book
+	createBookReactively(book: BookInput!): Book
 
-	# Title of the book
-	title: String!
+	# Update an existing book
+	updateBookReactively(id: ID!, book: BookInput!): Book	
 	
-	# Author of the book
-	author: String!
+	# Delete an existing book
+	deleteBookReactively(id: ID!): Book
 }

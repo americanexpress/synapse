@@ -164,6 +164,11 @@
             <!--Examples-->
             <dependency>
                 <groupId>io.americanexpress</groupId>
+                <artifactId>service-book-graphql-example</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress</groupId>
                 <artifactId>service-book-rest-example</artifactId>
                 <version>${project.version}</version>
             </dependency>
