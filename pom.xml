@@ -897,16 +897,29 @@
     </profiles>
 
 
+    <!--Use for Maven Deploy Plugin-->
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
             <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
         </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
+        <!--        <repository>-->
+        <!--            <id>ossrh</id>-->
+        <!--            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>-->
+        <!--        </repository>-->
     </distributionManagement>
+
+    <!--
+    Maven Central Distribution Urls:
+
+    Snapshot Distribution Location
+            - https://s01.oss.sonatype.org/content/repositories/snapshots/
+    Staging Distribution Location:
+            - https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/
+    Release Distribution Location:
+            - https://s01.oss.sonatype.org/content/repositories/releases/
+    -->
+
 
     <scm>
         <url>https://github.com/americanexpress/synapse</url>

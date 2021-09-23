@@ -1,8 +1,12 @@
 # Use the latest 2.1 version of CircleCI pipeline process engine.
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
+
+
+#-------------------------------
+# Jobs that will execute maven goals and git commands.
 jobs:
-  # Build, Test, and Deploy
+  # Build and Test
   build-test-job:
     docker:
       - image: circleci/openjdk:11-jdk-stretch
@@ -19,7 +23,6 @@ jobs:
       - run: mvn test
       - store_test_results: # We use this timing data to optimize the future runs
           path: target/surefire-reports
-  #      - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy -P release
 
   # Test
   test-job:
@@ -30,6 +33,7 @@ jobs:
       - run: mvn test
       - store_test_results: # We use this timing data to optimize the future runs
           path: target/surefire-reports
+
 
   # SNAPSHOT Deploy to Maven Central
   snapshot-maven-central-deploy-job:
@@ -45,8 +49,6 @@ jobs:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
       - checkout
-      #      - run: mvn --settings ".circleci/settings.xml" release:clean release:prepare release:perform -DgenerateBackupPoms=false -Dtag=synapse-1.0.0-RELEASE -DreleaseVersion=1.0.0-RELEASE -DdevelopmentVersion=1.0.0-SNAPSHOT
-      #      - run: mvn release:perform
       - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy -P release
 
   # SNAPSHOT to RELEASE Deploy to Maven Central
@@ -63,7 +65,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "0a:8a:6d:3a:22:28:74:a8:9e:a6:72:5d:bc:2b:aa:fe"
-      - run: mvn --settings ".circleci/settings.xml" -B release:clean release:prepare release:perform -P release
+      - run: mvn --settings ".circleci/settings.xml" -B release:clean release:prepare release:perform -P release # uses maven-release-plugin and nexus-staging-maven-plugin
 
   # Deploy to American Express
   american-express-deploy-job:
@@ -71,11 +73,14 @@ jobs:
       - image: circleci/openjdk:11-jdk-stretch
     steps:
       - checkout
-      - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy -P americanexpress
+      - run: mvn --settings ".circleci/settings.xml" -DskipTests deploy -P americanexpress # maven-deploy-plugin and nexus-staging-maven-plugin
 
+
+
+#-------------------------------
 # Workflows that will schedule and execute jobs.
 workflows:
-  # Snapshot Branch
+  # Branch with Snapshot Modifier
   # This workflow is to start automatically when creating any new feature branches and when pushing any changes to feature or develop branches
   snapshot-maven-central-build-test-deploy-workflow:
     jobs:
