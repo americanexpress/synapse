@@ -842,8 +842,7 @@
                                             <arg>--pinentry-mode</arg>
                                             <arg>loopback</arg>
                                         </gpgArguments>
-                                        <keyname>gpg-passphrase</keyname>
-                                        <passphraseServerId>gpg-passphrase</passphraseServerId>
+                                        <passphraseServerId>sign-artifacts</passphraseServerId>
                                     </configuration>
                                 </execution>
                             </executions>

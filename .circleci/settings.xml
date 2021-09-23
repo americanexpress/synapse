@@ -13,7 +13,7 @@
             <password>${env.GITHUB_EMAIL}</password>
         </server>
         <server>
-            <id>gpg-passphrase</id>
+            <id>sign-artifacts</id>
             <privateKey>${env.ORG_GRADLE_PROJECT_signingKey_base64}</privateKey>
             <passphrase>${env.ORG_GRADLE_PROJECT_signingPassword}</passphrase>
         </server>
