@@ -6,6 +6,7 @@ version: 2.1
 #-------------------------------
 # Jobs that will execute maven goals and git commands.
 jobs:
+
   # Build and Test
   build-test-job:
     docker:
