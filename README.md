@@ -74,8 +74,8 @@ It provides several out-of-the-box functionalities like:
      - Open to extension property files with the default following values: 
                 - An open to extension connection pool default parameters.
                 - An open to extension H2 connection parameters for local property file.
-                - An open to extens4ion H2 initialization parameters for local property file.
-                - An open to extension any relational database initialization parameters for three extra environments(E1, E2 and E3).
+                - An open to extension H2 initialization parameters for local property file.
+                - Provides any relational database initialization parameters for three extra environments (E1, E2 and E3).
 
      - An open to extension BaseEntity that contains the key identifier with a default(open to extension also) GenerationType.IDENTITY and the common auditing fields maintained by the Spring Data framework itself (createdBy, lastModifiedBy, createdDate, lastModifiedDate and version). 
 
