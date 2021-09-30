@@ -67,6 +67,7 @@
     </properties>
 
     <modules>
+    	<module>archetype</module>
         <module>framework</module>
         <module>service</module>
         <module>client</module>
@@ -80,6 +81,12 @@
     <dependencyManagement>
         <dependencies>
             <!--Synapse Dependencies-->
+            <!-- Archetype -->
+            <dependency>
+            	<groupId>io.americanexpress.synapse</groupId>
+            	<artifactId>synapse-archetype-client-graphql</artifactId>
+            	<version>${project.version}</version>
+            </dependency>
             <!--Framework-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
