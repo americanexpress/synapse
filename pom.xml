@@ -73,6 +73,7 @@
         <module>data</module>
         <module>publisher</module>
         <module>utility</module>
+        <module>synapse-service-rest-light</module>
     </modules>
 
 

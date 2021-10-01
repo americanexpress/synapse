@@ -32,6 +32,8 @@
         <module>synapse-service-graphql</module>
         <module>synapse-service-rest</module>
         <module>synapse-service-test</module>
+        <module>synapse-service-rest-light</module>
+
     </modules>
 
 </project>
