@@ -163,12 +163,12 @@
             </dependency>
             <!--Examples-->
             <dependency>
-                <groupId>io.americanexpress</groupId>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>example-service-book-graphql</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.americanexpress</groupId>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>example-service-book-rest</artifactId>
                 <version>${project.version}</version>
             </dependency>
