@@ -44,13 +44,6 @@ jobs:
       - checkout
       - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy
 
-  # RELEASE Deploy to Maven Central
-  release-maven-central-deploy-job:
-    docker:
-      - image: circleci/openjdk:11-jdk-stretch
-    steps:
-      - checkout
-      - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy -P release
 
   # SNAPSHOT to RELEASE Deploy to Maven Central
   snapshot-release-maven-central-deploy-job:
@@ -68,6 +61,13 @@ jobs:
             - "0a:8a:6d:3a:22:28:74:a8:9e:a6:72:5d:bc:2b:aa:fe"
       - run: mvn --settings ".circleci/settings.xml" -B release:clean release:prepare release:perform -P release # uses maven-release-plugin and nexus-staging-maven-plugin
 
+  # RELEASE Deploy to Maven Central
+  release-maven-central-deploy-job:
+    docker:
+      - image: circleci/openjdk:11-jdk-stretch
+    steps:
+      - checkout
+      - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy -P release -e -X # uses maven-deploy-plugin
 
 #-------------------------------------------------------
 # Workflows that will schedule and execute jobs.

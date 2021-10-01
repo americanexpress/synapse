@@ -910,7 +910,6 @@
         <url>https://github.com/americanexpress/synapse</url>
         <connection>scm:git:https://github.com/americanexpress/synapse.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/americanexpress/synapse.git</developerConnection>
-        <tag>synapse-0.1.0</tag>
     </scm>
 
     <issueManagement>
