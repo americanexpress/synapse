@@ -881,9 +881,9 @@
             </build>
         </profile>
 
-        <!--Profile americanexpress-->
+        <!--Profile staging-->
         <profile>
-            <id>americanexpress</id>
+            <id>staging</id>
             <activation>
                 <property>
                     <name>performRelease</name>
@@ -892,9 +892,8 @@
             </activation>
             <distributionManagement>
                 <repository>
-                    <id>bintray-americanexpress-maven</id>
-                    <name>americanexpress-maven</name>
-                    <url>https://api.bintray.com/maven/americanexpress/maven/io.americanexpress.synapse/;publish=1</url>
+                    <id>ossrh</id>
+                    <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
                 </repository>
             </distributionManagement>
         </profile>
@@ -907,10 +906,10 @@
             <id>ossrh</id>
             <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
         </snapshotRepository>
-        <!--        <repository>-->
-        <!--            <id>ossrh</id>-->
-        <!--            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>-->
-        <!--        </repository>-->
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/releases/</url>
+        </repository>
     </distributionManagement>
 
     <!--
