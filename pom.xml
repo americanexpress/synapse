@@ -569,7 +569,6 @@
                 <artifactId>swagger-annotations</artifactId>
                 <version>1.6.2</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 
@@ -757,7 +756,7 @@
                                             <limit>
                                                 <counter>BRANCH</counter>
                                                 <value>COVEREDRATIO</value>
-                                                <minimum>90%</minimum>
+                                                <minimum>95%</minimum>
                                             </limit>
                                         </limits>
                                     </rule>
@@ -879,24 +878,6 @@
                     </plugins>
                 </pluginManagement>
             </build>
-        </profile>
-
-        <!--Profile americanexpress-->
-        <profile>
-            <id>americanexpress</id>
-            <activation>
-                <property>
-                    <name>performRelease</name>
-                    <value>true</value>
-                </property>
-            </activation>
-            <distributionManagement>
-                <repository>
-                    <id>bintray-americanexpress-maven</id>
-                    <name>americanexpress-maven</name>
-                    <url>https://api.bintray.com/maven/americanexpress/maven/io.americanexpress.synapse/;publish=1</url>
-                </repository>
-            </distributionManagement>
         </profile>
     </profiles>
 
