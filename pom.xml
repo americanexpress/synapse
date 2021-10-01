@@ -17,7 +17,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>io.americanexpress</groupId>
+    <groupId>io.americanexpress.synapse</groupId>
     <artifactId>synapse</artifactId>
     <packaging>pom</packaging>
     <version>0.1.0</version>
@@ -82,82 +82,82 @@
             <!--Synapse Dependencies-->
             <!--Framework-->
             <dependency>
-                <groupId>io.americanexpress</groupId>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-framework-logging</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.americanexpress</groupId>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-framework-exception</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.americanexpress</groupId>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-framework-test</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.americanexpress</groupId>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-framework-api-docs</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--Service-->
             <dependency>
-                <groupId>io.americanexpress</groupId>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-service-graphql</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.americanexpress</groupId>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-service-rest</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.americanexpress</groupId>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-service-test</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--Client-->
             <dependency>
-                <groupId>io.americanexpress</groupId>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-client-graphql</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.americanexpress</groupId>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-client-rest</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.americanexpress</groupId>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-client-test</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.americanexpress</groupId>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-client-soap</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--Data-->
             <dependency>
-                <groupId>io.americanexpress</groupId>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-data-couchbase</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.americanexpress</groupId>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-data-postgres</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--Utility-->
             <dependency>
-                <groupId>io.americanexpress</groupId>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-utilities-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!-- Publisher -->
             <dependency>
-                <groupId>io.americanexpress</groupId>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-publisher-kafka</artifactId>
                 <version>${project.version}</version>
             </dependency>
