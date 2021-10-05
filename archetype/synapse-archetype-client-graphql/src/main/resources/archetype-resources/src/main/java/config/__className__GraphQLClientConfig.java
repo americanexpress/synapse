@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
 
 import ${package}.client.${className}GraphQLClient;
 import ${package}.handler.${className}GraphQLResponseErrorHandler;
@@ -30,6 +31,7 @@ import io.americanexpress.synapse.client.rest.config.BaseRestClientConfig;
  * @author ${author}
  */
 @Import(BaseRestClientConfig.class)
+@PropertySource("classpath:client-application.properties")
 @ComponentScan("${package}")
 @Configuration
 public class ${className}GraphQLClientConfig extends BaseRestClientConfig {
@@ -58,7 +60,7 @@ public class ${className}GraphQLClientConfig extends BaseRestClientConfig {
 	/**
 	 * Initialize this GraphQL client.
 	 */
-	@Value("${url}")
+	@Value("${client.url}")
 	@Override
 	protected void initialize(String destinationUrl) {
 		initializeClient(destinationUrl, graphQLClient, graphQLResponseErrorHandler);
