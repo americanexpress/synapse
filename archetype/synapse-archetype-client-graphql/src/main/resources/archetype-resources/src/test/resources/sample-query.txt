@@ -11,15 +11,3 @@
  # the License.
 
 # Please add a sample query against the ${apiName} GraphQL API.
-# This sample query is used against example-service-book-graphql.
-# Be sure that you have started BookApplication first
-# prior to running this client module's integration test.
-
-# Get all books without pagination
-query getAllBooks {
-  getBooks {
-    id
-    title
-    author
-  }
-}

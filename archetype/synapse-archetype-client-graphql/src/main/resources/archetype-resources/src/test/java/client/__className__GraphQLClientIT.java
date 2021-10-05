@@ -32,9 +32,10 @@ import io.americanexpress.synapse.utilities.common.io.IOUtils;
 /**
  * {@code ${className}GraphQLClientIT} class performs integration tests
  * for the {@link ${className}GraphQLClient}.
- * 
- * This sample integration test below assumes that you have specified
- * a GraphQL query in {@code src/test/resources}.
+ * <p>
+ * Be sure that the ${apiName} GraphQL API is running and that a valid
+ * GraphQL query against the ${apiName} GraphQL API is in {@code src/test/resources}
+ * prior to running this integration test.
  * @author ${author}
  */
 @ExtendWith(SpringExtension.class)
