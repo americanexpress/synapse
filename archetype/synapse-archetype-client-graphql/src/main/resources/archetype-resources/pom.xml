@@ -19,6 +19,8 @@
 	<artifactId>${artifactId}</artifactId>
 	<version>${version}</version>
 	<properties>
+		<synapse.version>0.1.0-SNAPSHOT</synapse.version>
+		<java.version>${javaVersion}</java.version>
 		<junit.version>1.6.2</junit.version>
 		<junit.jupiter.version>5.6.2</junit.jupiter.version>
 	</properties>
@@ -26,12 +28,12 @@
 		<dependency>
 			<groupId>io.americanexpress.synapse</groupId>
 			<artifactId>synapse-client-graphql</artifactId>
-			<version>0.1.0-SNAPSHOT</version>
+			<version>${synapse.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.americanexpress.synapse</groupId>
 			<artifactId>synapse-utilities-common</artifactId>
-			<version>0.1.0-SNAPSHOT</version>
+			<version>${synapse.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
@@ -71,8 +73,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
 				<configuration>
-					<source>${javaVersion}</source>
-					<target>${javaVersion}</target>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
 				</configuration>
 			</plugin>
 		</plugins>
