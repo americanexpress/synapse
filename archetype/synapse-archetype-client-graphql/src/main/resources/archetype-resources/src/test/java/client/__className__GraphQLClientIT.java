@@ -27,10 +27,14 @@ import ${package}.model.${className}GraphQLClientResponse;
 import io.americanexpress.synapse.client.graphql.model.GraphQLClientRequest;
 import io.americanexpress.synapse.client.rest.model.ClientHeaders;
 import io.americanexpress.synapse.framework.test.CommonAssertionMessages;
+import io.americanexpress.synapse.utilities.common.io.IOUtils;
 
 /**
  * {@code ${className}GraphQLClientIT} class performs integration tests
  * for the {@link ${className}GraphQLClient}.
+ * 
+ * This sample integration test below assumes that you have specified
+ * a GraphQL query in {@code src/test/resources}.
  * @author ${author}
  */
 @ExtendWith(SpringExtension.class)
@@ -41,8 +45,10 @@ class ${className}GraphQLClientIT {
 	private ${className}GraphQLClient graphQLClient;
 	
 	@Test
-	void callMonoService_givenValidRequest_expectedValidResponse() {
+	void callMonoService_givenValidRequest_expectedValidResponse() throws Exception {
+		String query = IOUtils.readFileToAString("sample-query.txt");
 		GraphQLClientRequest graphQLClientRequest = new GraphQLClientRequest();
+		graphQLClientRequest.setQuery(query);
 		${className}GraphQLClientResponse graphQLClientResponse = graphQLClient.callMonoService(new ClientHeaders(), graphQLClientRequest);
 		assertNotNull(graphQLClientResponse, CommonAssertionMessages.VALUE_NULL);
 	}
