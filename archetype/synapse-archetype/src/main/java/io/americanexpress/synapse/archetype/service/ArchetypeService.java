@@ -21,16 +21,34 @@ import io.americanexpress.synapse.archetype.model.ArchetypeServiceResponse;
 import io.americanexpress.synapse.archetype.service.helper.ArchetypeServiceResponseCreator;
 import io.americanexpress.synapse.service.rest.service.BaseReadMonoService;
 
+/**
+ * {@code ArchetypeService} class returns the available archetypes found
+ * from the {@code archetype-catalog.xml} file specified in {@code surgeon-service-application.properties}.
+ * @author Paolo Claudio
+ *
+ */
 @Service
 public class ArchetypeService extends BaseReadMonoService<ArchetypeServiceRequest, ArchetypeServiceResponse>{
 
+	/**
+	 * Used to create the {@link ArchetypeServiceResponse}.
+	 */
 	private final ArchetypeServiceResponseCreator archetypeServiceResponseCreator;
 	
+	/**
+	 * Argument constructor creates a new instance of ArchetypeService with given values.
+	 * @param archetypeServiceResponseCreator used to create the {@link ArchetypeServiceResponse}
+	 */
 	@Autowired
 	public ArchetypeService(ArchetypeServiceResponseCreator archetypeServiceResponseCreator) {
 		this.archetypeServiceResponseCreator = archetypeServiceResponseCreator;
 	}
 	
+	/**
+	 * Read the {@link ArchetypeServiceResponse}.
+	 * @param archetypeServiceRequest the service request
+	 * @return the {@link ArchetypeServiceResponse}
+	 */
 	@Override
 	protected ArchetypeServiceResponse executeRead(ArchetypeServiceRequest archetypeServiceRequest) {
 		return archetypeServiceResponseCreator.create();
