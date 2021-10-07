@@ -26,6 +26,7 @@
     <packaging>pom</packaging>
 
     <modules>
+    	<module>synapse-archetype</module>
     	<module>synapse-archetype-client-graphql</module>
     </modules>
 </project>
