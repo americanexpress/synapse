@@ -28,7 +28,7 @@ import io.americanexpress.synapse.service.rest.service.BaseReadMonoService;
  *
  */
 @Service
-public class ArchetypeService extends BaseReadMonoService<ArchetypeServiceRequest, ArchetypeServiceResponse>{
+public class ArchetypeService extends BaseReadMonoService<ArchetypeServiceRequest, ArchetypeServiceResponse> {
 
 	/**
 	 * Used to create the {@link ArchetypeServiceResponse}.
