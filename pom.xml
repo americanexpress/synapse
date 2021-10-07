@@ -67,6 +67,7 @@
     </properties>
 
     <modules>
+    	<module>archetype</module>
         <module>framework</module>
         <module>service</module>
         <module>client</module>
@@ -80,6 +81,12 @@
     <dependencyManagement>
         <dependencies>
             <!--Synapse Dependencies-->
+            <!-- Archetype -->
+            <dependency>
+            	<groupId>io.americanexpress.synapse</groupId>
+            	<artifactId>synapse-archetype-client-graphql</artifactId>
+            	<version>${project.version}</version>
+            </dependency>
             <!--Framework-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
@@ -248,6 +255,12 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-webflux</artifactId>
                 <version>${spring-boot-framework.version}</version>
+                <exclusions>
+					<exclusion>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-to-slf4j</artifactId>
+					</exclusion>
+				</exclusions>
             </dependency>
 
             <!--Wavefront-->
@@ -267,6 +280,20 @@
                 <groupId>com.graphql-java</groupId>
                 <artifactId>graphql-java-tools</artifactId>
                 <version>5.2.4</version>
+                <exclusions>
+                	<exclusion>
+						<groupId>com.fasterxml.jackson.core</groupId>
+						<artifactId>jackson-core</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>com.fasterxml.jackson.module</groupId>
+						<artifactId>jackson-module-kotlin</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>com.fasterxml.jackson.datatype</groupId>
+						<artifactId>jackson-datatype-jdk8</artifactId>
+					</exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>com.graphql-java</groupId>
@@ -392,6 +419,11 @@
             </dependency>
 
             <!--Jackson-->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
