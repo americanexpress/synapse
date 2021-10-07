@@ -66,15 +66,16 @@ public class SurgeonServiceConfig extends ServiceRestConfig {
 	 * @throws IOException whenever an input/output exception occurs trying to access the archetype-catalog.xml file
 	 */
 	@Bean
-	@Value("${archetype-catalog-location}")
+	@Value("${archetype-catalog-file}")
 	public ArchetypeCatalog archetypeCatalog(String archetypeCatalogLocation) throws JsonParseException, JsonMappingException, IOException {
+		
 		if(archetypeCatalogLocation == null || !archetypeCatalogLocation.endsWith("archetype-catalog.xml")) {
-			throw new ApplicationServerException(new NullPointerException("Please specify the location of the archetype-catalog.xml in archetype-catalog-location= in src/main/resources/surgeon-service-application.properties"));
+			throw new ApplicationServerException(new NullPointerException("Please specify the location of 'archetype-catalog.xml' in archetype-catalog-file= in src/main/resources/surgeon-service-application.properties"));
 		}
 		
 		File archetypeCatalogFile = new File(archetypeCatalogLocation);
 		if(!archetypeCatalogFile.exists()) {
-			throw new ApplicationServerException(new FileNotFoundException("File not found. Please specify an existing archetype-catalog.xml in archetype-catalog-location= in src/main/resources/surgeon-service-application.properties"));
+			throw new ApplicationServerException(new FileNotFoundException("File not found. Please specify an existing archetype-catalog.xml in archetype-catalog-file= in src/main/resources/surgeon-service-application.properties"));
 		}
 		
 		ObjectMapper objectMapper = UtilitiesCommonObjectFactory.XML_OBJECT_MAPPER;
