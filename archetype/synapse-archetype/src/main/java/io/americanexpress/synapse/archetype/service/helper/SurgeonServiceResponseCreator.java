@@ -29,7 +29,7 @@ public class SurgeonServiceResponseCreator {
 
 	/**
 	 * Create the {@link SurgeonServiceResponse}.
-	 * @param invocationResult containing the result of the maven-invoker
+	 * @param invocationResult containing the result of the {@code maven-invoker}
 	 * @return the {@link SurgeonServiceResponse}
 	 */
 	public SurgeonServiceResponse create(InvocationResult invocationResult) {
