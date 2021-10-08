@@ -73,7 +73,6 @@
         <module>data</module>
         <module>publisher</module>
         <module>utility</module>
-        <module>synapse-service-rest-light</module>
     </modules>
 
 
@@ -171,6 +170,11 @@
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>example-service-book-rest</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>example-service-rest-light-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -525,6 +529,11 @@
                         <artifactId>quarkus-ide-launcher</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-resteasy-jackson</artifactId>
+                <version>2.3.0.Final</version>
             </dependency>
 
             <!--Springfox Swagger-->
