@@ -15,15 +15,15 @@ package io.americanexpress.synapse.archetype.model;
 
 import java.util.List;
 
-import io.americanexpress.synapse.archetype.service.ArchetypeService;
+import io.americanexpress.synapse.archetype.service.ArchetypeCatalogService;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 
 /**
- * {@code ArchetypeServiceResponse} class represents the service response from the {@link ArchetypeService}.
+ * {@code ArchetypeCatalogServiceResponse} class represents the service response from the {@link ArchetypeCatalogService}.
  * @author Paolo Claudio
  *
  */
-public class ArchetypeServiceResponse extends BaseServiceResponse {
+public class ArchetypeCatalogServiceResponse extends BaseServiceResponse {
 
 	/**
 	 * The archetypes found from the archetype catalog.

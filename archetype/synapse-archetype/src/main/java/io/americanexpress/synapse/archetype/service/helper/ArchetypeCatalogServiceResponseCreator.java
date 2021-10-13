@@ -17,15 +17,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import io.americanexpress.synapse.archetype.model.ArchetypeCatalog;
-import io.americanexpress.synapse.archetype.model.ArchetypeServiceResponse;
+import io.americanexpress.synapse.archetype.model.ArchetypeCatalogServiceResponse;
 
 /**
- * {@code ArchetypeServiceResponseCreator} class creates the {@link ArchetypeServiceResponse}.
+ * {@code ArchetypeCatalogServiceResponseCreator} class creates the {@link ArchetypeCatalogServiceResponse}.
  * @author Paolo Claudio
  *
  */
 @Component
-public class ArchetypeServiceResponseCreator {
+public class ArchetypeCatalogServiceResponseCreator {
 
 	/**
 	 * Archetype catalog containing all of the archetypes.
@@ -33,20 +33,20 @@ public class ArchetypeServiceResponseCreator {
 	private final ArchetypeCatalog archetypeCatalog;
 	
 	/**
-	 * Argument constructor creates a new instance of ArchetypeServiceResponseCreator with given values.
+	 * Argument constructor creates a new instance of ArchetypeCatalogServiceResponseCreator with given values.
 	 * @param archetypeCatalog archetype catalog containing all of the archetypes
 	 */
 	@Autowired
-	public ArchetypeServiceResponseCreator(ArchetypeCatalog archetypeCatalog) {
+	public ArchetypeCatalogServiceResponseCreator(ArchetypeCatalog archetypeCatalog) {
 		this.archetypeCatalog = archetypeCatalog;
 	}
 	
 	/**
-	 * Create the {@link ArchetypeServiceResponse}.
-	 * @return the {@link ArchetypeServiceResponse}
+	 * Create the {@link ArchetypeCatalogServiceResponse}.
+	 * @return the {@link ArchetypeCatalogServiceResponse}
 	 */
-	public ArchetypeServiceResponse create() {
-		ArchetypeServiceResponse archetypeServiceResponse = new ArchetypeServiceResponse();
+	public ArchetypeCatalogServiceResponse create() {
+		ArchetypeCatalogServiceResponse archetypeServiceResponse = new ArchetypeCatalogServiceResponse();
 		archetypeServiceResponse.setArchetypes(archetypeCatalog.getArchetypes());
 		return archetypeServiceResponse;
 	}

@@ -13,14 +13,14 @@
  */
 package io.americanexpress.synapse.archetype.model;
 
-import io.americanexpress.synapse.archetype.service.ArchetypeService;
+import io.americanexpress.synapse.archetype.service.ArchetypeCatalogService;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 
 /**
- * {@code ArchetypeServiceRequest} class represents the service request to the {@link ArchetypeService}.
+ * {@code ArchetypeCatalogServiceRequest} class represents the service request to the {@link ArchetypeCatalogService}.
  * @author Paolo Claudio
  *
  */
-public class ArchetypeServiceRequest extends BaseServiceRequest {
-
+public class ArchetypeCatalogServiceRequest extends BaseServiceRequest {
+	
 }
