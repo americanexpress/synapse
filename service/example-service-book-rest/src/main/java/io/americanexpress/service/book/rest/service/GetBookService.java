@@ -25,5 +25,4 @@ public class GetBookService extends BaseGetMonoService<ReadBookResponse> {
         return new ReadBookResponse("Synapse", "Gabriel");
     }
 
-
 }

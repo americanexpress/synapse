@@ -20,6 +20,7 @@ import io.americanexpress.synapse.service.rest.service.BaseReadMonoService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,14 +51,22 @@ public abstract class BaseReadMonoController<I extends BaseServiceRequest, O ext
      * @param serviceRequest body from the consumer
      * @return a single resource from the back end service
      */
-    @ApiOperation(value = "Read Mono", notes = "Gets one resource")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "OK"),
-            @ApiResponse(code = 204, message = "No Content"),
-            @ApiResponse(code = 400, message = "Bad Request"),
-            @ApiResponse(code = 401, message = "Unauthorized"),
-            @ApiResponse(code = 403, message = "Forbidden")
-    })
+    @Operation(tags = "Read Mono", summary = "Gets one resource")
+//    @ApiResponses(value = {
+//            @ApiResponse(code = 200, message = "OK"),
+//            @ApiResponse(code = 204, message = "No Content"),
+//            @ApiResponse(code = 400, message = "Bad Request"),
+//            @ApiResponse(code = 401, message = "Unauthorized"),
+//            @ApiResponse(code = 403, message = "Forbidden")
+//    })
+//    @ApiOperation(value = "Read Mono", notes = "Gets one resource")
+//    @ApiResponses(value = {
+//            @ApiResponse(code = 200, message = "OK"),
+//            @ApiResponse(code = 204, message = "No Content"),
+//            @ApiResponse(code = 400, message = "Bad Request"),
+//            @ApiResponse(code = 401, message = "Unauthorized"),
+//            @ApiResponse(code = 403, message = "Forbidden")
+//    })
     @PostMapping(INQUIRY_RESULTS)
     public ResponseEntity<O> read(@Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);

@@ -14,13 +14,14 @@
 package io.americanexpress.synapse.service.rest.controller;
 
 import io.americanexpress.synapse.service.rest.service.BaseDeleteService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- * <code>BaseDeleteMonoController</code> class specifies the prototypes for listening for requests from the consumer
+ * <code>BaseDeleteController</code> class specifies the prototypes for listening for requests from the consumer
  * to Delete (DELETE) a resource. This controller expects only one entry per request.
  *
  * @param <S> service type
@@ -35,6 +36,7 @@ public abstract class BaseDeleteController<S extends BaseDeleteService> extends 
      */
     @DeleteMapping("/{identifier}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Operation(tags = "Delete Operation", summary = "Deletes a resource")
     public void delete(@PathVariable String identifier) {
         logger.entry(identifier);
 

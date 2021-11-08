@@ -17,23 +17,22 @@ import io.americanexpress.synapse.service.rest.controller.helpers.CreateResponse
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.rest.service.BaseCreateService;
-import org.apache.commons.lang3.StringUtils;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
-import java.net.URI;
 
 /**
- * <code>BaseCreateMonoController</code> class specifies the abstraction for listening for requests from the consumer
+ * <code>BaseCreateController</code> class specifies the abstraction for listening for requests from the consumer
  * to Create (POST) a resource. This controller expects only one entry as request.
  *
  * @param <I> input request type
  * @param <O> output response type
  * @param <S> service type
+ *
  * @author Gabriel Jimenez
  */
 public abstract class BaseCreateController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseCreateService<I, O>> extends BaseController<S> {
@@ -49,6 +48,7 @@ public abstract class BaseCreateController<I extends BaseServiceRequest, O exten
      * @return response to the consumer
      */
     @PostMapping
+    @Operation(tags = "Create Operation", summary = "Creates a resource")
     public ResponseEntity<O> create(@Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
 

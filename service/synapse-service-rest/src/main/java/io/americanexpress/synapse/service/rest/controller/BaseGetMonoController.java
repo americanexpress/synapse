@@ -16,6 +16,7 @@ package io.americanexpress.synapse.service.rest.controller;
 import io.americanexpress.synapse.service.rest.controller.helpers.MonoResponseEntityCreator;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.rest.service.BaseGetMonoService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,6 +40,7 @@ public class BaseGetMonoController<O extends BaseServiceResponse, S extends Base
      * @return the response entity
      */
     @GetMapping("/{identifier}")
+    @Operation(tags = "Read Operation from Path", summary = "Reads a resource based on path parameter.")
     public ResponseEntity<O> read(@PathVariable String identifier) {
         logger.entry(identifier);
         final O response = service.read(identifier);

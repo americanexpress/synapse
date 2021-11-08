@@ -20,13 +20,13 @@ import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.service.ReadBookService;
 import io.americanexpress.synapse.service.rest.controller.BaseReadPolyController;
 import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(BookConfig.BOOK_ENDPOINT)
-@Api("Read Book Service")
+@Tag(name = "Read Book Service", description = "Provides book information")
 public class ReadBookController extends BaseReadPolyController<ReadBookRequest, ReadBookResponse, ReadBookService> {
-
 
 }

@@ -47,7 +47,7 @@
         <spring-boot-ws-framework.version>1.4.7.RELEASE</spring-boot-ws-framework.version>
 
         <!--SpringFox-->
-        <springfox-swagger.version>3.0.0</springfox-swagger.version>
+        <springfox-swagger.version>2.9.2</springfox-swagger.version>
 
         <!-- GraphQL -->
         <spring-boot-graphql.version>11.0.0</spring-boot-graphql.version>
@@ -67,7 +67,7 @@
     </properties>
 
     <modules>
-    	<module>archetype</module>
+        <module>archetype</module>
         <module>framework</module>
         <module>service</module>
         <module>client</module>
@@ -83,9 +83,9 @@
             <!--Synapse Dependencies-->
             <!-- Archetype -->
             <dependency>
-            	<groupId>io.americanexpress.synapse</groupId>
-            	<artifactId>synapse-archetype-client-graphql</artifactId>
-            	<version>${project.version}</version>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-archetype-client-graphql</artifactId>
+                <version>${project.version}</version>
             </dependency>
             <!--Framework-->
             <dependency>
@@ -206,9 +206,27 @@
                 <artifactId>spring-web</artifactId>
                 <version>${spring-framework.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>5.3.12</version>
+            </dependency>
+
+            <!--Spring Security -->
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-core</artifactId>
+                <version>${spring-security.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-config</artifactId>
+                <version>${spring-security.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-web</artifactId>
                 <version>${spring-security.version}</version>
             </dependency>
             <dependency>
@@ -220,8 +238,9 @@
             <!--Spring Boot Dependencies-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-ws</artifactId>
-                <version>${spring-boot-ws-framework.version}</version>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>${spring-boot-framework.version}</version>
+                <type>pom</type>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -231,9 +250,9 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>30.1.1-jre</version>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-ws</artifactId>
+                <version>${spring-boot-ws-framework.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -253,22 +272,40 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot-framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-security</artifactId>
+                <version>${spring-boot-framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-webflux</artifactId>
                 <version>${spring-boot-framework.version}</version>
                 <exclusions>
-					<exclusion>
-						<groupId>org.apache.logging.log4j</groupId>
-						<artifactId>log4j-to-slf4j</artifactId>
-					</exclusion>
-				</exclusions>
+                    <exclusion>
+                        <groupId>org.apache.logging.log4j</groupId>
+                        <artifactId>log4j-to-slf4j</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
+            <!--Guava-->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>30.1.1-jre</version>
+            </dependency>
             <!--Wavefront-->
             <dependency>
                 <groupId>com.wavefront</groupId>
                 <artifactId>wavefront-spring-boot-starter</artifactId>
-                <version>2.2.0</version>
+                <version>2.2.2</version>
             </dependency>
+
+            <!--Spring Cloud-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-sleuth</artifactId>
@@ -281,18 +318,18 @@
                 <artifactId>graphql-java-tools</artifactId>
                 <version>5.2.4</version>
                 <exclusions>
-                	<exclusion>
-						<groupId>com.fasterxml.jackson.core</groupId>
-						<artifactId>jackson-core</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>com.fasterxml.jackson.module</groupId>
-						<artifactId>jackson-module-kotlin</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>com.fasterxml.jackson.datatype</groupId>
-						<artifactId>jackson-datatype-jdk8</artifactId>
-					</exclusion>
+                    <exclusion>
+                        <groupId>com.fasterxml.jackson.core</groupId>
+                        <artifactId>jackson-core</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.fasterxml.jackson.module</groupId>
+                        <artifactId>jackson-module-kotlin</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.fasterxml.jackson.datatype</groupId>
+                        <artifactId>jackson-datatype-jdk8</artifactId>
+                    </exclusion>
                 </exclusions>
             </dependency>
             <dependency>
@@ -586,13 +623,18 @@
             </dependency>
             <dependency>
                 <groupId>io.springfox</groupId>
+                <artifactId>springfox-bean-validators</artifactId>
+                <version>${springfox-swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
                 <artifactId>springfox-spring-webflux</artifactId>
                 <version>3.0.0</version>
             </dependency>
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-boot-starter</artifactId>
-                <version>${springfox-swagger.version}</version>
+                <version>3.0.0</version>
             </dependency>
 
             <!--Swagger Annotations-->
@@ -609,6 +651,11 @@
     <build>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.springdoc</groupId>
+                    <artifactId>springdoc-openapi-maven-plugin</artifactId>
+                    <version>1.3</version>
+                </plugin>
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>

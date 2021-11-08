@@ -15,6 +15,7 @@ package io.americanexpress.synapse.service.rest.controller;
 
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.service.BaseUpdateService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,12 +24,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import javax.validation.Valid;
 
 /**
- * <code>BaseUpdateMonoController</code> class specifies the prototypes for listening for requests from the consumer
+ * <code>BaseUpdateController</code> class specifies the prototypes for listening for requests from the consumer
  * to Update (PUT/PATCH) a resource. This controller expects only one object.
  *
  * @param <I> input request type
  * @param <S> service type
- *
  * @author Gabriel Jimenez
  */
 public abstract class BaseUpdateController<I extends BaseServiceRequest, S extends BaseUpdateService<I>> extends BaseController<S> {
@@ -40,6 +40,7 @@ public abstract class BaseUpdateController<I extends BaseServiceRequest, S exten
      */
     @PutMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Operation(tags = "Update Operation", summary = "Updates a resource")
     public void update(@Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
 
