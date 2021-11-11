@@ -8,9 +8,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name = "Get Book Service", description = "Provides book information based on identifier")
 @RestController
 @RequestMapping(BookConfig.BOOK_ENDPOINT)
-@Tag(name = "Get Book Service", description = "Provides book information based on identifier")
 public class GetBookController extends BaseGetMonoController<ReadBookResponse, GetBookService> {
 
 }

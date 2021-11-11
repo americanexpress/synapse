@@ -51,7 +51,7 @@ public abstract class BaseReadMonoController<I extends BaseServiceRequest, O ext
      * @param serviceRequest body from the consumer
      * @return a single resource from the back end service
      */
-    @Operation(tags = "Read Mono", summary = "Gets one resource")
+    @Operation(summary = "Read Mono", description = "Gets one resource")
 //    @ApiResponses(value = {
 //            @ApiResponse(code = 200, message = "OK"),
 //            @ApiResponse(code = 204, message = "No Content"),

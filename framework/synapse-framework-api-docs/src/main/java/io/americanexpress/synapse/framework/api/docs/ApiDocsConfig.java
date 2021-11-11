@@ -18,10 +18,13 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import org.springdoc.core.GroupedOpenApi;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.web.bind.annotation.RestController;
+
+import static org.springdoc.core.GroupedOpenApi.builder;
 
 
 /**
@@ -30,6 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Gabriel Jimenez
  */
 @Configuration
+@ComponentScan({"io.americanexpress.synapse.framework.api.docs"})
 @PropertySource("classpath:/framework-api-docs-application.properties")
 public class ApiDocsConfig {
 
@@ -44,6 +48,13 @@ public class ApiDocsConfig {
     private String title = "Synapse APIs";
     private String description = "These are the specifications of the Synapse APIs";
 
+
+//    private final EndpointCustomizer endpointCustomizer;
+
+//    @Autowired
+//    public ApiDocsConfig(final EndpointCustomizer endpointCustomizer) {
+//        this.endpointCustomizer = endpointCustomizer;
+//    }
 //    @Value("${prop.swagger.enabled:true}")
 //    private boolean enableSwagger;
 
@@ -197,13 +208,12 @@ public class ApiDocsConfig {
 
     @Bean
     public GroupedOpenApi publicApi() {
-        String[] packagesToScan = {"io.americanexpress.service"};
-
-        return GroupedOpenApi.builder()
+        String[] packagesToScan = {"io.americanexpress.synapse.service.**", "io.americanexpress.service.book.rest.controller"};
+        return builder()
                 .group("synapse")
-                .pathsToMatch("/public/**")
-                .packagesToScan(packagesToScan)
+                //  .packagesToScan(packagesToScan)
                 .pathsToMatch("/v1")
+//                .addOperationCustomizer(endpointCustomizer)
                 .build();
     }
 
@@ -217,6 +227,7 @@ public class ApiDocsConfig {
                 .externalDocs(new ExternalDocumentation()
                         .description(description)
                         .url(teamWebsite));
+
     }
 
 
