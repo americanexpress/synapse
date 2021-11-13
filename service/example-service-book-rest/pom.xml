@@ -30,21 +30,6 @@
             <groupId>io.americanexpress.synapse</groupId>
             <artifactId>synapse-service-rest</artifactId>
         </dependency>
-        <!--Third-Party-->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-ui</artifactId>
-            <version>1.5.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-webmvc-core</artifactId>
-            <version>1.5.2</version>
-        </dependency>
     </dependencies>
 
 

@@ -14,14 +14,9 @@
 package io.americanexpress.service.book.rest.model;
 
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
-import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.util.Objects;
 
-
-@Schema
 public class ReadBookRequest extends BaseServiceRequest {
 
     private String title;
@@ -48,6 +43,7 @@ public class ReadBookRequest extends BaseServiceRequest {
     public void setAuthor(String author) {
         this.author = author;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

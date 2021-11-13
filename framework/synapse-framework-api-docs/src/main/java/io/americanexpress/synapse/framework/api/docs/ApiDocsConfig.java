@@ -13,18 +13,13 @@
  */
 package io.americanexpress.synapse.framework.api.docs;
 
+import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
-import org.springdoc.core.GroupedOpenApi;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-
-import static org.springdoc.core.GroupedOpenApi.builder;
 
 
 /**
@@ -33,203 +28,32 @@ import static org.springdoc.core.GroupedOpenApi.builder;
  * @author Gabriel Jimenez
  */
 @Configuration
-@ComponentScan({"io.americanexpress.synapse.framework.api.docs"})
-@PropertySource("classpath:/framework-api-docs-application.properties")
 public class ApiDocsConfig {
 
-    private static final String CORRELATION_ID = "Correlation-ID";
-    private static final String CLIENT_APP_ID = "Client-App-ID";
-    private static final String HEADER = "Header";
-
-    // These variables are defaulted to below values, but could be overridden and changes by client utilizing this framework.
-    private String teamName = "Team Synapse";
-    private String teamWebsite = "https://americanexpress.io/synapse/";
-    private String teamEmailAddress = "synapse@aexp.com";
-    private String title = "Synapse APIs";
-    private String description = "These are the specifications of the Synapse APIs";
+    // These variables are defaulted to below values,
+    // but could be overridden and changes by client utilizing this framework.
+    private static final String teamName = "Team Synapse";
+    private static final String teamWebsite = "https://americanexpress.io/synapse/";
+    private static final String teamEmailAddress = "synapse@aexp.com";
+    public static final String title = "Synapse APIs";
+    private static final String description = "These are the specifications of the Synapse APIs";
 
 
-//    private final EndpointCustomizer endpointCustomizer;
-
-//    @Autowired
-//    public ApiDocsConfig(final EndpointCustomizer endpointCustomizer) {
-//        this.endpointCustomizer = endpointCustomizer;
-//    }
-//    @Value("${prop.swagger.enabled:true}")
-//    private boolean enableSwagger;
-
-
-    public String getTeamName() {
-        return teamName;
-    }
-
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
-    }
-
-    public String getTeamWebsite() {
-        return teamWebsite;
-    }
-
-    public void setTeamWebsite(String teamWebsite) {
-        this.teamWebsite = teamWebsite;
-    }
-
-    public String getTeamEmailAddress() {
-        return teamEmailAddress;
-    }
-
-    public void setTeamEmailAddress(String teamEmailAddress) {
-        this.teamEmailAddress = teamEmailAddress;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-//
-//
-//    /**
-//     * Used to get basic information on the page.
-//     *
-//     * @return group name, headers, end points, etc.
-//     */
-//    @Bean
-//    public Docket synapseApi() {
-//        //Register the REST controllers to use Swagger
-//        return new Docket(DocumentationType.SWAGGER_2)
-//                .apiInfo(this.getApiInformation())
-//                .select()
-//                .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
-//                .paths(PathSelectors.any())
-//                .build()
-//                .securitySchemes(getApiKeys())
-//                .securityContexts(Lists.newArrayList(this.getSecurityContext()));
-//    }
-//
-//    /**
-//     * Used to return the API information such as contact details, description, etc.
-//     *
-//     * @return the API information
-//     */
-//    private ApiInfo getApiInformation() {
-//        Contact contact = new Contact(this.getTeamName(), this.getTeamWebsite(), this.getTeamEmailAddress());
-//        return new ApiInfoBuilder().title(this.getTitle())
-//                .description(this.getDescription())
-//                .contact(contact)
-//                .version("1.0")
-//                .build();
-//    }
-//
-////    private Predicate<String> postPaths() {
-//////        return or(regex("/api/posts.*"), regex("/api/javainuse.*"));
-////    }
-//
-//    /**
-//     * Used to get the headers for the API.
-//     *
-//     * @return the API keys
-//     */
-//    private List<SecurityScheme> getApiKeys() {
-//        return Lists.newArrayList(new ApiKey(CORRELATION_ID, CORRELATION_ID, HEADER),
-//                new ApiKey(CLIENT_APP_ID, CLIENT_APP_ID, HEADER));
-//    }
-//
-//    /**
-//     * Used to provide default authorization to each API operation.
-//     *
-//     * @return the security context
-//     */
-//    private SecurityContext getSecurityContext() {
-//        return SecurityContext.builder().securityReferences(getDefaultSecurityReferences()).forPaths(PathSelectors.any()).build();
-//    }
-//
-//    /**
-//     * Gets the default security references to pass headers values for authorization.
-//     *
-//     * @return the list of new headers those are need for global authorization
-//     */
-//    private List<SecurityReference> getDefaultSecurityReferences() {
-//        AuthorizationScope[] authorizationScopes = {};
-//        return Lists.newArrayList(new SecurityReference(CORRELATION_ID, authorizationScopes),
-//                new SecurityReference(CLIENT_APP_ID, authorizationScopes));
-//    }
-//
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication()
-//                .withUser("user")
-//                .password(passwordEncoder().encode("user")).roles("USER")
-//                .and()
-//                .withUser("admin")
-//                .password(passwordEncoder().encode("admin"))
-//                .roles("USER", "ADMIN");
-//    }
-//
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
-//
-//    private static final String[] AUTH_LIST = {
-//            "/swagger-resources/**",
-//            "/swagger-ui.html**",
-//            "/v2/api-docs",
-//            "/v3/api-docs",
-//            "/webjars/**"
-//    };
-
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//        if (enableSwagger)
-//            web.ignoring().antMatchers("/v2/api-docs",
-//                    "/configuration/ui",
-//                    "/swagger-resources/**",
-//                    "/configuration/security",
-//                    "/swagger-ui.html",
-//                    "/webjars/**");
-//    }
-
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests().antMatchers(AUTH_LIST).authenticated().and().httpBasic();
-//    }
-
+    /**
+     * This is default implementation of the OpenAPIDocumentation.
+     * This could and should be overwritten in the API Implementing the base service framework that adds this as
+     * a dependency.
+     */
     @Bean
-    public GroupedOpenApi publicApi() {
-        String[] packagesToScan = {"io.americanexpress.synapse.service.**", "io.americanexpress.service.book.rest.controller"};
-        return builder()
-                .group("synapse")
-                //  .packagesToScan(packagesToScan)
-                .pathsToMatch("/v1")
-//                .addOperationCustomizer(endpointCustomizer)
-                .build();
-    }
-
-    @Bean
-    public OpenAPI synapseOpenAPI() {
+    public OpenAPI customOpenAPI() {
         return new OpenAPI()
-                .info(new Info().title(title)
-                        .description(description)
-                        .version("v0.0.1")
+                .components(new Components())
+                .info(new Info().title("Synapse APIs")
+                        .description("This is a sample Spring Boot RESTful service using springdoc-openapi and OpenAPI 3.")
                         .license(new License().name("Apache 2.0").url(teamWebsite)))
                 .externalDocs(new ExternalDocumentation()
-                        .description(description)
+                        .description("test3")
                         .url(teamWebsite));
-
     }
-
-
 }
 

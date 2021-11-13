@@ -14,15 +14,17 @@
 package io.americanexpress.service.book.rest.config;
 
 
+import io.americanexpress.synapse.framework.api.docs.ApiDocsConfig;
 import io.americanexpress.synapse.service.rest.config.ServiceRestConfig;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @PropertySource("classpath:/service-book-application.properties")
-//@ComponentScan(basePackages = "io.americanexpress.service.book.rest")
-@Import({ServiceRestConfig.class, ApiDocsConfig.class})
+@ComponentScan(basePackages = "io.americanexpress.service.book.rest")
+@Import({ServiceRestConfig.class})
 public class BookConfig {
 
     public static final String BOOK_ENDPOINT = "/v1/books";

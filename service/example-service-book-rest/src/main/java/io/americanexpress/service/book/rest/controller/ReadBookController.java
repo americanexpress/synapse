@@ -23,7 +23,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "Read Book Service", description = "Provides book information")
+@Tag(name = "Read Book Service", description = "Provides a collection of book information.")
 @RestController
 @RequestMapping(BookConfig.BOOK_ENDPOINT)
 public class ReadBookController extends BaseReadPolyController<ReadBookRequest, ReadBookResponse, ReadBookService> {

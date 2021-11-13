@@ -38,9 +38,9 @@ public abstract class BaseUpdateController<I extends BaseServiceRequest, S exten
      *
      * @param serviceRequest body from the consumer
      */
+    @Operation(tags = "Update Operation", summary = "Updates a resource")
     @PutMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @Operation(tags = "Update Operation", summary = "Updates a resource")
     public void update(@Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
 

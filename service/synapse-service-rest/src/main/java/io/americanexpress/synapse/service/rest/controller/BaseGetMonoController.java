@@ -21,6 +21,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * The type Base read mono controller.
@@ -39,8 +41,8 @@ public class BaseGetMonoController<O extends BaseServiceResponse, S extends Base
      * @param identifier the identifier
      * @return the response entity
      */
+    @Operation(summary = "Read operation on path", description = "Read a resource based on a path variable.")
     @GetMapping("/{identifier}")
-    @Operation(summary = "Read Operation from Path", description = "Reads a resource based on path parameter.")
     public ResponseEntity<O> read(@PathVariable String identifier) {
         logger.entry(identifier);
         final O response = service.read(identifier);

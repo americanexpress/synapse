@@ -18,7 +18,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.Objects;
 
-@Schema
 public class ReadBookResponse extends BaseServiceResponse {
 
     private String title;
