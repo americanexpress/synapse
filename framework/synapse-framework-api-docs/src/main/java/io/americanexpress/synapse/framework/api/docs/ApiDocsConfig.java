@@ -16,6 +16,7 @@ package io.americanexpress.synapse.framework.api.docs;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import org.springframework.context.annotation.Bean;
@@ -48,12 +49,10 @@ public class ApiDocsConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .components(new Components())
-                .info(new Info().title("Synapse APIs")
-                        .description("This is a sample Spring Boot RESTful service using springdoc-openapi and OpenAPI 3.")
-                        .license(new License().name("Apache 2.0").url(teamWebsite)))
-                .externalDocs(new ExternalDocumentation()
-                        .description("test3")
-                        .url(teamWebsite));
+                .info(new Info().title(title)
+                        .description(description)
+                        .license(new License().name("Apache 2.0").url(teamWebsite))
+                        .contact(new Contact().name(teamName).url(teamWebsite).email(teamEmailAddress)));
     }
 }
 

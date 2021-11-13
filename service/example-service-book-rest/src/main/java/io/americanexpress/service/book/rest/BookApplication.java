@@ -15,20 +15,15 @@ package io.americanexpress.service.book.rest;
 
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
-import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
-import io.swagger.v3.oas.annotations.info.License;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
 @OpenAPIDefinition(info = @Info(
         title = "Book API",
         version = "v1.0.0",
-        description = "Rest API that provides book related information.",
-        license = @License(name = "Apache 2.0", url = "https://foo.bar"),
-        contact = @Contact(url = "https://gigantic-server.com", name = "Fred", email = "Fred@gigagantic-server.com")
-))
+        description = "Rest API that provides book related information."))
+@SpringBootApplication
 public class BookApplication {
 
     /**
