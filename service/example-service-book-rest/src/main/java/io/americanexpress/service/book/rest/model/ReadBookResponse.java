@@ -14,6 +14,7 @@
 package io.americanexpress.service.book.rest.model;
 
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.Objects;
 
@@ -23,7 +24,6 @@ public class ReadBookResponse extends BaseServiceResponse {
     private String author;
 
     public ReadBookResponse() {
-
     }
 
     public ReadBookResponse(String title, String author) {

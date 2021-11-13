@@ -19,7 +19,6 @@ import io.americanexpress.synapse.framework.exception.config.ExceptionConfig;
 import io.americanexpress.synapse.service.rest.interceptor.MetricInterceptor;
 import io.americanexpress.synapse.utilities.common.config.UtilitiesCommonConfig;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

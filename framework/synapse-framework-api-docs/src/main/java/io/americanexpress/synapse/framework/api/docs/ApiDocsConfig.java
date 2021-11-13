@@ -13,24 +13,14 @@
  */
 package io.americanexpress.synapse.framework.api.docs;
 
-import com.google.common.collect.Lists;
+import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.ExternalDocumentation;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.bind.annotation.RestController;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.ApiKey;
-import springfox.documentation.service.AuthorizationScope;
-import springfox.documentation.service.Contact;
-import springfox.documentation.service.SecurityReference;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spi.service.contexts.SecurityContext;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
-import java.util.List;
 
 
 /**
@@ -39,122 +29,30 @@ import java.util.List;
  * @author Gabriel Jimenez
  */
 @Configuration
-@EnableSwagger2
-//@EnableOpenApi
 public class ApiDocsConfig {
 
-    private static final String CORRELATION_ID = "Correlation-ID";
-    private static final String CLIENT_APP_ID = "Client-App-ID";
-    private static final String HEADER = "Header";
+    // These variables are defaulted to below values,
+    // but could be overridden and changes by client utilizing this framework.
+    private static final String teamName = "Team Synapse";
+    private static final String teamWebsite = "https://americanexpress.io/synapse/";
+    private static final String teamEmailAddress = "synapse@aexp.com";
+    public static final String title = "Synapse APIs";
+    private static final String description = "These are the specifications of the Synapse APIs";
 
-    // These variables are defaulted to below values, but could be overridden and changes by client utilizing this framework.
-    private String teamName = "Team Synapse";
-    private String teamWebsite = "https://americanexpress.io/synapse/";
-    private String teamEmailAddress = "synapse@aexp.com";
-    private String title = "Synapse APIs";
-    private String description = "These are the specifications of the Synapse APIs";
-
-    public String getTeamName() {
-        return teamName;
-    }
-
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
-    }
-
-    public String getTeamWebsite() {
-        return teamWebsite;
-    }
-
-    public void setTeamWebsite(String teamWebsite) {
-        this.teamWebsite = teamWebsite;
-    }
-
-    public String getTeamEmailAddress() {
-        return teamEmailAddress;
-    }
-
-    public void setTeamEmailAddress(String teamEmailAddress) {
-        this.teamEmailAddress = teamEmailAddress;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     /**
-     * Used to get basic information on the page.
-     *
-     * @return group name, headers, end points, etc.
+     * This is default implementation of the OpenAPIDocumentation.
+     * This could and should be overwritten in the API Implementing the base service framework that adds this as
+     * a dependency.
      */
     @Bean
-    public Docket synapseApi() {
-        //Register the REST controllers to use Swagger
-        return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(this.getApiInformation())
-                .select()
-                .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
-                .paths(PathSelectors.any())
-                .build()
-//                .securitySchemes()
-                .securityContexts(Lists.newArrayList(this.getSecurityContext()));
+    public OpenAPI customOpenAPI() {
+        return new OpenAPI()
+                .components(new Components())
+                .info(new Info().title(title)
+                        .description(description)
+                        .license(new License().name("Apache 2.0").url(teamWebsite))
+                        .contact(new Contact().name(teamName).url(teamWebsite).email(teamEmailAddress)));
     }
-
-    /**
-     * Used to return the API information such as contact details, description, etc.
-     *
-     * @return the API information
-     */
-    private ApiInfo getApiInformation() {
-        Contact contact = new Contact(this.getTeamName(), this.getTeamWebsite(), this.getTeamEmailAddress());
-        return new ApiInfoBuilder().title(this.getTitle())
-                .description(this.getDescription())
-                .contact(contact)
-                .version("1.0")
-                .build();
-    }
-
-    /**
-     * Used to get the headers for the API.
-     *
-     * @return the API keys
-     */
-    private List<ApiKey> getApiKeys() {
-        return Lists.newArrayList(new ApiKey(CORRELATION_ID, CORRELATION_ID, HEADER),
-                new ApiKey(CLIENT_APP_ID, CLIENT_APP_ID, HEADER));
-    }
-
-    /**
-     * Used to provide default authorization to each API operation.
-     *
-     * @return the security context
-     */
-    private SecurityContext getSecurityContext() {
-        return SecurityContext.builder().securityReferences(getDefaultSecurityReferences()).forPaths(PathSelectors.any()).build();
-    }
-
-    /**
-     * Gets the default security references to pass headers values for authorization.
-     *
-     * @return the list of new headers those are need for global authorization
-     */
-    private List<SecurityReference> getDefaultSecurityReferences() {
-        AuthorizationScope[] authorizationScopes = {};
-        return Lists.newArrayList(new SecurityReference(CORRELATION_ID, authorizationScopes),
-                new SecurityReference(CLIENT_APP_ID, authorizationScopes));
-    }
-
 }
 
