@@ -17,10 +17,9 @@ import io.americanexpress.synapse.service.rest.controller.helpers.PolyResponseEn
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.rest.service.BaseReadPolyService;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -47,27 +46,6 @@ public abstract class BaseReadPolyController<I extends BaseServiceRequest, O ext
     @Autowired
     private PolyResponseEntityCreator<O> polyResponseEntityCreator;
 
-    // TODO: remove
-//    /**
-//     * Get a list of multiple resources from the back end service.
-//     *
-//     * @param serviceRequest body from the consumer
-//     * @param httpServletResponse HttpServletResponse
-//     * @return a list of resources from the back end service
-//     */
-//    @ApiOperation(value = "Gets a collection of resources", response = ResponseEntity.class)
-//    @ApiResponses(value = {
-//            @ApiResponse(code = 200, message = "Ok"),
-//            @ApiResponse(code = 204, message = "No Content"),
-//            @ApiResponse(code = 400, message = "Bad Request"),
-//            @ApiResponse(code = 401, message = "Unauthorized"),
-//            @ApiResponse(code = 403, message = "Forbidden"),
-//    })
-//    @GetMapping
-//    public ResponseEntity<List<O>> readMultiple(@Valid I serviceRequest, HttpServletResponse httpServletResponse) {
-//        return read(serviceRequest, httpServletResponse);
-//    }
-
     /**
      * Get a list of multiple resources from the back end service.
      *
@@ -77,11 +55,11 @@ public abstract class BaseReadPolyController<I extends BaseServiceRequest, O ext
      */
     @Operation(tags = "Read Poly Operation", summary = "Summary Read a collection of resources", description = "Read a collection of resources")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Ok"),
-            @ApiResponse(code = 204, message = "No Content"),
-            @ApiResponse(code = 400, message = "Bad Request"),
-            @ApiResponse(code = 401, message = "Unauthorized"),
-            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(responseCode = "200", description = "Ok"),
+            @ApiResponse(responseCode = "204", description = "No Content"),
+            @ApiResponse(responseCode = "400", description = "Bad Request"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
     })
     @PostMapping(MULTIPLE_RESULTS)
     public ResponseEntity<List<O>> read(@Valid @RequestBody I serviceRequest, HttpServletResponse httpServletResponse) {
