@@ -14,7 +14,6 @@
 package io.americanexpress.service.book.rest.config;
 
 
-import io.americanexpress.synapse.framework.api.docs.ApiDocsConfig;
 import io.americanexpress.synapse.service.rest.config.ServiceRestConfig;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
