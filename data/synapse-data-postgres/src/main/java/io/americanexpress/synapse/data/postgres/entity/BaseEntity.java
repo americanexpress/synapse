@@ -47,18 +47,18 @@ public abstract class BaseEntity {
     protected Long identifier;
 
     /**
-     * Created Date
+     * Created Date Time
      */
     @CreatedDate
     @Column(name = "created_date_time", updatable = false)
     protected LocalDateTime createdDateTime;
 
     /**
-     * Last Modified Date
+     * Last Modified Date Time
      */
     @LastModifiedDate
-    @Column(name = "last_modified_date")
-    protected LocalDateTime lastModifiedDate;
+    @Column(name = "last_modified_date_time")
+    protected LocalDateTime lastModifiedDateTime;
 
     /**
      * Created By
@@ -111,17 +111,17 @@ public abstract class BaseEntity {
      *
      * @return the last modified date
      */
-    public LocalDateTime getLastModifiedDate() {
-        return lastModifiedDate;
+    public LocalDateTime getLastModifiedDateTime() {
+        return lastModifiedDateTime;
     }
 
     /**
      * Sets the last modified date for this entry.
      *
-     * @param modifiedDate the last modified date
+     * @param lastModifiedDateTime the last modified date
      */
-    public void setLastModifiedDate(LocalDateTime modifiedDate) {
-        this.lastModifiedDate = modifiedDate;
+    public void setLastModifiedDateTime(LocalDateTime lastModifiedDateTime) {
+        this.lastModifiedDateTime = lastModifiedDateTime;
     }
 
     /**
@@ -207,7 +207,7 @@ public abstract class BaseEntity {
         if (!Objects.equals(identifier, that.identifier)) return false;
         if (!Objects.equals(createdDateTime, that.createdDateTime))
             return false;
-        if (!Objects.equals(lastModifiedDate, that.lastModifiedDate))
+        if (!Objects.equals(lastModifiedDateTime, that.lastModifiedDateTime))
             return false;
         if (!Objects.equals(createdBy, that.createdBy)) return false;
         if (!Objects.equals(lastModifiedBy, that.lastModifiedBy))
@@ -219,7 +219,7 @@ public abstract class BaseEntity {
     public int hashCode() {
         int result = identifier != null ? identifier.hashCode() : 0;
         result = 31 * result + (createdDateTime != null ? createdDateTime.hashCode() : 0);
-        result = 31 * result + (lastModifiedDate != null ? lastModifiedDate.hashCode() : 0);
+        result = 31 * result + (lastModifiedDateTime != null ? lastModifiedDateTime.hashCode() : 0);
         result = 31 * result + (createdBy != null ? createdBy.hashCode() : 0);
         result = 31 * result + (lastModifiedBy != null ? lastModifiedBy.hashCode() : 0);
         result = 31 * result + (version != null ? version.hashCode() : 0);
@@ -231,7 +231,7 @@ public abstract class BaseEntity {
         return "BaseEntity{" +
                 "identifier=" + identifier +
                 ", createdDateTime=" + createdDateTime +
-                ", lastModifiedDate=" + lastModifiedDate +
+                ", lastModifiedDate=" + lastModifiedDateTime +
                 ", createdBy='" + createdBy + '\'' +
                 ", lastModifiedBy='" + lastModifiedBy + '\'' +
                 ", version=" + version +
