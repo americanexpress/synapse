@@ -56,6 +56,7 @@ public abstract class BaseCreateController<I extends BaseServiceRequest, O exten
 
         final O serviceResponse = service.create(serviceRequest);
         ResponseEntity<O> responseEntity = createResponseEntityCreator.create(serviceResponse);
+        System.out.println("################## json message converter");
 
         logger.exit();
         return responseEntity;

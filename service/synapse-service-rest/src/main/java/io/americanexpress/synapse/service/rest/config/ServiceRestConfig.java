@@ -82,23 +82,23 @@ public class ServiceRestConfig implements WebMvcConfigurer {
         registry.addInterceptor(interceptor).addPathPatterns("/**");
     }
 
-    /**
-     * This method used to convert attributes to snake case by default.
-     *
-     * @param converters list of http message converter.
-     *                   ex: if we have globalIdentifier, it will convert to global_identifier.
-     */
-    @Override
-    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
-        for (HttpMessageConverter<?> converter : converters) {
-            if (converter instanceof MappingJackson2HttpMessageConverter) {
-                MappingJackson2HttpMessageConverter jacksonConverter =
-                        ((MappingJackson2HttpMessageConverter) converter);
-                jacksonConverter.setObjectMapper(getObjectMapper());
-
-            }
-        }
-    }
+//    /**
+//     * This method used to convert attributes to snake case by default.
+//     *
+//     * @param converters list of http message converter.
+//     *                   ex: if we have globalIdentifier, it will convert to global_identifier.
+//     */
+//    @Override
+//    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+//        for (HttpMessageConverter<?> converter : converters) {
+//            if (converter instanceof MappingJackson2HttpMessageConverter) {
+//                MappingJackson2HttpMessageConverter jacksonConverter =
+//                        ((MappingJackson2HttpMessageConverter) converter);
+//                jacksonConverter.setObjectMapper(getObjectMapper());
+//
+//            }
+//        }
+//    }
 
     protected ObjectMapper getObjectMapper() {
         return defaultObjectMapper;
