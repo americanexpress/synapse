@@ -14,7 +14,7 @@
 package io.americanexpress.synapse.service.rest.controller.reactive;
 
 import io.americanexpress.synapse.service.rest.controller.BaseController;
-import io.americanexpress.synapse.service.rest.controller.helpers.MonoResponseEntityCreator;
+import io.americanexpress.synapse.service.rest.controller.reactive.helpers.ReactiveMonoResponseEntityCreator;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.rest.service.BaseReadMonoService;
@@ -43,7 +43,7 @@ public abstract class BaseReactiveReadMonoController<I extends BaseServiceReques
     public static final String INQUIRY_RESULTS = "/inquiry_results";
 
     @Autowired
-    private MonoResponseEntityCreator<O> monoResponseEntityCreator;
+    private ReactiveMonoResponseEntityCreator<O> reactiveMonoResponseEntityCreator;
 
     /**
      * Get a single resource from the back end service.
@@ -60,11 +60,11 @@ public abstract class BaseReactiveReadMonoController<I extends BaseServiceReques
             @ApiResponse(code = 403, message = "Forbidden"),
     })
     @PostMapping(INQUIRY_RESULTS)
-    public Mono<ResponseEntity<O>> read(@Valid @RequestBody I serviceRequest) {
+    public ResponseEntity<Mono<O>> read(@Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
 
-        final O serviceResponse = service.read(serviceRequest);
-        Mono<ResponseEntity<O>> responseEntity = Mono.just(monoResponseEntityCreator.create(serviceResponse));
+        O serviceResponse = service.read(serviceRequest);
+        ResponseEntity<Mono<O>> responseEntity = reactiveMonoResponseEntityCreator.create(Mono.just(serviceResponse));
 
         logger.exit(responseEntity);
         return responseEntity;

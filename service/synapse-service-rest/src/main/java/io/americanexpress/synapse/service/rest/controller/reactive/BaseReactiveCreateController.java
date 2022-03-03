@@ -14,7 +14,7 @@
 package io.americanexpress.synapse.service.rest.controller.reactive;
 
 import io.americanexpress.synapse.service.rest.controller.BaseController;
-import io.americanexpress.synapse.service.rest.controller.helpers.CreateResponseEntityCreator;
+import io.americanexpress.synapse.service.rest.controller.reactive.helpers.ReactiveCreateResponseEntityCreator;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.rest.service.BaseCreateService;
@@ -38,8 +38,7 @@ import javax.validation.Valid;
 public abstract class BaseReactiveCreateController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseCreateService<I, O>> extends BaseController<S> {
 
     @Autowired
-    private CreateResponseEntityCreator<O> createPostResponseEntity;
-
+    private ReactiveCreateResponseEntityCreator<O> reactiveCreateResponseEntityCreator;
 
     /**
      * Create a single resource.
@@ -48,14 +47,13 @@ public abstract class BaseReactiveCreateController<I extends BaseServiceRequest,
      * @return response to the consumer
      */
     @PostMapping
-    public Mono<ResponseEntity<O>> create(@Valid @RequestBody I serviceRequest) {
+    public ResponseEntity<Mono<O>> create(@Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
 
         final O serviceResponse = service.create(serviceRequest);
-        Mono<ResponseEntity<O>> responseEntity = Mono.just(createPostResponseEntity.create(serviceResponse));
+        ResponseEntity<Mono<O>> responseEntity = reactiveCreateResponseEntityCreator.create(serviceResponse);
 
         logger.exit();
         return responseEntity;
     }
-
 }
