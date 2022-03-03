@@ -22,8 +22,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 
@@ -37,7 +35,6 @@ import javax.validation.Valid;
  * @author Gabriel Jimenez
  */
 public abstract class BaseCreateController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseCreateService<I, O>> extends BaseController<S> {
-
 
     @Autowired
     private CreateResponseEntityCreator<O> createResponseEntityCreator;
@@ -54,39 +51,10 @@ public abstract class BaseCreateController<I extends BaseServiceRequest, O exten
     public ResponseEntity<O> create(@Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
 
-        final O serviceResponse = service.create(serviceRequest);
+        O serviceResponse = service.create(serviceRequest);
         ResponseEntity<O> responseEntity = createResponseEntityCreator.create(serviceResponse);
 
         logger.exit();
         return responseEntity;
     }
-
-//    /**
-//     * Create the POST response entity by specifying the creation location in the HTTP headers.
-//     *
-//     * @param serviceResponse body to set in the response entity
-//     * @return the POST response entity
-//     */
-//    protected ResponseEntity<O> createPostResponseEntity(O serviceResponse) {
-//
-//        // Default URI location in case the response identifier is null
-//        String responseIdentifier = "0";
-//
-//        if (serviceResponse != null) {
-//            String identifier = serviceResponse.getIdentifier();
-//            if (StringUtils.isNotBlank(identifier)) {
-//                responseIdentifier = identifier.trim();
-//            }
-//        }
-//
-//        // Build the resource location to specify in the response
-//        URI location = ServletUriComponentsBuilder
-//                .fromCurrentRequest()
-//                .path("/{identifier}")
-//                .buildAndExpand(responseIdentifier)
-//                .toUri();
-//        return ResponseEntity.created(location).build();
-//    }
-
-
 }
