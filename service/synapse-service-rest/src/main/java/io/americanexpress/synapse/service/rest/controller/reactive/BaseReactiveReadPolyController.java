@@ -30,7 +30,6 @@ import reactor.core.publisher.Flux;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.util.List;
 
 /**
  * <code>BaseReadController</code> class specifies the prototypes for listening for requests from the consumer
@@ -63,12 +62,12 @@ public abstract class BaseReactiveReadPolyController<I extends BaseServiceReques
             @ApiResponse(code = 403, message = "Forbidden"),
     })
     @PostMapping(MULTIPLE_RESULTS)
-    public Flux<ResponseEntity<List<O>>> read(@Valid @RequestBody I serviceRequest, HttpServletResponse httpServletResponse) {
+    public ResponseEntity<Flux<O>> read(@Valid @RequestBody I serviceRequest, HttpServletResponse httpServletResponse) {
         logger.entry(serviceRequest);
 
         final Page<O> page = service.read(serviceRequest);
 
-        final Flux<ResponseEntity<List<O>>> responseEntity = Flux.just(polyResponseEntityCreator.create(page, httpServletResponse));
+        final ResponseEntity<Flux<O>> responseEntity = polyResponseEntityCreator.create(page, httpServletResponse);
 
         logger.exit(responseEntity);
         return responseEntity;

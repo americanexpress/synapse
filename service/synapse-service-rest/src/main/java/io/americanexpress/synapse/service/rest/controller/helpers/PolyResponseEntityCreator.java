@@ -14,6 +14,8 @@
 package io.americanexpress.synapse.service.rest.controller.helpers;
 
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
+import reactor.core.publisher.Flux;
+
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,8 +28,8 @@ import java.util.List;
 @Component
 public class PolyResponseEntityCreator<O extends BaseServiceResponse> {
 
-    public ResponseEntity<List<O>> create(Page<O> page, HttpServletResponse httpServletResponse) {
-        final ResponseEntity<List<O>> responseEntity;
+    public ResponseEntity<Flux<O>> create(Page<O> page, HttpServletResponse httpServletResponse) {
+        ResponseEntity<Flux<O>> responseEntity;
         List<O> pageContent = null;
         if (page != null) {
             pageContent = page.getContent();
@@ -36,7 +38,7 @@ public class PolyResponseEntityCreator<O extends BaseServiceResponse> {
             responseEntity = new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             setHeadersInResponse(page, httpServletResponse);
-            responseEntity = new ResponseEntity<>(pageContent, HttpStatus.OK);
+            responseEntity = new ResponseEntity<>(Flux.fromIterable(pageContent), HttpStatus.OK);
         }
         return responseEntity;
     }

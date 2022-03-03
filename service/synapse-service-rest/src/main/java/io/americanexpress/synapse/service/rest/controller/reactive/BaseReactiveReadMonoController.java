@@ -60,11 +60,11 @@ public abstract class BaseReactiveReadMonoController<I extends BaseServiceReques
             @ApiResponse(code = 403, message = "Forbidden"),
     })
     @PostMapping(INQUIRY_RESULTS)
-    public Mono<ResponseEntity<O>> read(@Valid @RequestBody I serviceRequest) {
+    public ResponseEntity<Mono<O>> read(@Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
 
         final O serviceResponse = service.read(serviceRequest);
-        Mono<ResponseEntity<O>> responseEntity = Mono.just(monoResponseEntityCreator.create(serviceResponse));
+        ResponseEntity<Mono<O>> responseEntity = monoResponseEntityCreator.create(Mono.just(serviceResponse));
 
         logger.exit(responseEntity);
         return responseEntity;
