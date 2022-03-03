@@ -11,17 +11,19 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.service.rest.controller.helpers;
+package io.americanexpress.synapse.service.rest.controller.reactive.helpers;
 
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
+import reactor.core.publisher.Mono;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MonoResponseEntityCreator<O extends BaseServiceResponse> {
+public class ReactiveMonoResponseEntityCreator<O extends BaseServiceResponse> {
 
-    public ResponseEntity<O> create(O serviceResponse) {
+    public ResponseEntity<Mono<O>> create(Mono<O> serviceResponse) {
         return serviceResponse == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : ResponseEntity.ok(serviceResponse);
     }
 }

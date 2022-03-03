@@ -14,7 +14,7 @@
 package io.americanexpress.synapse.service.rest.controller.reactive;
 
 import io.americanexpress.synapse.service.rest.controller.BaseController;
-import io.americanexpress.synapse.service.rest.controller.helpers.PolyResponseEntityCreator;
+import io.americanexpress.synapse.service.rest.controller.reactive.helpers.ReactivePolyResponseEntityCreator;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.rest.service.BaseReadPolyService;
@@ -45,7 +45,7 @@ public abstract class BaseReactiveReadPolyController<I extends BaseServiceReques
     public static final String MULTIPLE_RESULTS = "/multiple_results";
 
     @Autowired
-    private PolyResponseEntityCreator<O> polyResponseEntityCreator;
+    private ReactivePolyResponseEntityCreator<O> reactivePolyResponseEntityCreator;
 
     /**
      * Get a list of multiple resources from the back end service.
@@ -65,9 +65,9 @@ public abstract class BaseReactiveReadPolyController<I extends BaseServiceReques
     public ResponseEntity<Flux<O>> read(@Valid @RequestBody I serviceRequest, HttpServletResponse httpServletResponse) {
         logger.entry(serviceRequest);
 
-        final Page<O> page = service.read(serviceRequest);
+        Page<O> page = service.read(serviceRequest);
 
-        final ResponseEntity<Flux<O>> responseEntity = polyResponseEntityCreator.create(page, httpServletResponse);
+        ResponseEntity<Flux<O>> responseEntity = reactivePolyResponseEntityCreator.create(page, httpServletResponse);
 
         logger.exit(responseEntity);
         return responseEntity;
