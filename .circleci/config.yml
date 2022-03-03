@@ -81,6 +81,7 @@ workflows:
               only:
                 - develop
                 - /feature.*/
+                - /bugfix.*/
       - snapshot-maven-central-deploy-job:
           filters:
             branches:
