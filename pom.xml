@@ -86,6 +86,11 @@
                 <artifactId>synapse-archetype-client-graphql</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-archetype-client-rest-reactive-get</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <!--Framework-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
