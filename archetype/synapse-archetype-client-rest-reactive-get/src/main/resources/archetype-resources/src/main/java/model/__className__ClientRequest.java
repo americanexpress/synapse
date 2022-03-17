@@ -13,14 +13,14 @@
  */
 package ${package}.model;
 
-import io.americanexpress.synapse.client.graphql.model.BaseGraphQLClientResponse;
+import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 
 /**
- * {@code ${className}GraphQLData} class represents
- * the client response from the ${apiName} GraphQL API.
+ * {@code ${className}ClientRequest} class represents
+ * the client response from the ${apiName} REST API.
  * @author ${author}
  *
  */
-public class ${className}GraphQLClientResponse extends BaseGraphQLClientResponse<${className}GraphQLData> {
-
+public class ${className}ClientRequest implements BaseClientRequest {
+	
 }
