@@ -15,14 +15,14 @@ package ${package}.handler;
 
 import org.springframework.stereotype.Component;
 
-import io.americanexpress.synapse.client.rest.handler.BaseRestResponseErrorHandler;
+import io.americanexpress.synapse.client.rest.handler.BaseReactiveRestResponseErrorHandler;
 
 /**
- * {@code ${className}GraphQLResponseErrorHandler} class handles all of the errors thrown by the ${apiName} GraphQL API.
+ * {@code ${className}ReactiveRestResponseErrorHandler} class handles all of the errors thrown by the ${apiName} REST API.
  * @author ${author}
  * 
  */
 @Component
-public class ${className}GraphQLResponseErrorHandler extends BaseRestResponseErrorHandler {
+public class ${className}ReactiveRestResponseErrorHandler extends BaseReactiveRestResponseErrorHandler {
 
 }
