@@ -22,11 +22,11 @@ import org.springframework.context.annotation.PropertySource;
 
 import io.americanexpress.synapse.client.rest.config.BaseReactiveRestClientConfig;
 
-import ${package}.client.${className}GetReactiveRestClient;
+import ${package}.client.${className}PostReactiveRestClient;
 
 /**
  * {@code ${className}ReactiveRestClientConfig} class sets the configurations
- * for the {@link ${className}GetReactiveRestClient}.
+ * for the {@link ${className}PostReactiveRestClient}.
  * @author ${author}
  */
 @Import(BaseReactiveRestClientConfig.class)
@@ -38,14 +38,14 @@ public class ${className}ReactiveRestClientConfig extends BaseReactiveRestClient
 	/**
 	 * Used to connect to the ${apiName} REST API.
 	 */
-	private final ${className}GetReactiveRestClient reactiveRestClient;
+	private final ${className}PostReactiveRestClient reactiveRestClient;
 	
 	/**
 	 * Argument constructor creates a new instance of ${className}ReactiveRestClientConfig with given values.
-	 * @param getReactiveRestClient used to connect to the ${apiName} REST API
+	 * @param reactiveRestClient used to connect to the ${apiName} REST API
 	 */
 	@Autowired
-	public ${className}ReactiveRestClientConfig(${className}GetReactiveRestClient reactiveRestClient) {
+	public ${className}ReactiveRestClientConfig(${className}PostReactiveRestClient reactiveRestClient) {
 		this.reactiveRestClient = reactiveRestClient;
 	}
 	
