@@ -42,7 +42,7 @@ public class ${className}ReactiveRestClientConfig extends BaseReactiveRestClient
 	
 	/**
 	 * Argument constructor creates a new instance of ${className}ReactiveRestClientConfig with given values.
-	 * @param getReactiveRestClient used to connect to the ${apiName} REST API
+	 * @param reactiveRestClient used to connect to the ${apiName} REST API
 	 */
 	@Autowired
 	public ${className}ReactiveRestClientConfig(${className}GetReactiveRestClient reactiveRestClient) {
