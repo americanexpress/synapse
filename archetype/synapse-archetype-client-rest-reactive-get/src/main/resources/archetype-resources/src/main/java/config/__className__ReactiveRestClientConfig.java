@@ -20,13 +20,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 
-import ${package}.client.${className}GetReactiveRestClient;
-import ${package}.handler.${className}GetReactiveRestResponseErrorHandler;
+import io.americanexpress.synapse.client.rest.config.BaseReactiveRestClientConfig;
 
-import io.americanexpress.synapse.client.rest.config.BaseRestReactiveClientConfig;
+import ${package}.client.${className}GetReactiveRestClient;
 
 /**
- * {@code ${className}GetReactiveRestClientConfig} class sets the configurations
+ * {@code ${className}ReactiveRestClientConfig} class sets the configurations
  * for the {@link ${className}GetReactiveRestClient}.
  * @author ${author}
  */
@@ -34,7 +33,7 @@ import io.americanexpress.synapse.client.rest.config.BaseRestReactiveClientConfi
 @PropertySource("classpath:client-application.properties")
 @ComponentScan("${package}")
 @Configuration
-public class ${className}GetReactiveRestClientConfig extends BaseReactiveRestClientConfig {
+public class ${className}ReactiveRestClientConfig extends BaseReactiveRestClientConfig {
 
 	/**
 	 * Used to connect to the ${apiName} REST API.
@@ -42,11 +41,11 @@ public class ${className}GetReactiveRestClientConfig extends BaseReactiveRestCli
 	private final ${className}GetReactiveRestClient getReactiveRestClient;
 	
 	/**
-	 * Argument constructor creates a new instance of ${className}GetReactiveRestClientConfig with given values.
+	 * Argument constructor creates a new instance of ${className}ReactiveRestClientConfig with given values.
 	 * @param getReactiveRestClient used to connect to the ${apiName} REST API
 	 */
 	@Autowired
-	public ${className}GetReactiveRestClientConfig(${className}GetReactiveRestClient getReactiveRestClient) {
+	public ${className}ReactiveRestClientConfig(${className}GetReactiveRestClient getReactiveRestClient) {
 		this.getReactiveRestClient = getReactiveRestClient;
 	}
 	

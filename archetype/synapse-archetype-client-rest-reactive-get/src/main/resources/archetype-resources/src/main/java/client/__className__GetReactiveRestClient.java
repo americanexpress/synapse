@@ -15,13 +15,13 @@ package ${package}.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import io.americanexpress.synapse.client.rest.client.BaseGetReactiveRestClient;
+import io.americanexpress.synapse.client.rest.client.ReactiveRestClient;
+
 import ${package}.factory.${className}ClientHttpHeadersFactory;
 import ${package}.handler.${className}ReactiveRestResponseErrorHandler;
 import ${package}.model.${className}ClientRequest;
 import ${package}.model.${className}ClientResponse;
-
-import io.americanexpress.synapse.client.rest.client.ReactiveRestClient;
-import io.americanexpress.synapse.client.rest.handler.ReactiveRestResponseErrorHandler;
 
 /**
  * {@code ${className}GetReactiveRestClient} class is the client
@@ -29,7 +29,7 @@ import io.americanexpress.synapse.client.rest.handler.ReactiveRestResponseErrorH
  * @author ${author}
  *
  */
-@GraphQLClient
+@ReactiveRestClient
 public class ${className}GetReactiveRestClient extends BaseGetReactiveRestClient<${className}ClientRequest, ${className}ClientResponse, ${className}ClientHttpHeadersFactory> {
 
 	/**
