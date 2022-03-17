@@ -27,7 +27,7 @@
 			<defaultValue>Example Bookstore</defaultValue>
 		</requiredProperty>
 		<requiredProperty key="url">
-			<defaultValue>http://localhost:8080/graphql</defaultValue>
+			<defaultValue>http://localhost:8080</defaultValue>
 		</requiredProperty>
 		<requiredProperty key="className">
 			<defaultValue>ExampleBook</defaultValue>
