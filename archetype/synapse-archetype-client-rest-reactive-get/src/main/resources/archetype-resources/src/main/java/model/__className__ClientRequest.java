@@ -17,7 +17,7 @@ import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 
 /**
  * {@code ${className}ClientRequest} class represents
- * the client response from the ${apiName} REST API.
+ * the client request to the ${apiName} REST API.
  * @author ${author}
  *
  */

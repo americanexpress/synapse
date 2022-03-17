@@ -25,7 +25,7 @@ import ${package}.model.${className}ClientResponse;
 
 /**
  * {@code ${className}GetReactiveRestClient} class is the client
- * used to query from the ${apiName} REST API.
+ * used to connect to the ${apiName} REST API.
  * @author ${author}
  *
  */
