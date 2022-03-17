@@ -17,10 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import ${package}.factory.${className}ClientHttpHeadersFactory;
 import ${package}.handler.${className}ReactiveRestResponseErrorHandler;
-import ${package}.model.${className}GetReactiveClientRequest;
-import ${package}.model.${className}GetReactiveClientResponse;
+import ${package}.model.${className}ClientRequest;
+import ${package}.model.${className}ClientResponse;
 
-import io.americanexpress.synapse.client.rest.client.BaseGraphQLClient;
 import io.americanexpress.synapse.client.rest.client.ReactiveRestClient;
 import io.americanexpress.synapse.client.rest.handler.ReactiveRestResponseErrorHandler;
 
@@ -31,7 +30,7 @@ import io.americanexpress.synapse.client.rest.handler.ReactiveRestResponseErrorH
  *
  */
 @GraphQLClient
-public class ${className}GetReactiveRestClient extends BaseGetReactiveRestClient<${className}GetReactiveClientRequest, ${className}GetReactiveClientResponse, ${className}ClientHttpHeadersFactory> {
+public class ${className}GetReactiveRestClient extends BaseGetReactiveRestClient<${className}ClientRequest, ${className}ClientResponse, ${className}ClientHttpHeadersFactory> {
 
 	/**
      * Argument constructor creates a new instance of ${className}GetReactiveRestClient with given values.
