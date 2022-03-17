@@ -17,12 +17,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 /**
- * {@code ${className}GraphQLClientTestConfig} class sets the test configurations
- * for the {@link ${className}GraphQLClient}.
+ * {@code ${className}ReactiveRestClientTestConfig} class sets the test configurations
+ * for the {@link ${className}GetReactiveRestClient}.
  * @author ${author}
  */
-@Import(${className}GraphQLClientConfig.class)
+@Import(${className}ReactiveRestClientConfig.class)
 @Configuration
-public class ${className}GraphQLClientTestConfig {
+public class ${className}ReactiveRestClientTestConfig {
 
 }
