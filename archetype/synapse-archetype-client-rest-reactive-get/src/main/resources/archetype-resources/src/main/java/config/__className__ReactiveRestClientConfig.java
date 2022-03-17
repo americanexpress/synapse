@@ -38,15 +38,15 @@ public class ${className}ReactiveRestClientConfig extends BaseReactiveRestClient
 	/**
 	 * Used to connect to the ${apiName} REST API.
 	 */
-	private final ${className}GetReactiveRestClient getReactiveRestClient;
+	private final ${className}GetReactiveRestClient reactiveRestClient;
 	
 	/**
 	 * Argument constructor creates a new instance of ${className}ReactiveRestClientConfig with given values.
 	 * @param getReactiveRestClient used to connect to the ${apiName} REST API
 	 */
 	@Autowired
-	public ${className}ReactiveRestClientConfig(${className}GetReactiveRestClient getReactiveRestClient) {
-		this.getReactiveRestClient = getReactiveRestClient;
+	public ${className}ReactiveRestClientConfig(${className}GetReactiveRestClient reactiveRestClient) {
+		this.reactiveRestClient = reactiveRestClient;
 	}
 	
 	/**
@@ -55,6 +55,6 @@ public class ${className}ReactiveRestClientConfig extends BaseReactiveRestClient
 	@Value("${client.url}")
 	@Override
 	protected void initialize(String destinationUrl) {
-		initializeClient(destinationUrl, getReactiveRestClient);
+		initializeClient(destinationUrl, reactiveRestClient);
 	}
 }

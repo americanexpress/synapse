@@ -42,14 +42,14 @@ import ${package}.model.${className}ClientResponse;
 class ${className}GetReactiveRestClientIT {
 
 	@Autowired
-	private ${className}GetReactiveRestClient getReactiveRestClient;
+	private ${className}GetReactiveRestClient reactiveRestClient;
 	
 	@Test
 	void callMonoService_givenValidRequest_expectedValidResponse() throws Exception {
 		// TODO: please add any client headers required by the back end API
 		ClientHeaders clientHeaders = new ClientHeaders();
 		${className}ClientRequest clientRequest = new ${className}ClientRequest();
-		Mono<${className}ClientResponse> clientResponseMono = getReactiveRestClient.callMonoService(clientHeaders, clientRequest);
+		Mono<${className}ClientResponse> clientResponseMono = reactiveRestClient.callMonoService(clientHeaders, clientRequest);
 		${className}ClientResponse clientResponse = clientResponseMono.block();
 		assertNotNull(clientResponse, CommonAssertionMessages.VALUE_NULL);
 	}
