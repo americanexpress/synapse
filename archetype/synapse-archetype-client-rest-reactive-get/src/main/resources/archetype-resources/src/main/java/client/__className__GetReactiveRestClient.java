@@ -16,11 +16,13 @@ package ${package}.client;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import ${package}.factory.${className}ClientHttpHeadersFactory;
-import ${package}.model.${className}GraphQLClientResponse;
-import ${package}.model.${className}GraphQLData;
+import ${package}.handler.${className}ReactiveRestResponseErrorHandler;
+import ${package}.model.${className}GetReactiveClientRequest;
+import ${package}.model.${className}GetReactiveClientResponse;
 
 import io.americanexpress.synapse.client.rest.client.BaseGraphQLClient;
 import io.americanexpress.synapse.client.rest.client.ReactiveRestClient;
+import io.americanexpress.synapse.client.rest.handler.ReactiveRestResponseErrorHandler;
 
 /**
  * {@code ${className}GetReactiveRestClient} class is the client
@@ -29,14 +31,15 @@ import io.americanexpress.synapse.client.rest.client.ReactiveRestClient;
  *
  */
 @GraphQLClient
-public class ${className}GetReactiveRestClient extends BaseGraphQLClient<${className}GraphQLData, ${className}GraphQLClientResponse, ${className}ClientHttpHeadersFactory> {
+public class ${className}GetReactiveRestClient extends BaseGetReactiveRestClient<${className}GetReactiveClientRequest, ${className}GetReactiveClientResponse, ${className}ClientHttpHeadersFactory> {
 
 	/**
-     * Argument constructor creates a new instance of ${className}GraphQLClient with given values.
+     * Argument constructor creates a new instance of ${className}GetReactiveRestClient with given values.
      * @param clientHttpHeadersFactory HTTP headers factory used to produce the custom HTTP headers required to consume the back end service
+     * @param reactiveRestResponseErrorHandler used to handle errors from the reactive REST client
      */
 	@Autowired
-	public ${className}GraphQLClient(${className}ClientHttpHeadersFactory clientHttpHeadersFactory) {
-		super(clientHttpHeadersFactory);
+	public ${className}GetReactiveRestClient(${className}ClientHttpHeadersFactory clientHttpHeadersFactory, ${className}ReactiveRestResponseErrorHandler reactiveRestResponseErrorHandler) {
+		super(clientHttpHeadersFactory, reactiveRestResponseErrorHandler);
 	}
 }
