@@ -21,36 +21,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import ${package}.config.${className}GraphQLClientTestConfig;
-import ${package}.model.${className}GraphQLClientResponse;
-
-import io.americanexpress.synapse.client.graphql.model.GraphQLClientRequest;
 import io.americanexpress.synapse.client.rest.model.ClientHeaders;
 import io.americanexpress.synapse.framework.test.CommonAssertionMessages;
-import io.americanexpress.synapse.utilities.common.io.IOUtils;
+import reactor.core.publisher.Mono;
+
+import ${package}.config.${className}ReactiveRestClientTestConfig;
+import ${package}.model.${className}ClientRequest;
+import ${package}.model.${className}ClientResponse;
 
 /**
- * {@code ${className}GraphQLClientIT} class performs integration tests
- * for the {@link ${className}GraphQLClient}.
+ * {@code ${className}GetReactiveRestClientIT} class performs integration tests
+ * for the {@link ${className}GetReactiveRestClient}.
  * <p>
- * Be sure that the ${apiName} GraphQL API is running and that a valid
- * GraphQL query against the ${apiName} GraphQL API is in {@code src/test/resources}
+ * Be sure that the ${apiName} REST API is running
  * prior to running this integration test.
  * @author ${author}
  */
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = ${className}GraphQLClientTestConfig.class)
-class ${className}GraphQLClientIT {
+@ContextConfiguration(classes = ${className}ReactiveRestClientTestConfig.class)
+class ${className}GetReactiveRestClientIT {
 
 	@Autowired
-	private ${className}GraphQLClient graphQLClient;
+	private ${className}GetReactiveRestClient getReactiveRestClient;
 	
 	@Test
 	void callMonoService_givenValidRequest_expectedValidResponse() throws Exception {
-		String query = IOUtils.readFileToAString("sample-query.txt");
-		GraphQLClientRequest graphQLClientRequest = new GraphQLClientRequest();
-		graphQLClientRequest.setQuery(query);
-		${className}GraphQLClientResponse graphQLClientResponse = graphQLClient.callMonoService(new ClientHeaders(), graphQLClientRequest);
-		assertNotNull(graphQLClientResponse, CommonAssertionMessages.VALUE_NULL);
+		// TODO: please add any client headers required by the back end API
+		ClientHeaders clientHeaders = new ClientHeaders();
+		${className}ClientRequest clientRequest = new ${className}ClientRequest();
+		Mono<${className}ClientResponse> clientResponseMono = getReactiveRestClient.callMonoService(clientHeaders, clientRequest);
+		${className}ClientResponse clientResponse = clientResponseMono.block();
+		assertNotNull(clientResponse, CommonAssertionMessages.VALUE_NULL);
 	}
 }
