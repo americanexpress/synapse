@@ -16,28 +16,29 @@ package ${package}.factory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 
-import io.americanexpress.synapse.client.graphql.model.GraphQLClientRequest;
 import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
 import io.americanexpress.synapse.client.rest.model.ClientHeaders;
 
+import ${package}.model.${className}ClientRequest;
+
 /**
  * {@code ${className}ClientHttpHeadersFactory} class creates the the client HTTP headers
- * for the ${apiName} GraphQL API.
+ * for the ${apiName} REST API.
  * @author ${author}
  */
 @Component
-public class ${className}ClientHttpHeadersFactory extends BaseClientHttpHeadersFactory<GraphQLClientRequest> {
+public class ${className}ClientHttpHeadersFactory extends BaseClientHttpHeadersFactory<${className}ClientRequest> {
 
 	/**
      * Create the client HTTP headers.
      *
      * @param clientHeaders containing the headers of the request to this API
-     * @param graphQLClientRequest containing the body of the request to this API
+     * @param clientRequest containing the body of the request to this API
      * @param url of the API
      * @return the client HTTP headers
      */
 	@Override
-	public HttpHeaders create(ClientHeaders clientHeaders, GraphQLClientRequest graphQLClientRequest, String url) {
+	public HttpHeaders create(ClientHeaders clientHeaders, ${className}ClientRequest clientRequest, String url) {
 		// TODO: please add any HTTP headers required by the back end API
 		HttpHeaders httpHeaders = new HttpHeaders();
 		return httpHeaders;
