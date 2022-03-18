@@ -31,7 +31,7 @@ public class ${className}ClientHttpHeadersFactory extends BaseClientHttpHeadersF
 
 	/**
 	 * Create the client HTTP headers.
-     *
+	 * 
      * @param clientHeaders containing the headers of the request to this API
      * @param clientRequest containing the body of the request to this API
      * @param url of the API
