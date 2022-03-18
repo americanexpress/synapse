@@ -28,5 +28,6 @@
     <modules>
     	<module>synapse-archetype-client-graphql</module>
     	<module>synapse-archetype-client-rest-reactive-get</module>
+    	<module>synapse-archetype-client-rest-reactive-post</module>
     </modules>
 </project>
