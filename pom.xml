@@ -59,7 +59,7 @@
         <junit.jupiter.version>5.6.2</junit.jupiter.version>
 
         <!--Jackson-->
-        <jackson.version>2.12.4</jackson.version>
+        <jackson.version>2.13.2</jackson.version>
 
         <!--Plugins-->
         <jaxws-maven-plugin.version>2.5</jaxws-maven-plugin.version>
