@@ -49,7 +49,7 @@
         <springfox-swagger.version>2.9.2</springfox-swagger.version>
 
         <!-- GraphQL -->
-        <spring-boot-graphql.version>11.0.0</spring-boot-graphql.version>
+        <spring-boot-graphql.version>11.1.0</spring-boot-graphql.version>
 
         <!--Mock Dependency Versions-->
         <mockito.version>2.23.4</mockito.version>
