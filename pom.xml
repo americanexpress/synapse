@@ -48,7 +48,10 @@
         <!--SpringFox-->
         <springfox-swagger.version>2.9.2</springfox-swagger.version>
 
-        <!-- GraphQL -->
+        <!--OpenAPI SpringDoc-->
+        <openapi-springdoc.version>1.6.6</openapi-springdoc.version>
+
+        <!--GraphQL-->
         <spring-boot-graphql.version>11.1.0</spring-boot-graphql.version>
 
         <!--Mock Dependency Versions-->
@@ -477,6 +480,11 @@
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
@@ -485,7 +493,11 @@
                 <artifactId>jackson-dataformat-xml</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.fasterxml.jackson.module</groupId>
+                <artifactId>jackson-module-jaxb-annotations</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
 
             <!--Mock Dependencies-->
             <dependency>
@@ -607,6 +619,28 @@
                         <artifactId>quarkus-ide-launcher</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+
+            <!--OpenAPI SpringDocs-->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${openapi-springdoc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-webmvc-core</artifactId>
+                <version>${openapi-springdoc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-webflux-ui</artifactId>
+                <version>${openapi-springdoc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-data-rest</artifactId>
+                <version>${openapi-springdoc.version}</version>
             </dependency>
 
             <!--Springfox Swagger-->

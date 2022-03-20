@@ -37,7 +37,7 @@ public final class ConnectionCursorUtil {
 	
 	/**
 	 * Get the {@link ConnectionCursor} from this cursor.
-	 * @param cursor the cursor
+	 * @param uuid the identifier
 	 * @return the {@link ConnectionCursor}
 	 */
 	public static final ConnectionCursor from(UUID uuid) {
