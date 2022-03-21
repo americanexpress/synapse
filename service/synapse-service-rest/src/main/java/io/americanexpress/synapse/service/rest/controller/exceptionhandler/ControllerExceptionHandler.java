@@ -25,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -119,6 +120,21 @@ public class ControllerExceptionHandler {
         logger.warn("Method argument is not valid", methodArgumentNotValidException);
         ErrorResponse errorResponse = inputValidationErrorHandler.handleInputValidationErrorMessage(methodArgumentNotValidException.getBindingResult());
         final ResponseEntity<ErrorResponse> errorResponseEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+        logger.exit(errorResponseEntity);
+        return errorResponseEntity;
+    }
+    
+    /**
+     * Handle BindingExceptions that were thrown by the application due to constraint violations on request models.
+     *
+     * @param bindException thrown by the application
+     * @return the error response with HTTP status code 400
+     */
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(BindException bindException) {
+        logger.warn("Request fields are not valid", bindException);
+        ErrorResponse errorResponse = inputValidationErrorHandler.handleInputValidationErrorMessage(bindException.getBindingResult());
+        ResponseEntity<ErrorResponse> errorResponseEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
         logger.exit(errorResponseEntity);
         return errorResponseEntity;
     }
