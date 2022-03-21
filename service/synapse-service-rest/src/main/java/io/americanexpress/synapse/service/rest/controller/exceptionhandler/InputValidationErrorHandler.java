@@ -23,6 +23,7 @@ import org.slf4j.ext.XLoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 
 /**
  * InputValidationErrorHandler class creates the error response containing the input validation errors.
@@ -48,23 +49,27 @@ public class InputValidationErrorHandler {
 
         // Add all of the error messages separated by commas
         StringJoiner errorMessageJoiner = new StringJoiner(", ");
-        String defaultErrorMessage;
+        String errorMessage;
         String field;
-        for (final FieldError fieldError : bindingResult.getFieldErrors()) {
-            defaultErrorMessage = fieldError.getDefaultMessage();
-            field = fieldError.getField();
-            if (!field.contains("Valid")) {
-                errorMessageJoiner.add(field + " " + defaultErrorMessage);
+        for (ObjectError objectError : bindingResult.getAllErrors()) {
+            errorMessage = objectError.getDefaultMessage();
+            if(objectError instanceof FieldError) {
+            	field = ((FieldError) objectError).getField();
+                if (!field.contains("Valid")) {
+                    errorMessageJoiner.add(field + " " + errorMessage);
+                } else {
+                    errorMessageJoiner.add(errorMessage);
+                }
             } else {
-                errorMessageJoiner.add(defaultErrorMessage);
+            	errorMessageJoiner.add(errorMessage);
             }
         }
 
         // Create the error response
-        final ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_4XX_ERROR,
-                ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE,
-                errorMessageJoiner.toString(),
-                "Input validation");
+        ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_4XX_ERROR,
+            ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE,
+            errorMessageJoiner.toString(),
+            "Input validation");
 
         logger.exit(errorResponse);
         return errorResponse;
