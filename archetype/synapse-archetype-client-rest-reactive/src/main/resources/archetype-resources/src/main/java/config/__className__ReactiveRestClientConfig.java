@@ -22,7 +22,10 @@ import org.springframework.context.annotation.PropertySource;
 
 import io.americanexpress.synapse.client.rest.config.BaseReactiveRestClientConfig;
 
+import ${package}.client.${className}DeleteReactiveRestClient;
 import ${package}.client.${className}GetReactiveRestClient;
+import ${package}.client.${className}PostReactiveRestClient;
+import ${package}.client.${className}PutReactiveRestClient;
 
 /**
  * {@code ${className}ReactiveRestClientConfig} class sets the configurations
@@ -38,15 +41,39 @@ public class ${className}ReactiveRestClientConfig extends BaseReactiveRestClient
 	/**
 	 * Used to connect to the ${apiName} REST API.
 	 */
-	private final ${className}GetReactiveRestClient reactiveRestClient;
+	private final ${className}GetReactiveRestClient getReactiveRestClient;
+	
+	/**
+	 * Used to connect to the ${apiName} REST API.
+	 */
+	private final ${className}PostReactiveRestClient postReactiveRestClient;
+	
+	/**
+	 * Used to connect to the ${apiName} REST API.
+	 */
+	private final ${className}PutReactiveRestClient putReactiveRestClient;
+	
+	/**
+	 * Used to connect to the ${apiName} REST API.
+	 */
+	private final ${className}DeleteReactiveRestClient deleteReactiveRestClient;
 	
 	/**
 	 * Argument constructor creates a new instance of ${className}ReactiveRestClientConfig with given values.
-	 * @param reactiveRestClient used to connect to the ${apiName} REST API
+	 * @param getReactiveRestClient used to connect to the ${apiName} REST API
+	 * @param postReactiveRestClient used to connect to the ${apiName} REST API
+	 * @param putReactiveRestClient used to connect to the ${apiName} REST API
+	 * @param deleteReactiveRestClient used to connect to the ${apiName} REST API
 	 */
 	@Autowired
-	public ${className}ReactiveRestClientConfig(${className}GetReactiveRestClient reactiveRestClient) {
-		this.reactiveRestClient = reactiveRestClient;
+	public ${className}ReactiveRestClientConfig(${className}GetReactiveRestClient getReactiveRestClient,
+		${className}PostReactiveRestClient postReactiveRestClient,
+		${className}PutReactiveRestClient putReactiveRestClient,
+		${className}DeleteReactiveRestClient deleteReactiveRestClient) {
+		this.getReactiveRestClient = getReactiveRestClient;
+		this.postReactiveRestClient = postReactiveRestClient;
+		this.putReactiveRestClient = putReactiveRestClient;
+		this.deleteReactiveRestClient = deleteReactiveRestClient;
 	}
 	
 	/**
@@ -55,6 +82,9 @@ public class ${className}ReactiveRestClientConfig extends BaseReactiveRestClient
 	@Value("${client.url}")
 	@Override
 	protected void initialize(String destinationUrl) {
-		initializeClient(destinationUrl, reactiveRestClient);
+		initializeClient(destinationUrl, getReactiveRestClient);
+		initializeClient(destinationUrl, postReactiveRestClient);
+		initializeClient(destinationUrl, putReactiveRestClient);
+		initializeClient(destinationUrl, deleteReactiveRestClient);
 	}
 }
