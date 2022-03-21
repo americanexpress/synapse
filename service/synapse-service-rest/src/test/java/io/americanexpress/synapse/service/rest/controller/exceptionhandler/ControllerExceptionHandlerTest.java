@@ -95,6 +95,15 @@ class ControllerExceptionHandlerTest {
         ResponseEntity<ErrorResponse> errorResponseEntity = CONTROLLER_EXCEPTION_HANDLER.handleMethodArgumentNotValidException(new MethodArgumentNotValidException(methodParameter, bindingResult));
         assertErrorResponse(errorResponseEntity, ErrorCode.GENERIC_4XX_ERROR, ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE, FIELD_DEFAULT_MESSAGE, HttpStatus.BAD_REQUEST);
     }
+    
+    @Test
+    void handleBindException_whenBindException_expected400() {
+    	List<FieldError> fieldErrors = List.of(new FieldError("sampleObject", "sampleField", FIELD_DEFAULT_MESSAGE));
+        when(bindingResult.getFieldErrors()).thenReturn(fieldErrors);
+        methodParameter.withTypeIndex(1);
+        ResponseEntity<ErrorResponse> errorResponseEntity = CONTROLLER_EXCEPTION_HANDLER.handleBindException(new MethodArgumentNotValidException(methodParameter, bindingResult));
+        assertErrorResponse(errorResponseEntity, ErrorCode.GENERIC_4XX_ERROR, ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE, "sampleField " + FIELD_DEFAULT_MESSAGE, HttpStatus.BAD_REQUEST);
+    }
 
     @Test
     void handleHttpMessageNotReadableException_whenHttpMessageNotReadableExceptionContainsFieldErrors_expected400() {
