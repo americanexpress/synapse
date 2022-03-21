@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Import;
 
 /**
  * {@code ${className}ReactiveRestClientTestConfig} class sets the test configurations
- * for the {@link ${className}GetReactiveRestClient}.
+ * for the clients.
  * @author ${author}
  */
 @Import(${className}ReactiveRestClientConfig.class)
