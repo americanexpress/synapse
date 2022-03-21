@@ -100,12 +100,20 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(ApplicationClientException.class)
     public ResponseEntity<ErrorResponse> handleApplicationClientException(final ApplicationClientException applicationClientException) {
         logger.entry(applicationClientException);
-        final ErrorCode messageKey = applicationClientException.getErrorCode();
-        final String message = errorMessagePropertyReader.getErrorMessage(messageKey, applicationClientException.getMessageArguments());
-        final String developerMessage = applicationClientException.getDeveloperMessage();
-        final ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_4XX_ERROR, message,null, developerMessage);
-        final ResponseEntity<ErrorResponse> errorResponseEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
-        this.logger.exit(errorResponseEntity);
+        
+        ResponseEntity<ErrorResponse> errorResponseEntity;
+        
+        if(applicationClientException.getCause() == null) {
+        	ErrorCode errorCode = applicationClientException.getErrorCode();
+            String message = errorMessagePropertyReader.getErrorMessage(errorCode, applicationClientException.getMessageArguments());
+            String developerMessage = applicationClientException.getDeveloperMessage();
+            ErrorResponse errorResponse = new ErrorResponse(errorCode, ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE, message, developerMessage);
+            errorResponseEntity = ResponseEntity.badRequest().body(errorResponse);
+        } else {
+        	errorResponseEntity = handleInternalServerError(applicationClientException);
+        }
+        
+        logger.exit(errorResponseEntity);
         return errorResponseEntity;
     }
 
@@ -130,8 +138,8 @@ public class ControllerExceptionHandler {
      * @param bindException thrown by the application
      * @return the error response with HTTP status code 400
      */
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(BindException bindException) {
+    @ExceptionHandler(BindException.class)
+    public ResponseEntity<ErrorResponse> handleBindException(BindException bindException) {
         logger.warn("Request fields are not valid", bindException);
         ErrorResponse errorResponse = inputValidationErrorHandler.handleInputValidationErrorMessage(bindException.getBindingResult());
         ResponseEntity<ErrorResponse> errorResponseEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
@@ -192,7 +200,7 @@ public class ControllerExceptionHandler {
         logger.catching(throwable);
         final String message = errorMessagePropertyReader.getErrorMessage(ErrorCode.GENERIC_5XX_ERROR);
         String fullStackTrace = ApplicationServerException.getStackTrace(throwable, System.lineSeparator());
-        final ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_5XX_ERROR, message, null, CryptoUtil.jasyptEncrypt(fullStackTrace));
+        final ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_5XX_ERROR, GENERIC_5XX_HEADER_MESSAGE, message, CryptoUtil.jasyptEncrypt(fullStackTrace));
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
 }
