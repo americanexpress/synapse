@@ -33,10 +33,10 @@ import ${package}.model.${className}ClientResponse;
 public class ${className}DeleteReactiveRestClient extends BaseDeleteReactiveRestClient<${className}ClientRequest, ${className}ClientResponse, ${className}ClientHttpHeadersFactory> {
 
 	/**
-     * Argument constructor creates a new instance of ${className}DeleteReactiveRestClient with given values.
-     * @param clientHttpHeadersFactory HTTP headers factory used to produce the custom HTTP headers required to consume the back end service
-     * @param reactiveRestResponseErrorHandler used to handle errors from the reactive REST client
-     */
+	 * Argument constructor creates a new instance of ${className}DeleteReactiveRestClient with given values.
+	 * @param clientHttpHeadersFactory HTTP headers factory used to produce the custom HTTP headers required to consume the back end service
+	 * @param reactiveRestResponseErrorHandler used to handle errors from the reactive REST client
+	 */
 	@Autowired
 	public ${className}DeleteReactiveRestClient(${className}ClientHttpHeadersFactory clientHttpHeadersFactory, ${className}ReactiveRestResponseErrorHandler reactiveRestResponseErrorHandler) {
 		super(clientHttpHeadersFactory, reactiveRestResponseErrorHandler);
