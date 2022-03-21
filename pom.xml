@@ -96,6 +96,11 @@
                 <artifactId>synapse-archetype-client-rest-reactive-post</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-archetype-client-rest-reactive-put</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <!--Framework-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
