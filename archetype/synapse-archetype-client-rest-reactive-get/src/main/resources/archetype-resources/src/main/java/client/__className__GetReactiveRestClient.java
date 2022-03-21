@@ -15,7 +15,7 @@ package ${package}.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import io.americanexpress.synapse.client.rest.client.BasePutReactiveRestClient;
+import io.americanexpress.synapse.client.rest.client.BaseGetReactiveRestClient;
 import io.americanexpress.synapse.client.rest.client.ReactiveRestClient;
 
 import ${package}.factory.${className}ClientHttpHeadersFactory;
@@ -24,21 +24,21 @@ import ${package}.model.${className}ClientRequest;
 import ${package}.model.${className}ClientResponse;
 
 /**
- * {@code ${className}PutReactiveRestClient} class is the client
+ * {@code ${className}GetReactiveRestClient} class is the client
  * used to connect to the ${apiName} REST API.
  * @author ${author}
  *
  */
 @ReactiveRestClient
-public class ${className}PutReactiveRestClient extends BasePutReactiveRestClient<${className}ClientRequest, ${className}ClientResponse, ${className}ClientHttpHeadersFactory> {
+public class ${className}GetReactiveRestClient extends BaseGetReactiveRestClient<${className}ClientRequest, ${className}ClientResponse, ${className}ClientHttpHeadersFactory> {
 
 	/**
-	 * Argument constructor creates a new instance of ${className}PutReactiveRestClient with given values.
+	 * Argument constructor creates a new instance of ${className}GetReactiveRestClient with given values.
 	 * @param clientHttpHeadersFactory HTTP headers factory used to produce the custom HTTP headers required to consume the back end service
 	 * @param reactiveRestResponseErrorHandler used to handle errors from the reactive REST client
 	 */
 	@Autowired
-	public ${className}PutReactiveRestClient(${className}ClientHttpHeadersFactory clientHttpHeadersFactory, ${className}ReactiveRestResponseErrorHandler reactiveRestResponseErrorHandler) {
+	public ${className}GetReactiveRestClient(${className}ClientHttpHeadersFactory clientHttpHeadersFactory, ${className}ReactiveRestResponseErrorHandler reactiveRestResponseErrorHandler) {
 		super(clientHttpHeadersFactory, reactiveRestResponseErrorHandler);
 	}
 }
