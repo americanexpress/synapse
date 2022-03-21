@@ -29,7 +29,7 @@ import ${package}.client.${className}PutReactiveRestClient;
 
 /**
  * {@code ${className}ReactiveRestClientConfig} class sets the configurations
- * for the {@link ${className}GetReactiveRestClient}.
+ * for the clients.
  * @author ${author}
  */
 @Import(BaseReactiveRestClientConfig.class)
