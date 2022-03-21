@@ -36,7 +36,7 @@ public class ${className}ClientHttpHeadersFactory extends BaseClientHttpHeadersF
 	 * @param clientRequest containing the body of the request to this API
 	 * @param url of the API
 	 * @return the client HTTP headers
-*/
+	 */
 	@Override
 	public HttpHeaders create(ClientHeaders clientHeaders, ${className}ClientRequest clientRequest, String url) {
 		// TODO: please add any HTTP headers required by the back end API
