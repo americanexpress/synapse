@@ -18,6 +18,6 @@ import org.junit.platform.suite.api.SelectPackages;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitPlatform.class)
-@SelectPackages("com.americanexpress.synapse.service.rest")
+@SelectPackages("io.americanexpress.synapse.service.rest")
 public class ServiceRestUnitTestSuite {
 }
