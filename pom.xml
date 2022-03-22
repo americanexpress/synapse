@@ -55,7 +55,7 @@
         <mockito.version>2.23.4</mockito.version>
 
         <!--JUnit Versions-->
-        <junit.version>1.7.0</junit.version>
+        <junit.version>1.8.2</junit.version>
         <junit.jupiter.version>5.7.0</junit.jupiter.version>
 
         <!--Jackson-->
