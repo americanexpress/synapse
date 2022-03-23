@@ -15,30 +15,30 @@ package ${package}.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import io.americanexpress.synapse.client.rest.client.BasePostReactiveRestClient;
-import io.americanexpress.synapse.client.rest.client.ReactiveRestClient;
+import io.americanexpress.synapse.client.rest.client.BaseRestClient;
+import io.americanexpress.synapse.client.rest.client.RestClient;
 
 import ${package}.factory.${className}ClientHttpHeadersFactory;
-import ${package}.handler.${className}ReactiveRestResponseErrorHandler;
+import ${package}.handler.${className}RestResponseErrorHandler;
 import ${package}.model.${className}ClientRequest;
 import ${package}.model.${className}ClientResponse;
 
 /**
- * {@code ${className}PostReactiveRestClient} class is the client
+ * {@code ${className}PostRestClient} class is the client
  * used to connect to the ${apiName} REST API.
  * @author ${author}
  *
  */
-@ReactiveRestClient
-public class ${className}PostReactiveRestClient extends BasePostReactiveRestClient<${className}ClientRequest, ${className}ClientResponse, ${className}ClientHttpHeadersFactory> {
+@RestClient
+public class ${className}PostRestClient extends BaseRestClient<${className}ClientRequest, ${className}ClientResponse, ${className}ClientHttpHeadersFactory> {
 
 	/**
-	 * Argument constructor creates a new instance of ${className}PostReactiveRestClient with given values.
+	 * Argument constructor creates a new instance of ${className}PostRestClient with given values.
 	 * @param clientHttpHeadersFactory HTTP headers factory used to produce the custom HTTP headers required to consume the back end service
-	 * @param reactiveRestResponseErrorHandler used to handle errors from the reactive REST client
+	 * @param restResponseErrorHandler used to handle errors from the reactive REST client
 	 */
 	@Autowired
-	public ${className}PostReactiveRestClient(${className}ClientHttpHeadersFactory clientHttpHeadersFactory, ${className}ReactiveRestResponseErrorHandler reactiveRestResponseErrorHandler) {
-		super(clientHttpHeadersFactory, reactiveRestResponseErrorHandler);
+	public ${className}PostRestClient(${className}ClientHttpHeadersFactory clientHttpHeadersFactory, ${className}RestResponseErrorHandler restResponseErrorHandler) {
+		super(clientHttpHeadersFactory, restResponseErrorHandler);
 	}
 }
