@@ -23,34 +23,32 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import io.americanexpress.synapse.client.rest.model.ClientHeaders;
 import io.americanexpress.synapse.framework.test.CommonAssertionMessages;
-import reactor.core.publisher.Mono;
 
-import ${package}.config.${className}ReactiveRestClientTestConfig;
+import ${package}.config.${className}RestClientTestConfig;
 import ${package}.model.${className}ClientRequest;
 import ${package}.model.${className}ClientResponse;
 
 /**
- * {@code ${className}PostReactiveRestClientIT} class performs integration tests
- * for the {@link ${className}PostReactiveRestClient}.
+ * {@code ${className}PostRestClientIT} class performs integration tests
+ * for the {@link ${className}PostRestClient}.
  * <p>
  * Be sure that the ${apiName} REST API is running
  * prior to running this integration test.
  * @author ${author}
  */
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = ${className}ReactiveRestClientTestConfig.class)
-class ${className}PostReactiveRestClientIT {
+@ContextConfiguration(classes = ${className}RestClientTestConfig.class)
+class ${className}PostRestClientIT {
 
 	@Autowired
-	private ${className}PostReactiveRestClient reactiveRestClient;
+	private ${className}PostRestClient restClient;
 	
 	@Test
 	void callMonoService_givenValidRequest_expectedValidResponse() throws Exception {
 		// TODO: please add any client headers required by the back end API
 		ClientHeaders clientHeaders = new ClientHeaders();
 		${className}ClientRequest clientRequest = new ${className}ClientRequest();
-		Mono<${className}ClientResponse> clientResponseMono = reactiveRestClient.callMonoService(clientHeaders, clientRequest);
-		${className}ClientResponse clientResponse = clientResponseMono.block();
+		${className}ClientResponse clientResponse = restClient.callMonoService(clientHeaders, clientRequest);
 		assertNotNull(clientResponse, CommonAssertionMessages.VALUE_NULL);
 	}
 }

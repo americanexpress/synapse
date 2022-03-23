@@ -20,11 +20,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 
-import com.hello.abc.handler.ExampleBookRestResponseErrorHandler;
-
 import io.americanexpress.synapse.client.rest.config.BaseRestClientConfig;
 
 import ${package}.client.${className}PostRestClient;
+import ${package}.handler.${className}RestResponseErrorHandler;
 
 /**
  * {@code ${className}RestClientConfig} class sets the configurations

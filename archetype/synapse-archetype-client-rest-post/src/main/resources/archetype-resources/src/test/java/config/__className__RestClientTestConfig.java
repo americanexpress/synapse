@@ -17,12 +17,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 /**
- * {@code ${className}ReactiveRestClientTestConfig} class sets the test configurations
- * for the {@link ${className}PostReactiveRestClient}.
+ * {@code ${className}RestClientTestConfig} class sets the test configurations
+ * for the {@link ${className}PostRestClient}.
  * @author ${author}
  */
-@Import(${className}ReactiveRestClientConfig.class)
+@Import(${className}RestClientConfig.class)
 @Configuration
-public class ${className}ReactiveRestClientTestConfig {
+public class ${className}RestClientTestConfig {
 
 }
