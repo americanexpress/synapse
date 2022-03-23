@@ -20,33 +20,33 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 
-import io.americanexpress.synapse.client.rest.config.BaseReactiveRestClientConfig;
+import io.americanexpress.synapse.client.rest.config.BaseRestClientConfig;
 
-import ${package}.client.${className}PostReactiveRestClient;
+import ${package}.client.${className}PostRestClient;
 
 /**
- * {@code ${className}ReactiveRestClientConfig} class sets the configurations
- * for the {@link ${className}PostReactiveRestClient}.
+ * {@code ${className}RestClientConfig} class sets the configurations
+ * for the {@link ${className}PostRestClient}.
  * @author ${author}
  */
-@Import(BaseReactiveRestClientConfig.class)
+@Import(BaseRestClientConfig.class)
 @PropertySource("classpath:client-application.properties")
 @ComponentScan("${package}")
 @Configuration
-public class ${className}ReactiveRestClientConfig extends BaseReactiveRestClientConfig {
+public class ${className}RestClientConfig extends BaseRestClientConfig {
 
 	/**
 	 * Used to connect to the ${apiName} REST API.
 	 */
-	private final ${className}PostReactiveRestClient reactiveRestClient;
+	private final ${className}PostRestClient restClient;
 	
 	/**
-	 * Argument constructor creates a new instance of ${className}ReactiveRestClientConfig with given values.
-	 * @param reactiveRestClient used to connect to the ${apiName} REST API
+	 * Argument constructor creates a new instance of ${className}RestClientConfig with given values.
+	 * @param restClient used to connect to the ${apiName} REST API
 	 */
 	@Autowired
-	public ${className}ReactiveRestClientConfig(${className}PostReactiveRestClient reactiveRestClient) {
-		this.reactiveRestClient = reactiveRestClient;
+	public ${className}RestClientConfig(${className}PostRestClient restClient) {
+		this.restClient = restClient;
 	}
 	
 	/**
@@ -55,6 +55,6 @@ public class ${className}ReactiveRestClientConfig extends BaseReactiveRestClient
 	@Value("${client.url}")
 	@Override
 	protected void initialize(String destinationUrl) {
-		initializeClient(destinationUrl, reactiveRestClient);
+		initializeClient(destinationUrl, restClient);
 	}
 }
