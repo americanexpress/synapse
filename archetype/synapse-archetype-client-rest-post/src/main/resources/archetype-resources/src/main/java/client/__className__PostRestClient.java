@@ -14,12 +14,12 @@
 package ${package}.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 
 import io.americanexpress.synapse.client.rest.client.BaseRestClient;
 import io.americanexpress.synapse.client.rest.client.RestClient;
 
 import ${package}.factory.${className}ClientHttpHeadersFactory;
-import ${package}.handler.${className}RestResponseErrorHandler;
 import ${package}.model.${className}ClientRequest;
 import ${package}.model.${className}ClientResponse;
 
@@ -35,10 +35,9 @@ public class ${className}PostRestClient extends BaseRestClient<${className}Clien
 	/**
 	 * Argument constructor creates a new instance of ${className}PostRestClient with given values.
 	 * @param clientHttpHeadersFactory HTTP headers factory used to produce the custom HTTP headers required to consume the back end service
-	 * @param restResponseErrorHandler used to handle errors from the reactive REST client
 	 */
 	@Autowired
-	public ${className}PostRestClient(${className}ClientHttpHeadersFactory clientHttpHeadersFactory, ${className}RestResponseErrorHandler restResponseErrorHandler) {
-		super(clientHttpHeadersFactory, restResponseErrorHandler);
+	public ${className}PostRestClient(${className}ClientHttpHeadersFactory clientHttpHeadersFactory) {
+		super(clientHttpHeadersFactory, HttpMethod.POST);
 	}
 }

@@ -20,6 +20,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 
+import com.hello.abc.handler.ExampleBookRestResponseErrorHandler;
+
 import io.americanexpress.synapse.client.rest.config.BaseRestClientConfig;
 
 import ${package}.client.${className}PostRestClient;
@@ -41,12 +43,19 @@ public class ${className}RestClientConfig extends BaseRestClientConfig {
 	private final ${className}PostRestClient restClient;
 	
 	/**
+	 * Used to handle errors.
+	 */
+	private final ${className}RestResponseErrorHandler restResponseErrorHandler;
+	
+	/**
 	 * Argument constructor creates a new instance of ${className}RestClientConfig with given values.
 	 * @param restClient used to connect to the ${apiName} REST API
+	 * @param restResponseErrorHandler used to handle errors
 	 */
 	@Autowired
-	public ${className}RestClientConfig(${className}PostRestClient restClient) {
+	public ${className}RestClientConfig(${className}PostRestClient restClient, ${className}RestResponseErrorHandler restResponseErrorHandler) {
 		this.restClient = restClient;
+		this.restResponseErrorHandler = restResponseErrorHandler;
 	}
 	
 	/**
@@ -55,6 +64,6 @@ public class ${className}RestClientConfig extends BaseRestClientConfig {
 	@Value("${client.url}")
 	@Override
 	protected void initialize(String destinationUrl) {
-		initializeClient(destinationUrl, restClient);
+		initializeClient(destinationUrl, restClient, restResponseErrorHandler);
 	}
 }
