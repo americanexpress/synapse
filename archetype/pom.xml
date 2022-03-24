@@ -27,6 +27,7 @@
 
     <modules>
     	<module>synapse-archetype-client-graphql</module>
+    	<module>synapse-archetype-client-rest-delete</module>
     	<module>synapse-archetype-client-rest-get</module>
     	<module>synapse-archetype-client-rest-post</module>
     	<module>synapse-archetype-client-rest-reactive</module>
