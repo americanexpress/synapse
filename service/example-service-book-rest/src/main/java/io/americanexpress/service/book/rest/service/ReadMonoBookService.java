@@ -18,7 +18,7 @@ import io.americanexpress.synapse.service.rest.service.BaseGetMonoService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GetBookService extends BaseGetMonoService<ReadBookResponse> {
+public class ReadMonoBookService extends BaseGetMonoService<ReadBookResponse> {
 
     @Override
     protected ReadBookResponse executeRead(String identifier) {

@@ -22,6 +22,9 @@ public class ReadBookRequest extends BaseServiceRequest {
     private String title;
     private String author;
 
+    public ReadBookRequest() {
+    }
+
     public ReadBookRequest(String title, String author) {
         this.title = title;
         this.author = author;

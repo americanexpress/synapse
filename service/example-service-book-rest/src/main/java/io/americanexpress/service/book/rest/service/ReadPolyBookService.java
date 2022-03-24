@@ -11,21 +11,25 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.rest.controller;
+package io.americanexpress.service.book.rest.service;
 
-
-import io.americanexpress.service.book.rest.config.BookConfig;
 import io.americanexpress.service.book.rest.model.ReadBookRequest;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
-import io.americanexpress.service.book.rest.service.ReadBookService;
-import io.americanexpress.synapse.service.rest.controller.BaseReadPolyController;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import io.americanexpress.synapse.service.rest.service.BaseReadPolyService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.stereotype.Service;
 
-@Tag(name = "Read Book Service", description = "Provides a collection of book information.")
-@RestController
-@RequestMapping(BookConfig.BOOK_ENDPOINT)
-public class ReadBookController extends BaseReadPolyController<ReadBookRequest, ReadBookResponse, ReadBookService> {
+import java.util.ArrayList;
+import java.util.List;
 
+@Service
+public class ReadPolyBookService extends BaseReadPolyService<ReadBookRequest, ReadBookResponse> {
+
+    @Override
+    protected Page<ReadBookResponse> executeRead(ReadBookRequest readBookRequest) {
+
+        List<ReadBookResponse> readBookResponses = new ArrayList<>();
+        return new PageImpl<>(readBookResponses);
+    }
 }
