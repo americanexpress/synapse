@@ -24,6 +24,11 @@
 		</archetype>
 		<archetype>
 			<groupId>io.americanexpress.synapse</groupId>
+			<artifactId>synapse-archetype-client-rest-get</artifactId>
+			<version>0.2.0-SNAPSHOT</version>
+		</archetype>
+		<archetype>
+			<groupId>io.americanexpress.synapse</groupId>
 			<artifactId>synapse-archetype-client-rest-post</artifactId>
 			<version>0.2.0-SNAPSHOT</version>
 		</archetype>
