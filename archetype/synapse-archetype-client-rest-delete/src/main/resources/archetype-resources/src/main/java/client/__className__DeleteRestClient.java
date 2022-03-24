@@ -38,6 +38,6 @@ public class ${className}DeleteRestClient extends BaseRestClient<${className}Cli
 	 */
 	@Autowired
 	public ${className}DeleteRestClient(${className}ClientHttpHeadersFactory clientHttpHeadersFactory) {
-		super(clientHttpHeadersFactory, HttpMethod.GET);
+		super(clientHttpHeadersFactory, HttpMethod.DELETE);
 	}
 }
