@@ -29,6 +29,11 @@
 		</archetype>
 		<archetype>
 			<groupId>io.americanexpress.synapse</groupId>
+			<artifactId>synapse-archetype-client-rest-put</artifactId>
+			<version>0.2.0-SNAPSHOT</version>
+		</archetype>
+		<archetype>
+			<groupId>io.americanexpress.synapse</groupId>
 			<artifactId>synapse-archetype-client-rest-reactive</artifactId>
 			<version>0.2.0-SNAPSHOT</version>
 		</archetype>
