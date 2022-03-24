@@ -1,0 +1,33 @@
+{
+	"info": {
+		"_postman_id": "67b9644e-09ce-4522-be4f-769c0064d9d4",
+		"name": "SYNAPSE-EXAMPLE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "READ BOOK MONO",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{synapse-host}}/v1/books",
+					"host": [
+						"{{synapse-host}}"
+					],
+					"path": [
+						"v1",
+						"books"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
