@@ -22,12 +22,12 @@ import org.springframework.context.annotation.PropertySource;
 
 import io.americanexpress.synapse.client.rest.config.BaseRestClientConfig;
 
-import ${package}.client.${className}PostRestClient;
+import ${package}.client.${className}GetRestClient;
 import ${package}.handler.${className}RestResponseErrorHandler;
 
 /**
  * {@code ${className}RestClientConfig} class sets the configurations
- * for the {@link ${className}PostRestClient}.
+ * for the {@link ${className}GetRestClient}.
  * @author ${author}
  */
 @Import(BaseRestClientConfig.class)
@@ -39,7 +39,7 @@ public class ${className}RestClientConfig extends BaseRestClientConfig {
 	/**
 	 * Used to connect to the ${apiName} REST API.
 	 */
-	private final ${className}PostRestClient restClient;
+	private final ${className}GetRestClient restClient;
 	
 	/**
 	 * Used to handle errors.
@@ -52,7 +52,7 @@ public class ${className}RestClientConfig extends BaseRestClientConfig {
 	 * @param restResponseErrorHandler used to handle errors
 	 */
 	@Autowired
-	public ${className}RestClientConfig(${className}PostRestClient restClient, ${className}RestResponseErrorHandler restResponseErrorHandler) {
+	public ${className}RestClientConfig(${className}GetRestClient restClient, ${className}RestResponseErrorHandler restResponseErrorHandler) {
 		this.restClient = restClient;
 		this.restResponseErrorHandler = restResponseErrorHandler;
 	}

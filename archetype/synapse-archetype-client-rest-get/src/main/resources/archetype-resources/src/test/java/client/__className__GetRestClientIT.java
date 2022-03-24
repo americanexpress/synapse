@@ -29,8 +29,8 @@ import ${package}.model.${className}ClientRequest;
 import ${package}.model.${className}ClientResponse;
 
 /**
- * {@code ${className}PostRestClientIT} class performs integration tests
- * for the {@link ${className}PostRestClient}.
+ * {@code ${className}GetRestClientIT} class performs integration tests
+ * for the {@link ${className}GetRestClient}.
  * <p>
  * Be sure that the ${apiName} REST API is running
  * prior to running this integration test.
@@ -38,10 +38,10 @@ import ${package}.model.${className}ClientResponse;
  */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = ${className}RestClientTestConfig.class)
-class ${className}PostRestClientIT {
+class ${className}GetRestClientIT {
 
 	@Autowired
-	private ${className}PostRestClient restClient;
+	private ${className}GetRestClient restClient;
 	
 	@Test
 	void callMonoService_givenValidRequest_expectedValidResponse() throws Exception {
