@@ -24,20 +24,20 @@ import ${package}.model.${className}ClientRequest;
 import ${package}.model.${className}ClientResponse;
 
 /**
- * {@code ${className}GetRestClient} class is the client
+ * {@code ${className}DeleteRestClient} class is the client
  * used to connect to the ${apiName} REST API.
  * @author ${author}
  *
  */
 @RestClient
-public class ${className}GetRestClient extends BaseRestClient<${className}ClientRequest, ${className}ClientResponse, ${className}ClientHttpHeadersFactory> {
+public class ${className}DeleteRestClient extends BaseRestClient<${className}ClientRequest, ${className}ClientResponse, ${className}ClientHttpHeadersFactory> {
 
 	/**
-	 * Argument constructor creates a new instance of ${className}GetRestClient with given values.
+	 * Argument constructor creates a new instance of ${className}DeleteRestClient with given values.
 	 * @param clientHttpHeadersFactory HTTP headers factory used to produce the custom HTTP headers required to consume the back end service
 	 */
 	@Autowired
-	public ${className}GetRestClient(${className}ClientHttpHeadersFactory clientHttpHeadersFactory) {
+	public ${className}DeleteRestClient(${className}ClientHttpHeadersFactory clientHttpHeadersFactory) {
 		super(clientHttpHeadersFactory, HttpMethod.GET);
 	}
 }

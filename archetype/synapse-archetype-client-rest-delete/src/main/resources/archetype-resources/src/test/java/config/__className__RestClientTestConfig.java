@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Import;
 
 /**
  * {@code ${className}RestClientTestConfig} class sets the test configurations
- * for the {@link ${className}GetRestClient}.
+ * for the {@link ${className}DeleteRestClient}.
  * @author ${author}
  */
 @Import(${className}RestClientConfig.class)
