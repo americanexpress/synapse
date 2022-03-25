@@ -18,28 +18,5 @@ package io.americanexpress.synapse.service.rest.model;
  *
  * @author Gabriel Jimenez
  */
-public abstract class BaseServiceRequest {
-
-    /**
-     * Used for services that support pagination.
-     */
-    private PageInformation pageInformation;
-
-    /**
-     * Get the pageInformation.
-     *
-     * @return the pageInformation
-     */
-    public PageInformation getPageInformation() {
-        return pageInformation;
-    }
-
-    /**
-     * Set the pageInformation.
-     *
-     * @param pageInformation the pageInformation to set
-     */
-    public void setPageInformation(PageInformation pageInformation) {
-        this.pageInformation = pageInformation;
-    }
+public interface BaseServiceRequest {
 }

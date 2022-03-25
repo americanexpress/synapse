@@ -13,23 +13,27 @@
  */
 package io.americanexpress.service.book.rest.service;
 
-import io.americanexpress.service.book.rest.model.ReadBookRequest;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
+import io.americanexpress.service.book.rest.model.ReadPolyBookRequest;
 import io.americanexpress.synapse.service.rest.service.BaseReadPolyService;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 
-@Service
-public class ReadBookService extends BaseReadPolyService<ReadBookRequest, ReadBookResponse> {
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * ReadPolyBookService retrieves a collection of books and the results can be filtered by some given parameters.
+ */
+@Service
+public class ReadPolyBookService extends BaseReadPolyService<ReadPolyBookRequest, ReadBookResponse> {
 
     @Override
-    protected Page<ReadBookResponse> executeRead(ReadBookRequest request) {
-
-        ReadBookResponse readBookResponse = new ReadBookResponse();
-        readBookResponse.setAuthor(request.getAuthor());
-        readBookResponse.setTitle(request.getTitle());
-
-        return (Page<ReadBookResponse>) readBookResponse;
+    protected Page<ReadBookResponse> executeRead(ReadPolyBookRequest readBookRequest) {
+        List<ReadBookResponse> readBookResponses = new ArrayList<>();
+        ReadBookResponse readBookResponse = new ReadBookResponse("Synapse", "Gabriel");
+        readBookResponses.add(readBookResponse);
+        return new PageImpl<>(readBookResponses);
     }
 }

@@ -14,36 +14,67 @@
 package io.americanexpress.service.book.rest.model;
 
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.Objects;
 
+/**
+ * ReadBookResponse is the response used on the mono and poly read controllers.
+ */
 public class ReadBookResponse extends BaseServiceResponse {
 
     private String title;
     private String author;
 
+    /**
+     * Instantiates a new Read book response.
+     */
     public ReadBookResponse() {
     }
 
+    /**
+     * Instantiates a new Read book response.
+     *
+     * @param title  the title
+     * @param author the author
+     */
     public ReadBookResponse(String title, String author) {
         this.title = title;
         this.author = author;
     }
 
 
+    /**
+     * Gets title.
+     *
+     * @return the title
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Sets title.
+     *
+     * @param title the title
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     * Gets author.
+     *
+     * @return the author
+     */
     public String getAuthor() {
         return author;
     }
 
+    /**
+     * Sets author.
+     *
+     * @param author the author
+     */
     public void setAuthor(String author) {
         this.author = author;
     }

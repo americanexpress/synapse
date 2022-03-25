@@ -17,8 +17,11 @@ import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.synapse.service.rest.service.BaseGetMonoService;
 import org.springframework.stereotype.Service;
 
+/**
+ * ReadMonoBookService retrieves a Book Response given its unique identifier.
+ */
 @Service
-public class GetBookService extends BaseGetMonoService<ReadBookResponse> {
+public class ReadMonoBookService extends BaseGetMonoService<ReadBookResponse> {
 
     @Override
     protected ReadBookResponse executeRead(String identifier) {
