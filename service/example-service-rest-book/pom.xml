@@ -21,7 +21,7 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>example-service-book-rest</artifactId>
+    <artifactId>example-service-rest-book</artifactId>
 
     <!--Dependencies-->
     <dependencies>

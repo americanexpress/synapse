@@ -28,7 +28,7 @@
     <!--Modules-->
     <modules>
         <module>example-service-book-graphql</module>
-        <module>example-service-book-rest</module>
+        <module>example-service-rest-book</module>
         <module>synapse-service-graphql</module>
         <module>synapse-service-rest</module>
         <module>synapse-service-test</module>
