@@ -17,32 +17,64 @@ import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 
 import java.util.Objects;
 
-public class ReadBookRequest extends BaseServiceRequest {
+/**
+ * ReadBookRequest is the model used on the request of the Read Poly Book Controller.
+ */
+public class ReadPolyBookRequest implements BaseServiceRequest {
 
     private String title;
     private String author;
 
-    public ReadBookRequest() {
+    /**
+     * Instantiates a new Read book request.
+     */
+    public ReadPolyBookRequest() {
     }
 
-    public ReadBookRequest(String title, String author) {
+    /**
+     * Instantiates a new Read book request.
+     *
+     * @param title  the title
+     * @param author the author
+     */
+    public ReadPolyBookRequest(String title, String author) {
         this.title = title;
         this.author = author;
     }
 
 
+    /**
+     * Gets title.
+     *
+     * @return the title
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Sets title.
+     *
+     * @param title the title
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     * Gets author.
+     *
+     * @return the author
+     */
     public String getAuthor() {
         return author;
     }
 
+    /**
+     * Sets author.
+     *
+     * @param author the author
+     */
     public void setAuthor(String author) {
         this.author = author;
     }
@@ -51,7 +83,7 @@ public class ReadBookRequest extends BaseServiceRequest {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ReadBookRequest that = (ReadBookRequest) o;
+        ReadPolyBookRequest that = (ReadPolyBookRequest) o;
         return title.equals(that.title) && author.equals(that.author);
     }
 

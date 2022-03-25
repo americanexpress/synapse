@@ -14,17 +14,20 @@
 package io.americanexpress.service.book.rest.controller;
 
 import io.americanexpress.service.book.rest.config.BookConfig;
-import io.americanexpress.service.book.rest.model.ReadBookRequest;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
+import io.americanexpress.service.book.rest.model.ReadPolyBookRequest;
 import io.americanexpress.service.book.rest.service.ReadPolyBookService;
 import io.americanexpress.synapse.service.rest.controller.BaseReadPolyController;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * ReadMonoBookController retrieves a collection of books and the results can be filtered by some given parameters.
+ */
 @Tag(name = "Read Book Service", description = "Provides a collection of book information.")
 @RestController
 @RequestMapping(BookConfig.BOOK_ENDPOINT)
-public class ReadPolyBookController extends BaseReadPolyController<ReadBookRequest, ReadBookResponse, ReadPolyBookService> {
+public class ReadPolyBookController extends BaseReadPolyController<ReadPolyBookRequest, ReadBookResponse, ReadPolyBookService> {
 
 }
