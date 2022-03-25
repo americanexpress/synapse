@@ -17,3 +17,5 @@ import org.springframework.web.bind.annotation.RestController;
 public class ReadMonoBookController extends BaseGetMonoController<ReadBookResponse, ReadMonoBookService> {
 
 }
+
+
