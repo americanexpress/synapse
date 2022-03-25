@@ -1,7 +1,7 @@
 package io.americanexpress.synapse.service.rest.model;
 
 /**
- * BasePaginatedServiceRequest should be used when pagination is needed in a Poly Controller.
+ * BasePaginatedServiceRequest should be used when pagination is needed in a Poly Controller
  */
 public abstract class BasePaginatedServiceRequest implements BaseServiceRequest {
 
