@@ -30,6 +30,8 @@ public class ReadPolyBookService extends BaseReadPolyService<ReadBookRequest, Re
     protected Page<ReadBookResponse> executeRead(ReadBookRequest readBookRequest) {
 
         List<ReadBookResponse> readBookResponses = new ArrayList<>();
+        ReadBookResponse readBookResponse = new ReadBookResponse("Synapse", "Gabriel");
+        readBookResponses.add(readBookResponse);
         return new PageImpl<>(readBookResponses);
     }
 }
