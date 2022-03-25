@@ -88,6 +88,16 @@
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-archetype-client-rest-delete</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-archetype-client-rest-get</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-archetype-client-rest-post</artifactId>
                 <version>${project.version}</version>
             </dependency>
