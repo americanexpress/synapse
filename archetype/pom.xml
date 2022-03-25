@@ -30,6 +30,7 @@
     	<module>synapse-archetype-client-rest-delete</module>
     	<module>synapse-archetype-client-rest-get</module>
     	<module>synapse-archetype-client-rest-post</module>
+        <module>synapse-archetype-client-rest-put</module>
     	<module>synapse-archetype-client-rest-reactive</module>
     	<module>synapse-archetype-client-rest-reactive-delete</module>
     	<module>synapse-archetype-client-rest-reactive-get</module>
