@@ -10,6 +10,9 @@ import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
+/**
+ * DataBookConfig is the configuration class to load all the properties for the book data module.
+ */
 @Configuration
 @PropertySource("classpath:/data-book-application.properties")
 @EnableJpaRepositories(basePackages = DataBookConfig.PACKAGE_NAME)

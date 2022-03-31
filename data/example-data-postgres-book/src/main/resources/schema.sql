@@ -2,7 +2,7 @@ drop SCHEMA IF EXISTS synapse CASCADE;
 create SCHEMA synapse;
 
 SET
-search_path TO synapse;
+SCHEMA_SEARCH_PATH TO synapse;
 
 drop table IF EXISTS book CASCADE;
 

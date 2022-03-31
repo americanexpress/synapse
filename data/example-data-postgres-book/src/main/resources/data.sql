@@ -1,5 +1,5 @@
 SET
-search_path TO synapse;
+SCHEMA_SEARCH_PATH TO synapse;
 insert into book (id, title, author, created_date, last_modified_date, created_by,
                     last_modified_by, version)
 values (1, 'White Fang', 'Jack London', now(),
