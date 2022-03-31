@@ -81,12 +81,14 @@ workflows:
               only:
                 - develop
                 - /feature.*/
+                - /bugfix.*/
       - snapshot-maven-central-deploy-job:
           filters:
             branches:
               only:
                 - develop
                 - /feature.*/
+                - /bugfix.*/
           context:
             - maven_central_credentials
             - code_signing_credentials

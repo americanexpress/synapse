@@ -25,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -99,12 +100,20 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(ApplicationClientException.class)
     public ResponseEntity<ErrorResponse> handleApplicationClientException(final ApplicationClientException applicationClientException) {
         logger.entry(applicationClientException);
-        final ErrorCode messageKey = applicationClientException.getErrorCode();
-        final String message = errorMessagePropertyReader.getErrorMessage(messageKey, applicationClientException.getMessageArguments());
-        final String developerMessage = applicationClientException.getDeveloperMessage();
-        final ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_4XX_ERROR, message,null, developerMessage);
-        final ResponseEntity<ErrorResponse> errorResponseEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
-        this.logger.exit(errorResponseEntity);
+        
+        ResponseEntity<ErrorResponse> errorResponseEntity;
+        
+        if(applicationClientException.getCause() == null) {
+        	ErrorCode errorCode = applicationClientException.getErrorCode();
+            String message = errorMessagePropertyReader.getErrorMessage(errorCode, applicationClientException.getMessageArguments());
+            String developerMessage = applicationClientException.getDeveloperMessage();
+            ErrorResponse errorResponse = new ErrorResponse(errorCode, ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE, message, developerMessage);
+            errorResponseEntity = ResponseEntity.badRequest().body(errorResponse);
+        } else {
+        	errorResponseEntity = handleInternalServerError(applicationClientException);
+        }
+        
+        logger.exit(errorResponseEntity);
         return errorResponseEntity;
     }
 
@@ -119,6 +128,21 @@ public class ControllerExceptionHandler {
         logger.warn("Method argument is not valid", methodArgumentNotValidException);
         ErrorResponse errorResponse = inputValidationErrorHandler.handleInputValidationErrorMessage(methodArgumentNotValidException.getBindingResult());
         final ResponseEntity<ErrorResponse> errorResponseEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+        logger.exit(errorResponseEntity);
+        return errorResponseEntity;
+    }
+    
+    /**
+     * Handle BindingExceptions that were thrown by the application due to constraint violations on request models.
+     *
+     * @param bindException thrown by the application
+     * @return the error response with HTTP status code 400
+     */
+    @ExceptionHandler(BindException.class)
+    public ResponseEntity<ErrorResponse> handleBindException(BindException bindException) {
+        logger.warn("Request fields are not valid", bindException);
+        ErrorResponse errorResponse = inputValidationErrorHandler.handleInputValidationErrorMessage(bindException.getBindingResult());
+        ResponseEntity<ErrorResponse> errorResponseEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
         logger.exit(errorResponseEntity);
         return errorResponseEntity;
     }
@@ -176,7 +200,7 @@ public class ControllerExceptionHandler {
         logger.catching(throwable);
         final String message = errorMessagePropertyReader.getErrorMessage(ErrorCode.GENERIC_5XX_ERROR);
         String fullStackTrace = ApplicationServerException.getStackTrace(throwable, System.lineSeparator());
-        final ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_5XX_ERROR, message, null, CryptoUtil.jasyptEncrypt(fullStackTrace));
+        final ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_5XX_ERROR, GENERIC_5XX_HEADER_MESSAGE, message, CryptoUtil.jasyptEncrypt(fullStackTrace));
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
 }

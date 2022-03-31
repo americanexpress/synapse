@@ -49,17 +49,17 @@
         <springfox-swagger.version>2.9.2</springfox-swagger.version>
 
         <!-- GraphQL -->
-        <spring-boot-graphql.version>11.0.0</spring-boot-graphql.version>
+        <spring-boot-graphql.version>11.1.0</spring-boot-graphql.version>
 
         <!--Mock Dependency Versions-->
         <mockito.version>2.23.4</mockito.version>
 
         <!--JUnit Versions-->
         <junit.version>1.7.0</junit.version>
-        <junit.jupiter.version>5.6.2</junit.jupiter.version>
+        <junit.jupiter.version>5.7.0</junit.jupiter.version>
 
         <!--Jackson-->
-        <jackson.version>2.12.4</jackson.version>
+        <jackson.version>2.13.2</jackson.version>
 
         <!--Plugins-->
         <jaxws-maven-plugin.version>2.5</jaxws-maven-plugin.version>
@@ -84,6 +84,56 @@
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-archetype-client-graphql</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-archetype-client-rest</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-archetype-client-rest-delete</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-archetype-client-rest-get</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-archetype-client-rest-post</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-archetype-client-rest-put</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-archetype-client-rest-reactive</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-archetype-client-rest-reactive-delete</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-archetype-client-rest-reactive-get</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-archetype-client-rest-reactive-post</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-archetype-client-rest-reactive-put</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--Framework-->
@@ -281,6 +331,11 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-validation</artifactId>
+                <version>${spring-boot-framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-webflux</artifactId>
                 <version>${spring-boot-framework.version}</version>
                 <exclusions>
@@ -386,7 +441,7 @@
             <dependency>
                 <groupId>org.apache.santuario</groupId>
                 <artifactId>xmlsec</artifactId>
-                <version>2.2.2</version>
+                <version>2.3.0</version>
             </dependency>
             <dependency>
                 <groupId>commons-io</groupId>
@@ -551,7 +606,7 @@
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-ext</artifactId>
-                <version>1.7.7</version>
+                <version>1.8.0-beta4</version>
             </dependency>
 
             <!--Couchbase-->
@@ -795,7 +850,7 @@
                 <plugin>
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>0.8.5</version>
+                    <version>0.8.7</version>
                     <executions>
                         <execution>
                             <id>pre-unit-test</id>
