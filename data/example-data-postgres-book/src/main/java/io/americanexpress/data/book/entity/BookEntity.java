@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import java.util.Objects;
 
 /**
- * {@link BookEntity} class represents the domain of the book table.
+ * BookEntity class represents the domain of the book table.
  */
 @Entity
 @Table(name = "book")
