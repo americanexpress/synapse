@@ -82,6 +82,7 @@ workflows:
                 - develop
                 - /feature.*/
                 - /bugfix.*/
+                - /dependabot.*/
       - snapshot-maven-central-deploy-job:
           filters:
             branches:
@@ -89,6 +90,7 @@ workflows:
                 - develop
                 - /feature.*/
                 - /bugfix.*/
+                - /dependabot.*/
           context:
             - maven_central_credentials
             - code_signing_credentials
