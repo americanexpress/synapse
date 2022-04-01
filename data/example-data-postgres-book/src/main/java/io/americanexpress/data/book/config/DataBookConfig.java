@@ -45,3 +45,4 @@ public class DataBookConfig extends BasePostgresDataConfig {
         entityManagerFactoryBean.setPackagesToScan(PACKAGE_NAME + ENTITY_PACKAGE_NAME);
     }
 }
+

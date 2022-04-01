@@ -67,3 +67,4 @@ public class BookEntity extends BaseEntity {
         return Objects.hash(super.hashCode(), getTitle());
     }
 }
+

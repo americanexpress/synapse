@@ -10,3 +10,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 interface BookRepository extends JpaRepository<BookEntity, Long> {
 }
+
