@@ -7,8 +7,7 @@ SCHEMA_SEARCH_PATH TO synapse;
 drop table IF EXISTS book CASCADE;
 
 /*
- * role table
- * Store the roles
+ * book table create script
  */
 create table book
 (
