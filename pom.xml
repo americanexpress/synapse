@@ -48,6 +48,9 @@
         <!--SpringFox-->
         <springfox-swagger.version>3.0.0</springfox-swagger.version>
 
+        <!--Springdoc-->
+        <springdoc.version>1.6.6</springdoc.version>
+
         <!-- GraphQL -->
         <spring-boot-graphql.version>11.1.0</spring-boot-graphql.version>
 
@@ -683,12 +686,22 @@
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-spring-webflux</artifactId>
-                <version>3.0.0</version>
+                <version>${springfox-swagger.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-boot-starter</artifactId>
-                <version>3.0.0</version>
+                <version>${springfox-swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-webmvc-core</artifactId>
+                <version>${springdoc.version}</version>
             </dependency>
 
             <!--Swagger Annotations-->
@@ -697,7 +710,6 @@
                 <artifactId>swagger-annotations</artifactId>
                 <version>1.6.5</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 
@@ -708,8 +720,9 @@
                 <plugin>
                     <groupId>org.springdoc</groupId>
                     <artifactId>springdoc-openapi-maven-plugin</artifactId>
-                    <version>1.3</version>
+                    <version>1.4</version>
                 </plugin>
+
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
