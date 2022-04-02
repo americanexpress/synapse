@@ -46,7 +46,7 @@
         <spring-boot-ws-framework.version>1.4.7.RELEASE</spring-boot-ws-framework.version>
 
         <!--SpringFox-->
-        <springfox-swagger.version>2.9.2</springfox-swagger.version>
+        <springfox-swagger.version>3.0.0</springfox-swagger.version>
 
         <!-- GraphQL -->
         <spring-boot-graphql.version>11.1.0</spring-boot-graphql.version>
