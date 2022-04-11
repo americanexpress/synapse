@@ -23,7 +23,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 /**
- * The type Base read mono controller.
+ * <code>BaseGetMonoController</code> is base class for read mono controller. This controller handles POST method requests, but specifically for read purposes.
+ * This controller returns a single object.
  *
  * @param <O> the type parameter
  * @param <S> the type parameter

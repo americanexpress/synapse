@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * ReadMonoBookController retrieves a collection of books and the results can be filtered by some given parameters.
+ * ReadPolyBookController retrieves a collection of books and the results can be filtered by some given parameters.
  */
 @Tag(name = "Read Book Service", description = "Provides a collection of book information.")
 @RestController
