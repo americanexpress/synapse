@@ -40,7 +40,7 @@
         <maven.compiler.target>11</maven.compiler.target>
 
         <!--Spring Versions-->
-        <spring-framework.version>5.3.12</spring-framework.version>
+        <spring-framework.version>5.3.18</spring-framework.version>
         <spring-security.version>5.6.2</spring-security.version>
         <spring-boot-framework.version>2.6.6</spring-boot-framework.version>
         <spring-boot-ws-framework.version>1.4.7.RELEASE</spring-boot-ws-framework.version>
@@ -49,7 +49,7 @@
         <springfox-swagger.version>3.0.0</springfox-swagger.version>
 
         <!--Springdoc-->
-        <springdoc.version>1.6.6</springdoc.version>
+        <springdoc.version>1.6.7</springdoc.version>
 
         <!-- GraphQL -->
         <spring-boot-graphql.version>11.1.0</spring-boot-graphql.version>
@@ -64,6 +64,7 @@
         <!--Jackson-->
         <jackson.version>2.13.2</jackson.version>
 
+        <!--Logging-->
         <logging.version>2.17.2</logging.version>
 
         <!--Plugins-->
@@ -441,7 +442,7 @@
             <dependency>
                 <groupId>org.apache.tomcat.embed</groupId>
                 <artifactId>tomcat-embed-core</artifactId>
-                <version>9.0.45</version>
+                <version>9.0.62</version>
             </dependency>
 
             <!--Netty-->
@@ -678,46 +679,16 @@
                 </exclusions>
             </dependency>
 
-            <!--Springfox Swagger-->
+            <!--Springdoc-->
             <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>${springfox-swagger.version}</version>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-webflux-ui</artifactId>
+                <version>${springdoc.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-core</artifactId>
-                <version>${springfox-swagger.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-spi</artifactId>
-                <version>${springfox-swagger.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-spring-web</artifactId>
-                <version>${springfox-swagger.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>${springfox-swagger.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-bean-validators</artifactId>
-                <version>${springfox-swagger.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-spring-webflux</artifactId>
-                <version>${springfox-swagger.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-boot-starter</artifactId>
-                <version>${springfox-swagger.version}</version>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-data-rest</artifactId>
+                <version>${springdoc.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springdoc</groupId>
