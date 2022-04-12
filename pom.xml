@@ -64,6 +64,8 @@
         <!--Jackson-->
         <jackson.version>2.13.2</jackson.version>
 
+        <logging.version>2.17.2</logging.version>
+
         <!--Plugins-->
         <jaxws-maven-plugin.version>2.5</jaxws-maven-plugin.version>
     </properties>
@@ -208,11 +210,6 @@
                 <artifactId>synapse-data-postgres</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <dependency>
-                <groupId>io.americanexpress.synapse</groupId>
-                <artifactId>example-data-postgres-book</artifactId>
-                <version>${project.version}</version>
-            </dependency>
             <!--Utility-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
@@ -225,6 +222,7 @@
                 <artifactId>synapse-publisher-kafka</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
             <!--Examples-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
@@ -234,6 +232,11 @@
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>example-service-rest-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>example-data-postgres-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -353,6 +356,19 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+
+            <!--Logging-->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${logging.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${logging.version}</version>
+            </dependency>
+
 
             <!--Guava-->
             <dependency>
