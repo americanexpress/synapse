@@ -29,6 +29,10 @@
         <!--Synapse-->
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>
+            <artifactId>synapse-framework-logging</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.americanexpress.synapse</groupId>
             <artifactId>synapse-framework-exception</artifactId>
         </dependency>
         <dependency>
@@ -156,10 +160,6 @@
 
     <build>
         <plugins>
-            <!--            <plugin>-->
-            <!--                <groupId>org.springframework.boot</groupId>-->
-            <!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-            <!--            </plugin>-->
             <plugin>
                 <artifactId>maven-checkstyle-plugin</artifactId>
             </plugin>

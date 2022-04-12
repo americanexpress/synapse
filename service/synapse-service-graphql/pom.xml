@@ -22,10 +22,23 @@
     <artifactId>synapse-service-graphql</artifactId>
 
     <dependencies>
+        <!--Synapse-->
+        <dependency>
+            <groupId>io.americanexpress.synapse</groupId>
+            <artifactId>synapse-framework-logging</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.americanexpress.synapse</groupId>
+            <artifactId>synapse-framework-exception</artifactId>
+        </dependency>
+
+        <!--Spring-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
+
+        <!--GraphQL-->
         <dependency>
             <groupId>com.graphql-java</groupId>
             <artifactId>graphql-java-extended-scalars</artifactId>
