@@ -208,6 +208,11 @@
                 <artifactId>synapse-data-postgres</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>example-data-postgres-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <!--Utility-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
