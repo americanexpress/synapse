@@ -18,6 +18,9 @@ import io.americanexpress.synapse.service.rest.controller.reactive.helpers.React
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.rest.service.BaseCreateService;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,6 +50,13 @@ public abstract class BaseReactiveCreateController<I extends BaseServiceRequest,
      * @return response to the consumer
      */
     @PostMapping
+    @Operation(tags = "Reactive Create Operation", summary = "Creates a reactive resource")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Created"),
+            @ApiResponse(code = 400, message = "Bad Request"),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 403, message = "Forbidden"),
+    })
     public ResponseEntity<Mono<O>> create(@Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
 

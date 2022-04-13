@@ -45,6 +45,15 @@ public abstract class BasePostgresDataConfig {
     protected Environment environment;
 
     /**
+     * Instantiates a new Base postgres data config.
+     *
+     * @param environment the environment
+     */
+    public BasePostgresDataConfig(Environment environment) {
+        this.environment = environment;
+    }
+
+    /**
      * Used to create and edit the DataSource bean.
      *
      * @return DataSource bean

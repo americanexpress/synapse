@@ -25,98 +25,23 @@
 
     <!--Dependencies-->
     <dependencies>
-    <!--        <dependency>-->
-    <!--            <groupId>org.springframework.plugin</groupId>-->
-    <!--            <artifactId>spring-plugin-core</artifactId>-->
-    <!--            <version>2.0.0.RELEASE</version>-->
-    <!--        </dependency>-->
-    <!--        <dependency>-->
-    <!--            <groupId>org.springframework</groupId>-->
-    <!--            <artifactId>spring-webmvc</artifactId>-->
-    <!--            <version>5.3.12</version>-->
-    <!--        </dependency>-->
-    <!--        <dependency>-->
-    <!--            <groupId>io.springfox</groupId>-->
-    <!--            <artifactId>springfox-swagger2</artifactId>-->
-    <!--            <exclusions>-->
-    <!--                <exclusion>-->
-    <!--                    <groupId>org.springframework.plugin</groupId>-->
-    <!--                    <artifactId>spring-plugin-core</artifactId>-->
-    <!--                </exclusion>-->
-    <!--            </exclusions>-->
-    <!--        </dependency>-->
-    <!--        <dependency>-->
-    <!--            <groupId>io.springfox</groupId>-->
-    <!--            <artifactId>springfox-spring-webflux</artifactId>-->
-    <!--            <exclusions>-->
-    <!--                <exclusion>-->
-    <!--                    <groupId>org.springframework.plugin</groupId>-->
-    <!--                    <artifactId>spring-plugin-core</artifactId>-->
-    <!--                </exclusion>-->
-    <!--            </exclusions>-->
-    <!--        </dependency>-->
-    <!--        <dependency>-->
-    <!--            <groupId>io.springfox</groupId>-->
-    <!--            <artifactId>springfox-boot-starter</artifactId>-->
-    <!--        </dependency>-->
-    <!--        <dependency>-->
-    <!--            <groupId>org.springframework.boot</groupId>-->
-    <!--            <artifactId>spring-boot-starter-parent</artifactId>-->
-    <!--            <type>pom</type>-->
-    <!--        </dependency>-->
-    <!--        <dependency>-->
-    <!--            <groupId>io.springfox</groupId>-->
-    <!--            <artifactId>springfox-swagger-ui</artifactId>-->
-    <!--        </dependency>-->
-    <!--        <dependency>-->
-    <!--            <groupId>io.springfox</groupId>-->
-    <!--            <artifactId>springfox-bean-validators</artifactId>-->
-    <!--        </dependency>-->
-    <!--        <dependency>-->
-    <!--            <groupId>org.springframework.security</groupId>-->
-    <!--            <artifactId>spring-security-config</artifactId>-->
-    <!--        </dependency>-->
-    <!--        <dependency>-->
-    <!--            <groupId>org.springframework.security</groupId>-->
-    <!--            <artifactId>spring-security-web</artifactId>-->
-    <!--        </dependency>-->
-    <!--        <dependency>-->
-    <!--            <groupId>org.springframework.boot</groupId>-->
-    <!--            <artifactId>spring-boot-starter-web</artifactId>-->
-    <!--        </dependency>-->
-    <!--        <dependency>-->
-    <!--            <groupId>org.springframework.boot</groupId>-->
-    <!--            <artifactId>spring-boot-starter-security</artifactId>-->
-    <!--        </dependency>-->
-
-    <!--        <dependency>-->
-    <!--            <groupId>com.google.guava</groupId>-->
-    <!--            <artifactId>guava</artifactId>-->
-    <!--        </dependency>-->
-
         <!--Open API Spring Docs-->
-
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
-            <version>1.5.2</version>
         </dependency>
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-webmvc-core</artifactId>
-            <version>1.5.2</version>
         </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>org.springdoc</groupId>-->
-<!--            <artifactId>springdoc-openapi-webflux-ui</artifactId>-->
-<!--            <version>1.5.2</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.springdoc</groupId>-->
-<!--            <artifactId>springdoc-openapi-data-rest</artifactId>-->
-<!--            <version>1.5.2</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-webflux-ui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-data-rest</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

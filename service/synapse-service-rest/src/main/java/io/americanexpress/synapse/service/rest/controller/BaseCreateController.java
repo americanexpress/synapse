@@ -47,7 +47,6 @@ public abstract class BaseCreateController<I extends BaseServiceRequest, O exten
      */
     @PostMapping
     @Operation(tags = "Create Operation", summary = "Creates a resource")
-
     public ResponseEntity<O> create(@Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
 

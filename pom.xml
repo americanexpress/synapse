@@ -40,13 +40,16 @@
         <maven.compiler.target>11</maven.compiler.target>
 
         <!--Spring Versions-->
-        <spring-framework.version>5.3.12</spring-framework.version>
-        <spring-security.version>5.5.3</spring-security.version>
-        <spring-boot-framework.version>2.5.6</spring-boot-framework.version>
+        <spring-framework.version>5.3.18</spring-framework.version>
+        <spring-security.version>5.6.2</spring-security.version>
+        <spring-boot-framework.version>2.6.6</spring-boot-framework.version>
         <spring-boot-ws-framework.version>1.4.7.RELEASE</spring-boot-ws-framework.version>
 
         <!--SpringFox-->
-        <springfox-swagger.version>2.9.2</springfox-swagger.version>
+        <springfox-swagger.version>3.0.0</springfox-swagger.version>
+
+        <!--Springdoc-->
+        <springdoc.version>1.6.7</springdoc.version>
 
         <!-- GraphQL -->
         <spring-boot-graphql.version>11.1.0</spring-boot-graphql.version>
@@ -55,11 +58,14 @@
         <mockito.version>2.23.4</mockito.version>
 
         <!--JUnit Versions-->
-        <junit.version>1.7.0</junit.version>
-        <junit.jupiter.version>5.7.0</junit.jupiter.version>
+        <junit.version>1.8.2</junit.version>
+        <junit.jupiter.version>5.8.2</junit.jupiter.version>
 
         <!--Jackson-->
         <jackson.version>2.13.2</jackson.version>
+
+        <!--Logging-->
+        <logging.version>2.17.2</logging.version>
 
         <!--Plugins-->
         <jaxws-maven-plugin.version>2.5</jaxws-maven-plugin.version>
@@ -217,6 +223,7 @@
                 <artifactId>synapse-publisher-kafka</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
             <!--Examples-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
@@ -226,6 +233,11 @@
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>example-service-rest-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>example-data-postgres-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -346,6 +358,19 @@
                 </exclusions>
             </dependency>
 
+            <!--Logging-->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${logging.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${logging.version}</version>
+            </dependency>
+
+
             <!--Guava-->
             <dependency>
                 <groupId>com.google.guava</groupId>
@@ -417,7 +442,7 @@
             <dependency>
                 <groupId>org.apache.tomcat.embed</groupId>
                 <artifactId>tomcat-embed-core</artifactId>
-                <version>9.0.45</version>
+                <version>9.0.62</version>
             </dependency>
 
             <!--Netty-->
@@ -484,7 +509,12 @@
             <dependency>
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
-                <version>42.2.5</version>
+                <version>42.3.3</version>
+            </dependency>
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>2.1.210</version>
             </dependency>
 
             <!--Persistence-->
@@ -649,55 +679,34 @@
                 </exclusions>
             </dependency>
 
-            <!--Springfox Swagger-->
+            <!--Springdoc-->
             <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>${springfox-swagger.version}</version>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-webflux-ui</artifactId>
+                <version>${springdoc.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-core</artifactId>
-                <version>${springfox-swagger.version}</version>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-data-rest</artifactId>
+                <version>${springdoc.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-spi</artifactId>
-                <version>${springfox-swagger.version}</version>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${springdoc.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-spring-web</artifactId>
-                <version>${springfox-swagger.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>${springfox-swagger.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-bean-validators</artifactId>
-                <version>${springfox-swagger.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-spring-webflux</artifactId>
-                <version>3.0.0</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-boot-starter</artifactId>
-                <version>3.0.0</version>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-webmvc-core</artifactId>
+                <version>${springdoc.version}</version>
             </dependency>
 
             <!--Swagger Annotations-->
             <dependency>
                 <groupId>io.swagger</groupId>
                 <artifactId>swagger-annotations</artifactId>
-                <version>1.6.2</version>
+                <version>1.6.5</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 
@@ -708,8 +717,9 @@
                 <plugin>
                     <groupId>org.springdoc</groupId>
                     <artifactId>springdoc-openapi-maven-plugin</artifactId>
-                    <version>1.3</version>
+                    <version>1.4</version>
                 </plugin>
+
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
@@ -737,19 +747,21 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.1</version>
+                    <version>3.10.1</version>
                     <configuration>
                         <source>${java.version}</source>
                         <target>${java.version}</target>
                     </configuration>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>2.6</version>
+                    <version>3.2.2</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-assembly-plugin</artifactId>
-                    <version>3.1.0</version>
+                    <version>3.3.0</version>
                     <executions>
                         <execution>
                             <id>dist</id>
@@ -767,8 +779,9 @@
                     </executions>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-dependency-plugin</artifactId>
-                    <version>2.8</version>
+                    <version>3.3.0</version>
                     <executions>
                         <execution>
                             <id>analyze</id>
@@ -799,6 +812,7 @@
                     </configuration>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>2.9</version>
                     <dependencies>
