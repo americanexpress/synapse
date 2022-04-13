@@ -18,8 +18,8 @@ import javax.persistence.Table;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @Entity
-@Table(name = "")
-public class SampleEntity extends BaseEntity {
+@Table(name = ${tableName})
+public class ${tableName}Entity extends BaseEntity {
 
     @Column(name = "sampleColumn")
     private String sampleCoulmn;

@@ -23,14 +23,11 @@
 		<requiredProperty key="author">
 			<defaultValue>John Doe</defaultValue>
 		</requiredProperty>
-		<requiredProperty key="databaseName">
-			<defaultValue>BookstoreDB</defaultValue>
-		</requiredProperty>
-		<requiredProperty key="schemaName">
+		<requiredProperty key="className">
 			<defaultValue>Bookstore</defaultValue>
 		</requiredProperty>
-		<requiredProperty key="className">
-			<defaultValue>ExampleBook</defaultValue>
+		<requiredProperty key="tableName">
+			<defaultValue>Book</defaultValue>
 		</requiredProperty>
 	</requiredProperties>
 	<fileSets>
