@@ -13,6 +13,8 @@
  */
 package io.americanexpress.service.book.graphql;
 
+import org.slf4j.ext.XLogger;
+import org.slf4j.ext.XLoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -26,11 +28,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class BookApplication {
 
+	private static final XLogger LOGGER = XLoggerFactory.getXLogger(BookApplication.class);
+
 	/**
 	 * Run the application.
 	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
 		SpringApplication.run(BookApplication.class, args);
+		LOGGER.info("Graphql Book Application is up and running ...");
 	}
 }
