@@ -52,6 +52,7 @@
         <Logger name="com.couchbase.client" level="INFO"/>
         <Logger name="io.americanexpress.synapse.service.rest.metrics" level="INFO"/>
         <Logger name="io.americanexpress.synapse.client.rest.helper" level="INFO"/>
+        <Logger name="io.americanexpress.synapse.service.graphql" level="INFO"/>
         <Logger name="reactor.netty.channel.ChannelOperations" level="ERROR"/>
         <Root includeLocation="true">
             <!-- Use Console for testing locally -->

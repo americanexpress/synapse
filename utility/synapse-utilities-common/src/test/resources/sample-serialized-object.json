@@ -1,0 +1,9 @@
+{
+  "some_name" : "Stephen Strange",
+  "some_number" : 123,
+  "sample_nested_object" : {
+    "some_text1" : "The Eye of Agamotto",
+    "some_text2" : "The Time Stone"
+  },
+  "some_local_date" : "2018-04-01"
+}
