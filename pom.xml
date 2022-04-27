@@ -19,7 +19,7 @@
     <groupId>io.americanexpress.synapse</groupId>
     <artifactId>synapse</artifactId>
     <packaging>pom</packaging>
-    <version>0.2.3-SNAPSHOT</version>
+    <version>0.2.4-SNAPSHOT</version>
 
     <description>
         Synapse is a set of lightweight foundational framework modules for rapid development built-in with enterprise
@@ -644,13 +644,6 @@
                 <groupId>com.couchbase.client</groupId>
                 <artifactId>java-client</artifactId>
                 <version>3.1.4</version>
-            </dependency>
-
-            <!--Lombok-->
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>1.18.24</version>
             </dependency>
 
             <!--Quarkus-->
