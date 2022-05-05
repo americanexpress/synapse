@@ -117,22 +117,22 @@ workflows:
           requires:
             - build-test-job
 
-  # Release Branch
-  # This workflow is to start automatically when creating any new release branches and when pushing any changes to release branches
-  snapshot-release-maven-central-build-test-deploy-workflow:
-    jobs:
-      - build-test-job:
-          filters:
-            branches:
-              only:
-                - /release.*/
-      - snapshot-release-maven-central-deploy-job:
-          filters:
-            branches:
-              only:
-                - /release.*/
-          context:
-            - maven_central_credentials
-            - code_signing_credentials
-          requires:
-            - build-test-job
+#  # Release Branch
+#  # This workflow is to start automatically when creating any new release branches and when pushing any changes to release branches
+#  snapshot-release-maven-central-build-test-deploy-workflow:
+#    jobs:
+#      - build-test-job:
+#          filters:
+#            branches:
+#              only:
+#                - /release.*/
+#      - snapshot-release-maven-central-deploy-job:
+#          filters:
+#            branches:
+#              only:
+#                - /release.*/
+#          context:
+#            - maven_central_credentials
+#            - code_signing_credentials
+#          requires:
+#            - build-test-job
