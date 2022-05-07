@@ -20,56 +20,56 @@
 		<archetype>
 			<groupId>io.americanexpress.synapse</groupId>
 			<artifactId>synapse-archetype-client-graphql</artifactId>
-			<version>0.2.4-SNAPSHOT</version>
+			<version>0.2.15-SNAPSHOT</version>
 		</archetype>
 		<archetype>
 			<groupId>io.americanexpress.synapse</groupId>
 			<artifactId>synapse-archetype-client-rest</artifactId>
-			<version>0.2.4-SNAPSHOT</version>
+			<version>0.2.15-SNAPSHOT</version>
 		</archetype>
 		<archetype>
 			<groupId>io.americanexpress.synapse</groupId>
 			<artifactId>synapse-archetype-client-rest-delete</artifactId>
-			<version>0.2.4-SNAPSHOT</version>
+			<version>0.2.15-SNAPSHOT</version>
 		</archetype>
 		<archetype>
 			<groupId>io.americanexpress.synapse</groupId>
 			<artifactId>synapse-archetype-client-rest-get</artifactId>
-			<version>0.2.4-SNAPSHOT</version>
+			<version>0.2.15-SNAPSHOT</version>
 		</archetype>
 		<archetype>
 			<groupId>io.americanexpress.synapse</groupId>
 			<artifactId>synapse-archetype-client-rest-post</artifactId>
-			<version>0.2.4-SNAPSHOT</version>
+			<version>0.2.15-SNAPSHOT</version>
 		</archetype>
 		<archetype>
 			<groupId>io.americanexpress.synapse</groupId>
 			<artifactId>synapse-archetype-client-rest-put</artifactId>
-			<version>0.2.4-SNAPSHOT</version>
+			<version>0.2.15-SNAPSHOT</version>
 		</archetype>
 		<archetype>
 			<groupId>io.americanexpress.synapse</groupId>
 			<artifactId>synapse-archetype-client-rest-reactive</artifactId>
-			<version>0.2.4-SNAPSHOT</version>
+			<version>0.2.15-SNAPSHOT</version>
 		</archetype>
 		<archetype>
 			<groupId>io.americanexpress.synapse</groupId>
 			<artifactId>synapse-archetype-client-rest-reactive-delete</artifactId>
-			<version>0.2.4-SNAPSHOT</version>
+			<version>0.2.15-SNAPSHOT</version>
 		</archetype>
 		<archetype>
 			<groupId>io.americanexpress.synapse</groupId>
 			<artifactId>synapse-archetype-client-rest-reactive-get</artifactId>
-			<version>0.2.4-SNAPSHOT</version>
+			<version>0.2.15-SNAPSHOT</version>
 		</archetype>
 		<archetype>
 			<groupId>io.americanexpress.synapse</groupId>
 			<artifactId>synapse-archetype-client-rest-reactive-post</artifactId>
-			<version>0.2.4-SNAPSHOT</version>
+			<version>0.2.15-SNAPSHOT</version>
 		</archetype><archetype>
 			<groupId>io.americanexpress.synapse</groupId>
 			<artifactId>synapse-archetype-client-rest-reactive-put</artifactId>
-			<version>0.2.4-SNAPSHOT</version>
+			<version>0.2.15-SNAPSHOT</version>
 		</archetype>
 	</archetypes>
 </archetype-catalog>
