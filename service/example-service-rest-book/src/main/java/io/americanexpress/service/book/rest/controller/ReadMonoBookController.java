@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * ReadMonoBookController retrieves a Book Response given its unique identifier.
  */
-@Tag(name = "Get Book Service", description = "Provides book information based on identifier")
 @RestController
 @RequestMapping(BookConfig.BOOK_ENDPOINT)
 public class ReadMonoBookController extends BaseGetMonoController<ReadBookResponse, ReadMonoBookService> {

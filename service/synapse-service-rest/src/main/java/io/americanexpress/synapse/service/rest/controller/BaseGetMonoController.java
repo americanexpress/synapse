@@ -40,7 +40,7 @@ public class BaseGetMonoController<O extends BaseServiceResponse, S extends Base
      * @param identifier the identifier
      * @return the response entity
      */
-    @Operation(summary = "Read operation on path", description = "Read a resource based on a path variable.")
+    @Operation(summary = "Read operation based on path.", description = "Read one resource based on a path variable.")
     @GetMapping("/{identifier}")
     public ResponseEntity<O> read(@PathVariable String identifier) {
         logger.entry(identifier);

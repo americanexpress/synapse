@@ -19,6 +19,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 
+
 /**
  * BookConfig is the configuration class for the Book Application.
  */
@@ -32,6 +33,7 @@ public class BookConfig {
      * The constant BOOK_ENDPOINT.
      */
     public static final String BOOK_ENDPOINT = "/v1/books";
+
 
 }
 

@@ -53,7 +53,7 @@ public abstract class BaseReadPolyController<I extends BaseServiceRequest, O ext
      * @param httpServletResponse HttpServletResponse
      * @return a list of resources from the back end service
      */
-    @Operation(tags = "Read Poly Operation", summary = "Summary Read a collection of resources", description = "Read a collection of resources")
+    @Operation(summary = "Read operation based on criteria.", description = "Read a collection of resources based on request criteria.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Ok"),
             @ApiResponse(responseCode = "204", description = "No Content"),
