@@ -50,34 +50,34 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.6.6</version>
-                <configuration>
-                    <image>
-                        <name>${project.artifactId}:latest</name>
-                        <builder>paketobuildpacks/builder:tiny</builder>
-                        <env>
-                            <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
-                        </env>
-                    </image>
-                </configuration>
+<!--                <configuration>-->
+<!--                    <image>-->
+<!--                        <name>${project.artifactId}:latest</name>-->
+<!--                        <builder>paketobuildpacks/builder:tiny</builder>-->
+<!--                        <env>-->
+<!--                            <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>-->
+<!--                        </env>-->
+<!--                    </image>-->
+<!--                </configuration>-->
             </plugin>
             <plugin>
                 <groupId>org.springframework.experimental</groupId>
                 <artifactId>spring-aot-maven-plugin</artifactId>
                 <version>0.11.4</version>
-                <executions>
-                    <execution>
-                        <id>test-generate</id>
-                        <goals>
-                            <goal>test-generate</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>generate</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>test-generate</id>-->
+<!--                        <goals>-->
+<!--                            <goal>test-generate</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                    <execution>-->
+<!--                        <id>generate</id>-->
+<!--                        <goals>-->
+<!--                            <goal>generate</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
             </plugin>
             <plugin>
                 <groupId>org.graalvm.nativeimage</groupId>
@@ -87,36 +87,36 @@
                     <!-- The native image build needs to know the entry point to your application -->
                     <mainClass>io.americanexpress.service.book.rest.BookApplication</mainClass>
                 </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>native-image</goal>
-                        </goals>
-                        <phase>package</phase>
-                    </execution>
-                </executions>
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>native-image</goal>-->
+<!--                        </goals>-->
+<!--                        <phase>package</phase>-->
+<!--                    </execution>-->
+<!--                </executions>-->
             </plugin>
             <plugin>
                 <groupId>org.graalvm.buildtools</groupId>
                 <artifactId>native-maven-plugin</artifactId>
                 <version>0.9.11</version>
-                <extensions>true</extensions>
-                <executions>
-                    <execution>
-                        <id>test-native</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>build-native</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>build</goal>
-                        </goals>
-                    </execution>
-                </executions>
+<!--                <extensions>true</extensions>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>test-native</id>-->
+<!--                        <phase>test</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>test</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                    <execution>-->
+<!--                        <id>build-native</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>build</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
                 <configuration>
                     <imageName>native-executable</imageName>
                     <buildArgs>
