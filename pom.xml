@@ -67,6 +67,7 @@
 
         <!--Logging-->
         <log4j.version>2.17.2</log4j.version>
+        <sl4j.version>1.7.36</sl4j.version>
 
         <!--Plugins-->
         <jaxws-maven-plugin.version>2.5</jaxws-maven-plugin.version>
@@ -641,8 +642,14 @@
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-ext</artifactId>
-                <version>1.8.0-beta4</version>
+                <version>${sl4j.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${sl4j.version}</version>
+            </dependency>
+
 
             <!--Couchbase-->
             <dependency>

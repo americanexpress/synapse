@@ -133,12 +133,6 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-        <!--SLF4J-->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-ext</artifactId>
-        </dependency>
-
         <!--TOMCAT-->
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
