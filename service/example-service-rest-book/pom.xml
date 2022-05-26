@@ -96,10 +96,10 @@
 <!--                    </execution>-->
 <!--                </executions>-->
             </plugin>
-            <plugin>
-                <groupId>org.graalvm.buildtools</groupId>
-                <artifactId>native-maven-plugin</artifactId>
-                <version>0.9.11</version>
+<!--            <plugin>-->
+<!--                <groupId>org.graalvm.buildtools</groupId>-->
+<!--                <artifactId>native-maven-plugin</artifactId>-->
+<!--                <version>0.9.11</version>-->
 <!--                <extensions>true</extensions>-->
 <!--                <executions>-->
 <!--                    <execution>-->
@@ -117,13 +117,13 @@
 <!--                        </goals>-->
 <!--                    </execution>-->
 <!--                </executions>-->
-                <configuration>
-                    <imageName>native-executable</imageName>
-                    <buildArgs>
-                        <buildArg>--no-fallback</buildArg>
-                    </buildArgs>
-                </configuration>
-            </plugin>
+<!--                <configuration>-->
+<!--                    <imageName>native-executable</imageName>-->
+<!--                    <buildArgs>-->
+<!--                        <buildArg>&#45;&#45;no-fallback</buildArg>-->
+<!--                    </buildArgs>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
