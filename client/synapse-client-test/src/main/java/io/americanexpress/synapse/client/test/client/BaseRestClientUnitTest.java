@@ -20,7 +20,6 @@ import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
 import io.americanexpress.synapse.client.rest.model.ClientHeaders;
 import io.americanexpress.synapse.client.rest.model.QueryParameter;
 import io.americanexpress.synapse.framework.exception.ApplicationClientException;
-import io.americanexpress.synapse.framework.exception.ApplicationServerException;
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 import io.americanexpress.synapse.framework.test.CommonAssertionMessages;
 
