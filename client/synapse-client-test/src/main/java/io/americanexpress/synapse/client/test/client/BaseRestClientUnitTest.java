@@ -156,7 +156,7 @@ public abstract class BaseRestClientUnitTest<I extends BaseClientRequest,
     @Test
     void callMonoService_givenServerError_expectedApplicationClientException() throws IOException {
         responseActions.andRespond(withStatus(HttpStatus.INTERNAL_SERVER_ERROR).contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(clientResponse)));
-        Assertions.assertThrows(ApplicationServerException.class, this::callMonoServiceAndAssertErrorResponse, CommonAssertionMessages.EXCEPTION_NOT_THROWN);
+        Assertions.assertThrows(ApplicationClientException.class, this::callMonoServiceAndAssertErrorResponse, CommonAssertionMessages.EXCEPTION_NOT_THROWN);
     }
     
     private MockRestServiceServer getMockServer() {
