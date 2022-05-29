@@ -41,17 +41,21 @@ The Synapse team recommends to modularize your application in a similar structur
 for application teams to utilize the same structure 
 
 ### Types of modules:
-#### Business Layer - 
-  - **Service** - These type of modules are used to supper 
-  - **Business** - 
-  - **Subscriber**
+#### Business Layer 
+  - **Service** - Used for any service communication method over HTTP (such as Rest, GraphQL, grpc, etc.) that is  
+starting a workflow. These services could be synchronous or asynchronous. 
 
-#### Persistence Layer -
+  - **Business** - Used for placing common business logic across service modules. 
+Essentially serves as an extension for the service module for commonalities across multiple service or subscriber modules. 
+
+  - **Subscriber** - Used 
+
+#### Persistence Layer
    - **Client**
    - **Data**
    - **Publisher**
 
-#### Cross-cutting Concerns / Tools - 
+#### Cross-cutting Concerns / Tools 
    - **Framework** - These type of modules are fra
    - **Utility** 
 
@@ -70,14 +74,17 @@ application-name
     |   +- subscriber-notification
     |
     +- client
-    |    +- CustomerService.java
-    |    +- OrderService.java
+    |    +- client-customer
+    |    +- client-customer
     |
     +- data
     |    +- data-customer
     |    +- data-notification
     |
 ```
+As you can see the modules begin with the word that describes that type of module. 
+This helps ensure the modules are named  intuitive and organized within your IDE. 
+
 
 ### Synapse Modules:
 
@@ -90,7 +97,7 @@ application-name
       Controller by simply extending the needed base CRUD Controller class.
     - An open to extension configuration file that support for most of the available media types for RESTful
       webservices. If needed, new ones could be added. Also provides a default ObjectMapper for its serialization and
-      deserialization. This can be overriden.
+      deserialization. This can be overridden.
     - An open to extension generic ControllerExceptionHandler that handles the most common types of errors happening in
       an application.
     - An open to extension way of handling input validations.
