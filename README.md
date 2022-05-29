@@ -119,7 +119,7 @@ This helps ensure the modules are named  intuitive and organized within your IDE
       functionalities are:
         - Log at error level the body and status code of the error returned. - Throw a HttpClientErrorException when an
           error of the 4XX family occurs - Throw a HttpServerErrorException when an error of the 5XX family occurs.
-    - An open to extension generic hmac generator class. (Not sure if this applies to American Express only).
+    - An open to extension generic hmac generator class.
 
 #### synapse-client-soap
 
@@ -285,25 +285,25 @@ The following listing shows the pom.xml file that is created when you choose Mav
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.example</groupId>
+        <groupId>com.sample.bookstore</groupId>
         <artifactId>service</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.example.synapse</groupId>
+    <groupId>com.sample.bookstore</groupId>
     <artifactId>service-greeting</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <properties>
-        <start-class>com.example.synapse.bookstore.GreetingApplication</start-class>
+        <start-class>com.sample.bookstore.GreetingApplication</start-class>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>com.americanexpress</groupId>
+            <groupId>io.americanexpress.synapse</groupId>
             <artifactId>synapse-service-rest</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>0.2.18-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
@@ -358,7 +358,7 @@ src/main/java/com/example/restservice/Greeting.java) shows:
 Below is the request model.
 
 ```java
-package com.example.synapse.bookstore.model;
+package com.sample.bookstore.model;
 
 import BaseServiceRequest;
 
@@ -401,7 +401,7 @@ public class GreetingRequest extends BaseServiceRequest {
 Below is the response model.
 
 ```java
-package com.example.synapse.bookstore.model;
+package com.sample.bookstore.model;
 
 import BaseServiceResponse;
 
@@ -449,7 +449,7 @@ public class GreetingResponse extends BaseServiceResponse {
 ```
 
 ```java
-package com.example.synapse.bookstore;
+package com.sample.bookstore;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -483,12 +483,12 @@ src/main/java/com/example/restservice/GreetingController.java)
 handles GET requests for /greeting by returning a new instance of the Greeting class:
 
 ```java
-package com.example.synapse.bookstore.controller;
+package com.sample.bookstore.controller;
 
 import BaseController;
-import com.example.synapse.bookstore.model.GreetingRequest;
-import com.example.synapse.bookstore.model.GreetingResponse;
-import com.example.synapse.bookstore.service.GreetingService;
+import com.sample.bookstore.model.GreetingRequest;
+import com.sample.bookstore.model.GreetingResponse;
+import com.sample.bookstore.service.GreetingService;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -510,7 +510,7 @@ public class GreetingController extends BaseController<GreetingRequest, Greeting
 ### Create a API Config
 
 ```java
-package com.example.synapse.bookstore.config;
+package com.sample.bookstore.config;
 
 import com.americanexpress.synapse.service.rest.config.BaseServiceRestConfig;
 import org.springframework.context.annotation.ComponentScan;
@@ -535,12 +535,12 @@ public class GreetingConfig implements WebMvcConfigurer {
 ### Create a Resource Service
 
 ```java
-package com.example.synapse.bookstore.service;
+package com.sample.bookstore.service;
 
 import ServiceHeaders;
 import BaseService;
-import com.example.synapse.bookstore.model.GreetingRequest;
-import com.example.synapse.bookstore.model.GreetingResponse;
+import com.sample.bookstore.model.GreetingRequest;
+import com.sample.bookstore.model.GreetingResponse;
 import org.springframework.stereotype.Service;
 
 import static java.util.Objects.nonNull;
