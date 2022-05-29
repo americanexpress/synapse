@@ -37,10 +37,12 @@ Synapse focuses on the Application Tier of the well-established n-tier architect
 Within the Application Tier, Synapse is geared towards breaking down the Business and Persistence layer. 
 The modules are organized into types - the services, subscribers describe the modules that initiate a workflow. 
 While the data and client modules represent modules that need to access or modify resources. 
+The Synapse team recommends to modularize your application in a similar structure to maintain organization and clairty in your code. 
+for application teams to utilize the same structure 
 
 ### Types of modules:
 #### Business Layer - 
-  - **Service** - These type of modules 
+  - **Service** - These type of modules are used to supper 
   - **Business** - 
   - **Subscriber**
 
@@ -50,8 +52,32 @@ While the data and client modules represent modules that need to access or modif
    - **Publisher**
 
 #### Cross-cutting Concerns / Tools - 
-   - **Framework**
+   - **Framework** - These type of modules are fra
    - **Utility** 
+
+
+## Recommended Application Module/Project Structure By Layer
+```
+application-name
+    |
+    +- service
+    |   +- service-customer
+    |   +- service-notification
+    |   +- service-relationship
+    |
+    +- subscriber
+    |   +- subscriber-customer
+    |   +- subscriber-notification
+    |
+    +- client
+    |    +- CustomerService.java
+    |    +- OrderService.java
+    |
+    +- data
+    |    +- data-customer
+    |    +- data-notification
+    |
+```
 
 ### Synapse Modules:
 
@@ -181,7 +207,7 @@ While the data and client modules represent modules that need to access or modif
     - Enforces developers to follow the same template and good standards across the entire code base.
     - Forces strict separation of concerns because the base 'Hook' classes which the developers extend from are already
       representing each layer in the famous and already proven three layer architecture. - Base<Crud functionality>
-      Controller (Http Layer). - Base<Crud functionality>Service (Sevice Layer). - BaseRestClient, BaseSoapClient or
+      Controller (Http Layer). - Base<Crud functionality>Service (Service Layer). - BaseRestClient, BaseSoapClient or
       Repositories(These are already interfaces so not base classes provided) (DAO Layer).
     - Provides the BaseControllerTest class with a set of overloaded methods to facilitate controllers slice testing.
     - Provides a couchbase library to build dynamic queries based on Spring Data and Query DSL (There is nothing like
