@@ -40,18 +40,18 @@ While the data and client modules represent modules that need to access or modif
 
 ### Types of modules:
 #### Business Layer - 
-  - Service - These type of modules 
-  - Business - 
-  - Subscriber
+  - **Service** - These type of modules 
+  - **Business** - 
+  - **Subscriber**
 
 #### Persistence Layer -
-   - Client
-   - Data
-   - Publisher`
+   - **Client**
+   - **Data**
+   - **Publisher**
 
 #### Cross-cutting Concerns / Tools - 
-    - Framework
-    - Utility 
+   - **Framework**
+   - **Utility** 
 
 ### Synapse Modules:
 
