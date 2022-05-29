@@ -33,11 +33,31 @@ also have that flexibility.
 
 ![Synapse Architecture](docs/assets/synapse-architecture-1.png)
 
+Synapse focuses on the Application Tier of the well-established n-tier architecture pattern. 
+Within the Application Tier, Synapse is geared towards breaking down the Business and Persistence layer. 
+The modules are organized into types - the services, subscribers describe the modules that initiate a workflow. 
+While the data and client modules represent modules that need to access or modify resources. 
+
+### Types of modules:
+#### Business Layer - 
+  - Service - These type of modules 
+  - Business - 
+  - Subscriber
+
+#### Persistence Layer -
+   - Client
+   - Data
+   - Publisher`
+
+#### Cross-cutting Concerns / Tools - 
+    - Framework
+    - Utility 
+
 ### Synapse Modules:
 
 #### synapse-service-rest
 
-- This synapse module is the gateway framework module used to expose Restful APIs. It provides several out-of-the-box
+- This module provides an abstraction framework used to help expose RESTful APIs. It provides several out-of-the-box
   functionalities like:
 
     - An open to extension generic set of abstract controller classes to easily build any concrete CRUD
