@@ -33,18 +33,71 @@ also have that flexibility.
 
 ![Synapse Architecture](docs/assets/synapse-architecture-1.png)
 
+Synapse focuses on the Application Tier of the well-established n-tier architecture pattern. 
+Within the Application Tier, Synapse is geared towards breaking down the Business and Persistence layer. 
+The modules are organized into types - the services, subscribers describe the modules that initiate a workflow. 
+While the data and client modules represent modules that need to access or modify resources. 
+The Synapse team recommends to modularize your application in a similar structure to maintain organization and clairty in your code. 
+for application teams to utilize the same structure 
+
+### Types of modules:
+#### Business Layer 
+  - **Service** - Used for any service communication method over HTTP (such as Rest, GraphQL, grpc, etc.) that is  
+starting a workflow. These services could be synchronous or asynchronous. 
+
+  - **Business** - Used for placing common business logic across service modules. 
+Essentially serves as an extension for the service module for commonalities across multiple service or subscriber modules. 
+
+  - **Subscriber** - Used 
+
+#### Persistence Layer
+   - **Client**
+   - **Data**
+   - **Publisher**
+
+#### Cross-cutting Concerns / Tools 
+   - **Framework** - These type of modules are fra
+   - **Utility** 
+
+
+## Recommended Application Module/Project Structure By Layer
+```
+application-name
+    |
+    +- service
+    |   +- service-customer
+    |   +- service-notification
+    |   +- service-relationship
+    |
+    +- subscriber
+    |   +- subscriber-customer
+    |   +- subscriber-notification
+    |
+    +- client
+    |    +- client-customer
+    |    +- client-customer
+    |
+    +- data
+    |    +- data-customer
+    |    +- data-notification
+    |
+```
+As you can see the modules begin with the word that describes that type of module. 
+This helps ensure the modules are named  intuitive and organized within your IDE. 
+
+
 ### Synapse Modules:
 
 #### synapse-service-rest
 
-- This synapse module is the gateway framework module used to expose Restful APIs. It provides several out-of-the-box
+- This module provides an abstraction framework used to help expose RESTful APIs. It provides several out-of-the-box
   functionalities like:
 
     - An open to extension generic set of abstract controller classes to easily build any concrete CRUD
       Controller by simply extending the needed base CRUD Controller class.
     - An open to extension configuration file that support for most of the available media types for RESTful
       webservices. If needed, new ones could be added. Also provides a default ObjectMapper for its serialization and
-      deserialization. This can be overriden.
+      deserialization. This can be overridden.
     - An open to extension generic ControllerExceptionHandler that handles the most common types of errors happening in
       an application.
     - An open to extension way of handling input validations.
@@ -66,7 +119,7 @@ also have that flexibility.
       functionalities are:
         - Log at error level the body and status code of the error returned. - Throw a HttpClientErrorException when an
           error of the 4XX family occurs - Throw a HttpServerErrorException when an error of the 5XX family occurs.
-    - An open to extension generic hmac generator class. (Not sure if this applies to American Express only).
+    - An open to extension generic hmac generator class.
 
 #### synapse-client-soap
 
@@ -161,7 +214,7 @@ also have that flexibility.
     - Enforces developers to follow the same template and good standards across the entire code base.
     - Forces strict separation of concerns because the base 'Hook' classes which the developers extend from are already
       representing each layer in the famous and already proven three layer architecture. - Base<Crud functionality>
-      Controller (Http Layer). - Base<Crud functionality>Service (Sevice Layer). - BaseRestClient, BaseSoapClient or
+      Controller (Http Layer). - Base<Crud functionality>Service (Service Layer). - BaseRestClient, BaseSoapClient or
       Repositories(These are already interfaces so not base classes provided) (DAO Layer).
     - Provides the BaseControllerTest class with a set of overloaded methods to facilitate controllers slice testing.
     - Provides a couchbase library to build dynamic queries based on Spring Data and Query DSL (There is nothing like
@@ -232,25 +285,25 @@ The following listing shows the pom.xml file that is created when you choose Mav
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.example</groupId>
+        <groupId>com.sample.bookstore</groupId>
         <artifactId>service</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.example.synapse</groupId>
+    <groupId>com.sample.bookstore</groupId>
     <artifactId>service-greeting</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <properties>
-        <start-class>com.example.synapse.bookstore.GreetingApplication</start-class>
+        <start-class>com.sample.bookstore.GreetingApplication</start-class>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>com.americanexpress</groupId>
+            <groupId>io.americanexpress.synapse</groupId>
             <artifactId>synapse-service-rest</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>0.2.18-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
@@ -305,7 +358,7 @@ src/main/java/com/example/restservice/Greeting.java) shows:
 Below is the request model.
 
 ```java
-package com.example.synapse.bookstore.model;
+package com.sample.bookstore.model;
 
 import BaseServiceRequest;
 
@@ -348,7 +401,7 @@ public class GreetingRequest extends BaseServiceRequest {
 Below is the response model.
 
 ```java
-package com.example.synapse.bookstore.model;
+package com.sample.bookstore.model;
 
 import BaseServiceResponse;
 
@@ -396,7 +449,7 @@ public class GreetingResponse extends BaseServiceResponse {
 ```
 
 ```java
-package com.example.synapse.bookstore;
+package com.sample.bookstore;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -430,12 +483,12 @@ src/main/java/com/example/restservice/GreetingController.java)
 handles GET requests for /greeting by returning a new instance of the Greeting class:
 
 ```java
-package com.example.synapse.bookstore.controller;
+package com.sample.bookstore.controller;
 
 import BaseController;
-import com.example.synapse.bookstore.model.GreetingRequest;
-import com.example.synapse.bookstore.model.GreetingResponse;
-import com.example.synapse.bookstore.service.GreetingService;
+import com.sample.bookstore.model.GreetingRequest;
+import com.sample.bookstore.model.GreetingResponse;
+import com.sample.bookstore.service.GreetingService;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -457,7 +510,7 @@ public class GreetingController extends BaseController<GreetingRequest, Greeting
 ### Create a API Config
 
 ```java
-package com.example.synapse.bookstore.config;
+package com.sample.bookstore.config;
 
 import com.americanexpress.synapse.service.rest.config.BaseServiceRestConfig;
 import org.springframework.context.annotation.ComponentScan;
@@ -482,12 +535,12 @@ public class GreetingConfig implements WebMvcConfigurer {
 ### Create a Resource Service
 
 ```java
-package com.example.synapse.bookstore.service;
+package com.sample.bookstore.service;
 
 import ServiceHeaders;
 import BaseService;
-import com.example.synapse.bookstore.model.GreetingRequest;
-import com.example.synapse.bookstore.model.GreetingResponse;
+import com.sample.bookstore.model.GreetingRequest;
+import com.sample.bookstore.model.GreetingResponse;
 import org.springframework.stereotype.Service;
 
 import static java.util.Objects.nonNull;
