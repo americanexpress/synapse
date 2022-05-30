@@ -35,28 +35,36 @@ also have that flexibility.
 
 Synapse focuses on the Application Tier of the well-established n-tier architecture pattern. 
 Within the Application Tier, Synapse is geared towards breaking down the Business and Persistence layer. 
-The modules are organized into types - the services, subscribers describe the modules that initiate a workflow. 
+In the Business layer, we primarily have The modules are organized into types - the services, subscribers describe the modules that initiate a workflow. 
 While the data and client modules represent modules that need to access or modify resources. 
 The Synapse team recommends to modularize your application in a similar structure to maintain organization and clairty in your code. 
 for application teams to utilize the same structure 
 
-### Types of modules:
+## Types of Modules:
 #### Business Layer 
+This layer is intended to tackle specific business needs, typically needs that are required by the Presentation Tier. 
+This layer handles orchestration and stitching the resource needs across the client and data modules.
+
   - **Service** - Used for any service communication method over HTTP (such as Rest, GraphQL, grpc, etc.) that is  
 starting a workflow. These services could be synchronous or asynchronous. 
 
   - **Business** - Used for placing common business logic across service modules. 
-Essentially serves as an extension for the service module for commonalities across multiple service or subscriber modules. 
+Essentially serves as an extension for the service module for commonalities across multiple service or subscriber modules.
 
-  - **Subscriber** - Used 
+  - **Subscriber** - Implemented for business logic  
 
 #### Persistence Layer
-   - **Client**
-   - **Data**
-   - **Publisher**
+This layer is intended to be made modular and fine-grained to promote re-usability across service or subscriber modules. 
 
+   - **Client** - Client modules are built to consume services. These modules are intended for performing any CRUD 
+
+   - **Data** - Data modules are performing CRUD operations against a resource. 
+
+   - **Publisher** Publisher modules are used to share messages onto an asynchronous process 
+e
 #### Cross-cutting Concerns / Tools 
    - **Framework** - These type of modules are fra
+
    - **Utility** 
 
 
