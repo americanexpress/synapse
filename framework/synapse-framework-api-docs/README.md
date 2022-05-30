@@ -15,3 +15,7 @@
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
 ```
+Or add the following to the build.gradle file:
+```
+implementation 'io.americanexpress.synapse:synapse-framework-api-docs:0.2.1!!'
+```
