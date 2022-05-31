@@ -61,12 +61,12 @@ This layer is intended to be made modular and fine-grained to promote re-usabili
 
    - **Data** - Data modules are performing CRUD operations against a resource. 
 
-   - **Publisher** Publisher modules are used to share messages onto an asynchronous process 
+   - **Publisher** - Publisher modules are used to share messages onto an asynchronous process 
 e
 ### Cross-cutting Concerns / Tools 
    - **Framework** - These type of modules are needs that are required across most enterprise applications. 
 
-   - **Utility** These type of modules are generic utilities that could be reused throughout the application user's code base. 
+   - **Utility** - These type of modules are generic utilities that could be reused throughout the application user's code base. 
 Ideally, these should be small, lightweight modules built  for the specific utility need. 
 
 
@@ -96,9 +96,9 @@ As you can see the modules begin with the word that describes that type of modul
 This helps ensure the modules are named  intuitive and organized within your IDE. 
 
 
-### Synapse Modules:
+## Synapse Modules:
 
-#### synapse-service-rest
+### synapse-service-rest
 
 - This module provides an abstraction framework used to help expose RESTful APIs. It provides several out-of-the-box
   functionalities like:
@@ -117,7 +117,7 @@ This helps ensure the modules are named  intuitive and organized within your IDE
     - A generic already implemented pagination solution out of the box when calling a db.
     - A common error response object following standard naming of error fields.
 
-#### synapse-client-rest
+### synapse-client-rest
 
 - This is the synapse gateway framework utilized to consume RESTful APIs. It provides several out-of-the-box
   functionalities like:
@@ -131,14 +131,14 @@ This helps ensure the modules are named  intuitive and organized within your IDE
           error of the 4XX family occurs - Throw a HttpServerErrorException when an error of the 5XX family occurs.
     - An open to extension generic hmac generator class.
 
-#### synapse-client-soap
+### synapse-client-soap
 
 - This is the synapse gateway framework utilized to consume SOAP web services. It provides several out-of-the-box
   functionalities like:
 
     - An open to extension BaseSoapClient with several overloaded methods for every single possible soap call.
 
-#### synapse-data-couchbase
+### synapse-data-couchbase
 
 - This is the synapse couchbase abstraction framework used whenever there is a need to connect to couchbase database and
   read from it. It provides several out-of-the-box functionalities like:
@@ -151,7 +151,7 @@ This helps ensure the modules are named  intuitive and organized within your IDE
     - An open to extension BaseEntity containing the generated key identifier and the common auditing fields maintained
       by the Spring Data framework itself (createdBy, lastModifiedBy, createdDate, lastModifiedDate and version).
 
-#### synapse-data-postgres
+### synapse-data-postgres
 
 - This is the synapse data relational database abstraction framework used whenever there is a need to connect to
   postgres database. It provides several out-of-the-box functionalities like:
@@ -168,7 +168,7 @@ This helps ensure the modules are named  intuitive and organized within your IDE
       GenerationType.IDENTITY and the common auditing fields maintained by the Spring Data framework itself (createdBy,
       lastModifiedBy, createdDate, lastModifiedDate and version).
 
-#### synapse-framework-exception
+### synapse-framework-exception
 
 - This is the synapse module that provides the two Exception classes you will ever need in your application and also an
   elegant mechanism to handle them. It provides several out-of-the-box functionalities like:
@@ -180,7 +180,7 @@ This helps ensure the modules are named  intuitive and organized within your IDE
     - A generic open to extension error-messages.properties file that uses the error codes from the ErrorCode enum
       mentioned above.
 
-#### synapse-service-test
+### synapse-service-test
 
 - This is the synapse module that provides the base classes to test the controllers. It provides several out-of-the-box
   functionalities like:
@@ -190,7 +190,7 @@ This helps ensure the modules are named  intuitive and organized within your IDE
     - An open to extension BaseControllerIT class with several overloaded methods to create the integration test methods
       of any possible restful call made to your controllers.
 
-#### synapse-client-test
+### synapse-client-test
 
 - This is the synapse module that provides the base classes to test the spring restful clients. It provides several
   out-of-the-box functionalities like:
@@ -200,13 +200,13 @@ This helps ensure the modules are named  intuitive and organized within your IDE
     - An open to extension BaseRestClientUnitIT class that will require only the concrete rest client IT class
       implementing it to override one success method which will be the integration test method needed.
 
-#### synapse-framework-api-docs
+### synapse-framework-api-docs
 
 - This is the synapse module used for api documentation. This module is essentially a wrapper around swagger-ui, where
   it is already hooked on Synapse Rest framework, to provide Swagger UI out of the box for any rest api's built
-  utilziing Synapse.
+  utilizing Synapse.
 
-#### synapse-utilities-common
+### synapse-utilities-common
 
 - Encapsulates the common utility classes that can be leveraged by any module. It provides several out-of-the-box
   functionalities like:
