@@ -1,16 +1,17 @@
 # Synapse
 
 - Tired of spending time and struggling in designing your foundational architecture and starting out your project?
-- Tired of having the developers in your team not following the same standards and each of them doing things their own
+- Tired of having the developers in your team not following the consistent standards and each of them doing things their own
   way?
-- Tired of having a disorganized code base difficult to maintain after just a few months of starting your project?
+- Tired of having disorganized code that is difficult to maintain after just a few months of starting your project?
 - Tired of spending countless hours, days, or months in getting your foundational frameworks robust and reliable?
-
+- Are you looking to speed up development time while at the same time ensuring your development team is building application code in a robust manner,
+- following good design principles and patterns? 
 If any of these sound like situations you have experienced or situations you simply want to avoid, then Synapse is what
 you need.
 
 Synapse is a set of lightweight modules designed to speed up development time and help developers build out their
-applications. The modules are focused towards server side implementation. The modules serve as a wide range tool-suite
+applications. The modules are focused towards server side implementation. Synapse serves as a wide range tool-suite
 for developers to facilitate rapid development, with high quality built-in. It is designed with the purpose of helping
 developers create web services in a quick and easy way following strict conventions. Synapse provides an abstraction
 layer that enforces developers to follow SOLID principles and avoid common mistakes during the development process. It
@@ -41,7 +42,7 @@ The Synapse team recommends to modularize your application in a similar structur
 for application teams to utilize the same structure 
 
 ## Types of Modules:
-#### Business Layer 
+### Business Layer 
 This layer is intended to tackle specific business needs, typically needs that are required by the Presentation Tier. 
 This layer handles orchestration and stitching the resource needs across the client and data modules.
 
@@ -53,7 +54,7 @@ Essentially serves as an extension for the service module for commonalities acro
 
   - **Subscriber** - Implemented for business logic  
 
-#### Persistence Layer
+### Persistence Layer
 This layer is intended to be made modular and fine-grained to promote re-usability across service or subscriber modules. 
 
    - **Client** - Client modules are built to consume services. These modules are intended for performing any CRUD 
@@ -62,10 +63,11 @@ This layer is intended to be made modular and fine-grained to promote re-usabili
 
    - **Publisher** Publisher modules are used to share messages onto an asynchronous process 
 e
-#### Cross-cutting Concerns / Tools 
-   - **Framework** - These type of modules are fra
+### Cross-cutting Concerns / Tools 
+   - **Framework** - These type of modules are needs that are required across most enterprise applications. 
 
-   - **Utility** 
+   - **Utility** These type of modules are generic utilities that could be reused throughout the application user's code base. 
+Ideally, these should be small, lightweight modules built  for the specific utility need. 
 
 
 ## Recommended Application Module/Project Structure By Layer
