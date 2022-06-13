@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Synapse',
   tagline: 'The future of development is here',
-  url: 'https://github.aexp.com',
+  url: 'https://americanexpress.io',
   baseUrl: '/synapse/docs/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
