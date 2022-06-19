@@ -9,7 +9,7 @@
     "build": "docusaurus build",
     "postbuild": "cp -R ./build/. .",
     "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy",
+    "deploy": "docusaurus deploy  && gh-pages -d docs",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
