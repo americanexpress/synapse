@@ -209,7 +209,7 @@ bootstrap.min.css:5
 
 .baner-content {
 	width: 100%;
-  	padding-top: 20vh;
+  	padding-top: 15vh;
   	text-align: center;
   	background-image: url(../img/banner_bg2.jpg);
   	vertical-align: middle;
@@ -245,6 +245,8 @@ bootstrap.min.css:5
 
 .baner-content .text-content .primary-white-button {
 	margin-top: 25px;
+	padding: 0px 25%;
+
 }
 
 
