@@ -245,8 +245,7 @@ bootstrap.min.css:5
 
 .baner-content .text-content .primary-white-button {
 	margin-top: 25px;
-	padding: 0px 25%;
-
+	padding-bottom: 100px;
 }
 
 
@@ -896,6 +895,10 @@ footer .connect-us ul li a:hover {
 		margin-top: 15px;
 		background-color: rgba(250, 250, 250, 0.95);
 	}
+	#navbar-ul {
+		font-size: 145px;
+		font-weight: bold;
+	}
 
 	.navbar-nav {
 		margin-top: 0px;
@@ -915,6 +918,8 @@ footer .connect-us ul li a:hover {
 	.navbar-inverse .navbar-nav>li>a {
 		font-family: 'Roboto', sans-serif!important;
 		line-height: 55px;
+		font-size: 145px;
+		font-weight: bold;
 		color: #343434!important;
 	}
 
