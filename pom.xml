@@ -40,7 +40,7 @@
         <maven.compiler.target>11</maven.compiler.target>
 
         <!--Spring Versions-->
-        <spring-framework.version>5.3.19</spring-framework.version>
+        <spring-framework.version>5.3.21</spring-framework.version>
         <spring-security.version>5.6.2</spring-security.version>
         <spring-boot-framework.version>2.6.6</spring-boot-framework.version>
         <spring-boot-ws-framework.version>1.4.7.RELEASE</spring-boot-ws-framework.version>
@@ -543,7 +543,7 @@
             <dependency>
                 <groupId>commons-codec</groupId>
                 <artifactId>commons-codec</artifactId>
-                <version>1.14</version>
+                <version>1.15</version>
             </dependency>
             <dependency>
                 <groupId>com.google.http-client</groupId>
@@ -668,7 +668,7 @@
             <dependency>
                 <groupId>io.quarkus</groupId>
                 <artifactId>quarkus-bom</artifactId>
-                <version>2.10.0.Final</version>
+                <version>2.10.2.Final</version>
                 <type>pom</type>
                 <scope>import</scope>
                 <exclusions>
