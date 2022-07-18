@@ -23,23 +23,23 @@ public abstract class BaseServiceResponse {
     /**
      * Identifier used to uniquely get, update or remove a resource.
      */
-    protected String identifier;
+    protected String id;
 
     /**
      * Get the identifier.
      *
      * @return the identifier
      */
-    public String getIdentifier() {
-        return identifier;
+    public String getId() {
+        return id;
     }
 
     /**
      * Set the identifier.
      *
-     * @param identifier the identifier to set
+     * @param id the identifier to set
      */
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
+    public void setId(String id) {
+        this.id = id;
     }
 }

@@ -38,7 +38,7 @@ public class ReactiveCreateResponseEntityCreator<O extends BaseServiceResponse> 
         String responseIdentifier = "0";
 
         if (serviceResponse != null) {
-            String identifier = serviceResponse.getIdentifier();
+            String identifier = serviceResponse.getId();
             if (StringUtils.isNotBlank(identifier)) {
                 responseIdentifier = identifier.trim();
             }
