@@ -66,7 +66,7 @@ public class ClientRouting {
     @Override
     public String toString() {
         return "ClientRouting{" +
-                "clientIdentifier='" + clientId + '\'' +
+                "clientId='" + clientId + '\'' +
                 '}';
     }
 }
