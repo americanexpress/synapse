@@ -43,7 +43,7 @@ public class ServiceRouting {
      *
      * @return the client identifier.
      */
-    @ApiModelProperty(value = "Unique client identifier assigned to the consumer")
+    @ApiModelProperty(value = "Unique client id assigned to the consumer")
     public String getClientId() {
         return clientId;
     }
@@ -81,7 +81,7 @@ public class ServiceRouting {
     @Override
     public String toString() {
         return "ServiceRouting{" +
-                "clientIdentifier='" + clientId + '\'' +
+                "clientId='" + clientId + '\'' +
                 '}';
     }
 }

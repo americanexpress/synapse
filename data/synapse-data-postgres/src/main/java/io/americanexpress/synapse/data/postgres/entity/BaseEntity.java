@@ -40,7 +40,7 @@ import java.util.Objects;
 public abstract class BaseEntity {
 
     /**
-     * Identifier
+     * Id
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -136,10 +136,10 @@ public abstract class BaseEntity {
     /**
      * Sets the identifier.
      *
-     * @param identifier the identifier
+     * @param id the identifier
      */
-    public void setId(Long identifier) {
-        this.id = identifier;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**
