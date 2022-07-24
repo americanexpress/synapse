@@ -47,7 +47,7 @@ public class ReactiveCreateResponseEntityCreator<O extends BaseServiceResponse> 
         // Build the resource location to specify in the response
         URI location = ServletUriComponentsBuilder
             .fromCurrentRequest()
-            .path("/{identifier}")
+            .path("/{id}")
             .buildAndExpand(responseId)
             .toUri();
         return ResponseEntity.created(location).build();
