@@ -27,7 +27,7 @@ public class ServiceRouting {
     /**
      * Client Identifier.
      */
-    private String clientId;
+    private String clientIdentifier;
 
     /**
      * Default constructor creates a new instance of ServiceRouting with default values.
@@ -43,18 +43,18 @@ public class ServiceRouting {
      *
      * @return the client identifier.
      */
-    @ApiModelProperty(value = "Unique client id assigned to the consumer")
-    public String getClientId() {
-        return clientId;
+    @ApiModelProperty(value = "Unique client identifier assigned to the consumer")
+    public String getClientIdentifier() {
+        return clientIdentifier;
     }
 
     /**
      * Sets the client identifier.
      *
-     * @param clientId the client identifier to set.
+     * @param clientIdentifier the client identifier to set.
      */
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
+    public void setClientIdentifier(String clientIdentifier) {
+        this.clientIdentifier = clientIdentifier;
     }
 
 
@@ -65,12 +65,12 @@ public class ServiceRouting {
 
         ServiceRouting that = (ServiceRouting) o;
 
-        return Objects.equals(clientId, that.clientId);
+        return Objects.equals(clientIdentifier, that.clientIdentifier);
     }
 
     @Override
     public int hashCode() {
-        return clientId != null ? clientId.hashCode() : 0;
+        return clientIdentifier != null ? clientIdentifier.hashCode() : 0;
     }
 
     /**
@@ -81,7 +81,7 @@ public class ServiceRouting {
     @Override
     public String toString() {
         return "ServiceRouting{" +
-                "clientId='" + clientId + '\'' +
+                "clientIdentifier='" + clientIdentifier + '\'' +
                 '}';
     }
 }

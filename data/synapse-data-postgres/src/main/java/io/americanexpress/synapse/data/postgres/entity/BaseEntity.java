@@ -40,11 +40,11 @@ import java.util.Objects;
 public abstract class BaseEntity {
 
     /**
-     * Id
+     * Identifier
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Long id;
+    protected Long identifier;
 
     /**
      * Created Date Time
@@ -129,17 +129,17 @@ public abstract class BaseEntity {
      *
      * @return the identifier
      */
-    public Long getId() {
-        return id;
+    public Long getIdentifier() {
+        return identifier;
     }
 
     /**
      * Sets the identifier.
      *
-     * @param id the identifier
+     * @param identifier the identifier
      */
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdentifier(Long identifier) {
+        this.identifier = identifier;
     }
 
     /**
@@ -204,7 +204,7 @@ public abstract class BaseEntity {
 
         BaseEntity that = (BaseEntity) o;
 
-        if (!Objects.equals(id, that.id)) return false;
+        if (!Objects.equals(identifier, that.identifier)) return false;
         if (!Objects.equals(createdDateTime, that.createdDateTime))
             return false;
         if (!Objects.equals(lastModifiedDateTime, that.lastModifiedDateTime))
@@ -217,7 +217,7 @@ public abstract class BaseEntity {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = identifier != null ? identifier.hashCode() : 0;
         result = 31 * result + (createdDateTime != null ? createdDateTime.hashCode() : 0);
         result = 31 * result + (lastModifiedDateTime != null ? lastModifiedDateTime.hashCode() : 0);
         result = 31 * result + (createdBy != null ? createdBy.hashCode() : 0);
@@ -229,7 +229,7 @@ public abstract class BaseEntity {
     @Override
     public String toString() {
         return "BaseEntity{" +
-                "id=" + id +
+                "identifier=" + identifier +
                 ", createdDateTime=" + createdDateTime +
                 ", lastModifiedDate=" + lastModifiedDateTime +
                 ", createdBy='" + createdBy + '\'' +

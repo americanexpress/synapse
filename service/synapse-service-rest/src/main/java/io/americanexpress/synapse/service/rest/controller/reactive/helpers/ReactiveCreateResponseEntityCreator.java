@@ -35,20 +35,20 @@ public class ReactiveCreateResponseEntityCreator<O extends BaseServiceResponse> 
     public ResponseEntity<Mono<O>> create(O serviceResponse) {
 
         // Default URI location in case the response identifier is null
-        String responseId = "0";
+        String responseIdentifier = "0";
 
         if (serviceResponse != null) {
-            String id = serviceResponse.getId();
-            if (StringUtils.isNotBlank(id)) {
-                responseId = id.trim();
+            String identifier = serviceResponse.getIdentifier();
+            if (StringUtils.isNotBlank(identifier)) {
+                responseIdentifier = identifier.trim();
             }
         }
 
         // Build the resource location to specify in the response
         URI location = ServletUriComponentsBuilder
             .fromCurrentRequest()
-            .path("/{id}")
-            .buildAndExpand(responseId)
+            .path("/{identifier}")
+            .buildAndExpand(responseIdentifier)
             .toUri();
         return ResponseEntity.created(location).build();
     }

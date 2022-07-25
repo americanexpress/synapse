@@ -21,25 +21,25 @@ package io.americanexpress.synapse.service.rest.model;
 public abstract class BaseServiceResponse {
 
     /**
-     * Id used to uniquely get, update or remove a resource.
+     * Identifier used to uniquely get, update or remove a resource.
      */
-    protected String id;
+    protected String identifier;
 
     /**
-     * Get the id.
+     * Get the identifier.
      *
-     * @return the id
+     * @return the identifier
      */
-    public String getId() {
-        return id;
+    public String getIdentifier() {
+        return identifier;
     }
 
     /**
-     * Set the id.
+     * Set the identifier.
      *
-     * @param id the identifier to set
+     * @param identifier the identifier to set
      */
-    public void setId(String id) {
-        this.id = id;
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
     }
 }

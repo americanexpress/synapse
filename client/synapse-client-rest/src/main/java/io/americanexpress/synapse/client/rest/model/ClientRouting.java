@@ -13,7 +13,7 @@ public class ClientRouting {
     /**
      * Client Identifier.
      */
-    private String clientId;
+    private String clientIdentifier;
 
 
     /**
@@ -29,17 +29,17 @@ public class ClientRouting {
      *
      * @return the client identifier.
      */
-    public String getClientId() {
-        return clientId;
+    public String getClientIdentifier() {
+        return clientIdentifier;
     }
 
     /**
      * Sets the client identifier.
      *
-     * @param clientId the client identifier to set.
+     * @param clientIdentifier the client identifier to set.
      */
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
+    public void setClientIdentifier(String clientIdentifier) {
+        this.clientIdentifier = clientIdentifier;
     }
 
 
@@ -50,12 +50,12 @@ public class ClientRouting {
 
         ClientRouting that = (ClientRouting) o;
 
-        return Objects.equals(clientId, that.clientId);
+        return Objects.equals(clientIdentifier, that.clientIdentifier);
     }
 
     @Override
     public int hashCode() {
-        return clientId != null ? clientId.hashCode() : 0;
+        return clientIdentifier != null ? clientIdentifier.hashCode() : 0;
     }
 
     /**
@@ -66,7 +66,7 @@ public class ClientRouting {
     @Override
     public String toString() {
         return "ClientRouting{" +
-                "clientId='" + clientId + '\'' +
+                "clientIdentifier='" + clientIdentifier + '\'' +
                 '}';
     }
 }

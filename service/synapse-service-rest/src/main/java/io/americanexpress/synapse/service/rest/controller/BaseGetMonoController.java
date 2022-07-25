@@ -37,14 +37,14 @@ public class BaseGetMonoController<O extends BaseServiceResponse, S extends Base
     /**
      * Read response entity.
      *
-     * @param id the id
+     * @param identifier the identifier
      * @return the response entity
      */
     @Operation(summary = "Read operation based on path.", description = "Read one resource based on a path variable.")
-    @GetMapping("/{id}")
-    public ResponseEntity<O> read(@PathVariable String id) {
-        logger.entry(id);
-        final O response = service.read(id);
+    @GetMapping("/{identifier}")
+    public ResponseEntity<O> read(@PathVariable String identifier) {
+        logger.entry(identifier);
+        final O response = service.read(identifier);
         ResponseEntity<O> responseEntity = monoResponseEntityCreator.create(response);
         logger.exit(responseEntity);
         return responseEntity;

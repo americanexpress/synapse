@@ -33,12 +33,12 @@ public class CreateResponseEntityCreator<O extends BaseServiceResponse> {
     public ResponseEntity<O> create(O serviceResponse) {
 
         // Default URI location in case the response identifier is null
-        String responseId = "0";
+        String responseIdentifier = "0";
 
         if (serviceResponse != null) {
-            String id = serviceResponse.getId();
-            if (StringUtils.isNotBlank(id)) {
-                responseId = id.trim();
+            String identifier = serviceResponse.getIdentifier();
+            if (StringUtils.isNotBlank(identifier)) {
+                responseIdentifier = identifier.trim();
             }
         }
 
@@ -46,7 +46,7 @@ public class CreateResponseEntityCreator<O extends BaseServiceResponse> {
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{identifier}")
-                .buildAndExpand(responseId)
+                .buildAndExpand(responseIdentifier)
                 .toUri();
         return ResponseEntity.created(location).build();
     }
