@@ -19,6 +19,6 @@ package io.americanexpress.synapse.client.graphql.model;
  * @author Paolo Claudio
  *
  */
-public abstract class BaseGraphQLData {
+public interface BaseGraphQLData {
 
 }
