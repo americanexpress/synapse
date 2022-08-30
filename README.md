@@ -32,7 +32,7 @@ also have that flexibility.
 
 ## Synapse Architecture
 
-![Synapse Architecture](docs/assets/synapse-architecture-1.png)
+![Synapse Architecture](docs/docs/assets/images/synapse-architecture-1-155b44c66cccb86c8a03f5319531ee4d.png)
 
 Synapse focuses on the Application Tier of the well-established n-tier architecture pattern. 
 Within the Application Tier, Synapse is geared towards breaking down the Business and Persistence layer. 
