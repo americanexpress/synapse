@@ -257,7 +257,7 @@ This guide walks you through the process of creating a “Hello, World” RESTfu
 It will respond with a JSON representation of a greeting, as the following listing shows:
 
 ```json
-   {
+{
   "message": "Hello, World!"
 }
 ```
@@ -270,7 +270,7 @@ The name parameter value overrides the default value of World and is reflected i
 shows:
 
 ```json
-   {
+{
   "message": "Hello, User!"
 }
 ```
