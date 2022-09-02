@@ -28,8 +28,10 @@
     <!--Modules-->
     <modules>
         <module>synapse-data-couchbase</module>
+        <module>synapse-data-mongodb</module>
         <module>synapse-data-postgres</module>
         <module>example-data-postgres-book</module>
+        <module>example-data-mongodb-book</module>
     </modules>
 
 </project>
