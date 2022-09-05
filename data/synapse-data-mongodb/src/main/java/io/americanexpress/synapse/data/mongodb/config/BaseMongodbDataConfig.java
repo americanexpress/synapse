@@ -39,6 +39,4 @@ public abstract class BaseMongodbDataConfig {
     public BaseMongodbDataConfig(Environment environment) {
         this.environment = environment;
     }
-
-
 }
