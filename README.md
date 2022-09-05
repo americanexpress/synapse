@@ -32,7 +32,7 @@ also have that flexibility.
 
 ## Synapse Architecture
 
-![Synapse Architecture](docs/assets/synapse-architecture-1.png)
+![Synapse Architecture](docs/docs/assets/images/synapse-architecture-1-155b44c66cccb86c8a03f5319531ee4d.png)
 
 Synapse focuses on the Application Tier of the well-established n-tier architecture pattern. 
 Within the Application Tier, Synapse is geared towards breaking down the Business and Persistence layer. 
@@ -257,7 +257,7 @@ This guide walks you through the process of creating a “Hello, World” RESTfu
 It will respond with a JSON representation of a greeting, as the following listing shows:
 
 ```json
-   {
+{
   "message": "Hello, World!"
 }
 ```
@@ -270,7 +270,7 @@ The name parameter value overrides the default value of World and is reflected i
 shows:
 
 ```json
-   {
+{
   "message": "Hello, User!"
 }
 ```
