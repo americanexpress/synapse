@@ -20,6 +20,9 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
+/**
+ * DataBookConfig is the configuration class to load all the properties for the book data module.
+ */
 @Configuration
 @PropertySource("classpath:/data-book-application.properties")
 @EnableMongoRepositories(basePackages = DataBookConfig.PACKAGE_NAME)

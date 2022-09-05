@@ -16,5 +16,8 @@ package io.americanexpress.data.book.dao;
 import io.americanexpress.data.book.entity.BookDocument;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+/**
+ * BookRepository is the dao repository to handle the queries for the books table.
+ */
 public interface BookRepository extends MongoRepository<BookDocument, Long> {
 }

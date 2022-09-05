@@ -16,6 +16,9 @@ package io.americanexpress.data.book.entity;
 import io.americanexpress.synapse.data.mongodb.entity.BaseDocument;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * BookDocument class represents the domain of the books table.
+ */
 @Document("books")
 public class BookDocument extends BaseDocument {
 

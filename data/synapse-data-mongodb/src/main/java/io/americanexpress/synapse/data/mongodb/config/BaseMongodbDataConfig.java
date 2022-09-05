@@ -19,6 +19,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
+/**
+ * <code>BaseMongodbDataConfig</code> class is used to hold the common configuration for all data-mongodb modules.
+ */
 @Configuration
 @EnableMongoRepositories
 public abstract class BaseMongodbDataConfig {
