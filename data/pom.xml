@@ -27,11 +27,14 @@
 
     <!--Modules-->
     <modules>
+        <!-- Base data Synapse dependencies-->
         <module>synapse-data-couchbase</module>
         <module>synapse-data-mongodb</module>
         <module>synapse-data-postgres</module>
-        <module>example-data-postgres-book</module>
+        
+        <!-- Example data book dependencies-->
         <module>example-data-mongodb-book</module>
+        <module>example-data-postgres-book</module>
     </modules>
 
 </project>
