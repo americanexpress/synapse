@@ -20,7 +20,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.Version;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDateTime;
 
@@ -40,35 +39,30 @@ public abstract class BaseDocument {
      * Created Date Time
      */
     @CreatedDate
-    @Field("created_date_time")
     protected LocalDateTime createdDateTime;
 
     /**
      * Last Modified Date Time
      */
     @LastModifiedDate
-    @Field("last_modified_date_time")
     protected LocalDateTime lastModifiedDateTime;
 
     /**
      * Created By
      */
     @CreatedBy
-    @Field("created_by")
     protected String createdBy;
 
     /**
      * Last Modified By
      */
     @LastModifiedBy
-    @Field("last_modified_by")
     protected String lastModifiedBy;
 
     /**
      * Version
      */
     @Version
-    @Field("version")
     protected Long version;
 
     /**

@@ -17,12 +17,14 @@ package io.americanexpress.synapse.data.mongodb.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.data.mongodb.config.EnableMongoAuditing;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 /**
  * <code>BaseMongodbDataConfig</code> class is used to hold the common configuration for all data-mongodb modules.
  */
 @Configuration
+@EnableMongoAuditing
 @EnableMongoRepositories
 public abstract class BaseMongodbDataConfig {
 
