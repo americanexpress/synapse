@@ -13,7 +13,7 @@
  */
 package io.americanexpress.data.book.config;
 
-import io.americanexpress.synapse.data.mongodb.config.BaseMongodbDataConfig;
+import io.americanexpress.synapse.data.mongodb.config.BaseMongoDBDataConfig;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -27,7 +27,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @PropertySource("classpath:/data-book-application.properties")
 @EnableMongoRepositories(basePackages = DataBookConfig.PACKAGE_NAME)
 @EnableAutoConfiguration
-public class DataBookConfig extends BaseMongodbDataConfig {
+public class DataBookConfig extends BaseMongoDBDataConfig {
 
     /**
      * The Package name.

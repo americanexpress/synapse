@@ -24,7 +24,7 @@ import org.springframework.data.annotation.Version;
 import java.time.LocalDateTime;
 
 /**
- * <code>BaseDocument</code> class is the parent class for all mongodb documents.
+ * {@code BaseDocument} class is the parent class for all mongodb documents.
  * All the common attributes are consolidated in this entity.
  */
 public abstract class BaseDocument {

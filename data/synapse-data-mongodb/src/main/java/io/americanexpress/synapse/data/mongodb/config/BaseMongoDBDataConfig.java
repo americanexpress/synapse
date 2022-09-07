@@ -14,34 +14,53 @@
 
 package io.americanexpress.synapse.data.mongodb.config;
 
+import com.mongodb.ConnectionString;
+import com.mongodb.MongoClientSettings;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
 import org.springframework.data.mongodb.config.EnableMongoAuditing;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 /**
- * <code>BaseMongodbDataConfig</code> class is used to hold the common configuration for all data-mongodb modules.
+ * {@code BaseMongoDBDataConfig} class is used to hold the common configuration for all data-mongodb modules.
  */
 @Configuration
 @EnableMongoAuditing
 @EnableMongoRepositories
-public abstract class BaseMongodbDataConfig {
-
-    protected static final String ENTITY_PACKAGE_NAME = ".entity";
+public abstract class BaseMongoDBDataConfig extends AbstractMongoClientConfiguration {
 
     /**
      * Used to acquire environment variables.
      */
-    @Autowired
     protected Environment environment;
 
     /**
-     * Instantiates a new Base postgres data config.
+     * Instantiates a new Base mongodb data config.
      *
      * @param environment the environment
      */
-    public BaseMongodbDataConfig(Environment environment) {
+    @Autowired
+    public BaseMongoDBDataConfig(Environment environment) {
         this.environment = environment;
     }
+
+    @Override
+    protected String getDatabaseName() {
+        return environment.getRequiredProperty("spring.data.mongodb.database");
+    }
+
+    @Override
+    public MongoClient mongoClient() {
+        ConnectionString connectionString = new ConnectionString(environment.getRequiredProperty("spring.data.mongodb.uri"));
+        MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
+                .applyConnectionString(connectionString)
+                .build();
+
+        return MongoClients.create(mongoClientSettings);
+    }
+
 }
