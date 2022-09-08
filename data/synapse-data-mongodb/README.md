@@ -5,13 +5,10 @@
 - This is the synapse mongodb abstraction framework used whenever there is a need to connect to
   mongodb database. It provides several out-of-the-box functionalities like:
 
-    - Default connection to local MongoDB test database through spring-boot-starter-data-mongodb and configurable 
-  using properties files with the following values:
-      - spring.data.mongodb.host
-      - spring.data.mongodb.port
+    - Connection to MongoDB database through spring-data-mongodb and configurable 
+  using properties files with the following required properties:
+      - spring.data.mongodb.uri 
       - spring.data.mongodb.database
-      - spring.data.mongodb.username
-      - spring.data.mongodb.password
       
     - An open to extension BaseEntity that contains the key identifier and the common auditing fields maintained by the Spring Data framework itself (createdBy,
       lastModifiedBy, createdDate, lastModifiedDate and version).
