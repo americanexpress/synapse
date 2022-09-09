@@ -23,14 +23,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
 import org.springframework.data.mongodb.config.EnableMongoAuditing;
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 /**
  * {@code BaseMongoDBDataConfig} class is used to hold the common configuration for all data-mongodb modules.
  */
 @Configuration
 @EnableMongoAuditing
-@EnableMongoRepositories
 public abstract class BaseMongoDBDataConfig extends AbstractMongoClientConfiguration {
 
     /**
