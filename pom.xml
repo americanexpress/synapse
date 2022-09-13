@@ -213,6 +213,11 @@
                 <artifactId>synapse-data-postgres</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-data-oracle</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <!--Utility-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
@@ -527,6 +532,13 @@
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
                 <version>2.1.210</version>
+            </dependency>
+
+            <!--Oracle-->
+            <dependency>
+                <groupId>com.oracle.database.jdbc</groupId>
+                <artifactId>ojdbc11</artifactId>
+                <version>21.7.0.0</version>
             </dependency>
 
             <!--Persistence-->
