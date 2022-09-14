@@ -16,11 +16,11 @@ package io.americanexpress.synapse.data.mongodb.entity;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.Version;
-import org.springframework.data.mongodb.core.mapping.FieldType;
-import org.springframework.data.mongodb.core.mapping.MongoId;
+
 
 import java.time.LocalDateTime;
 
@@ -33,7 +33,7 @@ public abstract class BaseDocument {
     /**
      * Identifier
      */
-    @MongoId(FieldType.OBJECT_ID)
+    @Id
     private String identifier;
 
     /**
