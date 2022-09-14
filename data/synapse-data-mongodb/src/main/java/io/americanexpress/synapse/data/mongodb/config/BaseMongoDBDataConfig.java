@@ -18,7 +18,6 @@ import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
@@ -41,8 +40,7 @@ public abstract class BaseMongoDBDataConfig extends AbstractMongoClientConfigura
      *
      * @param environment the environment
      */
-    @Autowired
-    public BaseMongoDBDataConfig(Environment environment) {
+    protected BaseMongoDBDataConfig(Environment environment) {
         this.environment = environment;
     }
 

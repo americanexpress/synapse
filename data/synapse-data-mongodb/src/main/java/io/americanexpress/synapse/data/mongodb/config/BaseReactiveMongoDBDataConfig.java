@@ -18,8 +18,7 @@ public abstract class BaseReactiveMongoDBDataConfig extends AbstractReactiveMong
      */
     protected Environment environment;
 
-    @Autowired
-    public BaseReactiveMongoDBDataConfig(Environment environment) {
+    protected BaseReactiveMongoDBDataConfig(Environment environment) {
         this.environment = environment;
     }
 
