@@ -27,7 +27,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 
 /**
- * <code>BasePostgresDataConfig</code> class is used to hold the common configuration for all data-postgres modules.
+ * {@code BaseOracleDataConfig} class is used to hold the common configuration for all data-postgres modules.
  *
  * @author Gabriel Jimenez
  */
@@ -38,19 +38,15 @@ public abstract class BaseOracleDataConfig {
     /**
      * Used to acquire environment variables.
      */
-    protected Environment environment;
-
-    private final OracleProperties oracleProperties;
+    private final Environment environment;
 
     /**
      * Instantiates a new Base postgres data config.
      *
      * @param environment the environment
      */
-    @Autowired
-    public BaseOracleDataConfig(Environment environment, OracleProperties oracleProperties) {
+    public BaseOracleDataConfig(Environment environment) {
         this.environment = environment;
-        this.oracleProperties = oracleProperties;
     }
 
     /**
@@ -65,17 +61,12 @@ public abstract class BaseOracleDataConfig {
                 .create()
                 .type(OracleDataSource.class)
                 .build();
-        dataSource.setURL(oracleProperties.getUrl());
-        dataSource.setUser(oracleProperties.getUsername());
-        dataSource.setPassword(oracleProperties.getPassword());
-        dataSource.setDriverType(oracleProperties.getDriverType());
-        dataSource.setPortNumber(oracleProperties.getPortNumber());
 
-//        dataSource.setURL(environment.getRequiredProperty("spring.oracle.datasource.url"));
-//        dataSource.setUser(environment.getRequiredProperty("spring.oracle.datasource.username"));
-//        dataSource.setPassword(environment.getRequiredProperty("spring.oracle.datasource.password"));
-//        dataSource.setDriverType(environment.getRequiredProperty("spring.oracle.datasource.drivertype"));
-//        dataSource.setPortNumber(Integer.parseInt(environment.getRequiredProperty("spring.oracle.datasource.portnumber")));
+        dataSource.setURL(environment.getRequiredProperty("spring.oracle.datasource.url"));
+        dataSource.setUser(environment.getRequiredProperty("spring.oracle.datasource.username"));
+        dataSource.setPassword(environment.getRequiredProperty("spring.oracle.datasource.password"));
+        dataSource.setDriverType(environment.getRequiredProperty("spring.oracle.datasource.drivertype"));
+        //dataSource.setPortNumber(Integer.parseInt(environment.getRequiredProperty("spring.oracle.datasource.portnumber")));
         return dataSource;
     }
 
