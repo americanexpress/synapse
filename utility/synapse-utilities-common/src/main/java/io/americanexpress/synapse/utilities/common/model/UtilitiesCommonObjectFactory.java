@@ -1,3 +1,16 @@
+/*
+ * Copyright 2020 American Express Travel Related Services Company, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
+ */
 package io.americanexpress.synapse.utilities.common.model;
 
 import io.americanexpress.synapse.utilities.common.config.UtilitiesCommonConfig;
@@ -18,23 +31,23 @@ public final class UtilitiesCommonObjectFactory {
 
     public static final ClasspathObjectFactory DEFAULT_CLASSPATH_OBJECT_FACTORY = defaultClasspathObjectFactory();
 
-    private static final ObjectMapper defaultObjectMapper() {
+    private static ObjectMapper defaultObjectMapper() {
         return UTILITIES_COMMON_CONFIG.defaultObjectMapper();
     }
 
-    private static final ObjectMapper camelCaseObjectMapper() {
+    private static ObjectMapper camelCaseObjectMapper() {
         return UTILITIES_COMMON_CONFIG.camelCaseObjectMapper();
     }
 
-    public static final ObjectMapper includeEmptyObjectMapper() {
+    public static ObjectMapper includeEmptyObjectMapper() {
         return UTILITIES_COMMON_CONFIG.includeEmptyObjectMapper();
     }
 
-    private static final ObjectMapper xmlObjectMapper() {
+    private static ObjectMapper xmlObjectMapper() {
         return UTILITIES_COMMON_CONFIG.xmlObjectMapper();
     }
 
-    private static final ClasspathObjectFactory defaultClasspathObjectFactory() {
+    private static ClasspathObjectFactory defaultClasspathObjectFactory() {
         return new ClasspathObjectFactory(DEFAULT_OBJECT_MAPPER);
     }
 

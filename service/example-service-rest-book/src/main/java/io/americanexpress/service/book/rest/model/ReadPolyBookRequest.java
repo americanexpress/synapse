@@ -13,6 +13,7 @@
  */
 package io.americanexpress.service.book.rest.model;
 
+import io.americanexpress.synapse.service.rest.model.BasePaginatedServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 
 import java.util.Objects;
@@ -20,7 +21,7 @@ import java.util.Objects;
 /**
  * ReadBookRequest is the model used on the request of the Read Poly Book Controller.
  */
-public class ReadPolyBookRequest implements BaseServiceRequest {
+public class ReadPolyBookRequest extends BasePaginatedServiceRequest {
 
     private String title;
     private String author;

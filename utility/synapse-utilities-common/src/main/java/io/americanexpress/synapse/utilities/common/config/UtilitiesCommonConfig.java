@@ -116,7 +116,6 @@ public class UtilitiesCommonConfig {
      * @return the default object mapper
      */
     @Bean(SYNAPSE_OBJECT_MAPPER)
-    @Primary
     public ObjectMapper defaultObjectMapper() {
         final ObjectMapper mapper = getInitialObjectMapper();
         mapper.setSerializationInclusion(Include.NON_EMPTY);
@@ -130,6 +129,7 @@ public class UtilitiesCommonConfig {
      * @return the ObjectMapper that uses camelCase
      */
     @Bean(SYNAPSE_CAMEL_CASE_OBJECT_MAPPER)
+    @Primary
     public ObjectMapper camelCaseObjectMapper() {
         final ObjectMapper mapper = getInitialObjectMapper();
         mapper.setSerializationInclusion(Include.NON_EMPTY);
