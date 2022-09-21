@@ -13,22 +13,21 @@
  */
 package io.americanexpress.data.book.config;
 
-
-import io.americanexpress.synapse.data.mongodb.config.BaseReactiveMongoDBDataConfig;
+import io.americanexpress.synapse.data.mongodb.config.BaseMongoDBDataConfig;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 /**
- * DataBookConfig is the configuration class to load all the properties for the book data module.
+ * BookDataConfig is the configuration class to load all the properties for the book data module.
  */
 @Configuration
 @PropertySource("classpath:/data-book-application.properties")
+@EnableMongoRepositories(basePackages = BookDataConfig.PACKAGE_NAME)
 @EnableAutoConfiguration
-@EnableReactiveMongoRepositories(basePackages = DataBookConfig.PACKAGE_NAME)
-public class DataBookConfig extends BaseReactiveMongoDBDataConfig {
+public class BookDataConfig extends BaseMongoDBDataConfig {
 
     /**
      * The Package name.
@@ -40,7 +39,8 @@ public class DataBookConfig extends BaseReactiveMongoDBDataConfig {
      *
      * @param environment the environment
      */
-    public DataBookConfig(Environment environment) {
+    public BookDataConfig(Environment environment) {
         super(environment);
     }
+
 }
