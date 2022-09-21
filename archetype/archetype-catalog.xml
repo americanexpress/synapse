@@ -66,9 +66,15 @@
 			<groupId>io.americanexpress.synapse</groupId>
 			<artifactId>synapse-archetype-client-rest-reactive-post</artifactId>
 			<version>0.2.19-SNAPSHOT</version>
-		</archetype><archetype>
+		</archetype>
+		<archetype>
 			<groupId>io.americanexpress.synapse</groupId>
 			<artifactId>synapse-archetype-client-rest-reactive-put</artifactId>
+			<version>0.2.19-SNAPSHOT</version>
+		</archetype>
+		<archetype>
+			<groupId>io.americanexpress.synapse</groupId>
+			<artifactId>synapse-archetype-service-rest-delete</artifactId>
 			<version>0.2.19-SNAPSHOT</version>
 		</archetype>
 	</archetypes>
