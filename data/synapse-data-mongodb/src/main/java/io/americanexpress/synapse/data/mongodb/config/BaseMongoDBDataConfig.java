@@ -28,7 +28,7 @@ import org.springframework.data.mongodb.config.EnableMongoAuditing;
  */
 @Configuration
 @EnableMongoAuditing
-public abstract class BaseMongoDBDataConfig extends AbstractMongoClientConfiguration {
+public abstract class BaseMongoDBDataConfig extends AbstractMongoClientConfiguration implements BaseMongoDbConfig{
 
     /**
      * Used to acquire environment variables.
@@ -52,10 +52,7 @@ public abstract class BaseMongoDBDataConfig extends AbstractMongoClientConfigura
     @Override
     public MongoClient mongoClient() {
         ConnectionString connectionString = new ConnectionString(environment.getRequiredProperty("spring.data.mongodb.uri"));
-        MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
-                .applyConnectionString(connectionString)
-                .build();
-
+        MongoClientSettings mongoClientSettings = setMongoClientSettings(connectionString);
         return MongoClients.create(mongoClientSettings);
     }
 

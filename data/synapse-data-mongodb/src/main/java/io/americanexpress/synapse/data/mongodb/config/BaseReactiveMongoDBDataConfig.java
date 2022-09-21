@@ -21,15 +21,23 @@ import org.springframework.core.env.Environment;
 import org.springframework.data.mongodb.config.AbstractReactiveMongoConfiguration;
 import org.springframework.data.mongodb.config.EnableReactiveMongoAuditing;
 
+/**
+ * {@code BaseReactiveMongoDBDataConfig} class is used to hold the common configuration for all reactive data-mongodb modules.
+ */
 @Configuration
 @EnableReactiveMongoAuditing
-public abstract class BaseReactiveMongoDBDataConfig extends AbstractReactiveMongoConfiguration {
+public abstract class BaseReactiveMongoDBDataConfig extends AbstractReactiveMongoConfiguration implements BaseMongoDbConfig{
 
     /**
      * Used to acquire environment variables.
      */
     protected Environment environment;
 
+    /**
+     * Instantiates a new Base reactive mongodb data config.
+     *
+     * @param environment the environment
+     */
     protected BaseReactiveMongoDBDataConfig(Environment environment) {
         this.environment = environment;
     }
@@ -42,10 +50,7 @@ public abstract class BaseReactiveMongoDBDataConfig extends AbstractReactiveMong
     @Override
     public MongoClient reactiveMongoClient() {
         ConnectionString connectionString = new ConnectionString(environment.getRequiredProperty("spring.data.mongodb.uri"));
-        MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
-                .applyConnectionString(connectionString)
-                .build();
-
+        MongoClientSettings mongoClientSettings = setMongoClientSettings(connectionString);
         return this.createReactiveMongoClient(mongoClientSettings);
     }
 }
