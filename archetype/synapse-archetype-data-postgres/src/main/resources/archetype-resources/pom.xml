@@ -27,7 +27,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>io.americanexpress.synapse</groupId>
-			<artifactId>synapse-client-graphql</artifactId>
+			<artifactId>synapse-data-postgres</artifactId>
 			<version>${synapse.version}</version>
 		</dependency>
 		<dependency>
@@ -60,6 +60,11 @@
 			<artifactId>junit-platform-runner</artifactId>
 			<version>${junit.version}</version>
 		</dependency>
+		<dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.12.4</version>
+        </dependency>
 	</dependencies>
 	<build>
 		<plugins>
