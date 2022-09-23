@@ -13,7 +13,7 @@
  */
 package io.americanexpress.data.book.dao;
 
-import io.americanexpress.data.book.entity.BookDocument;
+import io.americanexpress.data.book.entity.BookEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -21,7 +21,7 @@ import org.springframework.stereotype.Repository;
  * BookRepository is the dao repository to handle the queries for the books table.
  */
 @Repository
-public interface BookRepository extends MongoRepository<BookDocument, String> {
+public interface BookRepository extends MongoRepository<BookEntity, String> {
 
-    BookDocument findByTitle(String title);
+    BookEntity findByTitle(String title);
 }

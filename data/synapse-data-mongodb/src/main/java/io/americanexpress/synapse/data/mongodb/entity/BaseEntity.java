@@ -25,10 +25,10 @@ import org.springframework.data.annotation.Version;
 import java.time.LocalDateTime;
 
 /**
- * {@code BaseDocument} class is the parent class for all mongodb documents.
+ * {@code BaseEntity} class is the parent class for all mongodb documents.
  * All the common attributes are consolidated in this entity.
  */
-public abstract class BaseDocument {
+public abstract class BaseEntity {
 
     /**
      * Identifier
@@ -69,7 +69,7 @@ public abstract class BaseDocument {
     /**
      * Empty constructor, do not delete it. It is used by Spring Data.
      */
-    public BaseDocument() {
+    public BaseEntity() {
     }
 
     public String getIdentifier() {

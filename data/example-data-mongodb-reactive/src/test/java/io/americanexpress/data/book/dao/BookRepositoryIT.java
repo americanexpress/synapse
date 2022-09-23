@@ -1,7 +1,7 @@
 package io.americanexpress.data.book.dao;
 
 import io.americanexpress.data.book.config.BookDataTestConfig;
-import io.americanexpress.data.book.entity.BookDocument;
+import io.americanexpress.data.book.entity.BookEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,28 +27,28 @@ class BookRepositoryIT {
 
     @Test
     void findAll_givenEmptyBookCollection_expectedNoBooksFound() {
-        Flux<BookDocument> bookDocumentFlux = bookRepository.findAll();
+        Flux<BookEntity> bookDocumentFlux = bookRepository.findAll();
         StepVerifier.create(bookDocumentFlux).expectNoAccessibleContext().verifyComplete();
     }
 
     @Test
     void findAll_givenBookCollection_expectedCollectionNotEmpty() {
-        BookDocument entry = createSampleBook();
+        BookEntity entry = createSampleBook();
         bookRepository.save(entry);
-        Flux<BookDocument> bookDocumentFlux = bookRepository.findAll();
+        Flux<BookEntity> bookDocumentFlux = bookRepository.findAll();
         StepVerifier.create(bookDocumentFlux).expectNextCount(1).verifyComplete();
     }
 
     @Test
     void findByTitle_givenBookTitle_expectedBookFound() {
-        BookDocument entry = createSampleBook();
+        BookEntity entry = createSampleBook();
         bookRepository.save(entry);
-        Flux<BookDocument> bookDocumentFlux = bookRepository.findAll();
+        Flux<BookEntity> bookDocumentFlux = bookRepository.findAll();
         StepVerifier.create(bookDocumentFlux).expectNextMatches(bookDocument -> entry.getTitle().equalsIgnoreCase(bookDocument.getTitle())).verifyComplete();
     }
 
-    private BookDocument createSampleBook() {
-        BookDocument bookDocument = new BookDocument();
+    private BookEntity createSampleBook() {
+        BookEntity bookDocument = new BookEntity();
         bookDocument.setTitle("Alice in Wonderland");
         bookDocument.setAuthor("Lewis Carroll");
         return bookDocument;

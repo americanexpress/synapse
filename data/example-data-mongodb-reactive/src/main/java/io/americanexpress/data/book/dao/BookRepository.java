@@ -13,7 +13,7 @@
  */
 package io.americanexpress.data.book.dao;
 
-import io.americanexpress.data.book.entity.BookDocument;
+import io.americanexpress.data.book.entity.BookEntity;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
@@ -22,7 +22,7 @@ import reactor.core.publisher.Flux;
  * BookRepository is the dao repository to handle the queries for the books table.
  */
 @Repository
-public interface BookRepository extends ReactiveMongoRepository<BookDocument, String> {
+public interface BookRepository extends ReactiveMongoRepository<BookEntity, String> {
 
-    Flux<BookDocument> findByTitle(String title);
+    Flux<BookEntity> findByTitle(String title);
 }

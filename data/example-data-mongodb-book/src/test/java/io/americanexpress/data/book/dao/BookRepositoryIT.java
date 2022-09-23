@@ -14,7 +14,7 @@
 package io.americanexpress.data.book.dao;
 
 import io.americanexpress.data.book.config.BookDataTestConfig;
-import io.americanexpress.data.book.entity.BookDocument;
+import io.americanexpress.data.book.entity.BookEntity;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -51,14 +51,14 @@ class BookRepositoryIT {
     @Test
     void findByTitle_givenBookTitle_expectedBookFound() {
         saveSampleBook();
-        BookDocument found = bookRepository.findByTitle("Alice in Wonderland");
+        BookEntity found = bookRepository.findByTitle("Alice in Wonderland");
         Assertions.assertAll("Find by title",
                 () -> Assertions.assertNotNull(found),
                 () -> Assertions.assertEquals("Alice in Wonderland", found.getTitle()));
     }
 
     void saveSampleBook() {
-        BookDocument bookDocument = new BookDocument();
+        BookEntity bookDocument = new BookEntity();
         bookDocument.setTitle("Alice in Wonderland");
         bookDocument.setAuthor("Lewis Carroll");
         bookRepository.save(bookDocument);
