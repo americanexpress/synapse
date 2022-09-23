@@ -14,7 +14,6 @@
 package io.americanexpress.synapse.data.oracle.config;
 
 import oracle.jdbc.pool.OracleDataSource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -38,7 +37,7 @@ public abstract class BaseOracleDataConfig {
     /**
      * Used to acquire environment variables.
      */
-    private final Environment environment;
+    protected final Environment environment;
 
     /**
      * Instantiates a new Base postgres data config.
@@ -66,7 +65,6 @@ public abstract class BaseOracleDataConfig {
         dataSource.setUser(environment.getRequiredProperty("spring.oracle.datasource.username"));
         dataSource.setPassword(environment.getRequiredProperty("spring.oracle.datasource.password"));
         dataSource.setDriverType(environment.getRequiredProperty("spring.oracle.datasource.drivertype"));
-        //dataSource.setPortNumber(Integer.parseInt(environment.getRequiredProperty("spring.oracle.datasource.portnumber")));
         return dataSource;
     }
 
@@ -80,7 +78,7 @@ public abstract class BaseOracleDataConfig {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource);
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        setPackagesToScan(entityManagerFactoryBean);
+        this.setPackagesToScan(entityManagerFactoryBean);
         return entityManagerFactoryBean;
     }
 
