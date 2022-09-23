@@ -20,6 +20,7 @@ import io.americanexpress.synapse.service.rest.controller.BaseReadPolyController
 import ${package}.service.${className}ReadPolyRestService;
 import ${package}.model.${className}ServiceResponse;
 import ${package}.model.${className}PolyServiceRequest;
+import ${package}.config.${className}RestServiceEndpoint;
 
 /**
  * {@code ${className}ReadPolyRestController} class is the controller
@@ -28,6 +29,7 @@ import ${package}.model.${className}PolyServiceRequest;
  *
  */
 @RestController
+@RequestMapping(${className}RestServiceEndpoint.SERVICE_ENDPOINT)
 public class ${className}ReadPolyRestController extends BaseReadPolyController<${className}PolyServiceRequest, ${className}ServiceResponse, ${className}ReadPolyRestService> {
 
 }

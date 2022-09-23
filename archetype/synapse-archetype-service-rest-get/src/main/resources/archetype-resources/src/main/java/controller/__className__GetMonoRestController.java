@@ -19,6 +19,7 @@ import io.americanexpress.synapse.service.rest.controller.BaseGetMonoController;
 
 import ${package}.service.${className}GetMonoRestService;
 import ${package}.model.${className}ServiceResponse;
+import ${package}.config.${className}RestServiceEndpoint;
 
 /**
  * {@code ${className}GetMonoRestController} class is the controller
@@ -27,6 +28,7 @@ import ${package}.model.${className}ServiceResponse;
  *
  */
 @RestController
+@RequestMapping(${className}RestServiceEndpoint.SERVICE_ENDPOINT)
 public class ${className}GetMonoRestController extends BaseGetMonoController<${className}ServiceResponse, ${className}GetMonoRestService> {
 
 }

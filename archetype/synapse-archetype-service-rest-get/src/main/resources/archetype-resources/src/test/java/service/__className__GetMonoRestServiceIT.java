@@ -17,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import io.americanexpress.synapse.framework.test.CommonAssertionMessages;
@@ -35,12 +34,10 @@ import ${package}.model.${className}ServiceResponse;
 @ExtendWith(SpringExtension.class)
 class ${className}GetMonoRestServiceIT {
 
-    @Autowired
-    private ${className}GetMonoRestService restService;
-
     @Test
     void callGetService_givenValidIdentifier_expectValidResponse() throws Exception {
-        String identifier = new String();
+        ${className}GetMonoRestService restService = new ${className}GetMonoRestService();
+        String identifier = "";
         ${className}ServiceResponse serviceResponse = restService.executeRead(identifier);
         assertNotNull(serviceResponse, CommonAssertionMessages.VALUE_NULL);
     }

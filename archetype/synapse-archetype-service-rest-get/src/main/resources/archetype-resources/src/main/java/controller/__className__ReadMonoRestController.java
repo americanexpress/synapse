@@ -20,6 +20,7 @@ import io.americanexpress.synapse.service.rest.controller.BaseReadMonoController
 import ${package}.service.${className}ReadMonoRestService;
 import ${package}.model.${className}ServiceResponse;
 import ${package}.model.${className}ServiceRequest;
+import ${package}.config.${className}RestServiceEndpoint;
 
 /**
  * {@code ${className}GetMonoRestController} class is the controller
@@ -28,6 +29,7 @@ import ${package}.model.${className}ServiceRequest;
  *
  */
 @RestController
+@RequestMapping(${className}RestServiceEndpoint.SERVICE_ENDPOINT)
 public class ${className}ReadMonoRestController extends BaseReadMonoController<${className}ServiceRequest, ${className}ServiceResponse, ${className}ReadMonoRestService> {
 
 }

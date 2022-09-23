@@ -17,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.data.domain.Page;
 
@@ -37,11 +36,9 @@ import ${package}.model.${className}PolyServiceRequest;
 @ExtendWith(SpringExtension.class)
 class ${className}ReadPolyRestServiceIT {
 
-    @Autowired
-    private ${className}ReadPolyRestService restService;
-
     @Test
     void callReadPolyService_givenValidRequest_expectValidResponse() throws Exception {
+        ${className}ReadPolyRestService restService = new ${className}ReadPolyRestService();
         ${className}PolyServiceRequest polyServiceRequest = new ${className}PolyServiceRequest();
         Page<${className}ServiceResponse> serviceResponse = restService.executeRead(polyServiceRequest);
         assertNotNull(serviceResponse, CommonAssertionMessages.VALUE_NULL);
