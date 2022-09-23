@@ -74,6 +74,11 @@
 		</archetype>
 		<archetype>
 			<groupId>io.americanexpress.synapse</groupId>
+			<artifactId>synapse-archetype-data-postgres</artifactId>
+			<version>0.2.19-SNAPSHOT</version>
+		</archetype>
+		<archetype>
+			<groupId>io.americanexpress.synapse</groupId>
 			<artifactId>synapse-archetype-service-rest-post</artifactId>
 			<version>0.2.19-SNAPSHOT</version>
 		</archetype>
