@@ -37,5 +37,6 @@
     	<module>synapse-archetype-client-rest-reactive-post</module>
     	<module>synapse-archetype-client-rest-reactive-put</module>
     	<module>synapse-archetype-client-rest</module>
+        <module>synapse-archetype-service-rest-post</module>
     </modules>
 </project>
