@@ -34,5 +34,4 @@ public interface BaseMongoDbConfig {
                 .build();
     }
 
-
 }

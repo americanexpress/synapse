@@ -22,19 +22,19 @@ class BookRepositoryIT {
 
     @BeforeEach
     void init() {
-        bookRepository.deleteAll();
+        bookRepository.deleteAll().block();
     }
 
     @Test
     void findAll_givenEmptyBookCollection_expectedNoBooksFound() {
         Flux<BookEntity> bookDocumentFlux = bookRepository.findAll();
-        StepVerifier.create(bookDocumentFlux).expectNoAccessibleContext().verifyComplete();
+        StepVerifier.create(bookDocumentFlux).expectNextCount(0).verifyComplete();
     }
 
     @Test
     void findAll_givenBookCollection_expectedCollectionNotEmpty() {
         BookEntity entry = createSampleBook();
-        bookRepository.save(entry);
+        bookRepository.save(entry).block();
         Flux<BookEntity> bookDocumentFlux = bookRepository.findAll();
         StepVerifier.create(bookDocumentFlux).expectNextCount(1).verifyComplete();
     }
@@ -42,9 +42,9 @@ class BookRepositoryIT {
     @Test
     void findByTitle_givenBookTitle_expectedBookFound() {
         BookEntity entry = createSampleBook();
-        bookRepository.save(entry);
-        Flux<BookEntity> bookDocumentFlux = bookRepository.findAll();
-        StepVerifier.create(bookDocumentFlux).expectNextMatches(bookDocument -> entry.getTitle().equalsIgnoreCase(bookDocument.getTitle())).verifyComplete();
+        bookRepository.save(entry).block();
+        Flux<BookEntity> bookDocumentFlux = bookRepository.findByTitle("Alice in Wonderland");
+        StepVerifier.create(bookDocumentFlux).assertNext(bookEntity -> entry.getTitle().equalsIgnoreCase(bookEntity.getTitle())).expectComplete().verify();
     }
 
     private BookEntity createSampleBook() {
