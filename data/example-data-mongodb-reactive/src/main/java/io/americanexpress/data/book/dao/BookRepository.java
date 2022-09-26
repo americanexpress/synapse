@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 
 /**
- * BookRepository is the dao repository to handle the queries for the books table.
+ * {@code BookRepository} is the dao repository to handle the queries for the books table.
  */
 @Repository
 public interface BookRepository extends ReactiveMongoRepository<BookEntity, String> {

@@ -11,7 +11,7 @@ import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 
 /**
- * BookRepositoryIT class runs integration test on local MongoDB instance test database.
+ * {@code BookRepositoryIT} class runs integration test on local MongoDB instance test database.
  */
 @ContextConfiguration(classes = BookDataTestConfig.class)
 @DataMongoTest

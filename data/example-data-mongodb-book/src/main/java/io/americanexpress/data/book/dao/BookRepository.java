@@ -18,7 +18,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * BookRepository is the dao repository to handle the queries for the books table.
+ * {@code BookRepository} is the dao repository to handle the queries for the books table.
  */
 @Repository
 public interface BookRepository extends MongoRepository<BookEntity, String> {

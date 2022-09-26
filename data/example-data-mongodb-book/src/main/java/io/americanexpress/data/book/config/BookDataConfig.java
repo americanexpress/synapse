@@ -21,7 +21,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 /**
- * BookDataConfig is the configuration class to load all the properties for the book data module.
+ * {@code BookDataConfig} is the configuration class to load all the properties for the book data module.
  */
 @Configuration
 @PropertySource("classpath:/data-book-application.properties")

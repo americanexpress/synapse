@@ -17,7 +17,7 @@ import io.americanexpress.synapse.data.mongodb.entity.BaseEntity;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
- * BookEntity class represents the domain of the books table.
+ * {@code BookEntity} class represents the domain of the books table.
  */
 @Document("books")
 public class BookEntity extends BaseEntity {
