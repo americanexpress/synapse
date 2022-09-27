@@ -42,9 +42,9 @@
         <!--Spring Versions-->
         <spring-framework.version>5.3.23</spring-framework.version>
         <spring-security.version>5.6.2</spring-security.version>
-        <spring-boot-framework.version>2.7.0</spring-boot-framework.version>
+        <spring-boot-framework.version>2.7.1</spring-boot-framework.version>
         <spring-boot-ws-framework.version>1.4.7.RELEASE</spring-boot-ws-framework.version>
-        <spring-native.version>0.11.4</spring-native.version>
+        <spring-native.version>0.12.1</spring-native.version>
 
         <!--SpringFox-->
         <springfox-swagger.version>3.0.0</springfox-swagger.version>
@@ -609,6 +609,12 @@
 
             <!--Junit-->
             <dependency>
+                <groupId>org.graalvm.buildtools</groupId>
+                <artifactId>junit-platform-native</artifactId>
+                <version>0.9.14</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter</artifactId>
                 <version>${junit.jupiter.version}</version>
@@ -980,7 +986,7 @@
                     <plugin>
                         <groupId>org.graalvm.buildtools</groupId>
                         <artifactId>native-maven-plugin</artifactId>
-                        <version>0.9.11</version>
+                        <version>0.9.14</version>
                     </plugin>
                     <plugin>
                         <groupId>org.graalvm.nativeimage</groupId>
