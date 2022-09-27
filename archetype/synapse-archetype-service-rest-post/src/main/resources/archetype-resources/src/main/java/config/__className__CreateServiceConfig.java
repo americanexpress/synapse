@@ -14,22 +14,22 @@
 package ${package}.config;
 
 import io.americanexpress.synapse.service.rest.config.ServiceRestConfig;
-import ${package}.service.${className}PostService;
+import ${package}.service.${className}CreateService;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 
 /**
- * {@code ${className}ServiceConfig} class sets the
- * configurations for the {@link ${className}PostService}.
+ * {@code ${className}CreateServiceConfig} class sets the
+ * configurations for the {@link ${className}CreateService}.
  * @author ${author}
  */
 @Configuration
 @PropertySource("classpath:/service-application.properties")
 @ComponentScan("${package}")
 @Import({ServiceRestConfig.class})
-public class ${className}ServiceConfig {
+public class ${className}CreateServiceConfig {
     /**
      * The constant BASE_URL.
      */

@@ -11,16 +11,19 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package ${package}.model;
+package ${package}.config;
 
-import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
-import ${package}.controller.${className}PostController;
+import ${package}.service.${className}CreateService;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 /**
- * {@code ${className}ServiceResponse} class represents
- * the response from {@link ${className}PostController}.
+ * {@code ${className}CreateServiceTestConfig} class sets the test configurations
+ * for the {@link ${className}CreateService}.
  * @author ${author}
  */
-public class ${className}ServiceResponse extends BaseServiceResponse {
+@Import(${className}CreateServiceConfig.class)
+@Configuration
+public class ${className}CreateServiceTestConfig {
 
 }

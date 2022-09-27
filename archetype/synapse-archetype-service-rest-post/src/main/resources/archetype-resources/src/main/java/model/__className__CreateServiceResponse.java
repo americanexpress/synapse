@@ -13,14 +13,14 @@
  */
 package ${package}.model;
 
-import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
-import ${package}.controller.${className}PostController;
+import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
+import ${package}.controller.${className}CreateController;
 
 /**
- * {@code ${className}ServiceRequest} class represents
- * the request for {@link ${className}PostController}.
+ * {@code ${className}ServiceResponse} class represents
+ * the response from {@link ${className}CreateController}.
  * @author ${author}
  */
-public class ${className}ServiceRequest implements BaseServiceRequest {
+public class ${className}CreateServiceResponse extends BaseServiceResponse {
 
 }

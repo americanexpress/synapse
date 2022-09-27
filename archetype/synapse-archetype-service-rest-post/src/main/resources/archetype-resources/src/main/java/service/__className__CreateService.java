@@ -13,21 +13,21 @@
  */
 package ${package}.service;
 
-import ${package}.model.${className}ServiceRequest;
-import ${package}.model.${className}ServiceResponse;
+import ${package}.model.${className}CreateServiceRequest;
+import ${package}.model.${className}CreateServiceResponse;
 import io.americanexpress.synapse.service.rest.service.BaseCreateService;
 import org.springframework.stereotype.Service;
 
 /**
- * {@code ${className}PostService} class creates an entity
+ * {@code ${className}CreateService} class creates an entity
  * based on the request given.
  * @author ${author}
  */
 @Service
-public class ${className}PostService extends BaseCreateService<${className}ServiceRequest, ${className}ServiceResponse> {
+public class ${className}CreateService extends BaseCreateService<${className}CreateServiceRequest, ${className}CreateServiceResponse> {
 
     @Override
-    protected ${className}ServiceResponse executeCreate(${className}ServiceRequest request) {
-        return new ${className}ServiceResponse();
+    protected ${className}CreateServiceResponse executeCreate(${className}CreateServiceRequest request) {
+        return new ${className}CreateServiceResponse();
     }
 }

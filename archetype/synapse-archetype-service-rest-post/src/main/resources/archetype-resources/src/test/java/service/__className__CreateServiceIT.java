@@ -23,27 +23,27 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import ${package}.config.${className}ServiceTestConfig;
-import ${package}.model.${className}ServiceRequest;
-import ${package}.model.${className}ServiceResponse;
+import ${package}.config.${className}CreateServiceTestConfig;
+import ${package}.model.${className}CreateServiceRequest;
+import ${package}.model.${className}CreateServiceResponse;
 
 /**
- * {@code ${className}PostServiceIT} class performs integration tests
- * for the {@link ${className}PostService}.
+ * {@code ${className}CreateServiceIT} class performs integration tests
+ * for the {@link ${className}CreateService}.
  * <p>
  * @author ${author}
  */
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes=${className}ServiceTestConfig.class)
-class ${className}PostServiceIT {
+@ContextConfiguration(classes=${className}CreateServiceTestConfig.class)
+class ${className}CreateServiceIT {
 
     @Autowired
-    private ${className}PostService restService;
+    private ${className}CreateService restService;
 
     @Test
-    void callPostService_givenValidRequest_expectedValidResponse() throws Exception {
-        ${className}ServiceRequest serviceRequest = new ${className}ServiceRequest();
-        ${className}ServiceResponse serviceResponse = restService.create(serviceRequest);
+    void callCreateService_givenValidRequest_expectedValidResponse() throws Exception {
+        ${className}CreateServiceRequest serviceRequest = new ${className}CreateServiceRequest();
+        ${className}CreateServiceResponse serviceResponse = restService.create(serviceRequest);
         assertNotNull(serviceResponse, CommonAssertionMessages.VALUE_NULL);
     }
 }

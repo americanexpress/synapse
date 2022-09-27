@@ -13,21 +13,21 @@
  */
 package ${package}.controller;
 
-import ${package}.config.${className}ServiceConfig;
-import ${package}.model.${className}ServiceRequest;
-import ${package}.model.${className}ServiceResponse;
-import ${package}.service.${className}PostService;
+import ${package}.config.${className}CreateServiceConfig;
+import ${package}.model.${className}CreateServiceRequest;
+import ${package}.model.${className}CreateServiceResponse;
+import ${package}.service.${className}CreateService;
 import io.americanexpress.synapse.service.rest.controller.BaseCreateController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * {@code ${className}PostController} class creates an entity
+ * {@code ${className}CreateController} class creates an entity
  * based on the request given.
  * @author ${author}
  */
 @RestController
-@RequestMapping(${className}ServiceConfig.BASE_URL)
-public class ${className}PostController extends BaseCreateController<${className}ServiceRequest, ${className}ServiceResponse, ${className}PostService> {
+@RequestMapping(${className}CreateServiceConfig.BASE_URL)
+public class ${className}CreateController extends BaseCreateController<${className}CreateServiceRequest, ${className}CreateServiceResponse, ${className}CreateService> {
 
 }
