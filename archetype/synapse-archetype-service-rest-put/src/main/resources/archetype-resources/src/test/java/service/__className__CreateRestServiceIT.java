@@ -11,43 +11,35 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package ${package}.client;
+package ${package}.service;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import io.americanexpress.synapse.client.rest.model.ClientHeaders;
 import io.americanexpress.synapse.framework.test.CommonAssertionMessages;
 
-{package}.config.${className}RestClientTestConfig;
-import ${package}.model.${className}ClientRequest;{package}.model.${className}ClientResponse;
+import ${package}.model.${className}ServiceResponse;
+import ${package}.model.${className}ServiceRequest;
 
 /**
- * {@code ${className}PutRestClientIT} class performs integration tests
- * for the {@link ${className}PutRestClient}.
+ * {@code ${className}CreateRestServiceIT} class performs integration tests
+ * for the {@link ${className}CreateRestService}.
  * <p>
  * Be sure that the ${apiName} REST API is running
  * prior to running this integration test.
  * @author ${author}
  */
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = ${className}RestClientTestConfig.class)
-class ${className}PutRestClientIT {
-
-	@Autowired
-	private ${className}PutRestClient restClient;
+class ${className}CreateRestServiceIT {
 	
 	@Test
-	void callMonoService_givenValidRequest_expectedValidResponse() throws Exception {
-		// TODO: please add any client headers required by the back end API
-		ClientHeaders clientHeaders = new ClientHeaders();
-		${className}ClientRequest clientRequest = new ${className}ClientRequest();
-		${className}ClientResponse clientResponse = restClient.callMonoService(clientHeaders, clientRequest);
-		assertNotNull(clientResponse, CommonAssertionMessages.VALUE_NULL);
+	void callCreateService_givenValidRequest_expectedValidResponse() throws Exception {
+		${className}CreateRestService restService = new ${className}CreateRestService();
+		${className}ServiceRequest serviceRequest = new ${className}ServiceRequest();
+		${className}ServiceResponse serviceResponse = restService.executeCreate(serviceRequest);
+		assertNotNull(serviceResponse, CommonAssertionMessages.VALUE_NULL);
 	}
 }
