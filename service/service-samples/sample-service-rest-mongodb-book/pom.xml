@@ -16,11 +16,11 @@
         <!--Synapse-->
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>
-            <artifactId>synapse-data-mongodb</artifactId>
+            <artifactId>synapse-service-rest</artifactId>
         </dependency>
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>
-            <artifactId>synapse-service-rest</artifactId>
+            <artifactId>sample-data-mongodb-reactive</artifactId>
         </dependency>
     </dependencies>
 

@@ -1,5 +1,6 @@
 package io.americanexpress.service.book.rest.config;
 
+import io.americanexpress.data.book.config.BookDataConfig;
 import io.americanexpress.synapse.service.rest.config.ServiceRestConfig;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -12,10 +13,10 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @PropertySource("classpath:/service-book-application.properties")
 @ComponentScan(basePackages = "io.americanexpress.service.book.rest")
-@Import({ServiceRestConfig.class})
+@Import({ServiceRestConfig.class, BookDataConfig.class})
 public class BookConfig {
 
-    private BookConfig() {}
+    public BookConfig() {}
 
     /**
      * The constant BOOK_ENDPOINT.

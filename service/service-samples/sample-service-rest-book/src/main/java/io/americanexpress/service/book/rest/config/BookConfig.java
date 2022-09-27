@@ -34,7 +34,6 @@ public class BookConfig {
      */
     public static final String BOOK_ENDPOINT = "/v1/books";
 
-
 }
 
 
