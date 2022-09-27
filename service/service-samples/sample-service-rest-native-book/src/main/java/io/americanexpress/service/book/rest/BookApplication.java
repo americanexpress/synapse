@@ -24,10 +24,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * BookApplication starts the Spring Boot Application for the book rest sample.
  */
-@OpenAPIDefinition(info = @Info(
-        title = "Book API",
-        version = "v1.0.0",
-        description = "Rest API that provides book related information."))
+//@OpenAPIDefinition(info = @Info(
+//        title = "Book API",
+//        version = "v1.0.0",
+//        description = "Rest API that provides book related information."))
 @SpringBootApplication
 public class BookApplication {
 
