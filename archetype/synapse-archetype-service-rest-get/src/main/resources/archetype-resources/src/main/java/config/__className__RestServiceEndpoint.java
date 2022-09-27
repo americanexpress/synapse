@@ -13,6 +13,11 @@
  */
 package ${package}.config;
 
+/**
+ * {@code ${className}RestServiceConfig} class sets the endpoints
+ * for the {@link ${className}GetMonoRestService}.
+ * @author ${author}
+ */
 public class ${className}RestServiceEndpoint {
     private ${className}RestServiceEndpoint() {}
 
