@@ -38,5 +38,6 @@
     	<module>synapse-archetype-client-rest-reactive-put</module>
     	<module>synapse-archetype-client-rest</module>
         <module>synapse-archetype-data-postgres</module>
+        <module>synapse-archetype-service-rest-put</module>
     </modules>
 </project>
