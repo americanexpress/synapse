@@ -40,7 +40,7 @@ public class BookApplication {
      */
     public static void main(String[] args) {
         SpringApplication.run(BookApplication.class, args);
-        LOGGER.info("Rest Book Application is up and running ...");
+        LOGGER.info("Rest Native Book Application is up and running ...");
     }
 
 
