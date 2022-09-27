@@ -35,9 +35,9 @@
     </developers>
 
     <properties>
-        <java.version>11</java.version>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
 
         <!--Spring Versions-->
         <spring-framework.version>5.3.23</spring-framework.version>
@@ -236,20 +236,36 @@
                 <version>${project.version}</version>
             </dependency>
 
-            <!--Examples-->
+            <!--Samples-->
+
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
-                <artifactId>example-service-graphql-book</artifactId>
+                <artifactId>data-samples</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
-                <artifactId>example-service-rest-book</artifactId>
+                <artifactId>service-samples</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
-                <artifactId>example-data-postgres-book</artifactId>
+                <artifactId>sample-service-graphql-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-service-rest-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-service-rest-native-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-postgres-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
