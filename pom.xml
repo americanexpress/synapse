@@ -268,6 +268,16 @@
                 <artifactId>sample-data-postgres-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-mongodb-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-mongodb-reactive</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
             <!--External Dependencies-->
             <dependency>
