@@ -14,6 +14,7 @@
 package ${package}.controller;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import io.americanexpress.synapse.service.rest.controller.BaseGetMonoController;
 
