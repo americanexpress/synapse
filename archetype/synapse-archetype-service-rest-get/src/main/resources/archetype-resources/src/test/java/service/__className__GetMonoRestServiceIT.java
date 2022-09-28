@@ -35,7 +35,7 @@ import ${package}.model.${className}ServiceResponse;
 class ${className}GetMonoRestServiceIT {
 
     @Test
-    void callGetService_givenValidIdentifier_expectValidResponse() throws Exception {
+    void read_givenValidIdentifier_expectValidResponse() throws Exception {
         ${className}GetMonoRestService restService = new ${className}GetMonoRestService();
         String identifier = "";
         ${className}ServiceResponse serviceResponse = restService.executeRead(identifier);
