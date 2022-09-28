@@ -21,7 +21,7 @@ import ${package}.model.${className}ServiceResponse;
 import ${package}.model.${className}ServiceRequest;
 
 /**
- * {@code ${className}GetMonoRestService class is the service
+ * {@code ${className}ReadMonoRestService class is the service
  * used to connect to the ${apiName} REST API.
  * @author ${author}
  *
