@@ -33,7 +33,7 @@ import java.util.Properties;
  */
 @TestConfiguration
 @PropertySource("classpath:data-oracle-book-application-test.properties")
-@EnableAutoConfiguration
+//@EnableAutoConfiguration
 @ActiveProfiles("test")
 public class OracleDataConfigTest extends BaseOracleDataConfig {
     /**

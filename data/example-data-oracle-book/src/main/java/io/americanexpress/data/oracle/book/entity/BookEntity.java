@@ -35,6 +35,10 @@ public class BookEntity extends BaseEntity {
     @Column(name = "author")
     private String author;
 
+    /**
+     * Gets title.
+     * @return
+     */
     private String getTitle() {
         return title;
     }

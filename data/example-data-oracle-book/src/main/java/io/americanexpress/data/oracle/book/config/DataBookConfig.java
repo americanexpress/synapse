@@ -26,7 +26,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
  */
 @Configuration
 @PropertySource("classpath:data-oracle-book-application.properties")
-@EnableJpaRepositories(basePackages = "io.americanexpress.data.oracle.book")
+@EnableJpaRepositories(basePackages = "io.americanexpress.data.oracle.book.dao")
 @EnableAutoConfiguration
 public class DataBookConfig extends BaseOracleDataConfig {
 
@@ -41,6 +41,10 @@ public class DataBookConfig extends BaseOracleDataConfig {
         super(environment);
     }
 
+    /**
+     * Scans package containing jpa entity
+     * @param entityManagerFactoryBean
+     */
     @Override
     protected void setPackagesToScan(LocalContainerEntityManagerFactoryBean entityManagerFactoryBean) {
         entityManagerFactoryBean.setPackagesToScan(PACKAGE_SCAN_NAME);

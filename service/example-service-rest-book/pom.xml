@@ -46,20 +46,20 @@
     <build>
         <plugins>
             <!--Build Docker Image-->
-<!--            <plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.7.0</version>
-&lt;!&ndash;                <configuration>&ndash;&gt;
-&lt;!&ndash;                    <image>&ndash;&gt;
-&lt;!&ndash;                        <name>${project.artifactId}:latest</name>&ndash;&gt;
-&lt;!&ndash;                        <builder>paketobuildpacks/builder:tiny</builder>&ndash;&gt;
-&lt;!&ndash;                        <env>&ndash;&gt;
-&lt;!&ndash;                            <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>&ndash;&gt;
-&lt;!&ndash;                        </env>&ndash;&gt;
-&lt;!&ndash;                    </image>&ndash;&gt;
-&lt;!&ndash;                </configuration>&ndash;&gt;
-            </plugin>-->
+<!--                <configuration>-->
+<!--                    <image>-->
+<!--                        <name>${project.artifactId}:latest</name>-->
+<!--                        <builder>paketobuildpacks/builder:tiny</builder>-->
+<!--                        <env>-->
+<!--                            <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>-->
+<!--                        </env>-->
+<!--                    </image>-->
+<!--               </configuration>-->
+            </plugin>
             <plugin>
                 <groupId>org.springframework.experimental</groupId>
                 <artifactId>spring-aot-maven-plugin</artifactId>
