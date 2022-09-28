@@ -16,23 +16,25 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
+        <artifactId>data-samples</artifactId>
         <groupId>io.americanexpress.synapse</groupId>
-        <artifactId>synapse</artifactId>
         <version>0.2.19-SNAPSHOT</version>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>data</artifactId>
-    <packaging>pom</packaging>
 
-    <!--Modules-->
-    <modules>
-    
-        <!-- Base data Synapse dependencies-->
-        <module>data-samples</module>
-        <module>synapse-data-couchbase</module>
-        <module>synapse-data-mongodb</module>
-        <module>synapse-data-postgres</module>
-    </modules>
+    <artifactId>sample-data-mongodb-reactive</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.americanexpress.synapse</groupId>
+            <artifactId>synapse-data-mongodb</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
 </project>
