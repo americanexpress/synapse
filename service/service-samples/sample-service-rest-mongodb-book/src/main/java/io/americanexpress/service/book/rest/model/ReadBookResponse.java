@@ -13,19 +13,15 @@
  */
 package io.americanexpress.service.book.rest.model;
 
-import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
-
-import javax.validation.constraints.NotBlank;
+import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 
 /**
- * {@code CreateBookRequest} is the request for the create book operation.
+ * {@code ReadBookResponse} is the response for the read book operation.
  */
-public class CreateBookRequest implements BaseServiceRequest {
+public class ReadBookResponse extends BaseServiceResponse {
 
-    @NotBlank
     private String title;
 
-    @NotBlank
     private String author;
 
     public String getTitle() {

@@ -18,15 +18,12 @@ import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import javax.validation.constraints.NotBlank;
 
 /**
- * {@code CreateBookRequest} is the request for the create book operation.
+ * {@code ReadBookRequest} is the request for the read book operation.
  */
-public class CreateBookRequest implements BaseServiceRequest {
+public class ReadBookRequest implements BaseServiceRequest {
 
     @NotBlank
     private String title;
-
-    @NotBlank
-    private String author;
 
     public String getTitle() {
         return title;
@@ -34,13 +31,5 @@ public class CreateBookRequest implements BaseServiceRequest {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
     }
 }
