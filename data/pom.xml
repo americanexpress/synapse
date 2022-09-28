@@ -27,9 +27,12 @@
 
     <!--Modules-->
     <modules>
+    
+        <!-- Base data Synapse dependencies-->
+        <module>data-samples</module>
         <module>synapse-data-couchbase</module>
+        <module>synapse-data-mongodb</module>
         <module>synapse-data-postgres</module>
-        <module>example-data-postgres-book</module>
     </modules>
 
 </project>

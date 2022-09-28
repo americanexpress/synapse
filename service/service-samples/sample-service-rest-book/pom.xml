@@ -12,25 +12,33 @@
     or implied. See the License for the specific language governing permissions and limitations under
     the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
-        <artifactId>synapse</artifactId>
+        <artifactId>service-samples</artifactId>
         <version>0.2.19-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>service</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>sample-service-rest-book</artifactId>
 
-    <!--Modules-->
-    <modules>
-        <module>service-samples</module>
-        <module>synapse-service-graphql</module>
-        <module>synapse-service-rest</module>
-        <module>synapse-service-test</module>
-    </modules>
+    <!--Dependencies-->
+    <dependencies>
+        <!--Synapse-->
+        <dependency>
+            <groupId>io.americanexpress.synapse</groupId>
+            <artifactId>synapse-service-rest</artifactId>
+        </dependency>
+    </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
+
