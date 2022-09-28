@@ -14,13 +14,13 @@
 package ${package}.model;
 
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
+import ${package}.controller.${className}DeleteController;
 
 /**
- * {@code ${className}ServiceResponse} class represents
- * the service response for the consumer.
+ * {@code ${className}DeleteServiceResponse} class represents
+ * the response from {@link ${className}DeleteController}.
  * @author ${author}
- *
  */
-public class ${className}ServiceResponse extends BaseServiceResponse {
+public class ${className}DeleteServiceResponse extends BaseServiceResponse {
 
 }

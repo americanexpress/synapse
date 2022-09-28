@@ -11,16 +11,19 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package ${package}.model;
+package ${package}.config;
 
-import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
+import ${package}.service.${className}DeleteService;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 /**
- * {@code ${className}ServiceRequest} class represents
- * the service request from the consumer.
+ * {@code ${className}DeleteServiceTestConfig} class sets the test configurations
+ * for the {@link ${className}DeleteService}.
  * @author ${author}
- *
  */
-public class ${className}ServiceRequest implements BaseServiceRequest {
+@Import(${className}DeleteServiceConfig.class)
+@Configuration
+public class ${className}DeleteServiceTestConfig {
 
 }
