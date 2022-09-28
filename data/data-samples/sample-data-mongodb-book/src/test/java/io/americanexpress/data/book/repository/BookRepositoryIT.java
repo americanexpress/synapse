@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.data.book.dao;
+package io.americanexpress.data.book.repository;
 
 import io.americanexpress.data.book.config.BookDataTestConfig;
 import io.americanexpress.data.book.entity.BookEntity;

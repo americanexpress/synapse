@@ -11,18 +11,17 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.data.book.dao;
+package io.americanexpress.data.book.repository;
 
 import io.americanexpress.data.book.entity.BookEntity;
-import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
-import reactor.core.publisher.Flux;
 
 /**
  * {@code BookRepository} is the dao repository to handle the queries for the books table.
  */
 @Repository
-public interface BookRepository extends ReactiveMongoRepository<BookEntity, String> {
+public interface BookRepository extends MongoRepository<BookEntity, String> {
 
-    Flux<BookEntity> findByTitle(String title);
+    BookEntity findByTitle(String title);
 }
