@@ -10,7 +10,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ${className}DeleteService extends BaseDeleteService {
+
+    /**
+     * Remove a resource.
+     *
+     * @param id identifier received from controller
+     */
     @Override
-    protected void executeDelete(String s) {
+    protected void executeDelete(String id) {
     }
 }
