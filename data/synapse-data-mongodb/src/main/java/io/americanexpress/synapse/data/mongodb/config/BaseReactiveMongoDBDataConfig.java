@@ -34,7 +34,7 @@ public abstract class BaseReactiveMongoDBDataConfig extends AbstractReactiveMong
     protected Environment environment;
 
     /**
-     * Instantiates a new Base reactive mongodb data config.
+     * Instantiates a new Base reactive MongoDB data config.
      *
      * @param environment the environment
      */

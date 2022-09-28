@@ -18,7 +18,7 @@ import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 
 /**
- * {@code BaseMongoDBConfig} interface is used to hold the common code for MongoDb config.
+ * {@code BaseMongoDBConfig} interface is used to hold the common code for MongoDB config.
  */
 public interface BaseMongoDBConfig {
 
