@@ -13,13 +13,15 @@
  */
 package ${package}.config;
 
+import ${package}.service.${className}GetMonoRestService;
+
 /**
- * {@code ${className}RestServiceConfig} class sets the endpoints
+ * {@code ${className}RestServiceEndpoint} class sets the endpoints
  * for the {@link ${className}GetMonoRestService}.
  * @author ${author}
  */
 public class ${className}RestServiceEndpoint {
     private ${className}RestServiceEndpoint() {}
 
-    public static final String SERVICE_ENDPOINT = "";
+    public static final String SERVICE_ENDPOINT = "${url}";
 }

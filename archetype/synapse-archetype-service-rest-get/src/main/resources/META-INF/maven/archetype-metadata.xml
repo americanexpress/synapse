@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     Copyright 2020 American Express Travel Related Services Company, Inc.
 
@@ -11,7 +12,6 @@
     or implied. See the License for the specific language governing permissions and limitations under
     the License.
 -->
-<?xml version="1.0" encoding="UTF-8"?>
 <archetype-descriptor name="synapse-archetype-client-rest-get"
 	xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
