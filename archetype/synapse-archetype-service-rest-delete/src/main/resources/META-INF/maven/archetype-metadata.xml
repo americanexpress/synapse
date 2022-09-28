@@ -18,7 +18,7 @@
                       xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd">
     <requiredProperties>
         <requiredProperty key="javaVersion">
-            <defaultValue>11</defaultValue>
+            <defaultValue>17</defaultValue>
         </requiredProperty>
         <requiredProperty key="author">
             <defaultValue>John Doe</defaultValue>
