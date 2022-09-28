@@ -42,9 +42,9 @@
     </dependencies>
 
     <build>
-        <plugins>
+         <plugins>
             <!--Build Docker Image-->
-            <plugin>
+<!--             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
@@ -118,7 +118,7 @@
                         <buildArg>--no-fallback</buildArg>
                     </buildArgs>
                 </configuration>
-            </plugin>
+            </plugin> -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
