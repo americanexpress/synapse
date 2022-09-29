@@ -27,7 +27,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @OpenAPIDefinition(info = @Info(
         title = "${className} API",
         version = "v1.0.0",
-        description = "Rest API that provides deletes information."))
+        description = "Rest API that deletes information."))
 @SpringBootApplication
 public class ${className}Application {
 
