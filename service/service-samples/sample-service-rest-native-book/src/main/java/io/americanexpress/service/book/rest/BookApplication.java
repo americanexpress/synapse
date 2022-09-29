@@ -43,5 +43,4 @@ public class BookApplication {
         LOGGER.info("Rest Native Book Application is up and running ...");
     }
 
-
 }
