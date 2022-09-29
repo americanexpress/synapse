@@ -28,7 +28,7 @@ import org.springframework.data.mongodb.config.EnableMongoAuditing;
  */
 @Configuration
 @EnableMongoAuditing
-public abstract class BaseMongoDBDataConfig extends AbstractMongoClientConfiguration implements BaseMongoDbConfig{
+public abstract class BaseMongoDBDataConfig extends AbstractMongoClientConfiguration implements BaseMongoDBConfig {
 
     /**
      * Used to acquire environment variables.
@@ -36,7 +36,7 @@ public abstract class BaseMongoDBDataConfig extends AbstractMongoClientConfigura
     protected Environment environment;
 
     /**
-     * Instantiates a new Base mongodb data config.
+     * Instantiates a new Base MongoDB data config.
      *
      * @param environment the environment
      */

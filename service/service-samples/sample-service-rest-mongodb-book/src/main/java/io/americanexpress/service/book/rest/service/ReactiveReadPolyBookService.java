@@ -17,8 +17,8 @@ import io.americanexpress.data.book.dao.BookRepository;
 import io.americanexpress.data.book.entity.BookEntity;
 import io.americanexpress.service.book.rest.model.ReadBookRequest;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
+import io.americanexpress.service.book.rest.service.helper.ReadBookResponseCreator;
 import io.americanexpress.synapse.service.rest.service.BaseReadPolyService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
@@ -35,11 +35,12 @@ public class ReactiveReadPolyBookService extends BaseReadPolyService<ReadBookReq
 
     private final BookRepository bookRepository;
 
-    @Autowired
-    public ReactiveReadPolyBookService(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
+    private final ReadBookResponseCreator readBookResponseCreator;
 
+    public ReactiveReadPolyBookService(BookRepository bookRepository, ReadBookResponseCreator readBookResponseCreator) {
+        this.bookRepository = bookRepository;
+        this.readBookResponseCreator = readBookResponseCreator;
+    }
 
     @Override
     protected Page<ReadBookResponse> executeRead(ReadBookRequest request) {
@@ -48,9 +49,7 @@ public class ReactiveReadPolyBookService extends BaseReadPolyService<ReadBookReq
         List<ReadBookResponse> bookResponses = new ArrayList<>();
         if(bookEntityList!= null && !bookEntityList.isEmpty()) {
             bookEntityList.forEach(bookEntity -> {
-                ReadBookResponse response = new ReadBookResponse();
-                response.setAuthor(bookEntity.getAuthor());
-                response.setTitle(bookEntity.getTitle());
+                ReadBookResponse response = readBookResponseCreator.create(bookEntity);
                 bookResponses.add(response);
             });
         }

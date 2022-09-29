@@ -1,4 +1,4 @@
-package io.americanexpress.data.book.dao;
+package io.americanexpress.data.book.repository;
 
 import io.americanexpress.data.book.config.BookDataTestConfig;
 import io.americanexpress.data.book.entity.BookEntity;

@@ -26,7 +26,7 @@ import org.springframework.data.mongodb.config.EnableReactiveMongoAuditing;
  */
 @Configuration
 @EnableReactiveMongoAuditing
-public abstract class BaseReactiveMongoDBDataConfig extends AbstractReactiveMongoConfiguration implements BaseMongoDbConfig{
+public abstract class BaseReactiveMongoDBDataConfig extends AbstractReactiveMongoConfiguration implements BaseMongoDBConfig {
 
     /**
      * Used to acquire environment variables.
@@ -34,7 +34,7 @@ public abstract class BaseReactiveMongoDBDataConfig extends AbstractReactiveMong
     protected Environment environment;
 
     /**
-     * Instantiates a new Base reactive mongodb data config.
+     * Instantiates a new Base reactive MongoDB data config.
      *
      * @param environment the environment
      */
