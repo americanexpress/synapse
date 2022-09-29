@@ -40,7 +40,7 @@ class ${className}DeleteServiceIT {
     private ${className}DeleteService restService;
 
     @Test
-    void callPostService_givenValidRequest_expectedValidResponse() throws Exception {
+    void callDeleteService_givenValidRequest_expectedValidResponse() throws Exception {
         String id = "";
         restService.delete(id);
         // TODO: add assertion for success of deletion

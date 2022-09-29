@@ -11,21 +11,23 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package ${package}.controller;
+package ${package}.config;
 
-import io.americanexpress.synapse.service.rest.controller.BaseDeleteController;
-import ${package}.config.${className}DeleteServiceEndpoint;
+import io.americanexpress.synapse.service.rest.config.ServiceRestConfig;
 import ${package}.service.${className}DeleteService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
 
 /**
- * {@code ${className}DeleteController} class deletes an entity
- * based on the request given.
+ * {@code ${className}DeleteServiceEndpoint} class sets the endpoints
+ * for the {@link ${className}DeleteService}.
  * @author ${author}
  */
-@RestController
-@RequestMapping(${className}DeleteServiceEndpoint.BASE_URL)
-public class ${className}DeleteController extends BaseDeleteController<${className}DeleteService> {
-
+public class ${className}DeleteServiceEndpoint {
+    /**
+     * The constant BASE_URL
+     */
+    public static final String BASE_URL = "${baseUrl}";
 }
