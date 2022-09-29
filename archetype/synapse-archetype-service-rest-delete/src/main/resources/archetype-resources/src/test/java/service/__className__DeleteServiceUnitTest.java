@@ -13,13 +13,18 @@
  */
 package ${package}.service;
 
+import io.americanexpress.synapse.framework.test.CommonAssertionMessages;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import ${package}.config.${className}DeleteServiceTestConfig;
+import ${package}.model.${className}DeleteServiceResponse;
 
 /**
  * {@code ${className}DeleteServiceIT} class performs integration tests

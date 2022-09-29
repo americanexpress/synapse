@@ -30,8 +30,5 @@ import org.springframework.context.annotation.PropertySource;
 @ComponentScan("${package}")
 @Import({ServiceRestConfig.class})
 public class ${className}DeleteServiceConfig {
-    /**
-     * The constant BASE_URL
-     */
-    public static final String BASE_URL = "${baseUrl}";
+
 }
