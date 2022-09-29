@@ -32,6 +32,9 @@
 		<requiredProperty key="className">
 			<defaultValue>ExampleBook</defaultValue>
 		</requiredProperty>
+		<requiredProperty key="baseUrl">
+			<defaultValue>/v1/books</defaultValue>
+		</requiredProperty>
 	</requiredProperties>
 	<fileSets>
 		<fileSet filtered="true">

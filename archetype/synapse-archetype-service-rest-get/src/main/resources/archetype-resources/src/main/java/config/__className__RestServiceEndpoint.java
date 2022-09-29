@@ -23,5 +23,5 @@ import ${package}.service.${className}GetMonoRestService;
 public class ${className}RestServiceEndpoint {
     private ${className}RestServiceEndpoint() {}
 
-    public static final String SERVICE_ENDPOINT = "${url}";
+    public static final String SERVICE_ENDPOINT = "${baseUrl}";
 }
