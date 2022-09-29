@@ -13,7 +13,7 @@
  */
 package ${package}.controller;
 
-import ${package}.config.${className}CreateServiceConfig;
+import ${package}.config.${className}CreateServiceEndpoint;
 import ${package}.model.${className}CreateServiceRequest;
 import ${package}.model.${className}CreateServiceResponse;
 import ${package}.service.${className}CreateService;
@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author ${author}
  */
 @RestController
-@RequestMapping(${className}CreateServiceConfig.BASE_URL)
+@RequestMapping(${className}CreateServiceEndpoint.BASE_URL)
 public class ${className}CreateController extends BaseCreateController<${className}CreateServiceRequest, ${className}CreateServiceResponse, ${className}CreateService> {
 
 }

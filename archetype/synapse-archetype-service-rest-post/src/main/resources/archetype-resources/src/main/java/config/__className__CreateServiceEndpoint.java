@@ -21,14 +21,13 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 
 /**
- * {@code ${className}CreateServiceConfig} class sets the
+ * {@code ${className}CreateServiceEndpoint} class sets the
  * configurations for the {@link ${className}CreateService}.
  * @author ${author}
  */
-@Configuration
-@PropertySource("classpath:/service-application.properties")
-@ComponentScan("${package}")
-@Import({ServiceRestConfig.class})
-public class ${className}CreateServiceConfig {
-
+public class ${className}CreateServiceEndpoint {
+    /**
+     * The constant BASE_URL.
+     */
+    public static final String BASE_URL = "${baseUrl}";
 }
