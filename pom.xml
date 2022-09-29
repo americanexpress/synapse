@@ -35,16 +35,16 @@
     </developers>
 
     <properties>
-        <java.version>11</java.version>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
 
         <!--Spring Versions-->
         <spring-framework.version>5.3.23</spring-framework.version>
         <spring-security.version>5.6.2</spring-security.version>
-        <spring-boot-framework.version>2.7.0</spring-boot-framework.version>
+        <spring-boot-framework.version>2.7.1</spring-boot-framework.version>
         <spring-boot-ws-framework.version>1.4.7.RELEASE</spring-boot-ws-framework.version>
-        <spring-native.version>0.11.4</spring-native.version>
+        <spring-native.version>0.12.1</spring-native.version>
 
         <!--SpringFox-->
         <springfox-swagger.version>3.0.0</springfox-swagger.version>
@@ -56,7 +56,7 @@
         <spring-boot-graphql.version>11.1.0</spring-boot-graphql.version>
 
         <!--Mock Dependency Versions-->
-        <mockito.version>2.23.4</mockito.version>
+        <mockito.version>4.8.0</mockito.version>
 
         <!--JUnit Versions-->
         <junit.version>1.8.2</junit.version>
@@ -70,6 +70,7 @@
         <sl4j.version>1.7.36</sl4j.version>
 
         <!--Plugins-->
+        <native-plugin.version>0.9.13</native-plugin.version>
         <jaxws-maven-plugin.version>2.5</jaxws-maven-plugin.version>
     </properties>
 
@@ -220,6 +221,11 @@
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-data-mongodb</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-data-postgres</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -236,20 +242,46 @@
                 <version>${project.version}</version>
             </dependency>
 
-            <!--Examples-->
+            <!--Samples-->
+
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
-                <artifactId>example-service-graphql-book</artifactId>
+                <artifactId>data-samples</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
-                <artifactId>example-service-rest-book</artifactId>
+                <artifactId>service-samples</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
-                <artifactId>example-data-postgres-book</artifactId>
+                <artifactId>sample-service-graphql-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-service-rest-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-service-rest-native-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-postgres-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-mongodb-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-mongodb-reactive</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -309,12 +341,12 @@
             </dependency>
 
             <!--Spring Boot Dependencies-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-starter-parent</artifactId>-->
-<!--                <version>${spring-boot-framework.version}</version>-->
-<!--                <type>pom</type>-->
-<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.springframework.boot</groupId>-->
+            <!--                <artifactId>spring-boot-starter-parent</artifactId>-->
+            <!--                <version>${spring-boot-framework.version}</version>-->
+            <!--                <type>pom</type>-->
+            <!--            </dependency>-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -327,11 +359,11 @@
                 <artifactId>spring-boot-starter-ws</artifactId>
                 <version>${spring-boot-ws-framework.version}</version>
             </dependency>
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-starter-data-rest</artifactId>-->
-<!--                <version>${spring-boot-framework.version}</version>-->
-<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.springframework.boot</groupId>-->
+            <!--                <artifactId>spring-boot-starter-data-rest</artifactId>-->
+            <!--                <version>${spring-boot-framework.version}</version>-->
+            <!--            </dependency>-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter</artifactId>
@@ -354,11 +386,11 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-starter-security</artifactId>-->
-<!--                <version>${spring-boot-framework.version}</version>-->
-<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.springframework.boot</groupId>-->
+            <!--                <artifactId>spring-boot-starter-security</artifactId>-->
+            <!--                <version>${spring-boot-framework.version}</version>-->
+            <!--            </dependency>-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-webflux</artifactId>
@@ -415,6 +447,11 @@
 
             <!--GraphQL-->
             <dependency>
+                <groupId>org.webjars.npm</groupId>
+                <artifactId>graphql-ws</artifactId>
+                <version>5.5.5</version>
+            </dependency>
+            <dependency>
                 <groupId>com.graphql-java</groupId>
                 <artifactId>graphql-java-tools</artifactId>
                 <version>5.2.4</version>
@@ -436,13 +473,18 @@
             <dependency>
                 <groupId>com.graphql-java</groupId>
                 <artifactId>graphql-java-extended-scalars</artifactId>
-                <version>16.0.1</version>
+                <version>19.0</version>
                 <exclusions>
                     <exclusion>
                         <groupId>com.graphql-java</groupId>
                         <artifactId>graphql-java</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.graphql-java</groupId>
+                <artifactId>graphql-java</artifactId>
+                <version>19.2</version>
             </dependency>
             <dependency>
                 <groupId>com.graphql-java-kickstart</groupId>
@@ -536,7 +578,7 @@
             <dependency>
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
-                <version>2.1.210</version>
+                <version>2.1.214</version>
             </dependency>
 
             <!--Persistence-->
@@ -597,6 +639,18 @@
             </dependency>
 
             <!--Junit-->
+            <dependency>
+                <groupId>org.graalvm.buildtools</groupId>
+                <artifactId>junit-platform-native</artifactId>
+                <version>0.9.14</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-launcher</artifactId>
+                <version>1.9.1</version>
+                <scope>test</scope>
+            </dependency>
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter</artifactId>
@@ -728,12 +782,34 @@
                 <artifactId>springdoc-openapi-webmvc-core</artifactId>
                 <version>${springdoc.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-native</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
 
             <!--Swagger Annotations-->
             <dependency>
                 <groupId>io.swagger</groupId>
                 <artifactId>swagger-annotations</artifactId>
                 <version>1.6.6</version>
+            </dependency>
+
+            <!--MongoDB-->
+            <dependency>
+                <groupId>org.mongodb</groupId>
+                <artifactId>mongodb-driver-sync</artifactId>
+                <version>4.7.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
+                <version>2.7.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-mongodb</artifactId>
+                <version>3.4.2</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -836,7 +912,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.9</version>
+                    <version>3.0.0-M7</version>
                     <dependencies>
                         <dependency>
                             <groupId>com.google.code.findbugs</groupId>
@@ -857,7 +933,7 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>findbugs-maven-plugin</artifactId>
-                    <version>2.5.5</version>
+                    <version>3.0.5</version>
                     <configuration>
                         <xmlOutput>true</xmlOutput>
                         <!-- Optional directory to put findbugs xdoc xml report -->
@@ -955,48 +1031,49 @@
                     <artifactId>maven-project-info-reports-plugin</artifactId>
                     <version>3.0.0</version>
                 </plugin>
+
+                <!--Native Plugins-->
+                <plugin>
+                    <groupId>org.springframework.experimental</groupId>
+                    <artifactId>spring-aot-maven-plugin</artifactId>
+                    <version>${spring-native.version}</version>
+                    <executions>
+                        <execution>
+                            <id>generate</id>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.graalvm.nativeimage</groupId>
+                    <artifactId>native-image-maven-plugin</artifactId>
+                    <version>21.2.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.graalvm.buildtools</groupId>
+                    <artifactId>native-maven-plugin</artifactId>
+                    <version>${native-plugin.version}</version>
+                    <configuration>
+                        <classifier>exec</classifier>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>build-native</id>
+                            <goals>
+                                <goal>build</goal>
+                            </goals>
+                            <phase>package</phase>
+                        </execution>
+                    </executions>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
 
     <!--Profiles-->
     <profiles>
-        <profile>
-            <!--Profile native-->
-            <id>native</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.graalvm.buildtools</groupId>
-                        <artifactId>native-maven-plugin</artifactId>
-                        <version>0.9.11</version>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.graalvm.nativeimage</groupId>
-                        <artifactId>native-image-maven-plugin</artifactId>
-                        <version>21.2.0</version>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-assembly-plugin</artifactId>
-                        <configuration>
-                            <descriptors>
-                                <descriptor>src/assembly/test-jar-with-dependencies.xml</descriptor>
-                            </descriptors>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>make-test-jar</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>single</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
         <!--Profile release-->
         <profile>
             <id>release</id>
@@ -1086,25 +1163,6 @@
                             <artifactId>spring-boot-maven-plugin</artifactId>
                             <version>${spring-boot-framework.version}</version>
                         </plugin>
-                        <plugin>
-                            <groupId>org.springframework.experimental</groupId>
-                            <artifactId>spring-aot-maven-plugin</artifactId>
-                            <version>${spring-native.version}</version>
-                        </plugin>
-                        <plugin>
-                            <groupId>org.graalvm.buildtools</groupId>
-                            <artifactId>native-maven-plugin</artifactId>
-                            <version>0.9.11</version>
-                            <executions>
-                                <execution>
-                                    <id>build-native</id>
-                                    <goals>
-                                        <goal>build</goal>
-                                    </goals>
-                                    <phase>package</phase>
-                                </execution>
-                            </executions>
-                        </plugin>
                     </plugins>
                 </pluginManagement>
             </build>
@@ -1129,20 +1187,42 @@
     </profiles>
 
     <!--Repositories-->
-    <repositories>
-        <repository>
-            <id>spring-release</id>
-            <name>Spring release</name>
-            <url>https://repo.spring.io/release</url>
-        </repository>
-    </repositories>
     <pluginRepositories>
         <pluginRepository>
             <id>spring-release</id>
             <name>Spring release</name>
             <url>https://repo.spring.io/release</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-snapshot</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </pluginRepository>
     </pluginRepositories>
+    <repositories>
+        <repository>
+            <id>spring-release</id>
+            <name>Spring release</name>
+            <url>https://repo.spring.io/release</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring-snapshot</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
 
     <!--Use for Maven Deploy Plugin-->
