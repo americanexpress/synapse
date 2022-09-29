@@ -13,12 +13,7 @@
  */
 package ${package}.config;
 
-import io.americanexpress.synapse.service.rest.config.ServiceRestConfig;
 import ${package}.service.${className}DeleteService;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.PropertySource;
 
 /**
  * {@code ${className}DeleteServiceEndpoint} class sets the endpoints
@@ -26,6 +21,12 @@ import org.springframework.context.annotation.PropertySource;
  * @author ${author}
  */
 public class ${className}DeleteServiceEndpoint {
+
+    /**
+     * Private constructor for ${className}DeleteServiceEndpoint.
+     */
+    private ${className}DeleteServiceEndpoint() {}
+
     /**
      * The constant BASE_URL
      */
