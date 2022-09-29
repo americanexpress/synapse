@@ -39,7 +39,7 @@ import java.util.List;
  */
 @Configuration
 @ComponentScan(basePackages = "io.americanexpress.synapse.service.rest")
-@Import({ExceptionConfig.class, ApiDocsConfig.class, UtilitiesCommonConfig.class})
+@Import({ExceptionConfig.class, UtilitiesCommonConfig.class})
 public class ServiceRestConfig implements WebMvcConfigurer {
 
     /**
