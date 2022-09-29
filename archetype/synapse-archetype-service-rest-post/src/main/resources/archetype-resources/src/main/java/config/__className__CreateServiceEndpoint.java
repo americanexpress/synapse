@@ -26,6 +26,12 @@ import org.springframework.context.annotation.PropertySource;
  * @author ${author}
  */
 public class ${className}CreateServiceEndpoint {
+
+    /**
+     * Private constructor for ${className}CreateServiceEndpoint.
+     */
+    private ${className}CreateServiceEndpoint() {}
+
     /**
      * The constant BASE_URL.
      */

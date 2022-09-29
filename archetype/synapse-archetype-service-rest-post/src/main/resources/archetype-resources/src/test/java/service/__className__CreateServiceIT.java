@@ -41,7 +41,7 @@ class ${className}CreateServiceIT {
     private ${className}CreateService restService;
 
     @Test
-    void callCreateService_givenValidRequest_expectedValidResponse() throws Exception {
+    void create_givenValidRequest_expectedValidResponse() throws Exception {
         ${className}CreateServiceRequest serviceRequest = new ${className}CreateServiceRequest();
         ${className}CreateServiceResponse serviceResponse = restService.create(serviceRequest);
         assertNotNull(serviceResponse, CommonAssertionMessages.VALUE_NULL);
