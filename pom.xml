@@ -437,7 +437,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-sleuth</artifactId>
-                <version>3.0.3</version>
+                <version>3.1.4</version>
             </dependency>
 
             <!--GraphQL-->
@@ -923,7 +923,7 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>findbugs-maven-plugin</artifactId>
-                    <version>2.5.5</version>
+                    <version>3.0.5</version>
                     <configuration>
                         <xmlOutput>true</xmlOutput>
                         <!-- Optional directory to put findbugs xdoc xml report -->
