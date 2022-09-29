@@ -25,7 +25,6 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,17 +35,15 @@ public class ReactiveReadPolyBookService extends BaseReadPolyService<ReadBookReq
 
     private final BookRepository bookRepository;
 
-    private final ReadBookResponseCreator readBookResponseCreator;
-
-    public ReactiveReadPolyBookService(BookRepository bookRepository, ReadBookResponseCreator readBookResponseCreator) {
+    public ReactiveReadPolyBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
-        this.readBookResponseCreator = readBookResponseCreator;
     }
+
 
     @Override
     protected Page<ReadBookResponse> executeRead(ReadBookRequest request) {
         Flux<BookEntity> bookEntityFlux = bookRepository.findByTitle(request.getTitle());
-        Mono<List<ReadBookResponse>> bookResponses = bookEntityFlux.map(readBookResponseCreator::create)
+        Mono<List<ReadBookResponse>> bookResponses = bookEntityFlux.map(ReadBookResponseCreator::create)
                 .collectList();
 
         return new PageImpl<>(bookResponses.block());
