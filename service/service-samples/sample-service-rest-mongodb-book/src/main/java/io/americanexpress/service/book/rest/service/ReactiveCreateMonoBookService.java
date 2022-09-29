@@ -36,16 +36,11 @@ public class ReactiveCreateMonoBookService extends BaseCreateService<CreateBookR
 
     @Override
     protected CreateBookResponse executeCreate(CreateBookRequest request) {
-        CreateBookResponse createBookResponse = null;
-
         BookEntity book = new BookEntity();
         book.setTitle(request.getTitle());
         book.setAuthor(request.getAuthor());
+        bookRepository.save(book);
 
-        if(bookRepository.save(book).block() != null) {
-            createBookResponse =  new CreateBookResponse();
-        }
-
-        return createBookResponse;
+        return new CreateBookResponse();
     }
 }
