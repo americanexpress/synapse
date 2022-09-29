@@ -19,6 +19,7 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
+import org.springdoc.core.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -39,6 +40,23 @@ public class ApiDocsConfig {
     public static final String title = "Synapse APIs";
     private static final String description = "These are the specifications of the Synapse APIs";
 
+
+    @Bean
+    public GroupedOpenApi publicApi() {
+        return GroupedOpenApi.builder()
+                .group("user")
+                .pathsToExclude("/api/v2/**", "/v2/**")
+                .pathsToMatch("/api/v1/**", "/v1/**")
+                .build();
+    }
+    @Bean
+    public GroupedOpenApi adminApi() {
+        return GroupedOpenApi.builder()
+                .group("admin")
+                .pathsToExclude("/api/v1/**", "/v1/**")
+                .pathsToMatch("/api/v2/**", "/v2/**")
+                .build();
+    }
 
     /**
      * This is default implementation of the OpenAPIDocumentation.
