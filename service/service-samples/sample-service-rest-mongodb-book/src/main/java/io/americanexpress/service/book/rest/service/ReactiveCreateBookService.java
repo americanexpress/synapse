@@ -28,12 +28,12 @@ import reactor.core.publisher.Mono;
  * {@code ReactiveCreateMonoBookService} creates book in the database given request.
  */
 @Service
-public class ReactiveCreateMonoBookService extends BaseReactiveCreateService<CreateBookRequest, CreateBookResponse> {
+public class ReactiveCreateBookService extends BaseReactiveCreateService<CreateBookRequest, CreateBookResponse> {
 
     private final BookRepository bookRepository;
 
     @Autowired
-    public ReactiveCreateMonoBookService(BookRepository bookRepository) {
+    public ReactiveCreateBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
