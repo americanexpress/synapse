@@ -155,6 +155,11 @@
                 <artifactId>synapse-archetype-service-rest-delete</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-archetype-service-rest-post</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <!--Framework-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
