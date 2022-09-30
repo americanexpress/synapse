@@ -2,7 +2,7 @@ package io.americanexpress.synapse.service.rest.controller.reactive;
 
 import io.americanexpress.synapse.service.rest.controller.BaseController;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
-import io.americanexpress.synapse.service.rest.service.BaseUpdateMonoReactiveService;
+import io.americanexpress.synapse.service.rest.service.BaseUpdateReactiveService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
 
-public class BaseReactiveUpdateMonoController<I extends BaseServiceRequest, S extends BaseUpdateMonoReactiveService<I>> extends BaseController<S> {
+public class BaseReactiveUpdateMonoController<I extends BaseServiceRequest, S extends BaseUpdateReactiveService<I>> extends BaseController<S> {
 
     @Operation(tags = "Update Operation", summary = "Updates a resource reactively")
     @PutMapping
@@ -23,8 +23,7 @@ public class BaseReactiveUpdateMonoController<I extends BaseServiceRequest, S ex
 
         var results = service.update(serviceRequest);
         var responseEntity = results
-                .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+                .map(ResponseEntity::ok);
 
         logger.exit();
         return responseEntity;

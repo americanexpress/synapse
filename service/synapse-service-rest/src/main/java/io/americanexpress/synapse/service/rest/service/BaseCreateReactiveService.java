@@ -4,7 +4,7 @@ import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import reactor.core.publisher.Mono;
 
-public abstract class BaseCreateMonoReactiveService<I extends BaseServiceRequest, O extends BaseServiceResponse> extends BaseService {
+public abstract class BaseCreateReactiveService<I extends BaseServiceRequest, O extends BaseServiceResponse> extends BaseService {
 
     /**
      * Add a single resource.

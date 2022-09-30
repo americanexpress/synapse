@@ -42,6 +42,12 @@ public class ReadBookResponse extends BaseServiceResponse {
         this.author = author;
     }
 
+    public ReadBookResponse(String id, String title, String author) {
+        this.title = title;
+        this.author = author;
+        super.setId(id);
+    }
+
 
     /**
      * Gets title.

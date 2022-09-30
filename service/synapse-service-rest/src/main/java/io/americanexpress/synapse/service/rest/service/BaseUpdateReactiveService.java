@@ -3,7 +3,7 @@ package io.americanexpress.synapse.service.rest.service;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import reactor.core.publisher.Mono;
 
-public abstract class BaseUpdateMonoReactiveService<I extends BaseServiceRequest> extends BaseService {
+public abstract class BaseUpdateReactiveService<I extends BaseServiceRequest> extends BaseService {
     /**
      * Update a single resource reactively.
      * @param request body received from the controller

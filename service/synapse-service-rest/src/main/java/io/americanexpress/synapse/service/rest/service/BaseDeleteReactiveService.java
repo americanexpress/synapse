@@ -2,7 +2,7 @@ package io.americanexpress.synapse.service.rest.service;
 
 import reactor.core.publisher.Mono;
 
-public abstract class BaseDeleteMonoReactiveService extends BaseService {
+public abstract class BaseDeleteReactiveService extends BaseService {
 
     public Mono<Void> delete(String identifier) {
         logger.entry();

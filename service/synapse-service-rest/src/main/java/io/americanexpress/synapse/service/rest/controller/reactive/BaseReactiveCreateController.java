@@ -14,15 +14,12 @@
 package io.americanexpress.synapse.service.rest.controller.reactive;
 
 import io.americanexpress.synapse.service.rest.controller.BaseController;
-import io.americanexpress.synapse.service.rest.controller.reactive.helpers.ReactiveCreateResponseEntityCreator;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
-import io.americanexpress.synapse.service.rest.service.BaseCreateMonoReactiveService;
-import io.americanexpress.synapse.service.rest.service.BaseCreateService;
+import io.americanexpress.synapse.service.rest.service.BaseCreateReactiveService;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,7 +36,7 @@ import javax.validation.Valid;
  * @param <S> service type
  * @author Gabriel Jimenez
  */
-public abstract class BaseReactiveCreateController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseCreateMonoReactiveService<I, O>> extends BaseController<S> {
+public abstract class BaseReactiveCreateController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseCreateReactiveService<I, O>> extends BaseController<S> {
 
     /**
      * Create a single resource.
