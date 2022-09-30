@@ -21,13 +21,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * ${className}Application starts the Spring Boot Application for the ${serviceName} service.
+ * ${className}Application starts the Spring Boot Application for the ${apiName} REST API.
  * @author ${author}
  */
 @OpenAPIDefinition(info = @Info(
         title = "${className} API",
         version = "v1.0.0",
-        description = "Rest API that provides information."))
+        description = "Rest API that provides ${apiName} related information."))
 @SpringBootApplication
 public class ${className}Application {
 

@@ -13,22 +13,22 @@
  */
 package ${package}.config;
 
-import io.americanexpress.synapse.service.rest.config.ServiceRestConfig;
 import ${package}.service.${className}ReactiveCreateService;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.PropertySource;
 
 /**
- * {@code ${className}ReactiveCreateServiceConfig} class sets the
+ * {@code ${className}ReactiveCreateServiceEndpoint} class sets the
  * configurations for the {@link ${className}ReactiveCreateService}.
  * @author ${author}
  */
-@Configuration
-@PropertySource("classpath:/service-application.properties")
-@ComponentScan("${package}")
-@Import({ServiceRestConfig.class})
-public class ${className}ReactiveCreateServiceConfig {
+public class ${className}ReactiveCreateServiceEndpoint {
 
+    /**
+     * Private constructor for ${className}ReactiveCreateServiceEndpoint.
+     */
+    private ${className}ReactiveCreateServiceEndpoint() {}
+
+    /**
+     * The constant BASE_URL.
+     */
+    public static final String BASE_URL = "${baseUrl}";
 }

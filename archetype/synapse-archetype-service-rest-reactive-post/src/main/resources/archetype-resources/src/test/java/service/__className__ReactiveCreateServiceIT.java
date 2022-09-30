@@ -41,7 +41,7 @@ class ${className}ReactiveCreateServiceIT {
     private ${className}ReactiveCreateService restService;
 
     @Test
-    void callCreateService_givenValidRequest_expectedValidResponse() throws Exception {
+    void create_givenValidRequest_expectedValidResponse() throws Exception {
         ${className}ReactiveCreateServiceRequest serviceRequest = new ${className}ReactiveCreateServiceRequest();
         ${className}ReactiveCreateServiceResponse serviceResponse = restService.create(serviceRequest);
         assertNotNull(serviceResponse, CommonAssertionMessages.VALUE_NULL);

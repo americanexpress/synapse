@@ -15,7 +15,7 @@ package ${package}.controller;
 
 import io.americanexpress.synapse.service.rest.controller.reactive.BaseReactiveCreateController;
 
-import ${package}.config.${className}ReactiveCreateServiceConfig;
+import ${package}.config.${className}ReactiveCreateServiceEndpoint;
 import ${package}.model.${className}ReactiveCreateServiceRequest;
 import ${package}.model.${className}ReactiveCreateServiceResponse;
 import ${package}.service.${className}ReactiveCreateService;
@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author ${author}
  */
 @RestController
-@RequestMapping(${className}ReactiveCreateServiceConfig.BASE_URL)
+@RequestMapping(${className}ReactiveCreateServiceEndpoint.BASE_URL)
 public class ${className}ReactiveCreateController extends BaseReactiveCreateController<${className}ReactiveCreateServiceRequest,
         ${className}ReactiveCreateServiceResponse, ${className}ReactiveCreateService> {
 
