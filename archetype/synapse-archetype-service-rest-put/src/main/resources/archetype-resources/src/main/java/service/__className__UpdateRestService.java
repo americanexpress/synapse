@@ -15,9 +15,8 @@ package ${package}.service;
 
 import org.springframework.stereotype.Service;
 
-import io.americanexpress.synapse.service.rest.service.BaseCreateService;
+import io.americanexpress.synapse.service.rest.service.BaseUpdateService;
 
-import ${package}.model.${className}ServiceResponse;
 import ${package}.model.${className}ServiceRequest;
 
 /**
@@ -27,10 +26,10 @@ import ${package}.model.${className}ServiceRequest;
  *
  */
 @Service
-public class ${className}CreateRestService extends BaseCreateService<${className}ServiceRequest, ${className}ServiceResponse> {
+public class ${className}UpdateRestService extends BaseUpdateService<${className}ServiceRequest> {
 
 	@Override
-	protected ${className}ServiceResponse executeCreate(${className}ServiceRequest serviceRequest) {
-		return new ${className}ServiceResponse();
+	protected void executeUpdate(${className}ServiceRequest serviceRequest) {
+
 	}
 }

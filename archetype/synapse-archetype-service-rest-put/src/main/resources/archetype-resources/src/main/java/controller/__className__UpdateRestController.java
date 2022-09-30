@@ -16,21 +16,20 @@ package ${package}.controller;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import io.americanexpress.synapse.service.rest.controller.BaseCreateController;
+import io.americanexpress.synapse.service.rest.controller.BaseUpdateController;
 
-import ${package}.service.${className}CreateRestService;
-import ${package}.model.${className}ServiceResponse;
+import ${package}.service.${className}UpdateRestService;
 import ${package}.model.${className}ServiceRequest;
 import ${package}.config.${className}RestServiceEndpoint;
 
 /**
- * {@code ${className}GetMonoRestController} class is the controller
+ * {@code ${className}UpdateRestController} class is the controller
  * used to connect to the ${apiName} REST API.
  * @author ${author}
  *
  */
 @RestController
 @RequestMapping(${className}RestServiceEndpoint.SERVICE_ENDPOINT)
-public class ${className}CreateRestController extends BaseCreateController<${className}ServiceRequest, ${className}ServiceResponse, ${className}CreateRestService> {
+public class ${className}UpdateRestController extends BaseUpdateController<${className}ServiceRequest, ${className}UpdateRestService> {
 
 }

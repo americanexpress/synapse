@@ -13,11 +13,11 @@
  */
 package ${package}.config;
 
-import ${package}.service.${className}CreateRestService;
+import ${package}.service.${className}UpdateRestService;
 
 /**
  * {@code ${className}RestServiceEndpoint} class sets the endpoints
- * for the {@link ${className}CreateRestService}.
+ * for the {@link ${className}UpdateRestService}.
  * @author ${author}
  */
 public class ${className}RestServiceEndpoint {

@@ -20,11 +20,11 @@ import org.springframework.context.annotation.PropertySource;
 
 import io.americanexpress.synapse.service.rest.config.ServiceRestConfig;
 
-import ${package}.service.${className}CreateRestService;
+import ${package}.service.${className}UpdateRestService;
 
 /**
  * {@code ${className}RestServiceConfig} class sets the configurations
- * for the {@link ${className}CreateRestService}.
+ * for the {@link ${className}UpdateRestService}.
  * @author ${author}
  */
 @Import({ServiceRestConfig.class})

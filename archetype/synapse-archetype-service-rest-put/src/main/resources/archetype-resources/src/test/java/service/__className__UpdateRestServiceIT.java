@@ -21,25 +21,23 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import io.americanexpress.synapse.framework.test.CommonAssertionMessages;
 
-import ${package}.model.${className}ServiceResponse;
 import ${package}.model.${className}ServiceRequest;
 
 /**
- * {@code ${className}CreateRestServiceIT} class performs integration tests
- * for the {@link ${className}CreateRestService}.
+ * {@code ${className}UpdateRestServiceIT} class performs integration tests
+ * for the {@link ${className}UpdateRestService}.
  * <p>
  * Be sure that the ${apiName} REST API is running
  * prior to running this integration test.
  * @author ${author}
  */
 @ExtendWith(SpringExtension.class)
-class ${className}CreateRestServiceIT {
+class ${className}UpdateRestServiceIT {
 
     @Test
-    void create_givenValidRequest_expectValidResponse() throws Exception {
-        ${className}CreateRestService restService = new ${className}CreateRestService();
+    void update_givenValidRequest_expectValidResponse() throws Exception {
+        ${className}UpdateRestService restService = new ${className}UpdateRestService();
         ${className}ServiceRequest serviceRequest = new ${className}ServiceRequest();
-        ${className}ServiceResponse serviceResponse = restService.executeCreate(serviceRequest);
-        assertNotNull(serviceResponse, CommonAssertionMessages.VALUE_NULL);
+        restService.executeUpdate(serviceRequest);
     }
 }
