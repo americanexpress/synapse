@@ -35,6 +35,6 @@ public class ${className}Application {
 
     public static void main(String[] args) {
         SpringApplication.run(${className}Application.class, args);
-        LOGGER.info("Rest Book Application is up and running ...");
+        LOGGER.info("Rest Application is up and running ...");
     }
 }
