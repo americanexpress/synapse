@@ -28,4 +28,6 @@ public interface BookRepository extends ReactiveMongoRepository<BookEntity, Stri
     Flux<BookEntity> findByTitle(String title);
 
     Mono<BookEntity> findByTitleAndAuthor(String title, String author);
+
+    Mono<Void> deleteByTitle(String title);
 }

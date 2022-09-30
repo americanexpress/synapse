@@ -17,7 +17,6 @@ import javax.validation.Valid;
 
 public abstract class BaseReactiveCreateController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReactiveCreateService<I, O>> extends BaseController<S> {
 
-
     /**
      * Create a single resource.
      *
