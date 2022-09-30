@@ -26,6 +26,8 @@ public class BookEntity extends BaseEntity {
 
     private String author;
 
+    private int numberOfCopies;
+
     public String getTitle() {
         return title;
     }
@@ -40,5 +42,13 @@ public class BookEntity extends BaseEntity {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public int getNumberOfCopies() {
+        return numberOfCopies;
+    }
+
+    public void setNumberOfCopies(int numberOfCopies) {
+        this.numberOfCopies = numberOfCopies;
     }
 }
