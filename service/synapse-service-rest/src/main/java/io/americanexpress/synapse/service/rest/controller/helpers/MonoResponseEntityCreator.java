@@ -19,7 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MonoResponseEntityCreator<O extends BaseServiceResponse> {
+public class  MonoResponseEntityCreator<O extends BaseServiceResponse> {
 
     public ResponseEntity<O> create(O serviceResponse) {
         return serviceResponse == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : ResponseEntity.ok(serviceResponse);

@@ -13,17 +13,16 @@
  */
 package io.americanexpress.synapse.service.rest.controller;
 
-import io.americanexpress.synapse.service.rest.controller.helpers.MonoResponseEntityCreator;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
-import io.americanexpress.synapse.service.rest.service.BaseReadMonoService;
+import io.americanexpress.synapse.service.rest.service.BaseReadMonoReactiveService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
 
@@ -37,12 +36,9 @@ import javax.validation.Valid;
  * @param <S> service type
  * @author Gabriel Jimenez
  */
-public abstract class BaseReadMonoController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadMonoService<I, O>> extends BaseController<S> {
+public abstract class BaseReadMonoController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadMonoReactiveService<I, O>> extends BaseController<S> {
 
     public static final String INQUIRY_RESULTS = "/inquiry_results";
-
-    @Autowired
-    private MonoResponseEntityCreator<O> monoResponseEntityCreator;
 
     /**
      * Get a single resource from the back end service.
@@ -59,12 +55,13 @@ public abstract class BaseReadMonoController<I extends BaseServiceRequest, O ext
             @ApiResponse(responseCode = "403", description = "Forbidden"),
     })
     @PostMapping(INQUIRY_RESULTS)
-    public ResponseEntity<O> read(@Valid @RequestBody I serviceRequest) {
+    public Mono<ResponseEntity<O>> read(@Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
 
-        final O serviceResponse = service.read(serviceRequest);
-        ResponseEntity<O> responseEntity = monoResponseEntityCreator.create(serviceResponse);
-
+        final var serviceResponse = service.read(serviceRequest);
+        final var responseEntity = serviceResponse
+                .map(ResponseEntity::ok)
+                .defaultIfEmpty(ResponseEntity.noContent().build());
         logger.exit(responseEntity);
         return responseEntity;
     }

@@ -7,7 +7,7 @@ import reactor.core.publisher.Mono;
  * {@code BaseUpdateMonoService}
  * @param <I> Input request type
  */
-public abstract class BaseUpdateMonoService<I extends BaseServiceRequest> extends BaseService {
+public abstract class BaseUpdateMonoReactiveService<I extends BaseServiceRequest> extends BaseService {
 
     /**
      * Update a single resource reactively.

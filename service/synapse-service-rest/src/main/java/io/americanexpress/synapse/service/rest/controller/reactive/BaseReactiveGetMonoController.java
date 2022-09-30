@@ -3,6 +3,7 @@ package io.americanexpress.synapse.service.rest.controller.reactive;
 import io.americanexpress.synapse.service.rest.controller.BaseController;
 import io.americanexpress.synapse.service.rest.controller.reactive.helpers.ReactiveMonoResponseEntityCreator;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
+import io.americanexpress.synapse.service.rest.service.BaseGetMonoReactiveService;
 import io.americanexpress.synapse.service.rest.service.BaseGetMonoService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import reactor.core.publisher.Mono;
 
-public abstract class BaseReactiveGetMonoController<O extends BaseServiceResponse, S extends BaseGetMonoService<O>> extends BaseController<S> {
+public abstract class BaseReactiveGetMonoController<O extends BaseServiceResponse, S extends BaseGetMonoReactiveService<O>> extends BaseController<S> {
 
     private static final String GET_RESULTS = "/{id}";
 
@@ -33,11 +34,13 @@ public abstract class BaseReactiveGetMonoController<O extends BaseServiceRespons
             @ApiResponse(code = 403, message = "Forbidden"),
     })
     @GetMapping(GET_RESULTS)
-    public ResponseEntity<Mono<O>> read(@PathVariable String id) {
+    public Mono<ResponseEntity<O>> read(@PathVariable String id) {
         logger.entry(id);
 
-        O serviceResponse = service.read(id);
-        ResponseEntity<Mono<O>> responseEntity = reactiveMonoResponseEntityCreator.create(Mono.just(serviceResponse));
+        var serviceResponse = service.read(id);
+        var responseEntity = serviceResponse
+                .map(ResponseEntity::ok)
+                .defaultIfEmpty(ResponseEntity.noContent().build());
 
         logger.exit(responseEntity);
         return responseEntity;

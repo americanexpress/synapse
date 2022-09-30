@@ -5,7 +5,7 @@ import io.americanexpress.synapse.framework.exception.ApplicationServerException
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
-import io.americanexpress.synapse.service.rest.service.BaseReadMonoService;
+import io.americanexpress.synapse.service.rest.service.BaseReadService;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
@@ -21,7 +21,7 @@ import org.springframework.http.HttpStatus;
  * @param <O> the type parameter
  * @param <S> the type parameter
  */
-public abstract class BaseReadMonoControllerUnitTest<O extends BaseServiceResponse, I extends BaseServiceRequest, S extends BaseReadMonoService<I, O>> extends BaseControllerUnitTest<O> {
+public abstract class BaseReadMonoControllerUnitTest<O extends BaseServiceResponse, I extends BaseServiceRequest, S extends BaseReadService<I, O>> extends BaseControllerUnitTest<O> {
 
     /**
      * The Service.

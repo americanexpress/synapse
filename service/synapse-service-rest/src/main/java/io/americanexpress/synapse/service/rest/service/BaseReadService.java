@@ -16,7 +16,7 @@ package io.americanexpress.synapse.service.rest.service;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 
-public abstract class BaseReadMonoService<I extends BaseServiceRequest, O extends BaseServiceResponse> extends BaseService {
+public abstract class BaseReadService<I extends BaseServiceRequest, O extends BaseServiceResponse> extends BaseService {
 
     /**
      * Get a single resource from the back end service.
