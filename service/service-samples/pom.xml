@@ -17,7 +17,6 @@
         <module>sample-service-graphql-book</module>
         <module>sample-service-rest-book</module>
         <module>sample-service-rest-mongodb-book</module>
-<!--        <module>sample-service-rest-native-book</module>-->
     </modules>
 
 
