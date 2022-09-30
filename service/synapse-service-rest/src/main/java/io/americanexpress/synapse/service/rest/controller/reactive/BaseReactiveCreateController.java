@@ -17,6 +17,7 @@ import io.americanexpress.synapse.service.rest.controller.BaseController;
 import io.americanexpress.synapse.service.rest.controller.reactive.helpers.ReactiveCreateResponseEntityCreator;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
+import io.americanexpress.synapse.service.rest.service.BaseCreateMonoReactiveService;
 import io.americanexpress.synapse.service.rest.service.BaseCreateService;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -38,10 +39,7 @@ import javax.validation.Valid;
  * @param <S> service type
  * @author Gabriel Jimenez
  */
-public abstract class BaseReactiveCreateController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseCreateService<I, O>> extends BaseController<S> {
-
-    @Autowired
-    private ReactiveCreateResponseEntityCreator<O> reactiveCreateResponseEntityCreator;
+public abstract class BaseReactiveCreateController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseCreateMonoReactiveService<I, O>> extends BaseController<S> {
 
     /**
      * Create a single resource.
@@ -57,11 +55,13 @@ public abstract class BaseReactiveCreateController<I extends BaseServiceRequest,
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 403, message = "Forbidden"),
     })
-    public ResponseEntity<Mono<O>> create(@Valid @RequestBody I serviceRequest) {
+    public Mono<ResponseEntity<O>> create(@Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
 
-        final O serviceResponse = service.create(serviceRequest);
-        ResponseEntity<Mono<O>> responseEntity = reactiveCreateResponseEntityCreator.create(serviceResponse);
+        final var serviceResponse = service.create(serviceRequest);
+        final var responseEntity = serviceResponse
+                .map(ResponseEntity::ok)
+                .defaultIfEmpty(ResponseEntity.noContent().build());
 
         logger.exit();
         return responseEntity;

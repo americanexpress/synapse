@@ -17,6 +17,7 @@ import io.americanexpress.synapse.service.rest.controller.BaseController;
 import io.americanexpress.synapse.service.rest.controller.reactive.helpers.ReactivePolyResponseEntityCreator;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
+import io.americanexpress.synapse.service.rest.service.BaseReadPolyReactiveService;
 import io.americanexpress.synapse.service.rest.service.BaseReadPolyService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -40,12 +41,9 @@ import javax.validation.Valid;
  * @param <S> service type
  * @author Gabriel Jimenez
  */
-public abstract class BaseReactiveReadPolyController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadPolyService<I, O>> extends BaseController<S> {
+public abstract class BaseReactiveReadPolyController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadPolyReactiveService<I, O>> extends BaseController<S> {
 
     public static final String MULTIPLE_RESULTS = "/multiple_results";
-
-    @Autowired
-    private ReactivePolyResponseEntityCreator<O> reactivePolyResponseEntityCreator;
 
     /**
      * Get a list of multiple resources from the back end service.
@@ -62,12 +60,13 @@ public abstract class BaseReactiveReadPolyController<I extends BaseServiceReques
             @ApiResponse(code = 403, message = "Forbidden"),
     })
     @PostMapping(MULTIPLE_RESULTS)
-    public ResponseEntity<Flux<O>> read(@Valid @RequestBody I serviceRequest, HttpServletResponse httpServletResponse) {
+    public Flux<ResponseEntity<O>> read(@Valid @RequestBody I serviceRequest, HttpServletResponse httpServletResponse) {
         logger.entry(serviceRequest);
 
-        Page<O> page = service.read(serviceRequest);
-
-        ResponseEntity<Flux<O>> responseEntity = reactivePolyResponseEntityCreator.create(page, httpServletResponse);
+        final var serviceResult = service.read(serviceRequest);
+        final var responseEntity = serviceResult
+                .map(ResponseEntity::ok)
+                .defaultIfEmpty(ResponseEntity.noContent().build());
 
         logger.exit(responseEntity);
         return responseEntity;
