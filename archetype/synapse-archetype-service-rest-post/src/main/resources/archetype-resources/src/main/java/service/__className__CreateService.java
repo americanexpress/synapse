@@ -27,11 +27,11 @@ import org.springframework.stereotype.Service;
 public class ${className}CreateService extends BaseCreateService<${className}CreateServiceRequest, ${className}CreateServiceResponse> {
 
     /**
-    * Add a resource.
-    *
-    * @param request body received from the controller
-    * @return response body to the controller
-    */
+     * Add a resource.
+     *
+     * @param request body received from the controller
+     * @return response body to the controller
+     */
     @Override
     protected ${className}CreateServiceResponse executeCreate(${className}CreateServiceRequest request) {
         return new ${className}CreateServiceResponse();

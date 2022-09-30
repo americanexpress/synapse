@@ -24,7 +24,7 @@
         <requiredProperty key="author">
             <defaultValue>John Doe</defaultValue>
         </requiredProperty>
-        <requiredProperty key="serviceName">
+        <requiredProperty key="apiName">
             <defaultValue>Bookstore</defaultValue>
         </requiredProperty>
         <requiredProperty key="baseUrl">
