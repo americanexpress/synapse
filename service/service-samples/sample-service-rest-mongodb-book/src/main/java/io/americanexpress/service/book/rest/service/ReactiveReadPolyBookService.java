@@ -14,24 +14,19 @@
 package io.americanexpress.service.book.rest.service;
 
 import io.americanexpress.data.book.repository.BookRepository;
-import io.americanexpress.data.book.entity.BookEntity;
 import io.americanexpress.service.book.rest.model.ReadBookRequest;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.service.helper.ReadBookResponseCreator;
-import io.americanexpress.synapse.service.rest.service.BaseReadPolyService;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
+import io.americanexpress.synapse.service.rest.service.reactive.BaseReactiveReadService;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
-import java.util.List;
 
 /**
  * {@code ReactiveReadPolyBookService} retrieves books from the database given request.
  */
 @Service
-public class ReactiveReadPolyBookService extends BaseReadPolyService<ReadBookRequest, ReadBookResponse> {
+public class ReactiveReadPolyBookService extends BaseReactiveReadService<ReadBookRequest, ReadBookResponse> {
 
     private final BookRepository bookRepository;
 
@@ -41,11 +36,10 @@ public class ReactiveReadPolyBookService extends BaseReadPolyService<ReadBookReq
 
 
     @Override
-    protected Page<ReadBookResponse> executeRead(ReadBookRequest request) {
-        Flux<BookEntity> bookEntityFlux = bookRepository.findByTitle(request.getTitle());
-        Mono<List<ReadBookResponse>> bookResponses = bookEntityFlux.map(ReadBookResponseCreator::create)
-                .collectList();
+    protected Flux<ReadBookResponse> executeRead(ReadBookRequest request) {
+        return bookRepository.findByTitle(request.getTitle())
+                .map(ReadBookResponseCreator::create)
+                .switchIfEmpty(Flux.empty());
 
-        return new PageImpl<>(bookResponses.block());
     }
 }

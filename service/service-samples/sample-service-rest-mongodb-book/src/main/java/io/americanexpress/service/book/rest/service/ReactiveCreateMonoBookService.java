@@ -17,15 +17,18 @@ import io.americanexpress.data.book.repository.BookRepository;
 import io.americanexpress.data.book.entity.BookEntity;
 import io.americanexpress.service.book.rest.model.CreateBookRequest;
 import io.americanexpress.service.book.rest.model.CreateBookResponse;
-import io.americanexpress.synapse.service.rest.service.BaseCreateService;
+import io.americanexpress.synapse.service.rest.service.reactive.BaseReactiveCreateService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 /**
  * {@code ReactiveCreateMonoBookService} creates book in the database given request.
  */
 @Service
-public class ReactiveCreateMonoBookService extends BaseCreateService<CreateBookRequest, CreateBookResponse> {
+public class ReactiveCreateMonoBookService extends BaseReactiveCreateService<CreateBookRequest, CreateBookResponse> {
 
     private final BookRepository bookRepository;
 
@@ -35,12 +38,12 @@ public class ReactiveCreateMonoBookService extends BaseCreateService<CreateBookR
     }
 
     @Override
-    protected CreateBookResponse executeCreate(CreateBookRequest request) {
-        BookEntity book = new BookEntity();
-        book.setTitle(request.getTitle());
-        book.setAuthor(request.getAuthor());
-        bookRepository.save(book);
+    protected Mono<CreateBookResponse> executeCreate(CreateBookRequest request) {
+        BookEntity bookEntity = new BookEntity();
+        bookEntity.setTitle(request.getTitle());
+        bookEntity.setAuthor(request.getAuthor());
 
-        return new CreateBookResponse();
+        return bookRepository.save(bookEntity).map(book -> new CreateBookResponse()).switchIfEmpty(Mono.empty());
+
     }
 }
