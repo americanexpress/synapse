@@ -27,7 +27,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @OpenAPIDefinition(info = @Info(
         title = "${className} API",
         version = "v1.0.0",
-        description = "Rest API that provides information."))
+        description = "Rest API that provides ${apiName} related information."))
 @SpringBootApplication
 public class ${className}Application {
 
