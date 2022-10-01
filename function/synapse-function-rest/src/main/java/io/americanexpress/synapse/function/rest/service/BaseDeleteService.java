@@ -11,25 +11,30 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.rest;
-
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+package io.americanexpress.synapse.service.rest.service;
 
 /**
- * BookApplication starts the Spring Boot Application for the book rest sample.
+ * BaseService class specifies the prototypes for performing business logic.
+ *
+ * @author Alexei Morgado
  */
-@SpringBootApplication
-public class BookApplication {
+public abstract class BaseDeleteService extends BaseService {
 
     /**
-     * Main method to run the Spring Boot Book Application.
+     * Remove a single resource.
      *
-     * @param args the args
+     * @param id received from the controller
      */
-    public static void main(String[] args) {
-        SpringApplication.run(BookApplication.class, args);
+    public void delete(String id) {
+        logger.entry(id);
+        executeDelete(id);
+        logger.exit();
     }
 
+    /**
+     * Prototype for removing a resource.
+     *
+     * @param id body received from the controller
+     */
+    protected abstract void executeDelete(String id);
 }

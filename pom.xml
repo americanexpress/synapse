@@ -78,12 +78,12 @@
         <module>archetype</module>
         <module>framework</module>
         <module>service</module>
+        <module>function</module>
         <module>client</module>
         <module>data</module>
         <module>publisher</module>
         <module>utility</module>
     </modules>
-
 
     <!--Dependency Management-->
     <dependencyManagement>
@@ -171,6 +171,7 @@
                 <artifactId>synapse-framework-api-docs</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
             <!--Service-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
@@ -185,6 +186,12 @@
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-service-test</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!--Function-->
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-function-rest</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--Client-->
@@ -238,7 +245,6 @@
             </dependency>
 
             <!--Samples-->
-
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>data-samples</artifactId>
@@ -247,6 +253,11 @@
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>service-samples</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>function-samples</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -754,6 +765,12 @@
                 <groupId>org.springframework.experimental</groupId>
                 <artifactId>spring-native</artifactId>
                 <version>${spring-native.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.experimental</groupId>
+                <artifactId>spring-aot</artifactId>
+                <version>${spring-native.version}</version>
+                <scope>provided</scope>
             </dependency>
 
             <!--Springdoc-->

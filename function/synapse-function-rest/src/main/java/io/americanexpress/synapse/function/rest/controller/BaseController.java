@@ -11,25 +11,21 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.rest;
+package io.americanexpress.synapse.function.rest.controller;
 
+import io.americanexpress.synapse.service.rest.service.BaseService;
+import org.slf4j.ext.XLogger;
+import org.slf4j.ext.XLoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-/**
- * BookApplication starts the Spring Boot Application for the book rest sample.
- */
-@SpringBootApplication
-public class BookApplication {
+public abstract class BaseController<S extends BaseService> {
 
     /**
-     * Main method to run the Spring Boot Book Application.
-     *
-     * @param args the args
+     * Service that will be called to get a single resource or multiple resources.
      */
-    public static void main(String[] args) {
-        SpringApplication.run(BookApplication.class, args);
-    }
+    @Autowired
+    protected S service;
+
+    protected final XLogger logger = XLoggerFactory.getXLogger(this.getClass());
 
 }

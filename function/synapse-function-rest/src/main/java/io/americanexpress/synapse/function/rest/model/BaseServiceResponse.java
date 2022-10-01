@@ -11,25 +11,35 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.rest;
-
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+package io.americanexpress.synapse.service.rest.model;
 
 /**
- * BookApplication starts the Spring Boot Application for the book rest sample.
+ * BaseServiceResponse class specifies the prototypes for all service responses.
+ *
+ * @author Gabriel Jimenez
  */
-@SpringBootApplication
-public class BookApplication {
+public abstract class BaseServiceResponse {
 
     /**
-     * Main method to run the Spring Boot Book Application.
-     *
-     * @param args the args
+     * Id used to uniquely get, update or remove a resource.
      */
-    public static void main(String[] args) {
-        SpringApplication.run(BookApplication.class, args);
+    protected String id;
+
+    /**
+     * Get the id.
+     *
+     * @return the id
+     */
+    public String getId() {
+        return id;
     }
 
+    /**
+     * Set the id.
+     *
+     * @param id the identifier to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
 }
