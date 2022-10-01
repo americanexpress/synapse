@@ -41,5 +41,6 @@
         <module>synapse-archetype-service-rest-delete</module>
         <module>synapse-archetype-service-rest-post</module>
         <module>synapse-archetype-service-rest-get</module>
+        <module>synapse-archetype-service-rest-put</module>
     </modules>
 </project>

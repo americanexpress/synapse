@@ -165,6 +165,11 @@
                 <artifactId>synapse-archetype-service-rest-get</artifactId>
                 <version>0.2.19-SNAPSHOT</version>
             </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-archetype-service-rest-put</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <!--Framework-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
