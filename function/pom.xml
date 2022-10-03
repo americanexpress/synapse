@@ -17,6 +17,7 @@
     <modules>
         <module>function-samples</module>
         <module>synapse-function-rest</module>
+
     </modules>
 
 </project>

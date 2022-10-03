@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.service.rest.model;
+package io.americanexpress.synapse.function.rest.model;
 
 /**
  * ExposedHeaders enum has the names of the exposed HTTP headers that can be discovered in addition to the standard response HTTP headers that are exposed by Spring.

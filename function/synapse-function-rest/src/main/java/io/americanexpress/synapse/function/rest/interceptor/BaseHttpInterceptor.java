@@ -27,8 +27,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import static io.americanexpress.synapse.service.rest.model.ServiceHeaderKey.CORRELATION_IDENTIFIER_KEY;
-import static io.americanexpress.synapse.service.rest.model.ServiceHeaderKey.USE_CASE_NAME_KEY;
+import static io.americanexpress.synapse.function.rest.model.ServiceHeaderKey.CORRELATION_IDENTIFIER_KEY;
+import static io.americanexpress.synapse.function.rest.model.ServiceHeaderKey.USE_CASE_NAME_KEY;
 
 /**
  * <code>BaseHttpInterceptor</code> class specifies the prototypes for performing HTTP header validations for a service.
@@ -59,7 +59,6 @@ public abstract class BaseHttpInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
         logger.entry(request, response, handler);
 
         // If any of the required HTTP headers are missing, this request is invalid
