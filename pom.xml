@@ -170,6 +170,11 @@
                 <artifactId>synapse-archetype-service-rest-put</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-archetype-service-rest-reactive-get</artifactId>
+                <version>0.2.19-SNAPSHOT</version>
+            </dependency>
             <!--Framework-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
