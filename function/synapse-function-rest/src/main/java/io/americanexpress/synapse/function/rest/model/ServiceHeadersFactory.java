@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.service.rest.model;
+package io.americanexpress.synapse.function.rest.model;
 
 import org.springframework.http.HttpHeaders;
 

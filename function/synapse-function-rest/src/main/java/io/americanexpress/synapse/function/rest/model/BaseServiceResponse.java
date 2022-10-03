@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.service.rest.model;
+package io.americanexpress.synapse.function.rest.model;
 
 /**
  * BaseServiceResponse class specifies the prototypes for all service responses.
