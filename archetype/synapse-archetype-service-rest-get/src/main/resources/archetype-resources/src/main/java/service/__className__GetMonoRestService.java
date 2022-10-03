@@ -11,25 +11,25 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.rest;
+package ${package}.service;
 
+import org.springframework.stereotype.Service;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import io.americanexpress.synapse.service.rest.service.BaseGetMonoService;
+
+import ${package}.model.${className}ServiceResponse;
 
 /**
- * BookApplication starts the Spring Boot Application for the book rest sample.
+ * {@code ${className}GetMonoRestService class is the service
+ * used to connect to the ${apiName} REST API.
+ * @author ${author}
+ *
  */
-@SpringBootApplication
-public class BookApplication {
+@Service
+public class ${className}GetMonoRestService extends BaseGetMonoService<${className}ServiceResponse> {
 
-    /**
-     * Main method to run the Spring Boot Book Application.
-     *
-     * @param args the args
-     */
-    public static void main(String[] args) {
-        SpringApplication.run(BookApplication.class, args);
-    }
-
+	@Override
+	protected ${className}ServiceResponse executeRead(String identifier) {
+		return new ${className}ServiceResponse();
+	}
 }

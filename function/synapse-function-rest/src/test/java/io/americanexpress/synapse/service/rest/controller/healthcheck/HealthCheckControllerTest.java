@@ -11,25 +11,20 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.rest;
+package io.americanexpress.synapse.service.rest.controller.healthcheck;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.junit.jupiter.api.Test;
 
-/**
- * BookApplication starts the Spring Boot Application for the book rest sample.
- */
-@SpringBootApplication
-public class BookApplication {
+class HealthCheckControllerTest {
 
-    /**
-     * Main method to run the Spring Boot Book Application.
-     *
-     * @param args the args
-     */
-    public static void main(String[] args) {
-        SpringApplication.run(BookApplication.class, args);
-    }
+	private static final HealthCheckController HEALTH_CHECK_CONTROLLER = new HealthCheckController();
 
+	@Test
+	void healthCheck_givenHealthCheck_expectedHealthMessage() {
+		String expected = HealthCheckController.HEALTH_MESSAGE;
+		String actual = HEALTH_CHECK_CONTROLLER.healthCheck();
+		assertEquals(expected, actual);
+	}
 }

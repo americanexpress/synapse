@@ -11,25 +11,16 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.rest;
+package ${package}.model;
 
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 
 /**
- * BookApplication starts the Spring Boot Application for the book rest sample.
+ * {@code ${className}ServiceResponse} class represents
+ * the service response from the ${apiName} REST API.
+ * @author ${author}
+ *
  */
-@SpringBootApplication
-public class BookApplication {
-
-    /**
-     * Main method to run the Spring Boot Book Application.
-     *
-     * @param args the args
-     */
-    public static void main(String[] args) {
-        SpringApplication.run(BookApplication.class, args);
-    }
-
+public class ${className}ServiceResponse extends BaseServiceResponse {
+	
 }

@@ -11,25 +11,17 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.rest;
+package ${package}.config;
 
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import ${package}.service.${className}GetMonoRestService;
 
 /**
- * BookApplication starts the Spring Boot Application for the book rest sample.
+ * {@code ${className}RestServiceEndpoint} class sets the endpoints
+ * for the {@link ${className}GetMonoRestService}.
+ * @author ${author}
  */
-@SpringBootApplication
-public class BookApplication {
+public class ${className}RestServiceEndpoint {
+    private ${className}RestServiceEndpoint() {}
 
-    /**
-     * Main method to run the Spring Boot Book Application.
-     *
-     * @param args the args
-     */
-    public static void main(String[] args) {
-        SpringApplication.run(BookApplication.class, args);
-    }
-
+    public static final String SERVICE_ENDPOINT = "${baseUrl}";
 }

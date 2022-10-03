@@ -11,17 +11,30 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.rest;
+package io.americanexpress.function.book.rest;
 
-
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
+import org.slf4j.ext.XLogger;
+import org.slf4j.ext.XLoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import java.util.function.Function;
 
 /**
- * BookApplication starts the Spring Boot Application for the book rest sample.
+ * CloudFunctionMain starts the Spring Boot Application for the book rest sample.
  */
+@OpenAPIDefinition(info = @Info(
+        title = "Book API",
+        version = "v1.0.0",
+        description = "Rest API that provides book related information."))
+
 @SpringBootApplication
-public class BookApplication {
+public class CloudFunctionMain {
+
+    private static final XLogger LOGGER = XLoggerFactory.getXLogger(CloudFunctionMain.class);
 
     /**
      * Main method to run the Spring Boot Book Application.
@@ -29,7 +42,12 @@ public class BookApplication {
      * @param args the args
      */
     public static void main(String[] args) {
-        SpringApplication.run(BookApplication.class, args);
+        SpringApplication.run(CloudFunctionMain.class, args);
+        LOGGER.info("Rest Book Application is up and running ...");
     }
 
+    @Bean
+    public Function<String, String> uppercase() {
+        return value -> value.toUpperCase();
+    }
 }

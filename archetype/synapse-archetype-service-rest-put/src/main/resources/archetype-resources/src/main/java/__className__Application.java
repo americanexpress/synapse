@@ -11,25 +11,30 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.rest;
-
+package ${package};
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
+import org.slf4j.ext.XLogger;
+import org.slf4j.ext.XLoggerFactory;
 
 /**
- * BookApplication starts the Spring Boot Application for the book rest sample.
+ * ${className}Application starts the Spring Boot Application for the rest service
  */
+@OpenAPIDefinition(info = @Info(
+        title = "${apiName} API",
+        version = "v1.0.0",
+        description = "Rest API that provides ${apiName} related information"
+))
 @SpringBootApplication
-public class BookApplication {
+public class ${className}Application {
 
-    /**
-     * Main method to run the Spring Boot Book Application.
-     *
-     * @param args the args
-     */
+    private static final XLogger LOGGER = XLoggerFactory.getXLogger(${className}Application.class);
+
     public static void main(String[] args) {
-        SpringApplication.run(BookApplication.class, args);
+        SpringApplication.run(${className}Application.class, args);
+        LOGGER.info("Rest Application is up and running ...");
     }
-
 }

@@ -40,9 +40,14 @@
     <!--Dependencies-->
     <dependencies>
         <!--Synapse-->
+<!--        <dependency>-->
+<!--            <groupId>io.americanexpress.synapse</groupId>-->
+<!--            <artifactId>synapse-service-rest</artifactId>-->
+<!--        </dependency>-->
         <dependency>
-            <groupId>io.americanexpress.synapse</groupId>
-            <artifactId>synapse-service-rest</artifactId>
+            <groupId>org.springframework.experimental</groupId>
+            <artifactId>spring-aot</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>

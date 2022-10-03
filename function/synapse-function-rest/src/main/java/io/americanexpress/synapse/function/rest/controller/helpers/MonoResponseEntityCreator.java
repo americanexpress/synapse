@@ -11,25 +11,17 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.rest;
+package io.americanexpress.synapse.service.rest.controller.helpers;
 
+import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+@Component
+public class MonoResponseEntityCreator<O extends BaseServiceResponse> {
 
-/**
- * BookApplication starts the Spring Boot Application for the book rest sample.
- */
-@SpringBootApplication
-public class BookApplication {
-
-    /**
-     * Main method to run the Spring Boot Book Application.
-     *
-     * @param args the args
-     */
-    public static void main(String[] args) {
-        SpringApplication.run(BookApplication.class, args);
+    public ResponseEntity<O> create(O serviceResponse) {
+        return serviceResponse == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : ResponseEntity.ok(serviceResponse);
     }
-
 }
