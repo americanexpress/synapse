@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.function.book.rest.router;
+package io.americanexpress.function.greeting.rest.router;
 
 import io.americanexpress.service.book.rest.config.BookConfig;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;

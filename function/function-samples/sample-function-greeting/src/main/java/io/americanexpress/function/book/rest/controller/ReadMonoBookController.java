@@ -1,4 +1,4 @@
-package io.americanexpress.function.book.rest.router;
+package io.americanexpress.function.greeting.rest.router;
 
 import io.americanexpress.service.book.rest.config.BookConfig;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;

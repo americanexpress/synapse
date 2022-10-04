@@ -13,28 +13,13 @@
  */
 package io.americanexpress.synapse.function.rest.handler;
 
-/**
- * BaseService class specifies the prototypes for performing business logic.
- *
- * @author Alexei Morgado
- */
-public abstract class BaseDeleteService extends BaseHandler {
+import org.slf4j.ext.XLogger;
+import org.slf4j.ext.XLoggerFactory;
+
+public abstract class BaseHandler {
 
     /**
-     * Remove a single resource.
-     *
-     * @param id received from the controller
+     * Logger for the base service.
      */
-    public void delete(String id) {
-        logger.entry(id);
-        executeDelete(id);
-        logger.exit();
-    }
-
-    /**
-     * Prototype for removing a resource.
-     *
-     * @param id body received from the controller
-     */
-    protected abstract void executeDelete(String id);
+    protected final XLogger logger = XLoggerFactory.getXLogger(getClass());
 }

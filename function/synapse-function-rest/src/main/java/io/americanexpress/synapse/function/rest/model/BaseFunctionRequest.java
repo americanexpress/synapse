@@ -11,30 +11,14 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.function.rest.handler;
+package io.americanexpress.synapse.function.rest.model;
+
+import org.springframework.web.reactive.function.server.ServerRequest;
 
 /**
- * BaseService class specifies the prototypes for performing business logic.
+ * <code>BaseServiceRequest</code> class specifies the prototypes for all service requests.
  *
- * @author Alexei Morgado
+ * @author Gabriel Jimenez
  */
-public abstract class BaseDeleteService extends BaseHandler {
-
-    /**
-     * Remove a single resource.
-     *
-     * @param id received from the controller
-     */
-    public void delete(String id) {
-        logger.entry(id);
-        executeDelete(id);
-        logger.exit();
-    }
-
-    /**
-     * Prototype for removing a resource.
-     *
-     * @param id body received from the controller
-     */
-    protected abstract void executeDelete(String id);
+public interface BaseFunctionRequest extends ServerRequest {
 }

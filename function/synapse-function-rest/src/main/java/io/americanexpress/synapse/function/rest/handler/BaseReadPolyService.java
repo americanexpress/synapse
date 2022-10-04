@@ -13,11 +13,11 @@
  */
 package io.americanexpress.synapse.function.rest.handler;
 
-import io.americanexpress.synapse.function.rest.model.BaseServiceRequest;
-import io.americanexpress.synapse.function.rest.model.BaseServiceResponse;
+import io.americanexpress.synapse.function.rest.model.BaseFunctionRequest;
+import io.americanexpress.synapse.function.rest.model.BaseFunctionResponse;
 import org.springframework.data.domain.Page;
 
-public abstract class BaseReadPolyService<I extends BaseServiceRequest, O extends BaseServiceResponse> extends BaseService {
+public abstract class BaseReadPolyService<I extends BaseFunctionRequest, O extends BaseFunctionResponse> extends BaseHandler {
 
     public Page<O> read(final I request) {
 

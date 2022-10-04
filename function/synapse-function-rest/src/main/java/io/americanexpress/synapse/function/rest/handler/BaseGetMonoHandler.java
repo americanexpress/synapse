@@ -13,28 +13,21 @@
  */
 package io.americanexpress.synapse.function.rest.handler;
 
-/**
- * BaseService class specifies the prototypes for performing business logic.
- *
- * @author Alexei Morgado
- */
-public abstract class BaseDeleteService extends BaseHandler {
+import io.americanexpress.synapse.function.rest.model.BaseFunctionResponse;
 
-    /**
-     * Remove a single resource.
-     *
-     * @param id received from the controller
-     */
-    public void delete(String id) {
-        logger.entry(id);
-        executeDelete(id);
-        logger.exit();
+public abstract class BaseGetMonoHandler<O extends BaseFunctionResponse> extends BaseHandler {
+
+    public O read(String identifier) {
+
+        logger.entry(identifier);
+
+        O response = executeRead(identifier);
+
+        logger.exit(response);
+
+        return response;
     }
 
-    /**
-     * Prototype for removing a resource.
-     *
-     * @param id body received from the controller
-     */
-    protected abstract void executeDelete(String id);
+    protected abstract O executeRead(String identifier);
+
 }

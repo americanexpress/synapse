@@ -11,30 +11,18 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.function.rest.handler;
+package io.americanexpress.synapse.function.rest.router.helpers;
 
-/**
- * BaseService class specifies the prototypes for performing business logic.
- *
- * @author Alexei Morgado
- */
-public abstract class BaseDeleteService extends BaseHandler {
+import io.americanexpress.synapse.function.rest.model.BaseFunctionResponse;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import reactor.core.publisher.Mono;
 
-    /**
-     * Remove a single resource.
-     *
-     * @param id received from the controller
-     */
-    public void delete(String id) {
-        logger.entry(id);
-        executeDelete(id);
-        logger.exit();
+@Component
+public class ReactiveMonoResponseEntityCreator<O extends BaseFunctionResponse> {
+
+    public ResponseEntity<Mono<O>> create(Mono<O> serviceResponse) {
+        return serviceResponse == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : ResponseEntity.ok(serviceResponse);
     }
-
-    /**
-     * Prototype for removing a resource.
-     *
-     * @param id body received from the controller
-     */
-    protected abstract void executeDelete(String id);
 }

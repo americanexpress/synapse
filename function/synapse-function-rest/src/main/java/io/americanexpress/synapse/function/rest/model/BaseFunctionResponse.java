@@ -11,30 +11,35 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.function.rest.handler;
+package io.americanexpress.synapse.function.rest.model;
 
 /**
- * BaseService class specifies the prototypes for performing business logic.
+ * BaseServiceResponse class specifies the prototypes for all service responses.
  *
- * @author Alexei Morgado
+ * @author Gabriel Jimenez
  */
-public abstract class BaseDeleteService extends BaseHandler {
+public abstract class BaseFunctionResponse {
 
     /**
-     * Remove a single resource.
-     *
-     * @param id received from the controller
+     * Id used to uniquely get, update or remove a resource.
      */
-    public void delete(String id) {
-        logger.entry(id);
-        executeDelete(id);
-        logger.exit();
+    protected String id;
+
+    /**
+     * Get the id.
+     *
+     * @return the id
+     */
+    public String getId() {
+        return id;
     }
 
     /**
-     * Prototype for removing a resource.
+     * Set the id.
      *
-     * @param id body received from the controller
+     * @param id the identifier to set
      */
-    protected abstract void executeDelete(String id);
+    public void setId(String id) {
+        this.id = id;
+    }
 }
