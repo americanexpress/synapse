@@ -1,7 +1,7 @@
 package io.americanexpress.function.greeting.rest.router;
 
 import io.americanexpress.function.greeting.rest.handler.GreetingHandler;
-import io.americanexpress.function.greeting.rest.model.Greeting;
+import io.americanexpress.function.greeting.rest.handler.SynapseGreetingHandler;
 import io.americanexpress.function.greeting.rest.model.GreetingRequest;
 import io.americanexpress.function.greeting.rest.model.GreetingResponse;
 import io.americanexpress.synapse.function.rest.router.BaseReactiveReadMonoRouter;
@@ -16,9 +16,9 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 
 @Configuration(proxyBeanMethods = false)
-public class GreetingRouter  {
+public class SynapseGreetingRouter extends BaseReactiveReadMonoRouter <GreetingRequest, GreetingResponse, SynapseGreetingHandler>  {
 
-        @Bean
+    @Bean
     public RouterFunction<ServerResponse> route(GreetingHandler greetingHandler) {
 
         return RouterFunctions

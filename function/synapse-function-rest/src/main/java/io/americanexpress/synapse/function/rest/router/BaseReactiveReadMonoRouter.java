@@ -22,11 +22,18 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.reactive.function.server.RouterFunction;
+import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
+import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
+
+import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
+import static org.springframework.web.servlet.function.RequestPredicates.GET;
+import static org.springframework.web.servlet.function.RequestPredicates.POST;
 
 /**
  * <code>BaseReadController</code> class specifies the prototypes for listening for requests from the consumer
@@ -48,7 +55,7 @@ public abstract class BaseReactiveReadMonoRouter<I extends BaseFunctionRequest, 
     /**
      * Get a single resource from the back end service.
      *
-     * @param serviceRequest body from the consumer
+     * @param functionRequest body from the consumer
      * @return a single resource from the back end service
      */
     @ApiOperation(value = "Reactive Read Mono", notes = "Gets one resource")
@@ -60,11 +67,14 @@ public abstract class BaseReactiveReadMonoRouter<I extends BaseFunctionRequest, 
             @ApiResponse(code = 403, message = "Forbidden"),
     })
     @Bean
-    public RouterFunction<ServerResponse> route(@Valid @RequestBody I serviceRequest) {
+    public RouterFunction<ServerResponse> route(@Valid @RequestBody I functionRequest) {
 
-        O serverResponse = service.read(serviceRequest);
-//        return RouterFunctions.route(POST(INQUIRY_RESULTS).and(accept(MediaType.APPLICATION_JSON),reactiveMonoResponseEntityCreator.create(Mono.just(serverResponse)));
-        return null;
+//        Mono<O> serverResponse = service.read(functionRequest);
+        return RouterFunctions
+                .route(GET("/products").and(accept(MediaType.APPLICATION_JSON))
+                        ,S::read)
+                .addRoute(POST(INQUIRY_RESULTS)
+                        .and(accept(MediaType.APPLICATION_JSON),reactiveMonoResponseEntityCreator.create(Mono.just(serverResponse)));
     }
 
 }

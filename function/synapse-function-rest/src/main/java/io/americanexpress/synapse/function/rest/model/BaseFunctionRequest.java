@@ -13,10 +13,12 @@
  */
 package io.americanexpress.synapse.function.rest.model;
 
+import org.springframework.web.reactive.function.server.ServerRequest;
+
 /**
  * <code>BaseServiceRequest</code> class specifies the prototypes for all service requests.
  *
  * @author Gabriel Jimenez
  */
-public interface BaseFunctionRequest {
+public interface BaseFunctionRequest extends ServerRequest {
 }
