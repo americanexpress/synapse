@@ -1,6 +1,6 @@
-package io.americanexpress.function.book.rest.client;
+package io.americanexpress.function.greeting.rest.client;
 
-import io.americanexpress.function.book.rest.model.Greeting;
+import io.americanexpress.function.greeting.rest.model.Greeting;
 import reactor.core.publisher.Mono;
 
 import org.springframework.http.MediaType;

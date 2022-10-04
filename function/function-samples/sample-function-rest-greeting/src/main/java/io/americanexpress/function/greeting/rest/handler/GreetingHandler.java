@@ -1,6 +1,6 @@
-package io.americanexpress.function.book.rest.handler;
+package io.americanexpress.function.greeting.rest.handler;
 
-import io.americanexpress.function.book.rest.model.Greeting;
+import io.americanexpress.function.greeting.rest.model.Greeting;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.BodyInserters;

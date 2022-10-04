@@ -1,6 +1,6 @@
-package io.americanexpress.function.book.rest.router;
+package io.americanexpress.function.greeting.rest.router;
 
-import io.americanexpress.function.book.rest.handler.GreetingHandler;
+import io.americanexpress.function.greeting.rest.handler.GreetingHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
