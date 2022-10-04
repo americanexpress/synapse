@@ -68,10 +68,11 @@ public abstract class BaseReactiveReadMonoRouter<I extends BaseFunctionRequest, 
             @ApiResponse(code = 403, message = "Forbidden"),
     })
     @Bean
-    public RouterFunction<ServerResponse>  route(@Valid @RequestBody I serviceRequest) {
+    public RouterFunction<ServerResponse> route(@Valid @RequestBody I serviceRequest) {
 
         O serverResponse = service.read(serviceRequest);
-        return RouterFunctions.route(POST(INQUIRY_RESULTS).and(accept(MediaType.APPLICATION_JSON),reactiveMonoResponseEntityCreator.create(Mono.just(serverResponse)));
+//        return RouterFunctions.route(POST(INQUIRY_RESULTS).and(accept(MediaType.APPLICATION_JSON),reactiveMonoResponseEntityCreator.create(Mono.just(serverResponse)));
+        return null;
     }
 
 }
