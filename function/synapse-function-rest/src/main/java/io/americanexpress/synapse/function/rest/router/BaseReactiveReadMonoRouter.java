@@ -16,25 +16,17 @@ package io.americanexpress.synapse.function.rest.router;
 import io.americanexpress.synapse.function.rest.handler.BaseReadMonoHandler;
 import io.americanexpress.synapse.function.rest.model.BaseFunctionRequest;
 import io.americanexpress.synapse.function.rest.model.BaseFunctionResponse;
-import io.americanexpress.synapse.function.rest.router.reactive.helpers.ReactiveMonoResponseEntityCreator;
+import io.americanexpress.synapse.function.rest.router.helpers.ReactiveMonoResponseEntityCreator;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.reactive.function.server.RouterFunction;
-import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
-import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
-
-import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
-import static org.springframework.web.servlet.function.RequestPredicates.POST;
 
 /**
  * <code>BaseReadController</code> class specifies the prototypes for listening for requests from the consumer

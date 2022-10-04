@@ -19,15 +19,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
+import reactor.core.publisher.Flux;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Component
-public class PolyResponseEntityCreator<O extends BaseFunctionResponse> {
+public class ReactivePolyResponseEntityCreator<O extends BaseFunctionResponse> {
 
-    public ResponseEntity<List<O>> create(Page<O> page, HttpServletResponse httpServletResponse) {
-        final ResponseEntity<List<O>> responseEntity;
+    public ResponseEntity<Flux<O>> create(Page<O> page, HttpServletResponse httpServletResponse) {
+        ResponseEntity<Flux<O>> responseEntity;
         List<O> pageContent = null;
         if (page != null) {
             pageContent = page.getContent();
@@ -36,7 +37,7 @@ public class PolyResponseEntityCreator<O extends BaseFunctionResponse> {
             responseEntity = new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             setHeadersInResponse(page, httpServletResponse);
-            responseEntity = new ResponseEntity<>(pageContent, HttpStatus.OK);
+            responseEntity = new ResponseEntity<>(Flux.fromIterable(pageContent), HttpStatus.OK);
         }
         return responseEntity;
     }

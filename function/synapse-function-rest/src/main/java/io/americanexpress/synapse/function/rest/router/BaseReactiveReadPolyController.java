@@ -16,7 +16,7 @@ package io.americanexpress.synapse.function.rest.router;
 import io.americanexpress.synapse.function.rest.handler.BaseReadPolyService;
 import io.americanexpress.synapse.function.rest.model.BaseFunctionRequest;
 import io.americanexpress.synapse.function.rest.model.BaseFunctionResponse;
-import io.americanexpress.synapse.function.rest.router.reactive.helpers.ReactivePolyResponseEntityCreator;
+import io.americanexpress.synapse.function.rest.router.helpers.ReactivePolyResponseEntityCreator;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;

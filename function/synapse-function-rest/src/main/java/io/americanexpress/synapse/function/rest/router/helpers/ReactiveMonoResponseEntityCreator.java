@@ -11,23 +11,18 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.function.rest.handler;
+package io.americanexpress.synapse.function.rest.router.helpers;
 
 import io.americanexpress.synapse.function.rest.model.BaseFunctionResponse;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import reactor.core.publisher.Mono;
 
-public abstract class BaseGetMonoService<O extends BaseFunctionResponse> extends BaseHandler {
+@Component
+public class ReactiveMonoResponseEntityCreator<O extends BaseFunctionResponse> {
 
-    public O read(String identifier) {
-
-        logger.entry(identifier);
-
-        O response = executeRead(identifier);
-
-        logger.exit(response);
-
-        return response;
+    public ResponseEntity<Mono<O>> create(Mono<O> serviceResponse) {
+        return serviceResponse == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : ResponseEntity.ok(serviceResponse);
     }
-
-    protected abstract O executeRead(String identifier);
-
 }

@@ -18,11 +18,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import reactor.core.publisher.Mono;
 
 import java.net.URI;
 
 @Component
-public class CreateResponseEntityCreator<O extends BaseFunctionResponse> {
+public class ReactiveCreateResponseEntityCreator<O extends BaseFunctionResponse> {
 
     /**
      * Create the POST response entity by specifying the creation location in the HTTP headers.
@@ -30,7 +31,7 @@ public class CreateResponseEntityCreator<O extends BaseFunctionResponse> {
      * @param serviceResponse body to set in the response entity
      * @return the POST response entity
      */
-    public ResponseEntity<O> create(O serviceResponse) {
+    public ResponseEntity<Mono<O>> create(O serviceResponse) {
 
         // Default URI location in case the response identifier is null
         String responseId = "0";
@@ -44,11 +45,10 @@ public class CreateResponseEntityCreator<O extends BaseFunctionResponse> {
 
         // Build the resource location to specify in the response
         URI location = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{identifier}")
-                .buildAndExpand(responseId)
-                .toUri();
+            .fromCurrentRequest()
+            .path("/{id}")
+            .buildAndExpand(responseId)
+            .toUri();
         return ResponseEntity.created(location).build();
     }
-
 }
