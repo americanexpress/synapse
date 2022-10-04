@@ -11,22 +11,23 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.function.rest.router.reactive;
+package io.americanexpress.synapse.function.rest.router;
 
-import io.americanexpress.synapse.function.rest.router.BaseController;
-import io.americanexpress.synapse.function.rest.router.reactive.helpers.ReactiveMonoResponseEntityCreator;
-import io.americanexpress.synapse.function.rest.model.BaseServiceRequest;
-import io.americanexpress.synapse.function.rest.model.BaseServiceResponse;
-import io.americanexpress.synapse.function.rest.handler.BaseReadMonoService;
+import io.americanexpress.synapse.function.rest.handler.BaseReadPolyService;
+import io.americanexpress.synapse.function.rest.model.BaseFunctionRequest;
+import io.americanexpress.synapse.function.rest.model.BaseFunctionResponse;
+import io.americanexpress.synapse.function.rest.router.reactive.helpers.ReactivePolyResponseEntityCreator;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import reactor.core.publisher.Mono;
+import reactor.core.publisher.Flux;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 /**
@@ -38,20 +39,20 @@ import javax.validation.Valid;
  * @param <S> service type
  * @author Gabriel Jimenez
  */
-public abstract class BaseReactiveReadMonoController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadMonoService<I, O>> extends BaseController<S> {
+public abstract class BaseReactiveReadPolyController<I extends BaseFunctionRequest, O extends BaseFunctionResponse, S extends BaseReadPolyService<I, O>> extends BaseRouter<S> {
 
-    public static final String INQUIRY_RESULTS = "/inquiry_results";
+    public static final String MULTIPLE_RESULTS = "/multiple_results";
 
     @Autowired
-    private ReactiveMonoResponseEntityCreator<O> reactiveMonoResponseEntityCreator;
+    private ReactivePolyResponseEntityCreator<O> reactivePolyResponseEntityCreator;
 
     /**
-     * Get a single resource from the back end service.
+     * Get a list of multiple resources from the back end service.
      *
      * @param serviceRequest body from the consumer
-     * @return a single resource from the back end service
+     * @return a list of resources from the back end service
      */
-    @ApiOperation(value = "Reactive Read Mono", notes = "Gets one resource")
+    @ApiOperation(value = "Reactive Read Poly", notes = "Gets a collection of resources", response = ResponseEntity.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Ok"),
             @ApiResponse(code = 204, message = "No Content"),
@@ -59,12 +60,13 @@ public abstract class BaseReactiveReadMonoController<I extends BaseServiceReques
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 403, message = "Forbidden"),
     })
-    @PostMapping(INQUIRY_RESULTS)
-    public ResponseEntity<Mono<O>> read(@Valid @RequestBody I serviceRequest) {
+    @PostMapping(MULTIPLE_RESULTS)
+    public ResponseEntity<Flux<O>> read(@Valid @RequestBody I serviceRequest, HttpServletResponse httpServletResponse) {
         logger.entry(serviceRequest);
 
-        O serviceResponse = service.read(serviceRequest);
-        ResponseEntity<Mono<O>> responseEntity = reactiveMonoResponseEntityCreator.create(Mono.just(serviceResponse));
+        Page<O> page = service.read(serviceRequest);
+
+        ResponseEntity<Flux<O>> responseEntity = reactivePolyResponseEntityCreator.create(page, httpServletResponse);
 
         logger.exit(responseEntity);
         return responseEntity;

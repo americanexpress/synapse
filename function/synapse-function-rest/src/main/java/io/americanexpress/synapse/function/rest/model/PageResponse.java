@@ -22,7 +22,7 @@ import java.util.List;
  *
  * @param <O> output type (response type)
  */
-public class PageResponse<O extends BaseServiceResponse> {
+public class PageResponse<O extends BaseFunctionResponse> {
 
     /**
      * The default number of results to display per page if none was provided.

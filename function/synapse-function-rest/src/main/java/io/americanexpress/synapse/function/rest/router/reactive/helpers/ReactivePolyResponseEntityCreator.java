@@ -13,7 +13,7 @@
  */
 package io.americanexpress.synapse.function.rest.router.reactive.helpers;
 
-import io.americanexpress.synapse.function.rest.model.BaseServiceResponse;
+import io.americanexpress.synapse.function.rest.model.BaseFunctionResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Component
-public class ReactivePolyResponseEntityCreator<O extends BaseServiceResponse> {
+public class ReactivePolyResponseEntityCreator<O extends BaseFunctionResponse> {
 
     public ResponseEntity<Flux<O>> create(Page<O> page, HttpServletResponse httpServletResponse) {
         ResponseEntity<Flux<O>> responseEntity;

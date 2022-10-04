@@ -13,7 +13,7 @@
  */
 package io.americanexpress.synapse.function.rest.handler;
 
-import io.americanexpress.synapse.function.rest.model.BaseServiceRequest;
+import io.americanexpress.synapse.function.rest.model.BaseFunctionRequest;
 
 /**
  * BaseService class specifies the prototypes for performing business logic.
@@ -21,7 +21,7 @@ import io.americanexpress.synapse.function.rest.model.BaseServiceRequest;
  * @param <I> input request type
  * @author Alexei Morgado
  */
-public abstract class BaseUpdateService<I extends BaseServiceRequest> extends BaseService {
+public abstract class BaseUpdateService<I extends BaseFunctionRequest> extends BaseHandler {
 
     /**
      * Update a single resource.

@@ -11,30 +11,21 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.function.rest.handler;
+package io.americanexpress.synapse.function.rest.router;
 
-/**
- * BaseService class specifies the prototypes for performing business logic.
- *
- * @author Alexei Morgado
- */
-public abstract class BaseDeleteService extends BaseHandler {
+import io.americanexpress.synapse.function.rest.handler.BaseHandler;
+import org.slf4j.ext.XLogger;
+import org.slf4j.ext.XLoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
-    /**
-     * Remove a single resource.
-     *
-     * @param id received from the controller
-     */
-    public void delete(String id) {
-        logger.entry(id);
-        executeDelete(id);
-        logger.exit();
-    }
+public abstract class BaseRouter<S extends BaseHandler> {
 
     /**
-     * Prototype for removing a resource.
-     *
-     * @param id body received from the controller
+     * Service that will be called to get a single resource or multiple resources.
      */
-    protected abstract void executeDelete(String id);
+    @Autowired
+    protected S service;
+
+    protected final XLogger logger = XLoggerFactory.getXLogger(this.getClass());
+
 }

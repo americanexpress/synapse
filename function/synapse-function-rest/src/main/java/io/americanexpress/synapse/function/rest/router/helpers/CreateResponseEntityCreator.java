@@ -13,7 +13,7 @@
  */
 package io.americanexpress.synapse.function.rest.router.helpers;
 
-import io.americanexpress.synapse.function.rest.model.BaseServiceResponse;
+import io.americanexpress.synapse.function.rest.model.BaseFunctionResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -22,7 +22,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 @Component
-public class CreateResponseEntityCreator<O extends BaseServiceResponse> {
+public class CreateResponseEntityCreator<O extends BaseFunctionResponse> {
 
     /**
      * Create the POST response entity by specifying the creation location in the HTTP headers.

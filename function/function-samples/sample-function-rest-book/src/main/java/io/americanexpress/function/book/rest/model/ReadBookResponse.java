@@ -13,14 +13,14 @@
  */
 package io.americanexpress.function.book.rest.model;
 
-import io.americanexpress.synapse.function.rest.model.BaseServiceResponse;
+import io.americanexpress.synapse.function.rest.model.BaseFunctionResponse;
 
 import java.util.Objects;
 
 /**
  * ReadBookResponse is the response used on the mono and poly read controllers.
  */
-public class ReadBookResponse extends BaseServiceResponse {
+public class ReadBookResponse extends BaseFunctionResponse {
 
     private String title;
     private String author;

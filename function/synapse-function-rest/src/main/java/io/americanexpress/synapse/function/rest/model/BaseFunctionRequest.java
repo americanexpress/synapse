@@ -18,5 +18,5 @@ package io.americanexpress.synapse.function.rest.model;
  *
  * @author Gabriel Jimenez
  */
-public interface BaseServiceRequest {
+public interface BaseFunctionRequest {
 }

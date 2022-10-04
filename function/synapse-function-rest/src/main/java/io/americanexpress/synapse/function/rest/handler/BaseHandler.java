@@ -11,35 +11,15 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.function.rest.model;
+package io.americanexpress.synapse.function.rest.handler;
 
-/**
- * BaseServiceResponse class specifies the prototypes for all service responses.
- *
- * @author Gabriel Jimenez
- */
-public abstract class BaseServiceResponse {
+import org.slf4j.ext.XLogger;
+import org.slf4j.ext.XLoggerFactory;
+
+public abstract class BaseHandler {
 
     /**
-     * Id used to uniquely get, update or remove a resource.
+     * Logger for the base service.
      */
-    protected String id;
-
-    /**
-     * Get the id.
-     *
-     * @return the id
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * Set the id.
-     *
-     * @param id the identifier to set
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
+    protected final XLogger logger = XLoggerFactory.getXLogger(getClass());
 }

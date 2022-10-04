@@ -13,13 +13,23 @@
  */
 package io.americanexpress.synapse.function.rest.handler;
 
-import org.slf4j.ext.XLogger;
-import org.slf4j.ext.XLoggerFactory;
+import io.americanexpress.synapse.function.rest.model.BaseFunctionRequest;
+import io.americanexpress.synapse.function.rest.model.BaseFunctionResponse;
 
-public abstract class BaseService {
+public abstract class BaseReadMonoHandler<I extends BaseFunctionRequest, O extends BaseFunctionResponse> extends BaseHandler {
 
     /**
-     * Logger for the base service.
+     * Get a single resource from the back end service.
+     *
+     * @param request body received from the controller
+     * @return a single resource from the back end service.
      */
-    protected final XLogger logger = XLoggerFactory.getXLogger(getClass());
+    public O read(I request) {
+        logger.entry(request);
+        final O response = executeRead(request);
+        logger.exit(response);
+        return response;
+    }
+
+    protected abstract O executeRead(I request);
 }

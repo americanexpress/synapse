@@ -13,14 +13,14 @@
  */
 package io.americanexpress.synapse.function.rest.router.reactive.helpers;
 
-import io.americanexpress.synapse.function.rest.model.BaseServiceResponse;
+import io.americanexpress.synapse.function.rest.model.BaseFunctionResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 @Component
-public class ReactiveMonoResponseEntityCreator<O extends BaseServiceResponse> {
+public class ReactiveMonoResponseEntityCreator<O extends BaseFunctionResponse> {
 
     public ResponseEntity<Mono<O>> create(Mono<O> serviceResponse) {
         return serviceResponse == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : ResponseEntity.ok(serviceResponse);

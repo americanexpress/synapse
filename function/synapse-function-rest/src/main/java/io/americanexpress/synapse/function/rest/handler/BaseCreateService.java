@@ -13,8 +13,8 @@
  */
 package io.americanexpress.synapse.function.rest.handler;
 
-import io.americanexpress.synapse.function.rest.model.BaseServiceRequest;
-import io.americanexpress.synapse.function.rest.model.BaseServiceResponse;
+import io.americanexpress.synapse.function.rest.model.BaseFunctionRequest;
+import io.americanexpress.synapse.function.rest.model.BaseFunctionResponse;
 
 /**
  * BaseService class specifies the prototypes for performing business logic.
@@ -23,7 +23,7 @@ import io.americanexpress.synapse.function.rest.model.BaseServiceResponse;
  * @param <O> output response type
  * @author Alexei Morgado
  */
-public abstract class BaseCreateService<I extends BaseServiceRequest, O extends BaseServiceResponse> extends BaseService {
+public abstract class BaseCreateService<I extends BaseFunctionRequest, O extends BaseFunctionResponse> extends BaseHandler {
 
     /**
      * Add a single resource.

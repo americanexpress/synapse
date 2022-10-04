@@ -13,9 +13,9 @@
  */
 package io.americanexpress.synapse.function.rest.handler;
 
-import io.americanexpress.synapse.function.rest.model.BaseServiceResponse;
+import io.americanexpress.synapse.function.rest.model.BaseFunctionResponse;
 
-public abstract class BaseGetMonoService<O extends BaseServiceResponse> extends BaseService {
+public abstract class BaseGetMonoService<O extends BaseFunctionResponse> extends BaseHandler {
 
     public O read(String identifier) {
 

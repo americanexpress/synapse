@@ -11,13 +11,13 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.function.rest.router.reactive;
+package io.americanexpress.synapse.function.rest.router;
 
-import io.americanexpress.synapse.function.rest.router.BaseController;
-import io.americanexpress.synapse.function.rest.router.reactive.helpers.ReactiveCreateResponseEntityCreator;
-import io.americanexpress.synapse.function.rest.model.BaseServiceRequest;
-import io.americanexpress.synapse.function.rest.model.BaseServiceResponse;
 import io.americanexpress.synapse.function.rest.handler.BaseCreateService;
+import io.americanexpress.synapse.function.rest.model.BaseFunctionRequest;
+import io.americanexpress.synapse.function.rest.model.BaseFunctionResponse;
+import io.americanexpress.synapse.function.rest.router.BaseRouter;
+import io.americanexpress.synapse.function.rest.router.reactive.helpers.ReactiveCreateResponseEntityCreator;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.v3.oas.annotations.Operation;
@@ -38,7 +38,7 @@ import javax.validation.Valid;
  * @param <S> service type
  * @author Gabriel Jimenez
  */
-public abstract class BaseReactiveCreateController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseCreateService<I, O>> extends BaseController<S> {
+public abstract class BaseReactiveCreateController<I extends BaseFunctionRequest, O extends BaseFunctionResponse, S extends BaseCreateService<I, O>> extends BaseRouter<S> {
 
     @Autowired
     private ReactiveCreateResponseEntityCreator<O> reactiveCreateResponseEntityCreator;
