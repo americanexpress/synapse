@@ -11,13 +11,13 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.service.rest;
+package io.americanexpress.synapse.function.rest;
 
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.platform.suite.api.SelectPackages;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitPlatform.class)
-@SelectPackages("io.americanexpress.synapse.service.rest")
+@SelectPackages("io.americanexpress.synapse.function.rest")
 public class ServiceRestUnitTestSuite {
 }

@@ -11,10 +11,10 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.service.rest.model;
+package io.americanexpress.synapse.function.rest.model;
 
 /**
- * ServiceHeaderKey enum will hold all of the key values for the service headers.
+ * <code>ServiceHeaderKey<code> enum will hold all the key values for the service headers.
  *
  */
 public enum ServiceHeaderKey {
