@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
+import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
@@ -51,30 +52,6 @@ public abstract class BaseReactiveReadMonoRouter<I extends BaseFunctionRequest, 
     @Autowired
     private ReactiveMonoResponseEntityCreator<O> reactiveMonoResponseEntityCreator;
 
-    /**
-     * Get a single resource from the back end service.
-     *
-     * @param serviceRequest body from the consumer
-     * @return a single resource from the back end service
-     */
-    @ApiOperation(value = "Reactive Read Mono", notes = "Gets one resource")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Ok"),
-            @ApiResponse(code = 204, message = "No Content"),
-            @ApiResponse(code = 400, message = "Bad Request"),
-            @ApiResponse(code = 401, message = "Unauthorized"),
-            @ApiResponse(code = 403, message = "Forbidden"),
-    })
-    @PostMapping(INQUIRY_RESULTS)
-    public ResponseEntity<Mono<O>> read(@Valid @RequestBody I serviceRequest) {
-        logger.entry(serviceRequest);
-
-        O serviceResponse = service.read(serviceRequest);
-        ResponseEntity<Mono<O>> responseEntity = reactiveMonoResponseEntityCreator.create(Mono.just(serviceResponse));
-
-        logger.exit(responseEntity);
-        return responseEntity;
-    }
 
     /**
      * Get a single resource from the back end service.
@@ -91,10 +68,10 @@ public abstract class BaseReactiveReadMonoRouter<I extends BaseFunctionRequest, 
             @ApiResponse(code = 403, message = "Forbidden"),
     })
     @Bean
-    public RouterFunction<ResponseEntity<Mono<O>>>  route(@Valid @RequestBody I serviceRequest) {
+    public RouterFunction<ServerResponse>  route(@Valid @RequestBody I serviceRequest) {
 
-        O serviceResponse = service.read(serviceRequest);
-        return RouterFunctions.route(POST(INQUIRY_RESULTS).and(accept(MediaType.APPLICATION_JSON)),reactiveMonoResponseEntityCreator.create(Mono.just(serviceResponse)));
+        O serverResponse = service.read(serviceRequest);
+        return RouterFunctions.route(POST(INQUIRY_RESULTS).and(accept(MediaType.APPLICATION_JSON),reactiveMonoResponseEntityCreator.create(Mono.just(serverResponse)));
     }
 
 }
