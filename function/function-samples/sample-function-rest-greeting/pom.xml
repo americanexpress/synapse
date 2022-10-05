@@ -46,11 +46,7 @@
         </dependency>
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>
-            <artifactId>synapse-function-rest</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.americanexpress.synapse</groupId>
-            <artifactId>synapse-function-rest</artifactId>
+            <artifactId>synapse-function</artifactId>
         </dependency>
 
         <!--Third Party Dependencies-->
