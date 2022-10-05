@@ -72,18 +72,19 @@
         <!--Plugins-->
         <native-plugin.version>0.9.13</native-plugin.version>
         <jaxws-maven-plugin.version>2.5</jaxws-maven-plugin.version>
+        <kotlin.version>1.7.20</kotlin.version>
     </properties>
 
     <modules>
         <module>archetype</module>
         <module>framework</module>
         <module>service</module>
+        <module>function</module>
         <module>client</module>
         <module>data</module>
         <module>publisher</module>
         <module>utility</module>
     </modules>
-
 
     <!--Dependency Management-->
     <dependencyManagement>
@@ -150,6 +151,26 @@
                 <artifactId>synapse-archetype-data-postgres</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-archetype-service-rest-delete</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-archetype-service-rest-post</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-archetype-service-rest-get</artifactId>
+                <version>0.2.19-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-archetype-service-rest-put</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <!--Framework-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
@@ -171,6 +192,7 @@
                 <artifactId>synapse-framework-api-docs</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
             <!--Service-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
@@ -185,6 +207,12 @@
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-service-test</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!--Function-->
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-function-rest</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--Client-->
@@ -238,7 +266,6 @@
             </dependency>
 
             <!--Samples-->
-
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>data-samples</artifactId>
@@ -247,6 +274,11 @@
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>service-samples</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>function-samples</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -766,6 +798,12 @@
                 <artifactId>spring-native</artifactId>
                 <version>${spring-native.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.experimental</groupId>
+                <artifactId>spring-aot</artifactId>
+                <version>${spring-native.version}</version>
+                <scope>provided</scope>
+            </dependency>
 
             <!--Springdoc-->
             <dependency>
@@ -817,8 +855,45 @@
                 <artifactId>spring-data-mongodb</artifactId>
                 <version>3.4.2</version>
             </dependency>
+            <!--Kotlin-->
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-stdlib-jdk8</artifactId>
+                <version>${kotlin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-test</artifactId>
+                <version>${kotlin.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-stdlib-jdk8</artifactId>
+                <version>${kotlin.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib-jdk8</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-test</artifactId>
+            <version>${kotlin.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib-jdk8</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+    </dependencies>
+
 
     <!--Plugin Management-->
     <build>
@@ -1076,6 +1151,32 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <version>${kotlin.version}</version>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>test-compile</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>test-compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <jvmTarget>1.8</jvmTarget>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
     <!--Profiles-->
