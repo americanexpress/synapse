@@ -42,5 +42,4 @@ public class BookApplication {
         LOGGER.info("Rest Book Application is up and running ...");
     }
 
-
 }

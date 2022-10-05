@@ -34,7 +34,6 @@ public class ReactiveReadPolyBookService extends BaseReactiveReadService<ReadBoo
         this.bookRepository = bookRepository;
     }
 
-
     @Override
     protected Flux<ReadBookResponse> executeRead(ReadBookRequest request) {
         return bookRepository.findByTitle(request.getTitle())
