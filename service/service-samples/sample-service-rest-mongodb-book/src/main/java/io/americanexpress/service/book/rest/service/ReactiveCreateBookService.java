@@ -18,9 +18,6 @@ import io.americanexpress.data.book.entity.BookEntity;
 import io.americanexpress.service.book.rest.model.CreateBookRequest;
 import io.americanexpress.service.book.rest.model.CreateBookResponse;
 import io.americanexpress.synapse.service.rest.service.reactive.BaseReactiveCreateService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -32,7 +29,6 @@ public class ReactiveCreateBookService extends BaseReactiveCreateService<CreateB
 
     private final BookRepository bookRepository;
 
-    @Autowired
     public ReactiveCreateBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
