@@ -14,26 +14,22 @@
 package io.americanexpress.synapse.function.rest.router;
 
 import io.americanexpress.synapse.function.rest.handler.BaseReadMonoHandler;
-import io.americanexpress.synapse.function.rest.model.BaseFunctionRequest;
-import io.americanexpress.synapse.function.rest.model.BaseFunctionResponse;
-import io.americanexpress.synapse.function.rest.router.helpers.ReactiveMonoResponseEntityCreator;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.MediaType;
+import javax.validation.Valid;
+
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
-import reactor.core.publisher.Mono;
-
-import javax.validation.Valid;
-
+import org.springframework.web.reactive.function.server.ServerRequest;
+import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
-import static org.springframework.web.servlet.function.RequestPredicates.GET;
-import static org.springframework.web.servlet.function.RequestPredicates.POST;
 
 /**
  * <code>BaseReadController</code> class specifies the prototypes for listening for requests from the consumer
@@ -44,18 +40,14 @@ import static org.springframework.web.servlet.function.RequestPredicates.POST;
  * @param <S> service type
  * @author Gabriel Jimenez
  */
-public abstract class BaseReactiveReadMonoRouter<I extends BaseFunctionRequest, O extends BaseFunctionResponse, S extends BaseReadMonoHandler<I, O>> extends BaseRouter<S> {
+public abstract class BaseReactiveReadMonoRouter<S extends BaseReadMonoHandler> extends BaseRouter<S> {
 
     public static final String INQUIRY_RESULTS = "/inquiry_results";
-
-    @Autowired
-    private ReactiveMonoResponseEntityCreator<O> reactiveMonoResponseEntityCreator;
-
 
     /**
      * Get a single resource from the back end service.
      *
-     * @param functionRequest body from the consumer
+     * @param handler body from the consumer
      * @return a single resource from the back end service
      */
     @ApiOperation(value = "Reactive Read Mono", notes = "Gets one resource")
@@ -66,15 +58,8 @@ public abstract class BaseReactiveReadMonoRouter<I extends BaseFunctionRequest, 
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 403, message = "Forbidden"),
     })
-    @Bean
-    public RouterFunction<ServerResponse> route(@Valid @RequestBody I functionRequest) {
-
-//        Mono<O> serverResponse = service.read(functionRequest);
+    public RouterFunction<ServerResponse> route(S handler) {
         return RouterFunctions
-                .route(GET("/products").and(accept(MediaType.APPLICATION_JSON))
-                        ,S::read)
-                .addRoute(POST(INQUIRY_RESULTS)
-                        .and(accept(MediaType.APPLICATION_JSON),reactiveMonoResponseEntityCreator.create(Mono.just(serverResponse)));
+          .route(GET("/products").and(accept(MediaType.APPLICATION_JSON)), handler::read);
     }
-
 }

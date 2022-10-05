@@ -1,9 +1,8 @@
 package io.americanexpress.function.greeting.rest.model;
 
+import org.springframework.web.reactive.function.server.ServerResponse;
 
-import io.americanexpress.synapse.function.rest.model.BaseFunctionResponse;
-
-public class GreetingResponse extends BaseFunctionResponse {
+public abstract class GreetingResponse implements ServerResponse {
 
   private String message;
 
@@ -22,10 +21,4 @@ public class GreetingResponse extends BaseFunctionResponse {
     this.message = message;
   }
 
-  @Override
-  public String toString() {
-    return "Greeting{" +
-        "message='" + message + '\'' +
-        '}';
-  }
 }

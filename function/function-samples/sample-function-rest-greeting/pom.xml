@@ -44,12 +44,17 @@
             <artifactId>reactor-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>io.americanexpress.synapse</groupId>
+            <artifactId>synapse-function-rest</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.americanexpress.synapse</groupId>
+            <artifactId>synapse-function-rest</artifactId>
+        </dependency>
 
         <!--Third Party Dependencies-->
     </dependencies>
-
-
-
 
     <build>
         <plugins>
