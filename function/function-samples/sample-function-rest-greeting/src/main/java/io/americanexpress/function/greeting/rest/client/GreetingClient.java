@@ -1,6 +1,8 @@
 package io.americanexpress.function.greeting.rest.client;
 
 import io.americanexpress.function.greeting.rest.model.Greeting;
+import io.americanexpress.function.greeting.rest.model.GreetingRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import reactor.core.publisher.Mono;
 
 import org.springframework.http.MediaType;
@@ -20,9 +22,8 @@ public class GreetingClient {
 
   public Mono<String> getMessage() {
     return this.client.get().uri("/hello").accept(MediaType.APPLICATION_JSON)
-        .retrieve()
-        .bodyToMono(Greeting.class)
-        .map(Greeting::getMessage);
+      .retrieve()
+      .bodyToMono(GreetingRequest.class)
+      .map(GreetingRequest::getMessage);
   }
-
 }

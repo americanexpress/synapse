@@ -17,6 +17,7 @@ import io.americanexpress.synapse.function.rest.handler.BaseReadMonoHandler;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import javax.validation.Valid;
 
@@ -39,7 +40,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
  * @param <S> service type
  * @author Gabriel Jimenez
  */
-public abstract class BaseReactiveReadMonoRouter<I extends ServerRequest, O extends ServerResponse, S extends BaseReadMonoHandler<I, O>> extends BaseRouter<S> {
+public abstract class BaseReactiveReadMonoRouter<S extends BaseReadMonoHandler> extends BaseRouter<S> {
 
     public static final String INQUIRY_RESULTS = "/inquiry_results";
 
@@ -57,9 +58,8 @@ public abstract class BaseReactiveReadMonoRouter<I extends ServerRequest, O exte
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 403, message = "Forbidden"),
     })
-    @Bean
     public RouterFunction<ServerResponse> route(S handler) {
-        return (RouterFunction<ServerResponse>) RouterFunctions
+        return RouterFunctions
           .route(GET("/products").and(accept(MediaType.APPLICATION_JSON)), handler::read);
     }
 }
