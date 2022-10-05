@@ -20,5 +20,5 @@ import org.springframework.web.reactive.function.server.ServerRequest;
  *
  * @author Gabriel Jimenez
  */
-public interface BaseFunctionRequest extends ServerRequest {
+public interface BaseFunctionRequest {
 }
