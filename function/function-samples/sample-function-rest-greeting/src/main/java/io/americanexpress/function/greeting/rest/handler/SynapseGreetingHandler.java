@@ -14,18 +14,8 @@ import reactor.core.publisher.Mono;
 @Component
 public class SynapseGreetingHandler extends BaseReadMonoHandler<GreetingRequest, GreetingResponse> {
 
-  public Mono<ServerResponse> hello(ServerRequest request) {
-    return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
-      .body(BodyInserters.fromValue(new Greeting("Hello, Spring!")));
-  }
-
   @Override
-  protected Mono<GreetingResponse> executeRead(GreetingRequest request) {
-    return null;
-  }
-
-  @Override
-  protected Mono<GreetingResponse> executeRead(ServerRequest request) {
+  protected Mono<ServerResponse> executeRead(ServerRequest request) {
     return ServerResponse
       .ok()
       .contentType(MediaType.APPLICATION_JSON)

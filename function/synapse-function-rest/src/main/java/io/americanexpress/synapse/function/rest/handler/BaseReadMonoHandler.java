@@ -25,14 +25,14 @@ public abstract class BaseReadMonoHandler<I extends ServerRequest, O extends Ser
      * @param request body received from the controller
      * @return a single resource from the back end service.
      */
-    public Mono<O> read(ServerRequest request) {
+    public Mono<ServerResponse> read(ServerRequest request) {
         logger.entry(request);
 
-        final Mono<O> response = executeRead(request);
+        final Mono<ServerResponse> response = executeRead(request);
 
         logger.exit(response);
         return response;
     }
 
-    protected abstract Mono<O> executeRead(ServerRequest request);
+    protected abstract Mono<ServerResponse> executeRead(ServerRequest request);
 }
