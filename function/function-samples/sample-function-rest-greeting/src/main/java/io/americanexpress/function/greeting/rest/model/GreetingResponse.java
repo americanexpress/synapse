@@ -1,9 +1,18 @@
 package io.americanexpress.function.greeting.rest.model;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.function.ServerResponse;
 
-import io.americanexpress.synapse.function.rest.model.BaseFunctionResponse;
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-public class GreetingResponse extends BaseFunctionResponse {
+public abstract class GreetingResponse implements ServerResponse {
 
   private String message;
 
@@ -22,10 +31,4 @@ public class GreetingResponse extends BaseFunctionResponse {
     this.message = message;
   }
 
-  @Override
-  public String toString() {
-    return "Greeting{" +
-        "message='" + message + '\'' +
-        '}';
-  }
 }

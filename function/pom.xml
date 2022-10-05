@@ -12,12 +12,10 @@
     <artifactId>function</artifactId>
     <packaging>pom</packaging>
 
-
     <!--Modules-->
     <modules>
         <module>function-samples</module>
         <module>synapse-function-rest</module>
-
     </modules>
 
 </project>

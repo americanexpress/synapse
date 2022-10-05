@@ -1,9 +1,8 @@
 package io.americanexpress.function.greeting.rest.model;
 
+import org.springframework.web.reactive.function.server.ServerRequest;
 
-import io.americanexpress.synapse.function.rest.model.BaseFunctionRequest;
-
-public class GreetingRequest implements BaseFunctionRequest {
+public abstract class GreetingRequest implements ServerRequest {
 
   private String message;
 

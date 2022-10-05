@@ -13,11 +13,11 @@
  */
 package io.americanexpress.synapse.function.rest.handler;
 
-import io.americanexpress.synapse.function.rest.model.BaseFunctionResponse;
 import org.springframework.web.reactive.function.server.ServerRequest;
+import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
-public abstract class BaseReadMonoHandler<I extends ServerRequest, O extends BaseFunctionResponse> extends BaseHandler {
+public abstract class BaseReadMonoHandler<I extends ServerRequest, O extends ServerResponse> extends BaseHandler {
 
     /**
      * Get a single resource from the back end service.
@@ -25,7 +25,7 @@ public abstract class BaseReadMonoHandler<I extends ServerRequest, O extends Bas
      * @param request body received from the controller
      * @return a single resource from the back end service.
      */
-    public Mono<O> read(I request) {
+    public Mono<O> read(ServerRequest request) {
         logger.entry(request);
 
         final Mono<O> response = executeRead(request);
@@ -34,5 +34,5 @@ public abstract class BaseReadMonoHandler<I extends ServerRequest, O extends Bas
         return response;
     }
 
-    protected abstract Mono<O> executeRead(I request);
+    protected abstract Mono<O> executeRead(ServerRequest request);
 }

@@ -16,7 +16,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 
 @Configuration(proxyBeanMethods = false)
-public class SynapseGreetingRouter extends BaseReactiveReadMonoRouter <GreetingRequest, GreetingResponse, SynapseGreetingHandler>  {
+public class SynapseGreetingRouter extends BaseReactiveReadMonoRouter<GreetingRequest, GreetingResponse, SynapseGreetingHandler>  {
 
     @Bean
     public RouterFunction<ServerResponse> route(GreetingHandler greetingHandler) {

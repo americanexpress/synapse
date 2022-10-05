@@ -48,7 +48,6 @@
             <artifactId>synapse-framework-test</artifactId>
         </dependency>
 
-
         <!--External Dependencies-->
         <!-- JUnit -->
         <dependency>

@@ -23,4 +23,12 @@ public class SynapseGreetingHandler extends BaseReadMonoHandler<GreetingRequest,
   protected Mono<GreetingResponse> executeRead(GreetingRequest request) {
     return null;
   }
+
+  @Override
+  protected Mono<GreetingResponse> executeRead(ServerRequest request) {
+    return ServerResponse
+      .ok()
+      .contentType(MediaType.APPLICATION_JSON)
+      .body(BodyInserters.fromValue(new Greeting("Hello, Spring!")));
+  }
 }
