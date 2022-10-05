@@ -20,13 +20,11 @@ import org.springframework.data.domain.Page;
 public abstract class BaseReadPolyService<I extends BaseFunctionRequest, O extends BaseFunctionResponse> extends BaseHandler {
 
     public Page<O> read(final I request) {
-
         logger.entry(request);
 
         final Page<O> responses = executeRead(request);
 
         logger.exit(responses);
-
         return responses;
     }
 

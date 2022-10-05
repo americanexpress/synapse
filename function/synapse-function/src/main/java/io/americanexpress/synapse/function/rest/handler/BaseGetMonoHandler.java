@@ -18,13 +18,11 @@ import io.americanexpress.synapse.function.rest.model.BaseFunctionResponse;
 public abstract class BaseGetMonoHandler<O extends BaseFunctionResponse> extends BaseHandler {
 
     public O read(String identifier) {
-
         logger.entry(identifier);
 
         O response = executeRead(identifier);
 
         logger.exit(response);
-
         return response;
     }
 
