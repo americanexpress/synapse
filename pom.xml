@@ -212,7 +212,7 @@
             <!--Function-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
-                <artifactId>synapse-function-rest</artifactId>
+                <artifactId>synapse-function</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--Client-->
