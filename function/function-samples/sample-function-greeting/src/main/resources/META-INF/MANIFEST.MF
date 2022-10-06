@@ -1,1 +1,0 @@
-Main-Class: io.americanexpress.function.book.rest.CloudFunctionMain
