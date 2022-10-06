@@ -7,4 +7,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration(proxyBeanMethods = false)
 public class SynapseGreetingRouter extends BaseReactiveReadMonoRouter<SynapseGreetingHandler> {
 
+  @Override
+  protected void setEndpoint(String endpoint) {
+    this.endpoint = "hello";
+  }
 }
