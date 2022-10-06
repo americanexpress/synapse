@@ -15,9 +15,13 @@ package io.americanexpress.synapse.function.rest.config;
 
 import io.americanexpress.synapse.framework.api.docs.ApiDocsConfig;
 import io.americanexpress.synapse.framework.exception.config.ExceptionConfig;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Primary;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -73,4 +77,9 @@ public class ServiceRestConfig implements WebMvcConfigurer {
 //    protected ObjectMapper getObjectMapper() {
 //        return defaultObjectMapper;
 //    }
+    @Bean
+    @Primary
+    public Validator springValidator() {
+        return new LocalValidatorFactoryBean();
+    }
 }

@@ -1,7 +1,10 @@
 package io.americanexpress.function.greeting.rest.model;
 
+import javax.validation.constraints.NotBlank;
+
 public class Greeting {
 
+    @NotBlank
     private String message;
 
     public Greeting() {
