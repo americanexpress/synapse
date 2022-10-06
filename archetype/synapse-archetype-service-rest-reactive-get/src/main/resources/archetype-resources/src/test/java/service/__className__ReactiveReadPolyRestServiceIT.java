@@ -35,7 +35,7 @@ import ${package}.model.${className}PolyServiceRequest;
 class ${className}ReactiveReadPolyRestServiceIT {
 
     @Test
-    void callReadPolyService_givenValidRequest_expectValidResponse() throws Exception {
+    void read_givenValidRequest_expectValidResponse() throws Exception {
         ${className}ReactiveReadPolyRestService restService = new ${className}ReactiveReadPolyRestService();
         ${className}PolyServiceRequest polyServiceRequest = new ${className}PolyServiceRequest();
         Flux<${className}ServiceResponse> serviceResponse = restService.executeRead(polyServiceRequest);
