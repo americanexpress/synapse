@@ -11,7 +11,7 @@ import org.springframework.data.cassandra.repository.config.EnableCassandraRepos
 @Configuration
 @EnableCassandraRepositories
 @EnableCassandraAuditing
-public class BaseCassandraDataConfig extends AbstractCassandraConfiguration {
+public abstract class BaseCassandraDataConfig extends AbstractCassandraConfiguration {
 
     private final Environment environment;
 
@@ -60,4 +60,5 @@ public class BaseCassandraDataConfig extends AbstractCassandraConfiguration {
         return bean;
     }
 
+    public abstract String[] getEntityBasePackages();
 }

@@ -6,13 +6,16 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.Version;
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public abstract class BaseEntity {
 
     @Id
-    private String identifier;
+    @PrimaryKey
+    private UUID identifier;
 
     /**
      * Created Date Time
@@ -50,11 +53,11 @@ public abstract class BaseEntity {
     public BaseEntity() {
     }
 
-    public String getIdentifier() {
+    public UUID getIdentifier() {
         return identifier;
     }
 
-    public void setIdentifier(String identifier) {
+    public void setIdentifier(UUID identifier) {
         this.identifier = identifier;
     }
 
