@@ -54,7 +54,7 @@ public abstract class BaseReactiveCreateMonoRouter<S extends BaseReadMonoHandler
     @Bean
     public RouterFunction<ServerResponse> route(S handler) {
         return RouterFunctions
-                .route(POST("hello").and(accept(MediaType.APPLICATION_JSON)), handler::read);
+                .route(POST(getEndpoint()).and(accept(MediaType.APPLICATION_JSON)), handler::read);
     }
 
     private String getEndpoint() {

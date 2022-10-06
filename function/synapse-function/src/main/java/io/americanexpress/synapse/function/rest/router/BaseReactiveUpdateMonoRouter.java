@@ -38,7 +38,7 @@ public abstract class BaseReactiveUpdateMonoRouter<S extends BaseReadMonoHandler
     public static String endpoint = "not_a_valid_endpoint";
 
     /**
-     * Get a single resource from the back end service.
+     * Update a single resource from the back end service.
      *
      * @param handler body from the consumer
      * @return a single resource from the back end service
@@ -55,7 +55,7 @@ public abstract class BaseReactiveUpdateMonoRouter<S extends BaseReadMonoHandler
     @Bean
     public RouterFunction<ServerResponse> route(S handler) {
         return RouterFunctions
-                .route(PUT("hello").and(accept(MediaType.APPLICATION_JSON)), handler::read);
+                .route(PUT(getEndpoint()).and(accept(MediaType.APPLICATION_JSON)), handler::read);
     }
 
     private String getEndpoint() {
