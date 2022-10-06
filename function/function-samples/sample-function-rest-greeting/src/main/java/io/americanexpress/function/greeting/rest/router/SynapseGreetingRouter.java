@@ -12,12 +12,12 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 
-@Configuration(proxyBeanMethods = false)
+@Configuration
 public class SynapseGreetingRouter extends BaseReactiveReadMonoRouter<SynapseGreetingHandler> {
 
-    @Bean
-    public RouterFunction<ServerResponse> route(SynapseGreetingHandler greetingHandler) {
-        return RouterFunctions
-                .route(GET("/hello").and(accept(MediaType.APPLICATION_JSON)), greetingHandler::read);
-    }
+//    @Bean
+//    public RouterFunction<ServerResponse> route(SynapseGreetingHandler greetingHandler) {
+//        return RouterFunctions
+//                .route(GET("/hello").and(accept(MediaType.APPLICATION_JSON)), greetingHandler::read);
+//    }
 }
