@@ -14,14 +14,13 @@
 package io.americanexpress.synapse.service.rest.controller.reactive;
 
 import io.americanexpress.synapse.service.rest.controller.BaseController;
-import io.americanexpress.synapse.service.rest.controller.reactive.helpers.ReactiveCreateResponseEntityCreator;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
-import io.americanexpress.synapse.service.rest.service.BaseCreateService;
+import io.americanexpress.synapse.service.rest.service.reactive.BaseCreateReactiveService;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,7 +29,7 @@ import reactor.core.publisher.Mono;
 import javax.validation.Valid;
 
 /**
- * BaseCrudController class specifies the prototypes for listening for requests from the consumer
+ * {@code BaseCreateReactiveController} class specifies the prototypes for listening for requests from the consumer
  * to Create (POST), Update (PUT/PATCH) or Delete (DELETE) a resource.
  *
  * @param <I> input request type
@@ -38,10 +37,7 @@ import javax.validation.Valid;
  * @param <S> service type
  * @author Gabriel Jimenez
  */
-public abstract class BaseReactiveCreateController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseCreateService<I, O>> extends BaseController<S> {
-
-    @Autowired
-    private ReactiveCreateResponseEntityCreator<O> reactiveCreateResponseEntityCreator;
+public abstract class BaseCreateReactiveController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseCreateReactiveService<I, O>> extends BaseController<S> {
 
     /**
      * Create a single resource.
@@ -57,11 +53,14 @@ public abstract class BaseReactiveCreateController<I extends BaseServiceRequest,
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 403, message = "Forbidden"),
     })
-    public ResponseEntity<Mono<O>> create(@Valid @RequestBody I serviceRequest) {
+    // ResponseEntity<Mono<O>>
+    public Mono<ResponseEntity<O>> create(@Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
 
-        final O serviceResponse = service.create(serviceRequest);
-        ResponseEntity<Mono<O>> responseEntity = reactiveCreateResponseEntityCreator.create(serviceResponse);
+        final var serviceResponse = service.create(serviceRequest);
+        final var responseEntity = serviceResponse
+                .map(ResponseEntity.status(HttpStatus.CREATED)::body)
+                .defaultIfEmpty(ResponseEntity.noContent().build());
 
         logger.exit();
         return responseEntity;

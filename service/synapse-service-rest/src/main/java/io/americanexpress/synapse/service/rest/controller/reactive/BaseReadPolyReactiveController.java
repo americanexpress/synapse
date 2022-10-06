@@ -14,23 +14,22 @@
 package io.americanexpress.synapse.service.rest.controller.reactive;
 
 import io.americanexpress.synapse.service.rest.controller.BaseController;
-import io.americanexpress.synapse.service.rest.controller.reactive.helpers.ReactiveMonoResponseEntityCreator;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
-import io.americanexpress.synapse.service.rest.service.BaseReadMonoService;
+import io.americanexpress.synapse.service.rest.service.reactive.BaseReadPolyReactiveService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import reactor.core.publisher.Mono;
+import reactor.core.publisher.Flux;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 /**
- * <code>BaseReadController</code> class specifies the prototypes for listening for requests from the consumer
+ * {@code BaseReadPolyReactiveController} class specifies the prototypes for listening for requests from the consumer
  * to Read (POST) a resource.
  *
  * @param <I> input request type
@@ -38,20 +37,17 @@ import javax.validation.Valid;
  * @param <S> service type
  * @author Gabriel Jimenez
  */
-public abstract class BaseReactiveReadMonoController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadMonoService<I, O>> extends BaseController<S> {
+public abstract class BaseReadPolyReactiveController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadPolyReactiveService<I, O>> extends BaseController<S> {
 
-    public static final String INQUIRY_RESULTS = "/inquiry_results";
-
-    @Autowired
-    private ReactiveMonoResponseEntityCreator<O> reactiveMonoResponseEntityCreator;
+    public static final String MULTIPLE_RESULTS = "/multiple_results";
 
     /**
-     * Get a single resource from the back end service.
+     * Get a list of multiple resources from the back end service.
      *
      * @param serviceRequest body from the consumer
-     * @return a single resource from the back end service
+     * @return a list of resources from the back end service
      */
-    @ApiOperation(value = "Reactive Read Mono", notes = "Gets one resource")
+    @ApiOperation(value = "Reactive Read Poly", notes = "Gets a collection of resources", response = ResponseEntity.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Ok"),
             @ApiResponse(code = 204, message = "No Content"),
@@ -59,12 +55,14 @@ public abstract class BaseReactiveReadMonoController<I extends BaseServiceReques
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 403, message = "Forbidden"),
     })
-    @PostMapping(INQUIRY_RESULTS)
-    public ResponseEntity<Mono<O>> read(@Valid @RequestBody I serviceRequest) {
+    @PostMapping(MULTIPLE_RESULTS)
+    public Flux<ResponseEntity<O>> read(@Valid @RequestBody I serviceRequest, HttpServletResponse httpServletResponse) {
         logger.entry(serviceRequest);
 
-        O serviceResponse = service.read(serviceRequest);
-        ResponseEntity<Mono<O>> responseEntity = reactiveMonoResponseEntityCreator.create(Mono.just(serviceResponse));
+        final var serviceResult = service.read(serviceRequest);
+        final var responseEntity = serviceResult
+                .map(ResponseEntity::ok)
+                .defaultIfEmpty(ResponseEntity.noContent().build());
 
         logger.exit(responseEntity);
         return responseEntity;

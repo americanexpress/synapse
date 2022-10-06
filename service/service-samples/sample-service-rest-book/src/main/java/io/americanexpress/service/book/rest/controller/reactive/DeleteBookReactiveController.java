@@ -11,22 +11,18 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.rest.controller;
+package io.americanexpress.service.book.rest.controller.reactive;
 
 import io.americanexpress.service.book.rest.config.BookConfig;
-import io.americanexpress.service.book.rest.model.ReadBookResponse;
-import io.americanexpress.service.book.rest.service.ReadMonoBookService;
-import io.americanexpress.synapse.service.rest.controller.BaseGetMonoController;
+import io.americanexpress.service.book.rest.service.reactive.DeleteBookReactiveService;
+import io.americanexpress.synapse.service.rest.controller.reactive.BaseDeleteReactiveController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * ReadMonoBookController retrieves a Book Response given its unique identifier.
+ * {@code CreateBookReactiveController} emulates deleting a book resource
  */
 @RestController
-@RequestMapping(BookConfig.BOOK_ENDPOINT)
-public class ReadMonoBookController extends BaseGetMonoController<ReadBookResponse, ReadMonoBookService> {
-
+@RequestMapping(BookConfig.BOOK_REACTIVE_ENDPOINT)
+public class DeleteBookReactiveController extends BaseDeleteReactiveController<DeleteBookReactiveService> {
 }
-
-
