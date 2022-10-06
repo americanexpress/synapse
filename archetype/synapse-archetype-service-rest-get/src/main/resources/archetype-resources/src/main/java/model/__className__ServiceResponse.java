@@ -16,7 +16,7 @@ package ${package}.model;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 
 /**
- * {@code ${className}ClientResponse} class represents
+ * {@code ${className}ServiceResponse} class represents
  * the service response from the ${apiName} REST API.
  * @author ${author}
  *
