@@ -16,9 +16,9 @@ package ${package}.controller;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import io.americanexpress.synapse.service.rest.controller.reactive.BaseReactiveReadMonoController;
+import io.americanexpress.synapse.service.rest.controller.reactive.BaseReadMonoReactiveController;
 
-import ${package}.service.${className}ReadMonoRestService;
+import ${package}.service.${className}ReactiveReadMonoRestService;
 import ${package}.model.${className}ServiceResponse;
 import ${package}.model.${className}ServiceRequest;
 import ${package}.config.${className}RestServiceEndpoint;
@@ -31,6 +31,6 @@ import ${package}.config.${className}RestServiceEndpoint;
  */
 @RestController
 @RequestMapping(${className}RestServiceEndpoint.SERVICE_ENDPOINT)
-public class ${className}ReactiveReadMonoRestController extends BaseReactiveReadMonoController<${className}ServiceRequest, ${className}ServiceResponse, ${className}ReadMonoRestService> {
+public class ${className}ReactiveReadMonoRestController extends BaseReadMonoReactiveController<${className}ServiceRequest, ${className}ServiceResponse, ${className}ReactiveReadMonoRestService> {
 
 }
