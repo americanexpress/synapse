@@ -14,62 +14,55 @@
 package io.americanexpress.synapse.service.rest.controller.reactive;
 
 import io.americanexpress.synapse.service.rest.controller.BaseController;
-import io.americanexpress.synapse.service.rest.controller.reactive.helpers.ReactivePolyResponseEntityCreator;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
-import io.americanexpress.synapse.service.rest.service.BaseReadPolyReactiveService;
-import io.americanexpress.synapse.service.rest.service.BaseReadPolyService;
-import io.swagger.annotations.ApiOperation;
+import io.americanexpress.synapse.service.rest.service.reactive.BaseCreateReactiveService;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
+import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 /**
- * <code>BaseReadController</code> class specifies the prototypes for listening for requests from the consumer
- * to Read (POST) a resource.
+ * {@code BaseCreateReactiveController} class specifies the prototypes for listening for requests from the consumer
+ * to Create (POST), Update (PUT/PATCH) or Delete (DELETE) a resource.
  *
  * @param <I> input request type
  * @param <O> output response type
  * @param <S> service type
  * @author Gabriel Jimenez
  */
-public abstract class BaseReactiveReadPolyController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadPolyReactiveService<I, O>> extends BaseController<S> {
-
-    public static final String MULTIPLE_RESULTS = "/multiple_results";
+public abstract class BaseCreateReactiveController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseCreateReactiveService<I, O>> extends BaseController<S> {
 
     /**
-     * Get a list of multiple resources from the back end service.
+     * Create a single resource.
      *
      * @param serviceRequest body from the consumer
-     * @return a list of resources from the back end service
+     * @return response to the consumer
      */
-    @ApiOperation(value = "Reactive Read Poly", notes = "Gets a collection of resources", response = ResponseEntity.class)
+    @PostMapping
+    @Operation(tags = "Reactive Create Operation", summary = "Creates a reactive resource")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Ok"),
-            @ApiResponse(code = 204, message = "No Content"),
+            @ApiResponse(code = 201, message = "Created"),
             @ApiResponse(code = 400, message = "Bad Request"),
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 403, message = "Forbidden"),
     })
-    @PostMapping(MULTIPLE_RESULTS)
-    public Flux<ResponseEntity<O>> read(@Valid @RequestBody I serviceRequest, HttpServletResponse httpServletResponse) {
+    // ResponseEntity<Mono<O>>
+    public Mono<ResponseEntity<O>> create(@Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
 
-        final var serviceResult = service.read(serviceRequest);
-        final var responseEntity = serviceResult
-                .map(ResponseEntity::ok)
+        final var serviceResponse = service.create(serviceRequest);
+        final var responseEntity = serviceResponse
+                .map(ResponseEntity.status(HttpStatus.CREATED)::body)
                 .defaultIfEmpty(ResponseEntity.noContent().build());
 
-        logger.exit(responseEntity);
+        logger.exit();
         return responseEntity;
     }
-
 }

@@ -14,53 +14,48 @@
 package io.americanexpress.synapse.service.rest.controller.reactive;
 
 import io.americanexpress.synapse.service.rest.controller.BaseController;
-import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
-import io.americanexpress.synapse.service.rest.service.BaseCreateReactiveService;
+import io.americanexpress.synapse.service.rest.service.reactive.BaseGetMonoReactiveService;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import reactor.core.publisher.Mono;
 
-import javax.validation.Valid;
-
 /**
- * BaseCrudController class specifies the prototypes for listening for requests from the consumer
- * to Create (POST), Update (PUT/PATCH) or Delete (DELETE) a resource.
- *
- * @param <I> input request type
- * @param <O> output response type
- * @param <S> service type
- * @author Gabriel Jimenez
+ * {@code BaseGetMonoReactiveController } is base class for read mono controller.
+ * This controller handles GET method requests, but specifically for read purposes.
+ *  This controller returns a single object.
+ * @param <O>
+ * @param <S>
  */
-public abstract class BaseReactiveCreateController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseCreateReactiveService<I, O>> extends BaseController<S> {
+public abstract class BaseGetMonoReactiveController<O extends BaseServiceResponse, S extends BaseGetMonoReactiveService<O>> extends BaseController<S> {
 
     /**
-     * Create a single resource.
-     *
-     * @param serviceRequest body from the consumer
-     * @return response to the consumer
+     * Get a single resource from the back end service.
+     * @param id
+     * @return
      */
-    @PostMapping
-    @Operation(tags = "Reactive Create Operation", summary = "Creates a reactive resource")
+    @ApiOperation(value = "Reactive get mono", notes = "Gets one resource reactively")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Created"),
+            @ApiResponse(code = 200, message = "Ok"),
+            @ApiResponse(code = 204, message = "No Content"),
             @ApiResponse(code = 400, message = "Bad Request"),
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 403, message = "Forbidden"),
     })
-    public Mono<ResponseEntity<O>> create(@Valid @RequestBody I serviceRequest) {
-        logger.entry(serviceRequest);
+    @GetMapping("/{id}")
+    public Mono<ResponseEntity<O>> read(@PathVariable String id) {
+        logger.entry(id);
 
-        final var serviceResponse = service.create(serviceRequest);
-        final var responseEntity = serviceResponse
+        var serviceResponse = service.read(id);
+        var responseEntity = serviceResponse
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.noContent().build());
 
-        logger.exit();
+        logger.exit(responseEntity);
         return responseEntity;
     }
 }
