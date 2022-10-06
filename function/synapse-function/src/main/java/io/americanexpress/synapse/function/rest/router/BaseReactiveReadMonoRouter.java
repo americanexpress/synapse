@@ -17,32 +17,27 @@ import io.americanexpress.synapse.function.rest.handler.BaseReadMonoHandler;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import javax.validation.Valid;
-
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
-import org.springframework.web.reactive.function.server.ServerRequest;
+
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 
 /**
- * <code>BaseReadController</code> class specifies the prototypes for listening for requests from the consumer
+ * <code>BaseReactiveReadMonoRouter</code> class specifies the prototypes for listening for requests from the consumer
  * to Read (POST) a resource.
  *
- * @param <I> input request type
- * @param <O> output response type
  * @param <S> service type
  * @author Gabriel Jimenez
  */
 public abstract class BaseReactiveReadMonoRouter<S extends BaseReadMonoHandler> extends BaseRouter<S> {
 
     public static final String INQUIRY_RESULTS = "/inquiry_results";
+
+    public static String endpoint = "not_a_valid_endpoint";
 
     /**
      * Get a single resource from the back end service.
@@ -58,8 +53,16 @@ public abstract class BaseReactiveReadMonoRouter<S extends BaseReadMonoHandler> 
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 403, message = "Forbidden"),
     })
+
+    @Bean
     public RouterFunction<ServerResponse> route(S handler) {
         return RouterFunctions
-          .route(GET("/products").and(accept(MediaType.APPLICATION_JSON)), handler::read);
+          .route(GET("hello").and(accept(MediaType.APPLICATION_JSON)), handler::read);
     }
+
+    private String getEndpoint() {
+        return endpoint;
+    }
+
+    protected abstract void setEndpoint(String endpoint);
 }

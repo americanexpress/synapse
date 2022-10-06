@@ -15,7 +15,7 @@
     <!--Modules-->
     <modules>
         <module>function-samples</module>
-        <module>synapse-function-rest</module>
+        <module>synapse-function</module>
     </modules>
 
 </project>

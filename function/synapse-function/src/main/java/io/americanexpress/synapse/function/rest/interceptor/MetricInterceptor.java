@@ -16,11 +16,10 @@ package io.americanexpress.synapse.service.rest.interceptor;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.UUID;
+import org.springframework.web.server.ServerWebExchange;
+import org.springframework.web.server.WebFilter;
+import org.springframework.web.server.WebFilterChain;
+import reactor.core.publisher.Mono;
 
 /**
  * MetricInterceptor class captures metrics about Synapse such as logging API response times.<br>
@@ -29,7 +28,7 @@ import java.util.UUID;
  * @author Alexei Morgado
  */
 @Component
-public class MetricInterceptor extends HandlerInterceptorAdapter {
+public class MetricInterceptor implements WebFilter {
 
     /**
      * Used to log the metrics.
@@ -46,33 +45,37 @@ public class MetricInterceptor extends HandlerInterceptorAdapter {
      * else, DispatcherServlet assumes that this interceptor has already dealt with the response itself
      * @throws Exception in case of errors
      */
-    @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String requestId = UUID.randomUUID().toString();
-        logger.info("REQUEST ID: {}, HOST: {}, HTTP_METHOD: {}, URI : {}", requestId, request.getHeader("host"), request.getMethod(), request.getRequestURI());
-        long startTime = System.currentTimeMillis();
-        request.setAttribute("startTime", startTime);
-        request.setAttribute("requestId", requestId);
-        return true;
-    }
+//    @Override
+//    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+//        String requestId = UUID.randomUUID().toString();
+//        logger.info("REQUEST ID: {}, HOST: {}, HTTP_METHOD: {}, URI : {}", requestId, request.getHeader("host"), request.getMethod(), request.getRequestURI());
+//        long startTime = System.currentTimeMillis();
+//        request.setAttribute("startTime", startTime);
+//        request.setAttribute("requestId", requestId);
+//        return true;
+//    }
 
     /**
      * Capture the response information.
      *
-     * @param request   current HTTP request
-     * @param response  current HTTP response
-     * @param handler   the handler (or HandlerMethod) that started asynchronous execution, for type and/or instance examination
-     * @param exception any exception thrown on handler execution, if any; this does not include exceptions that have been handled through an exception resolver
      * @throws Exception in case of errors
      */
+//    @Override
+//    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception exception) throws Exception {
+//        super.afterCompletion(request, response, handler, exception);
+//        long startTime = (Long) request.getAttribute("startTime");
+//        long endTime = System.nanoTime();
+//        long executeTime = endTime - startTime;
+//        int status = (response).getStatus();
+//        logger.info("RESPONSE TIME: REQUEST_ID: {}, HTTP_METHOD: {}, URI: {}, STATUS: {}, TIME: {} nanoseconds.",
+//                request.getAttribute("requestId"), request.getMethod(), request.getRequestURI(), status, executeTime);
+//    }
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception exception) throws Exception {
-        super.afterCompletion(request, response, handler, exception);
-        long startTime = (Long) request.getAttribute("startTime");
-        long endTime = System.nanoTime();
-        long executeTime = endTime - startTime;
-        int status = (response).getStatus();
-        logger.info("RESPONSE TIME: REQUEST_ID: {}, HTTP_METHOD: {}, URI: {}, STATUS: {}, TIME: {} nanoseconds.",
-                request.getAttribute("requestId"), request.getMethod(), request.getRequestURI(), status, executeTime);
+    public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
+        long startTime = System.currentTimeMillis();
+        return chain.filter(exchange).doFinally(signalType -> {
+            long totalTime = System.currentTimeMillis() - startTime;
+            exchange.getAttributes().put("totalTime", totalTime);
+        });
     }
 }

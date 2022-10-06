@@ -10,11 +10,11 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
 @Component
-public class SynapseGreetingHandler extends BaseReadMonoHandler{
+public class SynapseGreetingHandler extends BaseReadMonoHandler {
 
-  @Override
-  protected Mono<ServerResponse> executeRead(ServerRequest request) {
-    return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
-      .body(BodyInserters.fromValue(new Greeting("Hello, Spring!")));
-  }
+    @Override
+    protected Mono<ServerResponse> executeRead(ServerRequest request) {
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                .body(BodyInserters.fromValue(new Greeting("Hello, Spring!!")));
+    }
 }

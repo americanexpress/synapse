@@ -1,5 +1,6 @@
 //package io.americanexpress.function.greeting.rest.router;
 //
+//import io.americanexpress.function.greeting.rest.handler.GreetingHandler;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
 //import org.springframework.http.MediaType;
@@ -11,7 +12,7 @@
 //import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 //
 //@Configuration(proxyBeanMethods = false)
-//public class GreetingRouter  {
+//public class GreetingRouter {
 //
 //    @Bean
 //    public RouterFunction<ServerResponse> route(GreetingHandler greetingHandler) {
