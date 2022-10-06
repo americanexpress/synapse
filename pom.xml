@@ -245,6 +245,11 @@
             <!--Data-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-data-cassandra</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-data-couchbase</artifactId>
                 <version>${project.version}</version>
             </dependency>

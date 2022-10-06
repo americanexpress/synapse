@@ -2,20 +2,20 @@ package io.americanexpress.synapse.data.cassandra.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-import org.springframework.data.cassandra.config.AbstractCassandraConfiguration;
+import org.springframework.data.cassandra.config.AbstractReactiveCassandraConfiguration;
 import org.springframework.data.cassandra.config.CqlSessionFactoryBean;
-import org.springframework.data.cassandra.config.EnableCassandraAuditing;
+import org.springframework.data.cassandra.config.EnableReactiveCassandraAuditing;
 import org.springframework.data.cassandra.config.SchemaAction;
-import org.springframework.data.cassandra.repository.config.EnableCassandraRepositories;
+import org.springframework.data.cassandra.repository.config.EnableReactiveCassandraRepositories;
 
 @Configuration
-@EnableCassandraRepositories
-@EnableCassandraAuditing
-public class BaseCassandraDataConfig extends AbstractCassandraConfiguration {
+@EnableReactiveCassandraAuditing
+@EnableReactiveCassandraRepositories
+public class BaseReactiveCassandraDataConfig extends AbstractReactiveCassandraConfiguration {
 
     private final Environment environment;
 
-    public BaseCassandraDataConfig(Environment environment) {
+    public BaseReactiveCassandraDataConfig(Environment environment) {
         this.environment = environment;
     }
 
@@ -59,5 +59,4 @@ public class BaseCassandraDataConfig extends AbstractCassandraConfiguration {
         bean.setPassword(getPassword());
         return bean;
     }
-
 }
