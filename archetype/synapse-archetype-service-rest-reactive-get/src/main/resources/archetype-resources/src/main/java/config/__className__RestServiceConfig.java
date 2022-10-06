@@ -20,11 +20,8 @@ import org.springframework.context.annotation.PropertySource;
 
 import io.americanexpress.synapse.service.rest.config.ServiceRestConfig;
 
-import ${package}.service.${className}GetMonoRestService;
-
 /**
- * {@code ${className}RestServiceConfig} class sets the configurations
- * for the {@link ${className}GetMonoRestService}.
+ * {@code ${className}RestServiceConfig} class sets the configuration for the ${apiName} application
  * @author ${author}
  */
 @Import({ServiceRestConfig.class})
