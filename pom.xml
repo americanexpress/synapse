@@ -175,7 +175,7 @@
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-archetype-service-rest-reactive-post</artifactId>
-                <version>0.2.19-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <!--Framework-->
             <dependency>
