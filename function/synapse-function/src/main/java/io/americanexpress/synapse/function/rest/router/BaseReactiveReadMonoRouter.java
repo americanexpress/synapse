@@ -17,6 +17,7 @@ import io.americanexpress.synapse.function.rest.handler.BaseReadMonoHandler;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
@@ -50,8 +51,10 @@ public abstract class BaseReactiveReadMonoRouter<S extends BaseReadMonoHandler> 
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 403, message = "Forbidden"),
     })
+
+    @Bean
     public RouterFunction<ServerResponse> route(S handler) {
         return RouterFunctions
-          .route(GET("/products").and(accept(MediaType.APPLICATION_JSON)), handler::read);
+          .route(GET("/hello").and(accept(MediaType.APPLICATION_JSON)), handler::read);
     }
 }
