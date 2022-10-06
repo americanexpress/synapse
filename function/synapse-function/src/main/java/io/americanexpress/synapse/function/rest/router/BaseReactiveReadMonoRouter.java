@@ -17,27 +17,18 @@ import io.americanexpress.synapse.function.rest.handler.BaseReadMonoHandler;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import javax.validation.Valid;
-
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
-import org.springframework.web.reactive.function.server.ServerRequest;
+
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 
 /**
- * <code>BaseReadController</code> class specifies the prototypes for listening for requests from the consumer
+ * <code>BaseReactiveReadMonoRouter</code> class specifies the prototypes for listening for requests from the consumer
  * to Read (POST) a resource.
  *
- * @param <I> input request type
- * @param <O> output response type
  * @param <S> service type
  * @author Gabriel Jimenez
  */

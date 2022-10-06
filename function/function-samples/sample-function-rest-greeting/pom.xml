@@ -23,10 +23,6 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>sample-function-rest-greeting</artifactId>
 
-    <properties>
-        <kotlin.version>1.7.20</kotlin.version>
-    </properties>
-
     <!--Dependencies-->
     <dependencies>
         <!--Synapse-->
@@ -48,8 +44,6 @@
             <groupId>io.americanexpress.synapse</groupId>
             <artifactId>synapse-function</artifactId>
         </dependency>
-
-        <!--Third Party Dependencies-->
     </dependencies>
 
     <build>

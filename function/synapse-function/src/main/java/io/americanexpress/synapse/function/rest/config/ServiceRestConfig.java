@@ -13,24 +13,12 @@
  */
 package io.americanexpress.synapse.function.rest.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.americanexpress.synapse.framework.api.docs.ApiDocsConfig;
 import io.americanexpress.synapse.framework.exception.config.ExceptionConfig;
-import io.americanexpress.synapse.service.rest.interceptor.MetricInterceptor;
-import io.americanexpress.synapse.utilities.common.config.UtilitiesCommonConfig;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import java.util.Collections;
-import java.util.List;
 
 /**
  * <code>ServiceRestConfig</code> class sets common configurations for the service layer.
@@ -39,50 +27,50 @@ import java.util.List;
  */
 @Configuration
 @ComponentScan(basePackages = "io.americanexpress.synapse.function.rest")
-@Import({ExceptionConfig.class, ApiDocsConfig.class, UtilitiesCommonConfig.class})
+@Import({ExceptionConfig.class, ApiDocsConfig.class})
 public class ServiceRestConfig implements WebMvcConfigurer {
 
-    /**
-     * Default object mapper.
-     */
-    private final ObjectMapper defaultObjectMapper;
+//    /**
+//     * Default object mapper.
+//     */
+//    private final ObjectMapper defaultObjectMapper;
+//
+//    protected final MetricInterceptor interceptor;
 
-    protected final MetricInterceptor interceptor;
-
-    @Autowired
-    public ServiceRestConfig(ObjectMapper defaultObjectMapper, MetricInterceptor interceptor) {
-        this.defaultObjectMapper = defaultObjectMapper;
-        this.interceptor = interceptor;
-    }
+//    @Autowired
+//    public ServiceRestConfig(ObjectMapper defaultObjectMapper, MetricInterceptor interceptor) {
+//        this.defaultObjectMapper = defaultObjectMapper;
+//        this.interceptor = interceptor;
+//    }
 
     /**
      * Get the JSON message converter.
      *
      * @return the JSON message converter.
      */
-    @Bean
-    public MappingJackson2HttpMessageConverter jsonMessageConverter() {
-        final MappingJackson2HttpMessageConverter messageConverter = new MappingJackson2HttpMessageConverter(getObjectMapper());
-        messageConverter.setSupportedMediaTypes(Collections.singletonList(MediaType.APPLICATION_JSON));
-        return messageConverter;
-    }
+//    @Bean
+//    public MappingJackson2HttpMessageConverter jsonMessageConverter() {
+//        final MappingJackson2HttpMessageConverter messageConverter = new MappingJackson2HttpMessageConverter(getObjectMapper());
+//        messageConverter.setSupportedMediaTypes(Collections.singletonList(MediaType.APPLICATION_JSON));
+//        return messageConverter;
+//    }
 
     /**
      * Configure the message converters.
      *
      * @param converters message converters of the application
      */
-    @Override
-    public void configureMessageConverters(final List<HttpMessageConverter<?>> converters) {
-        converters.add(jsonMessageConverter());
-    }
+//    @Override
+//    public void configureMessageConverters(final List<HttpMessageConverter<?>> converters) {
+//        converters.add(jsonMessageConverter());
+//    }
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(interceptor).addPathPatterns("/**");
-    }
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(interceptor).addPathPatterns("/**");
+//    }
 
-    protected ObjectMapper getObjectMapper() {
-        return defaultObjectMapper;
-    }
+//    protected ObjectMapper getObjectMapper() {
+//        return defaultObjectMapper;
+//    }
 }
