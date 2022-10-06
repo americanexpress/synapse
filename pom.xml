@@ -35,9 +35,13 @@
     </developers>
 
     <properties>
+        <!--Java-->
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+
+        <!--Kotlin-->
+        <kotlin.version>1.7.20</kotlin.version>
 
         <!--Spring Versions-->
         <spring-framework.version>5.3.23</spring-framework.version>
@@ -45,9 +49,6 @@
         <spring-boot-framework.version>2.7.1</spring-boot-framework.version>
         <spring-boot-ws-framework.version>1.4.7.RELEASE</spring-boot-ws-framework.version>
         <spring-native.version>0.12.1</spring-native.version>
-
-        <!--SpringFox-->
-        <springfox-swagger.version>3.0.0</springfox-swagger.version>
 
         <!--Springdoc-->
         <springdoc.version>1.6.11</springdoc.version>
@@ -173,6 +174,11 @@
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-archetype-service-rest-reactive-post</artifactId>
+                <version>0.2.19-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-archetype-service-rest-reactive-get</artifactId>
                 <version>0.2.19-SNAPSHOT</version>
             </dependency>
@@ -217,7 +223,7 @@
             <!--Function-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
-                <artifactId>synapse-function-rest</artifactId>
+                <artifactId>synapse-function</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--Client-->
