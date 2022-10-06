@@ -1,5 +1,6 @@
 package io.americanexpress.function.greeting.rest;
 
+import io.americanexpress.function.greeting.rest.model.Greeting;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class GreetingRouterTest {
       .exchange()
       // and use the dedicated DSL to test assertions against the response
       .expectStatus().isOk()
-      .expectBody(GreetingRequest.class).value(greeting -> {
+      .expectBody(Greeting.class).value(greeting -> {
         assertThat(greeting.getMessage()).isEqualTo("Hello, Spring!");
     });
   }
