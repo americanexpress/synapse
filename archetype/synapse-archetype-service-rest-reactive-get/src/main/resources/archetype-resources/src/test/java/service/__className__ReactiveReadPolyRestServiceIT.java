@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.data.domain.Page;
+import reactor.core.publisher.Flux;
 
 import io.americanexpress.synapse.framework.test.CommonAssertionMessages;
 
@@ -26,21 +26,19 @@ import ${package}.model.${className}ServiceResponse;
 import ${package}.model.${className}PolyServiceRequest;
 
 /**
- * {@code ${className}ReadPolyRestServiceIT} class performs integration tests
- * for the {@link ${className}ReadPolyRestService}.
- * <p>
+ * {@code ${className}ReadPolyRestServiceIT} class performs integration tests for the ${apiName} application
  * Be sure that the ${apiName} REST API is running
  * prior to running this integration test.
  * @author ${author}
  */
 @ExtendWith(SpringExtension.class)
-class ${className}ReadPolyRestServiceIT {
+class ${className}ReactiveReadPolyRestServiceIT {
 
     @Test
     void callReadPolyService_givenValidRequest_expectValidResponse() throws Exception {
-        ${className}ReadPolyRestService restService = new ${className}ReadPolyRestService();
+        ${className}ReactiveReadPolyRestService restService = new ${className}ReactiveReadPolyRestService();
         ${className}PolyServiceRequest polyServiceRequest = new ${className}PolyServiceRequest();
-        Page<${className}ServiceResponse> serviceResponse = restService.executeRead(polyServiceRequest);
+        Flux<${className}ServiceResponse> serviceResponse = restService.executeRead(polyServiceRequest);
         assertNotNull(serviceResponse, CommonAssertionMessages.VALUE_NULL);
     }
 }

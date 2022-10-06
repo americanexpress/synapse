@@ -18,27 +18,26 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import reactor.core.publisher.Mono;
 
 import io.americanexpress.synapse.framework.test.CommonAssertionMessages;
 
 import ${package}.model.${className}ServiceResponse;
 
 /**
- * {@code ${className}GetMonoRestServiceIT} class performs integration tests
- * for the {@link ${className}GetMonoRestService}.
- * <p>
+ * {@code ${className}ReactiveGetMonoRestServiceIT} class performs integration tests for the ${apiName} application
  * Be sure that the ${apiName} REST API is running
  * prior to running this integration test.
  * @author ${author}
  */
 @ExtendWith(SpringExtension.class)
-class ${className}GetMonoRestServiceIT {
+class ${className}ReactiveGetMonoRestServiceIT {
 
     @Test
     void read_givenValidIdentifier_expectValidResponse() throws Exception {
-        ${className}GetMonoRestService restService = new ${className}GetMonoRestService();
+        ${className}ReactiveGetMonoRestService restService = new ${className}ReactiveGetMonoRestService();
         String identifier = "";
-        ${className}ServiceResponse serviceResponse = restService.executeRead(identifier);
+        Mono<${className}ServiceResponse> serviceResponse = restService.executeRead(identifier);
         assertNotNull(serviceResponse, CommonAssertionMessages.VALUE_NULL);
     }
 }

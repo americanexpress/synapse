@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import reactor.core.publisher.Mono;
 
 import io.americanexpress.synapse.framework.test.CommonAssertionMessages;
 
@@ -25,21 +26,19 @@ import ${package}.model.${className}ServiceResponse;
 import ${package}.model.${className}ServiceRequest;
 
 /**
- * {@code ${className}ReadMonoRestServiceIT} class performs integration tests
- * for the {@link ${className}ReadMonoRestService}.
- * <p>
+ * {@code ${className}ReadMonoRestServiceIT}  class performs integration tests for the ${apiName} application
  * Be sure that the ${apiName} REST API is running
  * prior to running this integration test.
  * @author ${author}
  */
 @ExtendWith(SpringExtension.class)
-class ${className}ReadMonoRestServiceIT {
+class ${className}ReactiveReadMonoRestServiceIT {
 
     @Test
     void callReadMonoService_givenValidRequest_expectValidResponse() throws Exception {
-        ${className}ReadMonoRestService restService = new ${className}ReadMonoRestService();
+        ${className}ReactiveReadMonoRestService restService = new ${className}ReactiveReadMonoRestService();
         ${className}ServiceRequest serviceRequest = new ${className}ServiceRequest();
-        ${className}ServiceResponse serviceResponse = restService.executeRead(serviceRequest);
+        Mono<${className}ServiceResponse> serviceResponse = restService.executeRead(serviceRequest);
         assertNotNull(serviceResponse, CommonAssertionMessages.VALUE_NULL);
     }
 }
