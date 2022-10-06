@@ -11,7 +11,8 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
-import static org.springframework.web.reactive.function.server.RequestPredicates.*;
+import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
+import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 
 @Configuration(proxyBeanMethods = false)
 @Import(ServiceRestConfig.class)
@@ -21,5 +22,10 @@ public class SynapseGreetingRouter extends BaseReactiveReadMonoRouter<SynapseGre
     public RouterFunction<ServerResponse> route(SynapseGreetingHandler greetingHandler) {
         return RouterFunctions
                 .route(POST("/hello").and(accept(MediaType.APPLICATION_JSON)), greetingHandler::read);
+    }
+
+    @Override
+    protected void setEndpoint(String endpoint) {
+        this.endpoint = "hello";
     }
 }

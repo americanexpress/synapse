@@ -21,12 +21,19 @@
 //import io.swagger.annotations.ApiResponses;
 //import io.swagger.v3.oas.annotations.Operation;
 //import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.http.MediaType;
 //import org.springframework.http.ResponseEntity;
 //import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.RequestBody;
+//import org.springframework.web.reactive.function.server.RouterFunction;
+//import org.springframework.web.reactive.function.server.RouterFunctions;
+//import org.springframework.web.reactive.function.server.ServerResponse;
 //import reactor.core.publisher.Mono;
 //
 //import javax.validation.Valid;
+//
+//import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
+//import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 //
 ///**
 // * BaseCrudController class specifies the prototypes for listening for requests from the consumer
@@ -56,13 +63,11 @@
 //            @ApiResponse(code = 401, message = "Unauthorized"),
 //            @ApiResponse(code = 403, message = "Forbidden"),
 //    })
-//    public ResponseEntity<Mono<O>> create(@Valid @RequestBody I serviceRequest) {
-//        logger.entry(serviceRequest);
+//    public RouterFunction<ServerResponse> route(S handler) {
+//        logger.entry(handler);
 //
-//        final O serviceResponse = service.create(serviceRequest);
-//        ResponseEntity<Mono<O>> responseEntity = reactiveCreateResponseEntityCreator.create(serviceResponse);
-//
-//        logger.exit();
-//        return responseEntity;
+//        return RouterFunctions
+//                .route(GET("/products").and(accept(MediaType.APPLICATION_JSON)), handler::read);
 //    }
+//
 //}
