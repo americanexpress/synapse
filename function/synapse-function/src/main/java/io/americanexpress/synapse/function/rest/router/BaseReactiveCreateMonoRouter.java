@@ -23,7 +23,7 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
-import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
+import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 
 /**
@@ -33,9 +33,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
  * @param <S> service type
  * @author Gabriel Jimenez
  */
-public abstract class BaseReactiveReadMonoRouter<S extends BaseReadMonoHandler> extends BaseRouter<S> {
-
-    public static final String INQUIRY_RESULTS = "/inquiry_results";
+public abstract class BaseReactiveCreateMonoRouter<S extends BaseReadMonoHandler> extends BaseRouter<S> {
 
     public static String endpoint = "not_a_valid_endpoint";
 
@@ -53,13 +51,10 @@ public abstract class BaseReactiveReadMonoRouter<S extends BaseReadMonoHandler> 
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 403, message = "Forbidden"),
     })
-
     @Bean
     public RouterFunction<ServerResponse> route(S handler) {
-        logger.entry(handler);
-
         return RouterFunctions
-          .route(GET("hello").and(accept(MediaType.APPLICATION_JSON)), handler::read);
+                .route(POST("hello").and(accept(MediaType.APPLICATION_JSON)), handler::read);
     }
 
     private String getEndpoint() {
