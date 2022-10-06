@@ -315,7 +315,6 @@ The following listing shows the pom.xml file that is created when you choose Mav
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>
             <artifactId>synapse-service-rest</artifactId>
-            <version>0.2.19-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
