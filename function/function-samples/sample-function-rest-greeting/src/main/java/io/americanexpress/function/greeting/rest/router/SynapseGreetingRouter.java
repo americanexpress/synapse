@@ -19,7 +19,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 public class SynapseGreetingRouter extends BaseReactiveReadMonoRouter<SynapseGreetingHandler> {
 
     @Bean
-    public RouterFunction<ServerResponse> route(SynapseGreetingHandler greetingHandler) {
+    public RouterFunction<ServerResponse> postRoute(SynapseGreetingHandler greetingHandler) {
         return RouterFunctions
                 .route(POST("/hello").and(accept(MediaType.APPLICATION_JSON)), greetingHandler::read);
     }
