@@ -3,13 +3,13 @@ package io.americanexpress.service.book.rest.service;
 import io.americanexpress.data.book.entity.BookEntity;
 import io.americanexpress.data.book.repository.BookRepository;
 import io.americanexpress.service.book.rest.model.UpdateBookRequest;
-import io.americanexpress.synapse.service.rest.service.reactive.BaseReactiveUpdateService;
+import io.americanexpress.synapse.service.rest.service.reactive.BaseUpdateReactiveService;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 import reactor.core.publisher.Mono;
 
 @Service
-public class ReactiveUpdateBookService extends BaseReactiveUpdateService<UpdateBookRequest> {
+public class ReactiveUpdateBookService extends BaseUpdateReactiveService<UpdateBookRequest> {
 
     private final BookRepository bookRepository;
 

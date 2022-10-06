@@ -1,12 +1,12 @@
 package io.americanexpress.service.book.rest.service;
 
 import io.americanexpress.data.book.repository.BookRepository;
-import io.americanexpress.synapse.service.rest.service.reactive.BaseReactiveDeleteService;
+import io.americanexpress.synapse.service.rest.service.reactive.BaseDeleteReactiveService;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 @Service
-public class ReactiveDeleteBookService extends BaseReactiveDeleteService {
+public class ReactiveDeleteBookService extends BaseDeleteReactiveService {
 
     private final BookRepository bookRepository;
 

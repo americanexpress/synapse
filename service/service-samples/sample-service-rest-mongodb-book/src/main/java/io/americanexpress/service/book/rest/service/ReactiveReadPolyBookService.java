@@ -17,7 +17,7 @@ import io.americanexpress.data.book.repository.BookRepository;
 import io.americanexpress.service.book.rest.model.ReadBookRequest;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.service.helper.ReadBookResponseCreator;
-import io.americanexpress.synapse.service.rest.service.reactive.BaseReactiveReadService;
+import io.americanexpress.synapse.service.rest.service.reactive.BaseReadPolyReactiveService;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
@@ -26,7 +26,7 @@ import reactor.core.publisher.Flux;
  * {@code ReactiveReadPolyBookService} retrieves books from the database given request.
  */
 @Service
-public class ReactiveReadPolyBookService extends BaseReactiveReadService<ReadBookRequest, ReadBookResponse> {
+public class ReactiveReadPolyBookService extends BaseReadPolyReactiveService<ReadBookRequest, ReadBookResponse> {
 
     private final BookRepository bookRepository;
 

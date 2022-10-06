@@ -17,7 +17,7 @@ import io.americanexpress.data.book.repository.BookRepository;
 import io.americanexpress.data.book.entity.BookEntity;
 import io.americanexpress.service.book.rest.model.CreateBookRequest;
 import io.americanexpress.service.book.rest.model.CreateBookResponse;
-import io.americanexpress.synapse.service.rest.service.reactive.BaseReactiveCreateService;
+import io.americanexpress.synapse.service.rest.service.reactive.BaseCreateReactiveService;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -25,7 +25,7 @@ import reactor.core.publisher.Mono;
  * {@code ReactiveCreateMonoBookService} creates book in the database given request.
  */
 @Service
-public class ReactiveCreateBookService extends BaseReactiveCreateService<CreateBookRequest, CreateBookResponse> {
+public class ReactiveCreateBookService extends BaseCreateReactiveService<CreateBookRequest, CreateBookResponse> {
 
     private final BookRepository bookRepository;
 
