@@ -11,7 +11,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
 @Component
-public class SynapseGreetingHandler extends BaseReadMonoHandler<Greeting, Validator> {
+public class SynapseGreetingHandler extends BaseReadMonoHandler<Greeting> {
 
     private SynapseGreetingHandler(@Autowired Validator validator) {
         super(Greeting.class, validator);

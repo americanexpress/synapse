@@ -33,7 +33,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
  * @param <S> service type
  * @author Gabriel Jimenez
  */
-public abstract class BaseReactiveReadMonoRouter<S extends BaseReadMonoHandler> extends BaseRouter<S> {
+public abstract class BaseReactiveReadPolyRouter<S extends BaseReadMonoHandler> extends BaseRouter<S> {
 
     public static final String INQUIRY_RESULTS = "/inquiry_results";
 
@@ -56,8 +56,6 @@ public abstract class BaseReactiveReadMonoRouter<S extends BaseReadMonoHandler> 
 
     @Bean
     public RouterFunction<ServerResponse> route(S handler) {
-        logger.entry(handler);
-
         return RouterFunctions
           .route(GET("hello").and(accept(MediaType.APPLICATION_JSON)), handler::read);
     }

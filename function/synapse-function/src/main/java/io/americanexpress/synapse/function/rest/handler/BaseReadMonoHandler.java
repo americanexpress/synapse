@@ -22,13 +22,13 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
 
-public abstract class BaseReadMonoHandler<T, U extends Validator> extends BaseHandler {
+public abstract class BaseReadMonoHandler<T> extends BaseHandler {
 
     private final Class<T> validationClass;
 
-    private final U validator;
+    private final Validator validator;
 
-    protected BaseReadMonoHandler(Class<T> clazz, U validator) {
+    protected BaseReadMonoHandler(Class<T> clazz, Validator validator) {
         this.validationClass = clazz;
         this.validator = validator;
     }

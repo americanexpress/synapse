@@ -26,6 +26,7 @@ public class SynapseGreetingRouter extends BaseReactiveReadMonoRouter<SynapseGre
 
     @Override
     protected void setEndpoint(String endpoint) {
-        this.endpoint = "hello";
+        BaseReactiveReadMonoRouter.endpoint = "/hello";
+
     }
 }
