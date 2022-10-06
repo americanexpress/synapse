@@ -14,28 +14,24 @@
 package ${package}.service;
 
 import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import java.util.ArrayList;
-import java.util.List;
+import reactor.core.publisher.Mono;
 
-import io.americanexpress.synapse.service.rest.service.BaseReadPolyService;
+import io.americanexpress.synapse.service.rest.service.reactive.BaseReadMonoReactiveService;
 
 import ${package}.model.${className}ServiceResponse;
-import ${package}.model.${className}PolyServiceRequest;
+import ${package}.model.${className}ServiceRequest;
 
 /**
- * {@code ${className}ReadPolyRestService class is the service
+ * {@code ${className}ReadMonoRestService class is the service
  * used to connect to the ${apiName} REST API.
  * @author ${author}
  *
  */
 @Service
-public class ${className}ReadPolyRestService extends BaseReadPolyService<${className}PolyServiceRequest, ${className}ServiceResponse> {
+public class ${className}ReactiveReadMonoRestService extends BaseReadMonoReactiveService<${className}ServiceRequest, ${className}ServiceResponse> {
 
 	@Override
-	protected Page<${className}ServiceResponse> executeRead(${className}PolyServiceRequest polyServiceRequest) {
-		List<${className}ServiceResponse> serviceResponses = new ArrayList<>();
-		return new PageImpl<>(serviceResponses);
+	protected Mono<${className}ServiceResponse> executeRead(${className}ServiceRequest serviceRequest) {
+		return Mono.just(new ${className}ServiceResponse());
 	}
 }

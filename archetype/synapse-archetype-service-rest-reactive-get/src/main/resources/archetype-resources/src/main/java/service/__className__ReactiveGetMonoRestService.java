@@ -14,23 +14,23 @@
 package ${package}.service;
 
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
-import io.americanexpress.synapse.service.rest.service.BaseReadMonoService;
+import io.americanexpress.synapse.service.rest.service.reactive.BaseGetMonoReactiveService;
 
 import ${package}.model.${className}ServiceResponse;
-import ${package}.model.${className}ServiceRequest;
 
 /**
- * {@code ${className}ReadMonoRestService class is the service
+ * {@code ${className}GetMonoRestService class is the service
  * used to connect to the ${apiName} REST API.
  * @author ${author}
  *
  */
 @Service
-public class ${className}ReadMonoRestService extends BaseReadMonoService<${className}ServiceRequest, ${className}ServiceResponse> {
+public class ${className}ReactiveGetMonoRestService extends BaseGetMonoReactiveService<${className}ServiceResponse> {
 
 	@Override
-	protected ${className}ServiceResponse executeRead(${className}ServiceRequest serviceRequest) {
-		return new ${className}ServiceResponse();
+	protected Mono<${className}ServiceResponse> executeRead(String identifier) {
+		return Mono.just(new ${className}ServiceResponse());
 	}
 }

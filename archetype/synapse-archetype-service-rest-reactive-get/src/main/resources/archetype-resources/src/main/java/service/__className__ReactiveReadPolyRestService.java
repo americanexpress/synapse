@@ -14,22 +14,25 @@
 package ${package}.service;
 
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 
-import io.americanexpress.synapse.service.rest.service.BaseGetMonoService;
+import io.americanexpress.synapse.service.rest.service.reactive.BaseReadPolyReactiveService;
 
 import ${package}.model.${className}ServiceResponse;
+import ${package}.model.${className}PolyServiceRequest;
 
 /**
- * {@code ${className}GetMonoRestService class is the service
+ * {@code ${className}ReadPolyRestService class is the service
  * used to connect to the ${apiName} REST API.
  * @author ${author}
  *
  */
 @Service
-public class ${className}GetMonoRestService extends BaseGetMonoService<${className}ServiceResponse> {
+public class ${className}ReactiveReadPolyRestService extends BaseReadPolyReactiveService<${className}PolyServiceRequest, ${className}ServiceResponse> {
 
 	@Override
-	protected ${className}ServiceResponse executeRead(String identifier) {
-		return new ${className}ServiceResponse();
+	protected Flux<${className}ServiceResponse> executeRead(${className}PolyServiceRequest polyServiceRequest) {
+		${className}ServiceResponse serviceResponses = new ${className}ServiceResponse();
+		return Flux.just(serviceResponses);
 	}
 }
