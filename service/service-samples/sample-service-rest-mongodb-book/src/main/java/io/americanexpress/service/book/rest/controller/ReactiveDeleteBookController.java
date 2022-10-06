@@ -6,6 +6,9 @@ import io.americanexpress.synapse.service.rest.controller.reactive.BaseDeleteRea
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * {@code ReactiveDeleteBookController} deletes a book given the title of the book.
+ */
 @RestController
 @RequestMapping(BookConfig.BOOK_ENDPOINT)
 public class ReactiveDeleteBookController extends BaseDeleteReactiveController<ReactiveDeleteBookService> {

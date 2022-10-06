@@ -7,6 +7,9 @@ import io.americanexpress.synapse.service.rest.controller.reactive.BaseUpdateRea
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * {@code ReactiveUpdateBookController} updates a book given an UpdateBookRequest.
+ */
 @RestController
 @RequestMapping(BookConfig.BOOK_ENDPOINT)
 public class ReactiveUpdateBookController extends BaseUpdateReactiveController<UpdateBookRequest, ReactiveUpdateBookService> {

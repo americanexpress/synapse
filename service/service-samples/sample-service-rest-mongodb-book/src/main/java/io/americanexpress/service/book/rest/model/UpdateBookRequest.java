@@ -5,6 +5,9 @@ import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
+/**
+ * {@code UpdateBookRequest} is the request for the update book operation.
+ */
 public class UpdateBookRequest implements BaseServiceRequest {
 
     @NotBlank
