@@ -33,6 +33,7 @@
         <module>synapse-data-couchbase</module>
         <module>synapse-data-mongodb</module>
         <module>synapse-data-postgres</module>
+        <module>synapse-data-cassandra</module>
     </modules>
 
 </project>
