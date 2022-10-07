@@ -59,7 +59,7 @@ public abstract class BaseReactiveReadMonoRouter<S extends BaseReadMonoHandler> 
         logger.entry(handler);
 
         return RouterFunctions
-          .route(GET("hello").and(accept(MediaType.APPLICATION_JSON)), handler::read);
+          .route(GET(getEndpoint()).and(accept(MediaType.APPLICATION_JSON)), handler::read);
     }
 
     private String getEndpoint() {
