@@ -7,6 +7,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.awt.print.Book;
+import java.util.List;
 import java.util.UUID;
 
 @SpringBootApplication
@@ -22,8 +24,15 @@ public class BookApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println("Starting cassandra application");
-        BookEntity book = new BookEntity("Alice In Wonderland", "Lewis Carroll");
-        book.setIdentifier(UUID.randomUUID());
-        bookRepository.save(book);
+
+        BookEntity bookEntity = bookRepository.findByTitleAndAuthor("Alice In Wonderland", "Lewis Caroll");
+        bookEntity.setCreatedBy("whu16");
+        bookEntity.setLastModifiedBy("whu16");
+        bookRepository.save(bookEntity);
+
+        List<BookEntity> bookEntityList = bookRepository.findAll();
+        bookEntityList.forEach(book -> {
+            System.out.println("Book " + book.getTitle() + " Author " + book.getAuthor());
+        });
     }
 }

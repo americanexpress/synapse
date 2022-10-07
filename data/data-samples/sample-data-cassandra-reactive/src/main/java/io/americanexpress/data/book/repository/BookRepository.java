@@ -14,13 +14,12 @@
 package io.americanexpress.data.book.repository;
 
 import io.americanexpress.data.book.entity.BookEntity;
-import org.springframework.data.cassandra.repository.CassandraRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.cassandra.repository.ReactiveCassandraRepository;
+import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
-@Repository
-public interface BookRepository extends CassandraRepository<BookEntity, UUID> {
+public interface BookRepository extends ReactiveCassandraRepository<BookEntity, UUID> {
 
-    BookEntity findByTitleAndAuthor(String title, String author);
+    Mono<BookEntity> findByTitleAndAuthor(String title, String author);
 }

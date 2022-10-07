@@ -13,7 +13,7 @@
  */
 package io.americanexpress.data.book.config;
 
-import io.americanexpress.synapse.data.cassandra.config.BaseCassandraDataConfig;
+import io.americanexpress.synapse.data.cassandra.config.BaseReactiveCassandraDataConfig;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -23,7 +23,7 @@ import org.springframework.core.env.Environment;
  */
 @Configuration
 @PropertySource("classpath:/data-book-application.properties")
-public class BookDataConfig extends BaseCassandraDataConfig {
+public class BookDataConfig extends BaseReactiveCassandraDataConfig {
 
     public BookDataConfig(Environment environment) {
         super(environment);
