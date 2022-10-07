@@ -18,6 +18,9 @@ import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
 
+/**
+ * {@code BookEntity} class represents the domain of the books table.
+ */
 @Table("book")
 public class BookEntity extends BaseEntity {
 
