@@ -13,7 +13,7 @@
  */
 package io.americanexpress.synapse.function.rest.router;
 
-import io.americanexpress.synapse.function.rest.handler.BaseReadMonoHandler;
+import io.americanexpress.synapse.function.rest.handler.BaseCreateMonoHandler;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -23,7 +23,7 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
-import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
+import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 
 /**
@@ -33,7 +33,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
  * @param <S> service type
  * @author Gabriel Jimenez
  */
-public abstract class BaseReactiveGetMonoRouter<S extends BaseReadMonoHandler> extends BaseRouter<S> {
+public abstract class BaseCRUDMonoRouter<S extends BaseCreateMonoHandler> extends BaseRouter<S> {
 
     public static String endpoint = "not_a_valid_endpoint";
 
@@ -43,7 +43,7 @@ public abstract class BaseReactiveGetMonoRouter<S extends BaseReadMonoHandler> e
      * @param handler body from the consumer
      * @return a single resource from the back end service
      */
-    @ApiOperation(value = "Reactive Read Mono", notes = "Gets one resource")
+    @ApiOperation(value = "Reactive Create Mono", notes = "Create one resource")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Ok"),
             @ApiResponse(code = 204, message = "No Content"),
@@ -51,11 +51,15 @@ public abstract class BaseReactiveGetMonoRouter<S extends BaseReadMonoHandler> e
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 403, message = "Forbidden"),
     })
-
     @Bean
     public RouterFunction<ServerResponse> route(S handler) {
-        return RouterFunctions
-                .route(GET(getEndpoint()).and(accept(MediaType.APPLICATION_JSON)), handler::read);
+        logger.entry(handler);
+
+        RouterFunction<ServerResponse> routerResponse = RouterFunctions
+                .route(POST(getEndpoint()).and(accept(MediaType.APPLICATION_JSON)), handler::create);
+
+        logger.exit();
+        return routerResponse;
     }
 
     private String getEndpoint() {

@@ -13,37 +13,26 @@
  */
 package io.americanexpress.synapse.function.rest.handler;
 
-import io.americanexpress.synapse.function.rest.model.BaseFunctionRequest;
-import io.americanexpress.synapse.function.rest.model.BaseFunctionResponse;
+import org.springframework.web.reactive.function.server.ServerRequest;
+import org.springframework.web.reactive.function.server.ServerResponse;
+import reactor.core.publisher.Mono;
 
-/**
- * BaseService class specifies the prototypes for performing business logic.
- *
- * @param <I> input request type
- * @param <O> output response type
- * @author Alexei Morgado
- */
-public abstract class BaseCreateService<I extends BaseFunctionRequest, O extends BaseFunctionResponse> extends BaseHandler {
+public abstract class BaseUpdateMonoHandler extends BaseHandler {
 
     /**
-     * Add a single resource.
+     * Get a single resource from the back end service.
      *
      * @param request body received from the controller
-     * @return response body to the controller
+     * @return a single resource from the back end service.
      */
-    public O create(I request) {
+    public Mono<ServerResponse> update(ServerRequest request) {
         logger.entry(request);
-        final O response = executeCreate(request);
+
+        final Mono<ServerResponse> response = executeUpdate(request);
+
         logger.exit(response);
         return response;
     }
 
-    /**
-     * Prototype for adding a resource.
-     *
-     * @param request body received from the controller
-     * @return response body to the controller
-     */
-    protected abstract O executeCreate(I request);
-
+    protected abstract Mono<ServerResponse> executeUpdate(ServerRequest request);
 }
