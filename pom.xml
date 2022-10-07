@@ -888,35 +888,6 @@
                 <artifactId>reactor-core</artifactId>
                 <version>3.4.23</version>
             </dependency>
-            <dependency>
-                <groupId>org.cassandraunit</groupId>
-                <artifactId>cassandra-unit-spring</artifactId>
-                <version>4.3.1.0</version>
-                <scope>test</scope>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.cassandraunit</groupId>
-                        <artifactId>cassandra-unit</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.cassandraunit</groupId>
-                <artifactId>cassandra-unit-shaded</artifactId>
-                <version>4.3.1.0</version>
-                <scope>test</scope>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.apache.thrift</groupId>
-                        <artifactId>libthrift</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.thrift</groupId>
-                <artifactId>libthrift</artifactId>
-                <version>0.17.0</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
