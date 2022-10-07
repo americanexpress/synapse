@@ -13,6 +13,7 @@
  */
 package io.americanexpress.synapse.function.rest.router;
 
+import io.americanexpress.synapse.function.rest.handler.BaseCRUDMonoHandler;
 import io.americanexpress.synapse.function.rest.handler.BaseCreateMonoHandler;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -23,8 +24,7 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
-import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
-import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
+import static org.springframework.web.reactive.function.server.RequestPredicates.*;
 
 /**
  * <code>BaseReactiveReadMonoRouter</code> class specifies the prototypes for listening for requests from the consumer
@@ -33,7 +33,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
  * @param <S> service type
  * @author Gabriel Jimenez
  */
-public abstract class BaseCRUDMonoRouter<S extends BaseCreateMonoHandler> extends BaseRouter<S> {
+public abstract class BaseCRUDMonoRouter<S extends BaseCRUDMonoHandler> extends BaseRouter<S> {
 
     public static String endpoint = "not_a_valid_endpoint";
 
@@ -56,7 +56,10 @@ public abstract class BaseCRUDMonoRouter<S extends BaseCreateMonoHandler> extend
         logger.entry(handler);
 
         RouterFunction<ServerResponse> routerResponse = RouterFunctions
-                .route(POST(getEndpoint()).and(accept(MediaType.APPLICATION_JSON)), handler::create);
+                .route(POST(getEndpoint()).and(accept(MediaType.APPLICATION_JSON)), handler::create)
+                .andRoute(GET(getEndpoint() + "/{id}").and(accept(MediaType.APPLICATION_JSON)), handler::getById)
+                .andRoute(PUT(getEndpoint() + "/{id}").and(accept(MediaType.APPLICATION_JSON)), handler::updateById)
+                .andRoute(DELETE(getEndpoint() + "/{id}").and(accept(MediaType.APPLICATION_JSON)), handler::deleteById);
 
         logger.exit();
         return routerResponse;

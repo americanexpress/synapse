@@ -34,5 +34,38 @@ public abstract class BaseCRUDMonoHandler extends BaseHandler {
         return response;
     }
 
+    public Mono<ServerResponse> getById(ServerRequest request) {
+        logger.entry(request);
+
+        final Mono<ServerResponse> response = executeGetById(request);
+
+        logger.exit(response);
+        return response;
+    }
+
+    public Mono<ServerResponse> updateById(ServerRequest request) {
+        logger.entry(request);
+
+        final Mono<ServerResponse> response = executeUpdateById(request);
+
+        logger.exit(response);
+        return response;
+    }
+
+    public Mono<ServerResponse> deleteById(ServerRequest request) {
+        logger.entry(request);
+
+        final Mono<ServerResponse> response = executeDeleteById(request);
+
+        logger.exit(response);
+        return response;
+    }
+
     protected abstract Mono<ServerResponse> executeCreate(ServerRequest request);
+
+    protected abstract Mono<ServerResponse> executeGetById(ServerRequest request);
+
+    protected abstract Mono<ServerResponse> executeUpdateById(ServerRequest request);
+
+    protected abstract Mono<ServerResponse> executeDeleteById(ServerRequest request);
 }
