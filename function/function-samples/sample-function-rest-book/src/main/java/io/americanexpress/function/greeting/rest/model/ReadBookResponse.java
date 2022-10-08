@@ -13,7 +13,7 @@
  */
 package io.americanexpress.function.greeting.rest.model;
 
-import io.americanexpress.synapse.function.rest.model.BaseFunctionResponse;
+import io.americanexpress.synapse.function.reactive.model.BaseFunctionResponse;
 
 import java.util.Objects;
 

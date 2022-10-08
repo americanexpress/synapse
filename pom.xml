@@ -19,7 +19,7 @@
     <groupId>io.americanexpress.synapse</groupId>
     <artifactId>synapse</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>0.3.0-SNAPSHOT</version>
 
     <description>
         Synapse is a set of lightweight foundational framework modules for rapid development built-in with enterprise

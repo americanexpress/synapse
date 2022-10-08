@@ -13,7 +13,7 @@
  */
 package io.americanexpress.function.greeting.rest.model;
 
-import io.americanexpress.synapse.function.rest.model.BasePaginatedServiceRequest;
+import io.americanexpress.synapse.function.reactive.model.BasePaginatedServiceRequest;
 
 import java.util.Objects;
 
