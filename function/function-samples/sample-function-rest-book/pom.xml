@@ -21,7 +21,7 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>sample-function-rest-book</artifactId>
+    <artifactId>sample-function-book</artifactId>
 
     <!--Dependencies-->
     <dependencies>
