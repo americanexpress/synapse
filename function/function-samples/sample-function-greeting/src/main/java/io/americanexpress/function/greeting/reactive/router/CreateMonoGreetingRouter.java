@@ -10,6 +10,6 @@ public class CreateMonoGreetingRouter extends BaseCreateMonoRouter<CreateMonoGre
 
     @Override
     protected void setEndpoint(String endpoint) {
-        BaseReadMonoRouter.endpoint = "/hello";
+        BaseCreateMonoRouter.endpoint = "/hello";
     }
 }

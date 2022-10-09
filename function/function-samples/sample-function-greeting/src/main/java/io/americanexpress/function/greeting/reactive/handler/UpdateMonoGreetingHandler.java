@@ -15,6 +15,6 @@ public class UpdateMonoGreetingHandler extends BaseUpdateMonoHandler {
     @Override
     protected Mono<ServerResponse> executeUpdate(ServerRequest request) {
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
-                .body(BodyInserters.fromValue(new Greeting("Hello, Spring!!")));
+                .body(BodyInserters.fromValue(new Greeting("Greeting Updated!!")));
     }
 }

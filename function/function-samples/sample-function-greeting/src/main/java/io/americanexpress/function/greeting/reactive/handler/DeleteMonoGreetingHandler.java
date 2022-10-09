@@ -15,6 +15,6 @@ public class DeleteMonoGreetingHandler extends BaseDeleteMonoHandler {
     @Override
     protected Mono<ServerResponse> executeDelete(ServerRequest request) {
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
-                .body(BodyInserters.fromValue(new Greeting("Hello, Spring!!")));
+                .body(BodyInserters.fromValue(new Greeting("Greeting Deleted!")));
     }
 }

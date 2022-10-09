@@ -10,6 +10,6 @@ public class CrudMonoGreetingRouter extends BaseCrudMonoRouter<CrudMonoGreetingH
 
     @Override
     protected void setEndpoint(String endpoint) {
-        BaseReadMonoRouter.endpoint = "/hello";
+        BaseCrudMonoRouter.endpoint = "/hello";
     }
 }

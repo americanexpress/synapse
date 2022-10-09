@@ -10,6 +10,6 @@ public class DeleteMonoGreetingRouter extends BaseDeleteMonoRouter<DeleteMonoGre
 
     @Override
     protected void setEndpoint(String endpoint) {
-        BaseReadMonoRouter.endpoint = "/hello";
+        BaseDeleteMonoRouter.endpoint = "/hello";
     }
 }

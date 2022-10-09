@@ -9,7 +9,6 @@ import reactor.core.publisher.Mono;
 @Component
 public class CrudMonoGreetingHandler extends BaseCrudMonoHandler {
 
-
     @Override
     protected Mono<ServerResponse> executeCreate(ServerRequest request) {
         return null;
