@@ -67,7 +67,7 @@
         <jackson.version>2.13.2</jackson.version>
 
         <!--Logging-->
-        <log4j.version>2.17.2</log4j.version>
+        <log4j.version>2.19.0</log4j.version>
         <sl4j.version>1.7.36</sl4j.version>
 
         <!--Plugins-->
