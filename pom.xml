@@ -46,7 +46,7 @@
         <!--Spring Versions-->
         <spring-framework.version>5.3.23</spring-framework.version>
         <spring-security.version>5.6.2</spring-security.version>
-        <spring-boot-framework.version>2.7.1</spring-boot-framework.version>
+        <spring-boot-framework.version>2.7.4</spring-boot-framework.version>
         <spring-boot-ws-framework.version>1.4.7.RELEASE</spring-boot-ws-framework.version>
         <spring-native.version>0.12.1</spring-native.version>
 
