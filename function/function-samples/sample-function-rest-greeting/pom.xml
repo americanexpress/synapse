@@ -21,7 +21,7 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>sample-function-rest-greeting</artifactId>
+    <artifactId>sample-function-greeting</artifactId>
 
     <!--Dependencies-->
     <dependencies>

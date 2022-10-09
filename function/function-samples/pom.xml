@@ -15,7 +15,7 @@
     <!--Modules-->
     <modules>
         <module>sample-function-rest-book</module>
-        <module>sample-function-rest-greeting</module>
+        <module>sample-function-greeting</module>
     </modules>
 
 </project>

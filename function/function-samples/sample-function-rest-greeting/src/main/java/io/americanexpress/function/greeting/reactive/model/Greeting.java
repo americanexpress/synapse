@@ -1,4 +1,4 @@
-package io.americanexpress.function.greeting.rest.model;
+package io.americanexpress.function.greeting.reactive.model;
 
 public class Greeting {
 

@@ -11,33 +11,33 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.function.greeting.rest.model;
+package io.americanexpress.function.greeting.reactive.model;
 
-import io.americanexpress.synapse.function.reactive.model.BaseFunctionResponse;
+import io.americanexpress.synapse.function.reactive.model.BasePaginatedServiceRequest;
 
 import java.util.Objects;
 
 /**
- * ReadBookResponse is the response used on the mono and poly read controllers.
+ * ReadBookRequest is the model used on the request of the Read Poly Book Controller.
  */
-public class ReadBookResponse extends BaseFunctionResponse {
+public class ReadPolyBookRequest extends BasePaginatedServiceRequest {
 
     private String title;
     private String author;
 
     /**
-     * Instantiates a new Read book response.
+     * Instantiates a new Read book request.
      */
-    public ReadBookResponse() {
+    public ReadPolyBookRequest() {
     }
 
     /**
-     * Instantiates a new Read book response.
+     * Instantiates a new Read book request.
      *
      * @param title  the title
      * @param author the author
      */
-    public ReadBookResponse(String title, String author) {
+    public ReadPolyBookRequest(String title, String author) {
         this.title = title;
         this.author = author;
     }
@@ -83,12 +83,22 @@ public class ReadBookResponse extends BaseFunctionResponse {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ReadBookResponse that = (ReadBookResponse) o;
-        return Objects.equals(title, that.title) && Objects.equals(author, that.author);
+        ReadPolyBookRequest that = (ReadPolyBookRequest) o;
+        return title.equals(that.title) && author.equals(that.author);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(title, author);
     }
+
+    @Override
+    public String toString() {
+        return "ReadBookRequest{" +
+                "title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                '}';
+    }
+
+
 }

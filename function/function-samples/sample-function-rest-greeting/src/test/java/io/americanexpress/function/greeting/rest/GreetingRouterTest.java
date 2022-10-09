@@ -1,6 +1,6 @@
 package io.americanexpress.function.greeting.rest;
 
-import io.americanexpress.function.greeting.rest.model.Greeting;
+import io.americanexpress.function.greeting.reactive.model.Greeting;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

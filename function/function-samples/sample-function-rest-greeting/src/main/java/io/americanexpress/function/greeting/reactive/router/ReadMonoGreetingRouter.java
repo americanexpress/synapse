@@ -1,11 +1,11 @@
-package io.americanexpress.function.greeting.rest.router;
+package io.americanexpress.function.greeting.reactive.router;
 
-import io.americanexpress.function.greeting.rest.handler.ReadMonoGreetingHandler;
+import io.americanexpress.function.greeting.reactive.handler.ReadMonoGreetingHandler;
 import io.americanexpress.synapse.function.reactive.router.BaseReadMonoRouter;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class UpdateMonoGreetingRouter extends BaseReadMonoRouter<ReadMonoGreetingHandler> {
+public class ReadMonoGreetingRouter extends BaseReadMonoRouter<ReadMonoGreetingHandler> {
 
     @Override
     protected void setEndpoint(String endpoint) {

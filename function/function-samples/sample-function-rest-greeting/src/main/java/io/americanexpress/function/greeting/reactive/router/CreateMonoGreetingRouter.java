@@ -1,7 +1,6 @@
-package io.americanexpress.function.greeting.rest.router;
+package io.americanexpress.function.greeting.reactive.router;
 
-import io.americanexpress.function.greeting.rest.handler.CreateMonoGreetingHandler;
-import io.americanexpress.function.greeting.rest.handler.ReadMonoGreetingHandler;
+import io.americanexpress.function.greeting.reactive.handler.CreateMonoGreetingHandler;
 import io.americanexpress.synapse.function.reactive.router.BaseCreateMonoRouter;
 import io.americanexpress.synapse.function.reactive.router.BaseReadMonoRouter;
 import org.springframework.context.annotation.Configuration;

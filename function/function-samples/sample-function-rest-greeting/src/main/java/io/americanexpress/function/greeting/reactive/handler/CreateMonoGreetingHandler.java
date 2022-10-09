@@ -1,8 +1,7 @@
-package io.americanexpress.function.greeting.rest.handler;
+package io.americanexpress.function.greeting.reactive.handler;
 
-import io.americanexpress.function.greeting.rest.model.Greeting;
+import io.americanexpress.function.greeting.reactive.model.Greeting;
 import io.americanexpress.synapse.function.reactive.handler.BaseCreateMonoHandler;
-import io.americanexpress.synapse.function.reactive.handler.BaseReadMonoHandler;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.BodyInserters;

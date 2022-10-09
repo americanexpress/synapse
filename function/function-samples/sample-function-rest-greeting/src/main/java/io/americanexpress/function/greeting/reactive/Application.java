@@ -1,6 +1,6 @@
-package io.americanexpress.function.greeting.rest;
+package io.americanexpress.function.greeting.reactive;
 
-import io.americanexpress.function.greeting.rest.client.GreetingClient;
+import io.americanexpress.function.greeting.reactive.client.GreetingClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
