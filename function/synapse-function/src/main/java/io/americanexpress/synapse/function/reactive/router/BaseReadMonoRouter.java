@@ -23,7 +23,7 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
-import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
+import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 
 /**
@@ -55,15 +55,15 @@ public abstract class BaseReadMonoRouter<S extends BaseReadMonoHandler> extends 
     })
 
     @Bean
-    public RouterFunction<ServerResponse> route(S handler) {
+    public RouterFunction<ServerResponse> readRoute(S handler) {
         logger.entry(handler);
 
         return RouterFunctions
-          .route(GET(getEndpoint()).and(accept(MediaType.APPLICATION_JSON)), handler::read);
+                .route(POST(getEndpoint()).and(accept(MediaType.APPLICATION_JSON)), handler::read);
     }
 
     private String getEndpoint() {
-        return endpoint;
+        return endpoint + INQUIRY_RESULTS;
     }
 
     protected abstract void setEndpoint(String endpoint);

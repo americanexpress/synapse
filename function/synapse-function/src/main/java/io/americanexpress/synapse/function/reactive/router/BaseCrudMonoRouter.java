@@ -51,7 +51,7 @@ public abstract class BaseCrudMonoRouter<S extends BaseCrudMonoHandler> extends 
             @ApiResponse(code = 403, message = "Forbidden"),
     })
     @Bean
-    public RouterFunction<ServerResponse> route(S handler) {
+    public RouterFunction<ServerResponse> crudRoute(S handler) {
         logger.entry(handler);
 
         RouterFunction<ServerResponse> routerResponse = RouterFunctions

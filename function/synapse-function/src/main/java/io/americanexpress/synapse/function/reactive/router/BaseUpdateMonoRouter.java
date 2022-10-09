@@ -52,7 +52,7 @@ public abstract class BaseUpdateMonoRouter<S extends BaseUpdateMonoHandler> exte
             @ApiResponse(code = 403, message = "Forbidden"),
     })
     @Bean
-    public RouterFunction<ServerResponse> route(S handler) {
+    public RouterFunction<ServerResponse> updateRoute(S handler) {
         logger.entry(handler);
 
         RouterFunction<ServerResponse> routerResponse = RouterFunctions

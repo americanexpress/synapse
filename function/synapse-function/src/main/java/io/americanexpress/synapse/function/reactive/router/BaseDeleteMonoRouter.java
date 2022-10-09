@@ -52,7 +52,7 @@ public abstract class BaseDeleteMonoRouter<S extends BaseDeleteMonoHandler> exte
             @ApiResponse(code = 403, message = "Forbidden"),
     })
     @Bean
-    public RouterFunction<ServerResponse> route(S handler) {
+    public RouterFunction<ServerResponse> deleteRoute(S handler) {
         logger.entry(handler);
 
         RouterFunction<ServerResponse> routerResponse = RouterFunctions

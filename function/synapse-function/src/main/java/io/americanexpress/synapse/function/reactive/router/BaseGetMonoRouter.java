@@ -13,7 +13,7 @@
  */
 package io.americanexpress.synapse.function.reactive.router;
 
-import io.americanexpress.synapse.function.reactive.handler.BaseReadMonoHandler;
+import io.americanexpress.synapse.function.reactive.handler.BaseGetMonoHandler;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -33,7 +33,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
  * @param <S> service type
  * @author Gabriel Jimenez
  */
-public abstract class BaseGetMonoRouter<S extends BaseReadMonoHandler> extends BaseRouter<S> {
+public abstract class BaseGetMonoRouter<S extends BaseGetMonoHandler> extends BaseRouter<S> {
 
     public static String endpoint = "not_a_valid_endpoint";
 
@@ -43,7 +43,7 @@ public abstract class BaseGetMonoRouter<S extends BaseReadMonoHandler> extends B
      * @param handler body from the consumer
      * @return a single resource from the back end service
      */
-    @ApiOperation(value = "Reactive Read Mono", notes = "Gets one resource")
+    @ApiOperation(value = "Reactive Get Mono", notes = "Get one resource")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Ok"),
             @ApiResponse(code = 204, message = "No Content"),
@@ -53,9 +53,9 @@ public abstract class BaseGetMonoRouter<S extends BaseReadMonoHandler> extends B
     })
 
     @Bean
-    public RouterFunction<ServerResponse> route(S handler) {
+    public RouterFunction<ServerResponse> getRoute(S handler) {
         return RouterFunctions
-                .route(GET(getEndpoint()).and(accept(MediaType.APPLICATION_JSON)), handler::read);
+                .route(GET(getEndpoint()).and(accept(MediaType.APPLICATION_JSON)), handler::get);
     }
 
     private String getEndpoint() {

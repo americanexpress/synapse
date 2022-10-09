@@ -14,6 +14,7 @@
 package io.americanexpress.synapse.function.reactive.router;
 
 import io.americanexpress.synapse.function.reactive.handler.BaseReadMonoHandler;
+import io.americanexpress.synapse.function.reactive.handler.BaseReadPolyHandler;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -33,9 +34,9 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
  * @param <S> service type
  * @author Gabriel Jimenez
  */
-public abstract class BaseReadPolyRouter<S extends BaseReadMonoHandler> extends BaseRouter<S> {
+public abstract class BaseReadPolyRouter<S extends BaseReadPolyHandler> extends BaseRouter<S> {
 
-    public static final String INQUIRY_RESULTS = "/inquiry_results";
+    public static final String INQUIRY_RESULTS = "/multiple_results";
 
     public static String endpoint = "not_a_valid_endpoint";
 
