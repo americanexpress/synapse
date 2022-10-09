@@ -13,7 +13,7 @@
  */
 package io.americanexpress.synapse.function.reactive.router;
 
-import io.americanexpress.synapse.function.reactive.handler.BaseCRUDMonoHandler;
+import io.americanexpress.synapse.function.reactive.handler.BaseCrudMonoHandler;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -32,7 +32,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
  * @param <S> service type
  * @author Gabriel Jimenez
  */
-public abstract class BaseCRUDMonoRouter<S extends BaseCRUDMonoHandler> extends BaseRouter<S> {
+public abstract class BaseCrudMonoRouter<S extends BaseCrudMonoHandler> extends BaseRouter<S> {
 
     public static String endpoint = "not_a_valid_endpoint";
 

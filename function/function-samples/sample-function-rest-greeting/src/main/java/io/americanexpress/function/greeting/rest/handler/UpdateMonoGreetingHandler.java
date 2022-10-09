@@ -2,6 +2,7 @@ package io.americanexpress.function.greeting.rest.handler;
 
 import io.americanexpress.function.greeting.rest.model.Greeting;
 import io.americanexpress.synapse.function.reactive.handler.BaseReadMonoHandler;
+import io.americanexpress.synapse.function.reactive.handler.BaseUpdateMonoHandler;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -10,10 +11,10 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
 @Component
-public class SynapseGreetingHandler extends BaseReadMonoHandler {
+public class UpdateMonoGreetingHandler extends BaseUpdateMonoHandler {
 
     @Override
-    protected Mono<ServerResponse> executeRead(ServerRequest request) {
+    protected Mono<ServerResponse> executeUpdate(ServerRequest request) {
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromValue(new Greeting("Hello, Spring!!")));
     }

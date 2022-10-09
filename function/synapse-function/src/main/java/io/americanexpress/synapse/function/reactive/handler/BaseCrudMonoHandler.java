@@ -17,7 +17,7 @@ import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
-public abstract class BaseCRUDMonoHandler extends BaseHandler {
+public abstract class BaseCrudMonoHandler extends BaseHandler {
 
     /**
      * Get a single resource from the back end service.
