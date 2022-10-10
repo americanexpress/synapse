@@ -6,9 +6,15 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+/**
+ * {@code BookWebClient} the book web client.
+ */
 @Component
 public class BookWebClient {
 
+  /**
+   * The web client.
+   */
   private final WebClient client;
 
   // Spring Boot auto-configures a `WebClient.Builder` instance with nice defaults and customizations.
