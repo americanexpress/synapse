@@ -13,59 +13,72 @@
  */
 package io.americanexpress.synapse.function.reactive.handler;
 
+import io.americanexpress.synapse.function.reactive.model.BaseFunctionResponse;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
-public abstract class BaseCrudMonoHandler extends BaseHandler {
+public abstract class BaseCrudMonoHandler<S extends BaseFunctionResponse> extends BaseHandler {
 
-    /**
-     * Get a single resource from the back end service.
-     *
-     * @param request body received from the controller
-     * @return a single resource from the back end service.
-     */
-    public Mono<ServerResponse> create(ServerRequest request) {
-        logger.entry(request);
+    private Class<S> baseFunctionResponse;
 
-        final Mono<ServerResponse> response = executeCreate(request);
-
-        logger.exit(response);
-        return response;
+    public Mono<ServerResponse> getAll(ServerRequest request) {
+        return ServerResponse
+          .ok()
+          .contentType(MediaType.APPLICATION_JSON)
+//          .body(executeGetAll(request), baseFunctionResponse);
+          .body(executeGetAll(request), baseFunctionResponse);
     }
 
     public Mono<ServerResponse> getById(ServerRequest request) {
-        logger.entry(request);
+        return executeGetById(request.pathVariable("id"))
+            .flatMap(user -> ServerResponse
+            .ok()
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(user, baseFunctionResponse)
+          )
+          .switchIfEmpty(ServerResponse.notFound().build());
+    }
 
-        final Mono<ServerResponse> response = executeGetById(request);
+    public Mono<ServerResponse> create(ServerRequest request) {
+        Mono<S> response = request.bodyToMono(baseFunctionResponse);
 
-        logger.exit(response);
-        return response;
+        return response
+            .flatMap(u -> ServerResponse
+            .status(HttpStatus.CREATED)
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(executeCreate(u), baseFunctionResponse)
+          );
     }
 
     public Mono<ServerResponse> updateById(ServerRequest request) {
-        logger.entry(request);
+        String id = request.pathVariable("id");
+        Mono<S> update = request.bodyToMono(baseFunctionResponse);
 
-        final Mono<ServerResponse> response = executeUpdateById(request);
-
-        logger.exit(response);
-        return response;
+        return update
+            .flatMap(object -> ServerResponse
+            .ok()
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(executeUpdateById(id, object), baseFunctionResponse)
+          );
     }
 
-    public Mono<ServerResponse> deleteById(ServerRequest request) {
-        logger.entry(request);
-
-        final Mono<ServerResponse> response = executeDeleteById(request);
-
-        logger.exit(response);
-        return response;
+    public Mono<ServerResponse> deleteById(ServerRequest request){
+        return executeDeleteById(request.pathVariable("id"))
+          .flatMap(u -> ServerResponse.ok().body(u, baseFunctionResponse))
+          .switchIfEmpty(ServerResponse.notFound().build());
     }
 
-    protected abstract Mono<ServerResponse> executeCreate(ServerRequest request);
+    protected abstract Mono<ServerResponse> executeGetAll(ServerRequest request);
 
-    protected abstract Mono<ServerResponse> executeGetById(ServerRequest request);
+    protected abstract Mono<ServerResponse> executeCreate(S object);
 
-    protected abstract Mono<ServerResponse> executeUpdateById(ServerRequest request);
+    protected abstract Mono<ServerResponse> executeGetById(String id);
 
-    protected abstract Mono<ServerResponse> executeDeleteById(ServerRequest request);
+    protected abstract Mono<ServerResponse> executeUpdateById(String id, S object);
+
+    protected abstract Mono<ServerResponse> executeDeleteById(String id);
+
 }
