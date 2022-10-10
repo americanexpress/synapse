@@ -244,6 +244,11 @@
             <!--Data-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-data-cassandra</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-data-couchbase</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -320,6 +325,16 @@
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>sample-data-mongodb-reactive</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-cassandra-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-cassandra-reactive</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -834,6 +849,27 @@
                 <artifactId>kotlin-test</artifactId>
                 <version>${kotlin.version}</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-stdlib-jdk8</artifactId>
+                <version>${kotlin.version}</version>
+            </dependency>
+            <!--Cassandra-->
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-cassandra</artifactId>
+                <version>3.4.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>5.3.23</version>
+            </dependency>
+            <dependency>
+                <groupId>io.projectreactor</groupId>
+                <artifactId>reactor-core</artifactId>
+                <version>3.4.23</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

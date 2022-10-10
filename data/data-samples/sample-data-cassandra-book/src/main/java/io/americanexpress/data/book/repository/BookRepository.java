@@ -11,15 +11,19 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.data.book.config;
+package io.americanexpress.data.book.repository;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
+import io.americanexpress.data.book.entity.BookEntity;
+import org.springframework.data.cassandra.repository.CassandraRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.UUID;
 
 /**
- * {@code BookDataTestConfig} class contains configurations for tests.
+ * {@code BookRepository} is the dao repository to handle the queries for the books table.
  */
-@Configuration
-@Import({BookDataConfig.class})
-public class BookDataTestConfig {
+@Repository
+public interface BookRepository extends CassandraRepository<BookEntity, UUID> {
+
+    BookEntity findByTitleAndAuthor(String title, String author);
 }

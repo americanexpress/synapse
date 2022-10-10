@@ -18,16 +18,21 @@ import io.americanexpress.data.book.entity.BookEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
+import java.util.UUID;
+
 /**
- * {@code BookRepositoryIT} class runs integration test on local MongoDB instance test database.
+ * {@code BookRepositoryIT} class runs integration test on local Cassandra instance test database.
  */
+@EnableAutoConfiguration
 @ContextConfiguration(classes = BookDataTestConfig.class)
-@DataMongoTest
+@SpringBootTest(properties = "spring.main.allow-bean-definition-overriding=true")
 class BookRepositoryIT {
 
     @Autowired
@@ -45,25 +50,12 @@ class BookRepositoryIT {
     }
 
     @Test
-    void findAll_givenBookCollection_expectedCollectionNotEmpty() {
-        BookEntity entry = createSampleBook();
-        bookRepository.save(entry).block();
-        Flux<BookEntity> bookDocumentFlux = bookRepository.findAll();
-        StepVerifier.create(bookDocumentFlux).expectNextCount(1).verifyComplete();
-    }
+    void findByTitleAndAuthor_givenBook_expectedBookFound() {
+        BookEntity bookEntity = new BookEntity("Alice In Wonderland", "Lewis Carroll");
+        bookEntity.setIdentifier(UUID.randomUUID());
+        bookRepository.save(bookEntity).block();
 
-    @Test
-    void findByTitle_givenBookTitle_expectedBookFound() {
-        BookEntity entry = createSampleBook();
-        bookRepository.save(entry).block();
-        Flux<BookEntity> bookDocumentFlux = bookRepository.findByTitle("Alice in Wonderland");
-        StepVerifier.create(bookDocumentFlux).assertNext(bookEntity -> entry.getTitle().equalsIgnoreCase(bookEntity.getTitle())).expectComplete().verify();
-    }
-
-    private BookEntity createSampleBook() {
-        BookEntity bookDocument = new BookEntity();
-        bookDocument.setTitle("Alice in Wonderland");
-        bookDocument.setAuthor("Lewis Carroll");
-        return bookDocument;
+        Mono<BookEntity> bookEntityMono = bookRepository.findByTitleAndAuthor("Alice In Wonderland", "Lewis Carroll");
+        StepVerifier.create(bookEntityMono).assertNext(book -> bookEntity.getTitle().equalsIgnoreCase(book.getTitle())).expectComplete().verify();
     }
 }

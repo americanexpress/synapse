@@ -16,24 +16,27 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
+        <artifactId>data-samples</artifactId>
         <groupId>io.americanexpress.synapse</groupId>
-        <artifactId>synapse</artifactId>
         <version>0.3.0-SNAPSHOT</version>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>data</artifactId>
-    <packaging>pom</packaging>
 
-    <!--Modules-->
-    <modules>
-    
-        <!-- Base data Synapse dependencies-->
-        <module>data-samples</module>
-        <module>synapse-data-cassandra</module>
-        <module>synapse-data-couchbase</module>
-        <module>synapse-data-mongodb</module>
-        <module>synapse-data-postgres</module>
-    </modules>
+    <artifactId>sample-data-cassandra-book</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.americanexpress.synapse</groupId>
+            <artifactId>synapse-data-cassandra</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test-autoconfigure</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>
