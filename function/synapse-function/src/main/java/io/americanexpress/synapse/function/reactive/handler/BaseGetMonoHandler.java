@@ -13,12 +13,11 @@
  */
 package io.americanexpress.synapse.function.reactive.handler;
 
-import io.americanexpress.synapse.function.reactive.model.BaseFunctionResponse;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
-public abstract class BaseGetMonoHandler<O extends BaseFunctionResponse> extends BaseHandler {
+public abstract class BaseGetMonoHandler extends BaseHandler {
 
 
     /**

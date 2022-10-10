@@ -20,7 +20,7 @@ import reactor.core.publisher.Mono;
 public abstract class BaseReadPolyHandler extends BaseHandler {
 
     /**
-     * Get a single resource from the back end service.
+     * Get a multiple resources.
      *
      * @param request body received from the controller
      * @return a single resource from the back end service.

@@ -27,8 +27,8 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 
 /**
- * <code>BaseReactiveReadMonoRouter</code> class specifies the prototypes for listening for requests from the consumer
- * to Read (POST) a resource.
+ * <code>BaseGetMonoRouter</code> class specifies the prototypes for listening for requests from the consumer
+ * to Read (GET) a resource.
  *
  * @param <S> service type
  * @author Gabriel Jimenez
@@ -53,7 +53,7 @@ public abstract class BaseGetMonoRouter<S extends BaseGetMonoHandler> extends Ba
     })
 
     @Bean
-    public RouterFunction<ServerResponse> getRoute(S handler) {
+    public RouterFunction<ServerResponse> route(S handler) {
         return RouterFunctions
                 .route(GET(getEndpoint()).and(accept(MediaType.APPLICATION_JSON)), handler::get);
     }

@@ -11,6 +11,6 @@ public class GetMonoGreetingRouter extends BaseGetMonoRouter<GetMonoGreetingHand
 
     @Override
     protected void setEndpoint(String endpoint) {
-        BaseGetMonoRouter.endpoint = "/hello";
+        BaseGetMonoRouter.endpoint = "hello";
     }
 }

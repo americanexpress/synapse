@@ -13,7 +13,6 @@
  */
 package io.americanexpress.synapse.function.reactive.router;
 
-import io.americanexpress.synapse.function.reactive.handler.BaseReadMonoHandler;
 import io.americanexpress.synapse.function.reactive.handler.BaseReadPolyHandler;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -56,7 +55,7 @@ public abstract class BaseReadPolyRouter<S extends BaseReadPolyHandler> extends 
     })
 
     @Bean
-    public RouterFunction<ServerResponse> route(S handler) {
+    public RouterFunction<ServerResponse> routePoly(S handler) {
         return RouterFunctions
                 .route(GET(getEndpoint()).and(accept(MediaType.APPLICATION_JSON)), handler::read);
     }

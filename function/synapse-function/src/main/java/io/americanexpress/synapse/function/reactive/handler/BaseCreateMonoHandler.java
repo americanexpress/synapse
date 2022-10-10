@@ -20,7 +20,7 @@ import reactor.core.publisher.Mono;
 public abstract class BaseCreateMonoHandler extends BaseHandler {
 
     /**
-     * Get a single resource from the back end service.
+     * Create a single resource
      *
      * @param request body received from the controller
      * @return a single resource from the back end service.

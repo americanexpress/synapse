@@ -27,7 +27,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 
 /**
- * <code>BaseReactiveReadMonoRouter</code> class specifies the prototypes for listening for requests from the consumer
+ * <code>BaseReadMonoRouter</code> class specifies the prototypes for listening for requests from the consumer
  * to Read (POST) a resource.
  *
  * @param <S> service type
