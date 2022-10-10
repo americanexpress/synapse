@@ -22,7 +22,10 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
+
+import java.util.UUID;
 
 /**
  * {@code BookRepositoryIT} class runs integration test on local Cassandra instance test database.
@@ -44,5 +47,15 @@ class BookRepositoryIT {
     void findAll_givenEmptyBookCollection_expectedNoBooksFound() {
         Flux<BookEntity> bookDocumentFlux = bookRepository.findAll();
         StepVerifier.create(bookDocumentFlux).expectNextCount(0).verifyComplete();
+    }
+
+    @Test
+    void findByTitleAndAuthor_givenBook_expectedBookFound() {
+        BookEntity bookEntity = new BookEntity("Alice In Wonderland", "Lewis Carroll");
+        bookEntity.setIdentifier(UUID.randomUUID());
+        bookRepository.save(bookEntity).block();
+
+        Mono<BookEntity> bookEntityMono = bookRepository.findByTitleAndAuthor("Alice In Wonderland", "Lewis Carroll");
+        StepVerifier.create(bookEntityMono).assertNext(book -> bookEntity.getTitle().equalsIgnoreCase(book.getTitle())).expectComplete().verify();
     }
 }

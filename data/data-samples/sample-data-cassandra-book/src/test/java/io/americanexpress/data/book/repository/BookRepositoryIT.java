@@ -14,6 +14,7 @@
 package io.americanexpress.data.book.repository;
 
 import io.americanexpress.data.book.config.BookDataTestConfig;
+import io.americanexpress.data.book.entity.BookEntity;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
 import org.springframework.boot.test.autoconfigure.data.cassandra.DataCassandraTest;
 import org.springframework.test.context.ContextConfiguration;
+
+import java.util.UUID;
 
 /**
  * {@code BookRepositoryIT} class runs integration test on local Cassandra instance test database.
@@ -45,6 +48,16 @@ class BookRepositoryIT {
     @Test
     void findAll_givenEmptyBookCollection_expectedNoBooksFound() {
         Assertions.assertEquals(0, bookRepository.findAll().size());
+    }
+
+    @Test
+    void findByTitleAndAuthor_givenBook_expectedBookFound() {
+        BookEntity bookEntity = new BookEntity("Alice In Wonderland", "Lewis Carroll");
+        bookEntity.setIdentifier(UUID.randomUUID());
+        bookRepository.save(bookEntity);
+
+        BookEntity book = bookRepository.findByTitleAndAuthor("Alice In Wonderland", "Lewis Carroll");
+        Assertions.assertEquals(bookEntity.getTitle(), book.getTitle());
     }
 
 }
