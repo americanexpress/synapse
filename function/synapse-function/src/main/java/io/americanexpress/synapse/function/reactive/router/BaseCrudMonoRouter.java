@@ -18,6 +18,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
@@ -26,15 +27,18 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import static org.springframework.web.reactive.function.server.RequestPredicates.*;
 
 /**
- * <code>BaseReactiveReadMonoRouter</code> class specifies the prototypes for listening for requests from the consumer
+ * {@code BaseReactiveReadMonoRouter} class specifies the prototypes for listening for requests from the consumer
  * to Read (POST) a resource.
  *
  * @param <S> service type
  * @author Gabriel Jimenez
  */
+
+@Configuration
 public abstract class BaseCrudMonoRouter<S extends BaseCrudMonoHandler> extends BaseRouter<S> {
 
-    public static String endpoint = "not_a_valid_endpoint";
+    private String endpoint = "books";
+
 
     /**
      * Get a single resource from the back end service.
@@ -50,17 +54,21 @@ public abstract class BaseCrudMonoRouter<S extends BaseCrudMonoHandler> extends 
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 403, message = "Forbidden"),
     })
+
     @Bean
     public RouterFunction<ServerResponse> crudRoute(S handler) {
         logger.entry(handler);
 
         RouterFunction<ServerResponse> routerResponse = RouterFunctions
-                .route(POST(getEndpoint()).and(accept(MediaType.APPLICATION_JSON)), handler::create)
-                .andRoute(GET(getEndpoint() + "/{id}").and(accept(MediaType.APPLICATION_JSON)), handler::getById)
-                .andRoute(PUT(getEndpoint() + "/{id}").and(accept(MediaType.APPLICATION_JSON)), handler::updateById)
-                .andRoute(DELETE(getEndpoint() + "/{id}").and(accept(MediaType.APPLICATION_JSON)), handler::deleteById);
+//                .route(GET(getEndpoint()).and(accept(MediaType.APPLICATION_JSON)), handler::getAll)
+                .route(GET(getEndpoint()).and(accept(MediaType.APPLICATION_JSON)), handler::getAll);
+//                .andRoute(POST(getEndpoint()).and(accept(MediaType.APPLICATION_JSON)), handler::create)
+//                .andRoute(GET(getEndpoint() + "/{id}").and(accept(MediaType.APPLICATION_JSON)), handler::getById)
+//                .andRoute(PUT(getEndpoint() + "/{id}").and(accept(MediaType.APPLICATION_JSON)), handler::updateById)
+//                .andRoute(DELETE(getEndpoint() + "/{id}").and(accept(MediaType.APPLICATION_JSON)), handler::deleteById);
 
         logger.exit();
+
         return routerResponse;
     }
 
