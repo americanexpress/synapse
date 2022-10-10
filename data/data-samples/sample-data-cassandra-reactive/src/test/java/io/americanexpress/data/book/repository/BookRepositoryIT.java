@@ -14,37 +14,35 @@
 package io.americanexpress.data.book.repository;
 
 import io.americanexpress.data.book.config.BookDataTestConfig;
-import org.junit.jupiter.api.Assertions;
+import io.americanexpress.data.book.entity.BookEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
-import org.springframework.boot.test.autoconfigure.data.cassandra.DataCassandraTest;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
+import reactor.core.publisher.Flux;
+import reactor.test.StepVerifier;
 
 /**
  * {@code BookRepositoryIT} class runs integration test on local Cassandra instance test database.
  */
-@DataCassandraTest
+@EnableAutoConfiguration
 @ContextConfiguration(classes = BookDataTestConfig.class)
-@AutoConfigurationPackage
+@SpringBootTest(properties = "spring.main.allow-bean-definition-overriding=true")
 class BookRepositoryIT {
 
-    private final BookRepository bookRepository;
-
     @Autowired
-    public BookRepositoryIT(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
+    private BookRepository bookRepository;
 
     @BeforeEach
-    void clean() {
-        bookRepository.deleteAll();
+    void init() {
+        bookRepository.deleteAll().block();
     }
 
     @Test
     void findAll_givenEmptyBookCollection_expectedNoBooksFound() {
-        Assertions.assertEquals(0, bookRepository.findAll().size());
+        Flux<BookEntity> bookDocumentFlux = bookRepository.findAll();
+        StepVerifier.create(bookDocumentFlux).expectNextCount(0).verifyComplete();
     }
-
 }
