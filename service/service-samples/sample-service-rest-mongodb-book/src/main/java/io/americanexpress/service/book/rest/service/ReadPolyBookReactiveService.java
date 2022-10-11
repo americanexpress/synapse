@@ -14,25 +14,31 @@
 package io.americanexpress.service.book.rest.service;
 
 import io.americanexpress.data.book.repository.BookRepository;
-import io.americanexpress.synapse.service.rest.service.reactive.BaseDeleteReactiveService;
+import io.americanexpress.service.book.rest.model.ReadBookRequest;
+import io.americanexpress.service.book.rest.model.ReadBookResponse;
+import io.americanexpress.service.book.rest.service.helper.ReadBookResponseCreator;
+import io.americanexpress.synapse.service.rest.service.reactive.BaseReadPolyReactiveService;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Mono;
+import reactor.core.publisher.Flux;
+
 
 /**
- * {@code ReactiveDeleteBookService} deletes book in the database given request.
+ * {@code ReadPolyBookReactiveService} retrieves books from the database given request.
  */
 @Service
-public class ReactiveDeleteBookService extends BaseDeleteReactiveService {
+public class ReadPolyBookReactiveService extends BaseReadPolyReactiveService<ReadBookRequest, ReadBookResponse> {
 
     private final BookRepository bookRepository;
 
-    public ReactiveDeleteBookService(BookRepository bookRepository) {
+    public ReadPolyBookReactiveService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
     @Override
-    protected Mono<Void> executeDelete(String identifier) {
-        //assuming identifier = title of book
-        return bookRepository.deleteByTitle(identifier);
+    protected Flux<ReadBookResponse> executeRead(ReadBookRequest request) {
+        return bookRepository.findByTitle(request.getTitle())
+                .map(ReadBookResponseCreator::create)
+                .switchIfEmpty(Flux.empty());
+
     }
 }

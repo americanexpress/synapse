@@ -21,12 +21,15 @@ import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 import reactor.core.publisher.Mono;
 
+/**
+ * {@code UpdateBookReactiveService} updates book in the database given request.
+ */
 @Service
-public class ReactiveUpdateBookService extends BaseUpdateReactiveService<UpdateBookRequest> {
+public class UpdateBookReactiveService extends BaseUpdateReactiveService<UpdateBookRequest> {
 
     private final BookRepository bookRepository;
 
-    public ReactiveUpdateBookService(BookRepository bookRepository) {
+    public UpdateBookReactiveService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 

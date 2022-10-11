@@ -13,18 +13,18 @@
  */
 package io.americanexpress.service.book.rest.controller;
 
-import io.americanexpress.service.book.rest.config.BookConfig;
+import io.americanexpress.service.book.rest.config.BookEndpoints;
 import io.americanexpress.service.book.rest.model.CreateBookRequest;
 import io.americanexpress.service.book.rest.model.CreateBookResponse;
-import io.americanexpress.service.book.rest.service.ReactiveCreateBookService;
+import io.americanexpress.service.book.rest.service.CreateBookReactiveService;
 import io.americanexpress.synapse.service.rest.controller.reactive.BaseCreateReactiveController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * {@code ReactiveCreateMonoBookController} creates a book given a CreateBookRequest.
+ * {@code CreateBookReactiveController} creates a book given a CreateBookRequest.
  */
 @RestController
-@RequestMapping(BookConfig.BOOK_ENDPOINT)
-public class ReactiveCreateBookController extends BaseCreateReactiveController<CreateBookRequest, CreateBookResponse, ReactiveCreateBookService> {
+@RequestMapping(BookEndpoints.BOOK_ENDPOINT)
+public class CreateBookReactiveController extends BaseCreateReactiveController<CreateBookRequest, CreateBookResponse, CreateBookReactiveService> {
 }

@@ -14,31 +14,32 @@
 package io.americanexpress.service.book.rest.service;
 
 import io.americanexpress.data.book.repository.BookRepository;
-import io.americanexpress.service.book.rest.model.ReadBookRequest;
-import io.americanexpress.service.book.rest.model.ReadBookResponse;
-import io.americanexpress.service.book.rest.service.helper.ReadBookResponseCreator;
-import io.americanexpress.synapse.service.rest.service.reactive.BaseReadPolyReactiveService;
+import io.americanexpress.data.book.entity.BookEntity;
+import io.americanexpress.service.book.rest.model.CreateBookRequest;
+import io.americanexpress.service.book.rest.model.CreateBookResponse;
+import io.americanexpress.synapse.service.rest.service.reactive.BaseCreateReactiveService;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Flux;
-
+import reactor.core.publisher.Mono;
 
 /**
- * {@code ReactiveReadPolyBookService} retrieves books from the database given request.
+ * {@code CreateBookReactiveService} creates book in the database given request.
  */
 @Service
-public class ReactiveReadPolyBookService extends BaseReadPolyReactiveService<ReadBookRequest, ReadBookResponse> {
+public class CreateBookReactiveService extends BaseCreateReactiveService<CreateBookRequest, CreateBookResponse> {
 
     private final BookRepository bookRepository;
 
-    public ReactiveReadPolyBookService(BookRepository bookRepository) {
+    public CreateBookReactiveService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
     @Override
-    protected Flux<ReadBookResponse> executeRead(ReadBookRequest request) {
-        return bookRepository.findByTitle(request.getTitle())
-                .map(ReadBookResponseCreator::create)
-                .switchIfEmpty(Flux.empty());
+    protected Mono<CreateBookResponse> executeCreate(CreateBookRequest request) {
+        BookEntity bookEntity = new BookEntity();
+        bookEntity.setTitle(request.getTitle());
+        bookEntity.setAuthor(request.getAuthor());
+
+        return bookRepository.save(bookEntity).map(book -> new CreateBookResponse()).switchIfEmpty(Mono.empty());
 
     }
 }
