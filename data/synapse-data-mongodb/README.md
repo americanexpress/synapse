@@ -19,7 +19,7 @@
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-data-mongodb</artifactId>
-            <version>0.3.0-SNAPSHOT</version>
+            <version>0.3.1-SNAPSHOT</version>
         </dependency>
 ```
 Or add the following to the build.gradle file:
