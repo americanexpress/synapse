@@ -11,14 +11,14 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
 @Component
-public class ReadMonoGreetingHandler extends BaseReadMonoHandler {
+public class ReadMonoGreetingHandler extends BaseReadMonoHandler<Greeting> {
 
     private ReadMonoGreetingHandler(@Autowired Validator validator) {
         super(Greeting.class, validator);
     }
 
     @Override
-    protected Mono<ServerResponse> executeRead(Object request) {
+    protected Mono<ServerResponse> executeRead(Greeting request) {
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromValue(new Greeting("Hello, Spring!!")));
     }
