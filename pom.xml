@@ -19,7 +19,7 @@
     <groupId>io.americanexpress.synapse</groupId>
     <artifactId>synapse</artifactId>
     <packaging>pom</packaging>
-    <version>0.2.19-SNAPSHOT</version>
+    <version>0.3.0-SNAPSHOT</version>
 
     <description>
         Synapse is a set of lightweight foundational framework modules for rapid development built-in with enterprise
@@ -46,7 +46,7 @@
         <!--Spring Versions-->
         <spring-framework.version>5.3.23</spring-framework.version>
         <spring-security.version>5.6.2</spring-security.version>
-        <spring-boot-framework.version>2.7.1</spring-boot-framework.version>
+        <spring-boot-framework.version>2.7.4</spring-boot-framework.version>
         <spring-boot-ws-framework.version>1.4.7.RELEASE</spring-boot-ws-framework.version>
         <spring-native.version>0.12.1</spring-native.version>
 
@@ -67,13 +67,12 @@
         <jackson.version>2.13.2</jackson.version>
 
         <!--Logging-->
-        <log4j.version>2.17.2</log4j.version>
+        <log4j.version>2.19.0</log4j.version>
         <sl4j.version>1.7.36</sl4j.version>
 
         <!--Plugins-->
         <native-plugin.version>0.9.13</native-plugin.version>
         <jaxws-maven-plugin.version>2.5</jaxws-maven-plugin.version>
-        <kotlin.version>1.7.20</kotlin.version>
     </properties>
 
     <modules>
@@ -165,7 +164,7 @@
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-archetype-service-rest-get</artifactId>
-                <version>0.2.19-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
@@ -175,7 +174,7 @@
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-archetype-service-rest-reactive-post</artifactId>
-                <version>0.2.19-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <!--Framework-->
             <dependency>
@@ -245,6 +244,11 @@
             <!--Data-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-data-cassandra</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-data-couchbase</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -289,6 +293,11 @@
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-function-greeting</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>sample-service-graphql-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -297,6 +306,7 @@
                 <artifactId>sample-service-rest-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>sample-service-rest-native-book</artifactId>
@@ -315,6 +325,16 @@
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>sample-data-mongodb-reactive</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-cassandra-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-cassandra-reactive</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -664,7 +684,6 @@
                 <version>${jackson.version}</version>
             </dependency>
 
-
             <!--Mock Dependencies-->
             <dependency>
                 <groupId>org.mockito</groupId>
@@ -687,12 +706,6 @@
                 <groupId>org.graalvm.buildtools</groupId>
                 <artifactId>junit-platform-native</artifactId>
                 <version>0.9.14</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.junit.platform</groupId>
-                <artifactId>junit-platform-launcher</artifactId>
-                <version>1.9.1</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -730,6 +743,7 @@
                 <groupId>org.junit.platform</groupId>
                 <artifactId>junit-platform-launcher</artifactId>
                 <version>${junit.version}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.junit.platform</groupId>
@@ -764,38 +778,11 @@
                 <version>${sl4j.version}</version>
             </dependency>
 
-
             <!--Couchbase-->
             <dependency>
                 <groupId>com.couchbase.client</groupId>
                 <artifactId>java-client</artifactId>
                 <version>3.1.4</version>
-            </dependency>
-
-            <!--Quarkus-->
-            <dependency>
-                <groupId>io.quarkus</groupId>
-                <artifactId>quarkus-bom</artifactId>
-                <version>2.10.2.Final</version>
-                <type>pom</type>
-                <scope>import</scope>
-                <exclusions>
-                    <exclusion>
-                        <groupId>io.quarkus</groupId>
-                        <artifactId>quarkus-ide-launcher</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>io.quarkus</groupId>
-                <artifactId>quarkus-spring-web</artifactId>
-                <version>2.2.1.Final</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>io.quarkus</groupId>
-                        <artifactId>quarkus-ide-launcher</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
 
             <!--Spring Native-->
@@ -861,6 +848,7 @@
                 <artifactId>spring-data-mongodb</artifactId>
                 <version>3.4.2</version>
             </dependency>
+
             <!--Kotlin-->
             <dependency>
                 <groupId>org.jetbrains.kotlin</groupId>
@@ -878,28 +866,24 @@
                 <artifactId>kotlin-stdlib-jdk8</artifactId>
                 <version>${kotlin.version}</version>
             </dependency>
+            <!--Cassandra-->
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-cassandra</artifactId>
+                <version>3.4.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>5.3.23</version>
+            </dependency>
+            <dependency>
+                <groupId>io.projectreactor</groupId>
+                <artifactId>reactor-core</artifactId>
+                <version>3.4.23</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib-jdk8</artifactId>
-            <version>${kotlin.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-test</artifactId>
-            <version>${kotlin.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib-jdk8</artifactId>
-            <version>${kotlin.version}</version>
-        </dependency>
-    </dependencies>
-
 
     <!--Plugin Management-->
     <build>
@@ -1143,7 +1127,6 @@
                     <artifactId>native-maven-plugin</artifactId>
                     <version>${native-plugin.version}</version>
                     <configuration>
-                        <classifier>exec</classifier>
                     </configuration>
                     <executions>
                         <execution>

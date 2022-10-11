@@ -18,7 +18,7 @@
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
         <artifactId>synapse</artifactId>
-        <version>0.2.19-SNAPSHOT</version>
+        <version>0.3.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -30,6 +30,7 @@
     
         <!-- Base data Synapse dependencies-->
         <module>data-samples</module>
+        <module>synapse-data-cassandra</module>
         <module>synapse-data-couchbase</module>
         <module>synapse-data-mongodb</module>
         <module>synapse-data-postgres</module>
