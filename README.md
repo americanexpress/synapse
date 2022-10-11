@@ -299,13 +299,13 @@ The following listing shows the pom.xml file that is created when you choose Mav
     <parent>
         <groupId>com.sample.bookstore</groupId>
         <artifactId>service</artifactId>
-        <version>0.3.0-SNAPSHOT</version>
+        <version>0.3.3-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.sample.bookstore</groupId>
     <artifactId>service-greeting</artifactId>
-    <version>0.3.0-SNAPSHOT</version>
+    <version>0.3.3-SNAPSHOT</version>
 
     <properties>
         <start-class>com.sample.bookstore.GreetingApplication</start-class>
