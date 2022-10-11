@@ -17,8 +17,9 @@ import io.americanexpress.data.book.entity.BookEntity;
 import io.americanexpress.data.book.repository.BookRepository;
 import io.americanexpress.service.book.rest.model.UpdateBookRequest;
 import io.americanexpress.synapse.service.rest.service.reactive.BaseUpdateReactiveService;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.webjars.NotFoundException;
+import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
 
 /**
@@ -36,14 +37,9 @@ public class UpdateBookReactiveService extends BaseUpdateReactiveService<UpdateB
     @Override
     protected Mono<Void> executeUpdate(UpdateBookRequest request) {
         return bookRepository.findByTitleAndAuthor(request.getTitle(), request.getAuthor())
+                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.BAD_REQUEST, "Book Not Found")))
                 .map(book -> updateBook(book, request.getNumberOfCopies()))
-                .flatMap(book -> {
-                    if(book == null) {
-                        return Mono.error(new NotFoundException("Book was not found"));
-                    }else {
-                        return bookRepository.save(book);
-                    }
-                }).then();
+                .flatMap(bookRepository::save).then();
     }
 
     private BookEntity updateBook(BookEntity book, int numOfCopies){
