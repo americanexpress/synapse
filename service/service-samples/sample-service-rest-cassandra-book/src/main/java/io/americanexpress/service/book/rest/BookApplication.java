@@ -13,7 +13,6 @@
  */
 package io.americanexpress.service.book.rest;
 
-
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 import org.slf4j.ext.XLogger;
