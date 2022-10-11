@@ -18,13 +18,8 @@ public class ReadMonoGreetingHandler extends BaseReadMonoHandler {
     }
 
     @Override
-    protected Mono<ServerResponse> executeRead(Greeting request) {
+    protected Mono<ServerResponse> executeRead(Object request) {
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromValue(new Greeting("Hello, Spring!!")));
-    }
-
-    @Override
-    protected Mono<ServerResponse> executeRead(Object request) {
-        return null;
     }
 }
