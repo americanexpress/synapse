@@ -19,6 +19,6 @@
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-service-rest</artifactId>
-            <version>0.3.0-SNAPSHOT</version>
+            <version>0.3.3-SNAPSHOT</version>
         </dependency>
 ```
