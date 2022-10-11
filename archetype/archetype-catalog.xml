@@ -20,27 +20,27 @@
 		<archetype>
 			<groupId>io.americanexpress.synapse</groupId>
 			<artifactId>synapse-archetype-client-graphql</artifactId>
-			<version>0.3.0-SNAPSHOT</version>
+			<version>0.3.1-SNAPSHOT</version>
 		</archetype>
 		<archetype>
 			<groupId>io.americanexpress.synapse</groupId>
 			<artifactId>synapse-archetype-client-rest</artifactId>
-			<version>0.3.0-SNAPSHOT</version>
+			<version>0.3.1-SNAPSHOT</version>
 		</archetype>
 		<archetype>
 			<groupId>io.americanexpress.synapse</groupId>
 			<artifactId>synapse-archetype-client-rest-delete</artifactId>
-			<version>0.3.0-SNAPSHOT</version>
+			<version>0.3.1-SNAPSHOT</version>
 		</archetype>
 		<archetype>
 			<groupId>io.americanexpress.synapse</groupId>
 			<artifactId>synapse-archetype-client-rest-get</artifactId>
-			<version>0.3.0-SNAPSHOT</version>
+			<version>0.3.1-SNAPSHOT</version>
 		</archetype>
 		<archetype>
 			<groupId>io.americanexpress.synapse</groupId>
 			<artifactId>synapse-archetype-client-rest-post</artifactId>
-			<version>0.3.0-SNAPSHOT</version>
+			<version>0.3.1-SNAPSHOT</version>
 		</archetype>
 		<archetype>
 			<groupId>io.americanexpress.synapse</groupId>
