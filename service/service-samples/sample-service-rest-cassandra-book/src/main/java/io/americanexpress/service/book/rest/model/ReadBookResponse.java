@@ -15,6 +15,9 @@ package io.americanexpress.service.book.rest.model;
 
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 
+/**
+ * {@code ReadBookResponse} is the response object for retrieving a book.
+ */
 public class ReadBookResponse extends BaseServiceResponse {
 
     private String title;

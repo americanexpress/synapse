@@ -13,5 +13,8 @@
  */
 package io.americanexpress.service.book.rest.model;
 
+/**
+ * {@code ReadBookRequest} is the request object for retrieving a book.
+ */
 public class ReadBookRequest extends BookRequest {
 }

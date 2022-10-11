@@ -21,6 +21,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * {@code UpdateBookService} is the service class for creating a book in the Cassandra Book database.
+ */
 @Service
 public class UpdateBookService extends BaseUpdateService<UpdateBookRequest> {
 

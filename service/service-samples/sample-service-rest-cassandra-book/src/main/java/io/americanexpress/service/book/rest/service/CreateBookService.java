@@ -21,6 +21,9 @@ import io.americanexpress.service.book.rest.service.helper.BookEntityCreator;
 import io.americanexpress.synapse.service.rest.service.BaseCreateService;
 import org.springframework.stereotype.Service;
 
+/**
+ * {@code CreateBookService} is the service class for creating a book in the Cassandra Book database.
+ */
 @Service
 public class CreateBookService extends BaseCreateService<CreateBookRequest, CreateBookResponse> {
 

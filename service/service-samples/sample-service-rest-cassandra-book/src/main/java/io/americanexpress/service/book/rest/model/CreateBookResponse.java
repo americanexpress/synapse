@@ -15,5 +15,8 @@ package io.americanexpress.service.book.rest.model;
 
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 
+/**
+ * {@code CreateBookResponse} is the response object for creating book.
+ */
 public class CreateBookResponse extends BaseServiceResponse {
 }

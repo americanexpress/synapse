@@ -19,6 +19,9 @@ import io.americanexpress.synapse.service.rest.controller.BaseDeleteController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * {@code DeleteBookController} is the controller class for deleting a book in the Cassandra Book database.
+ */
 @RestController
 @RequestMapping(BookEndpoints.BOOK_ENDPOINT)
 public class DeleteBookController extends BaseDeleteController<DeleteBookService> {

@@ -22,7 +22,7 @@ import org.springframework.context.annotation.PropertySource;
 
 
 /**
- * BookConfig is the configuration class for the Book Application.
+ * {@code BookConfig} is the configuration class for the Book Application.
  */
 @Configuration
 @PropertySource("classpath:/service-book-application.properties")
@@ -31,5 +31,3 @@ import org.springframework.context.annotation.PropertySource;
 public class BookConfig {
 
 }
-
-

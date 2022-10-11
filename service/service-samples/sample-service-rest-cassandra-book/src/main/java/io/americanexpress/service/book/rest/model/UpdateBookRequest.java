@@ -15,6 +15,9 @@ package io.americanexpress.service.book.rest.model;
 
 import javax.validation.constraints.Min;
 
+/**
+ * {@code UpdateBookRequest} is the request object for updating a book.
+ */
 public class UpdateBookRequest extends BookRequest {
 
     @Min(0)

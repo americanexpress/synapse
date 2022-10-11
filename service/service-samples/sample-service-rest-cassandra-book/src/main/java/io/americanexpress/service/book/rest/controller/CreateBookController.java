@@ -21,6 +21,9 @@ import io.americanexpress.synapse.service.rest.controller.BaseCreateController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * {@code CreateBookController} is the controller class for creating a book in the Cassandra Book database.
+ */
 @RestController
 @RequestMapping(BookEndpoints.BOOK_ENDPOINT)
 public class CreateBookController extends BaseCreateController<CreateBookRequest, CreateBookResponse, CreateBookService> {

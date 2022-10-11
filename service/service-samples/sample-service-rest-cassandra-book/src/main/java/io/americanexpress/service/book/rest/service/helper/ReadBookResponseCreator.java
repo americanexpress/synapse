@@ -16,8 +16,17 @@ package io.americanexpress.service.book.rest.service.helper;
 import io.americanexpress.data.book.entity.BookEntity;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 
+/**
+ * {@code ReadBookResponseCreator} is the helper class for creating a ReadBookResponse.
+ */
 public class ReadBookResponseCreator {
 
+    /**
+     * Create read book response.
+     *
+     * @param bookEntity the book entity
+     * @return the read book response
+     */
     public static ReadBookResponse create(BookEntity bookEntity) {
         ReadBookResponse response = null;
         if(bookEntity != null) {

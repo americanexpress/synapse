@@ -17,6 +17,9 @@ import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * {@code BookRequest} is the base book request object.
+ */
 public class BookRequest implements BaseServiceRequest {
 
     @NotBlank

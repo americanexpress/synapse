@@ -17,8 +17,19 @@ import io.americanexpress.data.book.entity.BookEntity;
 
 import java.util.UUID;
 
+/**
+ * {@code BookEntityCreator} is the helper class for creating a BookEntity object.
+ */
 public class BookEntityCreator {
 
+    /**
+     * Create book entity.
+     *
+     * @param title          the title
+     * @param author         the author
+     * @param numberOfCopies the number of copies
+     * @return the book entity
+     */
     public static BookEntity create(String title, String author, int numberOfCopies) {
         BookEntity book = new BookEntity(title, author);
         book.setIdentifier(UUID.randomUUID());

@@ -17,6 +17,9 @@ import io.americanexpress.data.book.repository.BookRepository;
 import io.americanexpress.synapse.service.rest.service.BaseDeleteService;
 import org.springframework.stereotype.Service;
 
+/**
+ * {@code DeleteBookService} is the service class for creating a book in the Cassandra Book database.
+ */
 @Service
 public class DeleteBookService extends BaseDeleteService {
 

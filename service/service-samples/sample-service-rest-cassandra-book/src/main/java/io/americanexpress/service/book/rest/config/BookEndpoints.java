@@ -13,6 +13,9 @@
  */
 package io.americanexpress.service.book.rest.config;
 
+/**
+ * {@code BookEndpoints} contains the endpoints for the Book Application.
+ */
 public class BookEndpoints {
 
     /**

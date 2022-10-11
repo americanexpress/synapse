@@ -20,6 +20,9 @@ import io.americanexpress.synapse.service.rest.controller.BaseUpdateController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * {@code UpdateBookController} is the controller class for updating a book in the Cassandra Book database.
+ */
 @RestController
 @RequestMapping(BookEndpoints.BOOK_ENDPOINT)
 public class UpdateBookController extends BaseUpdateController<UpdateBookRequest, UpdateBookService> {
