@@ -16,7 +16,7 @@
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-client-test</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>0.3.3-SNAPSHOT</version>
         </dependency>
 ```
 Or add the following to the build.gradle file:

@@ -38,23 +38,24 @@ Synapse focuses on the Application Tier of the well-established n-tier architect
 Within the Application Tier, Synapse is geared towards breaking down the Business and Persistence layer. 
 In the Business layer, we primarily have The modules are organized into types - the services, subscribers describe the modules that initiate a workflow. 
 While the data and client modules represent modules that need to access or modify resources. 
-The Synapse team recommends to modularize your application in a similar structure to maintain organization and clairty in your code. 
+The Synapse team recommends to modularize your application in a similar structure to maintain organization and clarity in your code. 
 for application teams to utilize the same structure 
 
 ## Types of Modules:
 ### Business Layer 
-This layer is intended to tackle specific business needs, typically needs that are required by the Presentation Tier. 
-This layer handles orchestration and stitching the resource needs across the client and data modules.
+This layer is intended to tackle specific business needs, typically business logic or rules or some level of delegation 
+that is required by the Presentation Tier. This layer handles the delegation of work needed by the unit of work and stitches
+the resource needs across the client and data modules.
 
-  - **Service** - Used for any service communication method over HTTP (such as Rest, GraphQL, grpc, etc.) that is  
-starting a workflow. These services could be synchronous or asynchronous. 
+  - **Service** - Used for any service communication method over HTTP (such as Rest, GraphQL, gRPC, etc.) that is  
+starting a workflow. These services could be synchronous or asynchronous. The communication methods will typically support imperative and reactive support. 
 
   - **Business** - Used for placing common business logic across service modules. 
 Essentially serves as an extension for the service module for commonalities across multiple service or subscriber modules.
 
-  - **Subscriber** - Implemented for business logic  
+  - **Subscriber** - Use during publisher, subscriber model. This module would initiate a flow listening to a topic or channel, typically implemented in Kafka, Solace, etc. 
 
-### Persistence Layer
+### Data Access Layer
 This layer is intended to be made modular and fine-grained to promote re-usability across service or subscriber modules. 
 
    - **Client** - Client modules are built to consume services. These modules are intended for performing any CRUD 
@@ -116,7 +117,8 @@ This helps ensure the modules are named  intuitive and organized within your IDE
     - Open to extensions base request and response model to leave the code open to extension and close to modifications.
     - A generic already implemented pagination solution out of the box when calling a db.
     - A common error response object following standard naming of error fields.
-
+    - Spring Webflux is used for reactive support leveraging Netty, while Spring Web is also supported in Synapse
+    
 ### synapse-client-rest
 
 - This is the synapse gateway framework utilized to consume RESTful APIs. It provides several out-of-the-box
@@ -297,13 +299,13 @@ The following listing shows the pom.xml file that is created when you choose Mav
     <parent>
         <groupId>com.sample.bookstore</groupId>
         <artifactId>service</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>0.3.3-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.sample.bookstore</groupId>
     <artifactId>service-greeting</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>0.3.3-SNAPSHOT</version>
 
     <properties>
         <start-class>com.sample.bookstore.GreetingApplication</start-class>
@@ -313,7 +315,6 @@ The following listing shows the pom.xml file that is created when you choose Mav
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>
             <artifactId>synapse-service-rest</artifactId>
-            <version>0.2.18-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
