@@ -28,12 +28,25 @@ import reactor.core.publisher.Mono;
 @Service
 public class UpdateBookReactiveService extends BaseUpdateReactiveService<UpdateBookRequest> {
 
+    /**
+     * Used to update book in database.
+     */
     private final BookRepository bookRepository;
 
+    /**
+     * Instantiates a new UpdateBookReactiveService.
+     *
+     * @param bookRepository the book repository
+     */
     public UpdateBookReactiveService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
+    /**
+     * Updates book in database if it exists else returns 400 error.
+     *
+     * @param request the updateBookRequest
+     */
     @Override
     protected Mono<Void> executeUpdate(UpdateBookRequest request) {
         return bookRepository.findByTitleAndAuthor(request.getTitle(), request.getAuthor())
@@ -42,6 +55,13 @@ public class UpdateBookReactiveService extends BaseUpdateReactiveService<UpdateB
                 .flatMap(bookRepository::save).then();
     }
 
+    /**
+     * Instantiates a new UpdateBookReactiveService.
+     *
+     * @param book bookEntity to be updated
+     * @param numOfCopies number of copies to be updated
+     * @return if not null the updated BookEntity
+     */
     private BookEntity updateBook(BookEntity book, int numOfCopies){
         if (book != null) book.setNumberOfCopies(numOfCopies);
         return book;

@@ -24,12 +24,25 @@ import reactor.core.publisher.Mono;
 @Service
 public class DeleteBookReactiveService extends BaseDeleteReactiveService {
 
+    /**
+     * Used to delete a book from database.
+     */
     private final BookRepository bookRepository;
 
+    /**
+     * Instantiates a new DeleteBookReactiveService.
+     *
+     * @param bookRepository the book repository
+     */
     public DeleteBookReactiveService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
+    /**
+     * Deletes book from database.
+     *
+     * @param title the title of book to be deleted
+     */
     @Override
     protected Mono<Void> executeDelete(String title) {
         return bookRepository.deleteByTitle(title);

@@ -22,24 +22,50 @@ import javax.validation.constraints.NotBlank;
  */
 public class CreateBookRequest implements BaseServiceRequest {
 
+    /**
+     * Title of book.
+     */
     @NotBlank
     private String title;
 
+    /**
+     * Author of book.
+     */
     @NotBlank
     private String author;
 
+    /**
+     * Gets title.
+     *
+     * @return the title
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Sets title.
+     *
+     * @param title the title
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     * Gets author.
+     *
+     * @return the author
+     */
     public String getAuthor() {
         return author;
     }
 
+    /**
+     * Sets author.
+     *
+     * @param author the author
+     */
     public void setAuthor(String author) {
         this.author = author;
     }

@@ -28,12 +28,25 @@ import reactor.core.publisher.Flux;
 @Service
 public class ReadPolyBookReactiveService extends BaseReadPolyReactiveService<ReadBookRequest, ReadBookResponse> {
 
+    /**
+     * Used to retrieve books from database.
+     */
     private final BookRepository bookRepository;
 
+    /**
+     * Instantiates a new ReadPolyBookReactiveService.
+     *
+     * @param bookRepository the book repository
+     */
     public ReadPolyBookReactiveService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
+    /**
+     * Retrieves the list of books from database as requested in request.
+     *
+     * @param request the readBookRequest
+     */
     @Override
     protected Flux<ReadBookResponse> executeRead(ReadBookRequest request) {
         return bookRepository.findByTitle(request.getTitle())

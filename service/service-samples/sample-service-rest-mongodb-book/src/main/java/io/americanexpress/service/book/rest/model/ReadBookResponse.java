@@ -20,23 +20,72 @@ import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
  */
 public class ReadBookResponse extends BaseServiceResponse {
 
+    /**
+     * Title of book.
+     */
     private String title;
 
+    /**
+     * Author of book.
+     */
     private String author;
 
+    /**
+     * Number of copies of book.
+     */
+    private int numberOfCopies;
+
+    /**
+     * Gets title.
+     *
+     * @return the title
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Sets title.
+     *
+     * @param title the title
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     * Gets author.
+     *
+     * @return the author
+     */
     public String getAuthor() {
         return author;
     }
 
+    /**
+     * Sets author.
+     *
+     * @param author the author
+     */
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    /**
+     * Gets number of copies.
+     *
+     * @return the number of copies
+     */
+    public int getNumberOfCopies() {
+        return numberOfCopies;
+    }
+
+    /**
+     * Sets number of copies.
+     *
+     * @param numberOfCopies the number of copies
+     */
+    public void setNumberOfCopies(int numberOfCopies) {
+        this.numberOfCopies = numberOfCopies;
     }
 }

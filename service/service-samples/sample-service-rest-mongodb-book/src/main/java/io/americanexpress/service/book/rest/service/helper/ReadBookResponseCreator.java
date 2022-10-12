@@ -33,6 +33,7 @@ public class ReadBookResponseCreator {
             response = new ReadBookResponse();
             response.setTitle(book.getTitle());
             response.setAuthor(book.getAuthor());
+            response.setNumberOfCopies(book.getNumberOfCopies());
         }
         return response;
     }
