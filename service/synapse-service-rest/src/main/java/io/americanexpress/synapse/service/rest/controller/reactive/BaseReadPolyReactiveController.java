@@ -56,13 +56,16 @@ public abstract class BaseReadPolyReactiveController<I extends BaseServiceReques
             @ApiResponse(code = 403, message = "Forbidden"),
     })
     @PostMapping(MULTIPLE_RESULTS)
-    public Flux<O> read(@Valid @RequestBody I serviceRequest, HttpServletResponse httpServletResponse) {
+    public Flux<ResponseEntity<O>> read(@Valid @RequestBody I serviceRequest, HttpServletResponse httpServletResponse) {
         logger.entry(serviceRequest);
 
         final var serviceResult = service.read(serviceRequest);
+        final var responseEntity = serviceResult
+                .map(ResponseEntity::ok)
+                .defaultIfEmpty(ResponseEntity.noContent().build());
 
-        logger.exit(serviceResult);
-        return serviceResult;
+        logger.exit(responseEntity);
+        return responseEntity;
     }
 
 }
