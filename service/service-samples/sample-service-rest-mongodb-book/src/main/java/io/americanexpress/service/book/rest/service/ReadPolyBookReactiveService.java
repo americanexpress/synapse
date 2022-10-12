@@ -52,6 +52,5 @@ public class ReadPolyBookReactiveService extends BaseReadPolyReactiveService<Rea
         return bookRepository.findByTitle(request.getTitle())
                 .map(ReadBookResponseCreator::create)
                 .switchIfEmpty(Flux.empty());
-
     }
 }
