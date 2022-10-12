@@ -45,7 +45,7 @@
 
         <!--Spring Versions-->
         <spring-framework.version>5.3.23</spring-framework.version>
-        <spring-security.version>5.6.2</spring-security.version>
+        <spring-security.version>5.7.3</spring-security.version>
         <spring-boot-framework.version>2.7.4</spring-boot-framework.version>
         <spring-boot-ws-framework.version>1.4.7.RELEASE</spring-boot-ws-framework.version>
         <spring-native.version>0.12.1</spring-native.version>
@@ -64,7 +64,7 @@
         <junit.jupiter.version>5.9.0</junit.jupiter.version>
 
         <!--Jackson-->
-        <jackson.version>2.13.2</jackson.version>
+        <jackson.version>2.13.4</jackson.version>
 
         <!--Logging-->
         <log4j.version>2.19.0</log4j.version>
@@ -653,7 +653,7 @@
             <dependency>
                 <groupId>com.google.http-client</groupId>
                 <artifactId>google-http-client</artifactId>
-                <version>1.35.0</version>
+                <version>1.42.2</version>
             </dependency>
 
             <!--Jackson-->
