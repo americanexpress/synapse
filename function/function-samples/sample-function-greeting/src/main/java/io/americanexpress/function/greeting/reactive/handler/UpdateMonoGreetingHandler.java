@@ -10,10 +10,14 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
 @Component
-public class UpdateMonoGreetingHandler extends BaseUpdateMonoHandler {
+public class UpdateMonoGreetingHandler extends BaseUpdateMonoHandler<Greeting> {
+
+    protected UpdateMonoGreetingHandler(Class<Greeting> clazz) {
+        super(Greeting.class);
+    }
 
     @Override
-    protected Mono<ServerResponse> executeUpdate(ServerRequest request) {
+    protected Mono<ServerResponse> executeUpdate(Greeting request) {
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromValue(new Greeting("Greeting Updated!!")));
     }

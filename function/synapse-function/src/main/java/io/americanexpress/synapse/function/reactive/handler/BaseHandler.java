@@ -15,6 +15,8 @@ package io.americanexpress.synapse.function.reactive.handler;
 
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.Validator;
 
 public abstract class BaseHandler {
 
@@ -22,4 +24,12 @@ public abstract class BaseHandler {
      * Logger for the base service.
      */
     protected final XLogger logger = XLoggerFactory.getXLogger(getClass());
+
+    protected Validator validator;
+
+    @Autowired
+    protected void setValidator(Validator validator){
+        this.validator = validator;
+    }
+
 }

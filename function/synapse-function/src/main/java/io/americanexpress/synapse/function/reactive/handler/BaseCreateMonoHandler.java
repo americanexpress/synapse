@@ -13,11 +13,21 @@
  */
 package io.americanexpress.synapse.function.reactive.handler;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
+import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
 
-public abstract class BaseCreateMonoHandler extends BaseHandler {
+public abstract class BaseCreateMonoHandler<T> extends BaseHandler {
+
+    private final Class<T> validationClass;
+
+    protected BaseCreateMonoHandler(Class<T> clazz) {
+        this.validationClass = clazz;
+    }
 
     /**
      * Create a single resource
@@ -28,11 +38,23 @@ public abstract class BaseCreateMonoHandler extends BaseHandler {
     public Mono<ServerResponse> create(ServerRequest request) {
         logger.entry(request);
 
-        final Mono<ServerResponse> response = executeCreate(request);
+        return request.bodyToMono(this.validationClass)
+                .flatMap(body -> {
+                    Errors errors = new BeanPropertyBindingResult(body, this.validationClass.getName());
+                    this.validator.validate(body, errors);
 
-        logger.exit(response);
-        return response;
+                    if (errors.getAllErrors().isEmpty()) {
+                        return executeCreate(body);
+                    } else {
+                        return onValidationErrors(errors, body, request);
+                    }
+                });
+
     }
 
-    protected abstract Mono<ServerResponse> executeCreate(ServerRequest request);
+    protected abstract Mono<ServerResponse> executeCreate(T request);
+
+    protected Mono<ServerResponse> onValidationErrors(Errors errors, T invalidBody, final ServerRequest request) {
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, errors.getAllErrors().get(0).getDefaultMessage());
+    }
 }

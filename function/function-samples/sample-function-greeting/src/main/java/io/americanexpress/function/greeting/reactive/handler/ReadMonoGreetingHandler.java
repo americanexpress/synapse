@@ -1,11 +1,9 @@
 package io.americanexpress.function.greeting.reactive.handler;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import io.americanexpress.function.greeting.reactive.model.Greeting;
 import io.americanexpress.synapse.function.reactive.handler.BaseReadMonoHandler;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
-import org.springframework.validation.Validator;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
@@ -13,8 +11,8 @@ import reactor.core.publisher.Mono;
 @Component
 public class ReadMonoGreetingHandler extends BaseReadMonoHandler<Greeting> {
 
-    private ReadMonoGreetingHandler(@Autowired Validator validator) {
-        super(Greeting.class, validator);
+    private ReadMonoGreetingHandler() {
+        super(Greeting.class);
     }
 
     @Override

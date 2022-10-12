@@ -15,9 +15,13 @@ package io.americanexpress.synapse.function.reactive.config;
 
 import io.americanexpress.synapse.framework.api.docs.ApiDocsConfig;
 import io.americanexpress.synapse.framework.exception.config.ExceptionConfig;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Primary;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 /**
  * <code>FunctionConfig</code> class sets common configurations for the service layer.
@@ -28,5 +32,11 @@ import org.springframework.context.annotation.Import;
 @ComponentScan(basePackages = "io.americanexpress.synapse.function.reactive")
 @Import({ExceptionConfig.class, ApiDocsConfig.class})
 public class FunctionConfig {
+
+    @Bean
+    @Primary
+    public Validator springValidator() {
+        return new LocalValidatorFactoryBean();
+    }
 
 }

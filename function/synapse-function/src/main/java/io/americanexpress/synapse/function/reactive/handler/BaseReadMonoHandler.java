@@ -16,7 +16,6 @@ package io.americanexpress.synapse.function.reactive.handler;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import org.springframework.web.server.ResponseStatusException;
@@ -26,11 +25,8 @@ public abstract class BaseReadMonoHandler<T> extends BaseHandler {
 
     private final Class<T> validationClass;
 
-    private final Validator validator;
-
-    protected BaseReadMonoHandler(Class<T> clazz, Validator validator) {
+    protected BaseReadMonoHandler(Class<T> clazz) {
         this.validationClass = clazz;
-        this.validator = validator;
     }
 
     /**
