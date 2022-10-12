@@ -19,10 +19,20 @@
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-data-mongodb</artifactId>
-            <version>0.3.3-SNAPSHOT</version>
+            <version>0.3.2</version>
         </dependency>
 ```
 Or add the following to the build.gradle file:
 ```
-implementation 'io.americanexpress.synapse:synapse-data-mongodb:0.2.1!!'
+implementation 'io.americanexpress.synapse:synapse-data-mongodb:0.3.2!!'
 ```
+
+- Have a configuration class that import or extends `BaseMongoDBDataConfig` or `BaseReactiveMongoDBDataConfig` for reactive support.
+- Add the `@EnableMongoRepositories(basePackages = PACKAGE_NAME)` or `@EnableReactiveMongoRepositories(basePackages = PACKAGE_NAME)` for reactive support.
+- For repositories, extend the `MongoRepository` or `ReactiveMongoRepository` for reactive support.
+
+## Examples
+Examples of utilizing the synapse-data-mongodb module can be found in the following modules: 
+  - sample-data-mongodb-book
+  - sample-data-mongodb-reactive
+  - sample-service-rest-mongodb-book
