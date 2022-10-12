@@ -26,7 +26,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 
 /**
- * {@code BaseOracleDataConfig} class is used to hold the common configuration for all data-postgres modules.
+ * {@code BaseOracleDataConfig} class is used to hold the common configuration for all data-oracle modules.
  *
  * @author Gabriel Jimenez
  */

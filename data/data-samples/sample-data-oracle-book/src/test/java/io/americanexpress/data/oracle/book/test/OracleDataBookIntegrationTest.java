@@ -36,7 +36,7 @@ public class OracleDataBookIntegrationTest {
 
 
     @Test
-    public void testFindByPublisherInquiry() {
+    public void findByPublisher_givenId_expectedBookFound() {
         Assert.assertNotNull(bookRepository.findById(1));
     }
 

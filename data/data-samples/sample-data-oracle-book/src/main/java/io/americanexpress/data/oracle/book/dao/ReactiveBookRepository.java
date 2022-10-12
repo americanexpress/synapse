@@ -11,15 +11,19 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.data.oracle.book;
+package io.americanexpress.data.oracle.book.dao;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import io.americanexpress.data.oracle.book.entity.BookEntity;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
+import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-@SpringBootApplication
-public class DataBookApplication {
-
-    public static void main(String[] args) {
-        SpringApplication.run(DataBookApplication.class, args);
-    }
+/**
+ * {@code ReactiveBookRepository} enable reactive database calls by id
+ */
+@Repository
+public interface ReactiveBookRepository extends ReactiveCrudRepository<BookEntity, Long> {
+    Mono<BookEntity> findById(long id);
+    Flux<BookEntity> findAllById(long id);
 }
