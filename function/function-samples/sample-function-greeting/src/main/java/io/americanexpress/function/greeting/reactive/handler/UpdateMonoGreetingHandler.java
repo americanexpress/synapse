@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
 @Component
 public class UpdateMonoGreetingHandler extends BaseUpdateMonoHandler<Greeting> {
 
-    protected UpdateMonoGreetingHandler(Class<Greeting> clazz) {
+    protected UpdateMonoGreetingHandler() {
         super(Greeting.class);
     }
 
