@@ -13,9 +13,12 @@
  */
 package io.americanexpress.service.book.rest.service;
 
+import io.americanexpress.data.book.entity.BookEntity;
 import io.americanexpress.data.book.repository.BookRepository;
 import io.americanexpress.synapse.service.rest.service.BaseDeleteService;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 /**
  * {@code DeleteBookService} is the service class for creating a book in the Cassandra Book database.
@@ -25,12 +28,18 @@ public class DeleteBookService extends BaseDeleteService {
 
     private final BookRepository bookRepository;
 
+    /**
+     * Instantiates a new DeleteBookService.
+     *
+     * @param bookRepository the book repository
+     */
     public DeleteBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
     @Override
     protected void executeDelete(String title) {
-        bookRepository.deleteByTitle(title);
+        Optional<BookEntity> bookEntityOptional = bookRepository.findByTitle(title);
+        bookEntityOptional.ifPresent(bookRepository::delete);
     }
 }

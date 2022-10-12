@@ -23,10 +23,20 @@ public class UpdateBookRequest extends BookRequest {
     @Min(0)
     private int numberOfCopies;
 
+    /**
+     * Gets number of copies.
+     *
+     * @return the number of copies
+     */
     public int getNumberOfCopies() {
         return numberOfCopies;
     }
 
+    /**
+     * Sets number of copies.
+     *
+     * @param numberOfCopies the number of copies
+     */
     public void setNumberOfCopies(int numberOfCopies) {
         this.numberOfCopies = numberOfCopies;
     }

@@ -29,6 +29,11 @@ public class UpdateBookService extends BaseUpdateService<UpdateBookRequest> {
 
     private final BookRepository bookRepository;
 
+    /**
+     * Instantiates a new UpdateBookService.
+     *
+     * @param bookRepository the book repository
+     */
     public UpdateBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }

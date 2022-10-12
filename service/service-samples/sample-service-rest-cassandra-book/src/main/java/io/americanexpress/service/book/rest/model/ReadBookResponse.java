@@ -26,26 +26,56 @@ public class ReadBookResponse extends BaseServiceResponse {
 
     private int numberOfBooks;
 
+    /**
+     * Gets title.
+     *
+     * @return the title
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Sets title.
+     *
+     * @param title the title
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     * Gets author.
+     *
+     * @return the author
+     */
     public String getAuthor() {
         return author;
     }
 
+    /**
+     * Sets author.
+     *
+     * @param author the author
+     */
     public void setAuthor(String author) {
         this.author = author;
     }
 
+    /**
+     * Gets number of books.
+     *
+     * @return the number of books
+     */
     public int getNumberOfBooks() {
         return numberOfBooks;
     }
 
+    /**
+     * Sets number of books.
+     *
+     * @param numberOfBooks the number of books
+     */
     public void setNumberOfBooks(int numberOfBooks) {
         this.numberOfBooks = numberOfBooks;
     }

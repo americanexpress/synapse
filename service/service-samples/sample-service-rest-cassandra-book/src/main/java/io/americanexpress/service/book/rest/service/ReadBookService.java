@@ -31,6 +31,11 @@ public class ReadBookService extends BaseReadMonoService<ReadBookRequest, ReadBo
 
     private final BookRepository bookRepository;
 
+    /**
+     * Instantiates a new ReadBookService.
+     *
+     * @param bookRepository the book repository
+     */
     public ReadBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
