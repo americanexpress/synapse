@@ -20,7 +20,7 @@
     <artifactId>${artifactId}</artifactId>
     <version>${version}</version>
     <properties>
-        <synapse.version>0.3.0-SNAPSHOT</synapse.version>
+        <synapse.version>0.3.3-SNAPSHOT</synapse.version>
         <java.version>${javaVersion}</java.version>
         <junit.version>1.6.2</junit.version>
         <junit.jupiter.version>5.6.2</junit.jupiter.version>
