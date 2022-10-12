@@ -29,6 +29,4 @@ import org.springframework.context.annotation.PropertySource;
 @Import({ServiceRestConfig.class, BookDataConfig.class})
 public class BookConfig {
 
-    public BookConfig() {}
-
 }
