@@ -566,7 +566,7 @@
             <dependency>
                 <groupId>io.netty</groupId>
                 <artifactId>netty-codec-http</artifactId>
-                <version>4.1.59.Final</version>
+                <version>4.1.83.Final</version>
             </dependency>
 
             <!--Apache Dependencies-->
