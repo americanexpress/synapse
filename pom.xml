@@ -642,7 +642,7 @@
             <dependency>
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
-                <version>42.3.7</version>
+                <version>42.5.0</version>
             </dependency>
             <dependency>
                 <groupId>com.h2database</groupId>
@@ -885,7 +885,7 @@
             <dependency>
                 <groupId>io.projectreactor</groupId>
                 <artifactId>reactor-core</artifactId>
-                <version>3.4.23</version>
+                <version>3.4.24</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -930,7 +930,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.2.2</version>
+                    <version>3.3.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
