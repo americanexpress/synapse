@@ -61,7 +61,7 @@
 
         <!--JUnit Versions-->
         <junit.version>1.8.2</junit.version>
-        <junit.jupiter.version>5.9.0</junit.jupiter.version>
+        <junit.jupiter.version>5.9.1</junit.jupiter.version>
 
         <!--Jackson-->
         <jackson.version>2.13.4</jackson.version>
@@ -930,7 +930,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.2.2</version>
+                    <version>3.3.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
