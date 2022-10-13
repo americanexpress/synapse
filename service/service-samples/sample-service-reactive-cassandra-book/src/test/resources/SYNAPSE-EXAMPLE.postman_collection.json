@@ -33,35 +33,6 @@
 			"response": []
 		},
 		{
-			"name": "READ BOOK POST",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"type": "default",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"title\": \"Alice In Wonderland\",\n\t\"author\": \"Lewis Carroll\"\n}"
-				},
-				"url": {
-					"raw": "{{synapse-host}}/v1/books/inquiry_results",
-					"host": [
-						"{{synapse-host}}"
-					],
-					"path": [
-						"v1",
-						"books",
-						"inquiry_results"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "UPDATE BOOK",
 			"request": {
 				"method": "PUT",

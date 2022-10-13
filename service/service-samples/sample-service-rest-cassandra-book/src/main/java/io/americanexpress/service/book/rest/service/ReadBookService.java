@@ -15,10 +15,9 @@ package io.americanexpress.service.book.rest.service;
 
 import io.americanexpress.data.book.entity.BookEntity;
 import io.americanexpress.data.book.repository.BookRepository;
-import io.americanexpress.service.book.rest.model.ReadBookRequest;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.service.helper.ReadBookResponseCreator;
-import io.americanexpress.synapse.service.rest.service.BaseReadMonoService;
+import io.americanexpress.synapse.service.rest.service.BaseGetMonoService;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -27,7 +26,7 @@ import java.util.Optional;
  * {@code ReadBookService} is the service class for creating a book in the Cassandra Book database.
  */
 @Service
-public class ReadBookService extends BaseReadMonoService<ReadBookRequest, ReadBookResponse> {
+public class ReadBookService extends BaseGetMonoService<ReadBookResponse> {
 
     private final BookRepository bookRepository;
 
@@ -41,8 +40,8 @@ public class ReadBookService extends BaseReadMonoService<ReadBookRequest, ReadBo
     }
 
     @Override
-    protected ReadBookResponse executeRead(ReadBookRequest request) {
-        Optional<BookEntity> bookEntity = bookRepository.findByTitleAndAuthor(request.getTitle(), request.getAuthor());
-        return bookEntity.map(ReadBookResponseCreator::create).orElseGet(() -> ReadBookResponseCreator.create(null));
+    protected ReadBookResponse executeRead(String title) {
+        Optional<BookEntity> bookEntity = bookRepository.findByTitle(title);
+        return bookEntity.map(ReadBookResponseCreator::create).orElse(null);
     }
 }
