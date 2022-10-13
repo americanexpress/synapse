@@ -15,15 +15,15 @@ package io.americanexpress.data.oracle.book.test.config;
 
 import com.zaxxer.hikari.HikariDataSource;
 import io.americanexpress.synapse.data.oracle.config.BaseOracleDataConfig;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -32,7 +32,8 @@ import java.util.Properties;
  * {code OracleDataConfigTest} Configuration file uses h2 database for integration test purpose.
  */
 @TestConfiguration
-@PropertySource("classpath:data-oracle-book-application-test.properties")
+@TestPropertySource("classpath:data-oracle-book-application-test.properties")
+@EnableJpaRepositories(basePackages = "io.americanexpress.data.oracle.book.dao")
 @ActiveProfiles("test")
 public class OracleDataConfigTest extends BaseOracleDataConfig {
     /**
@@ -49,7 +50,7 @@ public class OracleDataConfigTest extends BaseOracleDataConfig {
      *
      * @return DataSource bean
      */
-    @Bean
+    @Bean()
     @ConfigurationProperties(prefix = "spring.datasource.h2")
     @Override
     public DataSource dataSource() {

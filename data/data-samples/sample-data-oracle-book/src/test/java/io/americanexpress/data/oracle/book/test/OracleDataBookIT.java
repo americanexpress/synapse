@@ -15,29 +15,28 @@ package io.americanexpress.data.oracle.book.test;
 
 import io.americanexpress.data.oracle.book.dao.BookRepository;
 import io.americanexpress.data.oracle.book.test.config.OracleDataConfigTest;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
  * {@code OracleDataBookIntegrationTest} Integration test example of querying BookEntity by id.
  */
-@Import(OracleDataConfigTest.class)
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class OracleDataBookIntegrationTest {
+@DataJpaTest
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = OracleDataConfigTest.class)
+public class OracleDataBookIT {
 
     @Autowired
-    BookRepository bookRepository;
-
+    private BookRepository bookRepository;
 
     @Test
-    public void findByPublisher_givenId_expectedBookFound() {
-        Assert.assertNotNull(bookRepository.findById(1));
+    public void findById_givenValidId_expectedBookFound() {
+        Assertions.assertNotNull(bookRepository.findById(1));
     }
 
 }

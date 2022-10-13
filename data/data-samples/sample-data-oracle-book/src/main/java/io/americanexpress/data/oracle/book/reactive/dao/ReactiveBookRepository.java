@@ -11,19 +11,19 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.data.oracle.book.dao;
+package io.americanexpress.data.oracle.book.reactive.dao;
 
 import io.americanexpress.data.oracle.book.entity.BookEntity;
-import org.springframework.data.repository.reactive.ReactiveSortingRepository;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
- * {@code ReactiveSortingDataBookConfig} enable reactive sorting database calls by id
+ * {@code ReactiveBookRepository} enable reactive database calls by id
  */
 @Repository
-public interface ReactiveSortingDataBookConfig extends ReactiveSortingRepository<BookEntity, Long> {
+public interface ReactiveBookRepository extends ReactiveCrudRepository<BookEntity, Long> {
     Mono<BookEntity> findById(long id);
     Flux<BookEntity> findAllById(long id);
 }
