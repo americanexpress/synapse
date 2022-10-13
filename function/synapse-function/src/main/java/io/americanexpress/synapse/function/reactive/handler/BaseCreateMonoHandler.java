@@ -21,12 +21,11 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
 
-public abstract class BaseCreateMonoHandler<T> extends BaseHandler {
+public abstract class BaseCreateMonoHandler<T> extends BaseHandler<T> {
 
-    private final Class<T> validationClass;
 
-    protected BaseCreateMonoHandler(Class<T> clazz) {
-        this.validationClass = clazz;
+    protected BaseCreateMonoHandler() {
+        initialize();
     }
 
     /**
@@ -54,7 +53,4 @@ public abstract class BaseCreateMonoHandler<T> extends BaseHandler {
 
     protected abstract Mono<ServerResponse> executeCreate(T request);
 
-    protected Mono<ServerResponse> onValidationErrors(Errors errors, T invalidBody, final ServerRequest request) {
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, errors.getAllErrors().get(0).getDefaultMessage());
-    }
 }

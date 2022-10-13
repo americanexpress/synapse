@@ -11,13 +11,9 @@ import reactor.core.publisher.Mono;
 @Component
 public class ReadMonoGreetingHandler extends BaseReadMonoHandler<Greeting> {
 
-    private ReadMonoGreetingHandler() {
-        super(Greeting.class);
-    }
-
     @Override
     protected Mono<ServerResponse> executeRead(Greeting request) {
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
-                .body(BodyInserters.fromValue(new Greeting("Hello, Spring!!")));
+                .body(BodyInserters.fromValue(new Greeting("POST READ Hello, Spring!!")));
     }
 }
