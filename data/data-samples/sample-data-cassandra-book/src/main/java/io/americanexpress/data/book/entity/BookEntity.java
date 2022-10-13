@@ -15,6 +15,7 @@ package io.americanexpress.data.book.entity;
 
 import io.americanexpress.synapse.data.cassandra.entity.BaseEntity;
 import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
+import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
 
@@ -31,6 +32,9 @@ public class BookEntity extends BaseEntity {
     @PrimaryKeyColumn(
             name = "author", ordinal = 0, type = PrimaryKeyType.PARTITIONED)
     private String author;
+
+    @Column
+    private int numberOfCopies;
 
     public BookEntity(String title, String author) {
         this.title = title;
@@ -51,5 +55,13 @@ public class BookEntity extends BaseEntity {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public int getNumberOfCopies() {
+        return numberOfCopies;
+    }
+
+    public void setNumberOfCopies(int numberOfCopies) {
+        this.numberOfCopies = numberOfCopies;
     }
 }
