@@ -23,6 +23,7 @@ import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
 import org.springframework.boot.test.autoconfigure.data.cassandra.DataCassandraTest;
 import org.springframework.test.context.ContextConfiguration;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -56,8 +57,8 @@ class BookRepositoryIT {
         bookEntity.setIdentifier(UUID.randomUUID());
         bookRepository.save(bookEntity);
 
-        BookEntity book = bookRepository.findByTitleAndAuthor("Alice In Wonderland", "Lewis Carroll");
-        Assertions.assertEquals(bookEntity.getTitle(), book.getTitle());
+        Optional<BookEntity> book = bookRepository.findByTitleAndAuthor("Alice In Wonderland", "Lewis Carroll");
+        Assertions.assertEquals(bookEntity.getTitle(), book.get().getTitle());
     }
 
 }
