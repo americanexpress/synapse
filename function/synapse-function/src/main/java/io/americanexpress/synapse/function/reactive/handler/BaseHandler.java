@@ -48,17 +48,16 @@ public abstract class BaseHandler<T> {
 
     protected void initialize() {
 
-        // Find the first child class of BaseClient
+        // Find the first child class of BaseHandler
         // in order to determine the request and response types
         Class<?> classType = getClass();
         while(classType.getSuperclass() != BaseHandler.class) {
             classType = classType.getSuperclass();
         }
 
-        // Set the client request and response types
-        // which were found from the generic type arguments of BaseClient<0 = I, 1 = O, 2 = H>
-        // Here, the client request type is from the 0th generic type argument <I>
-        // and the client response type is from the 1st generic type argument <O>
+        // Set the handler request type
+        // which were found from the generic type arguments of BaseHandler<T>
+        // Here, the handler request type is from the 0th generic type argument <T>
         ParameterizedType parameterizedType = ((ParameterizedType) getClass().getGenericSuperclass());
         validationClass = (Class<T>) parameterizedType.getActualTypeArguments()[0];
 
