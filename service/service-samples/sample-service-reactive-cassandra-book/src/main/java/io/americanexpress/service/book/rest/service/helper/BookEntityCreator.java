@@ -11,24 +11,29 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.data.book.repository;
+package io.americanexpress.service.book.rest.service.helper;
 
 import io.americanexpress.data.book.entity.BookEntity;
-import org.springframework.data.cassandra.repository.AllowFiltering;
-import org.springframework.data.cassandra.repository.ReactiveCassandraRepository;
-import org.springframework.stereotype.Repository;
-import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
 /**
- * {@code BookRepository} is the dao repository to handle the queries for the books table.
+ * {@code BookEntityCreator} is the helper class for creating a BookEntity object.
  */
-@Repository
-public interface BookRepository extends ReactiveCassandraRepository<BookEntity, UUID> {
+public class BookEntityCreator {
 
-    Mono<BookEntity> findByTitleAndAuthor(String title, String author);
-
-    @AllowFiltering
-    Mono<BookEntity> findByTitle(String title);
+    /**
+     * Create book entity.
+     *
+     * @param title          the title
+     * @param author         the author
+     * @param numberOfCopies the number of copies
+     * @return the book entity
+     */
+    public static BookEntity create(String title, String author, int numberOfCopies) {
+        BookEntity book = new BookEntity(title, author);
+        book.setIdentifier(UUID.randomUUID());
+        book.setNumberOfCopies(numberOfCopies);
+        return book;
+    }
 }

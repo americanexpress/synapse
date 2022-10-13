@@ -17,12 +17,14 @@ import io.americanexpress.synapse.data.cassandra.config.BaseReactiveCassandraDat
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.data.cassandra.repository.config.EnableReactiveCassandraRepositories;
 
 /**
  * {@code BookDataConfig} is the configuration class to load all the properties for the book data module.
  */
 @Configuration
 @PropertySource("classpath:/data-book-application.properties")
+@EnableReactiveCassandraRepositories("io.americanexpress.data.book")
 public class BookDataConfig extends BaseReactiveCassandraDataConfig {
 
     public BookDataConfig(Environment environment) {

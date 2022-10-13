@@ -15,6 +15,7 @@ package io.americanexpress.data.book.entity;
 
 import io.americanexpress.synapse.data.cassandra.entity.BaseEntity;
 import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
+import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
 
@@ -32,24 +33,70 @@ public class BookEntity extends BaseEntity {
             name = "author", ordinal = 0, type = PrimaryKeyType.PARTITIONED)
     private String author;
 
+    private int numberOfCopies;
+
+    /**
+     * Instantiates a new Book entity.
+     *
+     * @param title  the title
+     * @param author the author
+     */
     public BookEntity(String title, String author) {
         this.title = title;
         this.author = author;
     }
 
+    /**
+     * Gets title.
+     *
+     * @return the title
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Sets title.
+     *
+     * @param title the title
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     * Gets author.
+     *
+     * @return the author
+     */
     public String getAuthor() {
         return author;
     }
 
+    /**
+     * Sets author.
+     *
+     * @param author the author
+     */
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    /**
+     * Gets number of copies.
+     *
+     * @return the number of copies
+     */
+    public int getNumberOfCopies() {
+        return numberOfCopies;
+    }
+
+    /**
+     * Sets number of copies.
+     *
+     * @param numberOfCopies the number of copies
+     */
+    public void setNumberOfCopies(int numberOfCopies) {
+        this.numberOfCopies = numberOfCopies;
     }
 }
