@@ -60,7 +60,7 @@
         <mockito.version>4.8.0</mockito.version>
 
         <!--JUnit Versions-->
-        <junit.version>1.8.2</junit.version>
+        <junit.version>1.9.1</junit.version>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
 
         <!--Jackson-->
