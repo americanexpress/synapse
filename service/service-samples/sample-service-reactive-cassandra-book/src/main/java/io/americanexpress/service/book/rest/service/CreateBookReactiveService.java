@@ -28,6 +28,9 @@ import reactor.core.publisher.Mono;
 @Service
 public class CreateBookReactiveService extends BaseCreateReactiveService<CreateBookRequest, CreateBookResponse> {
 
+    /**
+     * Used to save new book in database.
+     */
     private final BookRepository bookRepository;
 
     /**
@@ -39,6 +42,11 @@ public class CreateBookReactiveService extends BaseCreateReactiveService<CreateB
         this.bookRepository = bookRepository;
     }
 
+    /**
+     * Saves new book to database.
+     * @param request the request object
+     * @return createBookResponse
+     */
     @Override
     protected Mono<CreateBookResponse> executeCreate(CreateBookRequest request) {
         BookEntity bookEntity = BookEntityCreator.create(request.getTitle(), request.getAuthor(), 1);

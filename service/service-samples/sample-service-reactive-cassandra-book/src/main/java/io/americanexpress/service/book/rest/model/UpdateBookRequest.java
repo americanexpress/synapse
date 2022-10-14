@@ -20,6 +20,9 @@ import javax.validation.constraints.Min;
  */
 public class UpdateBookRequest extends BookRequest{
 
+    /**
+     * Number of copies of book.
+     */
     @Min(0)
     private int numberOfCopies;
 

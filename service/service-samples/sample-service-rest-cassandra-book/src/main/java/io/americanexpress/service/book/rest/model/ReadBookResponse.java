@@ -74,7 +74,7 @@ public class ReadBookResponse extends BaseServiceResponse {
     /**
      * Sets number of copies.
      *
-     * @param numberOfBooks the number of copies
+     * @param numberOfCopies the number of copies
      */
     public void setNumberOfCopies(int numberOfCopies) {
         this.numberOfCopies = numberOfCopies;

@@ -26,6 +26,9 @@ import reactor.core.publisher.Mono;
 @Service
 public class ReadBookReactiveService extends BaseGetMonoReactiveService<ReadBookResponse> {
 
+    /**
+     * Used to retrieve book from database.
+     */
     private final BookRepository bookRepository;
 
     /**
@@ -37,6 +40,9 @@ public class ReadBookReactiveService extends BaseGetMonoReactiveService<ReadBook
         this.bookRepository = bookRepository;
     }
 
+    /**
+     * Retrieves book from database.
+     */
     @Override
     protected Mono<ReadBookResponse> executeRead(String title) {
         return bookRepository.findByTitle(title)

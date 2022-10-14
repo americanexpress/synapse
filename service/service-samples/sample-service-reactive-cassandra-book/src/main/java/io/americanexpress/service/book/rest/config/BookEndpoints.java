@@ -18,6 +18,8 @@ package io.americanexpress.service.book.rest.config;
  */
 public class BookEndpoints {
 
+    private BookEndpoints() {}
+
     /**
      * The constant BOOK_ENDPOINT.
      */

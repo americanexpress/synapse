@@ -29,6 +29,9 @@ import reactor.core.publisher.Mono;
 @Service
 public class UpdateBookReactiveService extends BaseUpdateReactiveService<UpdateBookRequest> {
 
+    /**
+     * Used to find book and save updated book in database.
+     */
     private final BookRepository bookRepository;
 
     /**
@@ -40,11 +43,15 @@ public class UpdateBookReactiveService extends BaseUpdateReactiveService<UpdateB
         this.bookRepository = bookRepository;
     }
 
-
+    /**
+     * Updates book in database if it exists.
+     *
+     * @param request the update book request
+     */
     @Override
     protected Mono<Void> executeUpdate(UpdateBookRequest request) {
         return bookRepository.findByTitleAndAuthor(request.getTitle(), request.getAuthor())
-                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.BAD_REQUEST, "Book Not Found")))
+                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "Book Not Found")))
                 .map(book -> updateBook(book, request.getNumberOfCopies()))
                 .flatMap(bookRepository::save).then();
     }
