@@ -15,8 +15,6 @@ package io.americanexpress.service.book.rest.service.helper;
 
 import io.americanexpress.data.book.entity.BookEntity;
 
-import java.util.UUID;
-
 /**
  * {@code BookEntityCreator} is the helper class for creating a {@link BookEntity} object.
  */

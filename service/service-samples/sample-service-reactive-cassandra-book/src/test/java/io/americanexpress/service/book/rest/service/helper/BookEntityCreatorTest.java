@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 /**
  * {@code BookEntityCreatorTest} tests the {@link BookEntityCreator} class.
  */
-public class BookEntityCreatorTest {
+class BookEntityCreatorTest {
 
     @Test
     void create_givenTitleAndAuthor_expectedBookEntity() {

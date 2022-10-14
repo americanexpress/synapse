@@ -21,6 +21,8 @@ import io.americanexpress.service.book.rest.model.ReadBookResponse;
  */
 public class ReadBookResponseCreator {
 
+    private ReadBookResponseCreator() {}
+
     /**
      * Create read book response.
      *
