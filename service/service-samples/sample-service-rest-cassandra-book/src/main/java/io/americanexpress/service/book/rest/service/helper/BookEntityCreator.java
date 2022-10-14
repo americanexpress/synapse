@@ -32,7 +32,6 @@ public class BookEntityCreator {
      */
     public static BookEntity create(String title, String author, int numberOfCopies) {
         BookEntity book = new BookEntity(title, author);
-        book.setIdentifier(UUID.randomUUID());
         book.setNumberOfCopies(numberOfCopies);
         return book;
     }
