@@ -37,7 +37,7 @@ public abstract class BaseR2dbcOracleConfig extends AbstractR2dbcConfiguration {
 
     protected final Environment environment;
 
-    public BaseR2dbcOracleConfig(Environment environment) {
+    protected BaseR2dbcOracleConfig(Environment environment) {
         this.environment = environment;
     }
 

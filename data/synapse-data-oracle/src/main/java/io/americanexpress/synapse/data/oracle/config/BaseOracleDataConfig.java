@@ -44,7 +44,7 @@ public abstract class BaseOracleDataConfig {
      *
      * @param environment the environment
      */
-    public BaseOracleDataConfig(Environment environment) {
+    protected BaseOracleDataConfig(Environment environment) {
         this.environment = environment;
     }
 
