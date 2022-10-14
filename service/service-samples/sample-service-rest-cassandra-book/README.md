@@ -1,4 +1,4 @@
-# sample-service-reactive-cassandra-book
+# sample-service-rest-cassandra-book
 
 ## Description
 
@@ -12,7 +12,7 @@
         </dependency>
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>
-            <artifactId>sample-data-cassandra-reactive</artifactId>
+            <artifactId>sample-data-cassandra-book</artifactId>
         </dependency>
 
 ## Usage
