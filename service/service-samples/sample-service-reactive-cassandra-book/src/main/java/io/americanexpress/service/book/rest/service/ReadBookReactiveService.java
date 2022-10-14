@@ -14,9 +14,10 @@
 package io.americanexpress.service.book.rest.service;
 
 import io.americanexpress.data.book.repository.BookRepository;
+import io.americanexpress.service.book.rest.model.ReadBookRequest;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.service.helper.ReadBookResponseCreator;
-import io.americanexpress.synapse.service.rest.service.reactive.BaseGetMonoReactiveService;
+import io.americanexpress.synapse.service.rest.service.reactive.BaseReadMonoReactiveService;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -24,7 +25,7 @@ import reactor.core.publisher.Mono;
  * {@code ReadBookReactiveService} is the service class for retrieving a book from the Cassandra Book database.
  */
 @Service
-public class ReadBookReactiveService extends BaseGetMonoReactiveService<ReadBookResponse> {
+public class ReadBookReactiveService extends BaseReadMonoReactiveService<ReadBookRequest, ReadBookResponse> {
 
     /**
      * Used to retrieve book from database.
@@ -44,8 +45,8 @@ public class ReadBookReactiveService extends BaseGetMonoReactiveService<ReadBook
      * Retrieves book from database.
      */
     @Override
-    protected Mono<ReadBookResponse> executeRead(String title) {
-        return bookRepository.findByTitle(title)
+    protected Mono<ReadBookResponse> executeRead(ReadBookRequest request) {
+        return bookRepository.findByTitleAndAuthor(request.getTitle(), request.getAuthor())
                 .map(ReadBookResponseCreator::create)
                 .switchIfEmpty(Mono.empty());
     }
