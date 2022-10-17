@@ -11,17 +11,12 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.rest.config;
+package io.americanexpress.service.book.rest.model;
+
+import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 
 /**
- * {@code BookEndpoints} contains the endpoints for the Book Application.
+ * {@code CreateBookResponse} is the response object for creating book.
  */
-public class BookEndpoints {
-
-    private BookEndpoints() {}
-
-    /**
-     * The constant BOOK_ENDPOINT.
-     */
-    public static final String BOOK_ENDPOINT = "/v1/books";
+public class CreateBookResponse extends BaseServiceResponse {
 }

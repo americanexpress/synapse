@@ -13,18 +13,26 @@
  */
 package io.americanexpress.service.book.rest.model;
 
-import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
+import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
+
+import javax.validation.constraints.NotBlank;
 
 /**
- * {@code ReadBookResponse} is the response object for retrieving a book.
+ * {@code BookRequest} is the base book request object.
  */
-public class ReadBookResponse extends BaseServiceResponse {
+public class BookRequest implements BaseServiceRequest {
 
+    /**
+     * Title of book.
+     */
+    @NotBlank
     private String title;
 
+    /**
+     * Author of book.
+     */
+    @NotBlank
     private String author;
-
-    private int numberOfCopies;
 
     /**
      * Gets title.
@@ -60,23 +68,5 @@ public class ReadBookResponse extends BaseServiceResponse {
      */
     public void setAuthor(String author) {
         this.author = author;
-    }
-
-    /**
-     * Gets number of copies.
-     *
-     * @return the number of copies
-     */
-    public int getNumberOfCopies() {
-        return numberOfCopies;
-    }
-
-    /**
-     * Sets number of copies.
-     *
-     * @param numberOfCopies the number of copies
-     */
-    public void setNumberOfCopies(int numberOfCopies) {
-        this.numberOfCopies = numberOfCopies;
     }
 }

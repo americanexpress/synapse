@@ -14,29 +14,25 @@
 package io.americanexpress.service.book.rest.service.helper;
 
 import io.americanexpress.data.book.entity.BookEntity;
-import io.americanexpress.service.book.rest.model.ReadBookResponse;
 
 /**
- * {@code ReadBookResponseCreator} is the helper class for creating a ReadBookResponse.
+ * {@code BookEntityCreator} is the helper class for creating a {@link BookEntity} object.
  */
-public class ReadBookResponseCreator {
+public class BookEntityCreator {
 
-    private ReadBookResponseCreator() {}
+    private BookEntityCreator() {}
 
     /**
-     * Create read book response.
+     * Create book entity.
      *
-     * @param bookEntity the book entity
-     * @return the read book response
+     * @param title          the title
+     * @param author         the author
+     * @param numberOfCopies the number of copies
+     * @return the book entity
      */
-    public static ReadBookResponse create(BookEntity bookEntity) {
-        ReadBookResponse response = null;
-        if(bookEntity != null) {
-            response = new ReadBookResponse();
-            response.setTitle(bookEntity.getTitle());
-            response.setAuthor(bookEntity.getAuthor());
-            response.setNumberOfCopies(bookEntity.getNumberOfCopies());
-        }
-        return response;
+    public static BookEntity create(String title, String author, int numberOfCopies) {
+        BookEntity book = new BookEntity(title, author);
+        book.setNumberOfCopies(numberOfCopies);
+        return book;
     }
 }

@@ -56,7 +56,6 @@ class BookRepositoryDockerIT {
     @Test
     void save_givenBookEntity_expectedBookSaved() {
         BookEntity bookEntity = new BookEntity("Alice In Wonderland", "Lewis Carroll");
-        bookEntity.setIdentifier(UUID.randomUUID());
 
         BookEntity result = bookRepository.save(bookEntity);
         Assertions.assertNotNull(result);
@@ -71,7 +70,6 @@ class BookRepositoryDockerIT {
     @Test
     void findByTitleAndAuthor_givenBookEntity_expectedBookFound() {
         BookEntity bookEntity = new BookEntity("Alice In Wonderland", "Lewis Carroll");
-        bookEntity.setIdentifier(UUID.randomUUID());
         bookRepository.save(bookEntity);
 
         Optional<BookEntity> result = bookRepository.findByTitleAndAuthor("Alice In Wonderland", "Lewis Carroll");

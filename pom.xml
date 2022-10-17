@@ -303,10 +303,14 @@
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-service-reactive-cassandra-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>sample-service-rest-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>sample-service-rest-native-book</artifactId>

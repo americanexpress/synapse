@@ -11,17 +11,10 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.rest.config;
+package io.americanexpress.service.book.rest.model;
 
 /**
- * {@code BookEndpoints} contains the endpoints for the Book Application.
+ * {@code ReadBookRequest} is the request object for retrieving a book.
  */
-public class BookEndpoints {
-
-    private BookEndpoints() {}
-
-    /**
-     * The constant BOOK_ENDPOINT.
-     */
-    public static final String BOOK_ENDPOINT = "/v1/books";
+public class ReadBookRequest extends BookRequest {
 }

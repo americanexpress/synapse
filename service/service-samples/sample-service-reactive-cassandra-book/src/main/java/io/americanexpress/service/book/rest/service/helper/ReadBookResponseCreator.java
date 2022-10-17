@@ -17,7 +17,7 @@ import io.americanexpress.data.book.entity.BookEntity;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 
 /**
- * {@code ReadBookResponseCreator} is the helper class for creating a ReadBookResponse.
+ * {@code ReadBookResponseCreator} is the helper class for creating a {@link ReadBookResponse}.
  */
 public class ReadBookResponseCreator {
 

@@ -15,28 +15,26 @@ package io.americanexpress.service.book.rest.service.helper;
 
 import io.americanexpress.data.book.entity.BookEntity;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
- * {@code ReadBookResponseCreator} is the helper class for creating a ReadBookResponse.
+ * {@code ReadBookResponseCreatorTest} tests the {@link ReadBookResponseCreator} class.
  */
-public class ReadBookResponseCreator {
+class ReadBookResponseCreatorTest {
 
-    private ReadBookResponseCreator() {}
-
-    /**
-     * Create read book response.
-     *
-     * @param bookEntity the book entity
-     * @return the read book response
-     */
-    public static ReadBookResponse create(BookEntity bookEntity) {
-        ReadBookResponse response = null;
-        if(bookEntity != null) {
-            response = new ReadBookResponse();
-            response.setTitle(bookEntity.getTitle());
-            response.setAuthor(bookEntity.getAuthor());
-            response.setNumberOfCopies(bookEntity.getNumberOfCopies());
-        }
-        return response;
+    @Test
+    void create_givenBookEntity_expectedReadBookResponse() {
+        BookEntity book = new BookEntity("Book", "Author");
+        ReadBookResponse response = ReadBookResponseCreator.create(book);
+        Assertions.assertNotNull(response);
     }
+
+    @Test
+    void create_givenNull_expectedNull() {
+        ReadBookResponse response = ReadBookResponseCreator.create(null);
+        Assertions.assertNull(response);
+    }
+
+
 }

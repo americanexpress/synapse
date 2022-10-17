@@ -16,14 +16,23 @@ package io.americanexpress.service.book.rest.model;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 
 /**
- * {@code ReadBookResponse} is the response object for retrieving a book.
+ * {@code ReadBookResponse} is the response for the read book operation.
  */
 public class ReadBookResponse extends BaseServiceResponse {
 
+    /**
+     * Title of book.
+     */
     private String title;
 
+    /**
+     * Author of book.
+     */
     private String author;
 
+    /**
+     * Number of copies of book.
+     */
     private int numberOfCopies;
 
     /**

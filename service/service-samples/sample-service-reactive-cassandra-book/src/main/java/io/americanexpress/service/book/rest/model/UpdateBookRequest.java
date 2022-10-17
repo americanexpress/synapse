@@ -13,54 +13,18 @@
  */
 package io.americanexpress.service.book.rest.model;
 
-import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
+import javax.validation.constraints.Min;
 
 /**
- * {@code ReadBookResponse} is the response object for retrieving a book.
+ * {@code UpdateBookRequest} is the request object for updating a book.
  */
-public class ReadBookResponse extends BaseServiceResponse {
+public class UpdateBookRequest extends BookRequest{
 
-    private String title;
-
-    private String author;
-
+    /**
+     * Number of copies of book.
+     */
+    @Min(0)
     private int numberOfCopies;
-
-    /**
-     * Gets title.
-     *
-     * @return the title
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * Sets title.
-     *
-     * @param title the title
-     */
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    /**
-     * Gets author.
-     *
-     * @return the author
-     */
-    public String getAuthor() {
-        return author;
-    }
-
-    /**
-     * Sets author.
-     *
-     * @param author the author
-     */
-    public void setAuthor(String author) {
-        this.author = author;
-    }
 
     /**
      * Gets number of copies.

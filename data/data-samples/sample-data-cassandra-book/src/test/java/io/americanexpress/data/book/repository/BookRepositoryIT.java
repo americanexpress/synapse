@@ -54,7 +54,6 @@ class BookRepositoryIT {
     @Test
     void findByTitleAndAuthor_givenBook_expectedBookFound() {
         BookEntity bookEntity = new BookEntity("Alice In Wonderland", "Lewis Carroll");
-        bookEntity.setIdentifier(UUID.randomUUID());
         bookRepository.save(bookEntity);
 
         Optional<BookEntity> book = bookRepository.findByTitleAndAuthor("Alice In Wonderland", "Lewis Carroll");
