@@ -12,31 +12,50 @@
     or implied. See the License for the specific language governing permissions and limitations under
     the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
-        <artifactId>data</artifactId>
+        <artifactId>function-samples</artifactId>
         <version>0.3.3-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>synapse-data-cassandra</artifactId>
+    <artifactId>sample-function-greeter-aws</artifactId>
 
+    <!--Dependencies-->
     <dependencies>
+        <!--Synapse-->
         <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-cassandra</artifactId>
+            <groupId>io.americanexpress.synapse</groupId>
+            <artifactId>synapse-function</artifactId>
+        </dependency>
+
+        <!--Third Party-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.projectreactor</groupId>
-            <artifactId>reactor-core</artifactId>
+            <artifactId>reactor-test</artifactId>
+            <scope>test</scope>
         </dependency>
+
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
+
