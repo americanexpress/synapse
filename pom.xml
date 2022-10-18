@@ -51,7 +51,7 @@
         <spring-native.version>0.12.1</spring-native.version>
 
         <!--Springdoc-->
-        <springdoc.version>1.6.11</springdoc.version>
+        <springdoc.version>1.6.12</springdoc.version>
 
         <!-- GraphQL -->
         <spring-boot-graphql.version>11.1.0</spring-boot-graphql.version>
