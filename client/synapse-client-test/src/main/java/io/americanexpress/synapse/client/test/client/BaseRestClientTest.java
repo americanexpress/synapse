@@ -27,7 +27,7 @@ abstract class BaseRestClientTest<I extends BaseClientRequest,
         C extends BaseRestClient<I, O, H>> extends BaseClientTest {
 
     @BeforeEach
-    private void initialize() {
+    protected void initialize() {
         this.url = restClient.getUrl();
     }
 
