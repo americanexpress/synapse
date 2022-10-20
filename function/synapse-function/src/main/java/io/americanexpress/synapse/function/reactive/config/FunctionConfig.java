@@ -26,7 +26,7 @@ import org.springframework.context.annotation.Import;
  */
 @Configuration
 @ComponentScan(basePackages = "io.americanexpress.synapse.function.reactive")
-@Import({ExceptionConfig.class, ApiDocsConfig.class})
+@Import({ExceptionConfig.class, ApiDocsConfig.class, BaseObservabilityConfig.class})
 public class FunctionConfig {
 
 }
