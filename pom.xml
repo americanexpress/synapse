@@ -64,7 +64,7 @@
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
 
         <!--Jackson-->
-        <jackson.version>2.13.4</jackson.version>
+        <jackson.version>2.13.4.1</jackson.version>
 
         <!--Logging-->
         <log4j.version>2.19.0</log4j.version>
