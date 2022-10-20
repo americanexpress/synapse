@@ -71,7 +71,7 @@
         <sl4j.version>1.7.36</sl4j.version>
 
         <!--Plugins-->
-        <native-plugin.version>0.9.13</native-plugin.version>
+        <native-plugin.version>0.9.16</native-plugin.version>
         <jaxws-maven-plugin.version>2.5</jaxws-maven-plugin.version>
     </properties>
 
@@ -865,7 +865,7 @@
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-mongodb</artifactId>
-                <version>3.4.2</version>
+                <version>3.4.5</version>
             </dependency>
 
             <!--Kotlin-->
