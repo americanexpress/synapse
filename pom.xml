@@ -865,7 +865,7 @@
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-mongodb</artifactId>
-                <version>3.4.2</version>
+                <version>3.4.5</version>
             </dependency>
 
             <!--Kotlin-->
