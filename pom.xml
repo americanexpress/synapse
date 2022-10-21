@@ -283,11 +283,6 @@
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
-                <artifactId>data-samples</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>service-samples</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -304,6 +299,11 @@
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>sample-function-greeter-aws</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-function-greeter-gcp</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -363,6 +363,13 @@
                 <artifactId>system-rules</artifactId>
                 <scope>compile</scope><!-- IN THIS CASE COMPILES NEEDS TO BE OVERRIDDEN BECAUSE THE DEFAULT IS TEST-->
                 <version>1.19.0</version>
+            </dependency>
+
+            <!-- Spring GCP-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-function-adapter-gcp</artifactId>
+                <version>3.2.7</version>
             </dependency>
 
             <!--Spring Dependencies-->
@@ -879,11 +886,6 @@
                 <artifactId>kotlin-test</artifactId>
                 <version>${kotlin.version}</version>
                 <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-stdlib-jdk8</artifactId>
-                <version>${kotlin.version}</version>
             </dependency>
             <!--Cassandra-->
             <dependency>
