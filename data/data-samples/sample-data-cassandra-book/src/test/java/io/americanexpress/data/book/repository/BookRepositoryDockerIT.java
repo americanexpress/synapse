@@ -16,6 +16,7 @@ import org.testcontainers.containers.CassandraContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @ContextConfiguration(classes = BookDataTestConfig.class)
@@ -55,7 +56,6 @@ class BookRepositoryDockerIT {
     @Test
     void save_givenBookEntity_expectedBookSaved() {
         BookEntity bookEntity = new BookEntity("Alice In Wonderland", "Lewis Carroll");
-        bookEntity.setIdentifier(UUID.randomUUID());
 
         BookEntity result = bookRepository.save(bookEntity);
         Assertions.assertNotNull(result);
@@ -63,17 +63,16 @@ class BookRepositoryDockerIT {
 
     @Test
     void findByTitleAndAuthor_givenBookDoesNotExist_expectedNull() {
-        BookEntity result = bookRepository.findByTitleAndAuthor("Alice In Wonderland", "Lewis Carroll");
-        Assertions.assertNull(result);
+        Optional<BookEntity> result = bookRepository.findByTitleAndAuthor("Alice In Wonderland", "Lewis Carroll");
+        Assertions.assertFalse(result.isPresent());
     }
 
     @Test
     void findByTitleAndAuthor_givenBookEntity_expectedBookFound() {
         BookEntity bookEntity = new BookEntity("Alice In Wonderland", "Lewis Carroll");
-        bookEntity.setIdentifier(UUID.randomUUID());
         bookRepository.save(bookEntity);
 
-        BookEntity result = bookRepository.findByTitleAndAuthor("Alice In Wonderland", "Lewis Carroll");
-        Assertions.assertEquals(bookEntity.getTitle(), result.getTitle());
+        Optional<BookEntity> result = bookRepository.findByTitleAndAuthor("Alice In Wonderland", "Lewis Carroll");
+        Assertions.assertEquals(bookEntity.getTitle(), result.get().getTitle());
     }
 }

@@ -18,19 +18,14 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.Version;
-import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 /**
  * {@code BaseEntity} class is the parent class for all Cassandra tables.
  * All the common attributes are consolidated in this entity.
  */
 public abstract class BaseEntity {
-
-    @PrimaryKeyColumn
-    private UUID identifier;
 
     /**
      * Created Date Time
@@ -66,14 +61,6 @@ public abstract class BaseEntity {
      * Empty constructor, do not delete it. It is used by Spring Data.
      */
     public BaseEntity() {
-    }
-
-    public UUID getIdentifier() {
-        return identifier;
-    }
-
-    public void setIdentifier(UUID identifier) {
-        this.identifier = identifier;
     }
 
     public LocalDateTime getCreatedDateTime() {

@@ -14,6 +14,7 @@
 package io.americanexpress.data.book.repository;
 
 import io.americanexpress.data.book.entity.BookEntity;
+import org.springframework.data.cassandra.repository.AllowFiltering;
 import org.springframework.data.cassandra.repository.ReactiveCassandraRepository;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
@@ -27,4 +28,7 @@ import java.util.UUID;
 public interface BookRepository extends ReactiveCassandraRepository<BookEntity, UUID> {
 
     Mono<BookEntity> findByTitleAndAuthor(String title, String author);
+
+    @AllowFiltering
+    Mono<BookEntity> findByTitle(String title);
 }
