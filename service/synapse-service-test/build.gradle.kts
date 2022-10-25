@@ -1,12 +1,13 @@
 dependencies {
     api(project(":service:synapse-service-rest"))
     api(project(":framework:synapse-framework-test"))
-    implementation("org.springframework.boot:spring-boot-starter-test:2.7.4")
-    implementation("org.springframework.boot:spring-boot-starter-json:2.7.4")
-    implementation("org.springframework.security:spring-security-core:5.7.3")
-    implementation("org.springframework.security:spring-security-test:5.7.3")
-    implementation("com.github.stefanbirkner:system-rules:1.19.0")
-    implementation("org.mockito:mockito-core:4.8.0")
+
+    implementation(libs.mockito.core)
+    implementation(libs.spring.boot.starter.json)
+    implementation(libs.spring.boot.starter.test)
+    implementation(libs.spring.security.core)
+    implementation(libs.spring.security.test)
+    implementation(libs.system.rules)
 }
 
 description = "synapse-service-test"

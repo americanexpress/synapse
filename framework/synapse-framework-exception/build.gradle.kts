@@ -1,11 +1,11 @@
 dependencies {
-    api("org.springframework:spring-beans:5.3.23")
-    api("org.junit.platform:junit-platform-suite-api:1.9.1")
-    api("junit:junit:4.13.2")
-    api("org.junit.jupiter:junit-jupiter-api:5.9.1")
-    api("org.junit.jupiter:junit-jupiter-engine:5.9.1")
-    api("org.junit.platform:junit-platform-runner:1.9.1")
-    api("org.springframework.boot:spring-boot-starter:2.7.4")
+    api(libs.junit)
+    api(libs.junit.jupiter.api)
+    api(libs.junit.jupiter.engine)
+    api(libs.junit.platform.runner)
+    api(libs.junit.platform.suite.api)
+    api(libs.spring.beans)
+    api(libs.spring.boot.starter)
 }
 
 description = "synapse-framework-exception"

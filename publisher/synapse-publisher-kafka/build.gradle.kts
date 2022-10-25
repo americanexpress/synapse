@@ -1,7 +1,7 @@
 dependencies {
     implementation(project(":framework:synapse-framework-exception"))
-    implementation("org.springframework.boot:spring-boot-autoconfigure:2.7.4")
-    implementation("org.springframework.kafka:spring-kafka:2.8.9")
+    implementation(libs.spring.boot.autoconfigure)
+    implementation(libs.spring.kafka)
 }
 
 description = "synapse-publisher-kafka"

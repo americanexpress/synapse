@@ -1,14 +1,14 @@
 dependencies {
     api(project(":framework:synapse-framework-logging"))
-    api("org.junit.jupiter:junit-jupiter-api:5.9.1")
-    api("org.junit.jupiter:junit-jupiter-engine:5.9.1")
-    api("org.junit.vintage:junit-vintage-engine:5.9.1")
-    api("org.junit.platform:junit-platform-runner:1.9.1")
-    api("org.mockito:mockito-junit-jupiter:4.8.0")
-    api("org.springframework.boot:spring-boot-starter-test:2.7.4")
-    api("org.slf4j:slf4j-ext:1.7.36")
-    api("com.openpojo:openpojo:0.9.1")
-    api("org.junit.platform:junit-platform-launcher:1.9.1")
+    api(libs.junit.jupiter.api)
+    api(libs.junit.jupiter.engine)
+    api(libs.junit.platform.launcher)
+    api(libs.junit.platform.runner)
+    api(libs.junit.vintage.engine)
+    api(libs.mockito.junit.jupiter)
+    api(libs.openpojo)
+    api(libs.slf4j.ext)
+    api(libs.spring.boot.starter.test)
 }
 
 description = "synapse-framework-test"
