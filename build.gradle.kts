@@ -17,3 +17,10 @@ publishing {
         from(components["java"])
     }
 }
+
+tasks {
+    "test"(Test::class) {
+        useJUnitPlatform()
+        exclude("**/**IT**")
+    }
+}

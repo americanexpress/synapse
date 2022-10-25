@@ -1,7 +1,7 @@
 dependencies {
-    implementation("org.springframework.data:spring-data-cassandra:3.4.3")
-    implementation("org.springframework:spring-tx:5.3.23")
-    implementation("io.projectreactor:reactor-core:3.4.24")
+    api(libs.reactor.core)
+    api(libs.spring.data.cassandra)
+    api(libs.spring.tx)
 }
 
 description = "synapse-data-cassandra"
