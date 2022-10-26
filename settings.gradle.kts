@@ -39,7 +39,7 @@ include("publisher")
 include("publisher:synapse-publisher-kafka")
 include("service")
 include("service:service-samples")
-//include("service:service-samples:sample-service-graphql-book")
+include("service:service-samples:sample-service-graphql-book")
 include("service:service-samples:sample-service-reactive-cassandra-book")
 include("service:service-samples:sample-service-rest-book")
 include("service:service-samples:sample-service-rest-cassandra-book")
@@ -58,9 +58,10 @@ dependencyResolutionManagement {
     repositories {
         mavenLocal()
         mavenCentral()
-//        maven {
-//            url = uri("https://ci-repo.aexp.com/java-proxy/content/groups/prod/")
-//        }
+
+        maven {
+            url = uri ("https://oss.jfrog.org/artifactory/oss-snapshot-local")
+        }
 
         maven {
             url = uri("https://repo.spring.io/release")
@@ -95,6 +96,7 @@ dependencyResolutionManagement {
             library("graphql-java-extended-scalars", "com.graphql-java", "graphql-java-extended-scalars").version("19.0")
             library("graphql-java-tools", "com.graphql-java", "graphql-java-tools").version("5.2.4")
             library("graphiql-spring-boot-starter", "com.graphql-java-kickstart", "graphiql-spring-boot-starter").version("11.1.0")
+            library("graphql-spring-boot-starter", "com.graphql-java-kickstart", "graphql-spring-boot-starter").version("11.1.0")
             library("voyager-spring-boot-starter", "com.graphql-java-kickstart", "voyager-spring-boot-starter").version("11.1.0")
 
             library("h2", "com.h2database", "h2").version("2.1.214")
@@ -103,6 +105,8 @@ dependencyResolutionManagement {
 
             library("querydsl-apt", "com.querydsl", "querydsl-apt").version("5.0.0")
             library("querydsl-jpa", "com.querydsl", "querydsl-jpa").version("5.0.0")
+
+            library("graphql-spqr-spring-boot-starter", "io.leangen.graphql", "graphql-spqr-spring-boot-starter").version("0.0.6")
 
             library("reactor-core", "io.projectreactor", "reactor-core").version("3.4.24")
             library("reactor-test", "io.projectreactor", "reactor-test").version("3.4.24")

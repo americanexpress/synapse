@@ -1,3 +1,10 @@
+configurations {
+    implementation {
+        // Needs to be excluded, so that framework-logging doesn"t get override by Spring Starter Logger.
+        exclude(group= "org.springframework.boot", module= "spring-boot-starter-logging")
+    }
+}
+
 dependencies {
     api(project(":framework:synapse-framework-logging"))
     api(project(":framework:synapse-framework-exception"))
@@ -25,9 +32,7 @@ dependencies {
 
 description = "synapse-service-rest"
 
-tasks {
-    "test"(Test::class) {
-        useJUnitPlatform()
-        exclude("**/**IT**")
-    }
+tasks.test {
+    useJUnitPlatform()
+    exclude("**/**Test**")
 }

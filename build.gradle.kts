@@ -18,9 +18,8 @@ publishing {
     }
 }
 
-tasks {
-    "test"(Test::class) {
-        useJUnitPlatform()
-        exclude("**/**IT**")
-    }
+tasks.test {
+    useJUnit()
+    exclude("**/**Test**")
+    exclude("**/**Test")
 }
