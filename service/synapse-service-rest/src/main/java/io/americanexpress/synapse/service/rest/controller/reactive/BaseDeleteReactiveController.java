@@ -46,8 +46,7 @@ public abstract class BaseDeleteReactiveController<S extends BaseDeleteReactiveS
 
         var serviceResults = service.delete(headers, identifier);
         var responseEntity = serviceResults
-                .map(res -> new ResponseEntity<Void>(HttpStatus.NO_CONTENT))
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+                .map(res -> new ResponseEntity<Void>(HttpStatus.NO_CONTENT));
 
         logger.exit(responseEntity);
 
