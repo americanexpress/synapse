@@ -15,6 +15,7 @@ package io.americanexpress.synapse.service.rest.service;
 
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
+import org.springframework.http.HttpHeaders;
 
 /**
  * BaseService class specifies the prototypes for performing business logic.
@@ -28,22 +29,23 @@ public abstract class BaseCreateService<I extends BaseServiceRequest, O extends 
     /**
      * Add a single resource.
      *
+     * @param headers received from the controller
      * @param request body received from the controller
      * @return response body to the controller
      */
-    public O create(I request) {
+    public O create(HttpHeaders headers, I request) {
         logger.entry(request);
-        final O response = executeCreate(request);
+        final O response = executeCreate(headers, request);
         logger.exit(response);
         return response;
     }
 
     /**
      * Prototype for adding a resource.
-     *
+     * @param headers received from the controller
      * @param request body received from the controller
      * @return response body to the controller
      */
-    protected abstract O executeCreate(I request);
+    protected abstract O executeCreate(HttpHeaders headers, I request);
 
 }

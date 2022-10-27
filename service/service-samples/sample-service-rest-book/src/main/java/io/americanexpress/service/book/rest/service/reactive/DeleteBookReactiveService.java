@@ -14,8 +14,10 @@
 package io.americanexpress.service.book.rest.service.reactive;
 
 import io.americanexpress.synapse.service.rest.service.reactive.BaseDeleteReactiveService;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
+
 
 /**
  * {@code DeleteBookReactiveService} service layer for deleting a booking resource
@@ -25,11 +27,11 @@ public class DeleteBookReactiveService extends BaseDeleteReactiveService {
 
     /**
      * Overriding executeDelete
-     * @param identifier
-     * @return
+     * @param identifier an identifier
+     * @return a mono void
      */
     @Override
-    protected Mono<Void> executeDelete(String identifier) {
+    protected Mono<Void> executeDelete(HttpHeaders headers, String identifier) {
         logger.entry(identifier);
         logger.debug("emulating delete...");
         return Mono.empty();

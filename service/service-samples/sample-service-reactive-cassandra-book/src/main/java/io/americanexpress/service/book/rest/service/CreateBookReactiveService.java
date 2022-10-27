@@ -19,6 +19,7 @@ import io.americanexpress.service.book.rest.model.CreateBookRequest;
 import io.americanexpress.service.book.rest.model.CreateBookResponse;
 import io.americanexpress.service.book.rest.service.helper.BookEntityCreator;
 import io.americanexpress.synapse.service.rest.service.reactive.BaseCreateReactiveService;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -48,7 +49,7 @@ public class CreateBookReactiveService extends BaseCreateReactiveService<CreateB
      * @return createBookResponse
      */
     @Override
-    protected Mono<CreateBookResponse> executeCreate(CreateBookRequest request) {
+    protected Mono<CreateBookResponse> executeCreate(HttpHeaders headers,  CreateBookRequest request) {
         BookEntity bookEntity = BookEntityCreator.create(request.getTitle(), request.getAuthor(), 1);
         return bookRepository.save(bookEntity).map(book -> new CreateBookResponse()).switchIfEmpty(Mono.empty());
     }

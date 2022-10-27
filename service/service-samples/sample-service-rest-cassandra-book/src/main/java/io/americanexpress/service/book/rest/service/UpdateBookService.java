@@ -17,6 +17,7 @@ import io.americanexpress.data.book.entity.BookEntity;
 import io.americanexpress.data.book.repository.BookRepository;
 import io.americanexpress.service.book.rest.model.UpdateBookRequest;
 import io.americanexpress.synapse.service.rest.service.BaseUpdateService;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -39,7 +40,7 @@ public class UpdateBookService extends BaseUpdateService<UpdateBookRequest> {
     }
 
     @Override
-    protected void executeUpdate(UpdateBookRequest request) {
+    protected void executeUpdate(HttpHeaders headers, UpdateBookRequest request) {
         Optional<BookEntity> bookEntity = bookRepository.findByTitleAndAuthor(request.getTitle(), request.getAuthor());
         bookEntity.ifPresent(book -> {
             book.setNumberOfCopies(request.getNumberOfCopies());

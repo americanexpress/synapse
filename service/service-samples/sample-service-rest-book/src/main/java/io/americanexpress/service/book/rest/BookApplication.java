@@ -42,6 +42,4 @@ public class BookApplication {
         SpringApplication.run(BookApplication.class, args);
         LOGGER.info("Rest Book Application is up and running ...");
     }
-
-
 }

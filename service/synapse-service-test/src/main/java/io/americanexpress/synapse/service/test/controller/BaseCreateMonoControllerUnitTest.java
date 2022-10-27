@@ -42,7 +42,7 @@ public abstract class BaseCreateMonoControllerUnitTest<O extends BaseServiceResp
      */
     @Test
     public void create_givenGoodResponseFromService_expectedSuccessfulResponse() throws Exception {
-        BDDMockito.given(service.create(ArgumentMatchers.any())).willReturn(response);
+        BDDMockito.given(service.create(ArgumentMatchers.any(), ArgumentMatchers.any())).willReturn(response);
         testEndpoint(getEndpoint(), HttpMethod.POST, HttpStatus.CREATED);
     }
 
@@ -54,7 +54,7 @@ public abstract class BaseCreateMonoControllerUnitTest<O extends BaseServiceResp
      */
     @Test
     public void create_givenApplicationClientExceptionThrownInServiceCall_expectedExceptionThrownInResponse() throws Exception {
-        BDDMockito.given(service.create(ArgumentMatchers.any())).willThrow(new ApplicationClientException(StringUtils.EMPTY, ErrorCode.GENERIC_4XX_ERROR));
+        BDDMockito.given(service.create(ArgumentMatchers.any(),ArgumentMatchers.any())).willThrow(new ApplicationClientException(StringUtils.EMPTY, ErrorCode.GENERIC_4XX_ERROR));
         testEndpoint(getEndpoint(), HttpMethod.POST, HttpStatus.BAD_REQUEST);
     }
 
@@ -67,7 +67,7 @@ public abstract class BaseCreateMonoControllerUnitTest<O extends BaseServiceResp
     @Test
     public void create_givenApplicationServerExceptionThrownInServiceCall_expectedExceptionThrownInResponse() throws Exception {
         final ClassNotFoundException classNotFoundException = new ClassNotFoundException();
-        BDDMockito.given(service.create(ArgumentMatchers.any())).willThrow(new ApplicationServerException(classNotFoundException));
+        BDDMockito.given(service.create(ArgumentMatchers.any(), ArgumentMatchers.any())).willThrow(new ApplicationServerException(classNotFoundException));
         testEndpoint(getEndpoint(), HttpMethod.POST, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -79,7 +79,7 @@ public abstract class BaseCreateMonoControllerUnitTest<O extends BaseServiceResp
      */
     @Test
     public void create_givenNPEThrownInServiceCall_expectedExceptionThrownInResponse() throws Exception {
-        BDDMockito.given(service.create(ArgumentMatchers.any())).willThrow(new NullPointerException());
+        BDDMockito.given(service.create(ArgumentMatchers.any(),ArgumentMatchers.any())).willThrow(new NullPointerException());
         testEndpoint(getEndpoint(), HttpMethod.POST, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
