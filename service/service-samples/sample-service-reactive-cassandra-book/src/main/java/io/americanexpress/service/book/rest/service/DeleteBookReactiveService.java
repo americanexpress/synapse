@@ -48,7 +48,8 @@ public class DeleteBookReactiveService extends BaseDeleteReactiveService {
     @Override
     protected Mono<Void> executeDelete(HttpHeaders headers, String title) {
         return bookRepository.findByTitle(title)
-                .map(bookRepository::delete)
-                .then();
+          .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "Book Not Found")))
+          .flatMap(bookRepository::delete)
+          .then();
     }
 }
