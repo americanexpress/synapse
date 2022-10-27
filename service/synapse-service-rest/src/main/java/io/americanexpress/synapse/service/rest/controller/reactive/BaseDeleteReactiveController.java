@@ -16,10 +16,12 @@ package io.americanexpress.synapse.service.rest.controller.reactive;
 import io.americanexpress.synapse.service.rest.controller.BaseController;
 import io.americanexpress.synapse.service.rest.service.reactive.BaseDeleteReactiveService;
 import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import reactor.core.publisher.Mono;
 
@@ -39,10 +41,10 @@ public abstract class BaseDeleteReactiveController<S extends BaseDeleteReactiveS
     @DeleteMapping("/{identifier}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(tags = "Delete Operation", summary = "Deletes a resource reactively")
-    public Mono<ResponseEntity<Void>> delete(@PathVariable String identifier) {
+    public Mono<ResponseEntity<Void>> delete(@RequestHeader HttpHeaders headers, @PathVariable String identifier) {
         logger.entry(identifier);
 
-        var serviceResults = service.delete(identifier);
+        var serviceResults = service.delete(headers, identifier);
         var responseEntity = serviceResults
                 .map(res -> new ResponseEntity<Void>(HttpStatus.NO_CONTENT))
                 .defaultIfEmpty(ResponseEntity.notFound().build());

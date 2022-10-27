@@ -54,7 +54,7 @@ public abstract class BaseUpdateControllerUnitTest<O extends BaseServiceResponse
      */
     @Test
     public void update_givenApplicationClientExceptionThrownInServiceCall_expectedExceptionThrownInResponse() throws Exception {
-        Mockito.doThrow(new ApplicationClientException(StringUtils.EMPTY, ErrorCode.GENERIC_4XX_ERROR)).when(service).update(ArgumentMatchers.any());
+        Mockito.doThrow(new ApplicationClientException(StringUtils.EMPTY, ErrorCode.GENERIC_4XX_ERROR)).when(service).update(ArgumentMatchers.any(), ArgumentMatchers.any());
         testEndpoint(getEndpoint(), HttpMethod.PUT, HttpStatus.BAD_REQUEST);
     }
 
@@ -67,7 +67,7 @@ public abstract class BaseUpdateControllerUnitTest<O extends BaseServiceResponse
     @Test
     public void update_givenApplicationServerExceptionThrownInServiceCall_expectedExceptionThrownInResponse() throws Exception {
         final ClassNotFoundException classNotFoundException = new ClassNotFoundException();
-        Mockito.doThrow(new ApplicationServerException(classNotFoundException)).when(service).update(ArgumentMatchers.any());
+        Mockito.doThrow(new ApplicationServerException(classNotFoundException)).when(service).update(ArgumentMatchers.any(), ArgumentMatchers.any());
         testEndpoint(getEndpoint(), HttpMethod.PUT, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -79,7 +79,7 @@ public abstract class BaseUpdateControllerUnitTest<O extends BaseServiceResponse
      */
     @Test
     public void update_givenNPEThrownInServiceCall_expectedExceptionThrownInResponse() throws Exception {
-        Mockito.doThrow(new NullPointerException()).when(service).update(ArgumentMatchers.any());
+        Mockito.doThrow(new NullPointerException()).when(service).update(ArgumentMatchers.any(), ArgumentMatchers.any());
         testEndpoint(getEndpoint(), HttpMethod.PUT, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 

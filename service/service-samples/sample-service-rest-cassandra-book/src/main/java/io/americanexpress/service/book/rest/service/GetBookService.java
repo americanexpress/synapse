@@ -18,6 +18,7 @@ import io.americanexpress.data.book.repository.BookRepository;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.service.helper.ReadBookResponseCreator;
 import io.americanexpress.synapse.service.rest.service.BaseGetMonoService;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -40,7 +41,7 @@ public class GetBookService extends BaseGetMonoService<ReadBookResponse> {
     }
 
     @Override
-    protected ReadBookResponse executeRead(String identifier) {
+    protected ReadBookResponse executeRead(HttpHeaders headers, String identifier) {
         Optional<BookEntity> bookEntity = bookRepository.findByTitleAndAuthor("Alice In Wonderland", "Lewis Carroll");
         return bookEntity.map(ReadBookResponseCreator::create).orElseGet(() -> ReadBookResponseCreator.create(null));
     }

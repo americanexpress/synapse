@@ -45,7 +45,7 @@ public abstract class BaseReadPolyControllerUnitTest<O extends BaseServiceRespon
         List<O> responses = new ArrayList<>();
         responses.add(response);
         Page<O> pagedResponse = new PageImpl<>(responses);
-        BDDMockito.given(service.read(ArgumentMatchers.any())).willReturn(pagedResponse);
+        BDDMockito.given(service.read(ArgumentMatchers.any(), ArgumentMatchers.any())).willReturn(pagedResponse);
         testEndpoint(getEndpoint(), HttpMethod.POST);
     }
 
@@ -57,7 +57,7 @@ public abstract class BaseReadPolyControllerUnitTest<O extends BaseServiceRespon
      */
     @Test
     public void read_givenEmptyResponseFromService_expectedNoContentResponse() throws Exception {
-        BDDMockito.given(service.read(ArgumentMatchers.any())).willReturn(null);
+        BDDMockito.given(service.read(ArgumentMatchers.any(), ArgumentMatchers.any())).willReturn(null);
         testEndpoint(getEndpoint(), HttpMethod.POST, HttpStatus.NO_CONTENT);
     }
 
@@ -69,7 +69,7 @@ public abstract class BaseReadPolyControllerUnitTest<O extends BaseServiceRespon
      */
     @Test
     public void read_givenApplicationClientExceptionThrownInServiceCall_expectedExceptionThrownInResponse() throws Exception {
-        BDDMockito.given(service.read(ArgumentMatchers.any())).willThrow(new ApplicationClientException(StringUtils.EMPTY, ErrorCode.GENERIC_4XX_ERROR));
+        BDDMockito.given(service.read(ArgumentMatchers.any(), ArgumentMatchers.any())).willThrow(new ApplicationClientException(StringUtils.EMPTY, ErrorCode.GENERIC_4XX_ERROR));
         testEndpoint(getEndpoint(), HttpMethod.POST, HttpStatus.BAD_REQUEST);
     }
 
@@ -82,7 +82,7 @@ public abstract class BaseReadPolyControllerUnitTest<O extends BaseServiceRespon
     @Test
     public void read_givenApplicationServerExceptionThrownInServiceCall_expectedExceptionThrownInResponse() throws Exception {
         final ClassNotFoundException classNotFoundException = new ClassNotFoundException();
-        BDDMockito.given(service.read(ArgumentMatchers.any())).willThrow(new ApplicationServerException(classNotFoundException));
+        BDDMockito.given(service.read(ArgumentMatchers.any(), ArgumentMatchers.any())).willThrow(new ApplicationServerException(classNotFoundException));
         testEndpoint(getEndpoint(), HttpMethod.POST, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -94,7 +94,7 @@ public abstract class BaseReadPolyControllerUnitTest<O extends BaseServiceRespon
      */
     @Test
     public void read_givenNPEThrownInServiceCall_expectedExceptionThrownInResponse() throws Exception {
-        BDDMockito.given(service.read(ArgumentMatchers.any())).willThrow(new NullPointerException());
+        BDDMockito.given(service.read(ArgumentMatchers.any(), ArgumentMatchers.any())).willThrow(new NullPointerException());
         testEndpoint(getEndpoint(), HttpMethod.POST, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

@@ -15,6 +15,7 @@ package io.americanexpress.synapse.service.rest.service.reactive;
 
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.service.BaseService;
+import org.springframework.http.HttpHeaders;
 import reactor.core.publisher.Mono;
 
 /**
@@ -25,11 +26,11 @@ public abstract class BaseUpdateReactiveService<I extends BaseServiceRequest> ex
     /**
      * Update a single resource reactively.
      * @param request body received from the controller
-     * @return
+     * @return a mono void
      */
-    public Mono<Void> update(I request) {
+    public Mono<Void> update(HttpHeaders headers, I request) {
         logger.entry(request);
-        var results = executeUpdate(request);
+        var results = executeUpdate(headers, request);
         logger.exit();
         return results;
     }
@@ -38,5 +39,5 @@ public abstract class BaseUpdateReactiveService<I extends BaseServiceRequest> ex
      * @param request
      * @return
      */
-    protected abstract Mono<Void> executeUpdate(I request);
+    protected abstract Mono<Void> executeUpdate(HttpHeaders headers, I request);
 }

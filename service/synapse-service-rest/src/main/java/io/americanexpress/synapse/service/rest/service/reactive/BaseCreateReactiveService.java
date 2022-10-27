@@ -16,12 +16,13 @@ package io.americanexpress.synapse.service.rest.service.reactive;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.rest.service.BaseService;
+import org.springframework.http.HttpHeaders;
 import reactor.core.publisher.Mono;
 
 /**
  * {@code BaseCreateReactiveService} specifies the prototypes for performing business logic.
- * @param <I>
- * @param <O>
+ * @param <I> service request
+ * @param <O> service response
  */
 public abstract class BaseCreateReactiveService<I extends BaseServiceRequest, O extends BaseServiceResponse> extends BaseService {
 
@@ -31,9 +32,9 @@ public abstract class BaseCreateReactiveService<I extends BaseServiceRequest, O 
      * @param request body received from the controller
      * @return response body to the controller
      */
-    public Mono<O> create(I request) {
+    public Mono<O> create(HttpHeaders headers, I request) {
         logger.entry(request);
-        final var response = executeCreate(request);
+        final var response = executeCreate(headers,request);
         logger.exit();
         return response;
     }
@@ -44,5 +45,5 @@ public abstract class BaseCreateReactiveService<I extends BaseServiceRequest, O 
      * @param request body received from the controller
      * @return response body to the controller
      */
-    protected abstract Mono<O> executeCreate(I request);
+    protected abstract Mono<O> executeCreate(HttpHeaders headers,I request);
 }

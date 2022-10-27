@@ -16,6 +16,7 @@ package io.americanexpress.service.book.rest.service;
 import io.americanexpress.data.book.entity.BookEntity;
 import io.americanexpress.data.book.repository.BookRepository;
 import io.americanexpress.synapse.service.rest.service.BaseDeleteService;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -38,7 +39,7 @@ public class DeleteBookService extends BaseDeleteService {
     }
 
     @Override
-    protected void executeDelete(String title) {
+    protected void executeDelete(HttpHeaders headers, String title) {
         Optional<BookEntity> bookEntityOptional = bookRepository.findByTitle(title);
         bookEntityOptional.ifPresent(bookRepository::delete);
     }
