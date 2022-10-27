@@ -13,5 +13,5 @@
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-utilities-common</artifactId>
-            <version>0.3.3-SNAPSHOT</version>
+            <version>0.3.3</version>
         </dependency>
