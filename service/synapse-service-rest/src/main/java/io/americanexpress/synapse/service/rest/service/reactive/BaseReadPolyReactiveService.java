@@ -16,29 +16,30 @@ package io.americanexpress.synapse.service.rest.service.reactive;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.rest.service.BaseService;
+import org.springframework.http.HttpHeaders;
 import reactor.core.publisher.Flux;
 
 /**
  * {@code BaseReadPolyReactiveService} class specifies the prototypes for performing business logic.
- * @param <I>
- * @param <O>
+ * @param <I> service request
+ * @param <O> service response
  */
 public abstract class BaseReadPolyReactiveService<I extends BaseServiceRequest, O extends BaseServiceResponse> extends BaseService {
 
     /**
      * Retrieves multiple resources with a request body.
-     * @param request
-     * @return
+     * @param request a base service request
+     * @return a flux read response
      */
-    public Flux<O> read(final I request) {
+    public Flux<O> read(HttpHeaders headers, final I request) {
         logger.entry(request);
 
-        final var response  = executeRead(request);
+        final var response  = executeRead(headers, request);
 
         logger.exit(response);
 
         return response;
     }
 
-    protected abstract Flux<O> executeRead(I request);
+    protected abstract Flux<O> executeRead(HttpHeaders headers, I request);
 }

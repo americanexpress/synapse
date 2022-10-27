@@ -16,26 +16,27 @@ package io.americanexpress.synapse.service.rest.service.reactive;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.rest.service.BaseService;
+import org.springframework.http.HttpHeaders;
 import reactor.core.publisher.Mono;
 
 /**
  * {@code BaseReadMonoReactiveService} class specifies the prototypes for performing business logic.
- * @param <I>
- * @param <O>
+ * @param <I> service request
+ * @param <O> service response
  */
 public abstract class BaseReadMonoReactiveService<I extends BaseServiceRequest, O extends BaseServiceResponse> extends BaseService {
 
     /**
      * Retrieves one resource with a request body.
-     * @param request
-     * @return
+     * @param request a service request
+     * @return a mono service response
      */
-    public Mono<O> read(I request) {
+    public Mono<O> read(HttpHeaders headers, I request) {
         logger.entry(request);
-        final var response = executeRead(request);
+        final var response = executeRead(headers, request);
         logger.exit();
         return response;
     }
 
-    protected abstract Mono<O> executeRead(I request);
+    protected abstract Mono<O> executeRead(HttpHeaders headers,I request);
 }

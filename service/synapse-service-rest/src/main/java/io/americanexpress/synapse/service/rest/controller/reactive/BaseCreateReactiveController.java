@@ -20,10 +20,12 @@ import io.americanexpress.synapse.service.rest.service.reactive.BaseCreateReacti
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
@@ -54,10 +56,10 @@ public abstract class BaseCreateReactiveController<I extends BaseServiceRequest,
             @ApiResponse(code = 403, message = "Forbidden"),
     })
     // ResponseEntity<Mono<O>>
-    public Mono<ResponseEntity<O>> create(@Valid @RequestBody I serviceRequest) {
+    public Mono<ResponseEntity<O>> create(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
 
-        final var serviceResponse = service.create(serviceRequest);
+        final var serviceResponse = service.create(headers, serviceRequest);
         final var responseEntity = serviceResponse
                 .map(ResponseEntity.status(HttpStatus.CREATED)::body)
                 .defaultIfEmpty(ResponseEntity.noContent().build());

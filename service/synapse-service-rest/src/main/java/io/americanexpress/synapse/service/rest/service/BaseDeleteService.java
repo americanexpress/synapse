@@ -13,6 +13,8 @@
  */
 package io.americanexpress.synapse.service.rest.service;
 
+import org.springframework.http.HttpHeaders;
+
 /**
  * BaseService class specifies the prototypes for performing business logic.
  *
@@ -23,11 +25,14 @@ public abstract class BaseDeleteService extends BaseService {
     /**
      * Remove a single resource.
      *
+     * @param headers received from the controller
      * @param id received from the controller
      */
-    public void delete(String id) {
+    public void delete(HttpHeaders headers, String id) {
         logger.entry(id);
-        executeDelete(id);
+
+        executeDelete(headers, id);
+
         logger.exit();
     }
 
@@ -36,5 +41,5 @@ public abstract class BaseDeleteService extends BaseService {
      *
      * @param id body received from the controller
      */
-    protected abstract void executeDelete(String id);
+    protected abstract void executeDelete(HttpHeaders headers, String id);
 }

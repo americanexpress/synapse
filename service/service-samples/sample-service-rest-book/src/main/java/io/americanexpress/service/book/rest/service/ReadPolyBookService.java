@@ -15,9 +15,11 @@ package io.americanexpress.service.book.rest.service;
 
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.model.ReadPolyBookRequest;
+import io.americanexpress.synapse.service.rest.model.ServiceHeaders;
 import io.americanexpress.synapse.service.rest.service.BaseReadPolyService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -30,7 +32,7 @@ import java.util.List;
 public class ReadPolyBookService extends BaseReadPolyService<ReadPolyBookRequest, ReadBookResponse> {
 
     @Override
-    protected Page<ReadBookResponse> executeRead(ReadPolyBookRequest readBookRequest) {
+    protected Page<ReadBookResponse> executeRead(HttpHeaders headers, ReadPolyBookRequest readBookRequest) {
         List<ReadBookResponse> readBookResponses = new ArrayList<>();
         ReadBookResponse readBookResponse = new ReadBookResponse("Synapse", "Gabriel");
         readBookResponses.add(readBookResponse);

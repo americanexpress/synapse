@@ -16,15 +16,18 @@ package io.americanexpress.synapse.service.rest.controller;
 import io.americanexpress.synapse.service.rest.controller.helpers.PolyResponseEntityCreator;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
+import io.americanexpress.synapse.service.rest.model.ServiceHeadersFactory;
 import io.americanexpress.synapse.service.rest.service.BaseReadPolyService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -43,12 +46,16 @@ public abstract class BaseReadPolyController<I extends BaseServiceRequest, O ext
 
     public static final String MULTIPLE_RESULTS = "/multiple_results";
 
+    /**
+     * Entity creator that will create the response entity object that will be sent to the service layer.
+     */
     @Autowired
     private PolyResponseEntityCreator<O> polyResponseEntityCreator;
 
     /**
      * Get a list of multiple resources from the back end service.
      *
+     * @param headers containing the HTTP headers from the consumer
      * @param serviceRequest      body from the consumer
      * @param httpServletResponse HttpServletResponse
      * @return a list of resources from the back end service
@@ -62,10 +69,10 @@ public abstract class BaseReadPolyController<I extends BaseServiceRequest, O ext
             @ApiResponse(responseCode = "403", description = "Forbidden"),
     })
     @PostMapping(MULTIPLE_RESULTS)
-    public ResponseEntity<List<O>> read(@Valid @RequestBody I serviceRequest, HttpServletResponse httpServletResponse) {
+    public ResponseEntity<List<O>> read(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest, HttpServletResponse httpServletResponse) {
         logger.entry(serviceRequest);
 
-        final Page<O> page = service.read(serviceRequest);
+        final Page<O> page = service.read(headers, serviceRequest);
         final ResponseEntity<List<O>> responseEntity = polyResponseEntityCreator.create(page, httpServletResponse);
 
         logger.exit(responseEntity);

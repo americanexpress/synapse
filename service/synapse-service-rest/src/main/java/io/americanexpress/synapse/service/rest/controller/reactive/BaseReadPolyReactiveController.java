@@ -20,9 +20,11 @@ import io.americanexpress.synapse.service.rest.service.reactive.BaseReadPolyReac
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import reactor.core.publisher.Flux;
 
 import javax.servlet.http.HttpServletResponse;
@@ -56,10 +58,10 @@ public abstract class BaseReadPolyReactiveController<I extends BaseServiceReques
             @ApiResponse(code = 403, message = "Forbidden"),
     })
     @PostMapping(MULTIPLE_RESULTS)
-    public Flux<ResponseEntity<O>> read(@Valid @RequestBody I serviceRequest, HttpServletResponse httpServletResponse) {
+    public Flux<ResponseEntity<O>> read(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest, HttpServletResponse httpServletResponse) {
         logger.entry(serviceRequest);
 
-        final var serviceResult = service.read(serviceRequest);
+        final var serviceResult = service.read(headers, serviceRequest);
         final var responseEntity = serviceResult
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.noContent().build());
