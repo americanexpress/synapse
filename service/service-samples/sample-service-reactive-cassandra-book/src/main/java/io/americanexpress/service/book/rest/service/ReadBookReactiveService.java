@@ -18,6 +18,7 @@ import io.americanexpress.service.book.rest.model.ReadBookRequest;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.service.helper.ReadBookResponseCreator;
 import io.americanexpress.synapse.service.rest.service.reactive.BaseReadMonoReactiveService;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -45,7 +46,7 @@ public class ReadBookReactiveService extends BaseReadMonoReactiveService<ReadBoo
      * Retrieves book from database.
      */
     @Override
-    protected Mono<ReadBookResponse> executeRead(ReadBookRequest request) {
+    protected Mono<ReadBookResponse> executeRead(HttpHeaders headers, ReadBookRequest request) {
         return bookRepository.findByTitleAndAuthor(request.getTitle(), request.getAuthor())
                 .map(ReadBookResponseCreator::create)
                 .switchIfEmpty(Mono.empty());

@@ -15,6 +15,7 @@ package io.americanexpress.service.book.rest.service;
 
 import io.americanexpress.data.book.repository.BookRepository;
 import io.americanexpress.synapse.service.rest.service.reactive.BaseDeleteReactiveService;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -45,7 +46,7 @@ public class DeleteBookReactiveService extends BaseDeleteReactiveService {
      * @param title the title of book to delete
      */
     @Override
-    protected Mono<Void> executeDelete(String title) {
+    protected Mono<Void> executeDelete(HttpHeaders headers, String title) {
         return bookRepository.findByTitle(title)
                 .map(bookRepository::delete)
                 .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.BAD_REQUEST, "Book Not Found")))

@@ -19,6 +19,7 @@ import io.americanexpress.service.book.rest.model.CreateBookRequest;
 import io.americanexpress.service.book.rest.model.CreateBookResponse;
 import io.americanexpress.service.book.rest.service.helper.BookEntityCreator;
 import io.americanexpress.synapse.service.rest.service.BaseCreateService;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
 /**
@@ -39,7 +40,7 @@ public class CreateBookService extends BaseCreateService<CreateBookRequest, Crea
     }
 
     @Override
-    protected CreateBookResponse executeCreate(CreateBookRequest request) {
+    protected CreateBookResponse executeCreate(HttpHeaders headers, CreateBookRequest request) {
         BookEntity book = BookEntityCreator.create(request.getTitle(), request.getAuthor(), 1);
         bookRepository.save(book);
         return new CreateBookResponse();

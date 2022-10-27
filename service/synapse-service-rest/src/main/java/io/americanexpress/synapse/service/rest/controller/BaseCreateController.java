@@ -19,9 +19,11 @@ import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.rest.service.BaseCreateService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 import javax.validation.Valid;
 
@@ -36,21 +38,25 @@ import javax.validation.Valid;
  */
 public abstract class BaseCreateController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseCreateService<I, O>> extends BaseController<S> {
 
+    /**
+     * Entity creator that will create the response entity object that will be sent to the service layer.
+     */
     @Autowired
     private CreateResponseEntityCreator<O> createResponseEntityCreator;
 
     /**
      * Create a single resource.
      *
+     * @param headers containing the HTTP headers from the consumer
      * @param serviceRequest body from the consumer
      * @return response to the consumer
      */
     @PostMapping
     @Operation(tags = "Create Operation", summary = "Creates a resource")
-    public ResponseEntity<O> create(@Valid @RequestBody I serviceRequest) {
+    public ResponseEntity<O> create(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
-
-        O serviceResponse = service.create(serviceRequest);
+        
+        O serviceResponse = service.create(headers, serviceRequest);
         ResponseEntity<O> responseEntity = createResponseEntityCreator.create(serviceResponse);
 
         logger.exit();
