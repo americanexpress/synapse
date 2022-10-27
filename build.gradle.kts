@@ -28,6 +28,7 @@ allprojects {
 
 configure(subprojects) {
     apply<MavenPublishPlugin>()
+    apply<SigningPlugin>()
 
     configure<JavaPluginExtension> {
     }
@@ -41,12 +42,17 @@ configure(subprojects) {
         sign(publishing.publications)
     }
 
+
     configure<PublishingExtension> {
         publications {
             val main by creating(MavenPublication::class) {
                 from(components["java"])
 
                 pom {
+                    name.set("synapse :: ${project.name}")
+                    description.set("synapse :: ${project.name}")
+                    url.set("https://github.com/americanexpress/synapse")
+
                     licenses {
                         license {
                             name.set("The Apache License, Version 2.0")
