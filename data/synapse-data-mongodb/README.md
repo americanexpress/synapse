@@ -19,12 +19,12 @@
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-data-mongodb</artifactId>
-            <version>0.3.2</version>
+            <version>0.3.3</version>
         </dependency>
 ```
 Or add the following to the build.gradle file:
 ```
-implementation 'io.americanexpress.synapse:synapse-data-mongodb:0.3.2!!'
+implementation 'io.americanexpress.synapse:synapse-data-mongodb:0.3.3!!'
 ```
 
 - Have a configuration class that import or extends `BaseMongoDBDataConfig` or `BaseReactiveMongoDBDataConfig` for reactive support.
