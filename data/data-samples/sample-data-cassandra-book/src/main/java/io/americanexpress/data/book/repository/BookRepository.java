@@ -14,9 +14,11 @@
 package io.americanexpress.data.book.repository;
 
 import io.americanexpress.data.book.entity.BookEntity;
+import org.springframework.data.cassandra.repository.AllowFiltering;
 import org.springframework.data.cassandra.repository.CassandraRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -25,5 +27,8 @@ import java.util.UUID;
 @Repository
 public interface BookRepository extends CassandraRepository<BookEntity, UUID> {
 
-    BookEntity findByTitleAndAuthor(String title, String author);
+    Optional<BookEntity> findByTitleAndAuthor(String title, String author);
+
+    @AllowFiltering
+    Optional<BookEntity> findByTitle(String title);
 }

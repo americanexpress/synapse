@@ -20,9 +20,11 @@ import io.americanexpress.synapse.service.rest.service.reactive.BaseReadMonoReac
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
@@ -55,10 +57,10 @@ public abstract class BaseReadMonoReactiveController<I extends BaseServiceReques
             @ApiResponse(code = 403, message = "Forbidden"),
     })
     @PostMapping(INQUIRY_RESULTS)
-    public Mono<ResponseEntity<O>> read(@Valid @RequestBody I serviceRequest) {
+    public Mono<ResponseEntity<O>> read(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
 
-        var serviceResponse = service.read(serviceRequest);
+        var serviceResponse = service.read(headers, serviceRequest);
         var responseEntity = serviceResponse
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.noContent().build());

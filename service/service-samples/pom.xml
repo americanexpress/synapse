@@ -15,7 +15,9 @@
     <!--Modules-->
     <modules>
         <module>sample-service-graphql-book</module>
+        <module>sample-service-reactive-cassandra-book</module>
         <module>sample-service-rest-book</module>
+        <module>sample-service-rest-cassandra-book</module>
         <module>sample-service-rest-mongodb-book</module>
     </modules>
 
