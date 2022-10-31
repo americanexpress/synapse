@@ -12,7 +12,7 @@ public class CloudFunctionMain {
         SpringApplication.run(CloudFunctionMain.class, args);
     }
 
-    @Bean
+    @Bean("toUpperCase")
     public Function<String, String> uppercase() {
         return value -> value.toUpperCase();
     }
