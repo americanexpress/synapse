@@ -1,4 +1,4 @@
-package io.americanexpress.function.greeting.reactive.router;
+package io.americanexpress.function.greeting.rest.function;
 
 import java.util.function.Function;
 
