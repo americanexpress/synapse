@@ -23,10 +23,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.data.r2dbc.config.AbstractR2dbcConfiguration;
 import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
 
-import static io.r2dbc.spi.ConnectionFactoryOptions.DRIVER;
-import static io.r2dbc.spi.ConnectionFactoryOptions.HOST;
-import static io.r2dbc.spi.ConnectionFactoryOptions.USER;
-import static io.r2dbc.spi.ConnectionFactoryOptions.PASSWORD;
+import static io.r2dbc.spi.ConnectionFactoryOptions.*;
 
 /**
  * {@code BaseR2dbcOracleConfig} class is used to hold the common configuration for all reactive data-oracle modules.
@@ -47,6 +44,7 @@ public abstract class BaseR2dbcOracleConfig extends AbstractR2dbcConfiguration {
         return ConnectionFactories.get(ConnectionFactoryOptions.builder()
                 .option(DRIVER, environment.getRequiredProperty("spring.oracle.r2dbc.datasource.driverType"))
                 .option(HOST, environment.getRequiredProperty("spring.oracle.r2dbc.datasource.url"))
+                .option(DATABASE, environment.getRequiredProperty("spring.oracle.r2dbc.datasource.service"))
                 .option(USER, environment.getRequiredProperty("spring.oracle.r2dbc.datasource.username"))
                 .option(PASSWORD, environment.getRequiredProperty("spring.oracle.r2dbc.datasource.password"))
                 .build());

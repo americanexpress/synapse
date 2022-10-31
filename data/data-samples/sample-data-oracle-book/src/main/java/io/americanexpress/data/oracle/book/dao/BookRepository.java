@@ -18,9 +18,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * @{code BookRepository} example of using JPA to find a book entity by id.
+ * {@code BookRepository} example of using JPA to find a book entity by id.
  */
 @Repository
 public interface BookRepository extends JpaRepository<BookEntity, Long> {
-    BookEntity findById(long id);
+    BookEntity findByTitleAndAuthor(String title, String author);
+    BookEntity findByTitle(String title);
+    BookEntity findByAuthor(String author);
 }

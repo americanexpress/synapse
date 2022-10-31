@@ -36,7 +36,7 @@ public class OracleDataBookIT {
 
     @Test
     public void findById_givenValidId_expectedBookFound() {
-        Assertions.assertNotNull(bookRepository.findById(1));
+        Assertions.assertNotNull(bookRepository.findByTitle("Synapse"));
     }
 
 }
