@@ -1,4 +1,4 @@
-package io.americanexpress.function.greeting.reactive;
+package io.americanexpress.function.greeting.rest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,7 +14,7 @@ public class CloudFunctionMain {
     }
 
     @Bean
-    public Function<String, String> uppercase() {
+    public Function<String, String> uppercase_hello() {
         return value -> value.toUpperCase();
     }
 }
