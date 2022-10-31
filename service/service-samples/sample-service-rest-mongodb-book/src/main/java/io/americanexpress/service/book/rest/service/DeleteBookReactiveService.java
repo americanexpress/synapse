@@ -15,6 +15,7 @@ package io.americanexpress.service.book.rest.service;
 
 import io.americanexpress.data.book.repository.BookRepository;
 import io.americanexpress.synapse.service.rest.service.reactive.BaseDeleteReactiveService;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -44,7 +45,7 @@ public class DeleteBookReactiveService extends BaseDeleteReactiveService {
      * @param title the title of book to be deleted
      */
     @Override
-    protected Mono<Void> executeDelete(String title) {
+    protected Mono<Void> executeDelete(HttpHeaders headers, String title) {
         return bookRepository.deleteByTitle(title);
     }
 }
