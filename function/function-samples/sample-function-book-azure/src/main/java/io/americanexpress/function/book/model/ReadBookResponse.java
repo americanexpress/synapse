@@ -13,12 +13,11 @@
  */
 package io.americanexpress.function.book.model;
 
-import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 
 /**
  * {@code ReadBookResponse} is the response for the read book operation.
  */
-public class ReadBookResponse extends BaseServiceResponse {
+public class ReadBookResponse {
 
     /**
      * Title of book.

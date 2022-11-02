@@ -13,14 +13,12 @@
  */
 package io.americanexpress.function.book.model;
 
-import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
-
 import javax.validation.constraints.NotBlank;
 
 /**
  * {@code BookRequest} is the base book request object.
  */
-public class BookRequest implements BaseServiceRequest {
+public class BookRequest {
 
     /**
      * Title of book.

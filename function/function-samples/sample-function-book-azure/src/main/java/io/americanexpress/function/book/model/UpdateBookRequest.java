@@ -18,7 +18,7 @@ import javax.validation.constraints.Min;
 /**
  * {@code UpdateBookRequest} is the request object for updating a book.
  */
-public class UpdateBookRequest extends BookRequest{
+public class UpdateBookRequest extends BookRequest {
 
     /**
      * Number of copies of book.

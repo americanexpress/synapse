@@ -13,10 +13,9 @@
  */
 package io.americanexpress.function.book.model;
 
-import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 
 /**
  * {@code CreateBookResponse} is the response object for creating book.
  */
-public class CreateBookResponse extends BaseServiceResponse {
+public class CreateBookResponse {
 }
