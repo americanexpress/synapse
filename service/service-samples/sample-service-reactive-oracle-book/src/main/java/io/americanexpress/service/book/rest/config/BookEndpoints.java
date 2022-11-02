@@ -11,16 +11,10 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.rest.controller;
+package io.americanexpress.service.book.rest.config;
 
-import io.americanexpress.service.book.rest.service.DeleteBookService;
-import io.americanexpress.synapse.service.rest.controller.reactive.BaseDeleteReactiveController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+public class BookEndpoints {
+    public static final String BOOK_ENDPOINT = "/v1/books";
 
-import static io.americanexpress.service.book.rest.config.BookEndpoints.BOOK_ENDPOINT;
-
-@RestController
-@RequestMapping(BOOK_ENDPOINT)
-public class DeleteBookController extends BaseDeleteReactiveController<DeleteBookService> {
+    private BookEndpoints(){}
 }

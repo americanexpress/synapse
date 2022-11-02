@@ -19,13 +19,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.EntityListeners;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Version;
-import javax.persistence.Column;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -38,12 +32,19 @@ import java.util.Objects;
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
 public abstract class BaseEntity {
+    public BaseEntity(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public BaseEntity(){}
 
     /**
      * Id
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idSequence")
+    @SequenceGenerator(name = "idSequence", sequenceName = "idSequence", allocationSize = 1)
     protected Long id;
 
     /**

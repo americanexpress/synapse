@@ -62,6 +62,7 @@ public abstract class BaseOracleDataConfig {
                 .build();
 
         dataSource.setURL(environment.getRequiredProperty("spring.oracle.datasource.url"));
+        dataSource.setServerName(environment.getRequiredProperty("spring.oracle.datasource.serviceName"));
         dataSource.setUser(environment.getRequiredProperty("spring.oracle.datasource.username"));
         dataSource.setPassword(environment.getRequiredProperty("spring.oracle.datasource.password"));
         dataSource.setDriverType(environment.getRequiredProperty("spring.oracle.datasource.drivertype"));

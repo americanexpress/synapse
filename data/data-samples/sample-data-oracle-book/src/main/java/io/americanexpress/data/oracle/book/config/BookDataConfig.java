@@ -13,23 +13,38 @@
  */
 package io.americanexpress.data.oracle.book.config;
 
-import io.americanexpress.synapse.data.oracle.config.BaseR2dbcOracleConfig;
+import io.americanexpress.synapse.data.oracle.config.BaseOracleDataConfig;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 /**
  * {@code DataBookConfig} example of using BaseOracleDataConfig
  */
 @Configuration
 @PropertySource("classpath:data-oracle-book-application.properties")
-public class DataBookConfig extends BaseR2dbcOracleConfig {
+@EnableJpaRepositories(basePackages = "io.americanexpress.data.oracle.book.dao")
+public class BookDataConfig extends BaseOracleDataConfig {
+
+    private static final String PACKAGE_SCAN_NAME = "io.americanexpress.data.oracle.book.entity";
+
     /**
      * Instantiates a new Base postgres data config.
      *
      * @param environment      the environment
      */
-    public DataBookConfig(Environment environment) {
+    public BookDataConfig(Environment environment) {
         super(environment);
+    }
+
+    /**
+     * Scans package containing jpa entity
+     * @param entityManagerFactoryBean
+     */
+    @Override
+    protected void setPackagesToScan(LocalContainerEntityManagerFactoryBean entityManagerFactoryBean) {
+        entityManagerFactoryBean.setPackagesToScan(PACKAGE_SCAN_NAME);
     }
 }

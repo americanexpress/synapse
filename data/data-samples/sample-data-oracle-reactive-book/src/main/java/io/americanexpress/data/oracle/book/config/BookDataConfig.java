@@ -11,18 +11,25 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.rest.config;
+package io.americanexpress.data.oracle.book.config;
 
-import io.americanexpress.data.oracle.book.config.BookDataConfig;
-import io.americanexpress.synapse.service.rest.config.ServiceRestConfig;
-import org.springframework.context.annotation.ComponentScan;
+import io.americanexpress.synapse.data.oracle.config.BaseReactiveOracleConfig;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 
+/**
+ * {@code DataBookConfig} example of using BaseOracleDataConfig
+ */
 @Configuration
-@PropertySource("classpath:service-book-application.properties")
-@ComponentScan(basePackages = "io.americanexpress.service.book.rest")
-@Import({ServiceRestConfig.class, BookDataConfig.class})
-public class BookConfig {
+@PropertySource("classpath:data-oracle-book-application.properties")
+public class BookDataConfig extends BaseReactiveOracleConfig {
+    /**
+     * Instantiates a new Base postgres data config.
+     *
+     * @param environment      the environment
+     */
+    public BookDataConfig(Environment environment) {
+        super(environment);
+    }
 }
