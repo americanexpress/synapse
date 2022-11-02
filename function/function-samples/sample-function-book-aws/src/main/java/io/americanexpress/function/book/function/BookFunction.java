@@ -38,6 +38,8 @@ import java.util.function.Supplier;
 @Configuration
 public class BookFunction {
 
+    private final String BOOK_NOT_FOUND = "Book Not Found";
+
     private final BookRepository bookRepository;
 
     public BookFunction(BookRepository bookRepository) {
@@ -69,9 +71,18 @@ public class BookFunction {
     @Bean
     public Consumer<Message<UpdateBookRequest>> update() {
         return request -> bookRepository.findByTitleAndAuthor(request.getPayload().getTitle(), request.getPayload().getAuthor())
-                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "Book Not Found")))
+                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, BOOK_NOT_FOUND)))
                 .map(book -> updateBook(book, request.getPayload().getNumberOfCopies()))
                 .flatMap(bookRepository::save);
+    }
+
+    @Bean
+    public Function<Message<UpdateBookRequest>, Mono<CreateBookResponse>> updateBook() {
+        return request -> bookRepository.findByTitleAndAuthor(request.getPayload().getTitle(), request.getPayload().getAuthor())
+                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, BOOK_NOT_FOUND)))
+                .map(book -> updateBook(book, request.getPayload().getNumberOfCopies()))
+                .flatMap(bookRepository::save)
+                .map(bookEntity -> new CreateBookResponse());
     }
 
     private BookEntity updateBook(BookEntity book, int numOfCopies){
@@ -82,7 +93,7 @@ public class BookFunction {
     @Bean
     public Consumer<Message<BookRequest>> delete() {
         return request -> bookRepository.findByTitleAndAuthor(request.getPayload().getTitle(), request.getPayload().getAuthor())
-                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "Book Not Found")))
+                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, BOOK_NOT_FOUND)))
                 .flatMap(bookRepository::delete);
     }
 
