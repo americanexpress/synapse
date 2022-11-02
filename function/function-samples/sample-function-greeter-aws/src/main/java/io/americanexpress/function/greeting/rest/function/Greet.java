@@ -46,5 +46,4 @@ public class Greet implements Function<Greeting, Greeting> {
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, errors.getAllErrors().get(0).getDefaultMessage());
     }
 
-
 }
