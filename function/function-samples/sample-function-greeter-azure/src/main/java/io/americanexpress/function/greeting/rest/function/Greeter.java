@@ -17,9 +17,18 @@ import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
 
+/**
+ * {@code Greeter} contains the Greeter function.
+ */
 @Component
 public class Greeter implements Function<String, String> {
 
+    /**
+     * Apply string.
+     *
+     * @param s the s
+     * @return the string
+     */
     @Override
     public String apply(String s) {
         return "Hello " + s + ", and welcome to Spring Cloud Function!!!";

@@ -26,8 +26,18 @@ import org.springframework.cloud.function.adapter.azure.FunctionInvoker;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 
+/**
+ * {@code GreeterHandler}
+ */
 public class GreeterHandler extends FunctionInvoker<Message<String>, String> {
 
+    /**
+     * Execute http response message.
+     *
+     * @param request the request
+     * @param context the context
+     * @return the http response message
+     */
     @FunctionName("greeter")
     public HttpResponseMessage execute(
             @HttpTrigger(name = "request", methods = {HttpMethod.GET, HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<String> request,

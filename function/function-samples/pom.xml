@@ -12,10 +12,10 @@
 
     <!--Modules-->
     <modules>
-        <module>sample-function-book-azure</module>
+<!--        <module>sample-function-book-azure</module>-->
         <module>sample-function-greeting</module>
         <module>sample-function-greeter-aws</module>
-        <module>sample-function-greeter-azure</module>
+<!--        <module>sample-function-greeter-azure</module>-->
         <module>sample-function-greeter-gcp</module>
         <module>sample-function-rest-book</module>
     </modules>

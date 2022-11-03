@@ -23,18 +23,18 @@
     <artifactId>sample-function-book-azure</artifactId>
 
     <properties>
+        <azure.functions.java.library.version>2.1.0</azure.functions.java.library.version>
+        <azure.functions.maven.plugin.version>1.21.0</azure.functions.maven.plugin.version>
         <functionAppName>spring-cloud-function-samples</functionAppName>
         <functionAppRegion>westus</functionAppRegion>
-        <functionResourceGroup>java-functions-group</functionResourceGroup>
         <functionAppServicePlanName>java-functions-app-service-plan</functionAppServicePlanName>
         <functionDockerImageName>onobc/function-sample-azure-java17:1.0.0</functionDockerImageName>
-        <stagingDirectory>${project.build.directory}/azure-functions/${functionAppName}</stagingDirectory>
-        <start-class>example.Config</start-class>
-        <azure.functions.maven.plugin.version>1.21.0</azure.functions.maven.plugin.version>
-        <azure.functions.java.library.version>2.1.0</azure.functions.java.library.version>
-        <wrapper.version>1.0.27.RELEASE</wrapper.version>
+        <functionResourceGroup>java-functions-group</functionResourceGroup>
         <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <stagingDirectory>${project.build.directory}/azure-functions/${functionAppName}</stagingDirectory>
+        <start-class>example.Config</start-class>
+        <wrapper.version>1.0.27.RELEASE</wrapper.version>
     </properties>
 
     <!--Dependencies-->
@@ -53,12 +53,10 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-function-adapter-azure</artifactId>
-            <version>3.2.7</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-function-web</artifactId>
-            <version>3.2.7</version>
         </dependency>
     </dependencies>
     <dependencyManagement>

@@ -16,9 +16,17 @@ package io.americanexpress.function.greeting.rest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * {@code GreetingApplication} starts the Spring Boot Application.
+ */
 @SpringBootApplication
 public class GreetingApplication {
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         SpringApplication.run(GreetingApplication.class, args);
     }
