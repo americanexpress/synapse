@@ -14,7 +14,6 @@
 package io.americanexpress.function.greeting.rest.function;
 
 import io.americanexpress.function.greeting.rest.model.Greeting;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.Errors;
@@ -23,10 +22,24 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.function.Function;
 
+/**
+ * {@code Greet} contains the Greet function.
+ */
 public class Greet implements Function<Greeting, Greeting> {
 
-    @Autowired
-    protected Validator validator;
+    /**
+     * The Validator.
+     */
+    private final Validator validator;
+
+    /**
+     * Instantiates a new Greet.
+     *
+     * @param validator the validator
+     */
+    public Greet(Validator validator) {
+        this.validator = validator;
+    }
 
     @Override
     public Greeting apply(Greeting greeting) {
@@ -42,6 +55,12 @@ public class Greet implements Function<Greeting, Greeting> {
         return output;
     }
 
+    /**
+     * Returns new ResponseStatusException when there are validation errors.
+     *
+     * @param errors the errors
+     * @return the response status exception
+     */
     protected ResponseStatusException onValidationErrors(Errors errors) {
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, errors.getAllErrors().get(0).getDefaultMessage());
     }

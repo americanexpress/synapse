@@ -15,6 +15,9 @@ package io.americanexpress.function.greeting.rest.function;
 
 import java.util.function.Function;
 
+/**
+ * {@code Greeter} contains greeter function.
+ */
 public class Greeter implements Function<String, String> {
 
     @Override

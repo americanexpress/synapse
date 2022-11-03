@@ -18,9 +18,17 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
+/**
+ * {@code GreeterConfig} contains configurations for GreeterApplication.
+ */
 @Configuration
 public class GreeterConfig {
 
+    /**
+     * Instantiates Spring validator bean.
+     *
+     * @return the validator
+     */
     @Bean
     public Validator springValidator() {
         return new LocalValidatorFactoryBean();
