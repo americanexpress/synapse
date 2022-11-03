@@ -11,24 +11,15 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.function.book;
+package io.americanexpress.function.greeting.rest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-/**
- * {@code BookApplication} starts the Spring Boot Application.
- */
 @SpringBootApplication
-public class BookApplication {
+public class GreetingApplication {
 
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
     public static void main(String[] args) {
-        SpringApplication.run(BookApplication.class, args);
+        SpringApplication.run(GreetingApplication.class, args);
     }
-
 }

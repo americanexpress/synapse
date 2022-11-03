@@ -3,7 +3,7 @@
   "Values": {
     "AzureWebJobsStorage": "",
     "FUNCTIONS_WORKER_RUNTIME": "java",
-    "MAIN_CLASS":"io.americanexpress.function.greeting.rest.CloudFunctionMain",
+    "MAIN_CLASS":"io.americanexpress.function.greeting.rest.GreetingApplication",
     "AzureWebJobsDashboard": ""
   }
 }
