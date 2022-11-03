@@ -11,23 +11,20 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.function.greeting.rest;
+package io.americanexpress.function.greeting.rest.model;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+import javax.validation.constraints.NotBlank;
 
-import java.util.function.Function;
+public class Greeting {
 
-@SpringBootApplication
-public class CloudFunctionMain {
+    @NotBlank
+    private String message;
 
-    public static void main(String[] args) {
-        SpringApplication.run(CloudFunctionMain.class, args);
+    public String getMessage() {
+        return message;
     }
 
-    @Bean
-    public Function<String, String> uppercase() {
-        return value -> value.toUpperCase();
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

@@ -20,7 +20,7 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>sample-function-greeter-aws</artifactId>
+    <artifactId>sample-function-book-aws</artifactId>
 
     <!--Dependencies-->
     <dependencies>

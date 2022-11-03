@@ -11,23 +11,24 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.function.greeting.rest;
+package io.americanexpress.function.book;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
-import java.util.function.Function;
-
+/**
+ * {@code BookApplication} starts the Spring Boot Application
+ */
 @SpringBootApplication
-public class CloudFunctionMain {
+public class BookApplication {
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
-        SpringApplication.run(CloudFunctionMain.class, args);
+        SpringApplication.run(BookApplication.class, args);
     }
 
-    @Bean
-    public Function<String, String> uppercase() {
-        return value -> value.toUpperCase();
-    }
 }

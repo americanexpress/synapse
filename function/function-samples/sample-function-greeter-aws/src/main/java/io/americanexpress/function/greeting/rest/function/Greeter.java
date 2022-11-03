@@ -11,23 +11,17 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.function.greeting.rest;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+package io.americanexpress.function.greeting.rest.function;
 
 import java.util.function.Function;
 
-@SpringBootApplication
-public class CloudFunctionMain {
+/**
+ * {@code Greeter} contains greeter function.
+ */
+public class Greeter implements Function<String, String> {
 
-    public static void main(String[] args) {
-        SpringApplication.run(CloudFunctionMain.class, args);
-    }
-
-    @Bean
-    public Function<String, String> uppercase() {
-        return value -> value.toUpperCase();
+    @Override
+    public String apply(String s) {
+        return "Hello " + s + ", and welcome to Spring Cloud Function!!!";
     }
 }
