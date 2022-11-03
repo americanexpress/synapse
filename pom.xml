@@ -47,6 +47,7 @@
         <spring-security.version>5.7.3</spring-security.version>
         <spring-boot-framework.version>2.7.4</spring-boot-framework.version>
         <spring-boot-ws-framework.version>1.4.7.RELEASE</spring-boot-ws-framework.version>
+        <spring-cloud.version>3.2.7</spring-cloud.version>
         <spring-native.version>0.12.1</spring-native.version>
 
         <!--Springdoc-->
@@ -364,11 +365,16 @@
                 <version>1.19.0</version>
             </dependency>
 
-            <!-- Spring GCP-->
+            <!-- Spring Adapters-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-function-adapter-azure</artifactId>
+                <version>${spring-cloud.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-function-adapter-gcp</artifactId>
-                <version>3.2.7</version>
+                <version>${spring-cloud.version}</version>
             </dependency>
 
             <!--Spring Dependencies-->
@@ -528,6 +534,16 @@
             </dependency>
 
             <!--Spring Cloud-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-function-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-function-web</artifactId>
+                <version>${spring-cloud.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-sleuth</artifactId>
