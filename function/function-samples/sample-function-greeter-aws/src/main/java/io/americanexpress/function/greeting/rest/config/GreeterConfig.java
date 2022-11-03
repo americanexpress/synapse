@@ -11,31 +11,18 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.function.greeting.rest;
+package io.americanexpress.function.greeting.rest.config;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
-import java.util.function.Function;
-
-@SpringBootApplication
-public class CloudFunctionMain {
-
-    public static void main(String[] args) {
-        SpringApplication.run(CloudFunctionMain.class, args);
-    }
-
-//    @Bean("toUpperCase")
-    @Bean
-    public Function<String, String> uppercase() {
-        return value -> value.toUpperCase();
-    }
-
+@Configuration
+public class GreeterConfig {
 
     @Bean
-    public Function<String, String> reverse() {
-        return value -> new StringBuilder(value).reverse().toString();
+    public Validator springValidator() {
+        return new LocalValidatorFactoryBean();
     }
-
 }

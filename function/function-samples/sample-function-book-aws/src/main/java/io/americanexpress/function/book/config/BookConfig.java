@@ -17,7 +17,11 @@ import io.americanexpress.data.book.config.BookDataConfig;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
+
+/**
+ * {@code BookConfig} configures BookApplication.
+ */
 @Configuration
-@Import({BookDataConfig.class})
+@Import(BookDataConfig.class)
 public class BookConfig {
 }

@@ -21,6 +21,9 @@ import io.americanexpress.function.book.model.ReadBookResponse;
  */
 public class ReadBookResponseCreator {
 
+    /**
+     * Private constructor to prevent instantiation of BookEntityCreator.
+     */
     private ReadBookResponseCreator() {}
 
     /**

@@ -20,6 +20,9 @@ import io.americanexpress.data.book.entity.BookEntity;
  */
 public class BookEntityCreator {
 
+    /**
+     * Private constructor to prevent instantiation of BookEntityCreator.
+     */
     private BookEntityCreator() {}
 
     /**

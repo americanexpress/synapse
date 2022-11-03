@@ -11,16 +11,19 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.function.book;
+package io.americanexpress.function.greeting.rest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import java.util.function.Function;
 
 /**
- * {@code BookApplication} starts the Spring Boot Application
+ * {@code GreeterApplication} starts the Spring Boot Application
  */
 @SpringBootApplication
-public class BookApplication {
+public class GreeterApplication {
 
     /**
      * The entry point of application.
@@ -28,7 +31,28 @@ public class BookApplication {
      * @param args the input arguments
      */
     public static void main(String[] args) {
-        SpringApplication.run(BookApplication.class, args);
+        SpringApplication.run(GreeterApplication.class, args);
+    }
+
+    /**
+     * Uppercase function.
+     *
+     * @return the function
+     */
+    @Bean
+    public Function<String, String> uppercase() {
+        return value -> value.toUpperCase();
+    }
+
+
+    /**
+     * Reverse function.
+     *
+     * @return the function
+     */
+    @Bean
+    public Function<String, String> reverse() {
+        return value -> new StringBuilder(value).reverse().toString();
     }
 
 }
