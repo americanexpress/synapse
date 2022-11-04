@@ -29,6 +29,7 @@
         <module>synapse-client-rest</module>
         <module>synapse-client-soap</module>
         <module>synapse-client-test</module>
+        <module>client-samples</module>
     </modules>
 
 </project>

@@ -16,7 +16,6 @@ package io.americanexpress.synapse.client.rest.client;
 import io.americanexpress.synapse.client.rest.helper.UrlBuilder;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
-import io.americanexpress.synapse.client.rest.model.ClientHeaders;
 import io.americanexpress.synapse.client.rest.model.QueryParameter;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;
