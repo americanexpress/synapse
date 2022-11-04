@@ -19,15 +19,40 @@ import org.springframework.context.annotation.Bean;
 
 import java.util.function.Function;
 
+/**
+ * {@code GreeterApplication} starts the Spring Boot Application
+ */
 @SpringBootApplication
-public class CloudFunctionMain {
+public class GreeterApplication {
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
-        SpringApplication.run(CloudFunctionMain.class, args);
+        SpringApplication.run(GreeterApplication.class, args);
     }
 
+    /**
+     * Uppercase function.
+     *
+     * @return the function
+     */
     @Bean
     public Function<String, String> uppercase() {
         return value -> value.toUpperCase();
     }
+
+
+    /**
+     * Reverse function.
+     *
+     * @return the function
+     */
+    @Bean
+    public Function<String, String> reverse() {
+        return value -> new StringBuilder(value).reverse().toString();
+    }
+
 }
