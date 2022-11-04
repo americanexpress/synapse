@@ -19,6 +19,7 @@ import io.americanexpress.service.book.rest.model.CreateBookResponse;
 import io.americanexpress.service.book.rest.model.UpdateBookRequest;
 import io.americanexpress.service.book.rest.service.UpdateBookService;
 import io.americanexpress.synapse.service.test.controller.BaseUpdateControllerUnitTest;
+import org.springframework.http.HttpHeaders;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 
@@ -37,5 +38,10 @@ public class UpdateBookControllerTest extends BaseUpdateControllerUnitTest<Creat
     @Override
     protected String getSampleJsonRequestFileName() {
         return "sample-request.json";
+    }
+
+    @Override
+    protected HttpHeaders getSampleHttpHeaders() {
+        return null;
     }
 }

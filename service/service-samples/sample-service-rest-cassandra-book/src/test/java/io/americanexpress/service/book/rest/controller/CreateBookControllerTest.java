@@ -19,6 +19,8 @@ import io.americanexpress.service.book.rest.model.CreateBookRequest;
 import io.americanexpress.service.book.rest.model.CreateBookResponse;
 import io.americanexpress.service.book.rest.service.CreateBookService;
 import io.americanexpress.synapse.service.test.controller.BaseCreateMonoControllerUnitTest;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 
@@ -37,5 +39,13 @@ public class CreateBookControllerTest extends BaseCreateMonoControllerUnitTest<C
     @Override
     protected String getSampleJsonRequestFileName() {
         return "sample-request.json";
+    }
+
+    @Override
+    protected HttpHeaders getSampleHttpHeaders() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Correlation-ID", "ghaof");
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        return headers;
     }
 }

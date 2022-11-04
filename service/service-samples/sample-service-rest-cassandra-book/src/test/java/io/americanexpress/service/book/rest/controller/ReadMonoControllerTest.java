@@ -19,6 +19,7 @@ import io.americanexpress.service.book.rest.model.ReadBookRequest;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.service.ReadBookService;
 import io.americanexpress.synapse.service.test.controller.BaseReadMonoControllerUnitTest;
+import org.springframework.http.HttpHeaders;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 
@@ -42,5 +43,10 @@ public class ReadMonoControllerTest extends BaseReadMonoControllerUnitTest<ReadB
     @Override
     protected String getSampleJsonRequestFileName() {
         return "sample-request.json";
+    }
+
+    @Override
+    protected HttpHeaders getSampleHttpHeaders() {
+        return null;
     }
 }
