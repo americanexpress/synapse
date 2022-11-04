@@ -13,6 +13,7 @@
  */
 package io.americanexpress.function.book.function;
 
+import io.americanexpress.data.book.config.BookDataConfig;
 import io.americanexpress.data.book.entity.BookEntity;
 import io.americanexpress.data.book.repository.BookRepository;
 import io.americanexpress.function.book.function.helper.BookEntityCreator;
@@ -25,6 +26,7 @@ import io.americanexpress.function.book.model.ReadBookResponse;
 import io.americanexpress.function.book.model.UpdateBookRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.messaging.Message;
 import org.springframework.web.server.ResponseStatusException;
@@ -39,6 +41,7 @@ import java.util.function.Supplier;
  * {@code BookFunction} contains functions for crud operations /reactive/book.
  */
 @Configuration
+@Import(BookDataConfig.class)
 public class BookFunction {
 
     private final String BOOK_NOT_FOUND = "Book Not Found";
@@ -63,19 +66,9 @@ public class BookFunction {
      * @return the function
      */
     @Bean
-    public Function<Message<CreateBookRequest>, Mono<CreateBookResponse>> create() { //406
+    public Function<Message<CreateBookRequest>, Mono<CreateBookResponse>> create() {
         return request -> bookRepository.save(BookEntityCreator.create(request.getPayload().getTitle(), request.getPayload().getAuthor(), 1))
                 .map(bookEntity -> new CreateBookResponse());
-    }
-
-    /**
-     * Create book consumer.
-     *
-     * @return the consumer
-     */
-    @Bean
-    public Consumer<Message<CreateBookRequest>> createBook() { //202
-        return request -> bookRepository.save(BookEntityCreator.create(request.getPayload().getTitle(), request.getPayload().getAuthor(), 1));
     }
 
     /**
@@ -84,32 +77,9 @@ public class BookFunction {
      * @return the function
      */
     @Bean
-    public Function<Message<ReadBookRequest>, Mono<ReadBookResponse>> read() { //200
+    public Function<Message<ReadBookRequest>, Mono<ReadBookResponse>> read() {
         return request -> bookRepository.findByTitleAndAuthor(request.getPayload().getTitle(), request.getPayload().getAuthor())
                 .map(ReadBookResponseCreator::create);
-    }
-
-    /**
-     * Get supplier.
-     *
-     * @return the supplier
-     */
-    @Bean
-    public Supplier<Flux<ReadBookResponse>> get() { //200
-        return () -> bookRepository.findAll().map(ReadBookResponseCreator::create);
-    }
-
-    /**
-     * Update consumer.
-     *
-     * @return the consumer
-     */
-    @Bean
-    public Consumer<Message<UpdateBookRequest>> update() { //202
-        return request -> bookRepository.findByTitleAndAuthor(request.getPayload().getTitle(), request.getPayload().getAuthor())
-                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, BOOK_NOT_FOUND)))
-                .map(book -> updateBook(book, request.getPayload().getNumberOfCopies()))
-                .flatMap(bookRepository::save);
     }
 
     /**
@@ -118,7 +88,7 @@ public class BookFunction {
      * @return the function
      */
     @Bean
-    public Function<Message<UpdateBookRequest>, Mono<CreateBookResponse>> updateBook() { //406
+    public Function<Message<UpdateBookRequest>, Mono<CreateBookResponse>> update() {
         return request -> bookRepository.findByTitleAndAuthor(request.getPayload().getTitle(), request.getPayload().getAuthor())
                 .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, BOOK_NOT_FOUND)))
                 .map(book -> updateBook(book, request.getPayload().getNumberOfCopies()))
@@ -136,18 +106,6 @@ public class BookFunction {
     private BookEntity updateBook(BookEntity book, int numOfCopies){
         if (book != null) book.setNumberOfCopies(numOfCopies);
         return book;
-    }
-
-    /**
-     * Delete consumer.
-     *
-     * @return the consumer
-     */
-    @Bean
-    public Consumer<Message<BookRequest>> delete() { //202
-        return request -> bookRepository.findByTitleAndAuthor(request.getPayload().getTitle(), request.getPayload().getAuthor())
-                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, BOOK_NOT_FOUND)))
-                .flatMap(bookRepository::delete);
     }
 
 }

@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "b7f9a332-e023-41c3-aa8a-f1501ea81321",
+		"name": "Book Functions",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Book Function",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"Alice In Wonderland\",\n\t\"author\": \"Lewis Carroll\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{synapse-host}}/api/create",
+					"host": [
+						"{{synapse-host}}"
+					],
+					"path": [
+						"reactive",
+						"book",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read Book Function",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"Alice In Wonderland\",\n\t\"author\": \"Lewis Carroll\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{synapse-host}}/api/read",
+					"host": [
+						"{{synapse-host}}"
+					],
+					"path": [
+						"reactive",
+						"book",
+						"read"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Book Function",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"Alice In Wonderland\",\n\t\"author\": \"Lewis Carroll\",\n\t\"numberOfCopies\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{synapse-host}}/api/updateBook",
+					"host": [
+						"{{synapse-host}}"
+					],
+					"path": [
+						"reactive",
+						"book",
+						"updateBook"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

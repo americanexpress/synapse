@@ -39,7 +39,7 @@ public class UpdateBookHandler extends FunctionInvoker<Message<UpdateBookRequest
      * @param context the context
      * @return the http response message
      */
-    @FunctionName("updateBook")
+    @FunctionName("update")
     public HttpResponseMessage execute(
             @HttpTrigger(name = "request", methods = {HttpMethod.GET, HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<UpdateBookRequest> request,
             ExecutionContext context) {
