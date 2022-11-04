@@ -33,8 +33,13 @@ public class CryptoUtil {
         logger.entry();
 
         textEncryptor = new StandardPBEStringEncryptor();
-        textEncryptor.setAlgorithm(ALGORITHM_KEY);
-        textEncryptor.setPassword(ENCRYPTION_KEY);
+        if(StringUtils.isNotBlank(ENCRYPTION_KEY) && StringUtils.isNotBlank(ALGORITHM_KEY)) {
+            textEncryptor.setAlgorithm(ALGORITHM_KEY);
+            textEncryptor.setPassword(ENCRYPTION_KEY);
+        }else {
+            textEncryptor.setAlgorithm("PBEWITHMD5ANDDES");
+            textEncryptor.setPassword("password");
+        }
         SaltGenerator saltGenerator = new ZeroSaltGenerator();
         textEncryptor.setSaltGenerator(saltGenerator);
         textEncryptor.initialize();

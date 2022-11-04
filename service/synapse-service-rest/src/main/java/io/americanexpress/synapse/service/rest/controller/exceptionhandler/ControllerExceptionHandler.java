@@ -186,8 +186,7 @@ public class ControllerExceptionHandler {
     private ResponseEntity<ErrorResponse> handleInternalServerError(Throwable throwable) {
         String message = errorMessagePropertyReader.getErrorMessage(ErrorCode.GENERIC_5XX_ERROR);
         String fullStackTrace = ApplicationServerException.getStackTrace(throwable, System.lineSeparator());
-//        ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_5XX_ERROR, GENERIC_5XX_HEADER_MESSAGE, message, CryptoUtil.jasyptEncrypt(fullStackTrace));
-        ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_5XX_ERROR, GENERIC_5XX_HEADER_MESSAGE, message, fullStackTrace);
+        ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_5XX_ERROR, GENERIC_5XX_HEADER_MESSAGE, message, CryptoUtil.jasyptEncrypt(fullStackTrace));
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
 
@@ -199,10 +198,9 @@ public class ControllerExceptionHandler {
      */
     private ResponseEntity<ErrorResponse> handleInternalServerError(final Throwable throwable, final HttpServletRequest httpServletRequest) {
         logger.catching(throwable);
-        final String message = errorMessagePropertyReader.getErrorMessage(ErrorCode.GENERIC_5XX_ERROR);
+        String message = errorMessagePropertyReader.getErrorMessage(ErrorCode.GENERIC_5XX_ERROR);
         String fullStackTrace = ApplicationServerException.getStackTrace(throwable, System.lineSeparator());
-//        final ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_5XX_ERROR, GENERIC_5XX_HEADER_MESSAGE, message, CryptoUtil.jasyptEncrypt(fullStackTrace));
-        ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_5XX_ERROR, GENERIC_5XX_HEADER_MESSAGE, message, fullStackTrace);
+        ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_5XX_ERROR, GENERIC_5XX_HEADER_MESSAGE, message, CryptoUtil.jasyptEncrypt(fullStackTrace));
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
