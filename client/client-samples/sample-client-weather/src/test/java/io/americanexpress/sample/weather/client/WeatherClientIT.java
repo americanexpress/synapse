@@ -32,8 +32,20 @@ import org.springframework.test.context.ContextConfiguration;
 @ContextConfiguration(classes = WeatherClientTestConfig.class)
 class WeatherClientIT extends BaseRestClientIT<WeatherRequest, WeatherResponse, WeatherClient> {
 
+    /**
+     * Weather client
+     */
+    private final WeatherClient client;
+
+    /**
+     * Instantiates a new Weather client IT.
+     *
+     * @param client the client
+     */
     @Autowired
-    private WeatherClient client;
+    WeatherClientIT(WeatherClient client) {
+        this.client = client;
+    }
 
     @Test
     @Override
