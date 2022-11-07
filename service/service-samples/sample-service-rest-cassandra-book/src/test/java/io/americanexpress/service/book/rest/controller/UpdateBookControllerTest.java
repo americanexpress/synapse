@@ -30,16 +30,25 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @ContextConfiguration(classes = BookTestConfig.class)
 public class UpdateBookControllerTest extends BaseUpdateControllerUnitTest<CreateBookResponse, UpdateBookRequest, UpdateBookService>{
 
+    /**
+     * Provide the endpoint for the api.
+     */
     @Override
     protected String getEndpoint() {
         return BookEndpoints.BOOK_ENDPOINT;
     }
 
+    /**
+     * Provide the location of the sample request json file.
+     */
     @Override
     protected String getSampleJsonRequestFileName() {
         return "sample-request.json";
     }
 
+    /**
+     * Provide the http headers.
+     */
     @Override
     protected HttpHeaders getSampleHttpHeaders() {
         return null;

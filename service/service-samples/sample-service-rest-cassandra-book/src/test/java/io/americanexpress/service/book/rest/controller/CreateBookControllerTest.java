@@ -31,16 +31,25 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @ContextConfiguration(classes = BookTestConfig.class)
 public class CreateBookControllerTest extends BaseCreateMonoControllerUnitTest<CreateBookResponse, CreateBookRequest, CreateBookService> {
 
+    /**
+     * Provide the endpoint for the api.
+     */
     @Override
     protected String getEndpoint() {
         return BookEndpoints.BOOK_ENDPOINT;
     }
 
+    /**
+     * Provide the location of the sample request json file.
+     */
     @Override
     protected String getSampleJsonRequestFileName() {
         return "sample-request.json";
     }
 
+    /**
+     * Provide the http headers needed.
+     */
     @Override
     protected HttpHeaders getSampleHttpHeaders() {
         HttpHeaders headers = new HttpHeaders();

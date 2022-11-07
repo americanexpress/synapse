@@ -30,21 +30,33 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @ContextConfiguration(classes = BookTestConfig.class)
 public class ReadMonoControllerTest extends BaseReadMonoControllerUnitTest<ReadBookResponse, ReadBookRequest, ReadBookService> {
 
+    /**
+     * Provide the endpoint for the api.
+     */
     @Override
     protected String getEndpoint() {
         return BookEndpoints.BOOK_ENDPOINT + "/inquiry_results";
     }
 
+    /**
+     * Provide the location of the sample response json file.
+     */
     @Override
     protected String getSampleJsonResponseFileName() {
         return "sample-response.json";
     }
 
+    /**
+     * Provide the location of the sample request json file.
+     */
     @Override
     protected String getSampleJsonRequestFileName() {
         return "sample-request.json";
     }
 
+    /**
+     * Provide any headers needed.
+     */
     @Override
     protected HttpHeaders getSampleHttpHeaders() {
         return null;

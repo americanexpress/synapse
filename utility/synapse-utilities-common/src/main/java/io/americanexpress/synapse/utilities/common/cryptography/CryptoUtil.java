@@ -29,6 +29,9 @@ public class CryptoUtil {
 
     private static final StandardPBEStringEncryptor textEncryptor;
 
+    /**
+     * Initializes StandardPBEStringEncryptor.
+     */
     static {
         logger.entry();
 
@@ -50,6 +53,12 @@ public class CryptoUtil {
     private CryptoUtil() {
     }
 
+    /**
+     * Encrypts the string provided.
+     *
+     * @param text to be encrypted
+     * @return encrypted string
+     */
     public static String jasyptEncrypt(String text) {
         logger.entry(text);
 
