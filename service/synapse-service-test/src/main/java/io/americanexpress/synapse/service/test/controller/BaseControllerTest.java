@@ -214,9 +214,9 @@ public abstract class BaseControllerTest<O extends BaseServiceResponse> {
         }
 
         assert mockHttpServletRequestBuilder != null;
-        if(getSampleHttpHeaders() == null || getSampleHttpHeaders().isEmpty()) {
+        if (getSampleHttpHeaders() == null || getSampleHttpHeaders().isEmpty()) {
             mockHttpServletRequestBuilder.contentType(MediaType.APPLICATION_JSON_VALUE);
-        }else {
+        } else {
             mockHttpServletRequestBuilder.headers(getSampleHttpHeaders());
         }
 
