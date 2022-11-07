@@ -20,32 +20,71 @@ import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
  */
 public class WeatherResponse implements BaseClientResponse {
 
+    /**
+     * The latitude
+     */
     private String latitude;
 
+    /**
+     * The longitude
+     */
     private String longitude;
 
+    /**
+     * The elevation
+     */
     private String elevation;
 
+    /**
+     * Gets latitude.
+     *
+     * @return the latitude
+     */
     public String getLatitude() {
         return latitude;
     }
 
+    /**
+     * Sets latitude.
+     *
+     * @param latitude the latitude
+     */
     public void setLatitude(String latitude) {
         this.latitude = latitude;
     }
 
+    /**
+     * Gets longitude.
+     *
+     * @return the longitude
+     */
     public String getLongitude() {
         return longitude;
     }
 
+    /**
+     * Sets longitude.
+     *
+     * @param longitude the longitude
+     */
     public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
 
+    /**
+     * Gets elevation.
+     *
+     * @return the elevation
+     */
     public String getElevation() {
         return elevation;
     }
 
+    /**
+     * Sets elevation.
+     *
+     * @param elevation the elevation
+     */
     public void setElevation(String elevation) {
         this.elevation = elevation;
     }

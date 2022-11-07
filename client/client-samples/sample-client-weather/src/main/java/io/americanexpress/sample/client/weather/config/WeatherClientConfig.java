@@ -27,12 +27,17 @@ import org.springframework.context.annotation.PropertySource;
  */
 @Configuration
 @ComponentScan("io.americanexpress.sample.client.weather")
-@Import(BaseRestClientConfig.class)
 @PropertySource("classpath:client-weather.properties")
 public class WeatherClientConfig extends BaseRestClientConfig {
 
+    /**
+     * Client for making call to weather api.
+     */
     private final WeatherClient weatherClient;
 
+    /**
+     * Response error handler for weather client.
+     */
     private final WeatherResponseErrorHandler weatherResponseErrorHandler;
 
     /**
