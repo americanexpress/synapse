@@ -25,10 +25,7 @@
 
     <!--Modules-->
     <modules>
-
         <module>sample-client-weather</module>
     </modules>
-
-
 
 </project>
