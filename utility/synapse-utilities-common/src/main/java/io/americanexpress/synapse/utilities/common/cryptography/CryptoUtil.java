@@ -33,10 +33,10 @@ public class CryptoUtil {
         logger.entry();
 
         textEncryptor = new StandardPBEStringEncryptor();
-        if(StringUtils.isNotBlank(ENCRYPTION_KEY) && StringUtils.isNotBlank(ALGORITHM_KEY)) {
+        if (StringUtils.isNotBlank(ENCRYPTION_KEY) && StringUtils.isNotBlank(ALGORITHM_KEY)) {
             textEncryptor.setAlgorithm(ALGORITHM_KEY);
             textEncryptor.setPassword(ENCRYPTION_KEY);
-        }else {
+        } else {
             textEncryptor.setAlgorithm("PBEWITHMD5ANDDES");
             textEncryptor.setPassword("thisIsARandomStringForTestingPleaseSetPasswordInSystemEnv");
         }
