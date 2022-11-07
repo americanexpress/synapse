@@ -11,26 +11,25 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.function.greeting.config;
+package io.americanexpress.function.greeting.config
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.validation.Validator;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
+import org.springframework.validation.Validator
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean
 
 /**
- * {@code GreeterConfig} contains configurations for GreeterApplication.
+ * `GreeterConfig` contains configurations for GreeterApplication.
  */
 @Configuration
-public class GreetingConfig {
-
+open class GreetingConfig {
     /**
      * Instantiates Spring validator bean.
      *
      * @return the validator
      */
     @Bean
-    public Validator springValidator() {
-        return new LocalValidatorFactoryBean();
+    open fun springValidator(): Validator {
+        return LocalValidatorFactoryBean()
     }
 }

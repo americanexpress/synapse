@@ -11,26 +11,17 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.function.greeting.model;
+package io.americanexpress.function.greeting.model
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotBlank
 
 /**
- * {@code Greeter} contains greeter function.
+ * `Greeter` contains greeter function.
  */
-public class Greeting {
+class Greeting {
 
     /**
      * The message.
      */
-    @NotBlank
-    private String message;
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
+    var message: @NotBlank String? = null
 }

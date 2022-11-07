@@ -11,48 +11,38 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.function.greeting.function;
+package io.americanexpress.function.greeting.function
 
-import io.americanexpress.function.greeting.model.Greeting;
-import org.springframework.http.HttpStatus;
-import org.springframework.validation.BeanPropertyBindingResult;
-import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
-import org.springframework.web.server.ResponseStatusException;
-
-import java.util.function.Function;
+import io.americanexpress.function.greeting.model.Greeting
+import org.springframework.http.HttpStatus
+import org.springframework.validation.BeanPropertyBindingResult
+import org.springframework.validation.Errors
+import org.springframework.validation.Validator
+import org.springframework.web.server.ResponseStatusException
+import java.util.function.Function
 
 /**
- * {@code Greet} contains the Greet function.
+ * `Greet` contains the Greet function.
  */
-public class Greet implements Function<Greeting, Greeting> {
+open class Greet(private val validator: Validator) : Function<Greeting, Greeting?> {
 
     /**
-     * The Validator.
-     */
-    protected Validator validator;
-    /**
-     * Instantiates a new Greet.
+     * Applies this function to the given argument.
      *
-     * @param validator the validator
+     * @param greeting the function argument
+     * @return the function result
      */
-    public Greet(Validator validator) {
-        this.validator = validator;
-    }
-
-
-    @Override
-    public Greeting apply(Greeting greeting) {
-        Greeting output = null;
-        Errors errors = new BeanPropertyBindingResult(greeting, Greeting.class.getName());
-        this.validator.validate(greeting, errors);
-        if (errors.getAllErrors().isEmpty()) {
-            output = new Greeting();
-            output.setMessage("Hello " + greeting.getMessage());
-        } else {
-            onValidationErrors(errors);
-        }
-        return output;
+    override fun apply(greeting: Greeting): Greeting? {
+        var output: Greeting? = null
+            val errors: Errors = BeanPropertyBindingResult(greeting, Greeting::class.java.name)
+        validator.validate(greeting, errors)
+            if (errors.allErrors.isEmpty()) {
+                output = Greeting()
+                output.message = "Hello " + greeting.message
+            } else {
+                onValidationErrors(errors)
+            }
+            return output
     }
 
     /**
@@ -61,8 +51,7 @@ public class Greet implements Function<Greeting, Greeting> {
      * @param errors the errors
      * @return the response status exception
      */
-    protected ResponseStatusException onValidationErrors(Errors errors) {
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, errors.getAllErrors().get(0).getDefaultMessage());
+    protected fun onValidationErrors(errors: Errors): ResponseStatusException {
+        throw ResponseStatusException(HttpStatus.BAD_REQUEST, errors.allErrors[0].defaultMessage)
     }
-
 }

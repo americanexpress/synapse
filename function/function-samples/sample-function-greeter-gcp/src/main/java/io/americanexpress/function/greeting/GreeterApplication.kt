@@ -24,28 +24,21 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.function.greeting;
+package io.americanexpress.function.greeting
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-
-import java.util.function.Function;
+import org.springframework.boot.autoconfigure.SpringBootApplication
+import java.lang.StringBuilder
+import kotlin.jvm.JvmStatic
+import org.springframework.boot.SpringApplication
+import org.springframework.context.annotation.Bean
+import java.util.*
+import java.util.function.Function
 
 /**
- * {@code GreeterApplication} starts the Spring Boot Application
+ * `GreeterApplication` starts the Spring Boot Application
  */
 @SpringBootApplication
-public class GreeterApplication {
-
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
-    public static void main(String[] args) {
-        SpringApplication.run(GreeterApplication.class, args);
-    }
+open class GreeterApplication {
 
     /**
      * Uppercase function.
@@ -53,8 +46,8 @@ public class GreeterApplication {
      * @return the function
      */
     @Bean
-    public Function<String, String> uppercase() {
-        return value -> value.toUpperCase();
+    open fun uppercase(): Function<String, String> {
+        return Function { value: String -> value.uppercase(Locale.getDefault()) }
     }
 
     /**
@@ -63,8 +56,19 @@ public class GreeterApplication {
      * @return the function
      */
     @Bean
-    public Function<String, String> reverse() {
-        return value -> new StringBuilder(value).reverse().toString();
+    open fun reverse(): Function<String, String> {
+        return Function { value: String? -> StringBuilder(value).reverse().toString() }
     }
 
+    companion object {
+        /**
+         * The entry point of application.
+         *
+         * @param args the input arguments
+         */
+        @JvmStatic
+        fun main(args: Array<String>) {
+            SpringApplication.run(GreeterApplication::class.java, *args)
+        }
+    }
 }

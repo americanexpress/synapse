@@ -11,17 +11,15 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.function.greeting.function;
+package io.americanexpress.function.greeting.function
 
-import java.util.function.Function;
+import java.util.function.Function
 
 /**
- * {@code Greeter} contains greeter function.
+ * `Greeter` contains greeter function.
  */
-public class Greeter implements Function<String, String> {
-
-    @Override
-    public String apply(String s) {
-        return "Hello " + s + ", and welcome to Spring Cloud Function!!!";
+class Greeter : Function<String, String> {
+    override fun apply(s: String): String {
+        return "Hello $s, and welcome to Spring Cloud Function!!!"
     }
 }
