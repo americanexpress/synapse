@@ -38,7 +38,7 @@ public class CryptoUtil {
             textEncryptor.setPassword(ENCRYPTION_KEY);
         }else {
             textEncryptor.setAlgorithm("PBEWITHMD5ANDDES");
-            textEncryptor.setPassword("password");
+            textEncryptor.setPassword("thisIsARandomStringForTestingPleaseSetPasswordInSystemEnv");
         }
         SaltGenerator saltGenerator = new ZeroSaltGenerator();
         textEncryptor.setSaltGenerator(saltGenerator);
