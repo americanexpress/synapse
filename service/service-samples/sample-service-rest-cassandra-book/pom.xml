@@ -31,6 +31,10 @@
         </dependency>
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>
+            <artifactId>synapse-service-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.americanexpress.synapse</groupId>
             <artifactId>sample-data-cassandra-book</artifactId>
         </dependency>
     </dependencies>
