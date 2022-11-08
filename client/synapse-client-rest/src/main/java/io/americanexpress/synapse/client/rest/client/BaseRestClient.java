@@ -13,11 +13,9 @@
  */
 package io.americanexpress.synapse.client.rest.client;
 
-import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
 import io.americanexpress.synapse.client.rest.helper.UrlBuilder;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
-import io.americanexpress.synapse.client.rest.model.ClientHeaders;
 import io.americanexpress.synapse.client.rest.model.QueryParameter;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;
@@ -34,10 +32,9 @@ import java.util.List;
  *
  * @param <I> input request type
  * @param <O> output response type
- * @param <H> httpHeadersFactory used to set the HTTP headers for each web service call
  * @author Paolo Claudio
  */
-public abstract class BaseRestClient<I extends BaseClientRequest, O extends BaseClientResponse, H extends BaseClientHttpHeadersFactory<I>> extends BaseClient<I, O, H> {
+public abstract class BaseRestClient<I extends BaseClientRequest, O extends BaseClientResponse> extends BaseClient<I, O> {
 
     /**
      * Template for performing REST operations using default serialization options set in the BaseRestClientConfig.
@@ -47,11 +44,10 @@ public abstract class BaseRestClient<I extends BaseClientRequest, O extends Base
 
     /**
      * Argument constructor creates a new instance of BaseRestClient with given values.
-     * @param httpHeadersFactory HTTP headers factory used to produce the custom HTTP headers required to consume the back end service
      * @param httpMethod HTTP method of the back end service
      */
-    protected BaseRestClient(H httpHeadersFactory, HttpMethod httpMethod) {
-		super(httpHeadersFactory, httpMethod);
+    protected BaseRestClient(HttpMethod httpMethod) {
+		super(httpMethod);
 	}
     
     /**
@@ -75,28 +71,28 @@ public abstract class BaseRestClient<I extends BaseClientRequest, O extends Base
     /**
      * Get the response from the service given the HTTP headers and request body.
      *
-     * @param clientHeaders      headers for the back end service
+     * @param headers      headers for the back end service
      * @param clientRequest      body of the request
      * @param pathVariables      variables needed to be added to URI
      * @return the response body from the back end service
      */
-    public O callMonoService(ClientHeaders clientHeaders, I clientRequest, String... pathVariables) {
-        return callMonoService(clientHeaders, clientRequest, null, pathVariables);
+    public O callMonoService(HttpHeaders headers, I clientRequest, String... pathVariables) {
+        return callMonoService(headers, clientRequest, null, pathVariables);
     }
 
     /**
      * Get the response from the service given the HTTP headers and request body.
      *
-     * @param clientHeaders      headers for the back end service
+     * @param headers      headers for the back end service
      * @param clientRequest      body of the request
      * @param queryParameters    parameters needed to be added to URI
      * @param pathVariables      variables needed to be added to URI
      * @return the response body from the back end service
      */
-    public O callMonoService(ClientHeaders clientHeaders, I clientRequest, List<QueryParameter> queryParameters, String... pathVariables) {
+    public O callMonoService(HttpHeaders headers, I clientRequest, List<QueryParameter> queryParameters, String... pathVariables) {
 
         // Create the request
-        RequestEntity<I> requestEntity = createRequestEntity(clientHeaders, clientRequest, queryParameters, pathVariables);
+        RequestEntity<I> requestEntity = createRequestEntity(headers, clientRequest, queryParameters, pathVariables);
 
         // Call the service
         ResponseEntity<?> responseEntity = restTemplate.exchange(requestEntity, clientResponseType);
@@ -110,30 +106,30 @@ public abstract class BaseRestClient<I extends BaseClientRequest, O extends Base
     /**
      * Get the response from the service given the HTTP headers and request body.
      *
-     * @param clientHeaders      headers for the back end service
+     * @param headers      headers for the back end service
      * @param clientRequest      body of the request
      * @param responseEntityType type of client response
      * @param pathVariables      variables needed to be added to URI
      * @return the response body from the back end service
      */
-    public List<O> callPolyService(ClientHeaders clientHeaders, I clientRequest, ParameterizedTypeReference<List<O>> responseEntityType, String... pathVariables) {
-        return callPolyService(clientHeaders, clientRequest, responseEntityType, null, pathVariables);
+    public List<O> callPolyService(HttpHeaders headers, I clientRequest, ParameterizedTypeReference<List<O>> responseEntityType, String... pathVariables) {
+        return callPolyService(headers, clientRequest, responseEntityType, null, pathVariables);
     }
 
     /**
      * Get the list of responses from the service given the HTTP headers and request body.
      *
-     * @param clientHeaders      headers for the back end service
+     * @param headers      headers for the back end service
      * @param clientRequest      body of the request
      * @param responseEntityType type of client response
      * @param queryParameters    parameters needed to be added to URI
      * @param pathVariables      variables needed to be added to URI
      * @return the response body from the back end service
      */
-    public List<O> callPolyService(ClientHeaders clientHeaders, I clientRequest, ParameterizedTypeReference<List<O>> responseEntityType, List<QueryParameter> queryParameters, String... pathVariables) {
+    public List<O> callPolyService(HttpHeaders headers, I clientRequest, ParameterizedTypeReference<List<O>> responseEntityType, List<QueryParameter> queryParameters, String... pathVariables) {
 
         // Create the request
-        RequestEntity<I> requestEntity = createRequestEntity(clientHeaders, clientRequest, queryParameters, pathVariables);
+        RequestEntity<I> requestEntity = createRequestEntity(headers, clientRequest, queryParameters, pathVariables);
 
         // Call the service
         ResponseEntity<List<O>> responseEntity = restTemplate.exchange(requestEntity, responseEntityType);
@@ -143,22 +139,19 @@ public abstract class BaseRestClient<I extends BaseClientRequest, O extends Base
     /**
      * Create the request entity used for the back end service.
      *
-     * @param clientHeaders   headers for the back end service
+     * @param headers   headers for the back end service
      * @param clientRequest   body of the request
      * @param queryParameters parameters needed to be added to URI
      * @param pathVariables   to add to the URI
      * @return the request entity for the back end service
      */
-    private RequestEntity<I> createRequestEntity(ClientHeaders clientHeaders, I clientRequest, List<QueryParameter> queryParameters, String... pathVariables) {
+    private RequestEntity<I> createRequestEntity(HttpHeaders headers, I clientRequest, List<QueryParameter> queryParameters, String... pathVariables) {
         
     	// Get the updated URL which may change in each client request due to path variables and/or query parameters
     	String updatedUrl = UrlBuilder.build(url, queryParameters, pathVariables);
         URI uri = URI.create(updatedUrl);
 
-        // Create the HTTP headers for the service
-        HttpHeaders httpHeaders = httpHeadersFactory.create(clientHeaders, clientRequest, updatedUrl);
-
         // Create the request
-        return new RequestEntity<>(clientRequest, httpHeaders, httpMethod, uri);
+        return new RequestEntity<>(clientRequest, headers, httpMethod, uri);
     }
 }

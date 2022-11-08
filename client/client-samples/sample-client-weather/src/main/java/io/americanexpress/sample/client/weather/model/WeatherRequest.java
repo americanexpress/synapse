@@ -11,17 +11,12 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.client.test.client;
+package io.americanexpress.sample.client.weather.model;
 
-
-import io.americanexpress.synapse.client.rest.client.BaseRestClient;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
-import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
 
-public abstract class BaseRestClientIT<I extends BaseClientRequest,
-        O extends BaseClientResponse,
-        C extends BaseRestClient<I, O>> extends BaseRestClientTest<I, O, C> {
-
-    protected abstract void callMonoService_givenValidRequest_expectedSuccessResponse() throws Exception;
-
+/**
+ * {@code WeatherRequest} is the request object for weather client.
+ */
+public class WeatherRequest implements BaseClientRequest {
 }

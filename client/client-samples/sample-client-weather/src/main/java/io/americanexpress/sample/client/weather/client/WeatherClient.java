@@ -11,17 +11,25 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.client.test.client;
+package io.americanexpress.sample.client.weather.client;
 
-
+import io.americanexpress.sample.client.weather.model.WeatherRequest;
+import io.americanexpress.sample.client.weather.model.WeatherResponse;
 import io.americanexpress.synapse.client.rest.client.BaseRestClient;
-import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
-import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
+import io.americanexpress.synapse.client.rest.client.RestClient;
+import org.springframework.http.HttpMethod;
 
-public abstract class BaseRestClientIT<I extends BaseClientRequest,
-        O extends BaseClientResponse,
-        C extends BaseRestClient<I, O>> extends BaseRestClientTest<I, O, C> {
+/**
+ * {@code WeatherClient} for making an api call to a weather api.
+ */
+@RestClient
+public class WeatherClient extends BaseRestClient<WeatherRequest, WeatherResponse> {
 
-    protected abstract void callMonoService_givenValidRequest_expectedSuccessResponse() throws Exception;
+    /**
+     * Argument constructor creates a new instance of BaseRestClient with given values.
+     */
+    protected WeatherClient() {
+        super(HttpMethod.GET);
+    }
 
 }
