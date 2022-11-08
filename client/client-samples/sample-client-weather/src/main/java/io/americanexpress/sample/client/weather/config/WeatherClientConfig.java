@@ -51,6 +51,11 @@ public class WeatherClientConfig extends BaseRestClientConfig {
         this.weatherResponseErrorHandler = weatherResponseErrorHandler;
     }
 
+    /**
+     * Initializes client.
+     *
+     * @param destinationUrl url for weather api
+     */
     @Value("${client.url}")
     @Override
     protected void initialize(String destinationUrl) {
