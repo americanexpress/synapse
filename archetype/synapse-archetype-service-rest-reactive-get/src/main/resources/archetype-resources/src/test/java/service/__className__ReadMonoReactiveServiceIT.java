@@ -27,7 +27,7 @@ import ${package}.model.${className}ServiceResponse;
 import ${package}.model.${className}ServiceRequest;
 
 /**
- * {@code ${className}ReadMonoReactiveServiceIT}  class performs integration tests for the ${apiName} application
+ * {@code ${className}ReadMonoReactiveServiceIT} class performs integration tests for the ${apiName} application
  * Be sure that the ${apiName} REST API is running
  * prior to running this integration test.
  * @author ${author}
