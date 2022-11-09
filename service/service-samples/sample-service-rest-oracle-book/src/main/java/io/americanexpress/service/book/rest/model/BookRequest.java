@@ -48,12 +48,21 @@ public class BookRequest implements BaseServiceRequest {
         this.author = author;
     }
 
+    /**
+     * title
+     */
     @NotBlank
     private String title;
 
+    /**
+     * author
+     */
     @NotBlank
     private String author;
 
+    /**
+     * createdBy
+     */
     private String createdBy;
 
     /**
