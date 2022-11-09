@@ -39,7 +39,6 @@
             <groupId>io.americanexpress.synapse</groupId>
             <artifactId>sample-data-oracle-book</artifactId>
         </dependency>
-        <!-- Third Party -->
         <!-- H2 -->
         <dependency>
             <groupId>com.h2database</groupId>
