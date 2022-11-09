@@ -12,8 +12,8 @@
  * the License.
  */
 
-drop SCHEMA IF EXISTS synapse CASCADE;
-create SCHEMA synapse;
+DROP SCHEMA IF EXISTS synapse CASCADE;
+CREATE SCHEMA synapse;
 
 SET
 SCHEMA_SEARCH_PATH TO synapse;

@@ -20,9 +20,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * {@code DataBookApplication} DataBookApplication sample is to show how to use synapse-oracle-data
  */
 @SpringBootApplication
-public class DataBookApplication {
+public class BookDataApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DataBookApplication.class, args);
+        SpringApplication.run(BookDataApplication.class, args);
     }
 }
