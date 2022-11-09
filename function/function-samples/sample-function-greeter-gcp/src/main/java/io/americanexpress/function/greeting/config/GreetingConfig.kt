@@ -23,6 +23,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean
  */
 @Configuration
 open class GreetingConfig {
+
     /**
      * Instantiates Spring validator bean.
      *

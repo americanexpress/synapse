@@ -60,6 +60,14 @@ open class GreeterApplication {
         return Function { value: String? -> StringBuilder(value).reverse().toString() }
     }
 
+    /**
+     * Greeter function.
+     */
+    @Bean
+    open fun greeter(): Function<String, String> {
+        return Function { value: String? -> "Hello $value, and welcome to Spring Cloud Function!!!" }
+    }
+
     companion object {
         /**
          * The entry point of application.
