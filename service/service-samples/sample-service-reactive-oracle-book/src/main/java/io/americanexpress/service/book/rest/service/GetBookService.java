@@ -26,16 +26,23 @@ import reactor.core.publisher.Mono;
 @Service
 public class GetBookService extends BaseGetMonoReactiveService<ReadBookResponse> {
 
+    /**
+     * bookRepository
+     */
     private final BookRepository bookRepository;
 
     public GetBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
-
+    /**
+     * executeRead will be used to retrieve a specific book resource by title
+     * @param title
+     * @return
+     */
     @Override
-    protected Mono<ReadBookResponse> executeRead(String identifier) {
-        return bookRepository.findByTitle(identifier)
+    protected Mono<ReadBookResponse> executeRead(String title) {
+        return bookRepository.findByTitle(title)
                 .map(BookServiceMapper::populateReadBookResponse)
                 .switchIfEmpty(Mono.empty());
     }

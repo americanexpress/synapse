@@ -13,6 +13,9 @@ import reactor.core.publisher.Flux;
 @Service
 public class GetAllBookService extends BaseGetPolyReactiveService<ReadBookResponse> {
 
+    /**
+     * bookRepository
+     */
     private BookRepository bookRepository;
 
     public GetAllBookService(BookRepository bookRepository) {
@@ -20,6 +23,10 @@ public class GetAllBookService extends BaseGetPolyReactiveService<ReadBookRespon
     }
 
 
+    /**
+     * executeRead will be used to get all book resources.
+     * @return
+     */
     @Override
     protected Flux<ReadBookResponse> executeRead() {
         return bookRepository.findAll()

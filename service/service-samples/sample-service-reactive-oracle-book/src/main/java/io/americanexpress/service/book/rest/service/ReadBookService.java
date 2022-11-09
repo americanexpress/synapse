@@ -26,12 +26,21 @@ import reactor.core.publisher.Mono;
  */
 @Service
 public class ReadBookService extends BaseReadMonoReactiveService<ReadBookRequest, ReadBookResponse> {
+
+    /**
+     * bookRepository
+     */
     private final BookRepository bookRepository;
 
     public ReadBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
+    /**
+     * executeRead will be used to retrieve a book resource by request.
+     * @param request
+     * @return
+     */
     @Override
     protected Mono<ReadBookResponse> executeRead(ReadBookRequest request) {
         return bookRepository.findByTitleAndAuthor(request.getTitle(), request.getAuthor())

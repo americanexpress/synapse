@@ -27,12 +27,20 @@ import reactor.core.publisher.Mono;
 @Service
 public class CreateBookService extends BaseCreateReactiveService<CreateBookRequest, CreateBookResponse> {
 
+    /**
+     * bookRepository
+     */
     private final BookRepository bookRepository;
 
     public CreateBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
+    /**
+     * executeCreate will be used to create a book resource by request
+     * @param request
+     * @return
+     */
     @Override
     protected Mono<CreateBookResponse> executeCreate(CreateBookRequest request) {
         return bookRepository.save(BookServiceMapper.populateBookEntityForCreation(request))

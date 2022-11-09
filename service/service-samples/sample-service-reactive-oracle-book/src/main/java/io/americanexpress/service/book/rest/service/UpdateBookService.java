@@ -28,12 +28,20 @@ import reactor.core.publisher.Mono;
 @Service
 public class UpdateBookService extends BaseUpdateReactiveService<UpdateBookRequest> {
 
+    /**
+     * bookRepository
+     */
     private BookRepository bookRepository;
 
     public UpdateBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
+    /**
+     * executeUpdate will be used to update a book resource by request
+     * @param request
+     * @return
+     */
     @Override
     protected Mono<Void> executeUpdate(UpdateBookRequest request) {
         return bookRepository.findByTitleAndAuthor(request.getTitle(), request.getAuthor())
