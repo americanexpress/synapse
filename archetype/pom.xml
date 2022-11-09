@@ -40,7 +40,7 @@
         <module>synapse-archetype-service-rest-post</module>
         <module>synapse-archetype-service-rest-get</module>
         <module>synapse-archetype-service-rest-put</module>
-        <module>synapse-archetype-service-rest-reactive-post</module>
         <module>synapse-archetype-service-rest-reactive-get</module>
+        <module>synapse-archetype-service-rest-reactive-post</module>
     </modules>
 </project>
