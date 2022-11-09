@@ -29,8 +29,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
         description = "Rest API that provides book related information."))
 @SpringBootApplication()
 public class BookApplication {
+
     private static final XLogger LOGGER = XLoggerFactory.getXLogger(BookApplication.class);
 
+    /**
+     * main
+     * @param args
+     */
     public static void main(String... args) {
         SpringApplication.run(BookApplication.class, args);
         LOGGER.info("Rest Book Oracle Sample Application is up and running...");
