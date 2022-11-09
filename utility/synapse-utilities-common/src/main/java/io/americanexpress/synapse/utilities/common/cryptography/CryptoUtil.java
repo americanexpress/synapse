@@ -29,12 +29,20 @@ public class CryptoUtil {
 
     private static final StandardPBEStringEncryptor textEncryptor;
 
+    /**
+     * Initializes StandardPBEStringEncryptor.
+     */
     static {
         logger.entry();
 
         textEncryptor = new StandardPBEStringEncryptor();
-        textEncryptor.setAlgorithm(ALGORITHM_KEY);
-        textEncryptor.setPassword(ENCRYPTION_KEY);
+        if (StringUtils.isNotBlank(ENCRYPTION_KEY) && StringUtils.isNotBlank(ALGORITHM_KEY)) {
+            textEncryptor.setAlgorithm(ALGORITHM_KEY);
+            textEncryptor.setPassword(ENCRYPTION_KEY);
+        } else {
+            textEncryptor.setAlgorithm("PBEWITHMD5ANDDES");
+            textEncryptor.setPassword("thisIsARandomStringForTestingPleaseSetPasswordInSystemEnv");
+        }
         SaltGenerator saltGenerator = new ZeroSaltGenerator();
         textEncryptor.setSaltGenerator(saltGenerator);
         textEncryptor.initialize();
@@ -45,6 +53,12 @@ public class CryptoUtil {
     private CryptoUtil() {
     }
 
+    /**
+     * Encrypts the string provided.
+     *
+     * @param text to be encrypted
+     * @return encrypted string
+     */
     public static String jasyptEncrypt(String text) {
         logger.entry(text);
 

@@ -16,14 +16,17 @@ package io.americanexpress.synapse.service.rest.controller;
 import io.americanexpress.synapse.service.rest.controller.helpers.MonoResponseEntityCreator;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
+import io.americanexpress.synapse.service.rest.model.ServiceHeadersFactory;
 import io.americanexpress.synapse.service.rest.service.BaseReadMonoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 import javax.validation.Valid;
 
@@ -41,12 +44,16 @@ public abstract class BaseReadMonoController<I extends BaseServiceRequest, O ext
 
     public static final String INQUIRY_RESULTS = "/inquiry_results";
 
+    /**
+     * Entity creator that will create the response entity object that will be sent to the service layer.
+     */
     @Autowired
     private MonoResponseEntityCreator<O> monoResponseEntityCreator;
 
     /**
      * Get a single resource from the back end service.
      *
+     * @param headers containing the HTTP headers from the consumer
      * @param serviceRequest body from the consumer
      * @return a single resource from the back end service
      */
@@ -59,10 +66,10 @@ public abstract class BaseReadMonoController<I extends BaseServiceRequest, O ext
             @ApiResponse(responseCode = "403", description = "Forbidden"),
     })
     @PostMapping(INQUIRY_RESULTS)
-    public ResponseEntity<O> read(@Valid @RequestBody I serviceRequest) {
+    public ResponseEntity<O> read(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
 
-        final O serviceResponse = service.read(serviceRequest);
+        final O serviceResponse = service.read(headers, serviceRequest);
         ResponseEntity<O> responseEntity = monoResponseEntityCreator.create(serviceResponse);
 
         logger.exit(responseEntity);

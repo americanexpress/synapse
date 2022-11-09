@@ -19,8 +19,10 @@ import io.americanexpress.synapse.service.rest.service.reactive.BaseGetPolyReact
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import reactor.core.publisher.Flux;
 
 /**
@@ -46,10 +48,10 @@ public abstract class BaseGetPolyReactiveController<O extends BaseServiceRespons
             @ApiResponse(code = 403, message = "Forbidden"),
     })
     @GetMapping()
-    public Flux<ResponseEntity<O>> read() {
+    public Flux<ResponseEntity<O>> read(@RequestHeader HttpHeaders headers) {
         logger.entry();
 
-        final var serviceResponse = service.read();
+        final var serviceResponse = service.read(headers);
         final var responseEntity = serviceResponse
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.noContent().build());

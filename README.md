@@ -10,7 +10,11 @@
 If any of these sound like situations you have experienced or situations you simply want to avoid, then Synapse is what
 you need.
 
-Synapse is a set of lightweight modules designed to speed up development time and help developers build out their
+Synapse is a concept to develop at the highest upmost quality. The concept revolves around developing your systems utilizing 
+the most effective, efficient and battle endured design patterns and design principles. 
+
+
+set of lightweight modules designed to speed up development time and help developers build out their
 applications. The modules are focused towards server side implementation. Synapse serves as a wide range tool-suite
 for developers to facilitate rapid development, with high quality built-in. It is designed with the purpose of helping
 developers create web services in a quick and easy way following strict conventions. Synapse provides an abstraction
@@ -299,13 +303,13 @@ The following listing shows the pom.xml file that is created when you choose Mav
     <parent>
         <groupId>com.sample.bookstore</groupId>
         <artifactId>service</artifactId>
-        <version>0.3.3-SNAPSHOT</version>
+        <version>0.3.6-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.sample.bookstore</groupId>
     <artifactId>service-greeting</artifactId>
-    <version>0.3.3-SNAPSHOT</version>
+    <version>0.3.6-SNAPSHOT</version>
 
     <properties>
         <start-class>com.sample.bookstore.GreetingApplication</start-class>
