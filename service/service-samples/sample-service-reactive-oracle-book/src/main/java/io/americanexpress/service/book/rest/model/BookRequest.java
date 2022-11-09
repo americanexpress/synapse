@@ -21,9 +21,16 @@ import javax.validation.constraints.NotBlank;
  * {@code UpdateBookService} Updates a book resource by request criteria.
  */
 public class BookRequest implements BaseServiceRequest {
+
+    /**
+     * title
+     */
     @NotBlank
     private String title;
 
+    /**
+     * author
+     */
     @NotBlank
     private String author;
 

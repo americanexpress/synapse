@@ -35,7 +35,7 @@ public class BookServiceMapper {
 
         response.setAuthor(bookEntity.getAuthor());
         response.setId(String.valueOf(bookEntity.getId()));
-        response.setTittle(bookEntity.getTitle());
+        response.setTitle(bookEntity.getTitle());
         response.setCreatedBy(bookEntity.getCreatedBy());
 
         return response;
@@ -64,7 +64,7 @@ public class BookServiceMapper {
 
         response.setId(String.valueOf(bookEntity.getId()));
         response.setAuthor(bookEntity.getAuthor());
-        response.setTittle(bookEntity.getTitle());
+        response.setTitle(bookEntity.getTitle());
 
         return response;
     }

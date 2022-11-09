@@ -22,20 +22,41 @@ import javax.validation.constraints.NotBlank;
  */
 public class BookResponse extends BaseServiceResponse {
 
+    /**
+     * title
+     */
     @NotBlank
     private String tittle;
 
+    /**
+     * author
+     */
     @NotBlank
     private String author;
 
+    /**
+     * createdDateTime
+     */
     private String createdDateTime;
 
+    /**
+     * lastModifiedDateTime
+     */
     private String lastModifiedDateTime;
 
+    /**
+     * createdBy
+     */
     private String createdBy;
 
+    /**
+     * lastModifiedBy
+     */
     private String lastModifiedBy;
 
+    /**
+     * version
+     */
     private String version;
 
     /**

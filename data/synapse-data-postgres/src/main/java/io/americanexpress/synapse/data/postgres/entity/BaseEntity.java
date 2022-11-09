@@ -13,10 +13,18 @@
  */
 package io.americanexpress.synapse.data.postgres.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Version;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -27,50 +35,50 @@ import java.util.Objects;
  *
  * @author Gabriel Jimenez
  */
-//@EntityListeners(AuditingEntityListener.class)
-//@MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
+@MappedSuperclass
 public abstract class BaseEntity {
 
     /**
      * Id
      */
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
     /**
      * Created Date Time
      */
     @CreatedDate
-//    @Column(name = "created_date_time", updatable = false)
+    @Column(name = "created_date_time", updatable = false)
     protected LocalDateTime createdDateTime;
 
     /**
      * Last Modified Date Time
      */
     @LastModifiedDate
-//    @Column(name = "last_modified_date_time")
+    @Column(name = "last_modified_date_time")
     protected LocalDateTime lastModifiedDateTime;
 
     /**
      * Created By
      */
     @CreatedBy
-//    @Column(name = "created_by")
+    @Column(name = "created_by")
     protected String createdBy;
 
     /**
      * Last Modified By
      */
     @LastModifiedBy
-//    @Column(name = "last_modified_by")
+    @Column(name = "last_modified_by")
     protected String lastModifiedBy;
 
     /**
      * Version
      */
-//    @Version
-//    @Column(name = "version")
+    @Version
+    @Column(name = "version")
     protected Long version;
 
     /**

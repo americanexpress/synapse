@@ -26,12 +26,20 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ReadBookService extends BaseReadMonoService<ReadBookRequest, ReadBookResponse> {
+    /**
+     * bookRepository
+     */
     private final BookRepository bookRepository;
 
     public ReadBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
+    /**
+     * executeRead will be used to retrieve book resource by request.
+     * @param request
+     * @return
+     */
     @Override
     protected ReadBookResponse executeRead(ReadBookRequest request) {
         BookEntity bookEntity = bookRepository.findByTitleAndAuthor(request.getTitle(), request.getAuthor());

@@ -27,11 +27,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class CreateBookService extends BaseCreateService<CreateBookRequest, CreateBookResponse> {
 
+    /**
+     * bookRepository
+     */
     private final BookRepository bookRepository;
 
     public CreateBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
+
+    /**
+     * executeCreate will be used to create a book resource by request
+     * @param request
+     * @return
+     */
     @Override
     protected CreateBookResponse executeCreate(CreateBookRequest request) {
         BookEntity bookEntity = bookRepository.save(BookServiceMapper.populateBookEntityForCreation(request));

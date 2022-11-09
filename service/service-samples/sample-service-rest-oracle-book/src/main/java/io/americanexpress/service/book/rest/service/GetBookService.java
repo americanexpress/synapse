@@ -26,6 +26,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class GetBookService extends BaseGetMonoService<ReadBookResponse> {
 
+    /**
+     * bookRepository
+     */
     private final BookRepository bookRepository;
 
     public GetBookService(BookRepository bookRepository) {
@@ -33,6 +36,11 @@ public class GetBookService extends BaseGetMonoService<ReadBookResponse> {
     }
 
 
+    /**
+     * executeRead will be used to retrieve a specific book resource by title
+     * @param title
+     * @return
+     */
     @Override
     protected ReadBookResponse executeRead(String title) {
         BookEntity bookEntity = bookRepository.findByTitle(title);

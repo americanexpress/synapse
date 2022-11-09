@@ -18,8 +18,14 @@ package io.americanexpress.service.book.rest.model;
  */
 public class UpdateBookRequest extends BookRequest {
 
+    /**
+     * author
+     */
     private String author;
 
+    /**
+     * title
+     */
     private String title;
 
     /**

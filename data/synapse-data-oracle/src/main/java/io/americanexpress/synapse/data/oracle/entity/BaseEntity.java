@@ -39,11 +39,6 @@ import java.util.Objects;
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
 public abstract class BaseEntity {
-    public BaseEntity(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public BaseEntity(){}
 
     /**
      * Id
@@ -88,54 +83,106 @@ public abstract class BaseEntity {
     @Column(name = "version")
     protected Long version;
 
+    /**
+     * Gets id as a long
+     * @return
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * Sets id with provided long value
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * Gets createdDateTime as LocalDateTime
+     * @return
+     */
     public LocalDateTime getCreatedDateTime() {
         return createdDateTime;
     }
 
+    /**
+     * Sets createdDateTime with provided LocalDateTime
+     * @param createdDateTime
+     */
     public void setCreatedDateTime(LocalDateTime createdDateTime) {
         this.createdDateTime = createdDateTime;
     }
 
+    /**
+     * Gets lastModifiedDateTime as LocalDateTime
+     * @return
+     */
     public LocalDateTime getLastModifiedDateTime() {
         return lastModifiedDateTime;
     }
 
+    /**
+     * Sets lastModifiedDateTime with provided localDateTime
+     * @param lastModifiedDateTime
+     */
     public void setLastModifiedDateTime(LocalDateTime lastModifiedDateTime) {
         this.lastModifiedDateTime = lastModifiedDateTime;
     }
 
+    /**
+     * Gets createdBy as a String
+     * @return
+     */
     public String getCreatedBy() {
         return createdBy;
     }
 
+    /**
+     * Sets createdBy with provided String.
+     * @param createdBy
+     */
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
 
+    /**
+     * Gets lastModifiedBy as a string.
+     * @return
+     */
     public String getLastModifiedBy() {
         return lastModifiedBy;
     }
 
+    /**
+     * Sets lastModifiedBy with provided string.
+     * @param lastModifiedBy
+     */
     public void setLastModifiedBy(String lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;
     }
 
+    /**
+     * Gets version as a long.
+     */
     public Long getVersion() {
         return version;
     }
 
+    /**
+     * Sets version with provided long.
+     * @param version
+     */
     public void setVersion(Long version) {
         this.version = version;
     }
 
+    /**
+     * Compares object
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -147,11 +194,19 @@ public abstract class BaseEntity {
                 && Objects.equals(lastModifiedBy, that.lastModifiedBy) && Objects.equals(version, that.version);
     }
 
+    /**
+     * Gets hashcode of object
+     * @return
+     */
     @Override
     public int hashCode() {
         return Objects.hash(id, createdDateTime, lastModifiedDateTime, createdBy, lastModifiedBy, version);
     }
 
+    /**
+     * Builds object as a string.
+     * @return
+     */
     @Override
     public String toString() {
         return "BaseEntity{" +

@@ -21,14 +21,11 @@ import java.util.Objects;
 /**
  * {@code BookEntity} example of a child module using BaseEntity
  */
-//@Entity
 public class BookEntity extends BaseEntity {
 
-//    @Column(name = "title")
     @NaturalId(mutable = true)
     private String title;
 
-//    @Column(name = "author")
     private String author;
 
     /**

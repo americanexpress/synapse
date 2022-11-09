@@ -26,12 +26,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class UpdateBookService extends BaseUpdateService<UpdateBookRequest> {
 
+    /**
+     * bookRepository
+     */
     private BookRepository bookRepository;
 
     public UpdateBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
+    /**
+     * executeUpdate will be used to update a book resource by request.
+     * @param request
+     */
     @Override
     protected void executeUpdate(UpdateBookRequest request) {
         BookEntity bookEntity = bookRepository.findByTitle(request.getTitle());
