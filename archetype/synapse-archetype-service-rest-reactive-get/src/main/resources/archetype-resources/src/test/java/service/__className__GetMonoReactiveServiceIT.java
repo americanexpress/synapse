@@ -17,28 +17,29 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.http.HttpHeaders;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import io.americanexpress.synapse.framework.test.CommonAssertionMessages;
 
 import ${package}.model.${className}ServiceResponse;
-import ${package}.model.${className}PolyServiceRequest;
 
 /**
- * {@code ${className}ReadPolyRestServiceIT} class performs integration tests for the ${apiName} application
+ * {@code ${className}GetMonoReactiveServiceIT} class performs integration tests for the ${apiName} application
  * Be sure that the ${apiName} REST API is running
  * prior to running this integration test.
  * @author ${author}
  */
 @ExtendWith(SpringExtension.class)
-class ${className}ReactiveReadPolyRestServiceIT {
+class ${className}GetMonoReactiveServiceIT {
 
     @Test
-    void read_givenValidRequest_expectValidResponse() throws Exception {
-        ${className}ReactiveReadPolyRestService restService = new ${className}ReactiveReadPolyRestService();
-        ${className}PolyServiceRequest polyServiceRequest = new ${className}PolyServiceRequest();
-        Flux<${className}ServiceResponse> serviceResponse = restService.executeRead(polyServiceRequest);
+    void read_givenValidIdentifier_expectValidResponse() {
+        ${className}GetMonoReactiveService restService = new ${className}GetMonoReactiveService();
+        String identifier = "";
+        HttpHeaders httpHeaders = new HttpHeaders();
+        Mono<${className}ServiceResponse> serviceResponse = restService.executeRead(httpHeaders, identifier);
         assertNotNull(serviceResponse, CommonAssertionMessages.VALUE_NULL);
     }
 }
