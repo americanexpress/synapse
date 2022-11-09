@@ -33,11 +33,11 @@
         <!-- Synapse -->
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>
-            <artifactId>synapse-service-rest</artifactId>
+            <artifactId>sample-data-oracle-book</artifactId>
         </dependency>
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>
-            <artifactId>sample-data-oracle-book</artifactId>
+            <artifactId>synapse-service-rest</artifactId>
         </dependency>
         <!-- H2 -->
         <dependency>
