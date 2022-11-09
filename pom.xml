@@ -12,14 +12,13 @@
     or implied. See the License for the specific language governing permissions and limitations under
     the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.americanexpress.synapse</groupId>
     <artifactId>synapse</artifactId>
     <packaging>pom</packaging>
-    <version>0.2.19-SNAPSHOT</version>
+    <version>0.3.6-SNAPSHOT</version>
 
     <description>
         Synapse is a set of lightweight foundational framework modules for rapid development built-in with enterprise
@@ -45,13 +44,14 @@
 
         <!--Spring Versions-->
         <spring-framework.version>5.3.23</spring-framework.version>
-        <spring-security.version>5.6.2</spring-security.version>
-        <spring-boot-framework.version>2.7.1</spring-boot-framework.version>
+        <spring-security.version>5.7.3</spring-security.version>
+        <spring-boot-framework.version>2.7.4</spring-boot-framework.version>
         <spring-boot-ws-framework.version>1.4.7.RELEASE</spring-boot-ws-framework.version>
+        <spring-cloud.version>3.2.7</spring-cloud.version>
         <spring-native.version>0.12.1</spring-native.version>
 
         <!--Springdoc-->
-        <springdoc.version>1.6.11</springdoc.version>
+        <springdoc.version>1.6.12</springdoc.version>
 
         <!-- GraphQL -->
         <spring-boot-graphql.version>11.1.0</spring-boot-graphql.version>
@@ -60,20 +60,19 @@
         <mockito.version>4.8.0</mockito.version>
 
         <!--JUnit Versions-->
-        <junit.version>1.8.2</junit.version>
-        <junit.jupiter.version>5.9.0</junit.jupiter.version>
+        <junit.version>1.9.1</junit.version>
+        <junit.jupiter.version>5.9.1</junit.jupiter.version>
 
         <!--Jackson-->
-        <jackson.version>2.13.2</jackson.version>
+        <jackson.version>2.14.0</jackson.version>
 
         <!--Logging-->
-        <log4j.version>2.17.2</log4j.version>
+        <log4j.version>2.19.0</log4j.version>
         <sl4j.version>1.7.36</sl4j.version>
 
         <!--Plugins-->
-        <native-plugin.version>0.9.13</native-plugin.version>
+        <native-plugin.version>0.9.16</native-plugin.version>
         <jaxws-maven-plugin.version>2.5</jaxws-maven-plugin.version>
-        <kotlin.version>1.7.20</kotlin.version>
     </properties>
 
     <modules>
@@ -250,6 +249,11 @@
             <!--Data-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-data-cassandra</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-data-couchbase</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -294,7 +298,27 @@
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-function-greeting</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-function-greeter-aws</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-function-greeter-gcp</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>sample-service-graphql-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-service-reactive-cassandra-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -305,6 +329,11 @@
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>sample-service-rest-native-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-service-rest-cassandra-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -322,6 +351,16 @@
                 <artifactId>sample-data-mongodb-reactive</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-cassandra-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-cassandra-reactive</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
             <!--External Dependencies-->
             <dependency>
@@ -329,6 +368,18 @@
                 <artifactId>system-rules</artifactId>
                 <scope>compile</scope><!-- IN THIS CASE COMPILES NEEDS TO BE OVERRIDDEN BECAUSE THE DEFAULT IS TEST-->
                 <version>1.19.0</version>
+            </dependency>
+
+            <!-- Spring Cloud Adapters-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-function-adapter-aws</artifactId>
+                <version>${spring-cloud.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-function-adapter-gcp</artifactId>
+                <version>${spring-cloud.version}</version>
             </dependency>
 
             <!--Spring Dependencies-->
@@ -353,7 +404,7 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
-                <version>5.3.12</version>
+                <version>5.3.18</version>
             </dependency>
 
             <!--Spring Security -->
@@ -445,6 +496,17 @@
                 <artifactId>spring-boot-starter-log4j2</artifactId>
                 <version>${spring-boot-framework.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-validation</artifactId>
+                <version>${spring-boot-framework.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
 
             <!--Logging-->
             <dependency>
@@ -479,8 +541,13 @@
             <!--Spring Cloud-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-function-web</artifactId>
+                <version>${spring-cloud.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-sleuth</artifactId>
-                <version>3.0.3</version>
+                <version>3.1.5</version>
             </dependency>
 
             <!--GraphQL-->
@@ -551,7 +618,7 @@
             <dependency>
                 <groupId>io.netty</groupId>
                 <artifactId>netty-codec-http</artifactId>
-                <version>4.1.59.Final</version>
+                <version>4.1.83.Final</version>
             </dependency>
 
             <!--Apache Dependencies-->
@@ -592,7 +659,7 @@
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-ehcache</artifactId>
-                <version>5.3.10.Final</version>
+                <version>5.6.12.Final</version>
             </dependency>
             <dependency>
                 <groupId>org.hibernate</groupId>
@@ -611,7 +678,7 @@
             <dependency>
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
-                <version>42.3.3</version>
+                <version>42.5.0</version>
             </dependency>
             <dependency>
                 <groupId>com.h2database</groupId>
@@ -638,7 +705,7 @@
             <dependency>
                 <groupId>com.google.http-client</groupId>
                 <artifactId>google-http-client</artifactId>
-                <version>1.35.0</version>
+                <version>1.42.2</version>
             </dependency>
 
             <!--Jackson-->
@@ -657,7 +724,6 @@
                 <artifactId>jackson-dataformat-xml</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
-
 
             <!--Mock Dependencies-->
             <dependency>
@@ -681,12 +747,6 @@
                 <groupId>org.graalvm.buildtools</groupId>
                 <artifactId>junit-platform-native</artifactId>
                 <version>0.9.14</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.junit.platform</groupId>
-                <artifactId>junit-platform-launcher</artifactId>
-                <version>1.9.1</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -724,6 +784,7 @@
                 <groupId>org.junit.platform</groupId>
                 <artifactId>junit-platform-launcher</artifactId>
                 <version>${junit.version}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.junit.platform</groupId>
@@ -758,38 +819,11 @@
                 <version>${sl4j.version}</version>
             </dependency>
 
-
             <!--Couchbase-->
             <dependency>
                 <groupId>com.couchbase.client</groupId>
                 <artifactId>java-client</artifactId>
-                <version>3.1.4</version>
-            </dependency>
-
-            <!--Quarkus-->
-            <dependency>
-                <groupId>io.quarkus</groupId>
-                <artifactId>quarkus-bom</artifactId>
-                <version>2.10.2.Final</version>
-                <type>pom</type>
-                <scope>import</scope>
-                <exclusions>
-                    <exclusion>
-                        <groupId>io.quarkus</groupId>
-                        <artifactId>quarkus-ide-launcher</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>io.quarkus</groupId>
-                <artifactId>quarkus-spring-web</artifactId>
-                <version>2.2.1.Final</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>io.quarkus</groupId>
-                        <artifactId>quarkus-ide-launcher</artifactId>
-                    </exclusion>
-                </exclusions>
+                <version>3.3.4</version>
             </dependency>
 
             <!--Spring Native-->
@@ -843,18 +877,19 @@
             <dependency>
                 <groupId>org.mongodb</groupId>
                 <artifactId>mongodb-driver-sync</artifactId>
-                <version>4.7.1</version>
+                <version>4.7.2</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
-                <version>2.7.3</version>
+                <version>2.7.4</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-mongodb</artifactId>
-                <version>3.4.2</version>
+                <version>3.4.5</version>
             </dependency>
+
             <!--Kotlin-->
             <dependency>
                 <groupId>org.jetbrains.kotlin</groupId>
@@ -867,33 +902,38 @@
                 <version>${kotlin.version}</version>
                 <scope>test</scope>
             </dependency>
+            <!--Cassandra-->
             <dependency>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-stdlib-jdk8</artifactId>
-                <version>${kotlin.version}</version>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-cassandra</artifactId>
+                <version>3.4.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>5.3.23</version>
+            </dependency>
+            <dependency>
+                <groupId>io.projectreactor</groupId>
+                <artifactId>reactor-core</artifactId>
+                <version>3.4.24</version>
+            </dependency>
+
+            <!--AWS-->
+            <dependency>
+                <groupId>com.amazonaws</groupId>
+                <artifactId>aws-lambda-java-events</artifactId>
+                <version>2.0.2</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.amazonaws</groupId>
+                <artifactId>aws-lambda-java-core</artifactId>
+                <version>1.1.0</version>
+                <scope>provided</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib-jdk8</artifactId>
-            <version>${kotlin.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-test</artifactId>
-            <version>${kotlin.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib-jdk8</artifactId>
-            <version>${kotlin.version}</version>
-        </dependency>
-    </dependencies>
-
 
     <!--Plugin Management-->
     <build>
@@ -935,12 +975,12 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.2.2</version>
+                    <version>3.3.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-assembly-plugin</artifactId>
-                    <version>3.3.0</version>
+                    <version>3.4.2</version>
                     <executions>
                         <execution>
                             <id>dist</id>
@@ -1098,15 +1138,15 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-install-plugin</artifactId>
-                    <version>2.5.2</version>
+                    <version>3.0.1</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-deploy-plugin</artifactId>
-                    <version>2.8.2</version>
+                    <version>3.0.0</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>3.7.1</version>
+                    <version>3.12.1</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-project-info-reports-plugin</artifactId>
@@ -1137,7 +1177,6 @@
                     <artifactId>native-maven-plugin</artifactId>
                     <version>${native-plugin.version}</version>
                     <configuration>
-                        <classifier>exec</classifier>
                     </configuration>
                     <executions>
                         <execution>

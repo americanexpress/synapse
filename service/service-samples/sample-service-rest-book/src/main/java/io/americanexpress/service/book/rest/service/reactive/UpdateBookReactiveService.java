@@ -15,6 +15,7 @@ package io.americanexpress.service.book.rest.service.reactive;
 
 import io.americanexpress.service.book.rest.model.ReadPolyBookRequest;
 import io.americanexpress.synapse.service.rest.service.reactive.BaseUpdateReactiveService;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -25,11 +26,11 @@ import reactor.core.publisher.Mono;
 public class UpdateBookReactiveService extends BaseUpdateReactiveService<ReadPolyBookRequest> {
     /**
      * Emulating executeUpdate
-     * @param request
-     * @return
+     * @param request an update book service request
+     * @return a mono void
      */
     @Override
-    protected Mono<Void> executeUpdate(ReadPolyBookRequest request) {
+    protected Mono<Void> executeUpdate(HttpHeaders headers, ReadPolyBookRequest request) {
         logger.entry(request);
         logger.debug("emulating update...");
         return Mono.empty();

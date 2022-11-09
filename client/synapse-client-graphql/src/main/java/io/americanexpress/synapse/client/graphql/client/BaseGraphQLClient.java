@@ -16,14 +16,13 @@ package io.americanexpress.synapse.client.graphql.client;
 import java.util.List;
 
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 
 import io.americanexpress.synapse.client.graphql.model.BaseGraphQLClientResponse;
 import io.americanexpress.synapse.client.graphql.model.BaseGraphQLData;
 import io.americanexpress.synapse.client.graphql.model.GraphQLClientRequest;
 import io.americanexpress.synapse.client.rest.client.BaseRestClient;
-import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
-import io.americanexpress.synapse.client.rest.model.ClientHeaders;
 import io.americanexpress.synapse.client.rest.model.QueryParameter;
 
 /**
@@ -31,24 +30,22 @@ import io.americanexpress.synapse.client.rest.model.QueryParameter;
  *
  * @param <T> type of data in the response
  * @param <O> output response type
- * @param <H> httpHeadersFactory used to set the HTTP headers for each web service call
  * @author Paolo Claudio
  */
-public abstract class BaseGraphQLClient<T extends BaseGraphQLData, O extends BaseGraphQLClientResponse<T>, H extends BaseClientHttpHeadersFactory<GraphQLClientRequest>> extends BaseRestClient<GraphQLClientRequest, O, H> {
+public abstract class BaseGraphQLClient<T extends BaseGraphQLData, O extends BaseGraphQLClientResponse<T>> extends BaseRestClient<GraphQLClientRequest, O> {
 
 	/**
      * Argument constructor creates a new instance of BaseGraphQLClient with given values.
-     * @param httpHeadersFactory HTTP headers factory used to produce the custom HTTP headers required to consume the back end service
      */
-	protected BaseGraphQLClient(H httpHeadersFactory) {
-		super(httpHeadersFactory, HttpMethod.POST);
+	protected BaseGraphQLClient() {
+		super(HttpMethod.POST);
 	}
 	
 	/**
 	 * This operation is unsupported for GraphQL clients.
 	 */
 	@Override
-	public List<O> callPolyService(ClientHeaders clientHeaders, GraphQLClientRequest clientRequest, ParameterizedTypeReference<List<O>> responseEntityType, String... pathVariables) {
+	public List<O> callPolyService(HttpHeaders headers, GraphQLClientRequest clientRequest, ParameterizedTypeReference<List<O>> responseEntityType, String... pathVariables) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -56,7 +53,7 @@ public abstract class BaseGraphQLClient<T extends BaseGraphQLData, O extends Bas
 	 * This operation is unsupported for GraphQL clients.
 	 */
 	@Override
-	public List<O> callPolyService(ClientHeaders clientHeaders, GraphQLClientRequest clientRequest, ParameterizedTypeReference<List<O>> responseEntityType, List<QueryParameter> queryParameters, String... pathVariables) {
+	public List<O> callPolyService(HttpHeaders headers, GraphQLClientRequest clientRequest, ParameterizedTypeReference<List<O>> responseEntityType, List<QueryParameter> queryParameters, String... pathVariables) {
 		throw new UnsupportedOperationException();
 	}
 }

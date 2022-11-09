@@ -3,11 +3,13 @@ package io.americanexpress.synapse.service.test.controller;
 import io.americanexpress.synapse.framework.exception.ApplicationClientException;
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
+import io.americanexpress.synapse.service.rest.model.ServiceHeaders;
 import io.americanexpress.synapse.service.rest.service.BaseDeleteService;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 
@@ -53,7 +55,7 @@ public abstract class BaseDeleteControllerUnitTest<O extends BaseServiceResponse
      */
     @Test
     public void delete_givenExceptionThrownFromServiceCall_expectedExceptionThrownInResponse() throws Exception {
-        Mockito.doThrow(new ApplicationClientException(StringUtils.EMPTY, ErrorCode.GENERIC_4XX_ERROR)).when(service).delete(any(String.class));
+        Mockito.doThrow(new ApplicationClientException(StringUtils.EMPTY, ErrorCode.GENERIC_4XX_ERROR)).when(service).delete(any(HttpHeaders.class),any(String.class));
         testEndpoint(getEndpoint() + "/1", HttpMethod.DELETE, HttpStatus.BAD_REQUEST);
     }
 
@@ -65,7 +67,7 @@ public abstract class BaseDeleteControllerUnitTest<O extends BaseServiceResponse
      */
     @Test
     public void delete_givenEmptyResponseFromService_expectedNoContentResponse() throws Exception {
-        doThrow(NullPointerException.class).when(service).delete(any(String.class));
+        doThrow(NullPointerException.class).when(service).delete(any(HttpHeaders.class), any(String.class));
         testEndpoint(getEndpoint() + "/1", HttpMethod.DELETE, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 

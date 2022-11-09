@@ -13,7 +13,7 @@
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-client-soap</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>0.3.6-SNAPSHOT</version>
         </dependency>
 ```
 Or add the following to the build.gradle file:

@@ -16,9 +16,11 @@ package io.americanexpress.synapse.service.rest.controller;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.service.BaseUpdateService;
 import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.validation.Valid;
@@ -36,15 +38,16 @@ public abstract class BaseUpdateController<I extends BaseServiceRequest, S exten
     /**
      * Update a single resource entirely.
      *
+     * @param headers containing the HTTP headers from the consumer
      * @param serviceRequest body from the consumer
      */
     @Operation(tags = "Update Operation", summary = "Updates a resource")
     @PutMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@Valid @RequestBody I serviceRequest) {
+    public void update(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
 
-        service.update(serviceRequest);
+        service.update(headers, serviceRequest);
 
         logger.exit();
     }
