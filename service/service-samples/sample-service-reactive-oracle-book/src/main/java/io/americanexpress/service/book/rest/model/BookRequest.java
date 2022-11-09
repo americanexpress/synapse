@@ -17,6 +17,9 @@ import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * {@code UpdateBookService} Updates a book resource by request criteria.
+ */
 public class BookRequest implements BaseServiceRequest {
     @NotBlank
     private String title;
@@ -24,28 +27,57 @@ public class BookRequest implements BaseServiceRequest {
     @NotBlank
     private String author;
 
+    /**
+     * Default constructor
+     */
     public BookRequest(){}
 
+    /**
+     * Constructor taking title and author
+     * @param title
+     * @param author
+     */
     public BookRequest(String title, String author){
         this.title = title;
         this.author = author;
     }
 
+    /**
+     * Gets the title as string
+     * @return
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Sets the title with provided string.
+     * @param title
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     * Gets author as string.
+     * @return
+     */
     public String getAuthor() {
         return author;
     }
 
+    /**
+     * Sets author with provided string.
+     * @param author
+     */
     public void setAuthor(String author) {
         this.author = author;
     }
+
+    /**
+     * Returns a string of the obejct
+     * @return
+     */
     @Override
     public String toString() {
         return "BookRequest{" +

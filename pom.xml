@@ -665,7 +665,7 @@
             <dependency>
                 <groupId>com.oracle.database.jdbc</groupId>
                 <artifactId>ojdbc11</artifactId>
-                <version>21.7.0.0</version>
+                <version>21.5.0.0</version>
             </dependency>
             <dependency>
                 <groupId>com.oracle.database.r2dbc</groupId>
@@ -678,6 +678,11 @@
                 <groupId>javax.persistence</groupId>
                 <artifactId>javax.persistence-api</artifactId>
                 <version>2.2</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.persistence</groupId>
+                <artifactId>jakarta.persistence-api</artifactId>
+                <version>3.1.0</version>
             </dependency>
             <dependency>
                 <groupId>com.openpojo</groupId>

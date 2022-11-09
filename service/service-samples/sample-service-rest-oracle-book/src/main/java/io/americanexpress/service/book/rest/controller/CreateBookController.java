@@ -22,7 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import static io.americanexpress.service.book.rest.config.BookEndPoints.BOOK_ENDPOINT;
 
+/**
+ * {@code CreateBookController} Creates a new book object and inserts to database.
+ */
 @RestController
 @RequestMapping(BOOK_ENDPOINT)
 public class CreateBookController extends BaseCreateController<CreateBookRequest, CreateBookResponse, CreateBookService> {
+
 }

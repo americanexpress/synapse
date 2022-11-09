@@ -29,4 +29,5 @@ import static io.americanexpress.service.book.rest.config.BookEndpoints.BOOK_END
 @RestController
 @RequestMapping(BOOK_ENDPOINT)
 public class ReadBookController extends BaseReadMonoReactiveController<ReadBookRequest, ReadBookResponse, ReadBookService> {
+
 }

@@ -17,12 +17,14 @@ import io.americanexpress.synapse.data.oracle.config.BaseReactiveOracleConfig;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
 
 /**
  * {@code DataBookConfig} example of using BaseOracleDataConfig
  */
 @Configuration
 @PropertySource("classpath:data-oracle-book-application.properties")
+@EnableR2dbcRepositories(basePackages = "io.americanexpress.data.oracle.book.dao")
 public class BookDataConfig extends BaseReactiveOracleConfig {
     /**
      * Instantiates a new Base postgres data config.
@@ -32,4 +34,5 @@ public class BookDataConfig extends BaseReactiveOracleConfig {
     public BookDataConfig(Environment environment) {
         super(environment);
     }
+
 }

@@ -20,6 +20,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 
+/**
+ * {@code BookConfig} Book Configuration in enabling reactive services querying an oracle database
+ */
 @Configuration
 @PropertySource("classpath:service-book-application.properties")
 @ComponentScan(basePackages = "io.americanexpress.service.book.rest")

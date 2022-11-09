@@ -14,16 +14,21 @@
 package io.americanexpress.data.oracle.book.dao;
 
 import io.americanexpress.data.oracle.book.entity.BookEntity;
-import org.springframework.data.repository.reactive.ReactiveCrudRepository;
+import org.springframework.data.r2dbc.repository.R2dbcRepository;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
  * {@code BookRepository} example of using JPA to find a book entity by id.
  */
 @Repository
-public interface BookRepository extends ReactiveCrudRepository<BookEntity, Long> {
+public interface BookRepository extends R2dbcRepository<BookEntity, Long> {
     Mono<BookEntity> findByTitleAndAuthor(String title, String author);
+
+    Flux<BookEntity> findAll();
+
     Mono<BookEntity> findByTitle(String title);
+
     Mono<BookEntity> findByAuthor(String author);
 }

@@ -31,15 +31,14 @@
             <artifactId>ojdbc11</artifactId>
             <version>21.5.0.0</version>
         </dependency>
-        <dependency>
-            <groupId>com.oracle.database.r2dbc</groupId>
-            <artifactId>oracle-r2dbc</artifactId>
-<!--            <scope>provided</scope>-->
-        </dependency>
         <!--commons-->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
         </dependency>
         <!--Spring-->
         <dependency>
@@ -58,16 +57,6 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
         </dependency>
-        <!--H2-->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.4.200</version>
-        </dependency>
-<!--        <dependency>-->
-<!--            <groupId>io.r2dbc</groupId>-->
-<!--            <artifactId>r2dbc-h2</artifactId>-->
-<!--        </dependency>-->
     </dependencies>
 
     <build>

@@ -13,5 +13,8 @@
  */
 package io.americanexpress.service.book.rest.model;
 
-public class ReadBookRequest extends BookRequest{
+/**
+ * {@code ReadBookRequest} Request to give when invoking Get and Read services.
+ */
+public class ReadBookRequest extends BookRequest {
 }

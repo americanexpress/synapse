@@ -20,7 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import static io.americanexpress.service.book.rest.config.BookEndpoints.BOOK_ENDPOINT;
 
+/**
+ * {@code DeleteBookController} Deletes book resource in database.
+ */
 @RestController
 @RequestMapping(BOOK_ENDPOINT)
 public class DeleteBookController extends BaseDeleteReactiveController<DeleteBookService> {
+
 }

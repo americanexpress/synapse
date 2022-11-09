@@ -15,11 +15,14 @@ package io.americanexpress.service.book.rest.service;
 
 import io.americanexpress.data.oracle.book.dao.BookRepository;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
-import io.americanexpress.service.book.rest.utils.BookServiceMapper;
+import io.americanexpress.service.book.rest.service.helper.BookServiceMapper;
 import io.americanexpress.synapse.service.rest.service.reactive.BaseGetMonoReactiveService;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
+/**
+ * {@code GetBookService} Gets specific book resource.
+ */
 @Service
 public class GetBookService extends BaseGetMonoReactiveService<ReadBookResponse> {
 

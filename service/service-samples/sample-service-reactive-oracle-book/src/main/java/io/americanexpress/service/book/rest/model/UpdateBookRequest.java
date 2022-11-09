@@ -13,29 +13,53 @@
  */
 package io.americanexpress.service.book.rest.model;
 
+/**
+ * {@code UpdateBookRequest} Request given to update book resource.
+ */
 public class UpdateBookRequest extends BookRequest {
+
     private String author;
 
     private String title;
 
+    /**
+     * Gets author as string
+     * @return
+     */
     @Override
     public String getAuthor() {
         return author;
     }
 
+    /**
+     * sets author with provided string.
+     * @param author
+     */
     @Override
     public void setAuthor(String author) {
         this.author = author;
     }
 
+    /**
+     * gets title as string.
+     * @return
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Sets title with provided string.
+     * @param title
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     * Returns the object as a string.
+     * @return
+     */
     @Override
     public String toString() {
         return "UpdateBookRequest{" +

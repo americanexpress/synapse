@@ -21,6 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import static io.americanexpress.service.book.rest.config.BookEndpoints.BOOK_ENDPOINT;
 
+/**
+ * {@code UpdateBookController} Updates a book resource.
+ */
 @RestController
 @RequestMapping(BOOK_ENDPOINT)
 public class UpdateBookController extends BaseUpdateReactiveController<UpdateBookRequest, UpdateBookService> {

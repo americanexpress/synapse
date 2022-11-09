@@ -13,13 +13,20 @@
  */
 package io.americanexpress.synapse.data.oracle.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Version;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -42,7 +49,6 @@ public abstract class BaseEntity {
      * Id
      */
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idSequence")
     @SequenceGenerator(name = "idSequence", sequenceName = "idSequence", allocationSize = 1)
     protected Long id;
@@ -51,7 +57,7 @@ public abstract class BaseEntity {
      * Created Date Time
      */
     @CreatedDate
-    @Column(name = "created_date_time", updatable = false)
+    @Column(name = "created_date_time")
     protected LocalDateTime createdDateTime;
 
     /**

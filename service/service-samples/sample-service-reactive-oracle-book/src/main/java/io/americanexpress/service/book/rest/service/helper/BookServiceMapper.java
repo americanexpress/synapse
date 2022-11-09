@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.rest.utils;
+package io.americanexpress.service.book.rest.service.helper;
 
 import io.americanexpress.data.oracle.book.entity.BookEntity;
 import io.americanexpress.service.book.rest.model.CreateBookRequest;
@@ -20,8 +20,16 @@ import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.model.UpdateBookRequest;
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * {@code BookServiceMapper} Helps service modules in mapping object.
+ */
 public class BookServiceMapper {
 
+    /**
+     * Populates ReadBookResponse with BookEntity
+     * @param bookEntity
+     * @return
+     */
     public static ReadBookResponse populateReadBookResponse(BookEntity bookEntity) {
         ReadBookResponse response = new ReadBookResponse();
 
@@ -33,14 +41,24 @@ public class BookServiceMapper {
         return response;
     }
 
+    /**
+     * Populates BookEntity with CreateBookRequest
+     * @param request
+     * @return
+     */
     public static BookEntity populateBookEntityForCreation(CreateBookRequest request) {
         BookEntity bookEntity = new BookEntity();
+
         bookEntity.setAuthor(request.getAuthor());
         bookEntity.setTitle(request.getTitle());
-        bookEntity.setCreatedBy(request.getCreatedBy());
         return bookEntity;
     }
 
+    /**
+     * Populates CreateBookResponse with BookEntity
+     * @param bookEntity
+     * @return
+     */
     public static CreateBookResponse populateCreateBookResponse(BookEntity bookEntity) {
         CreateBookResponse response = new CreateBookResponse();
 
@@ -51,13 +69,20 @@ public class BookServiceMapper {
         return response;
     }
 
+    /**
+     * Populate BookEntity with updated request
+     * @param request
+     * @return
+     */
     public static BookEntity populateBookEntityForUpdate(UpdateBookRequest request, BookEntity bookEntity) {
 
         if (StringUtils.isNotBlank(request.getAuthor())) {
             bookEntity.setAuthor(request.getAuthor());
         }
 
-        bookEntity.setCreatedBy(request.getCreatedBy());
+        if (StringUtils.isNotBlank(request.getTitle())) {
+            bookEntity.setTitle(request.getTitle());
+        }
 
         return bookEntity;
     }

@@ -17,6 +17,9 @@ import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * {@code BookResponse} Book response object.
+ */
 public class BookResponse extends BaseServiceResponse {
 
     @NotBlank
@@ -35,62 +38,122 @@ public class BookResponse extends BaseServiceResponse {
 
     private String version;
 
+    /**
+     * Gets title as string.
+     * @return
+     */
     public String getTittle() {
         return tittle;
     }
 
+    /**
+     * Sets title with provided String
+     * @param tittle
+     */
     public void setTittle(String tittle) {
         this.tittle = tittle;
     }
 
+    /**
+     * Gets author as string.
+     * @return
+     */
     public String getAuthor() {
         return author;
     }
 
+    /**
+     * Sets author with provided string.
+     * @param author
+     */
     public void setAuthor(String author) {
         this.author = author;
     }
 
+    /**
+     * Gets createdDateTime as String.
+     * @return
+     */
     public String getCreatedDateTime() {
         return createdDateTime;
     }
 
+    /**
+     * Sets createdDateTime with provied string.
+     * @param createdDateTime
+     */
     public void setCreatedDateTime(String createdDateTime) {
         this.createdDateTime = createdDateTime;
     }
 
+    /**
+     * Gets lastModifiedDateTime as string.
+     * @return
+     */
     public String getLastModifiedDateTime() {
         return lastModifiedDateTime;
     }
 
+    /**
+     * Sets lastModifiedDateTime with provied string.
+     * @param lastModifiedDateTime
+     */
     public void setLastModifiedDateTime(String lastModifiedDateTime) {
         this.lastModifiedDateTime = lastModifiedDateTime;
     }
 
+    /**
+     * Gets createdBy as string.
+     * @return
+     */
     public String getCreatedBy() {
         return createdBy;
     }
 
+    /**
+     * Sets createdBy with provided string.
+     * @param createdBy
+     */
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
 
+    /**
+     * gets lastModifiedBy as string.
+     * @return
+     */
     public String getLastModifiedBy() {
         return lastModifiedBy;
     }
 
+    /**
+     * Sets lastModifiedBy with provided string.
+     * @param lastModifiedBy
+     */
     public void setLastModifiedBy(String lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;
     }
 
+    /**
+     * Gets version as string.
+     * @return
+     */
     public String getVersion() {
         return version;
     }
 
+    /**
+     * Sets version with provided string.
+     * @param version
+     */
     public void setVersion(String version) {
         this.version = version;
     }
 
+    /**
+     * prints object as string.
+     * @return
+     */
     @Override
     public String toString() {
         return "BookRequest{" +

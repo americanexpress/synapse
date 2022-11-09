@@ -34,6 +34,14 @@
             <groupId>io.americanexpress.synapse</groupId>
             <artifactId>synapse-framework-test</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.oracle.database.r2dbc</groupId>
+            <artifactId>oracle-r2dbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+        </dependency>
         <!-- spring -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

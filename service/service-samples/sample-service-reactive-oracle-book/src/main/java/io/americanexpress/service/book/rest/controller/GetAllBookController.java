@@ -14,17 +14,18 @@
 package io.americanexpress.service.book.rest.controller;
 
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
-import io.americanexpress.service.book.rest.service.GetBookService;
-import io.americanexpress.synapse.service.rest.controller.BaseGetMonoController;
+import io.americanexpress.service.book.rest.service.GetAllBookService;
+import io.americanexpress.synapse.service.rest.controller.reactive.BaseGetPolyReactiveController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import static io.americanexpress.service.book.rest.config.BookEndPoints.BOOK_ENDPOINT;
+import static io.americanexpress.service.book.rest.config.BookEndpoints.BOOK_ENDPOINT;
 
 /**
- * {@code GetBookService} Gets specific book resource.
+ * {@code GetAllBookController} retrieves all book records.
  */
 @RestController
 @RequestMapping(BOOK_ENDPOINT)
-public class GetBookController extends BaseGetMonoController<ReadBookResponse, GetBookService> {
+public class GetAllBookController extends BaseGetPolyReactiveController<ReadBookResponse, GetAllBookService> {
+
 }

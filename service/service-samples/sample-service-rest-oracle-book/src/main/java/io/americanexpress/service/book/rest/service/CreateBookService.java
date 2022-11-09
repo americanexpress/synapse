@@ -17,10 +17,13 @@ import io.americanexpress.data.oracle.book.dao.BookRepository;
 import io.americanexpress.data.oracle.book.entity.BookEntity;
 import io.americanexpress.service.book.rest.model.CreateBookRequest;
 import io.americanexpress.service.book.rest.model.CreateBookResponse;
-import io.americanexpress.service.book.rest.utils.BookServiceMapper;
+import io.americanexpress.service.book.rest.service.helper.BookServiceMapper;
 import io.americanexpress.synapse.service.rest.service.BaseCreateService;
 import org.springframework.stereotype.Service;
 
+/**
+ * {@code CreateBookService} Creates a new book resource.
+ */
 @Service
 public class CreateBookService extends BaseCreateService<CreateBookRequest, CreateBookResponse> {
 

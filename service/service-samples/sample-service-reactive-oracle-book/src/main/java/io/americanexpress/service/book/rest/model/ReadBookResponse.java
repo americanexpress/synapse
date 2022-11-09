@@ -13,5 +13,8 @@
  */
 package io.americanexpress.service.book.rest.model;
 
+/**
+ * {@code ReadBookResponse} Response given when invoking Get and Read services.
+ */
 public class ReadBookResponse extends BookResponse {
 }

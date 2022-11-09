@@ -13,24 +13,20 @@
  */
 package io.americanexpress.synapse.data.oracle.config;
 
-import io.r2dbc.spi.ConnectionFactories;
 import io.r2dbc.spi.ConnectionFactory;
-import io.r2dbc.spi.ConnectionFactoryOptions;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.r2dbc.ConnectionFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.data.r2dbc.config.AbstractR2dbcConfiguration;
 import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
-
-import static io.r2dbc.spi.ConnectionFactoryOptions.DRIVER;
-import static io.r2dbc.spi.ConnectionFactoryOptions.HOST;
-import static io.r2dbc.spi.ConnectionFactoryOptions.DATABASE;
-import static io.r2dbc.spi.ConnectionFactoryOptions.USER;
-import static io.r2dbc.spi.ConnectionFactoryOptions.PASSWORD;
+import org.springframework.r2dbc.connection.R2dbcTransactionManager;
+import org.springframework.transaction.ReactiveTransactionManager;
 
 /**
  * {@code BaseR2dbcOracleConfig} class is used to hold the common configuration for all reactive data-oracle modules.
+ * Spring Boot already auto-configures it.
  */
 @Configuration
 @EnableR2dbcRepositories
@@ -43,14 +39,17 @@ public abstract class BaseReactiveOracleConfig extends AbstractR2dbcConfiguratio
     }
 
     @Bean
-    @ConfigurationProperties("spring.oracle.datasource")
+    @ConfigurationProperties("spring.r2dbc")
     public ConnectionFactory connectionFactory() {
-        return ConnectionFactories.get(ConnectionFactoryOptions.builder()
-                .option(DRIVER, environment.getRequiredProperty("spring.oracle.datasource.driverType"))
-                .option(HOST, environment.getRequiredProperty("spring.oracle.datasource.url"))
-                .option(DATABASE, environment.getRequiredProperty("spring.oracle.datasource.serviceName"))
-                .option(USER, environment.getRequiredProperty("spring.oracle.datasource.username"))
-                .option(PASSWORD, environment.getRequiredProperty("spring.oracle.datasource.password"))
-                .build());
+        return ConnectionFactoryBuilder.withUrl(environment.getRequiredProperty("spring.r2dbc.url"))
+                .username(environment.getRequiredProperty("spring.r2dbc.username"))
+                .password(environment.getRequiredProperty("spring.r2dbc.password"))
+                .build();
     }
+
+    @Bean
+    ReactiveTransactionManager transactionManager(ConnectionFactory connectionFactory) {
+        return new R2dbcTransactionManager(connectionFactory);
+    }
+
 }

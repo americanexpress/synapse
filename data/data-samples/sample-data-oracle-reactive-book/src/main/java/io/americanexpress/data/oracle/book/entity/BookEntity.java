@@ -14,18 +14,16 @@
 package io.americanexpress.data.oracle.book.entity;
 
 import io.americanexpress.synapse.data.oracle.entity.BaseEntity;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import org.hibernate.annotations.NaturalId;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.util.Objects;
 
 /**
  * {@code BookEntity} example of a child module using BaseEntity
  */
 @Entity
-@Table(name = "book")
 public class BookEntity extends BaseEntity {
 
     @Column(name = "title")

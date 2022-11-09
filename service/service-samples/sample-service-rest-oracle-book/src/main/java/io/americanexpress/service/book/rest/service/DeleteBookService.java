@@ -18,6 +18,9 @@ import io.americanexpress.data.oracle.book.entity.BookEntity;
 import io.americanexpress.synapse.service.rest.service.BaseDeleteService;
 import org.springframework.stereotype.Service;
 
+/**
+ * {@code DeleteBookService} Deletes a book resource.
+ */
 @Service
 public class DeleteBookService extends BaseDeleteService {
 

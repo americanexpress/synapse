@@ -24,7 +24,7 @@ import static io.americanexpress.service.book.rest.config.BookEndPoints.BOOK_END
 
 
 /**
- * {@code ReadBookController} is the controller class for reading a book in the Cassandra Book database.
+ * {@code ReadBookService} Gets a book resource by request criteria.
  */
 @RestController
 @RequestMapping(BOOK_ENDPOINT)

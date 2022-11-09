@@ -20,6 +20,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
 
+/**
+ * {@code DeleteBookService} Deletes a book resource.
+ */
 @Service
 public class DeleteBookService extends BaseDeleteReactiveService {
 
@@ -28,6 +31,7 @@ public class DeleteBookService extends BaseDeleteReactiveService {
     public DeleteBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
+
     @Override
     protected Mono<Void> executeDelete(String id) {
         return bookRepository.findByTitle(id)
