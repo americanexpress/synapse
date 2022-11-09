@@ -14,8 +14,6 @@
 package io.americanexpress.data.oracle.book.entity;
 
 import io.americanexpress.synapse.data.oracle.entity.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import org.hibernate.annotations.NaturalId;
 
 import java.util.Objects;
@@ -23,14 +21,14 @@ import java.util.Objects;
 /**
  * {@code BookEntity} example of a child module using BaseEntity
  */
-@Entity
+//@Entity
 public class BookEntity extends BaseEntity {
 
-    @Column(name = "title")
+//    @Column(name = "title")
     @NaturalId(mutable = true)
     private String title;
 
-    @Column(name = "author")
+//    @Column(name = "author")
     private String author;
 
     /**
