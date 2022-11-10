@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -74,6 +75,13 @@ public abstract class BaseControllerTest<O extends BaseServiceResponse> {
      * @return the sample json request file name
      */
     protected abstract String getSampleJsonRequestFileName();
+
+    /**
+     * Gets sample httpHeaders.
+     *
+     * @return the httpHeaders
+     */
+    protected abstract HttpHeaders getSampleHttpHeaders();
 
     /**
      * Test endpoint result actions.
@@ -206,7 +214,11 @@ public abstract class BaseControllerTest<O extends BaseServiceResponse> {
         }
 
         assert mockHttpServletRequestBuilder != null;
-        mockHttpServletRequestBuilder.contentType(MediaType.APPLICATION_JSON_VALUE);
+        if (getSampleHttpHeaders() == null || getSampleHttpHeaders().isEmpty()) {
+            mockHttpServletRequestBuilder.contentType(MediaType.APPLICATION_JSON_VALUE);
+        } else {
+            mockHttpServletRequestBuilder.headers(getSampleHttpHeaders());
+        }
 
         if (StringUtils.isNotBlank(jsonRequest)) {
             mockHttpServletRequestBuilder.content(jsonRequest);
