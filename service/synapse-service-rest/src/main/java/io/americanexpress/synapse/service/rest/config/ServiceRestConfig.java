@@ -29,11 +29,12 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
 
 /**
- * <code>ServiceRestConfig</code> class sets common configurations for the service layer.
+ * {@code ServiceRestConfig} class sets common configurations for the service layer.
  *
  * @author Gabriel Jimenez
  */
@@ -47,8 +48,17 @@ public class ServiceRestConfig implements WebMvcConfigurer {
      */
     private final ObjectMapper defaultObjectMapper;
 
+    /**
+     * The Interceptor.
+     */
     protected final MetricInterceptor interceptor;
 
+    /**
+     * Instantiates a new Service rest config.
+     *
+     * @param defaultObjectMapper the default object mapper
+     * @param interceptor         the interceptor
+     */
     @Autowired
     public ServiceRestConfig(ObjectMapper defaultObjectMapper, MetricInterceptor interceptor) {
         this.defaultObjectMapper = defaultObjectMapper;
@@ -62,8 +72,9 @@ public class ServiceRestConfig implements WebMvcConfigurer {
      */
     @Bean
     public MappingJackson2HttpMessageConverter jsonMessageConverter() {
-        final MappingJackson2HttpMessageConverter messageConverter = new MappingJackson2HttpMessageConverter(getObjectMapper());
+        MappingJackson2HttpMessageConverter messageConverter = new MappingJackson2HttpMessageConverter(defaultObjectMapper);
         messageConverter.setSupportedMediaTypes(Collections.singletonList(MediaType.APPLICATION_JSON));
+        messageConverter.setDefaultCharset(StandardCharsets.UTF_8);
         return messageConverter;
     }
 
@@ -82,6 +93,11 @@ public class ServiceRestConfig implements WebMvcConfigurer {
         registry.addInterceptor(interceptor).addPathPatterns("/**");
     }
 
+    /**
+     * Gets object mapper.
+     *
+     * @return the object mapper
+     */
     protected ObjectMapper getObjectMapper() {
         return defaultObjectMapper;
     }

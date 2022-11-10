@@ -46,7 +46,7 @@ public class InputValidationErrorHandler {
     public ErrorResponse handleInputValidationErrorMessage(BindingResult bindingResult) {
         logger.entry(bindingResult);
 
-        // Add all of the error messages separated by commas
+        // Add all the error messages separated by commas
         StringJoiner errorMessageJoiner = new StringJoiner(", ");
         String defaultErrorMessage;
         String field;

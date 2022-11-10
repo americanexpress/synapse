@@ -48,7 +48,7 @@ public final class ConnectionUtil {
 	 * @param after the opaque cursor
 	 * @return the {@link Connection}
 	 */
-	public static final <T extends UniversallyUniqueIdentifiable> Connection<T> create(List<T> elements, long first, String after) {
+	public static <T extends UniversallyUniqueIdentifiable> Connection<T> create(List<T> elements, long first, String after) {
 		
 		// Get the limit of this stream which is either the number of elements
 		// specified by "first"; otherwise the full elements size
@@ -59,7 +59,7 @@ public final class ConnectionUtil {
 			.limit(limit)
 			.map(element -> new DefaultEdge<>(element, ConnectionCursorUtil.from(element.getId())))
 			.collect(Collectors.toList());
-		
+
 		// Create the page information for the connection
 		ConnectionCursor startCursor = ConnectionCursorUtil.getStartCursor(edges);
 		ConnectionCursor endCursor = ConnectionCursorUtil.getEndCursor(edges);
