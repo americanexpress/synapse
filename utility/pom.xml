@@ -26,6 +26,7 @@
     <!--Modules-->
     <modules>
         <module>synapse-utilities-common</module>
+        <module>synapse-utility-date</module>
     </modules>
 
 </project>
