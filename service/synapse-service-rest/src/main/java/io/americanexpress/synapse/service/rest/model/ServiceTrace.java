@@ -18,7 +18,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
 
 /**
- * <code>ServiceTrace</code> class contains the trace elements received from the consumer.
+ * {@code ServiceTrace} class contains the trace elements received from the consumer.
  *
  * @author Paolo Claudio
  */

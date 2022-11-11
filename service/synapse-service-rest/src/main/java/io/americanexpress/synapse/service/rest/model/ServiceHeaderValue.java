@@ -14,7 +14,7 @@
 package io.americanexpress.synapse.service.rest.model;
 
 /**
- * <code>ClientHeaderValue</code> enum is used to house all the header values for the clients.
+ * {@code ClientHeaderValue} enum is used to house all the header values for the clients.
  *
  */
 public enum ServiceHeaderValue {

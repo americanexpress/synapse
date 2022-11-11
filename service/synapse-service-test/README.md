@@ -12,14 +12,17 @@
 
 ## Usage
 - To utilize this module, add the following dependency to the pom.xml file:
-```
+```xml
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-service-test</artifactId>
-            <version>0.3.6-SNAPSHOT</version>
+            <version>0.3.7</version>
         </dependency>
 ```
 Or add the following to the build.gradle file:
+```kotlin
+implementation 'io.americanexpress.synapse:synapse-service-test:0.3.7'
 ```
-implementation 'io.americanexpress.synapse:synapse-service-test:0.2.1!!'
-```
+## Examples
+Examples of utilizing the synapse-service-test module can be found in the following modules:
+- sample-service-rest-cassandra-book

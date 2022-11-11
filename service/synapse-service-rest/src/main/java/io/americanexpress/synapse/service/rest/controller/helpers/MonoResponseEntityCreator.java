@@ -18,9 +18,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+/**
+ * {@code MonoResponseEntityCreator} is for creating the response entity from read service response.
+ *
+ * @param <O> the type parameter
+ */
 @Component
 public class MonoResponseEntityCreator<O extends BaseServiceResponse> {
 
+    /**
+     * Create GET or POST-GET response entity.
+     *
+     * @param serviceResponse the service response
+     * @return the response entity
+     */
     public ResponseEntity<O> create(O serviceResponse) {
         return serviceResponse == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : ResponseEntity.ok(serviceResponse);
     }

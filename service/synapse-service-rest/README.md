@@ -21,14 +21,27 @@
 
 ## Usage
 - To utilize this module, add the following dependency to the pom.xml file:
-```
+```xml
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-service-rest</artifactId>
-            <version>0.3.6-SNAPSHOT</version>
+            <version>0.3.7</version>
         </dependency>
 ```
 Or add the following to the build.gradle file:
+```kotlin
+implementation 'io.americanexpress.synapse:synapse-service-rest:0.3.7!!'
 ```
-implementation 'io.americanexpress.synapse:synapse-service-rest:0.2.1!!'
+- Have a configuration class that import or extends `ServiceRestConfig`.
+- Create controller and service class that extend the crud controller and service base on your need.
+- For ex: 
+```java
+public class CreateBookController extends BaseCreateController<CreateBookRequest, CreateBookResponse, CreateBookService>{}
+public class CreateBookService extends BaseCreateService<CreateBookRequest, CreateBookResponse>{}
 ```
+
+## Examples
+Examples of utilizing the synapse-service-rest module can be found in the following modules:
+- sample-service-reactive-cassandra-book
+- sample-service-rest-book
+- sample-service-rest-cassandra-book

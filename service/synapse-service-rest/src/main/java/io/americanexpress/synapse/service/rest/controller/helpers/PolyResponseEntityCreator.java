@@ -23,9 +23,21 @@ import org.springframework.util.CollectionUtils;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+/**
+ * {@code PolyResponseEntityCreator} is for creating response entity from page response.
+ *
+ * @param <O> the type parameter
+ */
 @Component
 public class PolyResponseEntityCreator<O extends BaseServiceResponse> {
 
+    /**
+     * Create response entity from page.
+     *
+     * @param page                the page
+     * @param httpServletResponse the http servlet response
+     * @return the response entity
+     */
     public ResponseEntity<List<O>> create(Page<O> page, HttpServletResponse httpServletResponse) {
         final ResponseEntity<List<O>> responseEntity;
         List<O> pageContent = null;

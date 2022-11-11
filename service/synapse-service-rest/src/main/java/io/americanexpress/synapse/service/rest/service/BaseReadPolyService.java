@@ -18,6 +18,9 @@ import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 
+/**
+ * {@code BaseReadPolyService} class specifies the prototypes for performing business logic for post read multiple operation.
+ */
 public abstract class BaseReadPolyService<I extends BaseServiceRequest, O extends BaseServiceResponse> extends BaseService {
 
     /**

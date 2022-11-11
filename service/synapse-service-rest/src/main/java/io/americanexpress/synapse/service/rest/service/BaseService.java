@@ -16,6 +16,9 @@ package io.americanexpress.synapse.service.rest.service;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 
+/**
+ * {@code BaseService} class is the base class for all service classes.
+ */
 public abstract class BaseService {
 
     /**

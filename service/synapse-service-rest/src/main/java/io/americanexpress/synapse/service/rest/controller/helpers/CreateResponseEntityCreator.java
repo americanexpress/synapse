@@ -21,6 +21,11 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 
+/**
+ * {@code CreateResponseEntityCreator} is for creating the response entity from create service response.
+ *
+ * @param <O> the type parameter
+ */
 @Component
 public class CreateResponseEntityCreator<O extends BaseServiceResponse> {
 

@@ -18,7 +18,6 @@ import io.americanexpress.service.book.rest.model.CreateBookRequest;
 import io.americanexpress.service.book.rest.model.CreateBookResponse;
 import io.americanexpress.service.book.rest.service.CreateBookService;
 import io.americanexpress.synapse.service.rest.controller.BaseCreateController;
-import io.americanexpress.synapse.service.rest.controller.helpers.CreateResponseEntityCreator;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

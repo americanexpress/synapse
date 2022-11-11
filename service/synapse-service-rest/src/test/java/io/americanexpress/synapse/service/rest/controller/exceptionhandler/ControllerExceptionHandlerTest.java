@@ -48,6 +48,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
+/**
+ * {@code ControllerExceptionHandlerTest} tests the {@link ControllerExceptionHandler}
+ */
 @ExtendWith(MockitoExtension.class)
 class ControllerExceptionHandlerTest {
 
