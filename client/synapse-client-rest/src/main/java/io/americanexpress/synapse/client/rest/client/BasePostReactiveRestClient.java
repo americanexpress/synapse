@@ -15,7 +15,6 @@ package io.americanexpress.synapse.client.rest.client;
 
 import org.springframework.http.HttpMethod;
 
-import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
 import io.americanexpress.synapse.client.rest.handler.BaseReactiveRestResponseErrorHandler;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
@@ -25,17 +24,15 @@ import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
  *
  * @param <I> input request type
  * @param <O> output response type
- * @param <H> httpHeadersFactory used to set the HTTP headers for each web service call
  * @author Paolo Claudio
  */
-public abstract class BasePostReactiveRestClient<I extends BaseClientRequest, O extends BaseClientResponse, H extends BaseClientHttpHeadersFactory<I>> extends BaseReactiveRestClient<I, O, H> {
+public abstract class BasePostReactiveRestClient<I extends BaseClientRequest, O extends BaseClientResponse> extends BaseReactiveRestClient<I, O> {
 
 	/**
 	 * Argument constructor creates a new instance of BasePostReactiveRestClient with given values.
-	 * @param httpHeadersFactory HTTP headers factory used to produce the custom HTTP headers required to consume the back end service
 	 * @param reactiveRestResponseErrorHandler used to handle errors from the reactive REST client
 	 */
-	protected BasePostReactiveRestClient(H httpHeadersFactory, BaseReactiveRestResponseErrorHandler reactiveRestResponseErrorHandler) {
-		super(httpHeadersFactory, HttpMethod.POST, reactiveRestResponseErrorHandler);
+	protected BasePostReactiveRestClient(BaseReactiveRestResponseErrorHandler reactiveRestResponseErrorHandler) {
+		super(HttpMethod.POST, reactiveRestResponseErrorHandler);
 	}
 }
