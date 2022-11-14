@@ -14,19 +14,12 @@
 package io.americanexpress.service.book.rest;
 
 
-
-import org.slf4j.ext.XLogger;
-import org.slf4j.ext.XLoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * BookApplication starts the Spring Boot Application for the book rest sample.
  */
-//@OpenAPIDefinition(info = @Info(
-//        title = "Book API",
-//        version = "v1.0.0",
-//        description = "Rest API that provides book related information."))
 @SpringBootApplication
 public class BookApplication {
 
@@ -41,6 +34,5 @@ public class BookApplication {
         SpringApplication.run(BookApplication.class, args);
 //        LOGGER.info("Rest Native Book Application is up and running ...");
     }
-
 
 }

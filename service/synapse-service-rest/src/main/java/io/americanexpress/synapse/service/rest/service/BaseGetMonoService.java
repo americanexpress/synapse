@@ -14,20 +14,27 @@
 package io.americanexpress.synapse.service.rest.service;
 
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
+import org.springframework.http.HttpHeaders;
 
 public abstract class BaseGetMonoService<O extends BaseServiceResponse> extends BaseService {
 
-    public O read(String identifier) {
+    /**
+     * Gets a single resource.
+     *
+     * @param headers received from the controller
+     * @param identifier received from the controller
+     */
+    public O read(HttpHeaders headers, String identifier) {
 
         logger.entry(identifier);
 
-        O response = executeRead(identifier);
+        O response = executeRead(headers, identifier);
 
         logger.exit(response);
 
         return response;
     }
 
-    protected abstract O executeRead(String identifier);
+    protected abstract O executeRead(HttpHeaders headers, String identifier);
 
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>io.americanexpress.synapse</groupId>
+        <artifactId>function</artifactId>
+        <version>0.3.6-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>function-samples</artifactId>
+    <packaging>pom</packaging>
+
+    <!--Modules-->
+    <modules>
+        <module>sample-function-rest-book</module>
+        <module>sample-function-greeting</module>
+        <module>sample-function-greeter-aws</module>
+        <module>sample-function-greeter-gcp</module>
+        <module>sample-function-book-aws</module>
+    </modules>
+
+</project>

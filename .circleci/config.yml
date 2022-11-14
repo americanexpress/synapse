@@ -79,7 +79,7 @@ workflows:
           filters:
             branches:
               only:
-                - develop
+                - /develop
                 - /feature.*/
                 - /bugfix.*/
                 - /dependabot.*/
@@ -87,7 +87,7 @@ workflows:
           filters:
             branches:
               only:
-                - develop
+                - /develop
                 - /feature.*/
                 - /bugfix.*/
                 - /dependabot.*/

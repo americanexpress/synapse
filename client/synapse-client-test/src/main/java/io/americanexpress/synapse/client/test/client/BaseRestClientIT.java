@@ -15,14 +15,12 @@ package io.americanexpress.synapse.client.test.client;
 
 
 import io.americanexpress.synapse.client.rest.client.BaseRestClient;
-import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
 
 public abstract class BaseRestClientIT<I extends BaseClientRequest,
         O extends BaseClientResponse,
-        H extends BaseClientHttpHeadersFactory<I>,
-        C extends BaseRestClient<I, O, H>> extends BaseRestClientTest<I, O, H, C> {
+        C extends BaseRestClient<I, O>> extends BaseRestClientTest<I, O, C> {
 
     protected abstract void callMonoService_givenValidRequest_expectedSuccessResponse() throws Exception;
 
