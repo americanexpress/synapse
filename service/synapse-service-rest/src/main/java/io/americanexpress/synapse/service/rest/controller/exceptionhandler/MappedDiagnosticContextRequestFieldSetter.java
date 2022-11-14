@@ -23,25 +23,6 @@ import javax.servlet.http.HttpServletRequest;
 
 @Component
 public class MappedDiagnosticContextRequestFieldSetter {
-    /**
-     * The constant USER_MDC_KEY.
-     */
-    public static final String USER_MDC_KEY = "user";
-
-    /**
-     * The constant URI_MDC_KEY.
-     */
-    public static final String URI_MDC_KEY = "uri";
-
-    /**
-     * The constant CORRELATION_IDENTIFIER_MDC_KEY.
-     */
-    public static final String CORRELATION_IDENTIFIER_MDC_KEY = "correlationIdentifier";
-
-    /**
-     * The constant REQUEST_MDC_KEY.
-     */
-    public static final String REQUEST_MDC_KEY = "request";
 
     private final RequestPayloadConverter requestPayloadConverter;
 
