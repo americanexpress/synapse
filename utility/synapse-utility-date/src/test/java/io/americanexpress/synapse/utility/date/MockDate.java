@@ -2,6 +2,9 @@ package io.americanexpress.synapse.utility.date;
 
 import java.time.LocalDateTime;
 
+/**
+ * {@code MockDate} is used to mock a date for tests.
+ */
 public final class MockDate {
 
     public static final String EPOCH_MILLI = "1451024565000";

@@ -13,9 +13,13 @@ import static io.americanexpress.synapse.utility.date.DateTimeUtils.MIDNIGHT_ISO
 import static io.americanexpress.synapse.utility.date.DateUtilsTest.*;
 import static io.americanexpress.synapse.utility.date.OffsetDateTimeUtilsTest.*;
 import static io.americanexpress.synapse.utility.date.TimeUtilsTest.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * {@code DateTimeUtilsTest} tests the {@link DateTimeUtils}
+ */
 class DateTimeUtilsTest {
 
     // DATE TIMES

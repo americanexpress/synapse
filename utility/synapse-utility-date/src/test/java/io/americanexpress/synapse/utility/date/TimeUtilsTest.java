@@ -8,6 +8,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * {@code TimeUtilsTest} tests the {@link TimeUtils}
+ */
 class TimeUtilsTest {
 
     // TIME

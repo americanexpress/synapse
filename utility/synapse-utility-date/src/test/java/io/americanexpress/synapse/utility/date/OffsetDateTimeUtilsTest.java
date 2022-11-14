@@ -14,9 +14,14 @@ import static io.americanexpress.synapse.utility.date.DateUtilsTest.ISO_8601_DAT
 import static io.americanexpress.synapse.utility.date.OffsetDateTimeUtils.UTC_LITERAL_Z;
 import static io.americanexpress.synapse.utility.date.OffsetDateTimeUtils.UTC_OFFSET;
 import static io.americanexpress.synapse.utility.date.TimeUtilsTest.ONE;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * {@code OffsetDateTimeUtilsTest} tests the {@link OffsetDateTimeUtils}
+ */
 class OffsetDateTimeUtilsTest {
 
     // OFFSET

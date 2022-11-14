@@ -31,6 +31,10 @@ import java.util.Date;
 import java.util.StringJoiner;
 import java.util.regex.Pattern;
 
+
+/**
+ * {@code DateUtils} provides methods for date conversions and validations.
+ */
 public class DateUtils {
 
     /**
@@ -43,7 +47,16 @@ public class DateUtils {
      */
     public static final Pattern ISO8601_DATE_PATTERN = Pattern.compile("^(?:[1-9]\\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)$");
 
+    private DateUtils() {
+        //Private constructor to prevent instantiation of utils class.
+    }
 
+    /**
+     * Convert from local date to xml gregorian calendar xml gregorian calendar.
+     *
+     * @param date the date
+     * @return the xml gregorian calendar
+     */
     public static XMLGregorianCalendar convertFromLocalDateToXmlGregorianCalendar(LocalDate date) {
         XMLGregorianCalendar xcal = null;
         if (date != null) {
@@ -58,6 +71,12 @@ public class DateUtils {
         return xcal;
     }
 
+    /**
+     * Convert from xml gregorian calendar to local date local date.
+     *
+     * @param xcal the xcal
+     * @return the local date
+     */
     public static LocalDate convertFromXmlGregorianCalendarToLocalDate(XMLGregorianCalendar xcal) {
         LocalDate localDate = null;
         if (xcal != null) {
@@ -67,6 +86,14 @@ public class DateUtils {
         return localDate;
     }
 
+    /**
+     * Comparison between dates.
+     *
+     * @param datePattern the date pattern
+     * @param dateText1   the date text 1
+     * @param dateText2   the date text 2
+     * @return the int
+     */
     public static int compareTo(String datePattern, String dateText1, String dateText2) {
         int compareToValue = Integer.MAX_VALUE;
         LocalDate localDate1 = toLocalDate(datePattern, dateText1);
@@ -79,6 +106,13 @@ public class DateUtils {
         return compareToValue;
     }
 
+    /**
+     * Convert to local date.
+     *
+     * @param datePattern the date pattern
+     * @param dateText    the date text
+     * @return the local date
+     */
     public static LocalDate toLocalDate(String datePattern, String dateText) {
         LocalDate localDate = null;
         if (StringUtils.isNotBlank(datePattern) && StringUtils.isNotBlank(dateText)) {
@@ -95,7 +129,7 @@ public class DateUtils {
     /**
      * This method converts LocalDate to Date
      *
-     * @param dateToConvert
+     * @param dateToConvert the date to convert
      * @return date of type Date
      */
     public static Date convertFromLocalDateToDate(LocalDateTime dateToConvert) {

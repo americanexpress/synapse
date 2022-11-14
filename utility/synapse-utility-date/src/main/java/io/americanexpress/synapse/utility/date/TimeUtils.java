@@ -7,6 +7,9 @@ import java.time.ZoneId;
 import java.util.StringJoiner;
 import java.util.regex.Pattern;
 
+/**
+ * {@code TimeUtils} provides methods for time conversions and validations.
+ */
 public class TimeUtils {
 
     /**
@@ -18,6 +21,10 @@ public class TimeUtils {
      * The compiles regular expression for an ISO 8601 time format.
      */
     public static final Pattern ISO8601_TIME_PATTERN = Pattern.compile("^(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d{1,9})?$");
+
+    private TimeUtils() {
+        //Private constructor to prevent instantiation of utils class.
+    }
 
     /**
      * Check if the value matches the ISO 8601 standard for date and time format.

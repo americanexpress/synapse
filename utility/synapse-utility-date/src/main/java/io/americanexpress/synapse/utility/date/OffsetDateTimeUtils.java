@@ -8,6 +8,9 @@ import java.util.regex.Pattern;
 
 import static io.americanexpress.synapse.utility.date.DateTimeUtils.ISO_8601_DATE_TIME_LITERAL_T;
 
+/**
+ * {@code OffsetDateTimeUtils} provides methods for offset date conversions and validations.
+ */
 public class OffsetDateTimeUtils {
 
     /**
@@ -29,6 +32,10 @@ public class OffsetDateTimeUtils {
      * The compiled regular expression for an ISO 8601 offset format.
      */
     public static final Pattern ISO8601_OFFSET_PATTERN = Pattern.compile("^(?:Z|[+-][01](?:[0-7]:[0-5]\\d|8:00))$");
+
+    private OffsetDateTimeUtils() {
+        //Private constructor to prevent instantiation of utils class.
+    }
 
     /**
      * Check if the value matches the ISO 8601 standard for date and time with offset format.

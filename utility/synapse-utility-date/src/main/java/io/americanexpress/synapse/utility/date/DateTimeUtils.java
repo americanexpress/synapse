@@ -7,6 +7,9 @@ import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.regex.Pattern;
 
+/**
+ * {@code DateTimeUtils} provides methods for date-time conversions and validations.
+ */
 public class DateTimeUtils {
 
     /**
@@ -23,6 +26,10 @@ public class DateTimeUtils {
      * The compiles regular expression for an ISO 8601 date-time format.
      */
     public static final Pattern ISO8601_DATE_TIME_PATTERN = Pattern.compile("^(?:[1-9]\\d{3}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1\\d|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[1-9]\\d(?:0[48]|[2468][048]|[13579][26])|(?:[2468][048]|[13579][26])00)-02-29)T(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d{1,9})?$");
+
+    private DateTimeUtils(){
+        //Private constructor to prevent instantiation of utils class
+    }
 
     /**
      * Check if the value matches the ISO 8601 standard for date and time format.
