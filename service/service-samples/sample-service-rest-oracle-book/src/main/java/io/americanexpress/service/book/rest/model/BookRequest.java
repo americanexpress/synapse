@@ -33,7 +33,7 @@ public class BookRequest implements BaseServiceRequest {
      * @param author
      * @param createdBy
      */
-    public BookRequest(String title, String author, String createdBy){
+    public BookRequest(String title, String author, String createdBy) {
         this.title = title;
         this.author = author;
         this.createdBy = createdBy;

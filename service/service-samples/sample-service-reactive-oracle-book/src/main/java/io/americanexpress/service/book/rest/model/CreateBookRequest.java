@@ -21,5 +21,8 @@ public class CreateBookRequest extends BookRequest {
         super(title, author);
     }
 
+    /**
+     * Default constructor
+     */
     public CreateBookRequest(){}
 }

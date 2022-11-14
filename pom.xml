@@ -338,7 +338,12 @@
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
-                <artifactId>sample-data-postgres-book</artifactId>
+                <artifactId>sample-data-cassandra-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-cassandra-reactive</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -353,14 +358,20 @@
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
-                <artifactId>sample-data-cassandra-book</artifactId>
+                <artifactId>sample-data-oracle-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
-                <artifactId>sample-data-cassandra-reactive</artifactId>
+                <artifactId>sample-data-oracle-reactive-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-postgres-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
 
             <!--External Dependencies-->
             <dependency>

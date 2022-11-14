@@ -19,58 +19,26 @@ package io.americanexpress.service.book.rest.model;
 public class UpdateBookRequest extends BookRequest {
 
     /**
-     * author
-     */
-    private String author;
-
-    /**
-     * title
-     */
-    private String title;
-
-    /**
-     * Gets author as string
-     * @return
-     */
-    @Override
-    public String getAuthor() {
-        return author;
-    }
-
-    /**
-     * sets author with provided string.
+     * Constructor takes in title as string & author as string
+     * @param title
      * @param author
      */
-    @Override
-    public void setAuthor(String author) {
-        this.author = author;
+    public UpdateBookRequest(String title, String author) {
+        super(title, author);
     }
 
     /**
-     * gets title as string.
-     * @return
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * Sets title with provided string.
+     * Constructor takes in title as string, author as string, and createdBy as string
      * @param title
+     * @param author
+     * @param createdBy
      */
-    public void setTitle(String title) {
-        this.title = title;
+    public UpdateBookRequest(String title, String author, String createdBy) {
+        super(title, author, createdBy);
     }
 
     /**
-     * Returns the object as a string.
-     * @return
+     * Default constructor
      */
-    @Override
-    public String toString() {
-        return "UpdateBookRequest{" +
-                "author='" + author + '\'' +
-                ", title='" + title + '\'' +
-                '}';
-    }
+    public UpdateBookRequest(){}
 }

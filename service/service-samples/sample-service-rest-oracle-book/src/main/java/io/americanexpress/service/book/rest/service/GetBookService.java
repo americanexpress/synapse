@@ -18,6 +18,7 @@ import io.americanexpress.data.oracle.book.entity.BookEntity;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.service.helper.BookServiceMapper;
 import io.americanexpress.synapse.service.rest.service.BaseGetMonoService;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
 /**
@@ -42,7 +43,7 @@ public class GetBookService extends BaseGetMonoService<ReadBookResponse> {
      * @return
      */
     @Override
-    protected ReadBookResponse executeRead(String title) {
+    protected ReadBookResponse executeRead(HttpHeaders headers, String title) {
         BookEntity bookEntity = bookRepository.findByTitle(title);
         return BookServiceMapper.populateReadBookResponse(bookEntity);
     }

@@ -31,4 +31,7 @@ public interface BookRepository extends R2dbcRepository<BookEntity, Long> {
     Mono<BookEntity> findByTitle(String title);
 
     Mono<BookEntity> findByAuthor(String author);
+
+    Mono<Void> deleteByTitle(String title);
+
 }

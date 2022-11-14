@@ -26,7 +26,7 @@ public class BookResponse extends BaseServiceResponse {
      * title
      */
     @NotBlank
-    private String tittle;
+    private String title;
 
     /**
      * author
@@ -63,16 +63,16 @@ public class BookResponse extends BaseServiceResponse {
      * Gets title as string.
      * @return
      */
-    public String getTittle() {
-        return tittle;
+    public String getTitle() {
+        return title;
     }
 
     /**
      * Sets title with provided String
-     * @param tittle
+     * @param title
      */
-    public void setTittle(String tittle) {
-        this.tittle = tittle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     /**
@@ -178,7 +178,7 @@ public class BookResponse extends BaseServiceResponse {
     @Override
     public String toString() {
         return "BookRequest{" +
-                ", tittle='" + tittle + '\'' +
+                ", tittle='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", createdDateTime='" + createdDateTime + '\'' +
                 ", lastModifiedDateTime='" + lastModifiedDateTime + '\'' +

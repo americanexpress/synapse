@@ -17,10 +17,12 @@ import io.americanexpress.data.oracle.book.dao.BookRepository;
 import io.americanexpress.service.book.rest.model.UpdateBookRequest;
 import io.americanexpress.service.book.rest.service.helper.BookServiceMapper;
 import io.americanexpress.synapse.service.rest.service.reactive.BaseUpdateReactiveService;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
 
 /**
  * {@code UpdateBookService} Updates a book resource by request criteria.
@@ -43,11 +45,11 @@ public class UpdateBookService extends BaseUpdateReactiveService<UpdateBookReque
      * @return
      */
     @Override
-    protected Mono<Void> executeUpdate(UpdateBookRequest request) {
+    protected Mono<Void> executeUpdate(HttpHeaders headers, UpdateBookRequest request) {
         return bookRepository.findByTitleAndAuthor(request.getTitle(), request.getAuthor())
+                .publishOn(Schedulers.boundedElastic())
                 .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "Book Not Found")))
-                .map(entity -> BookServiceMapper.populateBookEntityForUpdate(request, entity))
-                .flatMap(bookRepository::save)
+                .doOnSuccess(bookEntity -> bookRepository.save(BookServiceMapper.populateBookEntityForUpdate(request, bookEntity)).subscribe())
                 .then();
     }
 }

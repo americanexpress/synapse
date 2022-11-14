@@ -17,6 +17,7 @@ import io.americanexpress.data.oracle.book.dao.BookRepository;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.service.helper.BookServiceMapper;
 import io.americanexpress.synapse.service.rest.service.reactive.BaseGetMonoReactiveService;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -41,7 +42,7 @@ public class GetBookService extends BaseGetMonoReactiveService<ReadBookResponse>
      * @return
      */
     @Override
-    protected Mono<ReadBookResponse> executeRead(String title) {
+    protected Mono<ReadBookResponse> executeRead(HttpHeaders headers, String title) {
         return bookRepository.findByTitle(title)
                 .map(BookServiceMapper::populateReadBookResponse)
                 .switchIfEmpty(Mono.empty());

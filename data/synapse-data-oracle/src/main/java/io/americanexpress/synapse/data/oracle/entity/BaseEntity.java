@@ -13,6 +13,7 @@
  */
 package io.americanexpress.synapse.data.oracle.entity;
 
+
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -25,7 +26,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Version;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -44,8 +44,7 @@ public abstract class BaseEntity {
      * Id
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idSequence")
-    @SequenceGenerator(name = "idSequence", sequenceName = "idSequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
     /**

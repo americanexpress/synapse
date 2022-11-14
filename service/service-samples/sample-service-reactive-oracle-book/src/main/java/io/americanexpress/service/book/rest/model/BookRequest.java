@@ -23,6 +23,11 @@ import javax.validation.constraints.NotBlank;
 public class BookRequest implements BaseServiceRequest {
 
     /**
+     * id
+     */
+    private Long id;
+
+    /**
      * title
      */
     @NotBlank
@@ -35,6 +40,11 @@ public class BookRequest implements BaseServiceRequest {
     private String author;
 
     /**
+     * Created By
+     */
+    private String createdBy;
+
+    /**
      * Default constructor
      */
     public BookRequest(){}
@@ -44,9 +54,48 @@ public class BookRequest implements BaseServiceRequest {
      * @param title
      * @param author
      */
-    public BookRequest(String title, String author){
+    public BookRequest(String title, String author) {
         this.title = title;
         this.author = author;
+    }
+
+    /**
+     * Constructor taking title and author
+     * @param title
+     * @param author
+     */
+    public BookRequest(String title, String author, String createdBy) {
+        this.title = title;
+        this.author = author;
+        this.createdBy = createdBy;
+    }
+
+    /**
+     * Constructor taking title and author
+     * @param title
+     * @param author
+     */
+    public BookRequest(Long id, String title, String author, String createdBy) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.createdBy = createdBy;
+    }
+
+    /**
+     * Gets id as long
+     * @return
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * Sets id with provided long
+     * @param id
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**
@@ -82,14 +131,32 @@ public class BookRequest implements BaseServiceRequest {
     }
 
     /**
+     * gets createdBy as string.
+     * @return
+     */
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    /**
+     * Sets createdBy with provided string.
+     * @param createdBy
+     */
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    /**
      * Returns a string of the obejct
      * @return
      */
     @Override
     public String toString() {
         return "BookRequest{" +
+                ", id='" + id + '\'' +
                 ", tittle='" + title + '\'' +
                 ", author='" + author + '\'' +
+                ", createdBy='" + createdBy + '\'' +
                 '}';
     }
 }

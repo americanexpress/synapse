@@ -18,6 +18,7 @@ import io.americanexpress.data.oracle.book.entity.BookEntity;
 import io.americanexpress.service.book.rest.model.UpdateBookRequest;
 import io.americanexpress.service.book.rest.service.helper.BookServiceMapper;
 import io.americanexpress.synapse.service.rest.service.BaseUpdateService;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
 /**
@@ -40,7 +41,7 @@ public class UpdateBookService extends BaseUpdateService<UpdateBookRequest> {
      * @param request
      */
     @Override
-    protected void executeUpdate(UpdateBookRequest request) {
+    protected void executeUpdate(HttpHeaders headers, UpdateBookRequest request) {
         BookEntity bookEntity = bookRepository.findByTitle(request.getTitle());
         if (bookEntity != null) {
             bookRepository.save(BookServiceMapper.populateBookEntityForUpdate(request, bookEntity));

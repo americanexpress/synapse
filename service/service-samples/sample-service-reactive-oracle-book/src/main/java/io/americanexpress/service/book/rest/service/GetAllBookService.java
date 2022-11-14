@@ -4,6 +4,7 @@ import io.americanexpress.data.oracle.book.dao.BookRepository;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.service.helper.BookServiceMapper;
 import io.americanexpress.synapse.service.rest.service.reactive.BaseGetPolyReactiveService;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
@@ -28,7 +29,7 @@ public class GetAllBookService extends BaseGetPolyReactiveService<ReadBookRespon
      * @return
      */
     @Override
-    protected Flux<ReadBookResponse> executeRead() {
+    protected Flux<ReadBookResponse> executeRead(HttpHeaders headers) {
         return bookRepository.findAll()
                 .map(BookServiceMapper::populateReadBookResponse)
                 .switchIfEmpty(Flux.empty());

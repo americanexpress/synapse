@@ -13,19 +13,74 @@
  */
 package io.americanexpress.data.oracle.book.entity;
 
-import io.americanexpress.synapse.data.oracle.entity.BaseEntity;
-import org.hibernate.annotations.NaturalId;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.annotation.Version;
 
-import java.util.Objects;
+import java.time.LocalDateTime;
 
 /**
  * {@code BookEntity} example of a child module using BaseEntity
  */
-public class BookEntity extends BaseEntity {
+public class BookEntity {
 
-    @NaturalId(mutable = true)
+
+    /**
+     * Id
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Long id;
+
+    /**
+     * Created Date Time
+     */
+    @CreatedDate
+    @Column(name = "created_date_time")
+    protected LocalDateTime createdDateTime;
+
+    /**
+     * Last Modified Date Time
+     */
+    @LastModifiedDate
+    @Column(name = "last_modified_date_time")
+    protected LocalDateTime lastModifiedDateTime;
+
+    /**
+     * Created By
+     */
+    @CreatedBy
+    @Column(name = "created_by")
+    protected String createdBy;
+
+    /**
+     * Last Modified By
+     */
+    @LastModifiedBy
+    @Column(name = "last_modified_by")
+    protected String lastModifiedBy;
+
+    /**
+     * Version
+     */
+    @Version
+    @Column(name = "version")
+    protected Long version;
+
+    /**
+     * title
+     */
     private String title;
 
+    /**
+     * author
+     */
     private String author;
 
     /**
@@ -63,17 +118,113 @@ public class BookEntity extends BaseEntity {
         this.author = author;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof BookEntity)) return false;
-        if (!super.equals(o)) return false;
-        BookEntity that = (BookEntity) o;
-        return Objects.equals(getTitle(), that.getTitle());
+
+    /**
+     * Gets id as a long
+     * @return
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * Sets id with provided long value
+     * @param id
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * Gets createdDateTime as LocalDateTime
+     * @return
+     */
+    public LocalDateTime getCreatedDateTime() {
+        return createdDateTime;
+    }
+
+    /**
+     * Sets createdDateTime with provided LocalDateTime
+     * @param createdDateTime
+     */
+    public void setCreatedDateTime(LocalDateTime createdDateTime) {
+        this.createdDateTime = createdDateTime;
+    }
+
+    /**
+     * Gets lastModifiedDateTime as LocalDateTime
+     * @return
+     */
+    public LocalDateTime getLastModifiedDateTime() {
+        return lastModifiedDateTime;
+    }
+
+    /**
+     * Sets lastModifiedDateTime with provided localDateTime
+     * @param lastModifiedDateTime
+     */
+    public void setLastModifiedDateTime(LocalDateTime lastModifiedDateTime) {
+        this.lastModifiedDateTime = lastModifiedDateTime;
+    }
+
+    /**
+     * Gets createdBy as a String
+     * @return
+     */
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    /**
+     * Sets createdBy with provided String.
+     * @param createdBy
+     */
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    /**
+     * Gets lastModifiedBy as a string.
+     * @return
+     */
+    public String getLastModifiedBy() {
+        return lastModifiedBy;
+    }
+
+    /**
+     * Sets lastModifiedBy with provided string.
+     * @param lastModifiedBy
+     */
+    public void setLastModifiedBy(String lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
+    }
+
+    /**
+     * Gets version as a long.
+     */
+    public Long getVersion() {
+        return version;
+    }
+
+    /**
+     * Sets version with provided long.
+     * @param version
+     */
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), getTitle());
+    public String toString() {
+        return "BookEntity{" +
+                "id=" + id +
+                ", createdDateTime=" + createdDateTime +
+                ", lastModifiedDateTime=" + lastModifiedDateTime +
+                ", createdBy='" + createdBy + '\'' +
+                ", lastModifiedBy='" + lastModifiedBy + '\'' +
+                ", version=" + version +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                '}';
     }
 }

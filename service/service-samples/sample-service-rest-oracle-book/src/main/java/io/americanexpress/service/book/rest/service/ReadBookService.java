@@ -19,6 +19,7 @@ import io.americanexpress.service.book.rest.model.ReadBookRequest;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.service.helper.BookServiceMapper;
 import io.americanexpress.synapse.service.rest.service.BaseReadMonoService;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
 /**
@@ -41,7 +42,7 @@ public class ReadBookService extends BaseReadMonoService<ReadBookRequest, ReadBo
      * @return
      */
     @Override
-    protected ReadBookResponse executeRead(ReadBookRequest request) {
+    protected ReadBookResponse executeRead(HttpHeaders headers, ReadBookRequest request) {
         BookEntity bookEntity = bookRepository.findByTitleAndAuthor(request.getTitle(), request.getAuthor());
         return BookServiceMapper.populateReadBookResponse(bookEntity);
     }
