@@ -1,8 +1,9 @@
 pluginManagement {
     repositories {
-        maven {
-            url = uri("https://ci-repo.aexp.com/java-proxy/content/repositories/iq-gradle/")
-        }
+        mavenCentral()
+//        maven {
+//            url = uri("https://ci-repo.aexp.com/java-proxy/content/repositories/iq-gradle/")
+//        }
     }
 }
 
