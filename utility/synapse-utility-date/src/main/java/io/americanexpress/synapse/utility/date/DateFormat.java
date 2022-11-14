@@ -15,7 +15,11 @@ package io.americanexpress.synapse.utility.date;
 
 public enum DateFormat {
 
-    MONTH_DAY_COMMA_YEAR("MMMM dd, yyyy"), ISO_DATE("yyyy-MM-dd"), ISO_TIME("yyyy-MM-dd HH:mm:ss"), ISO_INSTANT("yyyy-MM-dd'T'HH:mm:ssZ"), MONTH_DAY_YEAR_WITH_LEADING_ZEROS("mm/dd/yyyy");
+    MONTH_DAY_COMMA_YEAR("MMMM dd, yyyy"),
+    ISO_DATE("yyyy-MM-dd"),
+    ISO_TIME("yyyy-MM-dd HH:mm:ss"),
+    ISO_INSTANT("yyyy-MM-dd'T'HH:mm:ssZ"),
+    MONTH_DAY_YEAR_WITH_LEADING_ZEROS("mm/dd/yyyy");
 
     private String value;
 
