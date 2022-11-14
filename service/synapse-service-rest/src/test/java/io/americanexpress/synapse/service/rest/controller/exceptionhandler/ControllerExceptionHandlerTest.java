@@ -80,7 +80,7 @@ class ControllerExceptionHandlerTest {
     @Mock
     private HttpInputMessage httpInputMessage;
 
-    private static final MessageSource getErrorMessageSource() {
+    private static MessageSource getErrorMessageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
         messageSource.setBasename("classpath:error-messages");
         return messageSource;
@@ -142,12 +142,12 @@ class ControllerExceptionHandlerTest {
 
     @Test
     void handleRestClientResponseException_givenRestClientResponseException_expected400BadRequestResponse() {
-        final String responseBody = "{ \"response\": \"body\" }";
-        HttpServerErrorException exception = HttpServerErrorException.create(HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), HttpHeaders.EMPTY, responseBody.getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8);
+        String responseBody = "{ \"response\": \"body\" }";
+        HttpServerErrorException exception = HttpServerErrorException.create(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.getReasonPhrase(), HttpHeaders.EMPTY, responseBody.getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8);
         HttpServletRequest mockedRequest = new MockHttpServletRequest();
 
         ResponseEntity<ErrorResponse> errorResponseEntity = CONTROLLER_EXCEPTION_HANDLER.handleRestClientResponseException(exception, mockedRequest);
-        assertErrorResponse(errorResponseEntity, ErrorCode.GENERIC_4XX_ERROR, CONTROLLER_EXCEPTION_HANDLER.GENERIC_4XX_HEADER_MESSAGE, "Your client has issued a malformed or illegal request.", HttpStatus.BAD_REQUEST);
+        assertErrorResponse(errorResponseEntity, ErrorCode.GENERIC_4XX_ERROR, ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE, "Your client has issued a malformed or illegal request.", HttpStatus.BAD_REQUEST);
 
         String developerMessage = Objects.requireNonNull(errorResponseEntity.getBody()).getDeveloperMessage();
         assertTrue(developerMessage.contains(responseBody));

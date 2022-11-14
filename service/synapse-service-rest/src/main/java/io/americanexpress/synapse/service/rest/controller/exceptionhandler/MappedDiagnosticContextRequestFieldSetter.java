@@ -17,6 +17,7 @@ import io.americanexpress.synapse.utilities.common.cryptography.CryptoUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;
 import org.slf4j.ext.XLogger;
+import org.slf4j.ext.XLoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +27,11 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Component
 public class MappedDiagnosticContextRequestFieldSetter {
+
+    /**
+     * Used to log the exceptions
+     */
+    private final XLogger logger = XLoggerFactory.getXLogger(getClass());
 
     private final RequestPayloadConverter requestPayloadConverter;
 
@@ -80,6 +86,7 @@ public class MappedDiagnosticContextRequestFieldSetter {
 
             //'Finally' block to guarantee whether an exception is thrown in the previous logic or not, the logger.catching and the MDC.clear() logic will still run.
         } finally {
+            logger.catching(logLevel, throwable);
             MDC.clear();
         }
     }
