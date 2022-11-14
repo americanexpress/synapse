@@ -13,6 +13,9 @@
  */
 package io.americanexpress.synapse.service.rest.controller.exceptionhandler;
 
+/**
+ * {@code MDCKeys} contains constants for MDC keys.
+ */
 class MDCKeys {
 
     private MDCKeys() {

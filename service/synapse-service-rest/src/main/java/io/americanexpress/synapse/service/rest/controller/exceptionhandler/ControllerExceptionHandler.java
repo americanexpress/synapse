@@ -71,19 +71,28 @@ public class ControllerExceptionHandler {
      */
     private final InputValidationErrorHandler inputValidationErrorHandler;
 
+    /**
+     * Used to log the exceptions.
+     */
     private final MappedDiagnosticContextRequestFieldSetter mappedDiagnosticContextRequestFieldSetter;
 
+    /**
+     * Used to create the internal server error response.
+     */
     private final InternalServerErrorResponseCreator internalServerErrorResponseCreator;
 
+    /**
+     * Used to create the rest client error response.
+     */
     private final RestClientErrorResponseCreator restClientErrorResponseCreator;
 
     /**
      * Argument constructor creates a new instance of ControllersExceptionsHandler with given values.
      * @param errorMessagePropertyReader  used to create the error message based on the error code by reading the value in error-messages.properties
      * @param inputValidationErrorHandler used to handle input validation errors
-     * @param mappedDiagnosticContextRequestFieldSetter
-     * @param internalServerErrorResponseCreator
-     * @param restClientErrorResponseCreator
+     * @param mappedDiagnosticContextRequestFieldSetter used to log exceptions
+     * @param internalServerErrorResponseCreator used to create error responses for internal server error
+     * @param restClientErrorResponseCreator used to create error responses for rest client error
      */
     public ControllerExceptionHandler(@Autowired ErrorMessagePropertyReader errorMessagePropertyReader, @Autowired InputValidationErrorHandler inputValidationErrorHandler,
                                       MappedDiagnosticContextRequestFieldSetter mappedDiagnosticContextRequestFieldSetter, InternalServerErrorResponseCreator internalServerErrorResponseCreator, RestClientErrorResponseCreator restClientErrorResponseCreator) {

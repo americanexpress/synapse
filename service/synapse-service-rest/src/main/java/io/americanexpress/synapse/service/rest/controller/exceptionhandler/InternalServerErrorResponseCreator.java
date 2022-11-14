@@ -36,6 +36,12 @@ public class InternalServerErrorResponseCreator {
 
     private final MappedDiagnosticContextRequestFieldSetter mappedDiagnosticContextRequestFieldSetter;
 
+    /**
+     * Instantiates a new Internal server error response creator.
+     *
+     * @param messagePropertyReader                     the message property reader
+     * @param mappedDiagnosticContextRequestFieldSetter the mapped diagnostic context request field setter
+     */
     @Autowired
     public InternalServerErrorResponseCreator(ErrorMessagePropertyReader messagePropertyReader, MappedDiagnosticContextRequestFieldSetter mappedDiagnosticContextRequestFieldSetter) {
         this.messagePropertyReader = messagePropertyReader;

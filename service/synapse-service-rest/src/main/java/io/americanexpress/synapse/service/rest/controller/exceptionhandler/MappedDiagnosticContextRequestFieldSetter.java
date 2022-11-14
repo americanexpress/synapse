@@ -21,17 +21,25 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * {@code MappedDiagnosticContextRequestFieldSetter} sets the logging fields with the MDC.
+ */
 @Component
 public class MappedDiagnosticContextRequestFieldSetter {
 
     private final RequestPayloadConverter requestPayloadConverter;
 
+    /**
+     * Instantiates a new Mapped diagnostic context request field setter.
+     *
+     * @param requestPayloadConverter the request payload converter
+     */
     public MappedDiagnosticContextRequestFieldSetter(RequestPayloadConverter requestPayloadConverter) {
         this.requestPayloadConverter = requestPayloadConverter;
     }
 
     /**
-     * Set.
+     * Set logs.
      *
      * @param logLevel           the log level
      * @param throwable          the throwable

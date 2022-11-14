@@ -25,7 +25,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
 /**
- * InputValidationErrorHandler class creates the error response containing the input validation errors.
+ * {@code InputValidationErrorHandler} class creates the error response containing the input validation errors.
  *
  * @author Alexei Morgado
  */

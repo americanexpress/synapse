@@ -29,6 +29,11 @@ public class RestClientErrorResponseCreator {
 
     private final ErrorMessagePropertyReader messagePropertyReader;
 
+    /**
+     * Instantiates a new Rest client error response creator.
+     *
+     * @param messagePropertyReader the message property reader
+     */
     @Autowired
     public RestClientErrorResponseCreator(ErrorMessagePropertyReader messagePropertyReader) {
         this.messagePropertyReader = messagePropertyReader;
@@ -38,7 +43,7 @@ public class RestClientErrorResponseCreator {
      * Helper to create the error response entity from the restClientResponseException
      *
      * @param restClientResponseException RestClientResponseException
-     * @return ResponseEntity<ErrorResponse>
+     * @return ResponseEntity<ErrorResponse> response entity
      */
     public ResponseEntity<ErrorResponse> create(RestClientResponseException restClientResponseException) {
         String userMessage = messagePropertyReader.getErrorMessage(ErrorCode.GENERIC_4XX_ERROR);
