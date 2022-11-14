@@ -17,6 +17,9 @@ import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * {@code BookResponse} Parent module that handles the book response.
+ */
 public class BookResponse extends BaseServiceResponse {
 
     /**

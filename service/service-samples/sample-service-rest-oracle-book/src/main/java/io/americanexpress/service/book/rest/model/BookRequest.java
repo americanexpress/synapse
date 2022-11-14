@@ -28,9 +28,10 @@ public class BookRequest implements BaseServiceRequest {
     public BookRequest(){}
 
     /**
-     * Constructor taking title, author, and createdBy
+     * Constructor taking in title as string, author as string, and createdBy as string
      * @param title
      * @param author
+     * @param createdBy
      */
     public BookRequest(String title, String author, String createdBy){
         this.title = title;
