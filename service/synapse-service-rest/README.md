@@ -25,12 +25,12 @@
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-service-rest</artifactId>
-            <version>0.3.7</version>
+            <version>0.3.8-SNAPSHOT</version>
         </dependency>
 ```
 Or add the following to the build.gradle file:
 ```kotlin
-implementation 'io.americanexpress.synapse:synapse-service-rest:0.3.7!!'
+implementation 'io.americanexpress.synapse:synapse-service-rest:0.3.8-SNAPSHOT'
 ```
 - Have a configuration class that import or extends `ServiceRestConfig`.
 - Create controller and service class that extend the crud controller and service base on your need.

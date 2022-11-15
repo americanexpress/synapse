@@ -16,12 +16,12 @@
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-service-test</artifactId>
-            <version>0.3.7</version>
+            <version>0.3.8-SNAPSHOT</version>
         </dependency>
 ```
 Or add the following to the build.gradle file:
 ```kotlin
-implementation 'io.americanexpress.synapse:synapse-service-test:0.3.7'
+implementation 'io.americanexpress.synapse:synapse-service-test:0.3.8-SNAPSHOT'
 ```
 ## Examples
 Examples of utilizing the synapse-service-test module can be found in the following modules:
