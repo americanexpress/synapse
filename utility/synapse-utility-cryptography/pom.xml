@@ -9,9 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>synapse-utility-date</artifactId>
+    <artifactId>synapse-utility-cryptography</artifactId>
 
     <dependencies>
+        <!--Synapse-->
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>
             <artifactId>synapse-framework-exception</artifactId>
@@ -21,9 +22,24 @@
             <artifactId>synapse-framework-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!--Third-Party-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>compile</scope>
+        </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jasypt</groupId>
+            <artifactId>jasypt</artifactId>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>

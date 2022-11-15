@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>synapse-utility-date</artifactId>
+    <artifactId>synapse-utility-number</artifactId>
 
     <dependencies>
         <dependency>
@@ -30,5 +30,4 @@
             <artifactId>slf4j-ext</artifactId>
         </dependency>
     </dependencies>
-
 </project>

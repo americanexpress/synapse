@@ -268,6 +268,21 @@
                 <artifactId>synapse-utilities-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-utility-cryptography</artifactId>
+                <version>0.3.8-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-utility-date</artifactId>
+                <version>0.3.8-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-utility-number</artifactId>
+                <version>0.3.8-SNAPSHOT</version>
+            </dependency>
             <!-- Publisher -->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
