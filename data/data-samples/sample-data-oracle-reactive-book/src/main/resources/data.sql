@@ -12,8 +12,8 @@
  * the License.
  */
 
-SET
-SCHEMA_SEARCH_PATH TO synapse;
+SET SCHEMA_SEARCH_PATH TO synapse;
+
 INSERT INTO book (id, title, author, created_date_time, last_modified_date_time, created_by,
                     last_modified_by, version)
 VALUES (1, 'Synapse', 'Gabriel', now(),

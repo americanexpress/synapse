@@ -15,8 +15,7 @@
 DROP SCHEMA IF EXISTS synapse CASCADE;
 CREATE SCHEMA synapse;
 
-SET
-SCHEMA_SEARCH_PATH TO synapse;
+SET SCHEMA_SEARCH_PATH TO synapse;
 
 DROP TABLE IF EXISTS book CASCADE;
 
@@ -30,7 +29,7 @@ CREATE TABLE book
     author                  VARCHAR(100),
     created_by              VARCHAR(100),
     last_modified_by        VARCHAR(100),
-    created_date_time       TIMESTAMP             DEFAULT CURRENT_TIMESTAMP,
+    created_date_time       TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
     last_modified_date_time TIMESTAMP,
     version                 INTEGER      NOT NULL DEFAULT 0
 );

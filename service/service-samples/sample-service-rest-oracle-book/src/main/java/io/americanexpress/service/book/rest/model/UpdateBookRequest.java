@@ -19,6 +19,11 @@ package io.americanexpress.service.book.rest.model;
 public class UpdateBookRequest extends BookRequest {
 
     /**
+     * Default constructor
+     */
+    public UpdateBookRequest(){}
+
+    /**
      * Constructor takes in title as string & author as string
      * @param title
      * @param author
@@ -37,8 +42,4 @@ public class UpdateBookRequest extends BookRequest {
         super(title, author, createdBy);
     }
 
-    /**
-     * Default constructor
-     */
-    public UpdateBookRequest(){}
 }

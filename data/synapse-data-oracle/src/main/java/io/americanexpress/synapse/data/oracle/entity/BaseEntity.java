@@ -179,8 +179,8 @@ public abstract class BaseEntity {
 
     /**
      * Compares object
-     * @param o
-     * @return
+     * @param o an object
+     * @return a boolean
      */
     @Override
     public boolean equals(Object o) {

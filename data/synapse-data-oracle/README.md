@@ -23,7 +23,7 @@
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-data-oracle</artifactId>
-            <version>0.3.8</version>
+            <version>0.3.8-SNAPSHOT</version>
         </dependency>
 ```
 Or add the following to the build.gradle file:

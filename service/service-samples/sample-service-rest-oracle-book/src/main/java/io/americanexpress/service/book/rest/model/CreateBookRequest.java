@@ -17,9 +17,17 @@ package io.americanexpress.service.book.rest.model;
  * {@code CreateBookRequest} Child of BookRequest that will be used for creating new book records.
  */
 public class CreateBookRequest extends BookRequest {
+
+    /**
+     * {@link CreateBookRequest} default constructor.
+     */
+    public CreateBookRequest(){}
+    /**
+     * {@link CreateBookRequest} overloaded constructor.
+     * @param title the title
+     * @param author the author
+     */
     public CreateBookRequest(String title, String author) {
         super(title, author);
     }
-
-    public CreateBookRequest(){}
 }

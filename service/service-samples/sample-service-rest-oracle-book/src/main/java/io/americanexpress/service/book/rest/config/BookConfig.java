@@ -21,12 +21,12 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 
 /**
- * {@code BookConfig} Book Configuration in enabling services querying an oracle database
+ * {@code BookConfig} Book Configuration in enabling services querying an oracle database.
  */
 @Configuration
 @PropertySource("classpath:service-book-application.properties")
 @ComponentScan(basePackages = "io.americanexpress.service.book.rest")
-@Import({ServiceRestConfig.class, BookDataConfig.class})
-public class BookConfig {
+@Import(BookDataConfig.class)
+public class BookConfig extends ServiceRestConfig {
 
 }

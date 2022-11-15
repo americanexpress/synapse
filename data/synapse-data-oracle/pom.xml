@@ -29,7 +29,6 @@
         <dependency>
             <groupId>com.oracle.database.jdbc</groupId>
             <artifactId>ojdbc11</artifactId>
-            <version>21.5.0.0</version>
         </dependency>
         <!--commons-->
         <dependency>

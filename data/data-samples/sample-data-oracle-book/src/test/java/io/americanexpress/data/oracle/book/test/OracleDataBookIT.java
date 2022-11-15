@@ -24,7 +24,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
- * {@code OracleDataBookIntegrationTest} Integration test example of querying BookEntity by id.
+ * {@code OracleDataBookIT} Integration test example of querying BookEntity by id.
  */
 @DataJpaTest
 @ExtendWith(SpringExtension.class)

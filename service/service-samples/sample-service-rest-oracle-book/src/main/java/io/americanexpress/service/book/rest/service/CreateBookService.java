@@ -40,9 +40,9 @@ public class CreateBookService extends BaseCreateService<CreateBookRequest, Crea
     }
 
     /**
-     * executeCreate will be used to create a book resource by request
-     * @param request
-     * @return
+     * executeCreate will be used to create a book resource by request.
+     * @param request the create book request
+     * @return a create book response
      */
     @Override
     protected CreateBookResponse executeCreate(HttpHeaders headers, CreateBookRequest request) {
