@@ -29,43 +29,6 @@
 					"response": []
 				},
 				{
-					"name": "GetAllBooks",
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "ReadBook",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Synapse\",\r\n    \"author\": \"Gabriel\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:8080/v1/books/inquiry_results",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"v1",
-								"books",
-								"inquiry_results"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "CreateBook",
 					"request": {
 						"method": "POST",

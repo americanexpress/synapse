@@ -18,6 +18,8 @@ import io.americanexpress.data.oracle.book.entity.BookEntity;
 import io.americanexpress.service.book.rest.model.ReadBookRequest;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.service.helper.BookServiceMapper;
+import io.americanexpress.synapse.framework.exception.ApplicationClientException;
+import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 import io.americanexpress.synapse.service.rest.service.BaseReadMonoService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
@@ -44,6 +46,11 @@ public class ReadBookService extends BaseReadMonoService<ReadBookRequest, ReadBo
     @Override
     protected ReadBookResponse executeRead(HttpHeaders headers, ReadBookRequest request) {
         BookEntity bookEntity = bookRepository.findByTitleAndAuthor(request.getTitle(), request.getAuthor());
+
+        if (bookEntity == null) {
+            throw new ApplicationClientException("Bad request", ErrorCode.GENERIC_4XX_ERROR, (String[]) null);
+        }
+
         return BookServiceMapper.populateReadBookResponse(bookEntity);
     }
 }

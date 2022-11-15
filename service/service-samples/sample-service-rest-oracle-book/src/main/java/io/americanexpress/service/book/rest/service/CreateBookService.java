@@ -18,6 +18,8 @@ import io.americanexpress.data.oracle.book.entity.BookEntity;
 import io.americanexpress.service.book.rest.model.CreateBookRequest;
 import io.americanexpress.service.book.rest.model.CreateBookResponse;
 import io.americanexpress.service.book.rest.service.helper.BookServiceMapper;
+import io.americanexpress.synapse.framework.exception.ApplicationClientException;
+import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 import io.americanexpress.synapse.service.rest.service.BaseCreateService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
@@ -44,7 +46,15 @@ public class CreateBookService extends BaseCreateService<CreateBookRequest, Crea
      */
     @Override
     protected CreateBookResponse executeCreate(HttpHeaders headers, CreateBookRequest request) {
-        BookEntity bookEntity = bookRepository.save(BookServiceMapper.populateBookEntityForCreation(request));
-        return BookServiceMapper.populateCreateBookResponse(bookEntity);
+        if (isTitlePresent(request.getTitle())) {
+            BookEntity bookEntity = bookRepository.save(BookServiceMapper.populateBookEntityForCreation(request));
+            return BookServiceMapper.populateCreateBookResponse(bookEntity);
+        } else {
+            throw new ApplicationClientException("Bad request", ErrorCode.GENERIC_4XX_ERROR, (String[]) null);
+        }
+    }
+
+    private boolean isTitlePresent(String title) {
+        return bookRepository.findByTitle(title) == null;
     }
 }

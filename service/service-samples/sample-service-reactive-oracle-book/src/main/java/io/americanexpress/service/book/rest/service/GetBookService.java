@@ -16,6 +16,8 @@ package io.americanexpress.service.book.rest.service;
 import io.americanexpress.data.oracle.book.dao.BookRepository;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.service.helper.BookServiceMapper;
+import io.americanexpress.synapse.framework.exception.ApplicationClientException;
+import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 import io.americanexpress.synapse.service.rest.service.reactive.BaseGetMonoReactiveService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
@@ -45,6 +47,6 @@ public class GetBookService extends BaseGetMonoReactiveService<ReadBookResponse>
     protected Mono<ReadBookResponse> executeRead(HttpHeaders headers, String title) {
         return bookRepository.findByTitle(title)
                 .map(BookServiceMapper::populateReadBookResponse)
-                .switchIfEmpty(Mono.empty());
+                .switchIfEmpty(Mono.error(new ApplicationClientException("Bad request", ErrorCode.GENERIC_4XX_ERROR, (String[]) null)));
     }
 }

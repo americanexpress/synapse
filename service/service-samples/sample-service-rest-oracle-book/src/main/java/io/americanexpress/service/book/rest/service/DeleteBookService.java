@@ -15,6 +15,8 @@ package io.americanexpress.service.book.rest.service;
 
 import io.americanexpress.data.oracle.book.dao.BookRepository;
 import io.americanexpress.data.oracle.book.entity.BookEntity;
+import io.americanexpress.synapse.framework.exception.ApplicationClientException;
+import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 import io.americanexpress.synapse.service.rest.service.BaseDeleteService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
@@ -43,6 +45,8 @@ public class DeleteBookService extends BaseDeleteService {
         BookEntity bookEntity = bookRepository.findByTitle(title);
         if (bookEntity != null) {
             bookRepository.delete(bookEntity);
+        } else {
+            throw new ApplicationClientException("Bad request", ErrorCode.GENERIC_4XX_ERROR, (String[]) null);
         }
     }
 }

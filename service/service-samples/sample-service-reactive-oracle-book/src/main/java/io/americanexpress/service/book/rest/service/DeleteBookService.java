@@ -14,11 +14,11 @@
 package io.americanexpress.service.book.rest.service;
 
 import io.americanexpress.data.oracle.book.dao.BookRepository;
+import io.americanexpress.synapse.framework.exception.ApplicationClientException;
+import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 import io.americanexpress.synapse.service.rest.service.reactive.BaseDeleteReactiveService;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
@@ -45,7 +45,7 @@ public class DeleteBookService extends BaseDeleteReactiveService {
     protected Mono<Void> executeDelete(HttpHeaders headers, String title) {
         return bookRepository.findByTitle(title)
                 .publishOn(Schedulers.boundedElastic())
-                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "Book Not Found")))
+                .switchIfEmpty(Mono.error(new ApplicationClientException("Bad request", ErrorCode.GENERIC_4XX_ERROR, (String[]) null)))
                 .doOnSuccess(bookEntity -> bookRepository.deleteByTitle(bookEntity.getTitle()).subscribe())
                 .then();
     }

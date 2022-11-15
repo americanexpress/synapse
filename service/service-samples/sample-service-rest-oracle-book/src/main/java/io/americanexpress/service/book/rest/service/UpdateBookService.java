@@ -17,6 +17,8 @@ import io.americanexpress.data.oracle.book.dao.BookRepository;
 import io.americanexpress.data.oracle.book.entity.BookEntity;
 import io.americanexpress.service.book.rest.model.UpdateBookRequest;
 import io.americanexpress.service.book.rest.service.helper.BookServiceMapper;
+import io.americanexpress.synapse.framework.exception.ApplicationClientException;
+import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 import io.americanexpress.synapse.service.rest.service.BaseUpdateService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
@@ -45,6 +47,8 @@ public class UpdateBookService extends BaseUpdateService<UpdateBookRequest> {
         BookEntity bookEntity = bookRepository.findByTitle(request.getTitle());
         if (bookEntity != null) {
             bookRepository.save(BookServiceMapper.populateBookEntityForUpdate(request, bookEntity));
+        } else {
+            throw new ApplicationClientException("Bad request", ErrorCode.GENERIC_4XX_ERROR, (String[]) null);
         }
     }
 }
