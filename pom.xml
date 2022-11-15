@@ -262,6 +262,11 @@
                 <artifactId>synapse-data-postgres</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-data-redis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <!--Utility-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
@@ -354,6 +359,11 @@
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>sample-data-cassandra-reactive</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-redis-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
