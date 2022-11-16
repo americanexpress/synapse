@@ -20,21 +20,41 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ws.client.core.WebServiceOperations;
 
+/**
+ * {@code BaseSoapClient} class specifies the prototypes for all SOAP clients.
+ */
 public class BaseSoapClient {
 
+    /**
+     * The Logger.
+     */
+    protected final XLogger logger = XLoggerFactory.getXLogger(this.getClass());
+
+    /**
+     * The Template.
+     */
     @Autowired
     protected WebServiceOperations template;
 
-    public void setTemplate(WebServiceOperations template) {
-        this.template = template;
-    }
-
+    /**
+     * The Marshaller.
+     */
     @Autowired
     protected Jaxb2Marshaller marshaller;
 
-    protected final XLogger logger = XLoggerFactory.getXLogger(this.getClass());
-
+    /**
+     * The Url.
+     */
     @Value("${client.url}")
     protected String url;
+
+    /**
+     * Sets template.
+     *
+     * @param template the template
+     */
+    public void setTemplate(WebServiceOperations template) {
+        this.template = template;
+    }
 
 }

@@ -26,6 +26,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 
+/**
+ * {@code BaseClientHttpHeadersFactoryTest} is for testing {@link BaseClientHttpHeadersFactory}
+ *
+ * @param <I> the type parameter
+ * @param <H> the type parameter
+ */
 public abstract class BaseClientHttpHeadersFactoryTest<I extends BaseClientRequest,
         H extends BaseClientHttpHeadersFactory<I>> extends BaseClientTest {
 

@@ -3,7 +3,7 @@ package io.americanexpress.synapse.client.rest.model;
 import java.util.Objects;
 
 /**
- * <code>ClientTrace</code> class is the model used for the tracing elements in the client headers.
+ * {@code ClientTrace} class is the model used for the tracing elements in the client headers.
  *
  * @author Paolo Claudio
  */

@@ -3,7 +3,7 @@ package io.americanexpress.synapse.client.rest.model;
 import java.util.Objects;
 
 /**
- * <code>ClientRouting</code> class is the model for the routing elements used in the client headers.
+ * {@code ClientRouting} class is the model for the routing elements used in the client headers.
  *
  * @author Paolo Claudio
  */

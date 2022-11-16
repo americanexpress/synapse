@@ -18,11 +18,31 @@
 ```
         <dependency>
             <groupId>com.americanexpress</groupId>
-            <artifactId>synapse-service-rest</artifactId>
+            <artifactId>synapse-client-rest</artifactId>
             <version>0.3.8-SNAPSHOT</version>
         </dependency>
 ```
 Or add the following to the build.gradle file:
 ```
-implementation 'io.americanexpress.synapse:synapse-service-rest:0.2.1!!'
+implementation 'io.americanexpress.synapse:synapse-client-rest:0.3.8-SNAPSHOT'
 ```
+
+- Have a configuration class that extends `BaseRestClientConfig` or `BaseReactiveRestClientConfig` for reactive support.
+  - Using the `initialize()` initialize the client with the url for the API
+  - For example: 
+  ```
+    @Value("${client.url}")
+    @Override
+    protected void initialize(String destinationUrl) {
+        initializeClient(destinationUrl, weatherClient, weatherResponseErrorHandler);
+    }
+  ```
+- Create the client class extending `BaseRestClient` or one of the follow base reactive client classes for reactive support:
+  - BaseGetReactiveRestClient
+  - BasePostReactiveRestClient
+  - BasePutReactiveRestClient
+  - BaseDeleteReactiveRestClient
+
+## Examples
+Examples of utilizing the synapse-client-rest module can be found in the following modules:
+- sample-client-weather

@@ -13,7 +13,6 @@
  */
 package io.americanexpress.synapse.client.rest.helper;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateCustomizer;
 import org.springframework.http.client.BufferingClientHttpRequestFactory;
 import org.springframework.stereotype.Component;
@@ -26,21 +25,8 @@ import org.springframework.web.client.RestTemplate;
  * @author Paolo Claudio
  */
 @Component
-public class RestClientLoggingCustomizer implements RestTemplateCustomizer {
-
-	/**
-	 * Used to intercept the client request and response.
-	 */
-    private final RestClientLoggingInterceptor restClientLoggingInterceptor;
-
-    /**
-     * Argument constructor creates a new instance of RestClientLoggingCustomizer with given values.
-     * @param restClientLoggingInterceptor used to intercept the client request and response
-     */
-    @Autowired
-    public RestClientLoggingCustomizer(RestClientLoggingInterceptor restClientLoggingInterceptor) {
-        this.restClientLoggingInterceptor = restClientLoggingInterceptor;
-    }
+public record RestClientLoggingCustomizer(
+        RestClientLoggingInterceptor restClientLoggingInterceptor) implements RestTemplateCustomizer {
 
     /**
      * Customize the rest template.
