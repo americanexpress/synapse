@@ -127,19 +127,13 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(ApplicationClientException.class)
     public ResponseEntity<ErrorResponse> handleApplicationClientException(final ApplicationClientException applicationClientException, HttpServletRequest httpServletRequest) {
         logger.entry(applicationClientException);
-        
-        ResponseEntity<ErrorResponse> errorResponseEntity;
-        
-        if(applicationClientException.getCause() == null) {
-        	ErrorCode errorCode = applicationClientException.getErrorCode();
-            String message = errorMessagePropertyReader.getErrorMessage(errorCode, applicationClientException.getMessageArguments());
-            String developerMessage = applicationClientException.getDeveloperMessage();
-            ErrorResponse errorResponse = new ErrorResponse(errorCode, ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE, message, developerMessage);
-            errorResponseEntity = ResponseEntity.badRequest().body(errorResponse);
-        } else {
-            errorResponseEntity = internalServerErrorResponseCreator.create(applicationClientException, httpServletRequest);
-        }
-        
+
+        ErrorCode errorCode = applicationClientException.getErrorCode();
+        String message = errorMessagePropertyReader.getErrorMessage(errorCode, applicationClientException.getMessageArguments());
+        String developerMessage = applicationClientException.getDeveloperMessage();
+        ErrorResponse errorResponse = new ErrorResponse(errorCode, ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE, message, developerMessage);
+        ResponseEntity<ErrorResponse> errorResponseEntity = ResponseEntity.badRequest().body(errorResponse);
+
         logger.exit(errorResponseEntity);
         return errorResponseEntity;
     }

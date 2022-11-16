@@ -18,6 +18,7 @@ import io.americanexpress.synapse.framework.exception.ApplicationServerException
 import io.americanexpress.synapse.framework.exception.helper.ErrorMessagePropertyReader;
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 import io.americanexpress.synapse.service.rest.model.ErrorResponse;
+import org.apache.catalina.connector.ClientAbortException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -35,6 +36,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.client.RestClientException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -87,13 +89,13 @@ class ControllerExceptionHandlerTest {
     }
 
     @Test
-    void handleApplicationException_whenApplicationExceptionContainsNoCause_expected400() {
+    void handleApplicationClientException_givenApplicationClientException_expected400() {
         ResponseEntity<ErrorResponse> errorResponseEntity = CONTROLLER_EXCEPTION_HANDLER.handleApplicationClientException(new ApplicationClientException("There was an error from the external provider", ErrorCode.GENERIC_4XX_ERROR), new MockHttpServletRequest());
         assertErrorResponse(errorResponseEntity, ErrorCode.GENERIC_4XX_ERROR, ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE, "Your client has issued a malformed or illegal request.", HttpStatus.BAD_REQUEST);
     }
 
     @Test
-    void handleApplicationException_whenApplicationExceptionContainsCause_expected500() {
+    void handleApplicationServerException_givenApplicationServerException_expected500() {
         HttpServletRequest mockedRequest = new MockHttpServletRequest();
         ResponseEntity<ErrorResponse> errorResponseEntity = CONTROLLER_EXCEPTION_HANDLER.handleApplicationServerException(new ApplicationServerException(new IOException()), mockedRequest);
         assertErrorResponse(errorResponseEntity, ErrorCode.GENERIC_5XX_ERROR, ControllerExceptionHandler.GENERIC_5XX_HEADER_MESSAGE, "There was an error. Please try again later.", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -151,6 +153,28 @@ class ControllerExceptionHandlerTest {
 
         String developerMessage = Objects.requireNonNull(errorResponseEntity.getBody()).getDeveloperMessage();
         assertTrue(developerMessage.contains(responseBody));
+    }
+
+    @Test
+    void handleRestClientException_givenRestClientException_expected400() {
+        HttpServletRequest mockedRequest = new MockHttpServletRequest();
+        RestClientException restClientException = new RestClientException("Invalid client call");
+
+        ResponseEntity<ErrorResponse> errorResponseEntity = CONTROLLER_EXCEPTION_HANDLER.handleRestClientException(restClientException, mockedRequest);
+        assertErrorResponse(errorResponseEntity, ErrorCode.GENERIC_4XX_ERROR, ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE, "Your client has issued a malformed or illegal request.", HttpStatus.BAD_REQUEST);
+    }
+
+    @Test
+    void handleClientAbortException_givenClientAbortException_expected400() {
+        HttpServletRequest mockedRequest = new MockHttpServletRequest();
+        ClientAbortException clientAbortException = new ClientAbortException();
+        ResponseEntity<ErrorResponse> errorResponseEntity = CONTROLLER_EXCEPTION_HANDLER.handleClientAbortException(clientAbortException, mockedRequest);
+        ErrorResponse actual = errorResponseEntity.getBody();
+        assertAll("Error response values",
+                () -> assertEquals(ErrorCode.GENERIC_4XX_ERROR, actual.getCode()),
+                () -> assertEquals(ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE, actual.getMessage()),
+                () -> assertEquals("The user has exited prior to service completion.", actual.getMoreInfo()),
+                () -> assertEquals(499, errorResponseEntity.getStatusCodeValue()));
     }
 
     private void assertErrorResponse(ResponseEntity<ErrorResponse> errorResponseEntity, ErrorCode expectedErrorCode, String expectedHeaderMessage, String expectedUserMessage, HttpStatus expectedStatusCode) {
