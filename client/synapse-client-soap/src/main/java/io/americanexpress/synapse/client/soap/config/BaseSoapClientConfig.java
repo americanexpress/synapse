@@ -16,7 +16,7 @@ package io.americanexpress.synapse.client.soap.config;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * BaseSoapClientConfig class is used to set the configurations for the base SOAP client.
+ * {@code BaseSoapClientConfig} class is used to set the configurations for the base SOAP client.
  * Use @import in child config classes to inherit these base configurations.
  *
  * @author Alexei Morgado

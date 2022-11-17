@@ -43,6 +43,13 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withStatus;
 
+/**
+ * {@code BaseRestClientUnitTest} is the extensible class for unit testing rest clients.
+ *
+ * @param <I> the type parameter
+ * @param <O> the type parameter
+ * @param <C> the type parameter
+ */
 public abstract class BaseRestClientUnitTest<I extends BaseClientRequest,
         O extends BaseClientResponse,
         C extends BaseRestClient<I, O>> extends BaseRestClientTest<I, O, C> {

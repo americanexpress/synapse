@@ -13,6 +13,7 @@
  */
 package io.americanexpress.synapse.client.rest.factory;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.ClientHeaders;
 import org.junit.jupiter.api.Test;
@@ -21,17 +22,20 @@ import org.springframework.http.HttpHeaders;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.*;
 
-public class BaseHttpHeadersFactoryTest {
+/**
+ * {@code BaseClientHttpHeadersFactoryTest} tests the {@link BaseClientHttpHeadersFactory}
+ */
+class BaseClientHttpHeadersFactoryTest {
 
     @Test
-    public void httpHeadersFactory_constructor() {
+    void httpHeadersFactory_constructor() {
 
         // Mock an instance of the abstract factory using its default constructor
-        mock(BaseClientHttpHeadersFactory.class, withSettings().useConstructor());
+        mock(BaseClientHttpHeadersFactory.class, withSettings().useConstructor(new ObjectMapper()));
     }
 
     @Test
-    public void create_null() {
+    void create_null() {
 
         @SuppressWarnings("unchecked")
         BaseClientHttpHeadersFactory<BaseClientRequest> factory = (BaseClientHttpHeadersFactory<BaseClientRequest>) mock(BaseClientHttpHeadersFactory.class);

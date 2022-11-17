@@ -20,18 +20,34 @@ import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * {@code BaseRestClientTest} is the base test class for testing rest clients.
+ *
+ * @param <I> the type parameter
+ * @param <O> the type parameter
+ * @param <C> the type parameter
+ */
 abstract class BaseRestClientTest<I extends BaseClientRequest,
         O extends BaseClientResponse,
         C extends BaseRestClient<I, O>> extends BaseClientTest {
 
+    /**
+     * Initialize.
+     */
     @BeforeEach
     protected void initialize() {
         this.url = restClient.getUrl();
     }
 
+    /**
+     * The Rest client.
+     */
     @Autowired
     protected C restClient;
 
+    /**
+     * The Client request.
+     */
     protected I clientRequest;
 
 }

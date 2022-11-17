@@ -37,7 +37,7 @@ final class PathVariableUriCreator {
 	
     /**
      * Get the new URI if there are path variables present in the format of
-     * <code>/pathVariable1/pathVariable2</code>
+     * {@code /pathVariable1/pathVariable2}
      *
      * @param pathVariables variables that need to be added to the URI
      * @return the new URI containing the path variables if any are present; empty string otherwise

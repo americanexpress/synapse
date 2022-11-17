@@ -18,29 +18,32 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-public class ClientRoutingTest {
+/**
+ * {@code ClientRoutingTest} tests the {@link ClientRouting}
+ */
+class ClientRoutingTest {
 
     @Test
-    public void clientRouting_constructor() {
+    void clientRouting_constructor() {
         new ClientRouting();
     }
 
     @Test
-    public void equals_this() {
+    void equals_this() {
         ClientRouting routing1 = new ClientRouting();
         ClientRouting routing2 = routing1;
         assertEquals(routing1, routing2);
     }
 
     @Test
-    public void equals_null() {
+    void equals_null() {
         ClientRouting routing1 = new ClientRouting();
         ClientRouting routing2 = null;
         assertNotEquals(routing1, routing2);
     }
 
     @Test
-    public void equals_invalidType() {
+    void equals_invalidType() {
         ClientRouting routing1 = new ClientRouting();
         String routing2 = "";
         assertNotEquals(routing1, routing2);
@@ -48,14 +51,14 @@ public class ClientRoutingTest {
 
 
     @Test
-    public void equals_bothEqual() {
+    void equals_bothEqual() {
         ClientRouting routing1 = new ClientRouting();
         ClientRouting routing2 = new ClientRouting();
         assertEquals(routing1, routing2);
     }
 
     @Test
-    public void hashCode_clean() {
+    void hashCode_clean() {
         new ClientRouting().hashCode();
     }
 }
