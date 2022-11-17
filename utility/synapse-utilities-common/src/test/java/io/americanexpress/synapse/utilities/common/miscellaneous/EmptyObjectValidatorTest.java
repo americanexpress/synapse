@@ -22,28 +22,31 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-public class EmptyObjectValidatorTest {
+/**
+ * {@code EmptyObjectValidatorTest} tests the {@link EmptyObjectValidator}.
+ */
+class EmptyObjectValidatorTest {
 
     private static final String OBJECT_EMPTY = "The object is empty.";
 
     private static final String OBJECT_NOT_EMPTY = "The object is not empty.";
 
     @Test
-    public void isEmptyObject_null() {
+    void isEmptyObject_null() {
         boolean actual = EmptyObjectValidator.isEmpty(null);
         assertTrue(actual, OBJECT_EMPTY);
     }
 
 
     @Test
-    public void isEmptyObject_sampleModelEmpty() {
+    void isEmptyObject_sampleModelEmpty() {
         SampleModel sampleModel = new SampleModel();
         boolean actual = EmptyObjectValidator.isEmpty(sampleModel);
         assertTrue(actual, OBJECT_EMPTY);
     }
 
     @Test
-    public void isEmptyObject_sampleModelString() {
+    void isEmptyObject_sampleModelString() {
         SampleModel sampleModel = new SampleModel();
         sampleModel.setFirstName("Christie");
         boolean actual = EmptyObjectValidator.isEmpty(sampleModel);
@@ -51,7 +54,7 @@ public class EmptyObjectValidatorTest {
     }
 
     @Test
-    public void isEmptyObject_sampleModelBigDecimal() {
+    void isEmptyObject_sampleModelBigDecimal() {
         SampleModel sampleModel = new SampleModel();
         sampleModel.setBalanceMasking(BigDecimal.valueOf(100.0));
         boolean actual = EmptyObjectValidator.isEmpty(sampleModel);

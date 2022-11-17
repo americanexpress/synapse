@@ -21,6 +21,9 @@ import java.util.Properties;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+/**
+ * {@code StringPlaceholderResolverTest} tests the {@link StringPlaceholderResolver}.
+ */
 class StringPlaceholderResolverTest {
 
     private static final StringPlaceholderResolver STRING_PLACEHOLDER_RESOLVER = new StringPlaceholderResolver("sample-placeholder-text.txt");

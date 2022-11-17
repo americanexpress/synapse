@@ -1,4 +1,4 @@
-package io.americanexpress.synapse.utility.number;
+package io.americanexpress.synapse.utilities.common.number;
 
 import io.americanexpress.synapse.framework.test.CommonAssertionMessages;
 import org.junit.jupiter.api.Test;

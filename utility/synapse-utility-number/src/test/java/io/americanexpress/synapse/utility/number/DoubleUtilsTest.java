@@ -17,6 +17,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * {@code DoubleUtilsTest} tests the {@link DoubleUtils}.
+ */
 class DoubleUtilsTest {
 
     private static final String VALUE_NOT_EQUAL = "The values are not equal.";

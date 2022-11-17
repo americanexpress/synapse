@@ -18,6 +18,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * {@code CryptoUtilTest} tests the {@link CryptoUtil}.
+ */
 class CryptoUtilTest {
 
     private static final String ENCRYPTED_VALUE = "feR+vAk+Ysys9pOeEWupVQ==";

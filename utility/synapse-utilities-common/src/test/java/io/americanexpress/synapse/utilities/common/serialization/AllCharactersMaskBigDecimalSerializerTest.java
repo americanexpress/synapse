@@ -20,7 +20,7 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AllCharactersMaskBigDecimalSerializerTest extends BaseTestSerializer {
+class AllCharactersMaskBigDecimalSerializerTest extends BaseTestSerializer {
 
     @BeforeEach
     @Override
@@ -41,7 +41,7 @@ public class AllCharactersMaskBigDecimalSerializerTest extends BaseTestSerialize
     }
 
     @Test
-    public void serialize_10digitMasking() throws Exception {
+    void serialize_10digitMasking() throws Exception {
         model.setBalanceMasking(BigDecimal.valueOf(012345678.009977));
         String expected = "{\"character_masking\":\"***\"}";
         String actual = mapper.writeValueAsString(model);
@@ -49,7 +49,7 @@ public class AllCharactersMaskBigDecimalSerializerTest extends BaseTestSerialize
     }
 
     @Test
-    public void serialize_1Billion_DigitMasking() throws Exception {
+    void serialize_1Billion_DigitMasking() throws Exception {
         model.setBalanceMasking(BigDecimal.valueOf(1000000000.00));
         String expected = "{\"character_masking\":\"***\"}";
         String actual = mapper.writeValueAsString(model);
@@ -57,7 +57,7 @@ public class AllCharactersMaskBigDecimalSerializerTest extends BaseTestSerialize
     }
 
     @Test
-    public void serialize_4digitMasking() throws Exception {
+    void serialize_4digitMasking() throws Exception {
         model.setBalanceMasking(BigDecimal.valueOf(1234.00));
         String expected = "{\"character_masking\":\"***\"}";
         String actual = mapper.writeValueAsString(model);

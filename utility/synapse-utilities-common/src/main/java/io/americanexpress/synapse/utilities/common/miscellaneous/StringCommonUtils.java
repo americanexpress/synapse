@@ -3,7 +3,6 @@ package io.americanexpress.synapse.utilities.common.miscellaneous;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.CaseUtils;
 
-
 /**
  * {@code StringCommonUtils} contains methods for string conversions and string cleanup.
  */

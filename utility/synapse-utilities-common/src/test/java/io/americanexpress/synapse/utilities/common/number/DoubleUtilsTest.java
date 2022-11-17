@@ -17,63 +17,66 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DoubleUtilsTest {
+/**
+ * {@code DoubleUtilsTest} tests the {@link DoubleUtils}.
+ */
+class DoubleUtilsTest {
 
     private static final String VALUE_NOT_EQUAL = "The values are not equal.";
 
     private static final String VALUE_EQUAL = "The values are equal.";
 
     @Test
-    public void tryParseDouble_null() {
+    void tryParseDouble_null() {
         Double actual = DoubleUtils.tryParseDouble(null);
         Double expected = null;
         assertEquals(expected, actual, "null");
     }
 
     @Test
-    public void tryParseDouble_123() {
+    void tryParseDouble_123() {
         Double actual = DoubleUtils.tryParseDouble("123");
         Double expected = 123.0;
         assertEquals(expected, actual, VALUE_EQUAL);
     }
 
     @Test
-    public void tryParseDouble_space123() {
+    void tryParseDouble_space123() {
         Double actual = DoubleUtils.tryParseDouble(" 123 ");
         Double expected = 123.0;
         assertEquals(expected, actual, VALUE_EQUAL);
     }
 
     @Test
-    public void tryParseDouble_12340123() {
+    void tryParseDouble_12340123() {
         Double actual = DoubleUtils.tryParseDouble("1234.0123");
         Double expected = 1234.0123;
         assertEquals(expected, actual, VALUE_EQUAL);
     }
 
     @Test
-    public void tryParseDouble_ABC() {
+    void tryParseDouble_ABC() {
         Double actual = DoubleUtils.tryParseDouble("ABC");
         Double expected = null;
         assertEquals(expected, actual, VALUE_NOT_EQUAL);
     }
 
     @Test
-    public void tryParseDouble_neg1234() {
+    void tryParseDouble_neg1234() {
         Double actual = DoubleUtils.tryParseDouble("-1234");
         Double expected = -1234.0;
         assertEquals(expected, actual, VALUE_NOT_EQUAL);
     }
 
     @Test
-    public void tryParseDouble_0000() {
+    void tryParseDouble_0000() {
         Double actual = DoubleUtils.tryParseDouble("0000");
         Double expected = 0000000.00;
         assertEquals(expected, actual, VALUE_NOT_EQUAL);
     }
 
     @Test
-    public void tryParseDouble_00ABC() {
+    void tryParseDouble_00ABC() {
         Double actual = DoubleUtils.tryParseDouble("00ABC");
         Double expected = null;
         assertEquals(expected, actual, VALUE_NOT_EQUAL);
