@@ -32,8 +32,14 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class InternalServerErrorResponseCreator {
 
+    /**
+     * Used to create the error message based on the error code by reading the value in error-messages.properties.
+     */
     private final ErrorMessagePropertyReader messagePropertyReader;
 
+    /**
+     * Used to log the exceptions
+     */
     private final MappedDiagnosticContextRequestFieldSetter mappedDiagnosticContextRequestFieldSetter;
 
     /**

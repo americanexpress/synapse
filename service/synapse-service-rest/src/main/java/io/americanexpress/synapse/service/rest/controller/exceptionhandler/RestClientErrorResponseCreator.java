@@ -27,6 +27,9 @@ import org.springframework.web.client.RestClientResponseException;
 @Component
 public class RestClientErrorResponseCreator {
 
+    /**
+     * Used to create the error message based on the error code by reading the value in error-messages.properties.
+     */
     private final ErrorMessagePropertyReader messagePropertyReader;
 
     /**

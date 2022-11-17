@@ -33,6 +33,9 @@ public class MappedDiagnosticContextRequestFieldSetter {
      */
     private final XLogger logger = XLoggerFactory.getXLogger(getClass());
 
+    /**
+     * Used to convert request to string.
+     */
     private final RequestPayloadConverter requestPayloadConverter;
 
     /**

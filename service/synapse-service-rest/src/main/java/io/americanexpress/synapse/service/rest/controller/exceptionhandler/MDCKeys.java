@@ -18,6 +18,9 @@ package io.americanexpress.synapse.service.rest.controller.exceptionhandler;
  */
 class MDCKeys {
 
+    /**
+     * Private constructor to prevent instantiation of constants class.
+     */
     private MDCKeys() {
     }
 
