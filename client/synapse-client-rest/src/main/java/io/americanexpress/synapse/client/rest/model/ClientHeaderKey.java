@@ -14,7 +14,7 @@
 package io.americanexpress.synapse.client.rest.model;
 
 /**
- * <code>ClientHeaderKey</code> enum will house all the header keys.
+ * {@code ClientHeaderKey} enum will house all the header keys.
  *
  * @author Gabriel Jimenez
  */

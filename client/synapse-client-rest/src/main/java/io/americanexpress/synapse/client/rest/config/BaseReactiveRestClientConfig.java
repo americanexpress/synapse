@@ -53,11 +53,10 @@ public abstract class BaseReactiveRestClientConfig extends BaseClientConfig {
      * @return the default web client
      */
     public WebClient defaultWebClient(String destinationUrl) {
-    	 WebClient webClient = WebClient.builder()
+        return WebClient.builder()
     		.filter(ReactiveRestClientLoggingExchangeFilterFunction.logClientRequest())
     		.filter(ReactiveRestClientLoggingExchangeFilterFunction.logClientResponse())
         	.baseUrl(destinationUrl)
-        	.build();	 
-    	 return webClient;
+        	.build();
     }
 }

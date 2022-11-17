@@ -18,5 +18,5 @@
 ```
 Or add the following to the build.gradle file:
 ```
-implementation 'io.americanexpress.synapse:synapse-client-soap:0.2.1!!'
+implementation 'io.americanexpress.synapse:synapse-client-soap:0.3.8-SNAPSHOT'
 ```

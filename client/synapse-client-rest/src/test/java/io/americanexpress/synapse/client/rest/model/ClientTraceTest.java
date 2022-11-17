@@ -18,43 +18,46 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-public class ClientTraceTest {
+/**
+ * {@code ClientTraceTest} tests the {@link ClientTrace}
+ */
+class ClientTraceTest {
 
     @Test
-    public void getCorrelationId_null() {
+    void getCorrelationId_null() {
         ClientTrace trace = new ClientTrace();
         trace.getCorrelationId();
     }
 
     @Test
-    public void setCorrelationId_null() {
+    void setCorrelationId_null() {
         ClientTrace trace = new ClientTrace();
         trace.setCorrelationId(null);
     }
 
     @Test
-    public void equals_this() {
+    void equals_this() {
         ClientTrace trace1 = new ClientTrace();
         ClientTrace trace2 = trace1;
         assertEquals(trace1, trace2);
     }
 
     @Test
-    public void equals_null() {
+    void equals_null() {
         ClientTrace trace1 = new ClientTrace();
         ClientTrace trace2 = null;
         assertNotEquals(trace1, trace2);
     }
 
     @Test
-    public void equals_invalidType() {
+    void equals_invalidType() {
         ClientTrace trace1 = new ClientTrace();
         String trace2 = "";
         assertNotEquals(trace1, trace2);
     }
 
     @Test
-    public void equals_instanceContainsNull() {
+    void equals_instanceContainsNull() {
         ClientTrace trace1 = new ClientTrace();
         ClientTrace trace2 = new ClientTrace();
         trace2.setCorrelationId("");
@@ -62,7 +65,7 @@ public class ClientTraceTest {
     }
 
     @Test
-    public void equals_notEqual() {
+    void equals_notEqual() {
         ClientTrace trace1 = new ClientTrace();
         trace1.setCorrelationId("a");
         ClientTrace trace2 = new ClientTrace();
@@ -71,7 +74,7 @@ public class ClientTraceTest {
     }
 
     @Test
-    public void equals_bothEqual() {
+    void equals_bothEqual() {
         ClientTrace trace1 = new ClientTrace();
         trace1.setCorrelationId("");
         ClientTrace trace2 = new ClientTrace();
@@ -80,7 +83,7 @@ public class ClientTraceTest {
     }
 
     @Test
-    public void hashCode_clean() {
+    void hashCode_clean() {
         new ClientTrace().hashCode();
     }
 }
