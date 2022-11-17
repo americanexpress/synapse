@@ -16,7 +16,7 @@ package io.americanexpress.synapse.client.rest.model;
 import java.util.Objects;
 
 /**
- * ClientHeaders class is the model containing the trace and routing for a client.
+ * {@code ClientHeaders} class is the model containing the trace and routing for a client.
  *
  * @author Paolo Claudio
  */

@@ -16,13 +16,15 @@ package io.americanexpress.synapse.client.rest.helper;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import java.util.Arrays;
 import java.util.List;
 
 import io.americanexpress.synapse.client.rest.model.QueryParameter;
 import io.americanexpress.synapse.framework.test.CommonAssertionMessages;
 import org.junit.jupiter.api.Test;
 
+/**
+ * {@code UrlBuilderTest} tests the {@link UrlBuilder}.
+ */
 class UrlBuilderTest {
 
 	private static final String MOCK_BASE_ENDPOINT = "https://www.americanexpress.com";
@@ -54,7 +56,7 @@ class UrlBuilderTest {
 		String pathVariable = "pets";
 		String key = "name";
 		String value = "Sparky";
-		List<QueryParameter> queryParameters = Arrays.asList(new QueryParameter(key, value));
+		List<QueryParameter> queryParameters = List.of(new QueryParameter(key, value));
 		String expected = MOCK_BASE_ENDPOINT + "/" + pathVariable + "?" + key + "=" + value;
 		String actual = UrlBuilder.build(MOCK_BASE_ENDPOINT, queryParameters, pathVariable);
 		assertEquals(expected, actual, CommonAssertionMessages.VALUE_NOT_EQUAL);

@@ -25,6 +25,7 @@
 
     <!--Modules-->
     <modules>
+        <module>sample-client-reactive-weather</module>
         <module>sample-client-weather</module>
     </modules>
 
