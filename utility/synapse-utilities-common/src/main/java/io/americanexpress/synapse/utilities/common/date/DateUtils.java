@@ -206,6 +206,16 @@ public class DateUtils {
     }
 
     /**
+     * This method converts from LocalDateTime to Long Epoch.
+     *
+     * @param localDateTime input local date time parameter
+     * @return epoch of datatype long
+     */
+    public static long convertFromLocalDateTimeToLongEpoch(LocalDateTime localDateTime) {
+        return localDateTime.atZone(ZoneId.of(TimeZone.MST.getValue())).toEpochSecond();
+    }
+
+    /**
      * This method converts from LocalDateType to Long Epoch Milliseconds.
      *
      * @param localDateTime input local date time parameter

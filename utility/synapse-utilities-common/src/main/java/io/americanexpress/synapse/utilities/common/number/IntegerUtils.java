@@ -17,11 +17,15 @@ import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 
 /**
- * IntegerUtils class used to convert the string to integer if the value is valid.
+ * {@code IntegerUtils} class used to convert the string to integer if the value is valid.
  */
 public class IntegerUtils {
 
     private static final XLogger logger = XLoggerFactory.getXLogger(IntegerUtils.class);
+
+    private IntegerUtils() {
+        //Private constructor to prevent instantiation of utility class.
+    }
 
     /**
      * Try to parse the numerical string representation into its corresponding integer value.

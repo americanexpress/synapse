@@ -14,34 +14,18 @@
 package io.americanexpress.synapse.utilities.common.date;
 
 /**
- * {@code DateFormat} represents type of date format.
+ * {@code TimeZone} to represent different time zones.
  */
-public enum DateFormat {
+public enum TimeZone {
 
     /**
-     * The Month day comma year.
+     * Mst time zone.
      */
-    MONTH_DAY_COMMA_YEAR("MMMM dd, yyyy"),
-    /**
-     * Iso date date format.
-     */
-    ISO_DATE("yyyy-MM-dd"),
-    /**
-     * The Iso time.
-     */
-    ISO_TIME("yyyy-MM-dd HH:mm:ss"),
-    /**
-     * Iso instant date format.
-     */
-    ISO_INSTANT("yyyy-MM-dd'T'HH:mm:ssZ"),
-    /**
-     * Month day year with leading zeros date format.
-     */
-    MONTH_DAY_YEAR_WITH_LEADING_ZEROS("mm/dd/yyyy");
+    MST("America/Phoenix");
 
     private String value;
 
-    DateFormat(String value) {
+    TimeZone(String value){
         this.value = value;
     }
 
