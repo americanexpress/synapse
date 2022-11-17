@@ -19,13 +19,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AllCharactersMaskStringSerializerTest extends BaseTestStringSerializer {
+/**
+ * {@code AllCharactersMaskStringSerializerTest} tests the {@link AllCharactersMaskStringSerializer}
+ */
+class AllCharactersMaskStringSerializerTest extends BaseTestStringSerializer {
 
     @BeforeEach
     @Override
     public void initializeModel() {
         super.initializeModel();
-        setTestField("all_numbers_masking");
+        setTestField("allNumbersMasking");
     }
 
     @Override
@@ -40,13 +43,13 @@ public class AllCharactersMaskStringSerializerTest extends BaseTestStringSeriali
     @Test
     public void serialize_whiteSpace() throws Exception {
         arrangeWhiteSpace();
-        String expected = "{\"all_numbers_masking\":\" \"}";
+        String expected = "{\"allNumbersMasking\":\" \"}";
         String actual = mapper.writeValueAsString(model);
         assertEquals(expected, actual, SERIALIZATION_FAILED);
     }
 
     @Test
-    public void serialize_null() throws Exception {
+    void serialize_null() throws Exception {
         SampleModel model = null;
         String expected = "null";
         String actual = mapper.writeValueAsString(model);
@@ -54,9 +57,9 @@ public class AllCharactersMaskStringSerializerTest extends BaseTestStringSeriali
     }
 
     @Test
-    public void serialize_4digitMasking() throws Exception {
+    void serialize_4digitMasking() throws Exception {
         model.setAllNumbersMasking("1234");
-        String expected = "{\"all_numbers_masking\":\"****\"}";
+        String expected = "{\"allNumbersMasking\":\"****\"}";
         String actual = mapper.writeValueAsString(model);
         assertEquals(expected, actual, SERIALIZATION_FAILED);
     }

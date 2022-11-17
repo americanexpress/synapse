@@ -17,7 +17,7 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 /**
- * IntegerSerializer class is used to convert an Integer to be formatted with commas.
+ * {@code IntegerSerializer} class is used to convert an Integer to be formatted with commas.
  *
  */
 public class IntegerSerializer extends NumberSerializer<Integer> {

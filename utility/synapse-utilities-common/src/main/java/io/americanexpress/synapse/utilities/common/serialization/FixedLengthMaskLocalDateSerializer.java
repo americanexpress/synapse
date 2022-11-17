@@ -20,6 +20,9 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import java.io.IOException;
 import java.time.LocalDate;
 
+/**
+ * {@code FixedLengthMaskLocalDateSerializer} serializes local date to fixed length.
+ */
 public class FixedLengthMaskLocalDateSerializer extends JsonSerializer<LocalDate> {
 
     @Override

@@ -19,7 +19,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import java.io.IOException;
 
 /**
- * LowerCaseStringSerializer class is used to convert a String field into lowercase during serialization.
+ * {@code LowerCaseStringSerializer} class is used to convert a String field into lowercase during serialization.
  *
  * @author Paolo Claudio
  */

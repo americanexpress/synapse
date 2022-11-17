@@ -18,6 +18,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+/**
+ * {@code UtilitiesCommonConfigTest} tests the {@link UtilitiesCommonConfig}.
+ */
 class UtilitiesCommonConfigTest {
 
     @Test

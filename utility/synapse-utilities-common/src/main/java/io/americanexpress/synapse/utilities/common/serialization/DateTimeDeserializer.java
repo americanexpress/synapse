@@ -22,6 +22,9 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * {@code DateTimeDeserializer} deserializes string to date in datetime format.
+ */
 public class DateTimeDeserializer extends JsonDeserializer<LocalDateTime> {
 
     @Override

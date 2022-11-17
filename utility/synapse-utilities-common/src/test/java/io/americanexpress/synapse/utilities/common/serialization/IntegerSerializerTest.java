@@ -18,13 +18,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class IntegerSerializerTest extends BaseTestSerializer {
+/**
+ * {@code IntegerSerializerTest} tests the {@link IntegerSerializer}.
+ */
+class IntegerSerializerTest extends BaseTestSerializer {
 
     @BeforeEach
     @Override
     public void initializeModel() {
         super.initializeModel();
-        setTestField("comma_formatted_integer");
+        setTestField("numbers");
     }
 
     @Override
@@ -39,33 +42,33 @@ public class IntegerSerializerTest extends BaseTestSerializer {
     }
 
     @Test
-    public void serialize_clean10digitNumber() throws Exception {
+    void serialize_clean10digitNumber() throws Exception {
         model.setNumbers(12345678);
-        String expected = "{\"comma_formatted_integer\":\"12,345,678\"}";
+        String expected = "{\"numbers\":\"12,345,678\"}";
         String actual = mapper.writeValueAsString(model);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void serialize_cleanNegativeNumber() throws Exception {
+    void serialize_cleanNegativeNumber() throws Exception {
         model.setNumbers(-1234);
-        String expected = "{\"comma_formatted_integer\":\"-1,234\"}";
+        String expected = "{\"numbers\":\"-1,234\"}";
         String actual = mapper.writeValueAsString(model);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void serialize_cleanZero() throws Exception {
+    void serialize_cleanZero() throws Exception {
         model.setNumbers(0);
-        String expected = "{\"comma_formatted_integer\":\"0\"}";
+        String expected = "{\"numbers\":\"0\"}";
         String actual = mapper.writeValueAsString(model);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void serialize_cleanMultipleZeros() throws Exception {
+    void serialize_cleanMultipleZeros() throws Exception {
         model.setNumbers(00000);
-        String expected = "{\"comma_formatted_integer\":\"0\"}";
+        String expected = "{\"numbers\":\"0\"}";
         String actual = mapper.writeValueAsString(model);
         assertEquals(expected, actual);
     }
@@ -81,7 +84,7 @@ public class IntegerSerializerTest extends BaseTestSerializer {
     @Test
     public void serialize_clean() throws Exception {
         model.setNumbers(1234);
-        String expected = "{\"comma_formatted_integer\":\"1,234\"}";
+        String expected = "{\"numbers\":\"1,234\"}";
         String actual = mapper.writeValueAsString(model);
         assertEquals(expected, actual);
     }
