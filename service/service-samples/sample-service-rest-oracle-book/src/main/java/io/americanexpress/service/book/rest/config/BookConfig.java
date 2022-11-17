@@ -26,7 +26,7 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @PropertySource("classpath:service-book-application.properties")
 @ComponentScan(basePackages = "io.americanexpress.service.book.rest")
-@Import(BookDataConfig.class)
-public class BookConfig extends ServiceRestConfig {
+@Import({BookDataConfig.class, ServiceRestConfig.class})
+public class BookConfig {
 
 }
