@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * <code>HealthCheckController</code> class specifies health check endpoint URIs to ensure that requests are being received by the application.
+ * {@code HealthCheckController} class specifies health check endpoint URIs to ensure that requests are being received by the application.
  *
  * @author Paolo Claudio
  */

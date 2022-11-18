@@ -38,5 +38,11 @@ public abstract class BaseReadMonoReactiveService<I extends BaseServiceRequest, 
         return response;
     }
 
+    /**
+     * Prototype for reading a resource
+     * @param headers
+     * @param request
+     * @return
+     */
     protected abstract Mono<O> executeRead(HttpHeaders headers,I request);
 }

@@ -16,7 +16,6 @@ package io.americanexpress.synapse.service.rest.controller;
 import io.americanexpress.synapse.service.rest.controller.helpers.PolyResponseEntityCreator;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
-import io.americanexpress.synapse.service.rest.model.ServiceHeadersFactory;
 import io.americanexpress.synapse.service.rest.service.BaseReadPolyService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -34,7 +33,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- * <code>BaseReadPolyController</code> class specifies the prototypes for listening for requests from the consumer
+ * {@code BaseReadPolyController} class specifies the prototypes for listening for requests from the consumer
  * to Read (POST) a resource. This Controller expects only one object in request and a list of objects as response, hence, "Poly" in the name.
  *
  * @param <I> input request type
@@ -44,6 +43,9 @@ import java.util.List;
  */
 public abstract class BaseReadPolyController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadPolyService<I, O>> extends BaseController<S> {
 
+    /**
+     * Constant string used for multiple_results
+     */
     public static final String MULTIPLE_RESULTS = "/multiple_results";
 
     /**

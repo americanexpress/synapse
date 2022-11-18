@@ -35,5 +35,10 @@ public abstract class BaseGetPolyReactiveService<O extends BaseServiceResponse> 
         return response;
     }
 
+    /**
+     * Prototype for reading multiple resources
+     * @param headers
+     * @return
+     */
     protected abstract Flux<O> executeRead(HttpHeaders headers);
 }

@@ -18,7 +18,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
 
 /**
- * <code>ServiceTrace</code> class contains the trace elements received from the consumer.
+ * {@code ServiceTrace} class contains the trace elements received from the consumer.
  *
  * @author Paolo Claudio
  */
@@ -69,6 +69,11 @@ public class ServiceTrace {
                 '}';
     }
 
+    /**
+     * Equals
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -79,6 +84,10 @@ public class ServiceTrace {
         return Objects.equals(correlationId, that.correlationId);
     }
 
+    /**
+     * hashCode
+     * @return
+     */
     @Override
     public int hashCode() {
         return correlationId != null ? correlationId.hashCode() : 0;

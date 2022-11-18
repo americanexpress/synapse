@@ -33,7 +33,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * <code>ServiceRestConfig</code> class sets common configurations for the service layer.
+ * {@code ServiceRestConfig} class sets common configurations for the service layer.
  *
  * @author Gabriel Jimenez
  */
@@ -47,8 +47,16 @@ public class ServiceRestConfig implements WebMvcConfigurer {
      */
     private final ObjectMapper defaultObjectMapper;
 
+    /**
+     * Default Metric Interceptor
+     */
     protected final MetricInterceptor interceptor;
 
+    /**
+     * Constructor taking in objectMapper & metricInterceptor
+     * @param defaultObjectMapper
+     * @param interceptor
+     */
     @Autowired
     public ServiceRestConfig(ObjectMapper defaultObjectMapper, MetricInterceptor interceptor) {
         this.defaultObjectMapper = defaultObjectMapper;
@@ -77,11 +85,19 @@ public class ServiceRestConfig implements WebMvcConfigurer {
         converters.add(jsonMessageConverter());
     }
 
+    /**
+     * Adds interceptor to the registry
+     * @param registry
+     */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(interceptor).addPathPatterns("/**");
     }
 
+    /**
+     * Returns default objectMapper
+     * @return
+     */
     protected ObjectMapper getObjectMapper() {
         return defaultObjectMapper;
     }

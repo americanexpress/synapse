@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * ControllerExceptionHandler class handles all the exceptions and errors thrown by the application, excluding Spring Security.
+ * {@code ControllerExceptionHandler} class handles all the exceptions and errors thrown by the application, excluding Spring Security.
  *
  * @author Alexei Morgado
  */
@@ -103,7 +103,7 @@ public class ControllerExceptionHandler {
         
         ResponseEntity<ErrorResponse> errorResponseEntity;
         
-        if(applicationClientException.getCause() == null) {
+        if (applicationClientException.getCause() == null) {
         	ErrorCode errorCode = applicationClientException.getErrorCode();
             String message = errorMessagePropertyReader.getErrorMessage(errorCode, applicationClientException.getMessageArguments());
             String developerMessage = applicationClientException.getDeveloperMessage();

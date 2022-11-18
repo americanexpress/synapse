@@ -14,7 +14,7 @@
 package io.americanexpress.synapse.service.rest.model;
 
 /**
- * ExposedHeaders enum has the names of the exposed HTTP headers that can be discovered in addition to the standard response HTTP headers that are exposed by Spring.
+ * {@code ExposedHeaders} enum has the names of the exposed HTTP headers that can be discovered in addition to the standard response HTTP headers that are exposed by Spring.
  *
  * @author Paolo Claudio
  */

@@ -16,6 +16,10 @@ package io.americanexpress.synapse.service.rest.service;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import org.springframework.http.HttpHeaders;
 
+/**
+ * {@code BaseGetMonoService} class specifies the prototypes for performing business logic.
+ * @param <O> BaseServiceResponse
+ */
 public abstract class BaseGetMonoService<O extends BaseServiceResponse> extends BaseService {
 
     /**
@@ -35,6 +39,12 @@ public abstract class BaseGetMonoService<O extends BaseServiceResponse> extends 
         return response;
     }
 
+    /**
+     * Prototype for reading a resource
+     * @param headers
+     * @param identifier
+     * @return
+     */
     protected abstract O executeRead(HttpHeaders headers, String identifier);
 
 }

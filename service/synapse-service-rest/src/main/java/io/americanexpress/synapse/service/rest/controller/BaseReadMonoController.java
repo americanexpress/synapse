@@ -16,7 +16,6 @@ package io.americanexpress.synapse.service.rest.controller;
 import io.americanexpress.synapse.service.rest.controller.helpers.MonoResponseEntityCreator;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
-import io.americanexpress.synapse.service.rest.model.ServiceHeadersFactory;
 import io.americanexpress.synapse.service.rest.service.BaseReadMonoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -31,7 +30,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import javax.validation.Valid;
 
 /**
- * <code>BaseReadMonoController</code> class specifies the prototypes for listening for requests from the consumer
+ * {@code BaseReadMonoController} class specifies the prototypes for listening for requests from the consumer
  * to Read (POST) a resource. This Controller expects only one object in request and one object in the response, hence, "Mono" in the name.
  * *
  *
@@ -42,6 +41,9 @@ import javax.validation.Valid;
  */
 public abstract class BaseReadMonoController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadMonoService<I, O>> extends BaseController<S> {
 
+    /**
+     * Constant string for inquiry_results
+     */
     public static final String INQUIRY_RESULTS = "/inquiry_results";
 
     /**

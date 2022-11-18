@@ -18,6 +18,10 @@ import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * {@code BaseController} The base controller every child controller should extend this parent controller
+ * @param <S>
+ */
 public abstract class BaseController<S extends BaseService> {
 
     /**
@@ -26,6 +30,9 @@ public abstract class BaseController<S extends BaseService> {
     @Autowired
     protected S service;
 
+    /**
+     * Used for logging
+     */
     protected final XLogger logger = XLoggerFactory.getXLogger(this.getClass());
 
 }

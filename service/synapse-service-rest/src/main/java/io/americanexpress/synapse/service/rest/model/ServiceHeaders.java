@@ -16,7 +16,7 @@ package io.americanexpress.synapse.service.rest.model;
 import java.util.Objects;
 
 /**
- * ServiceHeaders class contains the header information received from the consumer.
+ * {@code ServiceHeaders} class contains the header information received from the consumer.
  *
  * @author Paolo Claudio
  */

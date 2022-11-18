@@ -16,6 +16,9 @@ package io.americanexpress.synapse.service.rest.service;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 
+/**
+ * {@code BaseService} The base service every child controller should extend this parent service
+ */
 public abstract class BaseService {
 
     /**

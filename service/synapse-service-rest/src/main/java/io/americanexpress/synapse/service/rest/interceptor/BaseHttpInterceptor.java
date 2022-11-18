@@ -31,7 +31,7 @@ import static io.americanexpress.synapse.service.rest.model.ServiceHeaderKey.COR
 import static io.americanexpress.synapse.service.rest.model.ServiceHeaderKey.USE_CASE_NAME_KEY;
 
 /**
- * <code>BaseHttpInterceptor</code> class specifies the prototypes for performing HTTP header validations for a service.
+ * {@code BaseHttpInterceptor} class specifies the prototypes for performing HTTP header validations for a service.
  *
  * @author Paolo Claudio
  */

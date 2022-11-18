@@ -14,12 +14,19 @@
 package io.americanexpress.synapse.service.rest.model;
 
 /**
- * ServiceHeaderKey enum will hold all of the key values for the service headers.
+ * {@code ServiceHeaderKey} enum will hold all of the key values for the service headers.
  *
  */
 public enum ServiceHeaderKey {
 
+    /**
+     * Correlation Identifier Key
+     */
     CORRELATION_IDENTIFIER_KEY("Correlation-ID"),
+
+    /**
+     * Use Case Name Key
+     */
     USE_CASE_NAME_KEY("Use-Case-Name");
 
     /**
