@@ -1,19 +1,27 @@
 package io.americanexpress.data.book.entity;
 
-
 import io.americanexpress.synapse.data.redis.entity.BaseEntity;
 import org.springframework.data.redis.core.RedisHash;
 
 /**
  * {@code BookEntity} class represents the domain of the books table.
  */
-@RedisHash("book")
+@RedisHash("books")
 public class BookEntity extends BaseEntity {
 
+    /**
+     * The title.
+     */
     private String title;
 
+    /**
+     * The author.
+     */
     private String author;
 
+    /**
+     * The number of copies.
+     */
     private int numberOfCopies;
 
     public BookEntity(String title, String author) {
