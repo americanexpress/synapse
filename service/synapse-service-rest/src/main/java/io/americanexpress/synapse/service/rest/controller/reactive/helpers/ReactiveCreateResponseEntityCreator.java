@@ -14,16 +14,17 @@
 package io.americanexpress.synapse.service.rest.controller.reactive.helpers;
 
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
-import reactor.core.publisher.Mono;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import reactor.core.publisher.Mono;
 
 import java.net.URI;
 
-@Component
+/**
+ * {@code ReactiveCreateResponseEntityCreator} Creates a ResponseEntity
+ * @param <O>
+ */
 public class ReactiveCreateResponseEntityCreator<O extends BaseServiceResponse> {
 
     /**
@@ -32,7 +33,7 @@ public class ReactiveCreateResponseEntityCreator<O extends BaseServiceResponse> 
      * @param serviceResponse body to set in the response entity
      * @return the POST response entity
      */
-    public ResponseEntity<Mono<O>> create(O serviceResponse) {
+    public static <O extends BaseServiceResponse> ResponseEntity<Mono<O>> create(O serviceResponse) {
 
         // Default URI location in case the response identifier is null
         String responseId = "0";

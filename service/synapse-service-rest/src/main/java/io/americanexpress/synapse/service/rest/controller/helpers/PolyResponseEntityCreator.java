@@ -17,16 +17,25 @@ import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-@Component
+/**
+ * {@code PolyResponseEntityCreator} creates ResponseEntity for poly responses
+ * @param <O>
+ */
 public class PolyResponseEntityCreator<O extends BaseServiceResponse> {
 
-    public ResponseEntity<List<O>> create(Page<O> page, HttpServletResponse httpServletResponse) {
+    /**
+     * Creates a Poly ResponseEntity with pagination
+     * @param page
+     * @param httpServletResponse
+     * @return ResponseEntity
+     * @param <O>
+     */
+    public static <O extends BaseServiceResponse> ResponseEntity<List<O>> create(Page<O> page, HttpServletResponse httpServletResponse) {
         final ResponseEntity<List<O>> responseEntity;
         List<O> pageContent = null;
         if (page != null) {
@@ -41,7 +50,13 @@ public class PolyResponseEntityCreator<O extends BaseServiceResponse> {
         return responseEntity;
     }
 
-    private void setHeadersInResponse(final Page<O> page, final HttpServletResponse httpServletResponse) {
+    /**
+     * Creates pagination header
+     * @param page
+     * @param httpServletResponse
+     * @param <O>
+     */
+    private static <O extends BaseServiceResponse> void setHeadersInResponse(final Page<O> page, final HttpServletResponse httpServletResponse) {
         if (page != null && !CollectionUtils.isEmpty(page.getContent())) {
             httpServletResponse.setHeader("size", String.valueOf(page.getSize()));
             httpServletResponse.setHeader("page", String.valueOf(page.getNumber()));
