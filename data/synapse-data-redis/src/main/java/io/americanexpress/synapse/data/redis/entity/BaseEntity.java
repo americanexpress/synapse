@@ -2,6 +2,7 @@ package io.americanexpress.synapse.data.redis.entity;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.Version;
@@ -12,6 +13,12 @@ import java.time.LocalDateTime;
  * {@code BaseEntity} is the redis base entity.
  */
 public class BaseEntity implements Serializable {
+
+    /**
+     * Identifier
+     */
+    @Id
+    private String identifier;
 
     /**
      * Created Date Time

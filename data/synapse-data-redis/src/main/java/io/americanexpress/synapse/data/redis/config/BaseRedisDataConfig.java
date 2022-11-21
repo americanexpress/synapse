@@ -4,12 +4,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.data.redis.connection.RedisClusterConfiguration;
-import org.springframework.data.redis.connection.RedisPassword;
 import org.springframework.data.redis.connection.RedisSentinelConfiguration;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
+import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
  * {@code BaseRedisDataConfig} class is used to hold the common configuration for all data-redis modules.
@@ -50,14 +51,37 @@ public class BaseRedisDataConfig {
      */
     @Bean
     JedisConnectionFactory jedisConnectionFactory() {
-        RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration();
-        redisStandaloneConfiguration.setPassword(RedisPassword.of(environment.getRequiredProperty("spring.redis.password")));
-        redisStandaloneConfiguration.setDatabase(Integer.parseInt(environment.getRequiredProperty("spring.redis.database")));
-        redisStandaloneConfiguration.setPort(Integer.parseInt(environment.getRequiredProperty("spring.redis.port")));
-        redisStandaloneConfiguration.setPassword(environment.getRequiredProperty("spring.redis.password"));
-
-        return new JedisConnectionFactory(redisStandaloneConfiguration);
+        JedisConnectionFactory jedisConFactory = new JedisConnectionFactory();
+        jedisConFactory.setHostName("localhost");
+        jedisConFactory.setPort(6379);
+        jedisConFactory.afterPropertiesSet();
+        return jedisConFactory;
     }
+//    @Bean
+//    JedisConnectionFactory jedisConnectionFactory() {
+//        RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration();
+//        redisStandaloneConfiguration.setDatabase(Integer.parseInt(environment.getRequiredProperty("spring.redis.database")));
+//        redisStandaloneConfiguration.setPort(Integer.parseInt(environment.getRequiredProperty("spring.redis.port")));
+//        JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory(redisStandaloneConfiguration);
+//        jedisConnectionFactory.afterPropertiesSet();
+//        return jedisConnectionFactory;
+//    }
+
+//    @Bean
+//    JedisPool jedisPool() {
+//        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+//        jedisPoolConfig.setMaxIdle(100);
+//        jedisPoolConfig.setMaxTotal(3000);
+//        jedisPoolConfig.setMinIdle(100);
+//        jedisPoolConfig.setMaxWaitMillis(1000);
+//        jedisPoolConfig.setJmxEnabled(true);
+//        JedisPool jedisPool = new JedisPool(jedisPoolConfig,
+//                environment.getRequiredProperty("spring.redis.host"),
+//                Integer.parseInt(environment.getRequiredProperty("spring.redis.port")),
+//                10000,
+//                environment.getRequiredProperty("spring.redis.password"));
+//        return jedisPool;
+//    }
 
     /**
      * Performs automatic serialization/deserialization between the given objects and the underlying binary data in
@@ -71,6 +95,16 @@ public class BaseRedisDataConfig {
     public RedisTemplate<String, Object> redisTemplate() {
         RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(jedisConnectionFactory());
+        template.setEnableTransactionSupport(true);
+
+        template.setHashKeySerializer(new StringRedisSerializer());
+        template.setHashKeySerializer(new JdkSerializationRedisSerializer());
+        template.setValueSerializer(new JdkSerializationRedisSerializer());
+        template.setEnableTransactionSupport(true);
+
+//        template.setDefaultSerializer(new StringRedisSerializer());
+        template.afterPropertiesSet();
         return template;
     }
+
 }

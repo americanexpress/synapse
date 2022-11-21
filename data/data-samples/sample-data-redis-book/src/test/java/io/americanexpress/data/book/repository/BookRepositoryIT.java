@@ -13,14 +13,15 @@
  */
 package io.americanexpress.data.book.repository;
 
-import io.americanexpress.data.book.config.BookDataConfigTest;
+import io.americanexpress.data.book.config.BookDataTestConfig;
 import io.americanexpress.data.book.entity.BookEntity;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.test.context.ContextConfiguration;
-
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -28,19 +29,19 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 /**
  * {@code BookRepositoryIT} class runs integration test on local Redis instance test database.
  */
-@ContextConfiguration(classes = BookDataConfigTest.class)
-@AutoConfigurationPackage
-@EnableAutoConfiguration
+@ContextConfiguration(classes = BookDataTestConfig.class)
+@ExtendWith(SpringExtension.class)
 class BookRepositoryIT {
 
     @Autowired
     private BookRepository bookRepository;
 
     @Test
-    public void shouldSaveUser_toRedis() {
+    public void save_given_expected() {
         UUID id = UUID.randomUUID();
         BookEntity bookEntity = new BookEntity("Alice Wonderland", "John Doe");
         BookEntity saved = bookRepository.save(bookEntity);
         assertNotNull(saved);
     }
+
 }
