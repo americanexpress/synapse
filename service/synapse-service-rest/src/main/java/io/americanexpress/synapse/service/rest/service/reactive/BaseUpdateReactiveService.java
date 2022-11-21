@@ -26,6 +26,7 @@ public abstract class BaseUpdateReactiveService<I extends BaseServiceRequest> ex
 
     /**
      * Update a single resource reactively.
+     * @param headers headers
      * @param request body received from the controller
      * @return a mono void
      */

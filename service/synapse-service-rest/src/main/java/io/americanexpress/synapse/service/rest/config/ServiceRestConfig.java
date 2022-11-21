@@ -54,8 +54,8 @@ public class ServiceRestConfig implements WebMvcConfigurer {
 
     /**
      * Constructor taking in objectMapper & metricInterceptor
-     * @param defaultObjectMapper
-     * @param interceptor
+     * @param defaultObjectMapper   the default object mapper.
+     * @param interceptor           the metric interceptor.
      */
     @Autowired
     public ServiceRestConfig(ObjectMapper defaultObjectMapper, MetricInterceptor interceptor) {
@@ -78,7 +78,7 @@ public class ServiceRestConfig implements WebMvcConfigurer {
     /**
      * Configure the message converters.
      *
-     * @param converters message converters of the application
+     * @param converters message converters of the application.
      */
     @Override
     public void configureMessageConverters(final List<HttpMessageConverter<?>> converters) {
@@ -87,7 +87,7 @@ public class ServiceRestConfig implements WebMvcConfigurer {
 
     /**
      * Adds interceptor to the registry
-     * @param registry
+     * @param registry interceptor registry
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

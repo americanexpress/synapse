@@ -28,6 +28,7 @@ public abstract class BaseReadPolyReactiveService<I extends BaseServiceRequest, 
 
     /**
      * Retrieves multiple resources with a request body.
+     * @param headers headers
      * @param request a base service request
      * @return a flux read response
      */

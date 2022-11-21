@@ -30,7 +30,7 @@ public abstract class BaseObservabilityConfig {
 
     /**
      * Constructor taking in environment
-     * @param environment
+     * @param environment environment being wired.
      */
     public BaseObservabilityConfig(Environment environment) {
         this.environment = environment;
@@ -38,7 +38,7 @@ public abstract class BaseObservabilityConfig {
 
     /**
      * Gets Wavefront application name
-     * @return
+     * @return string value of application name for wavefront.
      */
     public String getWavefrontApplicationName() {
         return environment.getRequiredProperty("wavefront.application.name");
@@ -46,7 +46,7 @@ public abstract class BaseObservabilityConfig {
 
     /**
      * Gets Wavefront application service
-     * @return
+     * @return string value for service name of application for wavefront.
      */
     public String getWavefrontApplicationService() {
         return environment.getRequiredProperty("wavefront.application.service");

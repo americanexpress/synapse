@@ -28,6 +28,7 @@ public abstract class BaseReadMonoReactiveService<I extends BaseServiceRequest, 
 
     /**
      * Retrieves one resource with a request body.
+     * @param headers headers
      * @param request a service request
      * @return a mono service response
      */
