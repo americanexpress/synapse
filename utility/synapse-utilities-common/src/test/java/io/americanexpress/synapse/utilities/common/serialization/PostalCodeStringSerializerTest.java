@@ -18,13 +18,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class PostalCodeStringSerializerTest extends BaseTestStringSerializer {
+/**
+ * {@code PostalCodeStringSerializerTest} tests the {@link PostalCodeStringSerializer}.
+ */
+class PostalCodeStringSerializerTest extends BaseTestStringSerializer {
 
 	@BeforeEach
 	@Override
 	public void initializeModel() {
 		super.initializeModel();
-		setTestField("zip_code");
+		setTestField("zipCode");
 	}
 
 	@Override
@@ -43,7 +46,7 @@ public class PostalCodeStringSerializerTest extends BaseTestStringSerializer {
 	}
 
 	@Test
-	public void serialize_anyString() throws Exception {
+	void serialize_anyString() throws Exception {
 		model.setZipCode("a");
 		String expected = "{\"" + testField + "\":\"a\"}";
 		String actual = mapper.writeValueAsString(model);
@@ -51,7 +54,7 @@ public class PostalCodeStringSerializerTest extends BaseTestStringSerializer {
 	}
 
 	@Test
-	public void serialize_length9String() throws Exception {
+	void serialize_length9String() throws Exception {
 		model.setZipCode("abcdefghi");
 		String expected = "{\"" + testField + "\":\"abcdefghi\"}";
 		String actual = mapper.writeValueAsString(model);
@@ -59,7 +62,7 @@ public class PostalCodeStringSerializerTest extends BaseTestStringSerializer {
 	}
 
 	@Test
-	public void serialize_length9StringUntrimmed() throws Exception {
+	void serialize_length9StringUntrimmed() throws Exception {
 		model.setZipCode(" abcdefghi ");
 		String expected = "{\"" + testField + "\":\"abcdefghi\"}";
 		String actual = mapper.writeValueAsString(model);
@@ -67,7 +70,7 @@ public class PostalCodeStringSerializerTest extends BaseTestStringSerializer {
 	}
 
 	@Test
-	public void serialize_validZipCodeUntrimmed() throws Exception {
+	void serialize_validZipCodeUntrimmed() throws Exception {
 		model.setZipCode(" 123456789 ");
 		String expected = "{\"" + testField + "\":\"12345-6789\"}";
 		String actual = mapper.writeValueAsString(model);

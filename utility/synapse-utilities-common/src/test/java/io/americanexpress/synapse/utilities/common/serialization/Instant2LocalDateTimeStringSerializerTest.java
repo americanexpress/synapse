@@ -27,7 +27,7 @@ class Instant2LocalDateTimeStringSerializerTest extends BaseTestDateTimeStringSe
 	@Override
 	public void initializeModel() {
 		super.initializeModel();
-		setTestField("birth_date");
+		setTestField("birthDate");
 	}
 
 	@Override

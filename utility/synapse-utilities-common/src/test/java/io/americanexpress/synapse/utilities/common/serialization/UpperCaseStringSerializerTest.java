@@ -24,7 +24,7 @@ public class UpperCaseStringSerializerTest extends BaseTestStringSerializer {
     @Override
     public void initializeModel() {
         super.initializeModel();
-        setTestField("first_name");
+        setTestField("firstName");
     }
 
     @Override

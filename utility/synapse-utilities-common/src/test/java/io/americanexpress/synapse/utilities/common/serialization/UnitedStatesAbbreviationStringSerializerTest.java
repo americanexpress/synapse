@@ -28,7 +28,7 @@ public class UnitedStatesAbbreviationStringSerializerTest extends BaseTestString
     @Override
     public void initializeModel() {
         super.initializeModel();
-        setTestField("united_state");
+        setTestField("unitedState");
     }
 
     @Override

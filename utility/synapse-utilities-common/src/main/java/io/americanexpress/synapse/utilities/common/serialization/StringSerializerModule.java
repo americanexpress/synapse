@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 /**
- * Trim strings response.
+ * {@code StringSerializerModule} trim strings response.
  */
 @Component
 public class StringSerializerModule extends SimpleModule {
