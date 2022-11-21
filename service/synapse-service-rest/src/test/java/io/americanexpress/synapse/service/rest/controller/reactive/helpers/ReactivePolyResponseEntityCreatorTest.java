@@ -11,10 +11,16 @@ import java.util.Objects;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+/**
+ * {@code ReactivePolyResponseEntityCreatorTest} Reactive Poly Response Entity Creator Test
+ */
 class ReactivePolyResponseEntityCreatorTest {
 
+    /**
+     * test successful create responseEntity
+     */
     @Test
-    public void test_create_responseEntity() {
+    public void create_givenServiceResponse_expectedResponseEntity() {
         var page = new PageImpl<>(List.of(new BaseServiceResponseTest("test", "test")));
         var httpServletRequest = new MockHttpServletResponse();
         var responseEntity = ReactivePolyResponseEntityCreator.create(page, httpServletRequest);

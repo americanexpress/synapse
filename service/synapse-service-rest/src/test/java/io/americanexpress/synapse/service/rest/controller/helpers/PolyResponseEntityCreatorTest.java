@@ -10,11 +10,16 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-
+/**
+ * {@code PolyResponseEntityCreatorTest} Poly Response Entity Creator Test
+ */
 public class PolyResponseEntityCreatorTest {
 
+    /**
+     * test successful create responseEntity
+     */
     @Test
-    public void test_create_responseEntity() {
+    public void create_givenServiceResponse_expectedResponseEntity() {
         var page = new PageImpl<>(List.of(new BaseServiceResponseTest("test", "test")));
         var httpServletRequest = new MockHttpServletResponse();
         var responseEntity = PolyResponseEntityCreator.create(page, httpServletRequest);

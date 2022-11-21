@@ -12,8 +12,14 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+/**
+ * {@code CreateResponseEntityCreatorTest} Create Response Entity Creator Test
+ */
 public class CreateResponseEntityCreatorTest {
 
+    /**
+     * init
+     */
     @BeforeAll
     public static void init() {
         MockHttpServletRequest request = new MockHttpServletRequest();
@@ -21,8 +27,11 @@ public class CreateResponseEntityCreatorTest {
     }
 
 
+    /**
+     * test successful create responseEntity
+     */
     @Test
-    public void test_create_responseEntity() {
+    public void create_givenServiceResponse_expectedResponseEntity() {
         ResponseEntity<BaseServiceResponseTest> response = CreateResponseEntityCreator.create(new BaseServiceResponseTest("test", "test"));
         assertNotNull(response);
         assertEquals(201, response.getStatusCodeValue());

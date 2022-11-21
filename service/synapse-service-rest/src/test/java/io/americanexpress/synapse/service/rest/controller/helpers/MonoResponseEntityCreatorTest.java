@@ -9,10 +9,16 @@ import java.util.Objects;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+/**
+ * {@code MonoResponseEntityCreatorTest} Mono Response Entity Creator Test
+ */
 public class MonoResponseEntityCreatorTest {
 
+    /**
+     * test successful create responseEntity
+     */
     @Test
-    public void test_create_responseEntity() {
+    public void create_givenServiceResponse_expectedResponseEntity() {
         var response = MonoResponseEntityCreator.create(new BaseServiceResponseTest("test", "test"));
         assertNotNull(response);
         assertEquals(200, response.getStatusCodeValue());

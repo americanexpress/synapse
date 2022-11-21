@@ -30,10 +30,9 @@ public class PolyResponseEntityCreator<O extends BaseServiceResponse> {
 
     /**
      * Creates a Poly ResponseEntity with pagination
-     * @param page
-     * @param httpServletResponse
+     * @param page sets pagination
+     * @param httpServletResponse response
      * @return ResponseEntity
-     * @param <O>
      */
     public static <O extends BaseServiceResponse> ResponseEntity<List<O>> create(Page<O> page, HttpServletResponse httpServletResponse) {
         final ResponseEntity<List<O>> responseEntity;
@@ -52,9 +51,8 @@ public class PolyResponseEntityCreator<O extends BaseServiceResponse> {
 
     /**
      * Creates pagination header
-     * @param page
-     * @param httpServletResponse
-     * @param <O>
+     * @param page pagination
+     * @param httpServletResponse response
      */
     private static <O extends BaseServiceResponse> void setHeadersInResponse(final Page<O> page, final HttpServletResponse httpServletResponse) {
         if (page != null && !CollectionUtils.isEmpty(page.getContent())) {
