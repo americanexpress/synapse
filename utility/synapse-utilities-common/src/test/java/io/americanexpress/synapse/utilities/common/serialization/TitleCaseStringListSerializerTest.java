@@ -51,7 +51,7 @@ class TitleCaseStringListSerializerTest extends BaseTestListStringSerializer {
 		words.add("Keisenberg");
 		words.add("mr. kite");
 		model.setWords(words);
-		String expected = "{\"" + testField + "\":[\"Walter kite\",\"Keisenberg\",\"Mr. kite\"]}";
+		String expected = "{\"" + testField + "\":[\"Walter Kite\",\"Keisenberg\",\"Mr. Kite\"]}";
 		String actual = mapper.writeValueAsString(model);
 		assertEquals(expected, actual, SERIALIZATION_FAILED);
 	}
