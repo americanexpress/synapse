@@ -18,10 +18,22 @@ import io.americanexpress.synapse.client.rest.client.BaseRestClient;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
 
+/**
+ * {@code BaseRestClientIT} is the base test class for client integration tests.
+ *
+ * @param <I> the type parameter
+ * @param <O> the type parameter
+ * @param <C> the type parameter
+ */
 public abstract class BaseRestClientIT<I extends BaseClientRequest,
         O extends BaseClientResponse,
         C extends BaseRestClient<I, O>> extends BaseRestClientTest<I, O, C> {
 
+    /**
+     * Call mono service given valid request expected success response.
+     *
+     * @throws Exception the exception
+     */
     protected abstract void callMonoService_givenValidRequest_expectedSuccessResponse() throws Exception;
 
 }

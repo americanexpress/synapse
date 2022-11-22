@@ -17,18 +17,23 @@ import io.americanexpress.synapse.client.rest.model.ClientHeaders;
 import io.americanexpress.synapse.client.rest.model.ClientRouting;
 import io.americanexpress.synapse.client.rest.model.ClientTrace;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.reflect.Constructor;
 
-import static io.americanexpress.synapse.client.rest.model.ClientHeaderValue.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class ClientHeadersFileReaderFactoryTest {
+/**
+ * {@code ClientHeadersFileReaderFactoryTest} tests the {@link ClientHeadersFileReaderFactory}
+ */
+class ClientHeadersFileReaderFactoryTest {
 
     @Test
-    public void clientHeadersFactory_constructor() throws Exception {
+    void clientHeadersFactory_constructor() throws Exception {
         Constructor<ClientHeadersFileReaderFactory> constructor = ClientHeadersFileReaderFactory.class.getDeclaredConstructor();
         constructor.setAccessible(true);
         constructor.newInstance();
@@ -53,7 +58,7 @@ public class ClientHeadersFileReaderFactoryTest {
     private ClientHeaders getFullClientHeaders() {
         ClientHeaders headers = new ClientHeaders();
         ClientTrace trace = new ClientTrace();
-        trace.setCorrelationId(String.valueOf(CORRELATION_IDENTIFIER_VALUE));
+        trace.setCorrelationId("1234");
         ClientRouting routing = new ClientRouting();
         headers.setTrace(trace);
         headers.setRouting(routing);
@@ -61,68 +66,50 @@ public class ClientHeadersFileReaderFactoryTest {
     }
 
     @Test
-    public void create_nullClasspath() {
+    void create_nullClasspath() {
         assertThrows(IllegalArgumentException.class, () -> ClientHeadersFileReaderFactory.create(null));
     }
 
     @Test
-    public void create_nonexistentFile() {
+    void create_nonexistentFile() {
         assertThrows(FileNotFoundException.class, () -> ClientHeadersFileReaderFactory.create("nonexistent"));
     }
 
     @Test
-    public void create_emptyFile() throws Exception {
-        ClientHeaders actual = ClientHeadersFileReaderFactory.create("sample-empty-file.properties");
-        ClientHeaders expected = getDefaultClientHeaders();
-        assertEquals(expected, actual, "Headers are not equal.");
-    }
-
-    @Test
-    public void create_malformedHeaders() throws Exception {
-        ClientHeaders actual = ClientHeadersFileReaderFactory.create("sample-malformed-headers.properties");
-        ClientHeaders expected = getDefaultClientHeaders();
-        assertEquals(expected, actual, "Headers are not equal.");
-    }
-
-    @Test
-    public void create_emptyHeaderValues() throws Exception {
-        ClientHeaders actual = ClientHeadersFileReaderFactory.create("sample-empty-header-values.properties");
-        ClientHeaders expected = getDefaultClientHeaders();
-        assertEquals(expected, actual, "Headers are not equal.");
-    }
-
-    @Test
-    public void create_otherFileExtension() throws Exception {
+    void create_otherFileExtension() throws Exception {
         ClientHeaders actual = ClientHeadersFileReaderFactory.create("sample-other-extension.txt");
         ClientHeaders expected = getFullClientHeaders();
         assertEquals(expected, actual, "Headers are not equal.");
     }
 
     @Test
-    public void create_unknownHeaders() throws Exception {
-        ClientHeaders actual = ClientHeadersFileReaderFactory.create("sample-unknown-headers.properties");
-        ClientHeaders expected = getDefaultClientHeaders();
-        assertEquals(expected, actual, "Headers are not equal.");
-    }
-
-    @Test
-    public void create_someHeaders() throws Exception {
+    void create_someHeaders() throws Exception {
         ClientHeaders actual = ClientHeadersFileReaderFactory.create("sample-some-headers.properties");
         ClientHeaders expected = getSomeClientHeaders();
         assertEquals(expected, actual, "Headers are not equal.");
     }
 
     @Test
-    public void create_validAndUnknownHeaders() throws Exception {
+    void create_validAndUnknownHeaders() throws Exception {
         ClientHeaders actual = ClientHeadersFileReaderFactory.create("sample-valid-and-unknown-headers.properties");
         ClientHeaders expected = getSomeClientHeaders();
         assertEquals(expected, actual, "Headers are not equal.");
     }
 
     @Test
-    public void create_allHeaders() throws Exception {
+    void create_allHeaders() throws Exception {
         ClientHeaders actual = ClientHeadersFileReaderFactory.create("sample-all-headers.properties");
         ClientHeaders expected = getFullClientHeaders();
         assertEquals(expected, actual, "Headers are not equal.");
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"sample-empty-file.properties", "sample-malformed-headers.properties", "sample-empty-header-values.properties",
+       "sample-empty-header-values.properties", "sample-unknown-headers.properties"})
+    void create(String path) throws IOException {
+        ClientHeaders actual = ClientHeadersFileReaderFactory.create(path);
+        ClientHeaders expected = getDefaultClientHeaders();
+        assertEquals(expected, actual, "Headers are not equal.");
+    }
+
 }

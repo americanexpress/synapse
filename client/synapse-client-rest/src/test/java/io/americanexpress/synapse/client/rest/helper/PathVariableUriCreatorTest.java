@@ -21,6 +21,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * {@code PathVariableUriCreatorTest} tests the {@link PathVariableUriCreator}
+ */
 class PathVariableUriCreatorTest {
 
     @Test
