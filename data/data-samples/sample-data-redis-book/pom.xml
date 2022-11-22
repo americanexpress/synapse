@@ -23,12 +23,12 @@
     <artifactId>sample-data-redis-book</artifactId>
 
     <dependencies>
-        <!-- Synapse -->
+        <!-- Synapse dependencies -->
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>
             <artifactId>synapse-data-redis</artifactId>
         </dependency>
-        <!-- Spring -->
+        <!-- Spring dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -37,6 +37,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-test-autoconfigure</artifactId>
         </dependency>
+        <!-- Third party dependencies -->
         <dependency>
             <groupId>it.ozimov</groupId>
             <artifactId>embedded-redis</artifactId>
