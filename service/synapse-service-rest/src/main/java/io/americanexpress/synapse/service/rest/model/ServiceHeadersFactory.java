@@ -23,7 +23,7 @@ import org.springframework.http.HttpHeaders;
 public class ServiceHeadersFactory {
 
     /**
-     * Default constructor
+     * Default constructor.
      */
     private ServiceHeadersFactory() {
     }

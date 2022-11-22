@@ -40,7 +40,7 @@ public abstract class BaseGetMonoService<O extends BaseServiceResponse> extends 
     }
 
     /**
-     * Prototype for reading a resource
+     * Prototype for reading a resource.
      * @param headers
      * @param identifier
      * @return

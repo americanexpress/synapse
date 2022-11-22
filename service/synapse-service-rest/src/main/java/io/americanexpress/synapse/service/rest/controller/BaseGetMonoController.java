@@ -25,11 +25,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 
 /**
- * {@code BaseGetMonoController} is base class for read mono controller. This controller handles POST method requests, but specifically for read purposes.
+ * {@code BaseGetMonoController} is base class for read mono controller. This controller handles POST method requests,
+ * but specifically for read purposes.
  * This controller returns a single object.
  *
- * @param <O> the type parameter
- * @param <S> the type parameter
+ * @param <O> an object extending the {@link BaseServiceResponse}
+ * @param <S> an object extending the {@link BaseGetMonoService}
  */
 public class BaseGetMonoController<O extends BaseServiceResponse, S extends BaseGetMonoService<O>> extends BaseController<S> {
 

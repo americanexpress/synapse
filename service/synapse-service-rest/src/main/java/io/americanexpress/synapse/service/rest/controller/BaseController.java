@@ -31,7 +31,7 @@ public abstract class BaseController<S extends BaseService> {
     protected S service;
 
     /**
-     * Used for logging
+     * Used for logging.
      */
     protected final XLogger logger = XLoggerFactory.getXLogger(this.getClass());
 

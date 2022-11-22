@@ -39,10 +39,10 @@ public abstract class BaseReadMonoService<I extends BaseServiceRequest, O extend
     }
 
     /**
-     * Prototype for reading a resource
-     * @param headers
-     * @param request
-     * @return
+     * Prototype for reading a resource.
+     * @param headers the http header map
+     * @param request the request
+     * @return a read mono response
      */
     protected abstract O executeRead(HttpHeaders headers,I request);
 }

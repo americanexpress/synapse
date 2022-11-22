@@ -70,9 +70,9 @@ public class ServiceTrace {
     }
 
     /**
-     * Equals
-     * @param o
-     * @return
+     * Equals.
+     * @param o an object
+     * @return a boolean
      */
     @Override
     public boolean equals(Object o) {
@@ -85,8 +85,8 @@ public class ServiceTrace {
     }
 
     /**
-     * hashCode
-     * @return
+     * hashCode.
+     * @return an integer hash
      */
     @Override
     public int hashCode() {

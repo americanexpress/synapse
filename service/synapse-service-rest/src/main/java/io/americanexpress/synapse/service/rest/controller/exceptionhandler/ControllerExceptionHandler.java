@@ -51,7 +51,7 @@ public class ControllerExceptionHandler {
     static final String GENERIC_5XX_HEADER_MESSAGE = "Internal Error";
 
     /**
-     * Used to log the exceptions
+     * Used to log the exceptions.
      */
     private final XLogger logger = XLoggerFactory.getXLogger(getClass());
 
@@ -191,7 +191,9 @@ public class ControllerExceptionHandler {
     }
 
     /**
-     * This method will handle all the internal server errors. Meaning all the 500s family errors which is when we have an exception in our code and we catch and rethrow it or a runtime exception is thrown somewhere.
+     * This method will handle all the internal server errors. Meaning all the 500s family
+     * errors which is when we have an exception in our code and we catch and rethrow it or a
+     * runtime exception is thrown somewhere.
      *
      * @param throwable the error that was thrown
      * @return response of type ResponseEntity<ErrorResponse>

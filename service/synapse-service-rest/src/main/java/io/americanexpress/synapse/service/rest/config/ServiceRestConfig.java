@@ -48,7 +48,7 @@ public class ServiceRestConfig implements WebMvcConfigurer {
     private final ObjectMapper defaultObjectMapper;
 
     /**
-     * Default Metric Interceptor
+     * Default Metric Interceptor.
      */
     protected final MetricInterceptor interceptor;
 
@@ -86,7 +86,7 @@ public class ServiceRestConfig implements WebMvcConfigurer {
     }
 
     /**
-     * Adds interceptor to the registry
+     * Adds interceptor to the registry.
      * @param registry interceptor registry
      */
     @Override
@@ -95,8 +95,8 @@ public class ServiceRestConfig implements WebMvcConfigurer {
     }
 
     /**
-     * Returns default objectMapper
-     * @return
+     * Returns default objectMapper.
+     * @return an object mapper
      */
     protected ObjectMapper getObjectMapper() {
         return defaultObjectMapper;

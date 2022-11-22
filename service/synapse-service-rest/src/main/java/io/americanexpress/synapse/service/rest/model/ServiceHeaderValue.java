@@ -20,12 +20,12 @@ package io.americanexpress.synapse.service.rest.model;
 public enum ServiceHeaderValue {
 
     /**
-     * Correlation Identifier value
+     * Correlation Identifier value.
      */
     CORRELATION_IDENTIFIER_VALUE("1234"),
 
     /**
-     * Client Identifier Value
+     * Client Identifier Value.
      */
     CLIENT_IDENTIFIER_VALUE("AppName");
 
