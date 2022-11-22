@@ -18,8 +18,7 @@ import org.springframework.http.HttpHeaders;
 
 /**
  * {@code BaseUpdateService} class specifies the prototypes for performing business logic for update operation.
- *
- * @param <I> input request type
+ * @param <I> an object extending {@link BaseServiceRequest}
  * @author Alexei Morgado
  */
 public abstract class BaseUpdateService<I extends BaseServiceRequest> extends BaseService {

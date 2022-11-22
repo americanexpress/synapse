@@ -36,13 +36,16 @@ import java.util.List;
  * {@code BaseReadPolyController} class specifies the prototypes for listening for requests from the consumer
  * to Read (POST) a resource. This Controller expects only one object in request and a list of objects as response, hence, "Poly" in the name.
  *
- * @param <I> input request type
- * @param <O> output response type
- * @param <S> service type
+ * @param <I> an object extending {@link BaseServiceRequest}
+ * @param <O> an object extending {@link BaseServiceResponse}
+ * @param <S> an object extending {@link BaseReadPolyService}
  * @author Gabriel Jimenez
  */
 public abstract class BaseReadPolyController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadPolyService<I, O>> extends BaseController<S> {
 
+    /**
+     * Constant string used for multiple_results.
+     */
     public static final String MULTIPLE_RESULTS = "/multiple_results";
 
     /**
@@ -54,9 +57,9 @@ public abstract class BaseReadPolyController<I extends BaseServiceRequest, O ext
     /**
      * Get a list of multiple resources from the back end service.
      *
-     * @param headers containing the HTTP headers from the consumer
-     * @param serviceRequest      body from the consumer
-     * @param httpServletResponse HttpServletResponse
+     * @param headers               containing the HTTP headers from the consumer
+     * @param serviceRequest        body from the consumer
+     * @param httpServletResponse   HttpServletResponse
      * @return a list of resources from the back end service
      */
     @Operation(summary = "Read operation based on criteria.", description = "Read a collection of resources based on request criteria.")

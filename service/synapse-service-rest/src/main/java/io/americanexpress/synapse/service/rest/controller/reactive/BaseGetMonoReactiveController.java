@@ -37,8 +37,8 @@ public abstract class BaseGetMonoReactiveController<O extends BaseServiceRespons
 
     /**
      * Get a single resource from the back end service.
-     * @param id
-     * @return
+     * @param id used for retrieval
+     * @return response
      */
     @ApiOperation(value = "Reactive get mono", notes = "Gets one resource reactively")
     @ApiResponses(value = {

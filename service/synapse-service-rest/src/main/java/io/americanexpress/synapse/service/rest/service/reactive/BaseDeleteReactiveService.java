@@ -36,5 +36,12 @@ public abstract class BaseDeleteReactiveService extends BaseService {
         logger.exit();
         return results;
     }
+
+    /**
+     * Prototype for deleting a resource
+     * @param headers
+     * @param identifier
+     * @return
+     */
     protected abstract Mono<Void> executeDelete(HttpHeaders headers, String identifier);
 }

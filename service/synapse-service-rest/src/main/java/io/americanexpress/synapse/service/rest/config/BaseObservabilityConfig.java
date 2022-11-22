@@ -23,30 +23,30 @@ import org.springframework.core.env.Environment;
  */
 public abstract class BaseObservabilityConfig {
 
+    /**
+     * Environment
+     */
     private final Environment environment;
 
     /**
-     * Instantiates a new Base observability config.
-     *
-     * @param environment the environment
+     * Constructor taking in environment
+     * @param environment environment being wired.
      */
     public BaseObservabilityConfig(Environment environment) {
         this.environment = environment;
     }
 
     /**
-     * Gets wavefront application name.
-     *
-     * @return the wavefront application name
+     * Gets Wavefront application name
+     * @return string value of application name for wavefront.
      */
     public String getWavefrontApplicationName() {
         return environment.getRequiredProperty("wavefront.application.name");
     }
 
     /**
-     * Gets wavefront application service.
-     *
-     * @return the wavefront application service
+     * Gets Wavefront application service
+     * @return string value for service name of application for wavefront.
      */
     public String getWavefrontApplicationService() {
         return environment.getRequiredProperty("wavefront.application.service");

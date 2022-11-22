@@ -55,6 +55,7 @@ public abstract class BaseHttpInterceptor implements HandlerInterceptor {
      * @param request  containing the request of the service that has the HTTP headers
      * @param response containing the response of the service
      * @param handler  used for the interceptor
+     * @return a boolean
      * @throws Exception whenever an issue occurs during the prehandling of this request
      */
     @Override

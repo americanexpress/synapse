@@ -57,7 +57,7 @@ public class ControllerExceptionHandler {
     static final String GENERIC_5XX_HEADER_MESSAGE = "Internal Error";
 
     /**
-     * Used to log the exceptions
+     * Used to log the exceptions.
      */
     private final XLogger logger = XLoggerFactory.getXLogger(getClass());
 

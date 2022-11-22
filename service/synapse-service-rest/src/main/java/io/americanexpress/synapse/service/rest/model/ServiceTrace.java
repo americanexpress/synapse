@@ -69,6 +69,11 @@ public class ServiceTrace {
                 '}';
     }
 
+    /**
+     * Equals.
+     * @param o an object
+     * @return a boolean
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -79,6 +84,10 @@ public class ServiceTrace {
         return Objects.equals(correlationId, that.correlationId);
     }
 
+    /**
+     * hashCode.
+     * @return an integer hash
+     */
     @Override
     public int hashCode() {
         return correlationId != null ? correlationId.hashCode() : 0;

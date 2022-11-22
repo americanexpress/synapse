@@ -23,8 +23,10 @@ import reactor.core.publisher.Mono;
  * @param <I>
  */
 public abstract class BaseUpdateReactiveService<I extends BaseServiceRequest> extends BaseService {
+
     /**
      * Update a single resource reactively.
+     * @param headers headers
      * @param request body received from the controller
      * @return a mono void
      */
@@ -34,6 +36,7 @@ public abstract class BaseUpdateReactiveService<I extends BaseServiceRequest> ex
         logger.exit();
         return results;
     }
+
     /**
      * Prototype for updating a resource.
      * @param request
