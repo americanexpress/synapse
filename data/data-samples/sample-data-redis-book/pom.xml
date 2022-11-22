@@ -23,10 +23,12 @@
     <artifactId>sample-data-redis-book</artifactId>
 
     <dependencies>
+        <!-- Synapse -->
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>
             <artifactId>synapse-data-redis</artifactId>
         </dependency>
+        <!-- Spring -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -36,21 +38,9 @@
             <artifactId>spring-boot-test-autoconfigure</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>testcontainers</artifactId>
-            <version>1.17.5</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>it.ozimov</groupId>
             <artifactId>embedded-redis</artifactId>
             <version>0.7.2</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>1.17.5</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
