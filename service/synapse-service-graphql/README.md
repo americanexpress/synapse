@@ -2,6 +2,9 @@
 
 ## Description
 
+This synapse module is the framework module used to expose GraphQL APIs. It provides several out-of-the-box
+functionalities like:
+    - An open to extension GraphQLServiceConfig configuration mapping different GraphQLScalarType.
 
 ## Usage
 - To utilize this module, add the following dependency to the pom.xml file:
