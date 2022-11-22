@@ -21,6 +21,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
 import java.util.Optional;
 import java.util.UUID;
 
@@ -37,11 +38,20 @@ class BookRepositoryIT {
     private BookRepository bookRepository;
 
     @Test
-    public void save_given_expected() {
+    public void save_givenValidBook_expectedSavedBookSuccess() {
         UUID id = UUID.randomUUID();
-        BookEntity bookEntity = new BookEntity("Alice Wonderland", "John Doe");
+        BookEntity bookEntity = new BookEntity("Alice Wonderland", "Lewis Carroll");
         BookEntity saved = bookRepository.save(bookEntity);
         assertNotNull(saved);
+    }
+
+    @Test
+    void findByTitleAndAuthor_givenBook_expectedBookFound() {
+        BookEntity bookEntity = new BookEntity("Alice In Wonderland", "Lewis Carroll");
+        bookEntity = bookRepository.save(bookEntity);
+
+        Optional<BookEntity> book = bookRepository.findById(UUID.fromString(bookEntity.getIdentifier()));
+        Assertions.assertEquals(bookEntity.getTitle(), book.get().getTitle());
     }
 
 }
