@@ -16,23 +16,38 @@ package io.americanexpress.synapse.service.rest.config;
 import org.springframework.core.env.Environment;
 
 /**
- * <code>ObservabilityConfig</code> class sets the configuration setting up Tanzu Wavefront.
+ * {@code ObservabilityConfig} class sets the configuration setting up Tanzu Wavefront.
  * The service utilizing this config must set the properties defined in this class configure Tanzu Wavefront.
  *
  * @author Gabriel Jimenez
  */
 public abstract class BaseObservabilityConfig {
 
+    /**
+     * Environment
+     */
     private final Environment environment;
 
+    /**
+     * Constructor taking in environment
+     * @param environment environment being wired.
+     */
     public BaseObservabilityConfig(Environment environment) {
         this.environment = environment;
     }
 
+    /**
+     * Gets Wavefront application name
+     * @return string value of application name for wavefront.
+     */
     public String getWavefrontApplicationName() {
         return environment.getRequiredProperty("wavefront.application.name");
     }
 
+    /**
+     * Gets Wavefront application service
+     * @return string value for service name of application for wavefront.
+     */
     public String getWavefrontApplicationService() {
         return environment.getRequiredProperty("wavefront.application.service");
     }

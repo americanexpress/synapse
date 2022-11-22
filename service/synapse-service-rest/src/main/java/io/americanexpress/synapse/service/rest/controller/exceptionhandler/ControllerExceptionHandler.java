@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * ControllerExceptionHandler class handles all the exceptions and errors thrown by the application, excluding Spring Security.
+ * {@code ControllerExceptionHandler} class handles all the exceptions and errors thrown by the application, excluding Spring Security.
  *
  * @author Alexei Morgado
  */
@@ -51,7 +51,7 @@ public class ControllerExceptionHandler {
     static final String GENERIC_5XX_HEADER_MESSAGE = "Internal Error";
 
     /**
-     * Used to log the exceptions
+     * Used to log the exceptions.
      */
     private final XLogger logger = XLoggerFactory.getXLogger(getClass());
 
@@ -103,7 +103,7 @@ public class ControllerExceptionHandler {
         
         ResponseEntity<ErrorResponse> errorResponseEntity;
         
-        if(applicationClientException.getCause() == null) {
+        if (applicationClientException.getCause() == null) {
         	ErrorCode errorCode = applicationClientException.getErrorCode();
             String message = errorMessagePropertyReader.getErrorMessage(errorCode, applicationClientException.getMessageArguments());
             String developerMessage = applicationClientException.getDeveloperMessage();
@@ -191,7 +191,9 @@ public class ControllerExceptionHandler {
     }
 
     /**
-     * This method will handle all the internal server errors. Meaning all the 500s family errors which is when we have an exception in our code and we catch and rethrow it or a runtime exception is thrown somewhere.
+     * This method will handle all the internal server errors. Meaning all the 500s family
+     * errors which is when we have an exception in our code and we catch and rethrow it or a
+     * runtime exception is thrown somewhere.
      *
      * @param throwable the error that was thrown
      * @return response of type ResponseEntity<ErrorResponse>

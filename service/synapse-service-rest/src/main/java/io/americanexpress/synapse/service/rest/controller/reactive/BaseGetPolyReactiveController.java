@@ -37,7 +37,7 @@ public abstract class BaseGetPolyReactiveController<O extends BaseServiceRespons
     /**
      *
      * Get a list of multiple resources from the back end service.
-     * @return
+     * @return response
      */
     @ApiOperation(value = "Reactive get flux", notes = "Gets all resources reactively")
     @ApiResponses(value = {

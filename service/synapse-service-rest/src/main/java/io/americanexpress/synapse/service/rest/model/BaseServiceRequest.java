@@ -14,7 +14,7 @@
 package io.americanexpress.synapse.service.rest.model;
 
 /**
- * <code>BaseServiceRequest</code> class specifies the prototypes for all service requests.
+ * {@code BaseServiceRequest} class specifies the prototypes for all service requests.
  *
  * @author Gabriel Jimenez
  */
