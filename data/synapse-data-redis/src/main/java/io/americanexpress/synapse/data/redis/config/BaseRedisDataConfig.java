@@ -70,31 +70,6 @@ public class BaseRedisDataConfig {
         jedisConFactory.afterPropertiesSet();
         return jedisConFactory;
     }
-//    @Bean
-//    JedisConnectionFactory jedisConnectionFactory() {
-//        RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration();
-//        redisStandaloneConfiguration.setDatabase(Integer.parseInt(environment.getRequiredProperty("spring.redis.database")));
-//        redisStandaloneConfiguration.setPort(Integer.parseInt(environment.getRequiredProperty("spring.redis.port")));
-//        JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory(redisStandaloneConfiguration);
-//        jedisConnectionFactory.afterPropertiesSet();
-//        return jedisConnectionFactory;
-//    }
-
-//    @Bean
-//    JedisPool jedisPool() {
-//        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-//        jedisPoolConfig.setMaxIdle(100);
-//        jedisPoolConfig.setMaxTotal(3000);
-//        jedisPoolConfig.setMinIdle(100);
-//        jedisPoolConfig.setMaxWaitMillis(1000);
-//        jedisPoolConfig.setJmxEnabled(true);
-//        JedisPool jedisPool = new JedisPool(jedisPoolConfig,
-//                environment.getRequiredProperty("spring.redis.host"),
-//                Integer.parseInt(environment.getRequiredProperty("spring.redis.port")),
-//                10000,
-//                environment.getRequiredProperty("spring.redis.password"));
-//        return jedisPool;
-//    }
 
     /**
      * Performs automatic serialization/deserialization between the given objects and the underlying binary data in
@@ -114,10 +89,7 @@ public class BaseRedisDataConfig {
         template.setHashKeySerializer(new JdkSerializationRedisSerializer());
         template.setValueSerializer(new JdkSerializationRedisSerializer());
         template.setEnableTransactionSupport(true);
-
-//        template.setDefaultSerializer(new StringRedisSerializer());
         template.afterPropertiesSet();
         return template;
     }
-
 }
