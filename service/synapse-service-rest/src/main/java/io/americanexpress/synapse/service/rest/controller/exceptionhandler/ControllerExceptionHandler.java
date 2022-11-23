@@ -225,7 +225,7 @@ public class ControllerExceptionHandler {
 
         ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_4XX_ERROR, ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE,
                 errorMessagePropertyReader.getErrorMessage(ErrorCode.GENERIC_4XX_ERROR),
-                CryptoUtil.tryJasyptEncrypt(ApplicationServerException.getStackTrace(restClientException, System.lineSeparator())));
+                CryptoUtil.tryEncrypt(ApplicationServerException.getStackTrace(restClientException, System.lineSeparator())));
 
         return ResponseEntity.badRequest().body(errorResponse);
     }

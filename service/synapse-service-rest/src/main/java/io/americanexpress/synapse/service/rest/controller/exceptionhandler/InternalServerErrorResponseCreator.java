@@ -65,7 +65,7 @@ public class InternalServerErrorResponseCreator {
         mappedDiagnosticContextRequestFieldSetter.set(XLogger.Level.ERROR, throwable, httpServletRequest);
 
         String userMessage = messagePropertyReader.getErrorMessage(ErrorCode.GENERIC_5XX_ERROR, null);
-        String developerMessage = CryptoUtil.tryJasyptEncrypt(ApplicationServerException.getStackTrace(throwable, System.lineSeparator()));
+        String developerMessage = CryptoUtil.tryEncrypt(ApplicationServerException.getStackTrace(throwable, System.lineSeparator()));
 
         ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_5XX_ERROR, ControllerExceptionHandler.GENERIC_5XX_HEADER_MESSAGE, userMessage, developerMessage);
 

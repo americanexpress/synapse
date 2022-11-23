@@ -84,7 +84,7 @@ public class MappedDiagnosticContextRequestFieldSetter {
 
             String request = requestPayloadConverter.convert(httpServletRequest);
             if (StringUtils.isNotBlank(request)) {
-                MDC.put(MDCKeys.REQUEST, CryptoUtil.tryJasyptEncrypt(request));
+                MDC.put(MDCKeys.REQUEST, CryptoUtil.tryEncrypt(request));
             }
 
             //'Finally' block to guarantee whether an exception is thrown in the previous logic or not, the logger.catching and the MDC.clear() logic will still run.
