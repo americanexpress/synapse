@@ -23,6 +23,9 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * {@code DateMonthDayYearSerializer} serializes date in month day, year format.
+ */
 public class DateMonthDayYearSerializer extends JsonSerializer<LocalDate> {
 
     @Override

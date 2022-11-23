@@ -18,13 +18,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TelephoneStringSerializerTest extends BaseTestStringSerializer {
+/**
+ * {@code TelephoneStringSerializerTest} tests the {@link TelephoneStringSerializer}.
+ */
+class TelephoneStringSerializerTest extends BaseTestStringSerializer {
 
 	@BeforeEach
 	@Override
 	public void initializeModel() {
 		super.initializeModel();
-		setTestField("phone_number");
+		setTestField("phoneNumber");
 	}
 
 	@Override
@@ -43,7 +46,7 @@ public class TelephoneStringSerializerTest extends BaseTestStringSerializer {
 	}
 
 	@Test
-	public void serialize_anyString() throws Exception {
+	void serialize_anyString() throws Exception {
 		model.setPhoneNumber("a");
 		String expected = "{\"" + testField + "\":\"a\"}";
 		String actual = mapper.writeValueAsString(model);
@@ -51,7 +54,7 @@ public class TelephoneStringSerializerTest extends BaseTestStringSerializer {
 	}
 
 	@Test
-	public void serialize_length10String() throws Exception {
+	void serialize_length10String() throws Exception {
 		model.setPhoneNumber("abcdefghij");
 		String expected = "{\"" + testField + "\":\"abcdefghij\"}";
 		String actual = mapper.writeValueAsString(model);
@@ -59,7 +62,7 @@ public class TelephoneStringSerializerTest extends BaseTestStringSerializer {
 	}
 
 	@Test
-	public void serialize_length10StringUntrimmed() throws Exception {
+	void serialize_length10StringUntrimmed() throws Exception {
 		model.setPhoneNumber(" abcdefghij ");
 		String expected = "{\"" + testField + "\":\"abcdefghij\"}";
 		String actual = mapper.writeValueAsString(model);
@@ -67,7 +70,7 @@ public class TelephoneStringSerializerTest extends BaseTestStringSerializer {
 	}
 
 	@Test
-	public void serialize_validPhoneNumberUntrimmed() throws Exception {
+	void serialize_validPhoneNumberUntrimmed() throws Exception {
 		model.setPhoneNumber(" 1234567890 ");
 		String expected = "{\"" + testField + "\":\"(123) 456-7890\"}";
 		String actual = mapper.writeValueAsString(model);

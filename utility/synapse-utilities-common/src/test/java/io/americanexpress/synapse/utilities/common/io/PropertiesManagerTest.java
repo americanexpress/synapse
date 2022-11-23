@@ -21,7 +21,10 @@ import java.util.Properties;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class PropertiesManagerTest {
+/**
+ * {@code PropertiesManagerTest} tests the {@link PropertiesManager}.
+ */
+class PropertiesManagerTest {
 
     private static final String PROPERTIES_ARE_NULL = "Properties are null.";
 
@@ -34,27 +37,27 @@ public class PropertiesManagerTest {
     private static final String SAMPLE_PROPERTIES_FILE = "sample-properties.properties";
 
     @Test
-    public void load_nonexistentFile() {
+    void load_nonexistentFile() {
         PropertiesManager manager = new PropertiesManager();
         assertThrows(ApplicationServerException.class, () -> manager.load(NONEXISTENT_FILE));
     }
 
     @Test
-    public void load_emptyFile() throws Exception {
+    void load_emptyFile() throws Exception {
         PropertiesManager manager = new PropertiesManager();
         Properties actual = manager.load(EMPTY_FILE);
         assertNotNull(actual, PROPERTIES_ARE_NULL);
     }
 
     @Test
-    public void load_fileInvalidFormat() throws Exception {
+    void load_fileInvalidFormat() throws Exception {
         PropertiesManager manager = new PropertiesManager();
         Properties actual = manager.load(FILE_INVALID_FORMAT);
         assertNotNull(actual, PROPERTIES_ARE_NULL);
     }
 
     @Test
-    public void load_clean() throws Exception {
+    void load_clean() throws Exception {
         PropertiesManager manager = new PropertiesManager();
         Properties actual = manager.load(SAMPLE_PROPERTIES_FILE);
         assertNotNull(actual, PROPERTIES_ARE_NULL);

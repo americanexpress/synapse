@@ -19,7 +19,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import java.io.IOException;
 
 /**
- * NationalIdentifierStringSerializer class is used to convert an unformatted ssn/tax identifiers String field into the 000-00-0000 format during serialization.
+ * {@code NationalIdentifierStringSerializer} class is used to convert an unformatted ssn/tax identifiers String field into the 000-00-0000 format during serialization.
  *
  */
 public class NationalIdentifierStringSerializer extends StringSerializer {

@@ -15,6 +15,9 @@ package io.americanexpress.synapse.utilities.common.model;
 
 import com.openpojo.business.BusinessIdentity;
 
+/**
+ * {@code BaseModel} is the base class for model classes.
+ */
 public abstract class BaseModel {
     @Override
     public int hashCode() {

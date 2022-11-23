@@ -186,7 +186,7 @@ public class ControllerExceptionHandler {
     private ResponseEntity<ErrorResponse> handleInternalServerError(Throwable throwable) {
         String message = errorMessagePropertyReader.getErrorMessage(ErrorCode.GENERIC_5XX_ERROR);
         String fullStackTrace = ApplicationServerException.getStackTrace(throwable, System.lineSeparator());
-        ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_5XX_ERROR, GENERIC_5XX_HEADER_MESSAGE, message, CryptoUtil.jasyptEncrypt(fullStackTrace));
+        ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_5XX_ERROR, GENERIC_5XX_HEADER_MESSAGE, message, CryptoUtil.encrypt(fullStackTrace));
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
 
@@ -202,7 +202,7 @@ public class ControllerExceptionHandler {
         logger.catching(throwable);
         String message = errorMessagePropertyReader.getErrorMessage(ErrorCode.GENERIC_5XX_ERROR);
         String fullStackTrace = ApplicationServerException.getStackTrace(throwable, System.lineSeparator());
-        ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_5XX_ERROR, GENERIC_5XX_HEADER_MESSAGE, message, CryptoUtil.jasyptEncrypt(fullStackTrace));
+        ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_5XX_ERROR, GENERIC_5XX_HEADER_MESSAGE, message, CryptoUtil.encrypt(fullStackTrace));
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }

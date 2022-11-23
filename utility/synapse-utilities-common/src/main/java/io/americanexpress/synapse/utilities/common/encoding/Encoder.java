@@ -14,7 +14,7 @@
 package io.americanexpress.synapse.utilities.common.encoding;
 
 /**
- * Encoder interface provides the prototypes for performing an encoding.
+ * {@code Encoder} interface provides the prototypes for performing an encoding.
  *
  * @author Paolo Claudio
  */

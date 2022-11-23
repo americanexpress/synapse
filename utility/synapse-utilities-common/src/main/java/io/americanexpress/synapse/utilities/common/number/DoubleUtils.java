@@ -17,11 +17,15 @@ import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 
 /**
- * DoubleUtils class used to convert the string to double if the value is valid.
+ * {@code DoubleUtils} class used to convert the string to double if the value is valid.
  */
 public class DoubleUtils {
 
     private static final XLogger logger = XLoggerFactory.getXLogger(DoubleUtils.class);
+
+    private DoubleUtils() {
+        //Private constructor to prevent instantiation of utility class.
+    }
 
     /**
      * Try to parse the numerical string representation into its corresponding double value.

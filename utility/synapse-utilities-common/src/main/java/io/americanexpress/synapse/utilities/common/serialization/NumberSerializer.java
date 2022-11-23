@@ -24,7 +24,7 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
 /**
- * NumberSerializer class specifies the prototypes for serializing Number objects and their descendants.
+ * {@code NumberSerializer} class specifies the prototypes for serializing Number objects and their descendants.
  *
  * @param <T> type of Number e.g. Integer, Double, BigDecimal
  * @author Paolo Claudio

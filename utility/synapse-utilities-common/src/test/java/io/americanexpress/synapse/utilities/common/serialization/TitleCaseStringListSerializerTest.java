@@ -21,7 +21,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TitleCaseStringListSerializerTest extends BaseTestListStringSerializer {
+/**
+ * {@code TitleCaseStringListSerializerTest} tests the {@link TitleCaseStringListSerializer}.
+ */
+class TitleCaseStringListSerializerTest extends BaseTestListStringSerializer {
 
 	@BeforeEach
 	@Override
@@ -44,11 +47,11 @@ public class TitleCaseStringListSerializerTest extends BaseTestListStringSeriali
 	@Override
 	public void serialize_clean() throws Exception {
 		List<String> words = new ArrayList<>();
-		words.add("MALTER KITE");
+		words.add("WALTER KITE");
 		words.add("Keisenberg");
 		words.add("mr. kite");
 		model.setWords(words);
-		String expected = "{\"" + testField + "\":[\"Walter kite\",\"Keisenberg\",\"Mr. kite\"]}";
+		String expected = "{\"" + testField + "\":[\"Walter Kite\",\"Keisenberg\",\"Mr. Kite\"]}";
 		String actual = mapper.writeValueAsString(model);
 		assertEquals(expected, actual, SERIALIZATION_FAILED);
 	}

@@ -15,22 +15,24 @@ package io.americanexpress.synapse.utilities.common.serialization;
 
 import io.americanexpress.synapse.framework.test.CommonAssertionMessages;
 import io.americanexpress.synapse.framework.test.MockFixedValues;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.Locale;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
+/**
+ * {@code CurrencySerializerTest} tests the {@link CurrencySerializer}.
+ */
 class CurrencySerializerTest extends BaseTestSerializer {
 
     @BeforeEach
     @Override
     public void initializeModel() {
         super.initializeModel();
-        setTestField("currency_amount");
+        setTestField("currencyAmount");
         Locale.setDefault(Locale.US);
     }
 
@@ -46,56 +48,56 @@ class CurrencySerializerTest extends BaseTestSerializer {
 
     @Override
     public String getExpectedEmptyValue() {
-        return "{\"currency_amount\":\"$0.00\"}";
+        return "{\"currencyAmount\":\"$0.00\"}";
     }
 
     @Test
     void serialize_zeroValue() throws Exception {
         model.setCurrencyAmount(new BigDecimal("0"));
-        String expected = "{\"currency_amount\":\"$0.00\"}";
+        String expected = "{\"currencyAmount\":\"$0.00\"}";
         String actual = mapper.writeValueAsString(model);
-        assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test
     void serialize_negativeIntegersOnly() throws Exception {
         model.setCurrencyAmount(new BigDecimal("-1234"));
-        String expected = "{\"currency_amount\":\"-$1,234.00\"}";
+        String expected = "{\"currencyAmount\":\"-$1,234.00\"}";
         String actual = mapper.writeValueAsString(model);
-        assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test
     void serialize_integersOnly() throws Exception {
         model.setCurrencyAmount(new BigDecimal("1000"));
-        String expected = "{\"currency_amount\":\"$1,000.00\"}";
+        String expected = "{\"currencyAmount\":\"$1,000.00\"}";
         String actual = mapper.writeValueAsString(model);
-        assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test
     void serialize_negativeMultipleDecimalPlaces() throws Exception {
         model.setCurrencyAmount(new BigDecimal("-1234.444"));
-        String expected = "{\"currency_amount\":\"-$1,234.44\"}";
+        String expected = "{\"currencyAmount\":\"-$1,234.44\"}";
         String actual = mapper.writeValueAsString(model);
-        assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test
     void serialize_multipleDecimalPlaces() throws Exception {
         model.setCurrencyAmount(new BigDecimal("1000.2388"));
-        String expected = "{\"currency_amount\":\"$1,000.24\"}";
+        String expected = "{\"currencyAmount\":\"$1,000.24\"}";
         String actual = mapper.writeValueAsString(model);
-        assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test
     @Override
     public void serialize_clean() throws Exception {
         model.setCurrencyAmount(new BigDecimal("123456.1234"));
-        String expected = "{\"currency_amount\":\"$123,456.12\"}";
+        String expected = "{\"currencyAmount\":\"$123,456.12\"}";
         String actual = mapper.writeValueAsString(model);
-        assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test
@@ -103,7 +105,7 @@ class CurrencySerializerTest extends BaseTestSerializer {
         CurrencySerializer serializer = new CurrencySerializer();
         String text = null;
         String actual = serializer.serialize(text);
-        assertNull(actual, CommonAssertionMessages.VALUE_NOT_NULL);
+        Assertions.assertNull(actual, CommonAssertionMessages.VALUE_NOT_NULL);
     }
 
     @Test
@@ -112,7 +114,7 @@ class CurrencySerializerTest extends BaseTestSerializer {
         String text = MockFixedValues.SAMPLE_VALUE;
         String expected = text;
         String actual = serializer.serialize(text);
-        assertEquals(expected, actual, CommonAssertionMessages.VALUE_NOT_EQUAL);
+        Assertions.assertEquals(actual, expected, CommonAssertionMessages.VALUE_NOT_EQUAL);
     }
 
     @Test
@@ -121,6 +123,6 @@ class CurrencySerializerTest extends BaseTestSerializer {
         String text = "123456.1234";
         String expected = "$123,456.12";
         String actual = serializer.serialize(text);
-        assertEquals(expected, actual, CommonAssertionMessages.VALUE_NOT_EQUAL);
+        Assertions.assertEquals(expected, actual);
     }
 }

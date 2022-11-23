@@ -16,7 +16,7 @@ package io.americanexpress.synapse.utilities.common.currency;
 import io.americanexpress.synapse.utilities.common.number.DoubleUtils;
 
 /**
- * CurrencyUtils class convert any amount into the correct currency.
+ * {@code CurrencyUtils} class convert any amount into the correct currency.
  *
  * @author Christie Goldstein
  */

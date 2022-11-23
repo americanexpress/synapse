@@ -44,7 +44,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
- * <code>UtilitiesCommonConfig</code> class is used to initialize the configurations for utilities-common.
+ * {@code UtilitiesCommonConfig} class is used to initialize the configurations for utilities-common.
  *
  * @author Gabriel Jimenez
  */

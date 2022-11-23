@@ -19,7 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.lang.reflect.Field;
 
 /**
- * EmptyObjectValidator class is used to validate if an object is empty i.e. if all fields of an object are null, then isEmpty(object) will return true.
+ * {@code EmptyObjectValidator} class is used to validate if an object is empty i.e. if all fields of an object are null, then isEmpty(object) will return true.
  *
  * @author Paolo Claudio
  */

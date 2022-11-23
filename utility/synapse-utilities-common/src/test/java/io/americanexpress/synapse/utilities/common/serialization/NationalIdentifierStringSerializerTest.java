@@ -18,13 +18,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class NationalIdentifierStringSerializerTest extends BaseTestStringSerializer {
+/**
+ * {@code NationalIdentifierStringSerializerTest} tests the {@link NationalIdentifierStringSerializer}.
+ */
+class NationalIdentifierStringSerializerTest extends BaseTestStringSerializer {
 
     @BeforeEach
     @Override
     public void initializeModel() {
         super.initializeModel();
-        setTestField("national_identifier");
+        setTestField("nationalIdentifier");
     }
 
     @Override
@@ -43,7 +46,7 @@ public class NationalIdentifierStringSerializerTest extends BaseTestStringSerial
     }
 
     @Test
-    public void serialize_anyString() throws Exception {
+    void serialize_anyString() throws Exception {
         model.setNationalIdentifier("a");
         String expected = "{\"" + testField + "\":\"a\"}";
         String actual = mapper.writeValueAsString(model);
@@ -51,7 +54,7 @@ public class NationalIdentifierStringSerializerTest extends BaseTestStringSerial
     }
 
     @Test
-    public void serialize_length10String() throws Exception {
+    void serialize_length10String() throws Exception {
         model.setNationalIdentifier("abcdefghj");
         String expected = "{\"" + testField + "\":\"abcdefghj\"}";
         String actual = mapper.writeValueAsString(model);
@@ -59,7 +62,7 @@ public class NationalIdentifierStringSerializerTest extends BaseTestStringSerial
     }
 
     @Test
-    public void serialize_length10StringUntrimmed() throws Exception {
+    void serialize_length10StringUntrimmed() throws Exception {
         model.setNationalIdentifier(" abcdefghij ");
         String expected = "{\"" + testField + "\":\"abcdefghij\"}";
         String actual = mapper.writeValueAsString(model);
@@ -67,9 +70,9 @@ public class NationalIdentifierStringSerializerTest extends BaseTestStringSerial
     }
 
     @Test
-    public void serialize_validSSNUntrimmed() throws Exception {
+    void serialize_validSSNUntrimmed() throws Exception {
         model.setNationalIdentifier(" 123456780 ");
-        String expected = "{\"national_identifier\":\"123-45-6780\"}";
+        String expected = "{\"nationalIdentifier\":\"123-45-6780\"}";
         String actual = mapper.writeValueAsString(model);
         assertEquals(expected, actual, SERIALIZATION_FAILED);
     }
@@ -78,7 +81,7 @@ public class NationalIdentifierStringSerializerTest extends BaseTestStringSerial
     @Override
     public void serialize_clean() throws Exception {
         model.setNationalIdentifier("123456780");
-        String expected = "{\"national_identifier\":\"123-45-6780\"}";
+        String expected = "{\"nationalIdentifier\":\"123-45-6780\"}";
         String actual = mapper.writeValueAsString(model);
         assertEquals(expected, actual, "Serialization expected well formatted ssn.");
     }

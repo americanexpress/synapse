@@ -13,14 +13,16 @@
  */
 package io.americanexpress.synapse.utilities.common.serialization;
 
-import io.americanexpress.synapse.framework.test.CommonAssertionMessages;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TitleCaseStringSerializerTest extends BaseTestStringSerializer {
+/**
+ * {@code TitleCaseStringSerializerTest} tests the {@link TitleCaseStringSerializer}.
+ */
+class TitleCaseStringSerializerTest extends BaseTestStringSerializer {
 
     private static final String NAMES_NOT_FORMATTED_CORRECTLY = "Names are not formatted correctly.";
 
@@ -30,7 +32,7 @@ public class TitleCaseStringSerializerTest extends BaseTestStringSerializer {
     @Override
     public void initializeModel() {
         super.initializeModel();
-        setTestField("full_name");
+        setTestField("fullName");
     }
 
     @Override
@@ -90,7 +92,7 @@ public class TitleCaseStringSerializerTest extends BaseTestStringSerializer {
 
     @Test
     void serialize_null() {
-        assertNull(titleCaseStringSerializer.serialize(null), CommonAssertionMessages.VALUE_NOT_NULL);
+        assertNull(titleCaseStringSerializer.serialize(null));
     }
 
     @Test

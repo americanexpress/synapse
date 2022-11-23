@@ -20,13 +20,16 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AllCharactersMaskBigDecimalSerializerTest extends BaseTestSerializer {
+/**
+ * {@code AllCharactersMaskBigDecimalSerializerTest} tests the {@link AllCharactersMaskBigDecimalSerializer}
+ */
+class AllCharactersMaskBigDecimalSerializerTest extends BaseTestSerializer {
 
     @BeforeEach
     @Override
     public void initializeModel() {
         super.initializeModel();
-        setTestField("character_masking");
+        setTestField("balanceMasking");
     }
 
     @Override
@@ -41,25 +44,25 @@ public class AllCharactersMaskBigDecimalSerializerTest extends BaseTestSerialize
     }
 
     @Test
-    public void serialize_10digitMasking() throws Exception {
+    void serialize_10digitMasking() throws Exception {
         model.setBalanceMasking(BigDecimal.valueOf(012345678.009977));
-        String expected = "{\"character_masking\":\"***\"}";
+        String expected = "{\"balanceMasking\":\"***\"}";
         String actual = mapper.writeValueAsString(model);
         assertEquals(expected, actual, SERIALIZATION_FAILED);
     }
 
     @Test
-    public void serialize_1Billion_DigitMasking() throws Exception {
+    void serialize_1Billion_DigitMasking() throws Exception {
         model.setBalanceMasking(BigDecimal.valueOf(1000000000.00));
-        String expected = "{\"character_masking\":\"***\"}";
+        String expected = "{\"balanceMasking\":\"***\"}";
         String actual = mapper.writeValueAsString(model);
         assertEquals(expected, actual, SERIALIZATION_FAILED);
     }
 
     @Test
-    public void serialize_4digitMasking() throws Exception {
+    void serialize_4digitMasking() throws Exception {
         model.setBalanceMasking(BigDecimal.valueOf(1234.00));
-        String expected = "{\"character_masking\":\"***\"}";
+        String expected = "{\"balanceMasking\":\"***\"}";
         String actual = mapper.writeValueAsString(model);
         assertEquals(expected, actual, SERIALIZATION_FAILED);
     }
@@ -75,7 +78,7 @@ public class AllCharactersMaskBigDecimalSerializerTest extends BaseTestSerialize
     @Test
     public void serialize_clean() throws Exception {
         model.setBalanceMasking(BigDecimal.valueOf(1234.000000000000));
-        String expected = "{\"character_masking\":\"***\"}";
+        String expected = "{\"balanceMasking\":\"***\"}";
         String actual = mapper.writeValueAsString(model);
         assertEquals(expected, actual, SERIALIZATION_FAILED);
     }

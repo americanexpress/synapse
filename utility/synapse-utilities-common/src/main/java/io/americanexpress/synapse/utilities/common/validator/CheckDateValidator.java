@@ -13,12 +13,12 @@
  */
 package io.americanexpress.synapse.utilities.common.validator;
 
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.text.SimpleDateFormat;
 
 /**
+ * {@code CheckDateValidator} is for validating date
  * @author Gabriel Jimenez
  */
 public class CheckDateValidator implements ConstraintValidator<CheckDateFormat, String> {
