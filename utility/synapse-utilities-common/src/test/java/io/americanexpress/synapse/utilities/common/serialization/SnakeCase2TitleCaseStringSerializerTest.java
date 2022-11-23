@@ -18,7 +18,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SnakeCase2TitleCaseStringSerializerTest extends BaseTestStringSerializer {
+/**
+ * {@code SnakeCase2TitleCaseStringSerializerTest} tests the {@link SnakeCase2TitleCaseStringSerializer}.
+ */
+class SnakeCase2TitleCaseStringSerializerTest extends BaseTestStringSerializer {
 
     SnakeCase2TitleCaseStringSerializer snakeCase2TitleCaseStringSerializer = new SnakeCase2TitleCaseStringSerializer();
 
@@ -26,7 +29,7 @@ public class SnakeCase2TitleCaseStringSerializerTest extends BaseTestStringSeria
     @Override
     public void initializeModel() {
         super.initializeModel();
-        setTestField("full_name");
+        setTestField("fullName");
     }
 
     @Override
@@ -45,7 +48,7 @@ public class SnakeCase2TitleCaseStringSerializerTest extends BaseTestStringSeria
     }
 
     @Test
-    public void serialize_allLowercase() {
+    void serialize_allLowercase() {
         String text = "john _x_ _ doe";
         String expected = "John X Doe";
         String actual = snakeCase2TitleCaseStringSerializer.serialize(text);

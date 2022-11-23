@@ -14,6 +14,9 @@
 package io.americanexpress.synapse.utilities.common.miscellaneous;
 
 
+/**
+ * {@code GetValueOrDefault} contains method for get value if value passed if not null.
+ */
 public class GetValueOrDefault {
 
     /**

@@ -17,18 +17,36 @@ import io.americanexpress.synapse.utilities.common.config.UtilitiesCommonConfig;
 import io.americanexpress.synapse.utilities.common.io.ClasspathObjectFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * {@code UtilitiesCommonObjectFactory}
+ */
 public final class UtilitiesCommonObjectFactory {
 
     private static final UtilitiesCommonConfig UTILITIES_COMMON_CONFIG = new UtilitiesCommonConfig();
 
+    /**
+     * The constant DEFAULT_OBJECT_MAPPER.
+     */
     public static final ObjectMapper DEFAULT_OBJECT_MAPPER = defaultObjectMapper();
 
+    /**
+     * The constant CAMEL_CASE_OBJECT_MAPPER.
+     */
     public static final ObjectMapper CAMEL_CASE_OBJECT_MAPPER = camelCaseObjectMapper();
 
+    /**
+     * The constant INCLUDE_EMPTY_OBJECT_MAPPER.
+     */
     public static final ObjectMapper INCLUDE_EMPTY_OBJECT_MAPPER = includeEmptyObjectMapper();
 
+    /**
+     * The constant XML_OBJECT_MAPPER.
+     */
     public static final ObjectMapper XML_OBJECT_MAPPER = xmlObjectMapper();
 
+    /**
+     * The constant DEFAULT_CLASSPATH_OBJECT_FACTORY.
+     */
     public static final ClasspathObjectFactory DEFAULT_CLASSPATH_OBJECT_FACTORY = defaultClasspathObjectFactory();
 
     private static ObjectMapper defaultObjectMapper() {
@@ -39,6 +57,11 @@ public final class UtilitiesCommonObjectFactory {
         return UTILITIES_COMMON_CONFIG.camelCaseObjectMapper();
     }
 
+    /**
+     * Include empty object mapper object mapper.
+     *
+     * @return the object mapper
+     */
     public static ObjectMapper includeEmptyObjectMapper() {
         return UTILITIES_COMMON_CONFIG.includeEmptyObjectMapper();
     }

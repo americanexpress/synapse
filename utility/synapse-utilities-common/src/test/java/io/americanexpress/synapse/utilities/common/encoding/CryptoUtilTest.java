@@ -13,23 +13,23 @@
  */
 package io.americanexpress.synapse.utilities.common.encoding;
 
-import io.americanexpress.synapse.utilities.common.config.UtilitiesCommonConfig;
 import io.americanexpress.synapse.utilities.common.cryptography.CryptoUtil;
 import org.junit.jupiter.api.Test;
-import org.springframework.test.context.ContextConfiguration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@ContextConfiguration(classes = {UtilitiesCommonConfig.class})
+/**
+ * {@code CryptoUtilTest} tests the {@link CryptoUtil}.
+ */
 class CryptoUtilTest {
 
-    private static final String ENCRYPTED_VALUE = "a1QWwARQGaSDPryzJPc0SA==";
+    private static final String ENCRYPTED_VALUE = "feR+vAk+Ysys9pOeEWupVQ==";
 
     private static final String DECRYPTED_VALUE = "184981684091";
 
     @Test
     void tryJasyptDecrypt_givenEncryptedString_expectedDecryptedString() {
-        String decrypted = CryptoUtil.tryJasyptDecrypt(ENCRYPTED_VALUE);
+        String decrypted = CryptoUtil.tryDecrypt(ENCRYPTED_VALUE);
         assertEquals(DECRYPTED_VALUE, decrypted);
     }
 
@@ -38,19 +38,19 @@ class CryptoUtilTest {
      */
     @Test
     void jasyptDecrypt_givenEncryptedString_expectedDecryptedString() {
-        String decrypted = CryptoUtil.jasyptDecrypt(ENCRYPTED_VALUE);
+        String decrypted = CryptoUtil.decrypt(ENCRYPTED_VALUE);
         assertEquals(DECRYPTED_VALUE, decrypted);
     }
 
     @Test
     void tryJasyptEncrypt_givenDecryptedString_expectedEncryptedString() {
-        String decrypted = CryptoUtil.tryJasyptEncrypt(DECRYPTED_VALUE);
+        String decrypted = CryptoUtil.tryEncrypt(DECRYPTED_VALUE);
         assertEquals(ENCRYPTED_VALUE, decrypted);
     }
 
     @Test
     void jasyptEncrypt_givenDecryptedString_expectedEncryptedString() {
-        String encrypt = CryptoUtil.jasyptEncrypt(DECRYPTED_VALUE);
+        String encrypt = CryptoUtil.encrypt(DECRYPTED_VALUE);
         assertEquals(ENCRYPTED_VALUE, encrypt);
     }
 }

@@ -20,7 +20,7 @@ import java.util.Locale;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * CurrencySerializer class serializes BigDecimal objects into a currency format.
+ * {@code CurrencySerializer} class serializes BigDecimal objects into a currency format.
  *
  * @author Paolo Claudio
  */

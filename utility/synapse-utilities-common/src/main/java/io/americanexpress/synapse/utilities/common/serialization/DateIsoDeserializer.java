@@ -22,6 +22,9 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * {@code DateIsoDeserializer} deserializes string to date in iso format.
+ */
 public class DateIsoDeserializer extends JsonDeserializer<LocalDate> {
 
     @Override

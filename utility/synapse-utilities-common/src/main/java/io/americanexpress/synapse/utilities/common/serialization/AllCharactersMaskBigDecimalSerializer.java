@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 
 /**
- * BalanceMasking class limits to 2 digits after decimal and  masks the all characters.
+ * {@code AllCharactersMaskBigDecimalSerializer} class limits to 2 digits after decimal and  masks the all characters.
  * e.g. if the text is 1234.000000 then it first converts to 1234.00 and then text will be serialized as *********
  *
  */

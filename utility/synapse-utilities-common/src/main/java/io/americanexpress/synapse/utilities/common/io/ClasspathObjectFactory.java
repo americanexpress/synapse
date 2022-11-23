@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * ClasspathObjectFactory produces objects given a classpath.
+ * {@code ClasspathObjectFactory} produces objects given a classpath.
  *
  * @author Paolo Claudio
  */

@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Instant2LocalDateTimeStringSerializer class is used to convert an ISO_INSTANT String format '2011-12-03T10:15:30Z' to an ISO_LOCAL_DATE_TIME String format '2011-12-03T10:15:30'.
+ * {@code Instant2LocalDateTimeStringSerializer} class is used to convert an ISO_INSTANT String format '2011-12-03T10:15:30Z' to an ISO_LOCAL_DATE_TIME String format '2011-12-03T10:15:30'.
  *
  * @author Paolo Claudio
  */

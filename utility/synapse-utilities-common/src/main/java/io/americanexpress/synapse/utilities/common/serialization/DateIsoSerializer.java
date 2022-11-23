@@ -23,6 +23,9 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * {@code DateIsoSerializer} serializes date in iso format.
+ */
 public class DateIsoSerializer extends JsonSerializer<LocalDate> {
 
     @Override

@@ -13,9 +13,31 @@
  */
 package io.americanexpress.synapse.utilities.common.date;
 
+/**
+ * {@code DateFormat} represents type of date format.
+ */
 public enum DateFormat {
 
-    MONTH_DAY_COMMA_YEAR("MMMM dd, yyyy"), ISO_DATE("yyyy-MM-dd"), ISO_TIME("yyyy-MM-dd HH:mm:ss"), ISO_INSTANT("yyyy-MM-dd'T'HH:mm:ssZ"), MONTH_DAY_YEAR_WITH_LEADING_ZEROS("mm/dd/yyyy");
+    /**
+     * The Month day comma year.
+     */
+    MONTH_DAY_COMMA_YEAR("MMMM dd, yyyy"),
+    /**
+     * Iso date date format.
+     */
+    ISO_DATE("yyyy-MM-dd"),
+    /**
+     * The Iso time.
+     */
+    ISO_TIME("yyyy-MM-dd HH:mm:ss"),
+    /**
+     * Iso instant date format.
+     */
+    ISO_INSTANT("yyyy-MM-dd'T'HH:mm:ssZ"),
+    /**
+     * Month day year with leading zeros date format.
+     */
+    MONTH_DAY_YEAR_WITH_LEADING_ZEROS("mm/dd/yyyy");
 
     private String value;
 
@@ -23,6 +45,11 @@ public enum DateFormat {
         this.value = value;
     }
 
+    /**
+     * Gets value.
+     *
+     * @return the value
+     */
     public String getValue() {
         return value;
     }
