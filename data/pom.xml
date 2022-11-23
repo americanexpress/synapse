@@ -33,6 +33,7 @@
         <module>synapse-data-mongodb</module>
         <module>synapse-data-oracle</module>
         <module>synapse-data-postgres</module>
+        <module>synapse-data-redis</module>
     </modules>
 
 </project>
