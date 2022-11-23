@@ -24,10 +24,10 @@ import org.springframework.http.ResponseEntity;
 public class MonoResponseEntityCreator<O extends BaseServiceResponse> {
 
     /**
-     * Create a response entity
-     * @param serviceResponse
+     * Create a response entity.
+     * @param serviceResponse service response
      * @return response entity
-     * @param <O> serviceResponse
+     * @param <O> an object extending {@link BaseServiceResponse}
      */
     public static <O extends BaseServiceResponse> ResponseEntity<O> create(O serviceResponse) {
         return serviceResponse == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : ResponseEntity.ok(serviceResponse);

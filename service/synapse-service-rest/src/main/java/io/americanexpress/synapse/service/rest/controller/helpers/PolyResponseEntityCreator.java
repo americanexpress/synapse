@@ -23,8 +23,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
- * {@code PolyResponseEntityCreator} creates ResponseEntity for poly responses
- * @param <O>
+ * {@code PolyResponseEntityCreator} creates ResponseEntity for poly responses.
+ * @param <O> a response extending {@link BaseServiceResponse}
  */
 public class PolyResponseEntityCreator<O extends BaseServiceResponse> {
 

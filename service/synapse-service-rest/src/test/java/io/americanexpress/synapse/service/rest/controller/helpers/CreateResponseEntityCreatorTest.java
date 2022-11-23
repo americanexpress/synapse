@@ -22,8 +22,9 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * {@code CreateResponseEntityCreatorTest} Create Response Entity Creator Test
@@ -39,16 +40,16 @@ public class CreateResponseEntityCreatorTest {
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
     }
 
-
     /**
-     * test successful create responseEntity
+     * Test successful create responseEntity.
      */
     @Test
     public void create_givenServiceResponse_expectedResponseEntity() {
-        ResponseEntity<BaseServiceResponseTest> response = CreateResponseEntityCreator.create(new BaseServiceResponseTest("test", "test"));
-        assertNotNull(response);
-        assertEquals(201, response.getStatusCodeValue());
-        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        ResponseEntity<BaseServiceResponseTest> response = CreateResponseEntityCreator.create(new BaseServiceResponseTest("test", UUID.randomUUID().toString()));
+        assertAll(
+                () -> assertNotNull(response),
+                () -> assertEquals(201, response.getStatusCodeValue()),
+                () -> assertEquals(HttpStatus.CREATED, response.getStatusCode())
+        );
     }
-
 }

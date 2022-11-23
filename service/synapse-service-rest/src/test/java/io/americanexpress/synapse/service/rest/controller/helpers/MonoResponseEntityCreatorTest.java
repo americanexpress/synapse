@@ -18,9 +18,9 @@ import io.americanexpress.synapse.service.rest.controller.helpers.model.BaseServ
 import org.junit.Test;
 
 import java.util.Objects;
+import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * {@code MonoResponseEntityCreatorTest} Mono Response Entity Creator Test
@@ -32,11 +32,13 @@ public class MonoResponseEntityCreatorTest {
      */
     @Test
     public void create_givenServiceResponse_expectedResponseEntity() {
-        var response = MonoResponseEntityCreator.create(new BaseServiceResponseTest("test", "test"));
-        assertNotNull(response);
-        assertEquals(200, response.getStatusCodeValue());
-        assertEquals("test", Objects.requireNonNull(response.getBody()).getValue());
-        assertEquals("test", response.getBody().getId());
+        var response = MonoResponseEntityCreator.create(new BaseServiceResponseTest("test", UUID.randomUUID().toString()));
+        assertAll(
+                () -> assertNotNull(response),
+                () -> assertEquals(200, response.getStatusCodeValue()),
+                () -> assertEquals("test", Objects.requireNonNull(response.getBody()).getValue()),
+                () -> assertEquals("test", response.getBody().getId())
+        );
     }
 
 }
