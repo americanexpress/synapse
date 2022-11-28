@@ -21,6 +21,9 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -43,9 +46,11 @@ public class ReactiveCreateResponseEntityCreatorTest {
      */
     @Test
     public void create_givenServiceResponse_expectedResponseEntity() {
-        var response = ReactiveCreateResponseEntityCreator.create(new BaseServiceResponseTest("test", "test"));
-        assertNotNull(response);
-        assertEquals(201, response.getStatusCodeValue());
-        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        var response = ReactiveCreateResponseEntityCreator.create(new BaseServiceResponseTest("test", UUID.randomUUID().toString()));
+        assertAll(
+                () -> assertNotNull(response),
+                () -> assertEquals(201, response.getStatusCodeValue()),
+                () -> assertEquals(HttpStatus.CREATED, response.getStatusCode())
+        );
     }
 }

@@ -45,4 +45,15 @@ class ReactivePolyResponseEntityCreatorTest {
                     assertEquals("test", results.getId());
                 });
     }
+
+    /**
+     * test no content
+     */
+    @Test
+    public void create_givenServiceResponseEmptyPage_expectedResponseEntityNoContent() {
+        var httpServletRequest = new MockHttpServletResponse();
+        var responseEntity = ReactivePolyResponseEntityCreator.create(null, httpServletRequest);
+        assertNotNull(responseEntity);
+        assertEquals(204, responseEntity.getStatusCodeValue());
+    }
 }

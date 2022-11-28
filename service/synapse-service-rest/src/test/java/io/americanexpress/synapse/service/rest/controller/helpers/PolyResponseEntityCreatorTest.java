@@ -19,6 +19,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.mock.web.MockHttpServletResponse;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -38,9 +39,22 @@ public class PolyResponseEntityCreatorTest {
         var responseEntity = PolyResponseEntityCreator.create(page, httpServletRequest);
         assertAll(
                 () -> assertNotNull(responseEntity),
+                () -> assertNotNull(Objects.requireNonNull(responseEntity.getBody()).get(0).getId()),
                 () -> assertEquals(200, responseEntity.getStatusCodeValue()),
-                () -> assertEquals("test", responseEntity.getBody().get(0).getValue()),
-                () -> assertEquals("test", responseEntity.getBody().get(0).getId())
+                () -> assertEquals("test", Objects.requireNonNull(responseEntity.getBody()).get(0).getValue())
+        );
+    }
+
+    /**
+     * test no content
+     */
+    @Test
+    public void create_givenServiceResponseEmptyPage_expectedResponseEntityNoContent() {
+        var httpServletRequest = new MockHttpServletResponse();
+        var responseEntity = PolyResponseEntityCreator.create(null, httpServletRequest);
+        assertAll(
+                () -> assertNotNull(responseEntity),
+                () -> assertEquals(204, responseEntity.getStatusCodeValue())
         );
     }
 }

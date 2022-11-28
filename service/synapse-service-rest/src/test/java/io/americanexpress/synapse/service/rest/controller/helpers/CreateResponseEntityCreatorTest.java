@@ -41,7 +41,7 @@ public class CreateResponseEntityCreatorTest {
     }
 
     /**
-     * Test successful create responseEntity.
+     * Test no content.
      */
     @Test
     public void create_givenServiceResponse_expectedResponseEntity() {

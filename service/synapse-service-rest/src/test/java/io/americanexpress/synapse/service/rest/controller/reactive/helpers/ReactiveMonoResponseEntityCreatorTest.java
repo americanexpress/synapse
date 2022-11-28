@@ -18,7 +18,9 @@ import org.junit.Test;
 import reactor.core.publisher.Mono;
 
 import java.util.Objects;
+import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -32,13 +34,29 @@ public class ReactiveMonoResponseEntityCreatorTest {
      */
     @Test
     public void create_givenServiceResponse_expectedResponseEntity() {
-        var response = ReactiveMonoResponseEntityCreator.create(Mono.just(new BaseServiceResponseTest("test", "test")));
-        assertNotNull(response);
-        assertEquals(200, response.getStatusCodeValue());
-        Objects.requireNonNull(response.getBody())
-                .subscribe(results -> {
-                    assertEquals("test", results.getValue());
-                    assertEquals("test", results.getId());
-                });
+        var response = ReactiveMonoResponseEntityCreator.create(Mono.just(new BaseServiceResponseTest("test", UUID.randomUUID().toString())));
+        assertAll(
+                () -> assertNotNull(response),
+                () -> assertEquals(200, response.getStatusCodeValue()),
+                () -> Objects.requireNonNull(response.getBody())
+                        .subscribe(results -> {
+                            assertEquals("test", results.getValue());
+                            assertNotNull(results.getId());
+                        })
+        );
+
+    }
+
+    /**
+     * test no content
+     */
+    @Test
+    public void create_givenServiceResponse_expectedResponseEntityNoContent() {
+        var response = ReactiveMonoResponseEntityCreator.create(null);
+        assertAll(
+                () -> assertNotNull(response),
+                () -> assertEquals(204, response.getStatusCodeValue())
+        );
+
     }
 }

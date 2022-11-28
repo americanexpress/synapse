@@ -37,7 +37,19 @@ public class MonoResponseEntityCreatorTest {
                 () -> assertNotNull(response),
                 () -> assertEquals(200, response.getStatusCodeValue()),
                 () -> assertEquals("test", Objects.requireNonNull(response.getBody()).getValue()),
-                () -> assertEquals("test", response.getBody().getId())
+                () -> assertNotNull(Objects.requireNonNull(response.getBody()).getId())
+        );
+    }
+
+    /**
+     * Test no content responseEntity
+     */
+    @Test
+    public void create_givenServiceResponse_expectedNoContent() {
+        var response = MonoResponseEntityCreator.create(null);
+        assertAll(
+                () -> assertNotNull(response),
+                () -> assertEquals(204, response.getStatusCodeValue())
         );
     }
 
