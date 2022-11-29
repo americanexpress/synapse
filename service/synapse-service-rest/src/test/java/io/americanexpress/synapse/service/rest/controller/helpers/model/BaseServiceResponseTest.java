@@ -15,6 +15,9 @@ package io.americanexpress.synapse.service.rest.controller.helpers.model;
 
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 
+/**
+ * {@code BaseServiceResponseTest} for testing purposes
+ */
 public class BaseServiceResponseTest extends BaseServiceResponse {
 
     /**
