@@ -21,7 +21,7 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
 /**
- * DoubleSerializer class serializes Double objects into a decimal format.
+ * {@code DoubleSerializer} class serializes Double objects into a decimal format.
  *
  * @author Paolo Claudio
  */

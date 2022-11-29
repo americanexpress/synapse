@@ -16,7 +16,7 @@ package io.americanexpress.synapse.utilities.common.serialization;
 import com.fasterxml.jackson.databind.JsonSerializer;
 
 /**
- * StringSerializer class specifies the prototypes for perform custom serialization on string fields.
+ * {@code StringSerializer} class specifies the prototypes for perform custom serialization on string fields.
  *
  * @author Paolo Claudio
  */

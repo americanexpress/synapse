@@ -17,63 +17,66 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class IntegerUtilsTest {
+/**
+ * {@code IntegerUtilsTest} tests the {@link IntegerUtils}.
+ */
+class IntegerUtilsTest {
 
     private static final String VALUE_NOT_EQUAL = "The values are not equal.";
 
     private static final String VALUE_EQUAL = "The values are equal.";
 
     @Test
-    public void tryParseInt_null() {
+    void tryParseInt_null() {
         Integer actual = IntegerUtils.tryParseInt(null);
         Integer expected = null;
         assertEquals(expected, actual, VALUE_NOT_EQUAL);
     }
 
     @Test
-    public void tryParseInt_1234() {
+    void tryParseInt_1234() {
         Integer actual = IntegerUtils.tryParseInt("1234");
         Integer expected = 1234;
         assertEquals(expected, actual, VALUE_EQUAL);
     }
 
     @Test
-    public void tryParseInt_ABC() {
+    void tryParseInt_ABC() {
         Integer actual = IntegerUtils.tryParseInt("ABC");
         Integer expected = null;
         assertEquals(expected, actual, VALUE_NOT_EQUAL);
     }
 
     @Test
-    public void tryParseInt_ABC123() {
+    void tryParseInt_ABC123() {
         Integer actual = IntegerUtils.tryParseInt("ABC123");
         Integer expected = null;
         assertEquals(expected, actual, VALUE_NOT_EQUAL);
     }
 
     @Test
-    public void tryParseInt_12345646WithDecimals() {
+    void tryParseInt_12345646WithDecimals() {
         Integer actual = IntegerUtils.tryParseInt("12345646675.00000");
         Integer expected = null;
         assertEquals(expected, actual, VALUE_NOT_EQUAL);
     }
 
     @Test
-    public void tryParseInt_neg123() {
+    void tryParseInt_neg123() {
         Integer actual = IntegerUtils.tryParseInt("-123");
         Integer expected = -123;
         assertEquals(expected, actual, VALUE_EQUAL);
     }
 
     @Test
-    public void tryParseInt_000() {
+    void tryParseInt_000() {
         Integer actual = IntegerUtils.tryParseInt("000");
         Integer expected = 000;
         assertEquals(expected, actual, VALUE_EQUAL);
     }
 
     @Test
-    public void tryParseInt_0() {
+    void tryParseInt_0() {
         Integer actual = IntegerUtils.tryParseInt("", 0);
         Integer expected = 0;
         assertEquals(expected, actual, VALUE_EQUAL);

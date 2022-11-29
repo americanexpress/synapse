@@ -18,7 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.regex.Pattern;
 
 /**
- * TelephoneUtil class is used to perform utility operations for telephone numbers such as validation.
+ * {@code TelephoneUtil} class is used to perform utility operations for telephone numbers such as validation.
  *
  * @author Paolo Claudio
  */
@@ -74,5 +74,26 @@ public final class TelephoneUtil {
     public static boolean isPossibleNorthAmericanTelephoneNumber(String telephoneNumber) {
         int telephoneNumberLength = telephoneNumber.length();
         return telephoneNumberLength == 10 || (telephoneNumberLength == 11 && telephoneNumber.startsWith("1"));
+    }
+
+    /**
+     * Check to see if this raw text is a possible country code. All of the country codes
+     * in the world are between 1 to 3 digits.
+     *
+     * @param text to be checked
+     * @return true if and only if this text is a possible country code; false otherwise
+     */
+    public static boolean isPossibleCountryCode(String text) {
+        return StringUtils.isNotBlank(text) && text.replaceAll("\\D", "").matches("\\d{1,3}");
+    }
+
+    /**
+     * Removes all non-digit characters from this string, including +, (, ), - and blank spaces
+     *
+     * @param rawTelephoneLineNumber the formatted Telephone line number
+     * @return the Non Formatter Telephone line number
+     */
+    public static String getNonFormattedTelephoneLineNumber(String rawTelephoneLineNumber) {
+        return StringUtils.isNotBlank(rawTelephoneLineNumber) ? rawTelephoneLineNumber.replaceAll("\\D", "") : rawTelephoneLineNumber;
     }
 }

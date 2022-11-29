@@ -18,7 +18,7 @@
     <groupId>io.americanexpress.synapse</groupId>
     <artifactId>synapse</artifactId>
     <packaging>pom</packaging>
-    <version>0.3.6-SNAPSHOT</version>
+    <version>0.3.8-SNAPSHOT</version>
 
     <description>
         Synapse is a set of lightweight foundational framework modules for rapid development built-in with enterprise
@@ -259,7 +259,17 @@
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-data-oracle</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-data-postgres</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-data-redis</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--Utility-->
@@ -267,6 +277,21 @@
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-utilities-common</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-utility-cryptography</artifactId>
+                <version>0.3.8-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-utility-date</artifactId>
+                <version>0.3.8-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-utility-number</artifactId>
+                <version>0.3.8-SNAPSHOT</version>
             </dependency>
             <!-- Publisher -->
             <dependency>
@@ -333,7 +358,12 @@
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
-                <artifactId>sample-data-postgres-book</artifactId>
+                <artifactId>sample-data-cassandra-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-cassandra-reactive</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -348,14 +378,25 @@
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
-                <artifactId>sample-data-cassandra-book</artifactId>
+                <artifactId>sample-data-oracle-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
-                <artifactId>sample-data-cassandra-reactive</artifactId>
+                <artifactId>sample-data-oracle-reactive-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-postgres-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-redis-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
 
             <!--External Dependencies-->
             <dependency>
@@ -378,6 +419,11 @@
             </dependency>
 
             <!--Spring Dependencies-->
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-r2dbc</artifactId>
+                <version>1.5.3</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.plugin</groupId>
                 <artifactId>spring-plugin-core</artifactId>
@@ -613,7 +659,7 @@
             <dependency>
                 <groupId>io.netty</groupId>
                 <artifactId>netty-codec-http</artifactId>
-                <version>4.1.83.Final</version>
+                <version>4.1.59.Final</version>
             </dependency>
 
             <!--Apache Dependencies-->
@@ -626,6 +672,11 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-collections4</artifactId>
                 <version>4.4</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-text</artifactId>
+                <version>1.10.0</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.santuario</groupId>
@@ -675,13 +726,24 @@
                 <artifactId>postgresql</artifactId>
                 <version>42.5.0</version>
             </dependency>
+            <!-- h2 -->
             <dependency>
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
                 <version>2.1.214</version>
             </dependency>
+            <dependency>
+                <groupId>io.r2dbc</groupId>
+                <artifactId>r2dbc-h2</artifactId>
+                <version>1.0.0.RC1</version>
+            </dependency>
 
             <!--Persistence-->
+            <dependency>
+                <groupId>jakarta.persistence</groupId>
+                <artifactId>jakarta.persistence-api</artifactId>
+                <version>3.1.0</version>
+            </dependency>
             <dependency>
                 <groupId>javax.persistence</groupId>
                 <artifactId>javax.persistence-api</artifactId>
@@ -912,6 +974,30 @@
                 <groupId>io.projectreactor</groupId>
                 <artifactId>reactor-core</artifactId>
                 <version>3.4.24</version>
+            </dependency>
+
+            <!-- Oracle -->
+            <dependency>
+                <groupId>com.oracle.database.jdbc</groupId>
+                <artifactId>ojdbc11</artifactId>
+                <version>21.5.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.oracle.database.r2dbc</groupId>
+                <artifactId>oracle-r2dbc</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
+            <!-- Redis -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-redis</artifactId>
+                <version>2.7.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-redis</artifactId>
+                <version>2.7.3</version>
             </dependency>
 
             <!--AWS-->

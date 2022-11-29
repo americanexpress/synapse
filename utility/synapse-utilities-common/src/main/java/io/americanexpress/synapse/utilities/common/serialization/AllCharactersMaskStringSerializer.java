@@ -20,7 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.IOException;
 
 /**
- * AllCharactersMaskStringSerializer class is used to convert the original value to the masked value during serialization.
+ * {@code AllCharactersMaskStringSerializer} class is used to convert the original value to the masked value during serialization.
  * e.g. 1234 will be converted into **** by default.
  * The other static serialize method included in this serializer is used to mask a specific amount of characters.
  *

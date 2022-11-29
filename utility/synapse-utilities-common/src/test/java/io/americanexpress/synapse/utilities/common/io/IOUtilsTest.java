@@ -21,20 +21,23 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class IOUtilsTest {
+/**
+ * {@code IOUtilsTest} tests the {@link IOUtils}.
+ */
+class IOUtilsTest {
 
     @Test
-    public void getStringsFromFile_nullFileName() {
+    void getStringsFromFile_nullFileName() {
         assertThrows(IllegalArgumentException.class, () -> IOUtils.getStringsFromFile(null));
     }
 
     @Test
-    public void getStringsFromFile_nonexistentFile() {
+    void getStringsFromFile_nonexistentFile() {
         assertThrows(ApplicationServerException.class, () -> IOUtils.getStringsFromFile("nonexistent"));
     }
 
     @Test
-    public void getStringsFromFile_clean() {
+    void getStringsFromFile_clean() {
         List<String> actual = IOUtils.getStringsFromFile("sample-body.json");
         assertNotNull(actual, "List is null.");
     }

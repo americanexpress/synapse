@@ -43,6 +43,8 @@ public final class CommonAssertionMessages {
 
     public static final String EXCEPTION_NOT_THROWN = "Exception not thrown.";
 
+    public static final String EXCEPTION_IS_THROWN = "Exception is thrown.";
+
     public static final String HEADERS_ARE_NULL = "Headers are null.";
 
     private CommonAssertionMessages() {

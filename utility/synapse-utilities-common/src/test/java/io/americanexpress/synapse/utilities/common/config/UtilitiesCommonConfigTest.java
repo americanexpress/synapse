@@ -18,10 +18,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class UtilitiesCommonConfigTest {
+/**
+ * {@code UtilitiesCommonConfigTest} tests the {@link UtilitiesCommonConfig}.
+ */
+class UtilitiesCommonConfigTest {
 
     @Test
-    public void objectMapper_clean() {
+    void objectMapper_clean() {
         UtilitiesCommonConfig config = new UtilitiesCommonConfig();
         ObjectMapper actual = config.defaultObjectMapper();
         assertNotNull(actual, "Object mapper is null.");

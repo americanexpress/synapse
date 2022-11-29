@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import javax.validation.Valid;
 
 /**
- * <code>BaseCreateController</code> class specifies the abstraction for listening for requests from the consumer
+ * {@code BaseCreateController} class specifies the abstraction for listening for requests from the consumer
  * to Create (POST) a resource. This controller expects only one entry as request.
  *
  * @param <I> input request type

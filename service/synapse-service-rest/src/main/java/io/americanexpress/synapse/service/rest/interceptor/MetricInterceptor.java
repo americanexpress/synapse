@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
 /**
- * MetricInterceptor class captures metrics about Synapse such as logging API response times.<br>
+ * {@code MetricInterceptor} class captures metrics about Synapse such as logging API response times.<br>
  * <strong>Example:</strong> RESPONSE TIME: The request 0cfcb89d-0d50-4d4c-889d-083cb817b547 POST: /path/to/api with status 400 took 424 milliseconds.
  *
  * @author Alexei Morgado

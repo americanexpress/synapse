@@ -21,12 +21,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DecimalSerializerTest extends BaseTestSerializer {
+/**
+ * {@code DecimalSerializerTest} tests the {@link DecimalSerializer}.
+ */
+class DecimalSerializerTest extends BaseTestSerializer {
+
     @BeforeEach
     @Override
     public void initializeModel() {
         super.initializeModel();
-        setTestField("decimal_value");
+        setTestField("totalRevenue");
     }
 
     @Override
@@ -41,41 +45,41 @@ public class DecimalSerializerTest extends BaseTestSerializer {
     }
 
     @Test
-    public void serialize_10digitDecimal() throws Exception {
+    void serialize_10digitDecimal() throws Exception {
         model.setTotalRevenue(Double.valueOf(12345678.009977));
-        String expected = "{\"decimal_value\":\"12,345,678.01\"}";
+        String expected = "{\"totalRevenue\":\"12,345,678.01\"}";
         String actual = mapper.writeValueAsString(model);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void serialize_4digitDecimal() throws Exception {
+    void serialize_4digitDecimal() throws Exception {
         model.setTotalRevenue(Double.valueOf(1234.00));
-        String expected = "{\"decimal_value\":\"1,234.00\"}";
+        String expected = "{\"totalRevenue\":\"1,234.00\"}";
         String actual = mapper.writeValueAsString(model);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void serialize_negativeDecimal() throws Exception {
+    void serialize_negativeDecimal() throws Exception {
         model.setTotalRevenue(Double.valueOf(-1234.00));
-        String expected = "{\"decimal_value\":\"-1,234.00\"}";
+        String expected = "{\"totalRevenue\":\"-1,234.00\"}";
         String actual = mapper.writeValueAsString(model);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void serialize_zeroDecimal() throws Exception {
+    void serialize_zeroDecimal() throws Exception {
         model.setTotalRevenue(Double.valueOf(0));
-        String expected = "{\"decimal_value\":\"0.00\"}";
+        String expected = "{\"totalRevenue\":\"0.00\"}";
         String actual = mapper.writeValueAsString(model);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void serialize_multipleZerosDecimal() throws Exception {
+    void serialize_multipleZerosDecimal() throws Exception {
         model.setTotalRevenue(Double.valueOf(00000));
-        String expected = "{\"decimal_value\":\"0.00\"}";
+        String expected = "{\"totalRevenue\":\"0.00\"}";
         String actual = mapper.writeValueAsString(model);
         assertEquals(expected, actual);
     }
@@ -91,7 +95,7 @@ public class DecimalSerializerTest extends BaseTestSerializer {
     @Test
     public void serialize_clean() throws Exception {
         model.setTotalRevenue(Double.valueOf(1234.000000000000));
-        String expected = "{\"decimal_value\":\"1,234.00\"}";
+        String expected = "{\"totalRevenue\":\"1,234.00\"}";
         String actual = mapper.writeValueAsString(model);
         assertEquals(expected, actual);
     }

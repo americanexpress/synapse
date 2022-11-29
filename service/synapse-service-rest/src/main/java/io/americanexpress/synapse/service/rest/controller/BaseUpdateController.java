@@ -26,11 +26,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import javax.validation.Valid;
 
 /**
- * <code>BaseUpdateController</code> class specifies the prototypes for listening for requests from the consumer
+ * {@code BaseUpdateController} class specifies the prototypes for listening for requests from the consumer
  * to Update (PUT/PATCH) a resource. This controller expects only one object.
  *
- * @param <I> input request type
- * @param <S> service type
+ * @param <I> an object extending {@link BaseServiceRequest}
+ * @param <S> an object extending {@link BaseUpdateService}
  * @author Gabriel Jimenez
  */
 public abstract class BaseUpdateController<I extends BaseServiceRequest, S extends BaseUpdateService<I>> extends BaseController<S> {

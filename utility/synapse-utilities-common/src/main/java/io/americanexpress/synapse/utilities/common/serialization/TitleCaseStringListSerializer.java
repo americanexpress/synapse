@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * TitleCaseStringListSerializer class serializes a list of strings into its title case format.
+ * {@code TitleCaseStringListSerializer} class serializes a list of strings into its title case format.
  * e.g. {JOHN X DOE, JANE A SMITH} will be converted into {John X Doe, Jane A Smith}.
  *
  * @author Paolo Claudio

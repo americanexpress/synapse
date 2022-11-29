@@ -18,7 +18,7 @@ import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
 /**
- * DecimalSerializer class formats all Doubles to include commas and limits to 2 digits after decimal.
+ * {@code DecimalSerializer} class formats all Doubles to include commas and limits to 2 digits after decimal.
  * e.g. if the text is 1234.1223323 then it will be serialized as 1,234.12
  *
  */

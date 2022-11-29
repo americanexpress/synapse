@@ -18,60 +18,63 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-public class ClientHeadersTest {
+/**
+ * {@code ClientHeadersTest} tests the {@link ClientHeaders}
+ */
+class ClientHeadersTest {
 
     @Test
-    public void clientHeaders_constructor() {
+    void clientHeaders_constructor() {
         new ClientHeaders();
     }
 
     @Test
-    public void getTrace_null() {
+    void getTrace_null() {
         ClientHeaders headers = new ClientHeaders();
         headers.getTrace();
     }
 
     @Test
-    public void setTrace_null() {
+    void setTrace_null() {
         ClientHeaders headers = new ClientHeaders();
         headers.setTrace(null);
     }
 
     @Test
-    public void getRouting_null() {
+    void getRouting_null() {
         ClientHeaders headers = new ClientHeaders();
         headers.getRouting();
     }
 
     @Test
-    public void setRouting_null() {
+    void setRouting_null() {
         ClientHeaders headers = new ClientHeaders();
         headers.setRouting(null);
     }
 
     @Test
-    public void equals_this() {
+    void equals_this() {
         ClientHeaders headers1 = new ClientHeaders();
         ClientHeaders headers2 = headers1;
         assertEquals(headers1, headers2, "Objects are not equal.");
     }
 
     @Test
-    public void equals_null() {
+    void equals_null() {
         ClientHeaders headers1 = new ClientHeaders();
         ClientHeaders headers2 = null;
         assertNotEquals(headers1, headers2);
     }
 
     @Test
-    public void equals_invalidType() {
+    void equals_invalidType() {
         ClientHeaders headers1 = new ClientHeaders();
         String headers2 = "";
         assertNotEquals(headers1, headers2);
     }
 
     @Test
-    public void equals_instanceContainsNull() {
+    void equals_instanceContainsNull() {
         ClientHeaders headers1 = new ClientHeaders();
         ClientHeaders headers2 = new ClientHeaders();
         headers2.setTrace(new ClientTrace());
@@ -79,7 +82,7 @@ public class ClientHeadersTest {
     }
 
     @Test
-    public void equals_notEqual() {
+    void equals_notEqual() {
         ClientHeaders headers1 = new ClientHeaders();
         headers1.setTrace(new ClientTrace());
         ClientHeaders headers2 = new ClientHeaders();
@@ -88,7 +91,7 @@ public class ClientHeadersTest {
     }
 
     @Test
-    public void equals_bothEqual() {
+    void equals_bothEqual() {
         ClientHeaders headers1 = new ClientHeaders();
         ClientTrace trace = new ClientTrace();
         ClientRouting routing = new ClientRouting();
@@ -101,7 +104,7 @@ public class ClientHeadersTest {
     }
 
     @Test
-    public void hashCode_clean() {
+    void hashCode_clean() {
         new ClientHeaders().hashCode();
     }
 }
