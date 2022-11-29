@@ -32,6 +32,7 @@ public class BookApplication {
      */
     public static void main(String[] args) {
         SpringApplication.run(BookApplication.class, args);
+        System.out.println("Rest Native Book Application is up and running ...");
 //        LOGGER.info("Rest Native Book Application is up and running ...");
     }
 
