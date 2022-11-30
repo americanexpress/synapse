@@ -29,10 +29,10 @@ import java.util.List;
 public class PolyResponseEntityCreator<O extends BaseServiceResponse> {
 
     /**
-     * Creates a Poly ResponseEntity with pagination
-     * @param page sets pagination
-     * @param httpServletResponse response
-     * @return ResponseEntity
+     * Creates a Poly ResponseEntity with pagination.
+     * @param page will be used for pagination.
+     * @param httpServletResponse response from the service.
+     * @return ResponseEntity that will have {@link BaseServiceResponse}
      */
     public static <O extends BaseServiceResponse> ResponseEntity<List<O>> create(Page<O> page, HttpServletResponse httpServletResponse) {
         final ResponseEntity<List<O>> responseEntity;

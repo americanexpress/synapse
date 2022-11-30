@@ -18,16 +18,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 /**
- * {@code MonoResponseEntityCreator} Creates ResponseEntity for mono response
- * @param <O> BaseServiceResponse
+ * {@code MonoResponseEntityCreator} Creates ResponseEntity for mono response.
+ * @param <O> BaseServiceResponse will be used for the response object.
  */
 public class MonoResponseEntityCreator<O extends BaseServiceResponse> {
 
     /**
-     * Create a response entity.
-     * @param serviceResponse service response
-     * @return response entity
-     * @param <O> an object extending {@link BaseServiceResponse}
+     * Creates a response entity.
+     * @param serviceResponse service response.
+     * @return response entity.
+     * @param <O> an object extending {@link BaseServiceResponse}.
      */
     public static <O extends BaseServiceResponse> ResponseEntity<O> create(O serviceResponse) {
         return serviceResponse == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : ResponseEntity.ok(serviceResponse);

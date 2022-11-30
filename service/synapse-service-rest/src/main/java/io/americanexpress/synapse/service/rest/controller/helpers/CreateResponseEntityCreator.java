@@ -21,16 +21,16 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 /**
- * {@code CreateResponseEntityCreator} Helps creates ResponseEntity
- * @param <O> BaseServiceResponse
+ * {@code CreateResponseEntityCreator} Helps creates ResponseEntity.
+ * @param <O> BaseServiceResponse will be used for the response object.
  */
 public class CreateResponseEntityCreator<O extends BaseServiceResponse> {
 
     /**
      * Create the POST response entity by specifying the creation location in the HTTP headers.
      *
-     * @param serviceResponse body to set in the response entity
-     * @return the POST response entity
+     * @param serviceResponse body to set in the response entity.
+     * @return the POST response entity.
      */
     public static <O extends BaseServiceResponse> ResponseEntity<O> create(O serviceResponse) {
 

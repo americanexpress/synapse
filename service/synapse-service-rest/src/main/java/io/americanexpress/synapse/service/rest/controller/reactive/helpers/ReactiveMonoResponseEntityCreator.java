@@ -19,15 +19,15 @@ import org.springframework.http.ResponseEntity;
 import reactor.core.publisher.Mono;
 
 /**
- * {@code ReactiveMonoResponseEntityCreator} Creates a ResponseEntity for mono
- * @param <O>
+ * {@code ReactiveMonoResponseEntityCreator} Creates a ResponseEntity for mono.
+ * @param <O> response extending {@link BaseServiceResponse} which all child response object extends.
  */
 public class ReactiveMonoResponseEntityCreator<O extends BaseServiceResponse> {
 
     /**
-     * Creates a ResponseEntity from a service response
-     * @param serviceResponse
-     * @return
+     * Creates a ResponseEntity from a service response.
+     * @param serviceResponse service response object that takes {@link BaseServiceResponse}.
+     * @return A ResponseEntity<Mono<O>> which O extends {@link BaseServiceResponse}.
      */
     public static <O extends BaseServiceResponse> ResponseEntity<Mono<O>> create(Mono<O> serviceResponse) {
         return serviceResponse == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : ResponseEntity.ok(serviceResponse);

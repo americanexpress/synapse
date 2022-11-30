@@ -22,16 +22,16 @@ import reactor.core.publisher.Mono;
 import java.net.URI;
 
 /**
- * {@code ReactiveCreateResponseEntityCreator} Creates a ResponseEntity
- * @param <O>
+ * {@code ReactiveCreateResponseEntityCreator} Creates a ResponseEntity.
+ * @param <O> response extending {@link BaseServiceResponse} which all child response object extends.
  */
 public class ReactiveCreateResponseEntityCreator<O extends BaseServiceResponse> {
 
     /**
      * Create the POST response entity by specifying the creation location in the HTTP headers.
      *
-     * @param serviceResponse body to set in the response entity
-     * @return the POST response entity
+     * @param serviceResponse body to set in the response entity.
+     * @return the POST response entity.
      */
     public static <O extends BaseServiceResponse> ResponseEntity<Mono<O>> create(O serviceResponse) {
 

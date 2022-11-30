@@ -24,17 +24,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
- * {@code ReactivePolyResponseEntityCreator} Creates a ResponseEntity for poly services
- * @param <O>
+ * {@code ReactivePolyResponseEntityCreator} Creates a ResponseEntity for poly services.
+ * @param <O> an extension of {@link BaseServiceResponse}.
  */
 public class ReactivePolyResponseEntityCreator<O extends BaseServiceResponse> {
 
     /**
-     * Creates a Poly ResponseEntity with pagination
-     * @param page
-     * @param httpServletResponse
-     * @return
-     * @param <O>
+     * Creates a Poly ResponseEntity with pagination.
+     * @param page Used for paginating the service.
+     * @param httpServletResponse A server response object.
+     * @return ResponseEntity<Flux<O>> which flux contains O an extension of {@link BaseServiceResponse}.
+     * @param <O> an extension of {@link BaseServiceResponse}.
      */
     public static <O extends BaseServiceResponse> ResponseEntity<Flux<O>> create(Page<O> page, HttpServletResponse httpServletResponse) {
         ResponseEntity<Flux<O>> responseEntity;
@@ -52,10 +52,10 @@ public class ReactivePolyResponseEntityCreator<O extends BaseServiceResponse> {
     }
 
     /**
-     * Creates pagination header
-     * @param page
-     * @param httpServletResponse
-     * @param <O>
+     * Creates pagination header.
+     * @param page sets pagination from the service.
+     * @param httpServletResponse Response object that will be used to set the header and pagination.
+     * @param <O> extends {@link BaseServiceResponse}.
      */
     private static <O extends BaseServiceResponse> void setHeadersInResponse(final Page<O> page, final HttpServletResponse httpServletResponse) {
         if (page != null && !CollectionUtils.isEmpty(page.getContent())) {
