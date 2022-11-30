@@ -26,9 +26,9 @@ public class BaseServiceResponseTest extends BaseServiceResponse {
     private String value;
 
     /**
-     * Constructor
-     * @param value
-     * @param id
+     * Constructor takes in value as string and id as string.
+     * @param value sets value as a string.
+     * @param id sets id as a string.
      */
     public BaseServiceResponseTest(String value, String id) {
         this.value = value;
@@ -36,24 +36,24 @@ public class BaseServiceResponseTest extends BaseServiceResponse {
     }
 
     /**
-     * get value as string
-     * @return
+     * Gets value as string.
+     * @return value as string.
      */
     public String getValue() {
         return value;
     }
 
     /**
-     * sets value with provided string
-     * @param value
+     * Sets value with provided string.
+     * @param value sets value as string.
      */
     public void setValue(String value) {
         this.value = value;
     }
 
     /**
-     * toString
-     * @return
+     * Returns a string format of the object.
+     * @return a string of the object.
      */
     @Override
     public String toString() {
