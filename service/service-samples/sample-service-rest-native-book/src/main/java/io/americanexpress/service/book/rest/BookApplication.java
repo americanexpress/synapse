@@ -14,14 +14,15 @@
 package io.americanexpress.service.book.rest;
 
 import io.americanexpress.service.book.rest.model.ReadBookRequest;
+import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.nativex.hint.TypeHint;
 
 /**
- * BookApplication starts the Spring Boot Application for the book rest sample.
+ * {@link BookApplication} starts the Spring Boot Application.
  */
-@TypeHint(types = ReadBookRequest.class)
+@TypeHint(types = {ReadBookRequest.class, ReadBookResponse.class})
 @SpringBootApplication
 public class BookApplication {
 

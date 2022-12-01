@@ -21,6 +21,9 @@ import io.americanexpress.synapse.service.rest.controller.BaseReadMonoController
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * {@link ReadBookController} is the controller for /v1/books/inquiry_results
+ */
 @RestController
 @RequestMapping(BookConfig.BOOK_ENDPOINT)
 public class ReadBookController extends BaseReadMonoController<ReadBookRequest, ReadBookResponse, ReadBookService> {

@@ -18,7 +18,7 @@ import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import java.util.Objects;
 
 /**
- * ReadBookResponse is the response for read book.
+ * {@link ReadBookResponse} is the response for read book.
  */
 public class ReadBookResponse extends BaseServiceResponse {
 

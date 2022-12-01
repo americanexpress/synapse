@@ -16,7 +16,7 @@ package io.americanexpress.service.book.rest.model;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 
 /**
- * ReadBookRequest is the request used to read book.
+ * {@link ReadBookRequest} is the request used to read book.
  */
 public class ReadBookRequest implements BaseServiceRequest {
 
