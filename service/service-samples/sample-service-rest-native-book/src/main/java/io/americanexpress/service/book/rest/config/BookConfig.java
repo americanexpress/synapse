@@ -11,16 +11,21 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.service.rest.controller.helpers;
+package io.americanexpress.service.book.rest.config;
 
-import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
-public class MonoResponseEntityCreator<O extends BaseServiceResponse> {
+/**
+ * BookConfig is the configuration class for the Book Application.
+ */
+@Configuration
+@PropertySource("classpath:/service-book-application.properties")
+@ComponentScan(basePackages = "io.americanexpress.service.book.rest")
+//@Import(ServiceRestConfig.class)
+public class BookConfig {
 
-    public static <O extends BaseServiceResponse> ResponseEntity<O> create(O serviceResponse) {
-        return serviceResponse == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : ResponseEntity.ok(serviceResponse);
-    }
+    public static final String BOOK_ENDPOINT = "/v1/books";
+
 }

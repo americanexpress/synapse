@@ -30,7 +30,7 @@ public class CreateResponseEntityCreator<O extends BaseServiceResponse> {
      * @param serviceResponse body to set in the response entity
      * @return the POST response entity
      */
-    public ResponseEntity<O> create(O serviceResponse) {
+    public static <O extends BaseServiceResponse> ResponseEntity<O> create(O serviceResponse) {
 
         // Default URI location in case the response identifier is null
         String responseId = "0";

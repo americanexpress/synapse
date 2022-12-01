@@ -39,19 +39,15 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-data-rest</artifactId>
                 </exclusion>
-<!--                <exclusion>-->
-<!--                    <groupId>io.americanexpress.synapse</groupId>-->
-<!--                    <artifactId>synapse-framework-logging</artifactId>-->
-<!--                </exclusion>-->
+                <exclusion>
+                    <groupId>io.americanexpress.synapse</groupId>
+                    <artifactId>synapse-framework-logging</artifactId>
+                </exclusion>
                 <exclusion>
                     <groupId>io.americanexpress.synapse</groupId>
                     <artifactId>synapse-framework-api-docs</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-function-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.experimental</groupId>
@@ -61,36 +57,18 @@
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-commons</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
     </dependencies>
 
-    <!--Without Buildpack-->
-    <build>
-        <plugins>
-            <!-- ... -->
-            <plugin>
-                <groupId>org.springframework.experimental</groupId>
-                <artifactId>spring-aot-maven-plugin</artifactId>
-                <version>0.12.1</version>
-                <executions>
-                    <execution>
-                        <id>generate</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>test-generate</id>
-                        <goals>
-                            <goal>test-generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
     <profiles>
         <profile>
             <id>native</id>
+            <properties>
+                <repackage.classifier>exec</repackage.classifier>
+            </properties>
             <dependencies>
                 <!-- Required with Maven Surefire 2.x -->
                 <dependency>
@@ -101,6 +79,25 @@
             </dependencies>
             <build>
                 <plugins>
+                    <plugin>
+                        <groupId>org.springframework.experimental</groupId>
+                        <artifactId>spring-aot-maven-plugin</artifactId>
+                        <version>0.12.1</version>
+                        <executions>
+                            <execution>
+                                <id>generate</id>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>test-generate</id>
+                                <goals>
+                                    <goal>test-generate</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
                     <plugin>
                         <groupId>org.graalvm.buildtools</groupId>
                         <artifactId>native-maven-plugin</artifactId>
@@ -123,7 +120,7 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <!-- ... -->
+
                         </configuration>
                     </plugin>
                     <!-- Avoid a clash between Spring Boot repackaging and native-maven-plugin -->
@@ -131,7 +128,13 @@
                         <groupId>org.springframework.boot</groupId>
                         <artifactId>spring-boot-maven-plugin</artifactId>
                         <configuration>
-                            <classifier>exec</classifier>
+                            <classifier>${repackage.classifier}</classifier>
+                            <image>
+                                <builder>paketobuildpacks/builder:tiny</builder>
+                                <env>
+                                    <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
+                                </env>
+                            </image>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -156,96 +159,4 @@
         </pluginRepository>
     </pluginRepositories>
 
-    <!--With Buildpack-->
-    <!--    <profiles>-->
-<!--        <profile>-->
-<!--            <id>native</id>-->
-<!--            <build>-->
-<!--                <plugins>-->
-<!--                    <plugin>-->
-<!--                        <groupId>org.springframework.boot</groupId>-->
-<!--                        <artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--                        <version>2.7.5</version>-->
-<!--                        <executions>-->
-<!--                            <execution>-->
-<!--                                <id>repackage</id>-->
-<!--                                <goals>-->
-<!--                                    <goal>repackage</goal>-->
-<!--                                </goals>-->
-<!--                                <configuration>-->
-<!--                                    <classifier />-->
-<!--                                    <image>-->
-<!--                                        <builder>paketobuildpacks/builder:tiny</builder>-->
-<!--                                        <env>-->
-<!--                                            <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>-->
-<!--                                        </env>-->
-<!--                                    </image>-->
-<!--                                    <mainClass>${start-class}</mainClass>-->
-<!--                                </configuration>-->
-<!--                            </execution>-->
-<!--                        </executions>-->
-<!--                        <configuration>-->
-<!--                            <classifier />-->
-<!--                            <image>-->
-<!--                                <builder>paketobuildpacks/builder:tiny</builder>-->
-<!--                                <env>-->
-<!--                                    <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>-->
-<!--                                </env>-->
-<!--                            </image>-->
-<!--                            <mainClass>${start-class}</mainClass>-->
-<!--                        </configuration>-->
-<!--                    </plugin>-->
-<!--                    <plugin>-->
-<!--                        <groupId>org.graalvm.buildtools</groupId>-->
-<!--                        <artifactId>native-maven-plugin</artifactId>-->
-<!--                        <configuration>-->
-<!--                            <classesDirectory>${project.build.outputDirectory}</classesDirectory>-->
-<!--                            <metadataRepository>-->
-<!--                                <enabled>true</enabled>-->
-<!--                            </metadataRepository>-->
-<!--                        </configuration>-->
-<!--                        <extensions>true</extensions>-->
-<!--                        <executions>-->
-<!--                            <execution>-->
-<!--                                <id>build-native</id>-->
-<!--                                <phase>package</phase>-->
-<!--                                <goals>-->
-<!--                                    <goal>build</goal>-->
-<!--                                </goals>-->
-<!--                            </execution>-->
-<!--                            <execution>-->
-<!--                                <id>add-reachability-metadata</id>-->
-<!--                                <goals>-->
-<!--                                    <goal>add-reachability-metadata</goal>-->
-<!--                                </goals>-->
-<!--                            </execution>-->
-<!--                        </executions>-->
-<!--                    </plugin>-->
-<!--                    <plugin>-->
-<!--                        <groupId>org.springframework.experimental</groupId>-->
-<!--                        <artifactId>spring-aot-maven-plugin</artifactId>-->
-<!--                        <version>0.12.1</version>-->
-<!--                        <executions>-->
-<!--                            <execution>-->
-<!--                                <id>test-generate</id>-->
-<!--                                <goals>-->
-<!--                                    <goal>test-generate</goal>-->
-<!--                                </goals>-->
-<!--                            </execution>-->
-<!--                            <execution>-->
-<!--                                <id>generate</id>-->
-<!--                                <goals>-->
-<!--                                    <goal>generate</goal>-->
-<!--                                </goals>-->
-<!--                            </execution>-->
-<!--                        </executions>-->
-<!--                    </plugin>-->
-<!--                </plugins>-->
-<!--            </build>-->
-<!--            <properties>-->
-<!--                <native-buildtools.version>0.9.13</native-buildtools.version>-->
-<!--                <repackage.classifier>exec</repackage.classifier>-->
-<!--            </properties>-->
-<!--        </profile>-->
-<!--    </profiles>-->
 </project>
