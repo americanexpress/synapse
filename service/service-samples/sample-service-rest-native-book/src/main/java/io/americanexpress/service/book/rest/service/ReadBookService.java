@@ -29,12 +29,25 @@ import java.util.Optional;
 @Service
 public class ReadBookService extends BaseReadMonoService<ReadBookRequest, ReadBookResponse> {
 
+    /**
+     * Used to read from mongodb database.
+     */
     private final BookRepository bookRepository;
 
+    /**
+     * Instantiates a new Read book service.
+     *
+     * @param bookRepository the book repository
+     */
     public ReadBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
+    /**
+     * Read book from mongodb database.
+     * @param headers http headers
+     * @param request the request to read book from database
+     */
     @Override
     protected ReadBookResponse executeRead(HttpHeaders headers, ReadBookRequest request) {
         ReadBookResponse readBookResponse = new ReadBookResponse();
