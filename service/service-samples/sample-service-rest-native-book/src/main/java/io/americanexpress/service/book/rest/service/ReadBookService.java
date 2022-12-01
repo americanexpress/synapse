@@ -21,7 +21,6 @@ import io.americanexpress.synapse.service.rest.service.BaseReadMonoService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 /**
  * {@link ReadBookService} is the service for /v1/books/inquiry_results.
