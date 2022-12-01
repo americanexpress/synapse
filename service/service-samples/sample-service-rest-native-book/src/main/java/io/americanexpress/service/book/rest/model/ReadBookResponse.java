@@ -22,8 +22,19 @@ import java.util.Objects;
  */
 public class ReadBookResponse extends BaseServiceResponse {
 
+    /**
+     * The title of book.
+     */
     private String title;
+
+    /**
+     * The author of book.
+     */
     private String author;
+
+    /**
+     * The number of copies of book.
+     */
     private int numberOfCopies;
 
     /**
@@ -42,13 +53,6 @@ public class ReadBookResponse extends BaseServiceResponse {
         this.title = title;
         this.author = author;
     }
-
-    public ReadBookResponse(String id, String title, String author) {
-        this.title = title;
-        this.author = author;
-        super.setId(id);
-    }
-
 
     /**
      * Gets title.
@@ -86,10 +90,20 @@ public class ReadBookResponse extends BaseServiceResponse {
         this.author = author;
     }
 
+    /**
+     * Gets number of copies.
+     *
+     * @return the number of copies
+     */
     public int getNumberOfCopies() {
         return numberOfCopies;
     }
 
+    /**
+     * Sets number of copies.
+     *
+     * @param numberOfCopies the number of copies
+     */
     public void setNumberOfCopies(int numberOfCopies) {
         this.numberOfCopies = numberOfCopies;
     }

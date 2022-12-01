@@ -23,6 +23,7 @@ import org.springframework.nativex.hint.TypeHint;
  * {@link BookApplication} starts the Spring Boot Application.
  */
 @TypeHint(types = {ReadBookRequest.class, ReadBookResponse.class})
+//@ResourceHint(patterns = "data-book-application.properties")
 @SpringBootApplication
 public class BookApplication {
 

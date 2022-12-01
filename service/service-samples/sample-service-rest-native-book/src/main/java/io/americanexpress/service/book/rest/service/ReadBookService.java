@@ -13,11 +13,15 @@
  */
 package io.americanexpress.service.book.rest.service;
 
+import io.americanexpress.data.book.entity.BookEntity;
+import io.americanexpress.data.book.repository.BookRepository;
 import io.americanexpress.service.book.rest.model.ReadBookRequest;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.synapse.service.rest.service.BaseReadMonoService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 /**
  * {@link ReadBookService} is the service for /v1/books/inquiry_results.
@@ -25,13 +29,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReadBookService extends BaseReadMonoService<ReadBookRequest, ReadBookResponse> {
 
+    private final BookRepository bookRepository;
+
+    public ReadBookService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
+
     @Override
     protected ReadBookResponse executeRead(HttpHeaders headers, ReadBookRequest request) {
         ReadBookResponse readBookResponse = new ReadBookResponse();
 
-        readBookResponse.setTitle(request.getTitle());
-        readBookResponse.setAuthor(request.getAuthor());
-        readBookResponse.setNumberOfCopies(10);
+        BookEntity bookEntity = bookRepository.findByTitle(request.getTitle());
+        if(bookEntity != null) {
+            readBookResponse.setTitle(bookEntity.getTitle());
+            readBookResponse.setAuthor(bookEntity.getAuthor());
+        }
         return readBookResponse;
     }
 }

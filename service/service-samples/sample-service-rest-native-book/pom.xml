@@ -33,33 +33,37 @@
         <!--Synapse-->
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>
+            <artifactId>sample-data-mongodb-book</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.americanexpress.synapse</groupId>
             <artifactId>synapse-service-rest</artifactId>
             <exclusions>
                 <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-data-rest</artifactId>
+                    <groupId>io.americanexpress.synapse</groupId>
+                    <artifactId>synapse-framework-api-docs</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>io.americanexpress.synapse</groupId>
                     <artifactId>synapse-framework-logging</artifactId>
                 </exclusion>
                 <exclusion>
-                    <groupId>io.americanexpress.synapse</groupId>
-                    <artifactId>synapse-framework-api-docs</artifactId>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-data-rest</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>org.springframework.experimental</groupId>
-            <artifactId>spring-native</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-commons</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-logging</artifactId>
+            <groupId>org.springframework.experimental</groupId>
+            <artifactId>spring-native</artifactId>
         </dependency>
     </dependencies>
 
@@ -143,7 +147,6 @@
     </profiles>
 
     <repositories>
-        <!-- ... -->
         <repository>
             <id>spring-release</id>
             <name>Spring release</name>
@@ -151,7 +154,6 @@
         </repository>
     </repositories>
     <pluginRepositories>
-        <!-- ... -->
         <pluginRepository>
             <id>spring-release</id>
             <name>Spring release</name>

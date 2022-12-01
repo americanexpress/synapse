@@ -20,29 +20,64 @@ import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
  */
 public class ReadBookRequest implements BaseServiceRequest {
 
+    /**
+     * The title of book.
+     */
+    private String title;
+
+    /**
+     * The author of book.
+     */
+    private String author;
+
+    /**
+     * Instantiates a new Read book request.
+     */
     public ReadBookRequest() {}
 
+    /**
+     * Instantiates a new Read book request.
+     *
+     * @param title  the title
+     * @param author the author
+     */
     public ReadBookRequest(String title, String author) {
         this.title = title;
         this.author = author;
     }
 
-    private String title;
-
-    private String author;
-
+    /**
+     * Gets title.
+     *
+     * @return the title
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Sets title.
+     *
+     * @param title the title
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     * Gets author.
+     *
+     * @return the author
+     */
     public String getAuthor() {
         return author;
     }
 
+    /**
+     * Sets author.
+     *
+     * @param author the author
+     */
     public void setAuthor(String author) {
         this.author = author;
     }
