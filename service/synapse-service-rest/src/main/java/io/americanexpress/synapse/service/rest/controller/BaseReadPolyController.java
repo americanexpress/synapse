@@ -20,7 +20,6 @@ import io.americanexpress.synapse.service.rest.service.BaseReadPolyService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -49,12 +48,6 @@ public abstract class BaseReadPolyController<I extends BaseServiceRequest, O ext
     public static final String MULTIPLE_RESULTS = "/multiple_results";
 
     /**
-     * Entity creator that will create the response entity object that will be sent to the service layer.
-     */
-    @Autowired
-    private PolyResponseEntityCreator<O> polyResponseEntityCreator;
-
-    /**
      * Get a list of multiple resources from the back end service.
      *
      * @param headers               containing the HTTP headers from the consumer
@@ -75,7 +68,7 @@ public abstract class BaseReadPolyController<I extends BaseServiceRequest, O ext
         logger.entry(serviceRequest);
 
         final Page<O> page = service.read(headers, serviceRequest);
-        final ResponseEntity<List<O>> responseEntity = polyResponseEntityCreator.create(page, httpServletResponse);
+        final ResponseEntity<List<O>> responseEntity = PolyResponseEntityCreator.create(page, httpServletResponse);
 
         logger.exit(responseEntity);
         return responseEntity;

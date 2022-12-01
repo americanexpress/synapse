@@ -14,21 +14,29 @@
 package io.americanexpress.synapse.service.rest.controller.reactive.helpers;
 
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
-import reactor.core.publisher.Flux;
-
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
+import reactor.core.publisher.Flux;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-@Component
+/**
+ * {@code ReactivePolyResponseEntityCreator} Creates a ResponseEntity for poly services.
+ * @param <O> an extension of {@link BaseServiceResponse}.
+ */
 public class ReactivePolyResponseEntityCreator<O extends BaseServiceResponse> {
 
-    public ResponseEntity<Flux<O>> create(Page<O> page, HttpServletResponse httpServletResponse) {
+    /**
+     * Creates a Poly ResponseEntity with pagination.
+     * @param page Used for paginating the service.
+     * @param httpServletResponse A server response object.
+     * @return ResponseEntity<Flux<O>> which flux contains O an extension of {@link BaseServiceResponse}.
+     * @param <O> an extension of {@link BaseServiceResponse}.
+     */
+    public static <O extends BaseServiceResponse> ResponseEntity<Flux<O>> create(Page<O> page, HttpServletResponse httpServletResponse) {
         ResponseEntity<Flux<O>> responseEntity;
         List<O> pageContent = null;
         if (page != null) {
@@ -43,7 +51,13 @@ public class ReactivePolyResponseEntityCreator<O extends BaseServiceResponse> {
         return responseEntity;
     }
 
-    private void setHeadersInResponse(final Page<O> page, final HttpServletResponse httpServletResponse) {
+    /**
+     * Creates pagination header.
+     * @param page sets pagination from the service.
+     * @param httpServletResponse Response object that will be used to set the header and pagination.
+     * @param <O> extends {@link BaseServiceResponse}.
+     */
+    private static <O extends BaseServiceResponse> void setHeadersInResponse(final Page<O> page, final HttpServletResponse httpServletResponse) {
         if (page != null && !CollectionUtils.isEmpty(page.getContent())) {
             httpServletResponse.setHeader("size", String.valueOf(page.getSize()));
             httpServletResponse.setHeader("page", String.valueOf(page.getNumber()));
