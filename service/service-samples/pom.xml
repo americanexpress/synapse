@@ -19,6 +19,7 @@
         <module>sample-service-reactive-oracle-book</module>
         <module>sample-service-rest-book</module>
         <module>sample-service-rest-cassandra-book</module>
+        <module>sample-service-rest-mysql-book</module>
         <module>sample-service-rest-oracle-book</module>
     </modules>
 

@@ -32,8 +32,9 @@
         <module>sample-data-postgres-book</module>
         <module>sample-data-mongodb-book</module>
         <module>sample-data-mongodb-reactive</module>
+        <module>sample-data-mysql-book</module>
+        <module>sample-data-mysql-reactive-book</module>
         <module>sample-data-redis-book</module>
     </modules>
 
 </project>
-

@@ -259,6 +259,11 @@
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-data-mysql</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-data-oracle</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -374,6 +379,16 @@
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>sample-data-mongodb-reactive</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-mysql-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-mysql-reactive-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -998,6 +1013,18 @@
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-redis</artifactId>
                 <version>2.7.3</version>
+            </dependency>
+
+            <!-- MY SQL -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>8.0.31</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.miku</groupId>
+                <artifactId>r2dbc-mysql</artifactId>
+                <version>0.8.2.RELEASE</version>
             </dependency>
 
             <!--AWS-->
