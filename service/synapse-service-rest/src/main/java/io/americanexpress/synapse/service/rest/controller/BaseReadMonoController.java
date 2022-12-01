@@ -45,7 +45,6 @@ public abstract class BaseReadMonoController<I extends BaseServiceRequest, O ext
      */
     public static final String INQUIRY_RESULTS = "/inquiry_results";
 
-
     /**
      * Get a single resource from the back end service.
      *
