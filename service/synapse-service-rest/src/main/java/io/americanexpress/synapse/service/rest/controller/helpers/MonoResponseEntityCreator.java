@@ -16,23 +16,20 @@ package io.americanexpress.synapse.service.rest.controller.helpers;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 
 /**
- * {@code MonoResponseEntityCreator} is for creating the response entity from read service response.
- *
- * @param <O> the type parameter
+ * {@code MonoResponseEntityCreator} Creates ResponseEntity for mono response.
+ * @param <O> BaseServiceResponse will be used for the response object.
  */
-@Component
 public class MonoResponseEntityCreator<O extends BaseServiceResponse> {
 
     /**
-     * Create GET or POST-GET response entity.
-     *
-     * @param serviceResponse the service response
-     * @return the response entity
+     * Creates a response entity.
+     * @param serviceResponse service response.
+     * @return response entity.
+     * @param <O> an object extending {@link BaseServiceResponse}.
      */
-    public ResponseEntity<O> create(O serviceResponse) {
+    public static <O extends BaseServiceResponse> ResponseEntity<O> create(O serviceResponse) {
         return serviceResponse == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : ResponseEntity.ok(serviceResponse);
     }
 }
