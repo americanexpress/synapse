@@ -24,6 +24,7 @@ import org.springframework.http.HttpMessage;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.stereotype.Component;
@@ -60,7 +61,7 @@ public class RestClientLogFormatter {
 	 * @throws IOException whenever an input/output exception occurs
 	 */
 	public String formatClientResponse(ClientHttpResponse clientHttpResponse) throws IOException {
-		HttpStatus httpStatus = clientHttpResponse.getStatusCode();
+		HttpStatusCode httpStatus = clientHttpResponse.getStatusCode();
 		HttpHeaders httpHeaders = clientHttpResponse.getHeaders();
 		String formattedClientResponse = new String(StreamUtils.copyToByteArray(clientHttpResponse.getBody()), getCharset(clientHttpResponse));
 		return String.format("Client Response: HTTP Status=%s, HTTP Headers=%s, Response=%s",

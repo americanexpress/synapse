@@ -64,7 +64,7 @@
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
 
         <!--Jackson-->
-        <jackson.version>2.14.0</jackson.version>
+        <jackson.version>2.14.1</jackson.version>
 
         <!--Logging-->
         <log4j.version>2.19.0</log4j.version>
@@ -422,7 +422,7 @@
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-r2dbc</artifactId>
-                <version>1.5.3</version>
+                <version>3.0.0</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.plugin</groupId>
@@ -445,7 +445,7 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
-                <version>6.0.2</version>
+                <version>${spring-framework.version}</version>
             </dependency>
 
             <!--Spring Security -->
@@ -699,12 +699,12 @@
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-ehcache</artifactId>
-                <version>6.1</version>
+                <version>5.5.6</version>
             </dependency>
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-annotations</artifactId>
-                <version>6.1</version>
+                <version>5.5.6</version>
             </dependency>
 
             <!--Jasypt-->
@@ -940,7 +940,7 @@
             <dependency>
                 <groupId>org.mongodb</groupId>
                 <artifactId>mongodb-driver-sync</artifactId>
-                <version>4.7.2</version>
+                <version>4.8.0</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -950,7 +950,7 @@
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-mongodb</artifactId>
-                <version>3.4.5</version>
+                <version>4.0.0</version>
             </dependency>
 
             <!--Kotlin-->
@@ -969,7 +969,7 @@
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-cassandra</artifactId>
-                <version>3.4.3</version>
+                <version>4.0.0</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -998,12 +998,12 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-redis</artifactId>
-                <version>2.7.3</version>
+                <version>3.0.0</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-redis</artifactId>
-                <version>2.7.3</version>
+                <version>3.0.0</version>
             </dependency>
 
             <!--AWS-->
