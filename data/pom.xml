@@ -25,13 +25,15 @@
 
     <!--Modules-->
     <modules>
-    
+
         <!-- Base data Synapse dependencies-->
         <module>data-samples</module>
         <module>synapse-data-cassandra</module>
         <module>synapse-data-couchbase</module>
         <module>synapse-data-mongodb</module>
+        <module>synapse-data-oracle</module>
         <module>synapse-data-postgres</module>
+        <module>synapse-data-redis</module>
     </modules>
 
 </project>

@@ -17,7 +17,7 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 /**
- * PercentSerializer class serializes Double objects into a percent format.
+ * {@code PercentSerializer} class serializes Double objects into a percent format.
  *
  */
 public class PercentSerializer extends DoubleSerializer {

@@ -24,8 +24,10 @@ import reactor.core.publisher.Flux;
  */
 public abstract class BaseGetPolyReactiveService<O extends BaseServiceResponse> extends BaseService {
 
+
     /**
      * Retrieves multiple resource.
+     * @param headers headers
      * @return a flux read response
      */
     public Flux<O> read(HttpHeaders headers) {
@@ -35,5 +37,10 @@ public abstract class BaseGetPolyReactiveService<O extends BaseServiceResponse> 
         return response;
     }
 
+    /**
+     * Prototype for reading multiple resources
+     * @param headers
+     * @return
+     */
     protected abstract Flux<O> executeRead(HttpHeaders headers);
 }

@@ -13,11 +13,13 @@
  */
 package io.americanexpress.synapse.utilities.common.serialization;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.americanexpress.synapse.framework.exception.ApplicationServerException;
 import io.americanexpress.synapse.utilities.common.config.UtilitiesCommonConfig;
 import io.americanexpress.synapse.utilities.common.serialization.model.AnotherPerson;
 import io.americanexpress.synapse.utilities.common.serialization.model.Person;
 import io.americanexpress.synapse.utilities.common.serialization.model.Phone;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,34 +32,44 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+/**
+ * {@code DeepCopyUtilsTest} tests the {@link DeepCopyUtils}.
+ */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {UtilitiesCommonConfig.class})
-public class DeepCopyUtilsTest {
+class DeepCopyUtilsTest {
 
-    @Autowired
     private DeepCopyUtils deepCopyUtils;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    @BeforeEach
+    public void initialize() {
+        deepCopyUtils = new DeepCopyUtils(objectMapper);
+    }
+
     @Test
-    public void objectDeepCloner_constructor() throws Exception {
-        Constructor<DeepCopyUtils> constructor = DeepCopyUtils.class.getDeclaredConstructor();
+    void objectDeepCloner_givenConstructor_expectedSuccess() throws Exception {
+        Constructor<DeepCopyUtils> constructor = DeepCopyUtils.class.getDeclaredConstructor(ObjectMapper.class);
         constructor.setAccessible(true);
-        constructor.newInstance();
+        constructor.newInstance(new ObjectMapper());
         constructor.setAccessible(false);
     }
 
     @Test
-    public void clone_nullData() {
+    void clone_nullData() {
         Phone actual = (Phone) deepCopyUtils.clone(null, Phone.class);
         assertNull(actual, "Phone is not null.");
     }
 
     @Test
-    public void clone_nullOutputClassType() {
+    void clone_nullOutputClassType() {
         assertThrows(IllegalArgumentException.class, () -> deepCopyUtils.clone(null, null));
     }
 
     @Test
-    public void clone_incompatibleClasses() {
+    void clone_incompatibleClasses() {
         Phone phone = new Phone();
         phone.setProviderName("Acme Telecom");
         phone.setLineNumber("(123) 456-7890");
@@ -65,7 +77,7 @@ public class DeepCopyUtilsTest {
     }
 
     @Test
-    public void clone_complexObject() {
+    void clone_complexObject() {
         Phone phone = new Phone();
         phone.setProviderName("Acme Telecom");
         phone.setLineNumber("(123) 456-7890");

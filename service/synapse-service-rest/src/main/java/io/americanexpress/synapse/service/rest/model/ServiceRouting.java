@@ -18,7 +18,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
 
 /**
- * ServiceRouting class contains the routing elements received from the consumer.
+ * {@code ServiceRouting} class contains the routing elements received from the consumer.
  *
  * @author Paolo Claudio
  */

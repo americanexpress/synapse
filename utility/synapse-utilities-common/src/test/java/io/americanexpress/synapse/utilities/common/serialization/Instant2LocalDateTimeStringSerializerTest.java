@@ -18,13 +18,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class Instant2LocalDateTimeStringSerializerTest extends BaseTestDateTimeStringSerializer {
+/**
+ * {@code Instant2LocalDateTimeStringSerializerTest} tests the {@link Instant2LocalDateTimeStringSerializer}.
+ */
+class Instant2LocalDateTimeStringSerializerTest extends BaseTestDateTimeStringSerializer {
 
 	@BeforeEach
 	@Override
 	public void initializeModel() {
 		super.initializeModel();
-		setTestField("birth_date");
+		setTestField("birthDate");
 	}
 
 	@Override

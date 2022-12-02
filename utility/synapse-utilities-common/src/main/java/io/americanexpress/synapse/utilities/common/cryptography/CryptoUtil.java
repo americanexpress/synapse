@@ -21,6 +21,9 @@ import org.jasypt.salt.ZeroSaltGenerator;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 
+/**
+ * {@code CryptoUtil} is utility class for encryption and decryption methods.
+ */
 public class CryptoUtil {
 
     private static final String ENCRYPTION_KEY = System.getenv("ENCRYPTION_KEY");
@@ -59,7 +62,7 @@ public class CryptoUtil {
      * @param text to be encrypted
      * @return encrypted string
      */
-    public static String jasyptEncrypt(String text) {
+    public static String encrypt(String text) {
         logger.entry(text);
 
         String encrypted = null;
@@ -75,7 +78,7 @@ public class CryptoUtil {
      * @param text the text to be decrypted.
      * @return the decrypted String
      */
-    public static String jasyptDecrypt(String text) {
+    public static String decrypt(String text) {
         logger.entry(text);
         String decrypted = text;
         if (!StringUtils.isNumeric(text) && (textEncryptor != null && text != null)) {
@@ -85,10 +88,10 @@ public class CryptoUtil {
         return decrypted;
     }
 
-    public static String tryJasyptEncrypt(String text) {
+    public static String tryEncrypt(String text) {
         String encrypted;
         try {
-            encrypted = jasyptEncrypt(text);
+            encrypted = encrypt(text);
         } catch (EncryptionOperationNotPossibleException exception) {
             logger.catching(exception);
             encrypted = text;
@@ -96,10 +99,10 @@ public class CryptoUtil {
         return encrypted;
     }
 
-    public static String tryJasyptDecrypt(String text) {
+    public static String tryDecrypt(String text) {
         String decrypted;
         try {
-            decrypted = jasyptDecrypt(text);
+            decrypted = decrypt(text);
         } catch (EncryptionOperationNotPossibleException exception) {
             logger.warn("There was an error trying to decrypt " + text, exception);
             decrypted = text;

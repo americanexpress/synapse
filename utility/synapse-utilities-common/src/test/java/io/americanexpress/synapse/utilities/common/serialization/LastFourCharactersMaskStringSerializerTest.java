@@ -18,13 +18,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class LastFourCharactersMaskStringSerializerTest extends BaseTestStringSerializer {
+/**
+ * {@code LastFourCharactersMaskStringSerializerTest} tests the {@link LastFourCharactersMaskStringSerializer}.
+ */
+class LastFourCharactersMaskStringSerializerTest extends BaseTestStringSerializer {
 
     @BeforeEach
     @Override
     public void initializeModel() {
         super.initializeModel();
-        setTestField("masking_numbers");
+        setTestField("maskingNumbers");
     }
 
     @Override
@@ -52,33 +55,33 @@ public class LastFourCharactersMaskStringSerializerTest extends BaseTestStringSe
     }
 
     @Test
-    public void serialize_anyString() throws Exception {
+    void serialize_anyString() throws Exception {
         model.setMaskingNumbers(" 76767abc77**** ");
-        String expected = "{\"masking_numbers\":\"*************** \"}";
+        String expected = "{\"maskingNumbers\":\"*************** \"}";
         String actual = mapper.writeValueAsString(model);
         assertEquals(expected, actual, SERIALIZATION_FAILED);
     }
 
     @Test
-    public void serialize_15digitNumbers() throws Exception {
+    void serialize_15digitNumbers() throws Exception {
         model.setMaskingNumbers(" 123451234512345 ");
-        String expected = "{\"masking_numbers\":\"*************345 \"}";
+        String expected = "{\"maskingNumbers\":\"*************345 \"}";
         String actual = mapper.writeValueAsString(model);
         assertEquals(expected, actual, SERIALIZATION_FAILED);
     }
 
     @Test
-    public void serialize_length10StringUntrimmed() throws Exception {
+    void serialize_length10StringUntrimmed() throws Exception {
         model.setMaskingNumbers(" abcdefghij ");
-        String expected = "{\"masking_numbers\":\"********hij \"}";
+        String expected = "{\"maskingNumbers\":\"********hij \"}";
         String actual = mapper.writeValueAsString(model);
         assertEquals(expected, actual, SERIALIZATION_FAILED);
     }
 
     @Test
-    public void serialize_ssn() throws Exception {
+    void serialize_ssn() throws Exception {
         model.setMaskingNumbers(" 1233456789");
-        String expected = "{\"masking_numbers\":\"*******6789\"}";
+        String expected = "{\"maskingNumbers\":\"*******6789\"}";
         String actual = mapper.writeValueAsString(model);
         assertEquals(expected, actual, SERIALIZATION_FAILED);
     }
@@ -87,7 +90,7 @@ public class LastFourCharactersMaskStringSerializerTest extends BaseTestStringSe
     @Test
     public void serialize_whiteSpace() throws Exception {
         arrangeWhiteSpace();
-        String expected = "{\"masking_numbers\":\" \"}";
+        String expected = "{\"maskingNumbers\":\" \"}";
         String actual = mapper.writeValueAsString(model);
         assertEquals(expected, actual, SERIALIZATION_FAILED);
     }

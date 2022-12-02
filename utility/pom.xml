@@ -26,6 +26,10 @@
     <!--Modules-->
     <modules>
         <module>synapse-utilities-common</module>
+        <module>synapse-utility-date</module>
+        <module>synapse-utility-cryptography</module>
+        <module>synapse-utility-number</module>
+        <module>synapse-utility-telephone</module>
     </modules>
 
 </project>

@@ -15,17 +15,16 @@ package io.americanexpress.synapse.service.rest.controller.exceptionhandler;
 
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 import io.americanexpress.synapse.service.rest.model.ErrorResponse;
-
-import java.util.StringJoiner;
-
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
+import java.util.StringJoiner;
+
 /**
- * InputValidationErrorHandler class creates the error response containing the input validation errors.
+ * {@code InputValidationErrorHandler} class creates the error response containing the input validation errors.
  *
  * @author Alexei Morgado
  */

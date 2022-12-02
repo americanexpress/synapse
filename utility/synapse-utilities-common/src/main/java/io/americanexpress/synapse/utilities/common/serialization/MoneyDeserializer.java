@@ -23,6 +23,9 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+/**
+ * {@code MoneyDeserializer} deserializes string to money (bigDecimal) format.
+ */
 public class MoneyDeserializer extends JsonDeserializer<BigDecimal> {
 
     private NumberDeserializers.BigDecimalDeserializer delegate = NumberDeserializers.BigDecimalDeserializer.instance;

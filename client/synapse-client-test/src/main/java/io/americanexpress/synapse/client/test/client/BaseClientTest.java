@@ -21,16 +21,31 @@ import org.slf4j.ext.XLoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+/**
+ * {@code BaseClientTest} is the base test class for testing client.
+ */
 @ExtendWith(SpringExtension.class)
 public abstract class BaseClientTest {
 
+    /**
+     * The Logger.
+     */
     protected final XLogger logger = XLoggerFactory.getXLogger(getClass());
 
+    /**
+     * The Classpath object factory.
+     */
     @Autowired
     protected ClasspathObjectFactory classpathObjectFactory;
 
+    /**
+     * The Mapper.
+     */
     @Autowired
     protected ObjectMapper mapper;
 
+    /**
+     * The Url.
+     */
     protected String url;
 }

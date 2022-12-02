@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import java.util.List;
 
 /**
- * StringListSerializer class specifies the prototypes for JSON serialization using List<String>.
+ * {@code StringListSerializer} class specifies the prototypes for JSON serialization using List<String>.
  *
  * @author Paolo Claudio
  */

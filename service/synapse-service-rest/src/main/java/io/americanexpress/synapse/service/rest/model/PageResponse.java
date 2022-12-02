@@ -17,7 +17,7 @@ import java.util.List;
 
 
 /**
- * PageResponse class performs the paging calculation of the results from the service response,
+ * {@code PageResponse} class performs the paging calculation of the results from the service response,
  * capturing the pages and the results per page.
  *
  * @param <O> output type (response type)

@@ -19,12 +19,26 @@ import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+/**
+ * {@code BaseRestResponseErrorHandlerTest} is for testing the {@link BaseRestResponseErrorHandler}
+ *
+ * @param <E> the type parameter
+ */
 @ExtendWith(SpringExtension.class)
 public abstract class BaseRestResponseErrorHandlerTest<E extends BaseRestResponseErrorHandler> {
 
+    /**
+     * The Logger.
+     */
     protected final XLogger logger = XLoggerFactory.getXLogger(this.getClass());
 
+    /**
+     * The Error handler.
+     */
     protected E errorHandler;
 
+    /**
+     * Handle error clean.
+     */
     protected abstract void handleError_clean();
 }

@@ -16,12 +16,10 @@ package io.americanexpress.synapse.service.rest.controller;
 import io.americanexpress.synapse.service.rest.controller.helpers.MonoResponseEntityCreator;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
-import io.americanexpress.synapse.service.rest.model.ServiceHeadersFactory;
 import io.americanexpress.synapse.service.rest.service.BaseReadMonoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,24 +29,21 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import javax.validation.Valid;
 
 /**
- * <code>BaseReadMonoController</code> class specifies the prototypes for listening for requests from the consumer
- * to Read (POST) a resource. This Controller expects only one object in request and one object in the response, hence, "Mono" in the name.
- * *
+ * {@code BaseReadMonoController} class specifies the prototypes for listening for requests from the consumer
+ * to Read (POST) a resource. This Controller expects only one object in request and one object in the
+ * response, hence, "Mono" in the name.
  *
- * @param <I> input request type
- * @param <O> output response type
- * @param <S> service type
+ * @param <I> an object extending the {@link BaseServiceRequest}
+ * @param <O> an object extending the {@link BaseServiceResponse}
+ * @param <S> an object extending the {@link BaseReadMonoService}
  * @author Gabriel Jimenez
  */
 public abstract class BaseReadMonoController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadMonoService<I, O>> extends BaseController<S> {
 
-    public static final String INQUIRY_RESULTS = "/inquiry_results";
-
     /**
-     * Entity creator that will create the response entity object that will be sent to the service layer.
+     * Constant string for inquiry_results.
      */
-    @Autowired
-    private MonoResponseEntityCreator<O> monoResponseEntityCreator;
+    public static final String INQUIRY_RESULTS = "/inquiry_results";
 
     /**
      * Get a single resource from the back end service.
@@ -70,7 +65,7 @@ public abstract class BaseReadMonoController<I extends BaseServiceRequest, O ext
         logger.entry(serviceRequest);
 
         final O serviceResponse = service.read(headers, serviceRequest);
-        ResponseEntity<O> responseEntity = monoResponseEntityCreator.create(serviceResponse);
+        ResponseEntity<O> responseEntity = MonoResponseEntityCreator.create(serviceResponse);
 
         logger.exit(responseEntity);
         return responseEntity;

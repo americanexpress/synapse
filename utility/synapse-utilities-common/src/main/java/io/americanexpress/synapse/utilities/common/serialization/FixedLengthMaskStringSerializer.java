@@ -19,7 +19,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import java.io.IOException;
 
 /**
- * FixedLengthMaskStringSerializer class used  to convert a original value into masking value during serialization.
+ * {@code FixedLengthMaskStringSerializer} class used  to convert a original value into masking value during serialization.
  * e.g. if the text is 123456879 then the text will be serialized as ***
  *
  */
