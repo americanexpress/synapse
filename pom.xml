@@ -43,9 +43,9 @@
         <kotlin.version>1.7.20</kotlin.version>
 
         <!--Spring Versions-->
-        <spring-framework.version>5.3.23</spring-framework.version>
-        <spring-security.version>5.7.3</spring-security.version>
-        <spring-boot-framework.version>2.7.4</spring-boot-framework.version>
+        <spring-framework.version>6.0.2</spring-framework.version>
+        <spring-security.version>6.0.0</spring-security.version>
+        <spring-boot-framework.version>3.0.0</spring-boot-framework.version>
         <spring-boot-ws-framework.version>1.4.7.RELEASE</spring-boot-ws-framework.version>
         <spring-cloud.version>3.2.7</spring-cloud.version>
         <spring-native.version>0.12.1</spring-native.version>
@@ -445,7 +445,7 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
-                <version>5.3.18</version>
+                <version>6.0.2</version>
             </dependency>
 
             <!--Spring Security -->
@@ -471,12 +471,6 @@
             </dependency>
 
             <!--Spring Boot Dependencies-->
-            <!--            <dependency>-->
-            <!--                <groupId>org.springframework.boot</groupId>-->
-            <!--                <artifactId>spring-boot-starter-parent</artifactId>-->
-            <!--                <version>${spring-boot-framework.version}</version>-->
-            <!--                <type>pom</type>-->
-            <!--            </dependency>-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -652,7 +646,7 @@
             <dependency>
                 <groupId>org.apache.tomcat.embed</groupId>
                 <artifactId>tomcat-embed-core</artifactId>
-                <version>9.0.62</version>
+                <version>10.1.1</version>
             </dependency>
 
             <!--Netty-->
@@ -705,12 +699,12 @@
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-ehcache</artifactId>
-                <version>5.6.12.Final</version>
+                <version>6.1</version>
             </dependency>
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-annotations</artifactId>
-                <version>3.5.6-Final</version>
+                <version>6.1</version>
             </dependency>
 
             <!--Jasypt-->
@@ -780,6 +774,18 @@
                 <groupId>com.fasterxml.jackson.dataformat</groupId>
                 <artifactId>jackson-dataformat-xml</artifactId>
                 <version>${jackson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>jakarta.validation</groupId>
+                <artifactId>jakarta.validation-api</artifactId>
+                <version>3.0.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>jakarta.servlet</groupId>
+                <artifactId>jakarta.servlet-api</artifactId>
+                <version>6.0.0</version>
             </dependency>
 
             <!--Mock Dependencies-->
