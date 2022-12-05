@@ -64,7 +64,7 @@
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
 
         <!--Jackson-->
-        <jackson.version>2.14.1</jackson.version>
+        <jackson.version>2.14.0</jackson.version>
 
         <!--Logging-->
         <log4j.version>2.19.0</log4j.version>
@@ -73,6 +73,9 @@
         <!--Plugins-->
         <native-plugin.version>0.9.16</native-plugin.version>
         <jaxws-maven-plugin.version>2.5</jaxws-maven-plugin.version>
+
+        <!--TestContainers-->
+        <testcontainers.version>1.17.5</testcontainers.version>
     </properties>
 
     <modules>
@@ -483,11 +486,6 @@
                 <artifactId>spring-boot-starter-ws</artifactId>
                 <version>${spring-boot-ws-framework.version}</version>
             </dependency>
-            <!--            <dependency>-->
-            <!--                <groupId>org.springframework.boot</groupId>-->
-            <!--                <artifactId>spring-boot-starter-data-rest</artifactId>-->
-            <!--                <version>${spring-boot-framework.version}</version>-->
-            <!--            </dependency>-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter</artifactId>
@@ -510,11 +508,6 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-            <!--            <dependency>-->
-            <!--                <groupId>org.springframework.boot</groupId>-->
-            <!--                <artifactId>spring-boot-starter-security</artifactId>-->
-            <!--                <version>${spring-boot-framework.version}</version>-->
-            <!--            </dependency>-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-webflux</artifactId>
@@ -776,16 +769,21 @@
                 <version>${jackson.version}</version>
             </dependency>
 
+            <!--Jakarta-->
             <dependency>
                 <groupId>jakarta.validation</groupId>
                 <artifactId>jakarta.validation-api</artifactId>
                 <version>3.0.2</version>
             </dependency>
-
             <dependency>
                 <groupId>jakarta.servlet</groupId>
                 <artifactId>jakarta.servlet-api</artifactId>
                 <version>6.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.xml.bind</groupId>
+                <artifactId>jakarta.xml.bind-api</artifactId>
+                <version>2.3.2</version>
             </dependency>
 
             <!--Mock Dependencies-->
@@ -945,7 +943,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
-                <version>2.7.4</version>
+                <version>3.0.0</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.data</groupId>
@@ -1018,6 +1016,25 @@
                 <artifactId>aws-lambda-java-core</artifactId>
                 <version>1.1.0</version>
                 <scope>provided</scope>
+            </dependency>
+
+            <!--TestContainers-->
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>testcontainers</artifactId>
+                <version>${testcontainers.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>cassandra</artifactId>
+                <version>${testcontainers.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>${testcontainers.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
