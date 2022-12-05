@@ -35,7 +35,7 @@ public class BookEntity extends BaseEntity {
     @Column(name = "author")
     private String author;
 
-    private String getTitle() {
+    public String getTitle() {
         return title;
     }
 
