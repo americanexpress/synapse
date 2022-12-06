@@ -15,7 +15,6 @@ package io.americanexpress.synapse.client.rest.handler;
 
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 
 /**
