@@ -20,7 +20,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
 
 /**
- * {@code BookDataConfig} example of using BaseOracleDataConfig
+ * {@code BookDataConfig} example of using BaseReactiveMySqlConfig
  */
 @Configuration
 @PropertySource("classpath:data-mysql-book-application.properties")

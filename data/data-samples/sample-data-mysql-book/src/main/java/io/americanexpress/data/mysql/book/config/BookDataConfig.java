@@ -21,7 +21,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 /**
- * {@code DataBookConfig} example of using BaseOracleDataConfig
+ * {@code DataBookConfig} example of using BaseMySqlDataConfig
  */
 @Configuration
 @PropertySource("classpath:data-mysql-book-application.properties")

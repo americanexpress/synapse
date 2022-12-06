@@ -38,6 +38,6 @@ public class BookApplication {
      */
     public static void main(String... args) {
         SpringApplication.run(BookApplication.class, args);
-        LOGGER.info("Reactive Rest Book Oracle Sample Application is up and running...");
+        LOGGER.info("Reactive Rest Book MySql Sample Application is up and running...");
     }
 }

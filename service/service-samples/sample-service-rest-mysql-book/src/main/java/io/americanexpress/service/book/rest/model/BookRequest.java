@@ -18,7 +18,7 @@ import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import javax.validation.constraints.NotBlank;
 
 /**
- * {@code UpdateBookService} Updates a book resource by request criteria.
+ * {@code BookRequest} Parent request object.
  */
 public class BookRequest implements BaseServiceRequest {
 

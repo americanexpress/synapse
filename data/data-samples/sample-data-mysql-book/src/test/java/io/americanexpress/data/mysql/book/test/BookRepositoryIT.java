@@ -24,12 +24,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
- * {@code OracleDataBookIT} Integration test example of querying BookEntity by id.
+ * {@code BookRepositoryIT} Integration test example of querying BookEntity by id.
  */
 @DataJpaTest
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = MySqlDataConfigTest.class)
-public class MySqlDataBookIT {
+public class BookRepositoryIT {
 
     /**
      * BookRepository used for database access.

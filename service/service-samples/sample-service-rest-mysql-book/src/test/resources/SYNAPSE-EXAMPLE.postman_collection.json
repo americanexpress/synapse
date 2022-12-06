@@ -1,12 +1,12 @@
 {
 	"info": {
 		"_postman_id": "5949fe24-a97c-48cc-91e0-7be1816b5d6c",
-		"name": "Oracle Book",
+		"name": "MySql Book",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Book - Oracle Service",
+			"name": "Book - MySql Service",
 			"item": [
 				{
 					"name": "GetBook",

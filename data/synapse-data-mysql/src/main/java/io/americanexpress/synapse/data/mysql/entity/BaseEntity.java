@@ -34,7 +34,6 @@ import java.util.Objects;
  * {@code BaseEntity} class is the parent class for all the database entities.
  * All the common attributes are consolidated in this entity.
  *
- * @author Gabriel Jimenez
  */
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass

@@ -29,7 +29,7 @@ import javax.sql.DataSource;
 /**
  * {@code BaseMySqlDataConfig} class is used to hold the common configuration for all data-mysql modules.
  *
- * @author Gabriel Jimenez
+ * @author Andrew Castillo
  */
 @Configuration
 @EnableJpaAuditing
@@ -64,7 +64,6 @@ public abstract class BaseMySqlDataConfig {
                 .build();
 
         dataSource.setURL(environment.getRequiredProperty("spring.mysql.datasource.url"));
-//        dataSource.setServerName(environment.getRequiredProperty("spring.mysql.datasource.serviceName"));
         dataSource.setUser(environment.getRequiredProperty("spring.mysql.datasource.username"));
         dataSource.setPassword(environment.getRequiredProperty("spring.mysql.datasource.password"));
         return dataSource;
@@ -72,6 +71,7 @@ public abstract class BaseMySqlDataConfig {
 
     /**
      * Used to create and edit the LocalContainerEntityManagerFactoryBean.
+     * @param dataSource Database connectivity
      *
      * @return LocalContainerEntityManagerFactoryBean
      */
@@ -87,7 +87,7 @@ public abstract class BaseMySqlDataConfig {
     /**
      * Set the packages to Scan property to the entityManagerFactory.
      *
-     * @param entityManagerFactoryBean
+     * @param entityManagerFactoryBean Used to set entity scanner for JPA.
      */
     protected abstract void setPackagesToScan(LocalContainerEntityManagerFactoryBean entityManagerFactoryBean);
 }

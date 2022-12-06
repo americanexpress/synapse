@@ -29,7 +29,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 /**
- * {code OracleDataConfigTest} Configuration file uses h2 database for integration test purpose.
+ * {code MySqlDataConfigTest} Configuration file uses h2 database for integration test purpose.
  */
 @TestConfiguration
 @TestPropertySource("classpath:data-mysql-book-application-test.properties")
