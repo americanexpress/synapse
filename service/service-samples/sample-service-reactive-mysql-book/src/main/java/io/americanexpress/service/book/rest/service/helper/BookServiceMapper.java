@@ -26,9 +26,9 @@ import org.apache.commons.lang3.StringUtils;
 public class BookServiceMapper {
 
     /**
-     * Populates ReadBookResponse with BookEntity
-     * @param bookEntity
-     * @return
+     * Populates ReadBookResponse with BookEntity.
+     * @param bookEntity Used for mapping bookEntity from database to response object.
+     * @return A response object representation of BookEntity.
      */
     public static ReadBookResponse populateReadBookResponse(BookEntity bookEntity) {
         ReadBookResponse response = new ReadBookResponse();
@@ -42,9 +42,9 @@ public class BookServiceMapper {
     }
 
     /**
-     * Populates BookEntity with CreateBookRequest
-     * @param request
-     * @return
+     * Populates BookEntity with CreateBookRequest.
+     * @param request Used to create a BookEntity and store it in database.
+     * @return A BookEntity object to save to database.
      */
     public static BookEntity populateBookEntityForCreation(CreateBookRequest request) {
         BookEntity bookEntity = new BookEntity();
@@ -55,9 +55,9 @@ public class BookServiceMapper {
     }
 
     /**
-     * Populates CreateBookResponse with BookEntity
-     * @param bookEntity
-     * @return
+     * Populates CreateBookResponse with BookEntity.
+     * @param bookEntity Used for mapping bookEntity object from database to response object.
+     * @return A response object representation of BookEntity.
      */
     public static CreateBookResponse populateCreateBookResponse(BookEntity bookEntity) {
         CreateBookResponse response = new CreateBookResponse();
@@ -70,9 +70,10 @@ public class BookServiceMapper {
     }
 
     /**
-     * Populate BookEntity with updated request
-     * @param request
-     * @return
+     * Populate BookEntity with updated request.
+     * @param request Used for updating BookEntity object.
+     * @param bookEntity Checks previous entity object from database to see if it's blank.
+     * @return BookEntity object that will be used for updating.
      */
     public static BookEntity populateBookEntityForUpdate(UpdateBookRequest request, BookEntity bookEntity) {
 

@@ -35,14 +35,19 @@ public class UpdateBookService extends BaseUpdateReactiveService<UpdateBookReque
      */
     private BookRepository bookRepository;
 
+    /**
+     * Constructor taking in and autowiring BookRepository
+     * @param bookRepository will be used to query the database.
+     */
     public UpdateBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
     /**
-     * executeUpdate will be used to update a book resource by request
-     * @param request
-     * @return
+     * ExecuteUpdate will be used to update a book resource by request
+     * @param headers http server headers.
+     * @param request Request object used to update.
+     * @return void
      */
     @Override
     protected Mono<Void> executeUpdate(HttpHeaders headers, UpdateBookRequest request) {

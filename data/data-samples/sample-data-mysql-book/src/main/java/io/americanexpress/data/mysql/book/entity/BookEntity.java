@@ -13,7 +13,7 @@
  */
 package io.americanexpress.data.mysql.book.entity;
 
-import io.americanexpress.synapse.data.oracle.entity.BaseEntity;
+import io.americanexpress.synapse.data.mysql.entity.BaseEntity;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.Column;

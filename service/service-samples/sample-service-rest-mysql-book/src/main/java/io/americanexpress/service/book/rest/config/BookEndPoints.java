@@ -18,6 +18,9 @@ package io.americanexpress.service.book.rest.config;
  */
 public class BookEndPoints {
 
+    /**
+     * Endpoint string.
+     */
     public static final String BOOK_ENDPOINT = "/v1/books";
 
     /**

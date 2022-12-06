@@ -13,7 +13,7 @@
  */
 package io.americanexpress.data.mysql.book.config;
 
-import io.americanexpress.synapse.data.oracle.config.BaseMySqlDataConfig;
+import io.americanexpress.synapse.data.mysql.config.BaseMySqlDataConfig;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;

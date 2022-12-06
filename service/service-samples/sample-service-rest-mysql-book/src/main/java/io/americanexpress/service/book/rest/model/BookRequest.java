@@ -29,9 +29,9 @@ public class BookRequest implements BaseServiceRequest {
 
     /**
      * Constructor taking in title as string, author as string, and createdBy as string
-     * @param title
-     * @param author
-     * @param createdBy
+     * @param title Title of the book.
+     * @param author Author of the book.
+     * @param createdBy When the BookEntity was created.
      */
     public BookRequest(String title, String author, String createdBy) {
         this.title = title;
@@ -41,8 +41,8 @@ public class BookRequest implements BaseServiceRequest {
 
     /**
      * Constructor taking title and author
-     * @param title
-     * @param author
+     * @param title Title of the book.
+     * @param author Author of the book.
      */
     public BookRequest(String title, String author){
         this.title = title;

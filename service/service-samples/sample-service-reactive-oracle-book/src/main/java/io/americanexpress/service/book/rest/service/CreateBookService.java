@@ -13,8 +13,8 @@
  */
 package io.americanexpress.service.book.rest.service;
 
-import io.americanexpress.data.mysql.book.dao.BookRepository;
-import io.americanexpress.data.mysql.book.entity.BookEntity;
+import io.americanexpress.data.oracle.book.dao.BookRepository;
+import io.americanexpress.data.oracle.book.entity.BookEntity;
 import io.americanexpress.service.book.rest.model.CreateBookRequest;
 import io.americanexpress.service.book.rest.model.CreateBookResponse;
 import io.americanexpress.service.book.rest.service.helper.BookServiceMapper;

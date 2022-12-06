@@ -30,6 +30,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication()
 public class BookApplication {
 
+    /**
+     * Used for logging the application.
+     */
     private static final XLogger LOGGER = XLoggerFactory.getXLogger(BookApplication.class);
 
     /**

@@ -34,7 +34,7 @@ public class BookApplication {
 
     /**
      * main
-     * @param args
+     * @param args An array of arguments.
      */
     public static void main(String... args) {
         SpringApplication.run(BookApplication.class, args);

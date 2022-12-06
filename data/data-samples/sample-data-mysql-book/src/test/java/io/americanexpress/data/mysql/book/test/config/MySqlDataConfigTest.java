@@ -14,7 +14,7 @@
 package io.americanexpress.data.mysql.book.test.config;
 
 import com.zaxxer.hikari.HikariDataSource;
-import io.americanexpress.synapse.data.oracle.config.BaseMySqlDataConfig;
+import io.americanexpress.synapse.data.mysql.config.BaseMySqlDataConfig;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -32,7 +32,7 @@ import java.util.Properties;
  * {code OracleDataConfigTest} Configuration file uses h2 database for integration test purpose.
  */
 @TestConfiguration
-@TestPropertySource("classpath:data-oracle-book-application-test.properties")
+@TestPropertySource("classpath:data-mysql-book-application-test.properties")
 @EnableJpaRepositories(basePackages = "io.americanexpress.data.mysql.book.dao")
 @ActiveProfiles("test")
 public class MySqlDataConfigTest extends BaseMySqlDataConfig {

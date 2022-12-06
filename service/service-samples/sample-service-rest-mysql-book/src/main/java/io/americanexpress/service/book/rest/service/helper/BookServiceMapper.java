@@ -27,8 +27,8 @@ public class BookServiceMapper {
 
     /**
      * Populates ReadBookResponse with BookEntity
-     * @param bookEntity
-     * @return
+     * @param bookEntity A book object from the database.
+     * @return A service response representation of BookEntity.
      */
     public static ReadBookResponse populateReadBookResponse(BookEntity bookEntity) {
         ReadBookResponse response = new ReadBookResponse();
@@ -43,8 +43,8 @@ public class BookServiceMapper {
 
     /**
      * Populates BookEntity with CreateBookRequest
-     * @param request
-     * @return
+     * @param request Request object that will be used to create a new BookEntity.
+     * @return BookEntity object that will be stored in the database.
      */
     public static BookEntity populateBookEntityForCreation(CreateBookRequest request) {
         BookEntity bookEntity = new BookEntity();
@@ -56,8 +56,8 @@ public class BookServiceMapper {
 
     /**
      * Populates CreateBookResponse with BookEntity
-     * @param bookEntity
-     * @return
+     * @param bookEntity A BookEntity object from the database.
+     * @return A service response representation of BookEntity.
      */
     public static CreateBookResponse populateCreateBookResponse(BookEntity bookEntity) {
         CreateBookResponse response = new CreateBookResponse();
@@ -71,8 +71,9 @@ public class BookServiceMapper {
 
     /**
      * Populate BookEntity with updated request
-     * @param request
-     * @return
+     * @param request Will be used for updating a BookEntity.
+     * @param bookEntity Is used for determining if BookEntity needs to be updated.
+     * @return A BookEntity to update in the database.
      */
     public static BookEntity populateBookEntityForUpdate(UpdateBookRequest request, BookEntity bookEntity) {
 

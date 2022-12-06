@@ -36,14 +36,19 @@ public class CreateBookService extends BaseCreateReactiveService<CreateBookReque
      */
     private final BookRepository bookRepository;
 
+    /**
+     * Constructor taking in and autowiring BookRepository
+     * @param bookRepository used to query the database.
+     */
     public CreateBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
     /**
-     * executeCreate will be used to create a book resource by request
-     * @param request
-     * @return
+     * ExecuteCreate will be used to create a book resource by request
+     * @param headers Http server headers.
+     * @param request Object used for creating a bookEntity object.
+     * @return Returns what was created.
      */
     @Override
     protected Mono<CreateBookResponse> executeCreate(HttpHeaders headers, CreateBookRequest request) {

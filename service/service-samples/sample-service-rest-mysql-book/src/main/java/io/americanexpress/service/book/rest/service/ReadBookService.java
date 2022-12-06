@@ -34,6 +34,10 @@ public class ReadBookService extends BaseReadMonoService<ReadBookRequest, ReadBo
      */
     private final BookRepository bookRepository;
 
+    /**
+     * Constructor taking in and autowiring BookRepository
+     * @param bookRepository used to query the database.
+     */
     public ReadBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }

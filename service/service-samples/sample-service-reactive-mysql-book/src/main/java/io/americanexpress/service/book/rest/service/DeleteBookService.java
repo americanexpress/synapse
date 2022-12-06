@@ -33,13 +33,18 @@ public class DeleteBookService extends BaseDeleteReactiveService {
      */
     private final BookRepository bookRepository;
 
+    /**
+     * Constructor taking in and autowiring BookRepository
+     * @param bookRepository used to query books.
+     */
     public DeleteBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
     /**
-     * executeDelete will be used to delete book resource by title
-     * @param title
+     * ExecuteDelete will be used to delete book resource by title
+     * @param headers Http server headers.
+     * @param title Will delete the title in the database.
      */
     @Override
     protected Mono<Void> executeDelete(HttpHeaders headers, String title) {

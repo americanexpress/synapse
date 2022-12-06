@@ -13,7 +13,7 @@
  */
 package io.americanexpress.service.book.rest.config;
 
-import io.americanexpress.data.mysql.book.config.BookDataConfig;
+import io.americanexpress.data.oracle.book.config.BookDataConfig;
 import io.americanexpress.synapse.service.rest.config.ServiceRestConfig;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

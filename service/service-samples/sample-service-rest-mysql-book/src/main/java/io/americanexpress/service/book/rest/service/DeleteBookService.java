@@ -32,6 +32,10 @@ public class DeleteBookService extends BaseDeleteService {
      */
     private final BookRepository bookRepository;
 
+    /**
+     * Constructor taking in and autowiring BookRepository
+     * @param bookRepository used to query the database.
+     */
     public DeleteBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }

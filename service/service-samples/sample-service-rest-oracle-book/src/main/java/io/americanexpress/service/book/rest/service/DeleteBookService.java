@@ -13,8 +13,8 @@
  */
 package io.americanexpress.service.book.rest.service;
 
-import io.americanexpress.data.mysql.book.dao.BookRepository;
-import io.americanexpress.data.mysql.book.entity.BookEntity;
+import io.americanexpress.data.oracle.book.dao.BookRepository;
+import io.americanexpress.data.oracle.book.entity.BookEntity;
 import io.americanexpress.synapse.framework.exception.ApplicationClientException;
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 import io.americanexpress.synapse.service.rest.service.BaseDeleteService;

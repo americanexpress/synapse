@@ -34,11 +34,6 @@
             <groupId>io.americanexpress.synapse</groupId>
             <artifactId>synapse-service-rest</artifactId>
         </dependency>
-        <!-- H2 -->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-        </dependency>
     </dependencies>
 
     <build>

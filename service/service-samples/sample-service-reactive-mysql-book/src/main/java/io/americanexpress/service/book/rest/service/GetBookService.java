@@ -34,14 +34,19 @@ public class GetBookService extends BaseGetMonoReactiveService<ReadBookResponse>
      */
     private final BookRepository bookRepository;
 
+    /**
+     * Constructor taking in and autowiring BookRepository
+     * @param bookRepository will be used to query the database.
+     */
     public GetBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
     /**
-     * executeRead will be used to retrieve a specific book resource by title
-     * @param title
-     * @return
+     * ExecuteRead will be used to retrieve a specific book resource by title
+     * @param headers Http server headers.
+     * @param title Used to query the database.
+     * @return A response object of the title requested.
      */
     @Override
     protected Mono<ReadBookResponse> executeRead(HttpHeaders headers, String title) {

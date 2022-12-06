@@ -17,7 +17,14 @@ package io.americanexpress.service.book.rest.config;
  * {@code BookEndpoints} Gets Book endpoint
  */
 public class BookEndpoints {
+
+    /**
+     * Book Endpoint
+     */
     public static final String BOOK_ENDPOINT = "/v1/books";
 
+    /**
+     * private constructor
+     */
     private BookEndpoints(){}
 }

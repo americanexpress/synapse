@@ -35,14 +35,19 @@ public class ReadBookService extends BaseReadMonoReactiveService<ReadBookRequest
      */
     private final BookRepository bookRepository;
 
+    /**
+     * Constructor taking in and autowiring BookRepository
+     * @param bookRepository Will be used to query the database.
+     */
     public ReadBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
     /**
-     * executeRead will be used to retrieve a book resource by request.
-     * @param request
-     * @return
+     * ExecuteRead will be used to retrieve a book resource by request.
+     * @param headers Http server headers.
+     * @param request Request object used to query the database with title and author.
+     * @return Response object of the title and author being queried.
      */
     @Override
     protected Mono<ReadBookResponse> executeRead(HttpHeaders headers, ReadBookRequest request) {

@@ -22,14 +22,19 @@ public class GetAllBookService extends BaseGetPolyReactiveService<ReadBookRespon
      */
     private BookRepository bookRepository;
 
+    /**
+     * Constructor taking in and autowiring BookRepository
+     * @param bookRepository used to query the database.
+     */
     public GetAllBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
 
     /**
-     * executeRead will be used to get all book resources.
-     * @return
+     * ExecuteRead will be used to get all book resources.
+     * @param headers http server headers.
+     * @return All book objects from the database.
      */
     @Override
     protected Flux<ReadBookResponse> executeRead(HttpHeaders headers) {

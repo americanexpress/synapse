@@ -34,9 +34,9 @@ public class UpdateBookRequest extends BookRequest {
 
     /**
      * Constructor takes in title as string, author as string, and createdBy as string
-     * @param title
-     * @param author
-     * @param createdBy
+     * @param title Title of the book.
+     * @param author Author of the book.
+     * @param createdBy When the BookEntity was created.
      */
     public UpdateBookRequest(String title, String author, String createdBy) {
         super(title, author, createdBy);
