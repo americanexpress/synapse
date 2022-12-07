@@ -16,12 +16,11 @@
     <modules>
         <module>sample-service-graphql-book</module>
         <module>sample-service-reactive-cassandra-book</module>
+        <module>sample-service-reactive-mongodb-book</module>
         <module>sample-service-reactive-oracle-book</module>
         <module>sample-service-rest-book</module>
         <module>sample-service-rest-cassandra-book</module>
         <module>sample-service-rest-oracle-book</module>
     </modules>
-
-
 
 </project>

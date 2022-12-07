@@ -11,30 +11,25 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.data.book.entity;
+package io.americanexpress.service.book.rest.model;
 
-import io.americanexpress.synapse.data.mongodb.entity.BaseEntity;
-import org.springframework.data.mongodb.core.mapping.Document;
+import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 /**
- * {@code BookEntity} class represents the domain of the books table.
+ * {@code UpdateBookRequest} is the request for the update book operation.
  */
-@Document("books")
-public class BookEntity extends BaseEntity {
+public class UpdateBookRequest implements BaseServiceRequest {
 
-    /**
-     * Title of book.
-     */
+    @NotBlank
     private String title;
 
-    /**
-     * Author of book.
-     */
+    @NotBlank
     private String author;
 
-    /**
-     * Number of copies of book.
-     */
+    @Min(0)
     private int numberOfCopies;
 
     /**
@@ -90,5 +85,4 @@ public class BookEntity extends BaseEntity {
     public void setNumberOfCopies(int numberOfCopies) {
         this.numberOfCopies = numberOfCopies;
     }
-
 }
