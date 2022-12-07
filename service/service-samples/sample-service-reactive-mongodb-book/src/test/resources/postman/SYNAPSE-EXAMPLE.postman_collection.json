@@ -45,7 +45,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"title\": \"Alice In Wonderland\"\n}"
+					"raw": "{}"
 				},
 				"url": {
 					"raw": "{{synapse-host}}/v1/books/multiple_results",

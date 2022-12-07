@@ -50,7 +50,7 @@ public class ReadPolyBookReactiveService extends BaseReadPolyReactiveService<Rea
      */
     @Override
     protected Flux<ReadBookResponse> executeRead(HttpHeaders headers, ReadBookRequest request) {
-        return bookRepository.findByTitle(request.getTitle())
+        return bookRepository.findAll()
                 .map(ReadBookResponseCreator::create)
                 .switchIfEmpty(Flux.empty());
     }

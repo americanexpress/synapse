@@ -22,27 +22,4 @@ import javax.validation.constraints.NotBlank;
  */
 public class ReadBookRequest implements BaseServiceRequest {
 
-    /**
-     * Title of book.
-     */
-    @NotBlank
-    private String title;
-
-    /**
-     * Gets title.
-     *
-     * @return the title
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * Sets title.
-     *
-     * @param title the title
-     */
-    public void setTitle(String title) {
-        this.title = title;
-    }
 }
