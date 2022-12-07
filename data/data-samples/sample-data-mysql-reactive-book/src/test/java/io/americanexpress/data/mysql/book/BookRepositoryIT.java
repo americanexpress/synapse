@@ -11,11 +11,11 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.data.mysql.book.test;
+package io.americanexpress.data.mysql.book;
 
 import io.americanexpress.data.mysql.book.dao.BookRepository;
 import io.americanexpress.data.mysql.book.entity.BookEntity;
-import io.americanexpress.data.mysql.book.test.config.MySqlDataConfigTest;
+import io.americanexpress.data.mysql.book.config.MySqlDataConfigTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

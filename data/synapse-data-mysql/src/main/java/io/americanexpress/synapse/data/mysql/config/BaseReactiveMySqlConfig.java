@@ -32,12 +32,23 @@ import org.springframework.transaction.ReactiveTransactionManager;
 @EnableR2dbcAuditing
 public abstract class BaseReactiveMySqlConfig extends AbstractR2dbcConfiguration {
 
-    protected final Environment environment;
+    /**
+     * Environment
+     */
+    private final Environment environment;
 
+    /**
+     * Constructor taking in environment.
+     * @param environment Environment is loaded to use system properties.
+     */
     protected BaseReactiveMySqlConfig(Environment environment) {
         this.environment = environment;
     }
 
+    /**
+     * Loads up the ConnectionFactory to connect to the database.
+     * @return ConnectionFactory of the database.
+     */
     @Bean
     @ConfigurationProperties("spring.r2dbc")
     public ConnectionFactory connectionFactory() {
@@ -47,6 +58,11 @@ public abstract class BaseReactiveMySqlConfig extends AbstractR2dbcConfiguration
                 .build();
     }
 
+    /**
+     * Loads the transaction manager.
+     * @param connectionFactory
+     * @return
+     */
     @Bean
     ReactiveTransactionManager transactionManager(ConnectionFactory connectionFactory) {
         return new R2dbcTransactionManager(connectionFactory);

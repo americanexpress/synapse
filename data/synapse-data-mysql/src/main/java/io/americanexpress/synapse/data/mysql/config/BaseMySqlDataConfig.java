@@ -39,7 +39,7 @@ public abstract class BaseMySqlDataConfig {
     /**
      * Used to acquire environment variables.
      */
-    protected final Environment environment;
+    private final Environment environment;
 
     /**
      * Instantiates a new Base postgres data config.

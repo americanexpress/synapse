@@ -11,10 +11,10 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.data.mysql.book.test;
+package io.americanexpress.data.oracle.book;
 
-import io.americanexpress.data.mysql.book.dao.BookRepository;
-import io.americanexpress.data.mysql.book.test.config.MySqlDataConfigTest;
+import io.americanexpress.data.oracle.book.config.OracleDataConfigTest;
+import io.americanexpress.data.oracle.book.dao.BookRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,22 +24,16 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
- * {@code BookRepositoryIT} Integration test example of querying BookEntity by id.
+ * {@code OracleDataBookIT} Integration test example of querying BookEntity by id.
  */
 @DataJpaTest
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = MySqlDataConfigTest.class)
-public class BookRepositoryIT {
+@ContextConfiguration(classes = OracleDataConfigTest.class)
+public class OracleDataBookIT {
 
-    /**
-     * BookRepository used for database access.
-     */
     @Autowired
     private BookRepository bookRepository;
 
-    /**
-     * Test and finds Synapse record in book table.
-     */
     @Test
     public void findById_givenValidId_expectedBookFound() {
         Assertions.assertNotNull(bookRepository.findByTitle("Synapse"));

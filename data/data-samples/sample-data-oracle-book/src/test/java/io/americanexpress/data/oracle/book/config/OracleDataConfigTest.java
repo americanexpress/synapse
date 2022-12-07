@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.oracle.test.config;
+package io.americanexpress.data.oracle.book.config;
 
 import com.zaxxer.hikari.HikariDataSource;
 import io.americanexpress.synapse.data.oracle.config.BaseOracleDataConfig;
@@ -50,12 +50,12 @@ public class OracleDataConfigTest extends BaseOracleDataConfig {
      *
      * @return DataSource bean
      */
-    @Bean()
+    @Bean
     @ConfigurationProperties(prefix = "spring.datasource.h2")
     @Override
     public DataSource dataSource() {
         HikariDataSource dataSource = DataSourceBuilder.create().type(HikariDataSource.class).build();
-        dataSource.setSchema(environment.getRequiredProperty("spring.jpa.properties.hibernate.default_schema"));
+        dataSource.setSchema("PUBLIC");
         dataSource.setLeakDetectionThreshold(2000);
         dataSource.setDataSourceProperties(additionalHibernateSpringProperties());
         return dataSource;
@@ -68,10 +68,10 @@ public class OracleDataConfigTest extends BaseOracleDataConfig {
      */
     private Properties additionalHibernateSpringProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", environment.getRequiredProperty("hibernate.hbm2ddl.auto"));
-        properties.setProperty("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
-        properties.setProperty("hibernate.format_sql", environment.getRequiredProperty("hibernate.format_sql"));
-        properties.setProperty("spring.datasource.h2.initialization-mode", environment.getRequiredProperty("spring.datasource.h2.initialization-mode"));
+        properties.setProperty("hibernate.hbm2ddl.auto", "none");
+        properties.setProperty("hibernate.show_sql", "true");
+        properties.setProperty("hibernate.format_sql", "true");
+        properties.setProperty("spring.datasource.h2.initialization-mode", "always");
         properties.setProperty("hibernate.cache.use_query_cache", "true");
         properties.setProperty("hibernate.cache.provider_class", "net.sf.ehcache.hibernate.EhCacheProvider");
         return properties;
