@@ -1,8 +1,8 @@
-# sample-service-rest-mongodb-book
+# sample-service-reactive-mongodb-book
 
 ## Description
 
-- This is a sample module demonstrating the end-to-end integration of synapse-service-rest and sample-data-mongodb-book.
+- This is a sample module demonstrating the end-to-end integration of synapse-service-rest and sample-data-mongodb-reactive.
 
 ### Dependencies
 
