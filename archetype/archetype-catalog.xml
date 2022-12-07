@@ -100,7 +100,7 @@
 		<archetype>
 			<groupId>io.americanexpress.synapse</groupId>
 			<artifactId>synapse-archetype-service-rest-reactive-get</artifactId>
-			<version>0.3.6-SNAPSHOT</version>
+			<version>0.3.8-SNAPSHOT</version>
 		</archetype>
 		<archetype>
 			<groupId>io.americanexpress.synapse</groupId>
