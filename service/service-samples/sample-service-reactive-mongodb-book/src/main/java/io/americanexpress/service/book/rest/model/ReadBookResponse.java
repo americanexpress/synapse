@@ -11,16 +11,14 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.data.book.entity;
+package io.americanexpress.service.book.rest.model;
 
-import io.americanexpress.synapse.data.mongodb.entity.BaseEntity;
-import org.springframework.data.mongodb.core.mapping.Document;
+import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 
 /**
- * {@code BookEntity} class represents the domain of the books table.
+ * {@code ReadBookResponse} is the response for the read book operation.
  */
-@Document("books")
-public class BookEntity extends BaseEntity {
+public class ReadBookResponse extends BaseServiceResponse {
 
     /**
      * Title of book.
@@ -90,5 +88,4 @@ public class BookEntity extends BaseEntity {
     public void setNumberOfCopies(int numberOfCopies) {
         this.numberOfCopies = numberOfCopies;
     }
-
 }

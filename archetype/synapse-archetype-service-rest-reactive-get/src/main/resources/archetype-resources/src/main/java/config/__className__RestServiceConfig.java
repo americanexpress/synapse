@@ -11,29 +11,23 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.rest.config;
+package ${package}.config;
 
-import io.americanexpress.synapse.service.rest.config.ServiceRestConfig;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 
+import io.americanexpress.synapse.service.rest.config.ServiceRestConfig;
 
 /**
- * BookConfig is the configuration class for the Book Application.
+ * {@code ${className}RestServiceConfig} class sets the configuration for the ${apiName} application
+ * @author ${author}
  */
-@Configuration
-@PropertySource("classpath:/service-book-application.properties")
-@ComponentScan(basePackages = "io.americanexpress.service.book.rest")
 @Import({ServiceRestConfig.class})
-public class BookConfig {
-
-    /**
-     * The constant BOOK_ENDPOINT.
-     */
-    public static final String BOOK_ENDPOINT = "/v1/books";
-    public static final String BOOK_REACTIVE_ENDPOINT = "/v1/reactive/books";
+@PropertySource("classpath:service-application.properties")
+@ComponentScan("${package}")
+@Configuration
+public class ${className}RestServiceConfig {
 
 }
-
