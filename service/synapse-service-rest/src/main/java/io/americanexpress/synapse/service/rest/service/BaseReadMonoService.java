@@ -19,8 +19,8 @@ import org.springframework.http.HttpHeaders;
 
 /**
  * {@code BaseReadMonoService} class specifies the prototypes for performing business logic for post read operation.
- * @param <I>
- * @param <O>
+ * @param <I> input request type
+ * @param <O> output response type
  */
 public abstract class BaseReadMonoService<I extends BaseServiceRequest, O extends BaseServiceResponse> extends BaseService {
 

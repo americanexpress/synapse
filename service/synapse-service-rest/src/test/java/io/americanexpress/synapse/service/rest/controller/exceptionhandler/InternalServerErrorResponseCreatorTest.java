@@ -14,7 +14,6 @@
 package io.americanexpress.synapse.service.rest.controller.exceptionhandler;
 
 import io.americanexpress.synapse.framework.exception.ApplicationClientException;
-import io.americanexpress.synapse.framework.exception.ApplicationServerException;
 import io.americanexpress.synapse.framework.exception.helper.ErrorMessagePropertyReader;
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 import io.americanexpress.synapse.framework.test.CommonAssertionMessages;
