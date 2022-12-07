@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- * <code>BaseDeleteController</code> class specifies the prototypes for listening for requests from the consumer
+ * {@code BaseDeleteController} class specifies the prototypes for listening for requests from the consumer
  * to Delete (DELETE) a resource. This controller expects only one entry per request.
  *
  * @param <S> service type

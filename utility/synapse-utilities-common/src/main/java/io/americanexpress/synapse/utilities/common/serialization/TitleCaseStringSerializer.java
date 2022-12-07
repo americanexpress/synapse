@@ -19,7 +19,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import java.io.IOException;
 
 /**
- * TitleCaseStringSerializer class serializes a string into its title case format.
+ * {@code TitleCaseStringSerializer} class serializes a string into its title case format.
  * e.g. JOHN X DOE will be converted into John X Doe.
  * e.g. JANE-DOE O'REILLEY will be converted into Jane-Doe O'Reilly.
  * e.g. A.J. COWLING will be converted into A.J. Cowling.

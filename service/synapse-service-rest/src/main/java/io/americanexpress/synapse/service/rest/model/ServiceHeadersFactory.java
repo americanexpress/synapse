@@ -16,12 +16,15 @@ package io.americanexpress.synapse.service.rest.model;
 import org.springframework.http.HttpHeaders;
 
 /**
- * ServiceHeadersFactory class produces ServiceHeaders objects.
+ * {@code ServiceHeadersFactory} class produces ServiceHeaders objects.
  *
  * @author Paolo Claudio
  */
 public class ServiceHeadersFactory {
 
+    /**
+     * Default constructor.
+     */
     private ServiceHeadersFactory() {
     }
 

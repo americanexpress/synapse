@@ -16,7 +16,7 @@ package io.americanexpress.synapse.utilities.common.encoding;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * UrlEncoder class encodes a string into its corresponding encoded value. All characters are encoded except
+ * {@code UrlEncoder} class encodes a string into its corresponding encoded value. All characters are encoded except
  * for the reserved characters '-', '_', '.' and '~'.
  *
  * @author Paolo Claudio

@@ -16,7 +16,7 @@ package io.americanexpress.synapse.service.rest.model;
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 
 /**
- * ErrorResponse class is the response model for 4XX and 5XX series errors.
+ * {@code ErrorResponse} class is the response model for 4XX and 5XX series errors.
  *
  */
 public class ErrorResponse {

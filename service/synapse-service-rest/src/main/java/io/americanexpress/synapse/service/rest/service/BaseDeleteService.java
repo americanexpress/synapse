@@ -16,7 +16,7 @@ package io.americanexpress.synapse.service.rest.service;
 import org.springframework.http.HttpHeaders;
 
 /**
- * BaseService class specifies the prototypes for performing business logic.
+ * {@code BaseDeleteService} class specifies the prototypes for performing business logic.
  *
  * @author Alexei Morgado
  */

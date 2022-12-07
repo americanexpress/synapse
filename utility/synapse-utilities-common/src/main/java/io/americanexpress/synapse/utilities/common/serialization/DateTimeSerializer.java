@@ -22,6 +22,9 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * {@code DateTimeSerializer} serializes date in datetime format.
+ */
 public class DateTimeSerializer extends JsonSerializer<LocalDateTime> {
 
     @Override

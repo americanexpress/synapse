@@ -18,62 +18,65 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TelephoneUtilTest {
+/**
+ * {@code TelephoneUtilTest} tests the {@link TelephoneUtil}
+ */
+class TelephoneUtilTest {
 
     private static final String TELEPHONE_POSSIBLE = "Telephone number is possible.";
 
     private static final String TELEPHONE_NOT_POSSIBLE = "Telephone number is not possible.";
 
     @Test
-    public void isPossibleTelephoneNumber_null() {
+    void isPossibleTelephoneNumber_null() {
         boolean actual = TelephoneUtil.isPossibleTelephoneNumber(null);
         assertFalse(actual, TELEPHONE_POSSIBLE);
     }
 
     @Test
-    public void isPossibleTelephoneNumber_empty() {
+    void isPossibleTelephoneNumber_empty() {
         boolean actual = TelephoneUtil.isPossibleTelephoneNumber("");
         assertFalse(actual, TELEPHONE_POSSIBLE);
     }
 
     @Test
-    public void isPossibleTelephoneNumber_alpha() {
+    void isPossibleTelephoneNumber_alpha() {
         boolean actual = TelephoneUtil.isPossibleTelephoneNumber("a");
         assertFalse(actual, TELEPHONE_POSSIBLE);
     }
 
     @Test
-    public void isPossibleTelephoneNumber_alphanumeric() {
+    void isPossibleTelephoneNumber_alphanumeric() {
         boolean actual = TelephoneUtil.isPossibleTelephoneNumber("a0");
         assertFalse(actual, TELEPHONE_POSSIBLE);
     }
 
     @Test
-    public void isPossibleTelephoneNumber_digitsUnknown() {
+    void isPossibleTelephoneNumber_digitsUnknown() {
         boolean actual = TelephoneUtil.isPossibleTelephoneNumber("0");
         assertFalse(actual, TELEPHONE_POSSIBLE);
     }
 
     @Test
-    public void isPossibleTelephoneNumber_northAmerica10Digits() {
+    void isPossibleTelephoneNumber_northAmerica10Digits() {
         boolean actual = TelephoneUtil.isPossibleTelephoneNumber("9541111111");
         assertTrue(actual, TELEPHONE_NOT_POSSIBLE);
     }
 
     @Test
-    public void isPossibleTelephoneNumber_northAmericaCountryCode() {
+    void isPossibleTelephoneNumber_northAmericaCountryCode() {
         boolean actual = TelephoneUtil.isPossibleTelephoneNumber("19541111111");
         assertTrue(actual, TELEPHONE_NOT_POSSIBLE);
     }
 
     @Test
-    public void isPossibleTelephoneNumber_northAmericaFormatted10Digits() {
+    void isPossibleTelephoneNumber_northAmericaFormatted10Digits() {
         boolean actual = TelephoneUtil.isPossibleTelephoneNumber("(954)111-1111");
         assertTrue(actual, TELEPHONE_NOT_POSSIBLE);
     }
 
     @Test
-    public void isPossibleTelephoneNumber_northAmericaFormattedCountryCode() {
+    void isPossibleTelephoneNumber_northAmericaFormattedCountryCode() {
         boolean actual = TelephoneUtil.isPossibleTelephoneNumber("+1(954)111-1111");
         assertTrue(actual, TELEPHONE_NOT_POSSIBLE);
     }

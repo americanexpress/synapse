@@ -23,7 +23,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * PropertiesManager class is used to manage properties whenever we need to point a lower environment to a higher environment.
+ * {@code PropertiesManager} class is used to manage properties whenever we need to point a lower environment to a higher environment.
  * This occurs whenever a backend API has an unstable E1 environment and we need to point our own E1 environment to the backend E2 environment.
  *
  * @author Paolo Claudio

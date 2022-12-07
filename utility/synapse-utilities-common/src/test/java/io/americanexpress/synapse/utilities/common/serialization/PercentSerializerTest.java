@@ -23,6 +23,9 @@ import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * {@code PercentSerializerTest} tests the {@link PercentSerializer}.
+ */
 class PercentSerializerTest extends BaseTestSerializer {
 
 	@BeforeEach

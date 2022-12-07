@@ -19,7 +19,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import java.io.IOException;
 
 /**
- * UpperCaseStringSerializer class is used to convert a String field into uppercase during serialization.
+ * {@code UpperCaseStringSerializer} class is used to convert a String field into uppercase during serialization.
  *
  * @author Paolo Claudio
  */

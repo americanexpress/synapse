@@ -15,11 +15,12 @@ package io.americanexpress.synapse.utilities.common.serialization;
 
 import io.americanexpress.synapse.framework.exception.ApplicationServerException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
 /**
- * DeepCopyUtils class is used to perform a deep copy of one object
+ * {@code DeepCopyUtils} class is used to perform a deep copy of one object
  * into a possibly different object. For example, an object of class A with String field 'a'
  * can be deep copied into another object of class B with String field 'a'.
  * <p>
@@ -32,6 +33,7 @@ import java.io.IOException;
  *
  * @author Paolo Claudio
  */
+@Component
 public class DeepCopyUtils {
 
     /**
@@ -40,7 +42,7 @@ public class DeepCopyUtils {
     private final ObjectMapper mapper;
 
     /**
-     * <code>DeepCopyUtils</code> Constructor
+     * {@code DeepCopyUtils} Constructor
      *
      * @param mapper used for mapping source and destination objects
      */

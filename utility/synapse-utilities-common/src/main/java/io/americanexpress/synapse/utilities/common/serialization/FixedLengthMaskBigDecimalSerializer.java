@@ -20,6 +20,9 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import java.io.IOException;
 import java.math.BigDecimal;
 
+/**
+ * {@code FixedLengthMaskBigDecimalSerializer} serializes big decimals.
+ */
 public class FixedLengthMaskBigDecimalSerializer extends JsonSerializer<BigDecimal> {
 
     protected String format() {

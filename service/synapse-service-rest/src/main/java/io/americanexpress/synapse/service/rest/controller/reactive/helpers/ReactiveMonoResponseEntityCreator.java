@@ -14,16 +14,22 @@
 package io.americanexpress.synapse.service.rest.controller.reactive.helpers;
 
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
-import reactor.core.publisher.Mono;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
+import reactor.core.publisher.Mono;
 
-@Component
+/**
+ * {@code ReactiveMonoResponseEntityCreator} Creates a ResponseEntity for mono.
+ * @param <O> response extending {@link BaseServiceResponse} which all child response object extends.
+ */
 public class ReactiveMonoResponseEntityCreator<O extends BaseServiceResponse> {
 
-    public ResponseEntity<Mono<O>> create(Mono<O> serviceResponse) {
+    /**
+     * Creates a ResponseEntity from a service response.
+     * @param serviceResponse service response object that takes {@link BaseServiceResponse}.
+     * @return A ResponseEntity<Mono<O>> which O extends {@link BaseServiceResponse}.
+     */
+    public static <O extends BaseServiceResponse> ResponseEntity<Mono<O>> create(Mono<O> serviceResponse) {
         return serviceResponse == null ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : ResponseEntity.ok(serviceResponse);
     }
 }

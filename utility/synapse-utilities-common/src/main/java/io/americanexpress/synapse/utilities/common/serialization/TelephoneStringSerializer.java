@@ -20,7 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.IOException;
 
 /**
- * TelephoneStringSerializer class is used to convert an unformatted phone number String field into the (xxx) xxx-xxxx format during serialization.
+ * {@code TelephoneStringSerializer} class is used to convert an unformatted phone number String field into the (xxx) xxx-xxxx format during serialization.
  *
  * @author Paolo Claudio
  */

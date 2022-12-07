@@ -18,13 +18,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * {@code LowerCaseStringSerializerTest} tests the {@link LowerCaseStringSerializer}.
+ */
 public class LowerCaseStringSerializerTest extends BaseTestStringSerializer {
 
 	@BeforeEach
 	@Override
 	public void initializeModel() {
 		super.initializeModel();
-		setTestField("last_name");
+		setTestField("lastName");
 	}
 
 	@Override
