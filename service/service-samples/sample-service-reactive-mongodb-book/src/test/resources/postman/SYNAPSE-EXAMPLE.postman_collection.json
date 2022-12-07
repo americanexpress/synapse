@@ -1,0 +1,66 @@
+{
+	"info": {
+		"_postman_id": "ebebc46c-da06-4846-b9e0-1f01c4c25287",
+		"name": "SYNAPSE-EXAMPLE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CREATE BOOK",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"Alice In Wonderland\",\n\t\"author\": \"Lewis Carroll\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{synapse-host}}/v1/books",
+					"host": [
+						"{{synapse-host}}"
+					],
+					"path": [
+						"v1",
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "READ BOOK POLY",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}"
+				},
+				"url": {
+					"raw": "{{synapse-host}}/v1/books/multiple_results",
+					"host": [
+						"{{synapse-host}}"
+					],
+					"path": [
+						"v1",
+						"books",
+						"multiple_results"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
