@@ -17,7 +17,7 @@ import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import org.springframework.http.HttpHeaders;
 
 /**
- * {@code BaseGetMonoService} class specifies the prototypes for performing business logic.
+ * {@code BaseGetMonoService} class specifies the prototypes for performing business logic for get operation.
  * @param <O> BaseServiceResponse
  */
 public abstract class BaseGetMonoService<O extends BaseServiceResponse> extends BaseService {

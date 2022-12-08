@@ -29,6 +29,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
 
@@ -70,8 +71,9 @@ public class ServiceRestConfig implements WebMvcConfigurer {
      */
     @Bean
     public MappingJackson2HttpMessageConverter jsonMessageConverter() {
-        final MappingJackson2HttpMessageConverter messageConverter = new MappingJackson2HttpMessageConverter(getObjectMapper());
+        MappingJackson2HttpMessageConverter messageConverter = new MappingJackson2HttpMessageConverter(defaultObjectMapper);
         messageConverter.setSupportedMediaTypes(Collections.singletonList(MediaType.APPLICATION_JSON));
+        messageConverter.setDefaultCharset(StandardCharsets.UTF_8);
         return messageConverter;
     }
 

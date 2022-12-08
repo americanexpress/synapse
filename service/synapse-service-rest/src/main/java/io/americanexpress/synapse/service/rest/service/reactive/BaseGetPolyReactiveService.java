@@ -20,7 +20,7 @@ import reactor.core.publisher.Flux;
 
 /**
  * {@code BaseGetPolyReactiveService} class specifies the prototypes for performing business logic.
- * @param <O>
+ * @param <O> service response
  */
 public abstract class BaseGetPolyReactiveService<O extends BaseServiceResponse> extends BaseService {
 

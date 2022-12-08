@@ -37,10 +37,10 @@ public final class ConnectionCursorUtil {
 	
 	/**
 	 * Get the {@link ConnectionCursor} from this cursor.
-	 * @param cursor the cursor
+	 * @param uuid the uuid
 	 * @return the {@link ConnectionCursor}
 	 */
-	public static final ConnectionCursor from(UUID uuid) {
+	public static ConnectionCursor from(UUID uuid) {
 		return new DefaultConnectionCursor(UUIDUtil.toString(uuid));
 	}
 	
@@ -49,7 +49,7 @@ public final class ConnectionCursorUtil {
 	 * @param edges the edges
 	 * @return the start cursor
 	 */
-	public static final <T> ConnectionCursor getStartCursor(List<Edge<T>> edges) {
+	public static <T> ConnectionCursor getStartCursor(List<Edge<T>> edges) {
 		return edges.isEmpty() ? null : edges.get(0).getCursor();
 	}
 	
@@ -58,7 +58,7 @@ public final class ConnectionCursorUtil {
 	 * @param edges the edges
 	 * @return the end cursor
 	 */
-	public static final <T> ConnectionCursor getEndCursor(List<Edge<T>> edges) {
+	public static <T> ConnectionCursor getEndCursor(List<Edge<T>> edges) {
 		return edges.isEmpty() ? null : edges.get(edges.size() - 1).getCursor();
 	}
 }

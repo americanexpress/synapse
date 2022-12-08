@@ -17,6 +17,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * {@code HealthCheckControllerTest} tests the {@link HealthCheckController}
+ */
 class HealthCheckControllerTest {
 
 	private static final HealthCheckController HEALTH_CHECK_CONTROLLER = new HealthCheckController();

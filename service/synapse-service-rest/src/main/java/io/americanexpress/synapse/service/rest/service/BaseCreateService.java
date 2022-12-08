@@ -18,7 +18,7 @@ import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import org.springframework.http.HttpHeaders;
 
 /**
- * {@code BaseCreateService} class specifies the prototypes for performing business logic.
+ * {@code BaseCreateService} class specifies the prototypes for performing business logic for create operation.
  *
  * @param <I> input request type
  * @param <O> output response type

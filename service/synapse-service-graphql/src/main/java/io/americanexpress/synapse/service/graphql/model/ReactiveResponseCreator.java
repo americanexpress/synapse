@@ -39,7 +39,7 @@ public final class ReactiveResponseCreator {
 	 * @param element to be set in the response
 	 * @return the reactive response
 	 */
-	public static final <T> CompletableFuture<T> create(T element) {
+	public static <T> CompletableFuture<T> create(T element) {
 		return Mono.fromSupplier(() -> element).toFuture();
 	}
 	
@@ -48,7 +48,7 @@ public final class ReactiveResponseCreator {
 	 * @param elements to be set in the response
 	 * @return the reactive response
 	 */
-	public static final <T> CompletableFuture<List<T>> create(List<T> elements) {
+	public static <T> CompletableFuture<List<T>> create(List<T> elements) {
 		return Flux.fromIterable(elements)
 			.collectList()
 			.toFuture();

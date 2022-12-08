@@ -20,7 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * {@code BaseController} The base controller every child controller should extend this parent controller
- * @param <S>
+ * @param <S> service class extending {@link BaseService}
  */
 public abstract class BaseController<S extends BaseService> {
 
