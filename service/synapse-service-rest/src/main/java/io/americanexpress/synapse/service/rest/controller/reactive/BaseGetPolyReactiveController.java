@@ -29,14 +29,15 @@ import reactor.core.publisher.Flux;
  * {@code BaseGetPolyReactiveController} is base class for read poly controller.
  *    This controller handles GET method requests, but specifically for read purposes.
  *    This controller returns multiple object.
- * @param <O>
- * @param <S>
+ * @param <O> output response type
+ * @param <S> service class
  */
 public abstract class BaseGetPolyReactiveController<O extends BaseServiceResponse, S extends BaseGetPolyReactiveService<O>> extends BaseController<S> {
 
     /**
-     *
      * Get a list of multiple resources from the back end service.
+     *
+     * @param headers request headers
      * @return response
      */
     @ApiOperation(value = "Reactive get flux", notes = "Gets all resources reactively")

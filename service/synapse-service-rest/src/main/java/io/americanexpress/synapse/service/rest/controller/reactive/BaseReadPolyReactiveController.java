@@ -46,6 +46,7 @@ public abstract class BaseReadPolyReactiveController<I extends BaseServiceReques
     /**
      * Get a list of multiple resources from the back end service.
      *
+     * @param headers request headers
      * @param serviceRequest body from the consumer
      * @return a list of resources from the back end service
      */
