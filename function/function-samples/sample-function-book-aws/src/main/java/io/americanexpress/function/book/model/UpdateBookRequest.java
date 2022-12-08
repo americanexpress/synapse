@@ -13,7 +13,7 @@
  */
 package io.americanexpress.function.book.model;
 
-import javax.validation.constraints.Min;
+import jakarta.validation.constraints.Min;
 
 /**
  * {@code UpdateBookRequest} is the request object for updating a book.

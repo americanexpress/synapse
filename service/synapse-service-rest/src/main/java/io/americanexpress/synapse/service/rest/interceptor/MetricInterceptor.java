@@ -16,10 +16,10 @@ package io.americanexpress.synapse.service.rest.interceptor;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.servlet.HandlerInterceptor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
 /**
@@ -29,7 +29,7 @@ import java.util.UUID;
  * @author Alexei Morgado
  */
 @Component
-public class MetricInterceptor extends HandlerInterceptorAdapter {
+public class MetricInterceptor implements HandlerInterceptor {
 
     /**
      * Used to log the metrics.
@@ -67,7 +67,6 @@ public class MetricInterceptor extends HandlerInterceptorAdapter {
      */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception exception) throws Exception {
-        super.afterCompletion(request, response, handler, exception);
         long startTime = (Long) request.getAttribute("startTime");
         long endTime = System.nanoTime();
         long executeTime = endTime - startTime;

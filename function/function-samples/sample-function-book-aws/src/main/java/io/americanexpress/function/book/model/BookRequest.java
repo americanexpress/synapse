@@ -13,7 +13,7 @@
  */
 package io.americanexpress.function.book.model;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 /**
  * {@code BookRequest} is the base book request object.
