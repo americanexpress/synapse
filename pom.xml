@@ -430,7 +430,7 @@
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-r2dbc</artifactId>
-                <version>3.0.0</version>
+                <version>${spring-boot-framework.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.plugin</groupId>
@@ -955,7 +955,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
-                <version>3.0.0</version>
+                <version>${spring-boot-framework.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.data</groupId>
@@ -1008,12 +1008,12 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-redis</artifactId>
-                <version>3.0.0</version>
+                <version>${spring-boot-framework.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-redis</artifactId>
-                <version>3.0.0</version>
+                <version>${spring-boot-framework.version}</version>
             </dependency>
 
             <!--AWS-->
@@ -1033,19 +1033,17 @@
             <!--TestContainers-->
             <dependency>
                 <groupId>org.testcontainers</groupId>
-                <artifactId>testcontainers</artifactId>
-                <version>${testcontainers.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.testcontainers</groupId>
                 <artifactId>cassandra</artifactId>
                 <version>${testcontainers.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.testcontainers</groupId>
                 <artifactId>junit-jupiter</artifactId>
+                <version>${testcontainers.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>testcontainers</artifactId>
                 <version>${testcontainers.version}</version>
             </dependency>
         </dependencies>
