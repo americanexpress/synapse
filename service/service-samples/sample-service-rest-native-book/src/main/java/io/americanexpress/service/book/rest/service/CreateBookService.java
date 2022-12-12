@@ -15,49 +15,39 @@ package io.americanexpress.service.book.rest.service;
 
 import io.americanexpress.data.book.entity.BookEntity;
 import io.americanexpress.data.book.repository.BookRepository;
+import io.americanexpress.service.book.rest.model.CreateBookRequest;
+import io.americanexpress.service.book.rest.model.CreateBookResponse;
 import io.americanexpress.service.book.rest.model.ReadBookRequest;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
-import io.americanexpress.synapse.service.rest.service.BaseReadMonoService;
+import io.americanexpress.synapse.service.rest.service.BaseCreateService;
 import org.springframework.aot.hint.annotation.RegisterReflectionForBinding;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
-
 /**
- * {@link ReadBookService} is the service for /v1/books/inquiry_results.
+ * {@code CreateBookService} is the service class for creating a book in the Cassandra Book database.
  */
 @Service
-public class ReadBookService extends BaseReadMonoService<ReadBookRequest, ReadBookResponse> {
+public class CreateBookService extends BaseCreateService<CreateBookRequest, CreateBookResponse> {
 
-    /**
-     * Used to read from mongodb database.
-     */
     private final BookRepository bookRepository;
 
     /**
-     * Instantiates a new Read book service.
+     * Instantiates a new CreateBookService.
      *
      * @param bookRepository the book repository
      */
-    public ReadBookService(BookRepository bookRepository) {
+    public CreateBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
-    /**
-     * Read book from mongodb database.
-     * @param headers http headers
-     * @param request the request to read book from database
-     */
+    @RegisterReflectionForBinding({CreateBookRequest.class, CreateBookResponse.class})
     @Override
-    @RegisterReflectionForBinding({ReadBookRequest.class, ReadBookResponse.class})
-    protected ReadBookResponse executeRead(HttpHeaders headers, ReadBookRequest request) {
-        ReadBookResponse readBookResponse = new ReadBookResponse();
-
-        BookEntity bookEntity = bookRepository.findByTitle(request.getTitle());
-        if(bookEntity != null) {
-            readBookResponse.setTitle(bookEntity.getTitle());
-            readBookResponse.setAuthor(bookEntity.getAuthor());
-        }
-        return readBookResponse;
+    protected CreateBookResponse executeCreate(HttpHeaders headers, CreateBookRequest request) {
+        BookEntity bookEntity = new BookEntity();
+        bookEntity.setTitle(request.getTitle());
+        bookEntity.setAuthor(request.getAuthor());
+        bookRepository.save(bookEntity);
+        return new CreateBookResponse();
     }
 }

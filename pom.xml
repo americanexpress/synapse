@@ -873,19 +873,6 @@
                 <version>3.3.4</version>
             </dependency>
 
-            <!--Spring Native-->
-            <dependency>
-                <groupId>org.springframework.experimental</groupId>
-                <artifactId>spring-native</artifactId>
-                <version>${spring-native.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.experimental</groupId>
-                <artifactId>spring-aot</artifactId>
-                <version>${spring-native.version}</version>
-                <scope>provided</scope>
-            </dependency>
-
             <!--Springdoc-->
             <dependency>
                 <groupId>org.springdoc</groupId>
@@ -1242,40 +1229,40 @@
                 </plugin>
 
                 <!--Native Plugins-->
-                <plugin>
-                    <groupId>org.springframework.experimental</groupId>
-                    <artifactId>spring-aot-maven-plugin</artifactId>
-                    <version>${spring-native.version}</version>
-                    <executions>
-                        <execution>
-                            <id>generate</id>
-                            <goals>
-                                <goal>generate</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.graalvm.nativeimage</groupId>
-                    <artifactId>native-image-maven-plugin</artifactId>
-                    <version>21.2.0</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.graalvm.buildtools</groupId>
-                    <artifactId>native-maven-plugin</artifactId>
-                    <version>${native-plugin.version}</version>
-                    <configuration>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>build-native</id>
-                            <goals>
-                                <goal>build</goal>
-                            </goals>
-                            <phase>package</phase>
-                        </execution>
-                    </executions>
-                </plugin>
+<!--                <plugin>-->
+<!--                    <groupId>org.springframework.experimental</groupId>-->
+<!--                    <artifactId>spring-aot-maven-plugin</artifactId>-->
+<!--                    <version>${spring-native.version}</version>-->
+<!--                    <executions>-->
+<!--                        <execution>-->
+<!--                            <id>generate</id>-->
+<!--                            <goals>-->
+<!--                                <goal>generate</goal>-->
+<!--                            </goals>-->
+<!--                        </execution>-->
+<!--                    </executions>-->
+<!--                </plugin>-->
+<!--                <plugin>-->
+<!--                    <groupId>org.graalvm.nativeimage</groupId>-->
+<!--                    <artifactId>native-image-maven-plugin</artifactId>-->
+<!--                    <version>21.2.0</version>-->
+<!--                </plugin>-->
+<!--                <plugin>-->
+<!--                    <groupId>org.graalvm.buildtools</groupId>-->
+<!--                    <artifactId>native-maven-plugin</artifactId>-->
+<!--                    <version>${native-plugin.version}</version>-->
+<!--                    <configuration>-->
+<!--                    </configuration>-->
+<!--                    <executions>-->
+<!--                        <execution>-->
+<!--                            <id>build-native</id>-->
+<!--                            <goals>-->
+<!--                                <goal>build</goal>-->
+<!--                            </goals>-->
+<!--                            <phase>package</phase>-->
+<!--                        </execution>-->
+<!--                    </executions>-->
+<!--                </plugin>-->
             </plugins>
         </pluginManagement>
         <plugins>

@@ -17,13 +17,10 @@ import io.americanexpress.service.book.rest.model.ReadBookRequest;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.nativex.hint.TypeHint;
 
 /**
  * {@link BookApplication} starts the Spring Boot Application.
  */
-@TypeHint(types = {ReadBookRequest.class, ReadBookResponse.class})
-//@ResourceHint(patterns = "data-book-application.properties")
 @SpringBootApplication
 public class BookApplication {
 
