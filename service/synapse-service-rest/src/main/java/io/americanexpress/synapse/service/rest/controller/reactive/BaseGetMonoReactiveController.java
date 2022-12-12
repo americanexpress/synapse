@@ -30,13 +30,15 @@ import reactor.core.publisher.Mono;
  * {@code BaseGetMonoReactiveController } is base class for read mono controller.
  * This controller handles GET method requests, but specifically for read purposes.
  *  This controller returns a single object.
- * @param <O>
- * @param <S>
+ * @param <O> output response type
+ * @param <S> service class
  */
 public abstract class BaseGetMonoReactiveController<O extends BaseServiceResponse, S extends BaseGetMonoReactiveService<O>> extends BaseController<S> {
 
     /**
      * Get a single resource from the back end service.
+     *
+     * @param headers request headers
      * @param id used for retrieval
      * @return response
      */

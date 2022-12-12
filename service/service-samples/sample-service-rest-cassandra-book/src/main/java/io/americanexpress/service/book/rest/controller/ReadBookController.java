@@ -18,7 +18,6 @@ import io.americanexpress.service.book.rest.model.ReadBookRequest;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.service.ReadBookService;
 import io.americanexpress.synapse.service.rest.controller.BaseReadMonoController;
-import io.americanexpress.synapse.service.rest.controller.helpers.MonoResponseEntityCreator;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

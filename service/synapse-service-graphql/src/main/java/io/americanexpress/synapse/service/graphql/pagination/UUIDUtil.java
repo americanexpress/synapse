@@ -36,7 +36,7 @@ public final class UUIDUtil {
 	 * @param uuid to be converted
 	 * @return a Base64 encoded {@link String}
 	 */
-	public static final String toString(UUID uuid) {
+	public static String toString(UUID uuid) {
 		return Base64.getEncoder().encodeToString(uuid.toString().getBytes());
 	}
 	
@@ -45,7 +45,7 @@ public final class UUIDUtil {
 	 * @param text to be converted
 	 * @return a Base64 decoded {@link UUID}
 	 */
-	public static final UUID toUUID(String text) {
+	public static UUID toUUID(String text) {
 		return UUID.fromString(new String(Base64.getDecoder().decode(text)));
 	}
 }

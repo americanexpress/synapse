@@ -17,8 +17,7 @@ import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import org.springframework.http.HttpHeaders;
 
 /**
- * {@code BaseUpdateService} class specifies the prototypes for performing business logic.
- *
+ * {@code BaseUpdateService} class specifies the prototypes for performing business logic for update operation.
  * @param <I> an object extending {@link BaseServiceRequest}
  * @author Alexei Morgado
  */

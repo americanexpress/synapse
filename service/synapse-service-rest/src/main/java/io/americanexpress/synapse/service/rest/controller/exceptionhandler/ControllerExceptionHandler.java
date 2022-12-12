@@ -19,6 +19,7 @@ import io.americanexpress.synapse.framework.exception.helper.ErrorMessagePropert
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 import io.americanexpress.synapse.service.rest.model.ErrorResponse;
 import io.americanexpress.synapse.utilities.common.cryptography.CryptoUtil;
+import org.apache.catalina.connector.ClientAbortException;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,11 @@ import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.client.HttpStatusCodeException;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestClientResponseException;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -66,14 +72,35 @@ public class ControllerExceptionHandler {
     private final InputValidationErrorHandler inputValidationErrorHandler;
 
     /**
+     * Used to log the exceptions.
+     */
+    private final MappedDiagnosticContextRequestFieldSetter mappedDiagnosticContextRequestFieldSetter;
+
+    /**
+     * Used to create the internal server error response.
+     */
+    private final InternalServerErrorResponseCreator internalServerErrorResponseCreator;
+
+    /**
+     * Used to create the rest client error response.
+     */
+    private final RestClientErrorResponseCreator restClientErrorResponseCreator;
+
+    /**
      * Argument constructor creates a new instance of ControllersExceptionsHandler with given values.
-     *
      * @param errorMessagePropertyReader  used to create the error message based on the error code by reading the value in error-messages.properties
      * @param inputValidationErrorHandler used to handle input validation errors
+     * @param mappedDiagnosticContextRequestFieldSetter used to log exceptions
+     * @param internalServerErrorResponseCreator used to create error responses for internal server error
+     * @param restClientErrorResponseCreator used to create error responses for rest client error
      */
-    public ControllerExceptionHandler(@Autowired ErrorMessagePropertyReader errorMessagePropertyReader, @Autowired InputValidationErrorHandler inputValidationErrorHandler) {
+    public ControllerExceptionHandler(@Autowired ErrorMessagePropertyReader errorMessagePropertyReader, @Autowired InputValidationErrorHandler inputValidationErrorHandler,
+                                      MappedDiagnosticContextRequestFieldSetter mappedDiagnosticContextRequestFieldSetter, InternalServerErrorResponseCreator internalServerErrorResponseCreator, RestClientErrorResponseCreator restClientErrorResponseCreator) {
         this.errorMessagePropertyReader = errorMessagePropertyReader;
         this.inputValidationErrorHandler = inputValidationErrorHandler;
+        this.mappedDiagnosticContextRequestFieldSetter = mappedDiagnosticContextRequestFieldSetter;
+        this.internalServerErrorResponseCreator = internalServerErrorResponseCreator;
+        this.restClientErrorResponseCreator = restClientErrorResponseCreator;
     }
 
     /**
@@ -86,7 +113,7 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(ApplicationServerException.class)
     public ResponseEntity<ErrorResponse> handleApplicationServerException(final ApplicationServerException applicationServerException, final HttpServletRequest httpServletRequest) {
         logger.entry(applicationServerException);
-        final ResponseEntity<ErrorResponse> errorResponseEntity = handleInternalServerError(applicationServerException, httpServletRequest);
+        ResponseEntity<ErrorResponse> errorResponseEntity = internalServerErrorResponseCreator.create(applicationServerException, httpServletRequest);
         this.logger.exit(errorResponseEntity);
         return errorResponseEntity;
     }
@@ -98,21 +125,15 @@ public class ControllerExceptionHandler {
      * @return errorResponseEntity of type ResponseEntity<ErrorResponse>
      */
     @ExceptionHandler(ApplicationClientException.class)
-    public ResponseEntity<ErrorResponse> handleApplicationClientException(final ApplicationClientException applicationClientException) {
+    public ResponseEntity<ErrorResponse> handleApplicationClientException(final ApplicationClientException applicationClientException, HttpServletRequest httpServletRequest) {
         logger.entry(applicationClientException);
-        
-        ResponseEntity<ErrorResponse> errorResponseEntity;
-        
-        if (applicationClientException.getCause() == null) {
-        	ErrorCode errorCode = applicationClientException.getErrorCode();
-            String message = errorMessagePropertyReader.getErrorMessage(errorCode, applicationClientException.getMessageArguments());
-            String developerMessage = applicationClientException.getDeveloperMessage();
-            ErrorResponse errorResponse = new ErrorResponse(errorCode, ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE, message, developerMessage);
-            errorResponseEntity = ResponseEntity.badRequest().body(errorResponse);
-        } else {
-        	errorResponseEntity = handleInternalServerError(applicationClientException);
-        }
-        
+
+        ErrorCode errorCode = applicationClientException.getErrorCode();
+        String message = errorMessagePropertyReader.getErrorMessage(errorCode, applicationClientException.getMessageArguments());
+        String developerMessage = applicationClientException.getDeveloperMessage();
+        ErrorResponse errorResponse = new ErrorResponse(errorCode, ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE, message, developerMessage);
+        ResponseEntity<ErrorResponse> errorResponseEntity = ResponseEntity.badRequest().body(errorResponse);
+
         logger.exit(errorResponseEntity);
         return errorResponseEntity;
     }
@@ -127,7 +148,7 @@ public class ControllerExceptionHandler {
     public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException methodArgumentNotValidException) {
         logger.warn("Method argument is not valid", methodArgumentNotValidException);
         ErrorResponse errorResponse = inputValidationErrorHandler.handleInputValidationErrorMessage(methodArgumentNotValidException.getBindingResult());
-        final ResponseEntity<ErrorResponse> errorResponseEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+        ResponseEntity<ErrorResponse> errorResponseEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
         logger.exit(errorResponseEntity);
         return errorResponseEntity;
     }
@@ -157,53 +178,81 @@ public class ControllerExceptionHandler {
     public ResponseEntity<ErrorResponse> handleHttpMessageNotReadableException(HttpMessageNotReadableException httpMessageNotReadableException) {
         logger.warn("HTTP message is not readable", httpMessageNotReadableException);
         String userMessage = httpMessageNotReadableException.getMessage();
-        final ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_4XX_ERROR, GENERIC_4XX_HEADER_MESSAGE, userMessage, "Input validation");
-        final ResponseEntity<ErrorResponse> errorResponseEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+        ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_4XX_ERROR, GENERIC_4XX_HEADER_MESSAGE, userMessage, "Input validation");
+        ResponseEntity<ErrorResponse> errorResponseEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
         logger.exit(errorResponseEntity);
         return errorResponseEntity;
     }
 
     /**
-     * Handle any Exception or Error not already caught by other exception handler methods in this class.
+     * Handle all the exceptions and errors that have not been handled by another more specific exception handler method.
      *
-     * @param throwable containing the Exception or Error thrown by the application
-     * @return the error response with HTTP status code 500
+     * @param throwable          thrown from the application
+     * @param httpServletRequest containing the consumer's request
+     * @return the response entity containing the error response
      */
     @ExceptionHandler(Throwable.class)
-    public ResponseEntity<ErrorResponse> handleThrowable(Throwable throwable) {
-        logger.catching(throwable);
-        final ResponseEntity<ErrorResponse> errorResponseEntity = handleInternalServerError(throwable);
+    public ResponseEntity<ErrorResponse> handleThrowable(Throwable throwable, HttpServletRequest httpServletRequest) {
+        ResponseEntity<ErrorResponse> errorResponseEntity = internalServerErrorResponseCreator.create(throwable, httpServletRequest);
         logger.exit(errorResponseEntity);
         return errorResponseEntity;
     }
 
     /**
-     * Handle internal server errors.
+     * Handle the HTTP REST client and server exceptions.
      *
-     * @param throwable containing the Exception or Error thrown by the application
-     * @return the error response with HTTP status code 500
+     * @param restClientResponseException an HTTP REST client response exception
+     * @param httpServletRequest          containing the consumer's request
+     * @return the response entity containing the error response
      */
-    private ResponseEntity<ErrorResponse> handleInternalServerError(Throwable throwable) {
-        String message = errorMessagePropertyReader.getErrorMessage(ErrorCode.GENERIC_5XX_ERROR);
-        String fullStackTrace = ApplicationServerException.getStackTrace(throwable, System.lineSeparator());
-        ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_5XX_ERROR, GENERIC_5XX_HEADER_MESSAGE, message, CryptoUtil.encrypt(fullStackTrace));
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+    @ExceptionHandler({RestClientResponseException.class, HttpStatusCodeException.class, HttpClientErrorException.class, HttpServerErrorException.class})
+    public ResponseEntity<ErrorResponse> handleRestClientResponseException(RestClientResponseException restClientResponseException, HttpServletRequest httpServletRequest) {
+        mappedDiagnosticContextRequestFieldSetter.set(XLogger.Level.ERROR, restClientResponseException, httpServletRequest);
+
+        return restClientErrorResponseCreator.create(restClientResponseException);
     }
 
     /**
-     * This method will handle all the internal server errors. Meaning all the 500s family
-     * errors which is when we have an exception in our code and we catch and rethrow it or a
-     * runtime exception is thrown somewhere.
+     * Handle the REST client exception.
      *
-     * @param throwable the error that was thrown
-     * @return response of type ResponseEntity<ErrorResponse>
+     * @param restClientException an HTTP REST client exception
+     * @param httpServletRequest  containing the consumer's request
+     * @return the response entity containing the error response
      */
-    private ResponseEntity<ErrorResponse> handleInternalServerError(final Throwable throwable, final HttpServletRequest httpServletRequest) {
-        logger.catching(throwable);
-        String message = errorMessagePropertyReader.getErrorMessage(ErrorCode.GENERIC_5XX_ERROR);
-        String fullStackTrace = ApplicationServerException.getStackTrace(throwable, System.lineSeparator());
-        ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_5XX_ERROR, GENERIC_5XX_HEADER_MESSAGE, message, CryptoUtil.encrypt(fullStackTrace));
+    @ExceptionHandler({RestClientException.class})
+    public ResponseEntity<ErrorResponse> handleRestClientException(RestClientException restClientException, HttpServletRequest httpServletRequest) {
+        mappedDiagnosticContextRequestFieldSetter.set(XLogger.Level.ERROR, restClientException, httpServletRequest);
 
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+        ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_4XX_ERROR, ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE,
+                errorMessagePropertyReader.getErrorMessage(ErrorCode.GENERIC_4XX_ERROR),
+                CryptoUtil.tryEncrypt(ApplicationServerException.getStackTrace(restClientException, System.lineSeparator())));
+
+        return ResponseEntity.badRequest().body(errorResponse);
     }
+
+    /**
+     * Handle the client abort exception.
+     *
+     * @param clientAbortException the client abort exception
+     * @param httpServletRequest   containing the consumer's request
+     * @return the response entity containing the error response
+     */
+    @ExceptionHandler(ClientAbortException.class)
+    public ResponseEntity<ErrorResponse> handleClientAbortException(ClientAbortException clientAbortException, HttpServletRequest httpServletRequest) {
+        mappedDiagnosticContextRequestFieldSetter.set(XLogger.Level.WARN, clientAbortException, httpServletRequest);
+
+        // Create and return the error response
+        ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_4XX_ERROR,
+                ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE,
+                "The user has exited prior to service completion.",
+                "ClientAbortException was caught.");
+
+        // Note: there is currently no industry HTTP standard status code for client abort exception
+        //       i.e. although the client chose to close the connection implies a 4XX series,
+        //       there is no existing, matching 4XX status code of this description,
+        //       so we are returning custom 499 instead
+        // Considerations: 408 REQUEST TIMEOUT (the request did not timeout but rather, the response is waiting)
+        return ResponseEntity.status(499).body(errorResponse);
+    }
+
 }

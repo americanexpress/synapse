@@ -17,7 +17,7 @@ import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 
 /**
- * {@code BaseService} The base service every child controller should extend this parent service.
+ * {@code BaseService} class is the base class for all service classes.
  */
 public abstract class BaseService {
 

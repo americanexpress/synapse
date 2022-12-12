@@ -27,6 +27,9 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.withSettings;
 
+/**
+ * {@code BaseHttpInterceptorTest} tests the {@link BaseHttpInterceptor}.
+ */
 class BaseHttpInterceptorTest extends BaseHttpInterceptor {
 
     private static final String SAMPLE_HTTP_HEADER = "Correlation-ID";

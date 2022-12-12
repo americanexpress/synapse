@@ -19,7 +19,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 
 /**
- * {@code BaseReadPolyService} class specifies the prototypes for performing business logic.
+ * {@code BaseReadPolyService} class specifies the prototypes for performing business logic for post read multiple operation.
  * @param <I> an object extending {@link BaseServiceRequest}
  * @param <O> an object extending {@link BaseServiceResponse}
  */

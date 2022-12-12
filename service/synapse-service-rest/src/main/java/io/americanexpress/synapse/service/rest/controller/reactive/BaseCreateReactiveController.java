@@ -44,6 +44,7 @@ public abstract class BaseCreateReactiveController<I extends BaseServiceRequest,
     /**
      * Create a single resource.
      *
+     * @param headers request headers
      * @param serviceRequest body from the consumer
      * @return response to the consumer
      */
@@ -55,7 +56,6 @@ public abstract class BaseCreateReactiveController<I extends BaseServiceRequest,
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 403, message = "Forbidden"),
     })
-    // ResponseEntity<Mono<O>>
     public Mono<ResponseEntity<O>> create(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
 

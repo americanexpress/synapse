@@ -31,14 +31,15 @@ import jakarta.validation.Valid;
 /**
  * {@code BaseUpdateReactiveController} class specifies the prototypes for listening for requests from the consumer
  * to Update (PUT/PATCH) a resource. This controller expects only one object.
- * @param <I>
- * @param <S>
+ * @param <I> input request type
+ * @param <S> service class
  */
 public class BaseUpdateReactiveController<I extends BaseServiceRequest, S extends BaseUpdateReactiveService<I>> extends BaseController<S> {
 
     /**
      * Update a single resource entirely.
      *
+     * @param headers request headers
      * @param serviceRequest body from the consumer
      */
     @Operation(tags = "Update Operation", summary = "Updates a resource reactively")
