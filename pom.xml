@@ -47,7 +47,7 @@
         <spring-security.version>6.0.0</spring-security.version>
         <spring-boot-framework.version>3.0.0</spring-boot-framework.version>
         <spring-boot-ws-framework.version>1.4.7.RELEASE</spring-boot-ws-framework.version>
-        <spring-cloud.version>3.2.7</spring-cloud.version>
+        <spring-cloud.version>3.2.8</spring-cloud.version>
         <spring-native.version>0.12.1</spring-native.version>
 
         <!--Springdoc-->
