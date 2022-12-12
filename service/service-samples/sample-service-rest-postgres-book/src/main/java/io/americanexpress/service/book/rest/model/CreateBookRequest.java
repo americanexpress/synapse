@@ -11,27 +11,11 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.data.book;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
+package io.americanexpress.service.book.rest.model;
 
 /**
- * DataBookApplication is the Spring Boot main class to start the data application.
+ * {@code CreateBookRequest} is the request object for creating book.
  */
-@SpringBootApplication
-@EnableConfigurationProperties
-public class DataBookApplication {
-
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
-    public static void main(String[] args) {
-        SpringApplication.run(DataBookApplication.class, args);
-    }
+public class CreateBookRequest extends BookRequest {
 
 }
-

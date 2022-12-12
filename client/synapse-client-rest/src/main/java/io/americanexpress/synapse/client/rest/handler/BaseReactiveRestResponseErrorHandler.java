@@ -15,9 +15,9 @@ package io.americanexpress.synapse.client.rest.handler;
 
 import io.americanexpress.synapse.framework.exception.ApplicationClientException;
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
+import org.springframework.http.HttpStatusCode;
 import reactor.core.publisher.Mono;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.web.reactive.function.client.ClientResponse;
 
 import java.util.function.Function;
@@ -38,7 +38,7 @@ public abstract class BaseReactiveRestResponseErrorHandler extends BaseResponseE
      */
     @Override
     public Mono<? extends Throwable> apply(ClientResponse clientResponse) {
-    	HttpStatus httpStatus = clientResponse.statusCode();
+    	HttpStatusCode httpStatus = clientResponse.statusCode();
     	return httpStatus.is4xxClientError() ?
     		clientResponse.bodyToMono(String.class).map(errorMessage -> new ApplicationClientException(buildDeveloperMessage(httpStatus, errorMessage), ErrorCode.GENERIC_4XX_ERROR)) :
     		clientResponse.bodyToMono(String.class).map(errorMessage -> {
