@@ -139,7 +139,6 @@ public class UtilitiesCommonConfig {
     @Bean(SYNAPSE_XML_OBJECT_MAPPER)
     public ObjectMapper xmlObjectMapper() {
         final ObjectMapper objectMapper = new XmlMapper();
-//        objectMapper.registerModule(new JaxbAnnotationModule());
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         return objectMapper;
