@@ -29,7 +29,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletRequest;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -62,7 +62,7 @@ class InternalServerErrorResponseCreatorTest {
         ResponseEntity<ErrorResponse> errorResponseEntity = internalServerErrorResponseCreator.create(new ApplicationClientException("There was an error from the external provider in com.axp.c360.clientsbase.handler.EpccRestResponseErrorHandler", ErrorCode.GENERIC_4XX_ERROR), mockedRequest);
         Assertions.assertAll("Error response entity for internal server error",
                 () -> assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, errorResponseEntity.getStatusCode(), CommonAssertionMessages.VALUE_NOT_EQUAL),
-                () -> assertEquals(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), errorResponseEntity.getStatusCode().getReasonPhrase(), CommonAssertionMessages.VALUE_NOT_EQUAL),
+                () -> assertEquals(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), ((HttpStatus)errorResponseEntity.getStatusCode()).getReasonPhrase(), CommonAssertionMessages.VALUE_NOT_EQUAL),
                 () -> assertEquals(ErrorCode.GENERIC_5XX_ERROR, errorResponseEntity.getBody().getCode(), CommonAssertionMessages.VALUE_NOT_EQUAL),
                 () -> assertEquals(ControllerExceptionHandler.GENERIC_5XX_HEADER_MESSAGE, errorResponseEntity.getBody().getMessage(), CommonAssertionMessages.VALUE_NOT_EQUAL),
                 () -> assertEquals(userMessage, errorResponseEntity.getBody().getMoreInfo(), CommonAssertionMessages.VALUE_NOT_EQUAL));

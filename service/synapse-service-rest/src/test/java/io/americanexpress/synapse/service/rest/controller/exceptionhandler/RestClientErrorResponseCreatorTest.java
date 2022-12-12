@@ -60,7 +60,7 @@ class RestClientErrorResponseCreatorTest {
         String developerMessage = Objects.requireNonNull(errorResponseEntity.getBody()).getDeveloperMessage();
         Assertions.assertAll("Error response entity for 500 client response",
                 () -> assertEquals(HttpStatus.BAD_REQUEST.value(), errorResponseEntity.getStatusCode().value(), CommonAssertionMessages.VALUE_NOT_EQUAL),
-                () -> assertEquals(HttpStatus.BAD_REQUEST.getReasonPhrase(), errorResponseEntity.getStatusCode().getReasonPhrase(), CommonAssertionMessages.VALUE_NOT_EQUAL),
+                () -> assertEquals(HttpStatus.BAD_REQUEST.getReasonPhrase(), ((HttpStatus)errorResponseEntity.getStatusCode()).getReasonPhrase(), CommonAssertionMessages.VALUE_NOT_EQUAL),
                 () -> assertEquals(ErrorCode.GENERIC_4XX_ERROR, errorResponseEntity.getBody().getCode(), CommonAssertionMessages.VALUE_NOT_EQUAL),
                 () -> assertEquals(ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE, errorResponseEntity.getBody().getMessage(), CommonAssertionMessages.VALUE_NOT_EQUAL),
                 () -> assertEquals(StringUtils.EMPTY, errorResponseEntity.getBody().getMoreInfo(), CommonAssertionMessages.VALUE_NOT_EQUAL),
