@@ -42,10 +42,10 @@ public abstract class BaseRestResponseErrorHandler extends BaseResponseErrorHand
     @Override
     public boolean hasError(ClientHttpResponse httpResponse) throws IOException {
 
-        return (httpResponse
-                .getStatusCode()
-                .series() == HttpStatus.Series.CLIENT_ERROR || httpResponse
-                .getStatusCode()
+        return (((HttpStatus)httpResponse
+                .getStatusCode())
+                .series() == HttpStatus.Series.CLIENT_ERROR || ((HttpStatus)httpResponse
+                .getStatusCode())
                 .series() == HttpStatus.Series.SERVER_ERROR);
     }
 
@@ -74,8 +74,8 @@ public abstract class BaseRestResponseErrorHandler extends BaseResponseErrorHand
      */
     protected void logError(ClientHttpResponse httpResponse, String developerMessage) throws IOException {
         //Only error level when server error family to avoid spam of email alerts.
-        if (httpResponse
-                .getStatusCode()
+        if (((HttpStatus) httpResponse
+                .getStatusCode())
                 .series() == HttpStatus.Series.SERVER_ERROR) {
             logger.error(developerMessage);
         }
