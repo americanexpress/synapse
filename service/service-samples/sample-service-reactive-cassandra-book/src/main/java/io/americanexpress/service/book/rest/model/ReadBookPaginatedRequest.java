@@ -15,5 +15,8 @@ package io.americanexpress.service.book.rest.model;
 
 import io.americanexpress.synapse.service.rest.model.BasePaginatedServiceRequest;
 
-public class ReadPolyBookRequest extends BasePaginatedServiceRequest {
+/**
+ * {@code ReadBookPaginatedRequest} is the request object for reading book paginated.
+ */
+public class ReadBookPaginatedRequest extends BasePaginatedServiceRequest {
 }

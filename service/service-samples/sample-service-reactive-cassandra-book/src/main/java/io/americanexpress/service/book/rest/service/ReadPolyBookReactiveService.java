@@ -15,7 +15,7 @@ package io.americanexpress.service.book.rest.service;
 
 import io.americanexpress.data.book.repository.BookRepository;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
-import io.americanexpress.service.book.rest.model.ReadPolyBookRequest;
+import io.americanexpress.service.book.rest.model.ReadBookPaginatedRequest;
 import io.americanexpress.service.book.rest.service.helper.ReadBookResponseCreator;
 import io.americanexpress.synapse.service.rest.service.reactive.BaseReadPolyReactiveService;
 import org.springframework.http.HttpHeaders;
@@ -26,7 +26,7 @@ import reactor.core.publisher.Flux;
  * {@link ReadPolyBookReactiveService} is the service class for retrieving books from the Cassandra Book database.
  */
 @Service
-public class ReadPolyBookReactiveService extends BaseReadPolyReactiveService<ReadPolyBookRequest, ReadBookResponse> {
+public class ReadPolyBookReactiveService extends BaseReadPolyReactiveService<ReadBookPaginatedRequest, ReadBookResponse> {
 
     private final BookRepository bookRepository;
 
@@ -40,7 +40,7 @@ public class ReadPolyBookReactiveService extends BaseReadPolyReactiveService<Rea
     }
 
     @Override
-    protected Flux<ReadBookResponse> executeRead(HttpHeaders headers, ReadPolyBookRequest request) {
+    protected Flux<ReadBookResponse> executeRead(HttpHeaders headers, ReadBookPaginatedRequest request) {
         Flux<ReadBookResponse> readBookResponseFlux;
         if(request.getPageInformation() != null) {
             readBookResponseFlux = bookRepository.findAll()
