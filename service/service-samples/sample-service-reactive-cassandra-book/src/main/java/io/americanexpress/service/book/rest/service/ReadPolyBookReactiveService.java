@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
 /**
- * {@link ReadPolyBookReactiveService} is the service class for retrieving books from the Cassandra Book database.
+ * {@code ReadPolyBookReactiveService} is the service class for retrieving books from the Cassandra Book database.
  */
 @Service
 public class ReadPolyBookReactiveService extends BaseReadPolyReactiveService<ReadBookPaginatedRequest, ReadBookResponse> {

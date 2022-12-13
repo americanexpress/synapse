@@ -21,6 +21,9 @@ import io.americanexpress.synapse.service.rest.controller.reactive.BaseReadPolyR
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * {@code ReadPolyBookReactiveController} is the controller class for retrieving books from the Cassandra Book database.
+ */
 @RestController
 @RequestMapping(BookEndpoints.BOOK_ENDPOINT)
 public class ReadPolyBookReactiveController extends BaseReadPolyReactiveController<ReadBookPaginatedRequest, ReadBookResponse, ReadPolyBookReactiveService> {
