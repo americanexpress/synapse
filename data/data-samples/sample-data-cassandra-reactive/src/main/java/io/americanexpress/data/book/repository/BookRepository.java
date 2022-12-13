@@ -16,6 +16,8 @@ package io.americanexpress.data.book.repository;
 import io.americanexpress.data.book.entity.BookEntity;
 import org.springframework.data.cassandra.repository.AllowFiltering;
 import org.springframework.data.cassandra.repository.ReactiveCassandraRepository;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 
@@ -31,4 +33,6 @@ public interface BookRepository extends ReactiveCassandraRepository<BookEntity, 
 
     @AllowFiltering
     Mono<BookEntity> findByTitle(String title);
+
+    Mono<Slice<BookEntity>> findAll(Pageable pageable);
 }

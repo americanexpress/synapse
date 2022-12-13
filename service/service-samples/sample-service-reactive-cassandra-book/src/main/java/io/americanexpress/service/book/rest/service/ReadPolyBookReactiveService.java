@@ -14,10 +14,14 @@
 package io.americanexpress.service.book.rest.service;
 
 import io.americanexpress.data.book.repository.BookRepository;
+import io.americanexpress.service.book.rest.model.ReadBookPaginatedResponse;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.model.ReadBookPaginatedRequest;
 import io.americanexpress.service.book.rest.service.helper.ReadBookResponseCreator;
 import io.americanexpress.synapse.service.rest.service.reactive.BaseReadPolyReactiveService;
+import org.springframework.data.cassandra.core.query.CassandraPageRequest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -26,7 +30,7 @@ import reactor.core.publisher.Flux;
  * {@code ReadPolyBookReactiveService} is the service class for retrieving books from the Cassandra Book database.
  */
 @Service
-public class ReadPolyBookReactiveService extends BaseReadPolyReactiveService<ReadBookPaginatedRequest, ReadBookResponse> {
+public class ReadPolyBookReactiveService extends BaseReadPolyReactiveService<ReadBookPaginatedRequest, ReadBookPaginatedResponse> {
 
     private final BookRepository bookRepository;
 
@@ -40,18 +44,32 @@ public class ReadPolyBookReactiveService extends BaseReadPolyReactiveService<Rea
     }
 
     @Override
-    protected Flux<ReadBookResponse> executeRead(HttpHeaders headers, ReadBookPaginatedRequest request) {
-        Flux<ReadBookResponse> readBookResponseFlux;
+    protected Flux<ReadBookPaginatedResponse> executeRead(HttpHeaders headers, ReadBookPaginatedRequest request) {
         if(request.getPageInformation() != null) {
-            readBookResponseFlux = bookRepository.findAll()
-                    .map(ReadBookResponseCreator::create)
-                    .switchIfEmpty(Flux.empty())
-                    .skip((long) request.getPageInformation().getPage() * request.getPageInformation().getSize()).take(request.getPageInformation().getSize());
-        }else {
-            readBookResponseFlux = bookRepository.findAll()
-                    .map(ReadBookResponseCreator::create)
-                    .switchIfEmpty(Flux.empty());
+            Pageable pageable = PageRequest.of(0, request.getPageInformation().getSize());
+            Pageable cassandraPageable = CassandraPageRequest.of(pageable, request.getPageState() == null ? null : request.getPageState());
+            return bookRepository.findAll(cassandraPageable).map(slice -> {
+                ReadBookPaginatedResponse readBookPaginatedResponse = new ReadBookPaginatedResponse();
+                readBookPaginatedResponse.setReadBookResponses(slice.getContent().stream().map(ReadBookResponseCreator::create).toList());
+                readBookPaginatedResponse.setNextPageState(((CassandraPageRequest)slice.nextOrLastPageable()).getPagingState());
+                return readBookPaginatedResponse;
+            }).flux();
         }
-       return readBookResponseFlux;
+        return Flux.empty();
     }
+
+//    protected Flux<ReadBookResponse> executeRead(HttpHeaders headers, ReadBookPaginatedRequest request) {
+//        Flux<ReadBookResponse> readBookResponseFlux;
+//        if(request.getPageInformation() != null) {
+//            readBookResponseFlux = bookRepository.findAll()
+//                    .map(ReadBookResponseCreator::create)
+//                    .switchIfEmpty(Flux.empty())
+//                    .skip((long) request.getPageInformation().getPage() * request.getPageInformation().getSize()).take(request.getPageInformation().getSize());
+//        }else {
+//            readBookResponseFlux = bookRepository.findAll()
+//                    .map(ReadBookResponseCreator::create)
+//                    .switchIfEmpty(Flux.empty());
+//        }
+//       return readBookResponseFlux;
+//    }
 }

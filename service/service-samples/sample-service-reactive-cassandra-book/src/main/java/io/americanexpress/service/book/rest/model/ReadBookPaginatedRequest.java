@@ -15,8 +15,20 @@ package io.americanexpress.service.book.rest.model;
 
 import io.americanexpress.synapse.service.rest.model.BasePaginatedServiceRequest;
 
+import java.nio.ByteBuffer;
+
 /**
  * {@code ReadBookPaginatedRequest} is the request object for reading book paginated.
  */
 public class ReadBookPaginatedRequest extends BasePaginatedServiceRequest {
+
+    private ByteBuffer pageState;
+
+    public ByteBuffer getPageState() {
+        return pageState;
+    }
+
+    public void setPageState(ByteBuffer pageState) {
+        this.pageState = pageState;
+    }
 }
