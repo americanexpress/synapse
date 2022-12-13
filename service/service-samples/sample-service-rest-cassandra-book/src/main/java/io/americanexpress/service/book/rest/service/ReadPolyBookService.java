@@ -16,8 +16,9 @@ package io.americanexpress.service.book.rest.service;
 import io.americanexpress.data.book.entity.BookEntity;
 import io.americanexpress.data.book.repository.BookRepository;
 import io.americanexpress.service.book.rest.model.ReadBookPaginatedRequest;
-import io.americanexpress.service.book.rest.model.ReadBookPaginatedResponse;
+import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.service.helper.ReadBookResponseCreator;
+import io.americanexpress.synapse.service.rest.model.PageInformation;
 import io.americanexpress.synapse.service.rest.service.BaseReadPolyService;
 import org.springframework.data.cassandra.core.query.CassandraPageRequest;
 import org.springframework.data.domain.Page;
@@ -28,15 +29,20 @@ import org.springframework.data.domain.Slice;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
+import java.nio.ByteBuffer;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * {@code ReadPolyBookService} is the service class for retrieving books from the Cassandra Book database.
  */
 @Service
-public class ReadPolyBookService extends BaseReadPolyService<ReadBookPaginatedRequest, ReadBookPaginatedResponse> {
+public class ReadPolyBookService extends BaseReadPolyService<ReadBookPaginatedRequest, ReadBookResponse> {
 
     private final BookRepository bookRepository;
+
+    private Map<PageInformation, ByteBuffer> pageInformationPagingStateMap = new HashMap<>();
 
     /**
      * Instantiates a new Read poly book service.
@@ -48,31 +54,30 @@ public class ReadPolyBookService extends BaseReadPolyService<ReadBookPaginatedRe
     }
 
     @Override
-    protected Page<ReadBookPaginatedResponse> executeRead(HttpHeaders headers, ReadBookPaginatedRequest request) {
-        ReadBookPaginatedResponse readBookPaginatedResponse;
+    protected Page<ReadBookResponse> executeRead(HttpHeaders headers, ReadBookPaginatedRequest request) {
+        List<ReadBookResponse> readBookResponses;
         if(request.getPageInformation() != null) {
-            Pageable cassandraPageable = createPageable(request);
+            Pageable pageable = PageRequest.of(0, request.getPageInformation().getSize());
+            Pageable cassandraPageable = CassandraPageRequest.of(pageable, getPageState(request.getPageInformation()));
+
             Slice<BookEntity> bookEntitySlice = bookRepository.findAll(cassandraPageable);
-            CassandraPageRequest nextPageRequest = (CassandraPageRequest) bookEntitySlice.nextOrLastPageable();
-            readBookPaginatedResponse = createReadBookPaginatedResponse(bookEntitySlice.getContent(), nextPageRequest);
-        } else {
-            readBookPaginatedResponse = createReadBookPaginatedResponse(bookRepository.findAll(), null);
+            addPageState(request.getPageInformation(), (CassandraPageRequest) bookEntitySlice.nextOrLastPageable());
+
+            readBookResponses = bookEntitySlice.getContent().stream().map(ReadBookResponseCreator::create).toList();
+        }else {
+            readBookResponses = bookRepository.findAll().stream().map(ReadBookResponseCreator::create).toList();
         }
-        return new PageImpl<>(List.of(readBookPaginatedResponse));
+        return new PageImpl<>(readBookResponses);
     }
 
-    private Pageable createPageable(ReadBookPaginatedRequest request) {
-        Pageable pageable = PageRequest.of(0, request.getPageInformation().getSize());
-        return CassandraPageRequest.of(pageable, request.getPageState() == null ? null : request.getPageState());
+    private ByteBuffer getPageState(PageInformation pageInformation) {
+        return pageInformationPagingStateMap.get(pageInformation);
     }
 
-    private ReadBookPaginatedResponse createReadBookPaginatedResponse(List<BookEntity> bookEntities, CassandraPageRequest nextPage) {
-        ReadBookPaginatedResponse readBookPaginatedResponse = new ReadBookPaginatedResponse();
-        readBookPaginatedResponse.setReadBookResponses(bookEntities.stream().map(ReadBookResponseCreator::create).toList());
-        if(nextPage != null) {
-            readBookPaginatedResponse.setNextPageState(nextPage.getPagingState());
+    private void addPageState(PageInformation pageInformation, CassandraPageRequest nextOrLastPageable) {
+        if(nextOrLastPageable.getPagingState() != null) {
+            pageInformation.setPage(pageInformation.getPage() + 1);
+            pageInformationPagingStateMap.put(pageInformation, nextOrLastPageable.getPagingState());
         }
-        return  readBookPaginatedResponse;
     }
-
 }
