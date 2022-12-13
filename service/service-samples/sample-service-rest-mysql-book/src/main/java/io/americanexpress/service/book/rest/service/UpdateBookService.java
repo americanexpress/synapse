@@ -52,7 +52,7 @@ public class UpdateBookService extends BaseUpdateService<UpdateBookRequest> {
         if (bookEntity != null) {
             bookRepository.save(BookServiceMapper.populateBookEntityForUpdate(request, bookEntity));
         } else {
-            throw new ApplicationClientException("Bad request", ErrorCode.GENERIC_4XX_ERROR, (String[]) null);
+            throw new ApplicationClientException(ErrorCode.NOT_FOUND.getMessage(), ErrorCode.NOT_FOUND, (String[]) null);
         }
     }
 }

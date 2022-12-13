@@ -50,7 +50,7 @@ public class CreateBookService extends BaseCreateService<CreateBookRequest, Crea
             BookEntity bookEntity = bookRepository.save(BookServiceMapper.populateBookEntityForCreation(request));
             return BookServiceMapper.populateCreateBookResponse(bookEntity);
         } else {
-            throw new ApplicationClientException("Bad request", ErrorCode.GENERIC_4XX_ERROR, (String[]) null);
+            throw new ApplicationClientException(ErrorCode.NOT_FOUND.getMessage(), ErrorCode.NOT_FOUND, (String[]) null);
         }
     }
 

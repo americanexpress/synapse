@@ -50,7 +50,7 @@ public class DeleteBookService extends BaseDeleteService {
         if (bookEntity != null) {
             bookRepository.delete(bookEntity);
         } else {
-            throw new ApplicationClientException("Bad request", ErrorCode.GENERIC_4XX_ERROR, (String[]) null);
+            throw new ApplicationClientException(ErrorCode.NOT_FOUND.getMessage(), ErrorCode.NOT_FOUND, (String[]) null);
         }
     }
 }

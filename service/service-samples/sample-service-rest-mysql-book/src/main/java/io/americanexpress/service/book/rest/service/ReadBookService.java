@@ -52,7 +52,7 @@ public class ReadBookService extends BaseReadMonoService<ReadBookRequest, ReadBo
         BookEntity bookEntity = bookRepository.findByTitleAndAuthor(request.getTitle(), request.getAuthor());
 
         if (bookEntity == null) {
-            throw new ApplicationClientException("Bad request", ErrorCode.GENERIC_4XX_ERROR, (String[]) null);
+            throw new ApplicationClientException(ErrorCode.NOT_FOUND.getMessage(), ErrorCode.NOT_FOUND, (String[]) null);
         }
 
         return BookServiceMapper.populateReadBookResponse(bookEntity);
