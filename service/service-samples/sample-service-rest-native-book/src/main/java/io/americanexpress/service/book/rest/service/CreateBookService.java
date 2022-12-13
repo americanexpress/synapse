@@ -41,6 +41,12 @@ public class CreateBookService extends BaseCreateService<CreateBookRequest, Crea
         this.bookRepository = bookRepository;
     }
 
+    /**
+     * Creates book in mongodb database.
+     * @param headers http headers
+     * @param request the request to create book in database
+     */
+    // RegisterReflectionForBinding lets spring aot know in advance the request and response type for the service.
     @RegisterReflectionForBinding({CreateBookRequest.class, CreateBookResponse.class})
     @Override
     protected CreateBookResponse executeCreate(HttpHeaders headers, CreateBookRequest request) {

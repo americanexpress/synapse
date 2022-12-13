@@ -48,6 +48,7 @@ public class ReadBookService extends BaseReadMonoService<ReadBookRequest, ReadBo
      * @param headers http headers
      * @param request the request to read book from database
      */
+    // RegisterReflectionForBinding lets spring aot know in advance the request and response type for the service.
     @Override
     @RegisterReflectionForBinding({ReadBookRequest.class, ReadBookResponse.class})
     protected ReadBookResponse executeRead(HttpHeaders headers, ReadBookRequest request) {
