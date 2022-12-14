@@ -14,7 +14,6 @@
 package io.americanexpress.service.book.rest.controller;
 
 import io.americanexpress.service.book.rest.config.BookEndpoints;
-import io.americanexpress.service.book.rest.model.ReadBookPaginatedResponse;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.model.ReadBookPaginatedRequest;
 import io.americanexpress.service.book.rest.service.ReadPolyBookReactiveService;
@@ -27,5 +26,5 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(BookEndpoints.BOOK_ENDPOINT)
-public class ReadPolyBookReactiveController extends BaseReadPolyReactiveController<ReadBookPaginatedRequest, ReadBookPaginatedResponse, ReadPolyBookReactiveService> {
+public class ReadPolyBookReactiveController extends BaseReadPolyReactiveController<ReadBookPaginatedRequest, ReadBookResponse, ReadPolyBookReactiveService> {
 }

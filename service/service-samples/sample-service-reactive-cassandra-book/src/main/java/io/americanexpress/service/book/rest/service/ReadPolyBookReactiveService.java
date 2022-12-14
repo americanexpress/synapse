@@ -13,26 +13,36 @@
  */
 package io.americanexpress.service.book.rest.service;
 
+import io.americanexpress.data.book.entity.BookEntity;
 import io.americanexpress.data.book.repository.BookRepository;
-import io.americanexpress.service.book.rest.model.ReadBookPaginatedResponse;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.model.ReadBookPaginatedRequest;
 import io.americanexpress.service.book.rest.service.helper.ReadBookResponseCreator;
+import io.americanexpress.synapse.service.rest.model.PageInformation;
 import io.americanexpress.synapse.service.rest.service.reactive.BaseReadPolyReactiveService;
 import org.springframework.data.cassandra.core.query.CassandraPageRequest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+import java.nio.ByteBuffer;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * {@code ReadPolyBookReactiveService} is the service class for retrieving books from the Cassandra Book database.
  */
 @Service
-public class ReadPolyBookReactiveService extends BaseReadPolyReactiveService<ReadBookPaginatedRequest, ReadBookPaginatedResponse> {
+public class ReadPolyBookReactiveService extends BaseReadPolyReactiveService<ReadBookPaginatedRequest, ReadBookResponse> {
 
     private final BookRepository bookRepository;
+
+    private Map<PageInformation, ByteBuffer> pageInformationPagingStateMap = new HashMap<>();
+
 
     /**
      * Instantiates a new Read poly book reactive service.
@@ -44,32 +54,31 @@ public class ReadPolyBookReactiveService extends BaseReadPolyReactiveService<Rea
     }
 
     @Override
-    protected Flux<ReadBookPaginatedResponse> executeRead(HttpHeaders headers, ReadBookPaginatedRequest request) {
+    protected Flux<ReadBookResponse> executeRead(HttpHeaders headers, ReadBookPaginatedRequest request) {
+        Flux<ReadBookResponse> readBookResponseFlux;
         if(request.getPageInformation() != null) {
             Pageable pageable = PageRequest.of(0, request.getPageInformation().getSize());
-            Pageable cassandraPageable = CassandraPageRequest.of(pageable, request.getPageState() == null ? null : request.getPageState());
-            return bookRepository.findAll(cassandraPageable).map(slice -> {
-                ReadBookPaginatedResponse readBookPaginatedResponse = new ReadBookPaginatedResponse();
-                readBookPaginatedResponse.setReadBookResponses(slice.getContent().stream().map(ReadBookResponseCreator::create).toList());
-                readBookPaginatedResponse.setNextPageState(((CassandraPageRequest)slice.nextOrLastPageable()).getPagingState());
-                return readBookPaginatedResponse;
-            }).flux();
+            Pageable cassandraPageable = CassandraPageRequest.of(pageable, getPageState(request.getPageInformation()));
+            Mono<Slice<BookEntity>> bookEntityList = bookRepository.findAllBy(cassandraPageable);
+            bookEntityList.map(Slice::nextOrLastPageable).subscribe(nextPageable -> addPageState(request.getPageInformation(), (CassandraPageRequest) nextPageable));
+            return bookEntityList.flatMapMany(Flux::fromIterable).map(ReadBookResponseCreator::create);
+        }else {
+            readBookResponseFlux = bookRepository.findAll()
+                    .map(ReadBookResponseCreator::create)
+                    .switchIfEmpty(Flux.empty());
         }
-        return Flux.empty();
+       return readBookResponseFlux;
+    }
+    private ByteBuffer getPageState(PageInformation pageInformation) {
+        return pageInformationPagingStateMap.get(pageInformation);
     }
 
-//    protected Flux<ReadBookResponse> executeRead(HttpHeaders headers, ReadBookPaginatedRequest request) {
-//        Flux<ReadBookResponse> readBookResponseFlux;
-//        if(request.getPageInformation() != null) {
-//            readBookResponseFlux = bookRepository.findAll()
-//                    .map(ReadBookResponseCreator::create)
-//                    .switchIfEmpty(Flux.empty())
-//                    .skip((long) request.getPageInformation().getPage() * request.getPageInformation().getSize()).take(request.getPageInformation().getSize());
-//        }else {
-//            readBookResponseFlux = bookRepository.findAll()
-//                    .map(ReadBookResponseCreator::create)
-//                    .switchIfEmpty(Flux.empty());
-//        }
-//       return readBookResponseFlux;
-//    }
+    private void addPageState(PageInformation pageInformation, CassandraPageRequest nextOrLastPageable) {
+        System.out.println("AddPageState");
+        if(nextOrLastPageable.getPagingState() != null ) {
+            pageInformation.setPage(pageInformation.getPage() + 1);
+            pageInformationPagingStateMap.put(pageInformation, nextOrLastPageable.getPagingState());
+        }
+    }
 }
+

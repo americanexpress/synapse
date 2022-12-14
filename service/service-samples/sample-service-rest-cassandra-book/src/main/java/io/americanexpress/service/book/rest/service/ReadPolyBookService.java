@@ -75,7 +75,7 @@ public class ReadPolyBookService extends BaseReadPolyService<ReadBookPaginatedRe
     }
 
     private void addPageState(PageInformation pageInformation, CassandraPageRequest nextOrLastPageable) {
-        if(nextOrLastPageable.getPagingState() != null && pageInformationPagingStateMap.containsKey(pageInformation)) {
+        if(nextOrLastPageable.getPagingState() != null ) {
             pageInformation.setPage(pageInformation.getPage() + 1);
             pageInformationPagingStateMap.put(pageInformation, nextOrLastPageable.getPagingState());
         }
