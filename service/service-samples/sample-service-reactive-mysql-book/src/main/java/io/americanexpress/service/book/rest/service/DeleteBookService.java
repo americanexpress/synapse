@@ -50,7 +50,7 @@ public class DeleteBookService extends BaseDeleteReactiveService {
     protected Mono<Void> executeDelete(HttpHeaders headers, String title) {
         return bookRepository.findByTitle(title)
                 .publishOn(Schedulers.boundedElastic())
-                .switchIfEmpty(Mono.error(new ApplicationClientException("Bad request", ErrorCode.GENERIC_4XX_ERROR, (String[]) null)))
+                .switchIfEmpty(Mono.error(new ApplicationClientException("Not found.", ErrorCode.NOT_FOUND, (String[]) null)))
                 .doOnSuccess(bookEntity -> bookRepository.deleteByTitle(bookEntity.getTitle()).subscribe())
                 .then();
     }

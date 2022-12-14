@@ -14,11 +14,11 @@
 package io.americanexpress.data.mysql.book.entity;
 
 import io.americanexpress.synapse.data.mysql.entity.BaseEntity;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import org.hibernate.annotations.NaturalId;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.util.Objects;
 
 /**

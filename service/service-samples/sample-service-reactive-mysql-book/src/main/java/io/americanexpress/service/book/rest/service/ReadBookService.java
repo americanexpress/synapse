@@ -53,6 +53,6 @@ public class ReadBookService extends BaseReadMonoReactiveService<ReadBookRequest
     protected Mono<ReadBookResponse> executeRead(HttpHeaders headers, ReadBookRequest request) {
         return bookRepository.findByTitleAndAuthor(request.getTitle(), request.getAuthor())
                 .map(BookServiceMapper::populateReadBookResponse)
-                .switchIfEmpty(Mono.error(new ApplicationClientException("Bad request", ErrorCode.GENERIC_4XX_ERROR, (String[]) null)));
+                .switchIfEmpty(Mono.error(new ApplicationClientException("Not found.", ErrorCode.NOT_FOUND, (String[]) null)));
     }
 }

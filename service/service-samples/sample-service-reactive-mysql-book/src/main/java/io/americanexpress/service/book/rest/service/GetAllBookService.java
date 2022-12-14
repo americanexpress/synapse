@@ -40,6 +40,6 @@ public class GetAllBookService extends BaseGetPolyReactiveService<ReadBookRespon
     protected Flux<ReadBookResponse> executeRead(HttpHeaders headers) {
         return bookRepository.findAll()
                 .map(BookServiceMapper::populateReadBookResponse)
-                .switchIfEmpty(Mono.error(new ApplicationClientException("Bad request", ErrorCode.GENERIC_4XX_ERROR, (String[]) null)));
+                .switchIfEmpty(Mono.error(new ApplicationClientException("Not found.", ErrorCode.NOT_FOUND, (String[]) null)));
     }
 }

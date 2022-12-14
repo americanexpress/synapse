@@ -54,7 +54,7 @@ public class CreateBookService extends BaseCreateReactiveService<CreateBookReque
     protected Mono<CreateBookResponse> executeCreate(HttpHeaders headers, CreateBookRequest request) {
         return bookRepository.findByTitle(request.getTitle())
                 .flatMap(entity -> entity != null ?
-                        Mono.error(new ApplicationClientException("Bad request", ErrorCode.GENERIC_4XX_ERROR, (String[]) null)) :
+                        Mono.error(new ApplicationClientException("Not found.", ErrorCode.NOT_FOUND, (String[]) null)) :
                         Mono.just(new BookEntity()))
                 .switchIfEmpty(bookRepository.save(BookServiceMapper.populateBookEntityForCreation(request)))
                 .map(BookServiceMapper::populateCreateBookResponse);
