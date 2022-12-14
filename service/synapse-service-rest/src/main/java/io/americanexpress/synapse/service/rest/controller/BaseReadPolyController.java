@@ -20,7 +20,6 @@ import io.americanexpress.synapse.service.rest.service.BaseReadPolyService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +27,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import java.util.List;
 
 /**
@@ -47,12 +46,6 @@ public abstract class BaseReadPolyController<I extends BaseServiceRequest, O ext
      * Constant string used for multiple_results.
      */
     public static final String MULTIPLE_RESULTS = "/multiple_results";
-
-    /**
-     * Entity creator that will create the response entity object that will be sent to the service layer.
-     */
-    @Autowired
-    private PolyResponseEntityCreator<O> polyResponseEntityCreator;
 
     /**
      * Get a list of multiple resources from the back end service.
@@ -75,7 +68,7 @@ public abstract class BaseReadPolyController<I extends BaseServiceRequest, O ext
         logger.entry(serviceRequest);
 
         final Page<O> page = service.read(headers, serviceRequest);
-        final ResponseEntity<List<O>> responseEntity = polyResponseEntityCreator.create(page, httpServletResponse);
+        final ResponseEntity<List<O>> responseEntity = PolyResponseEntityCreator.create(page, httpServletResponse);
 
         logger.exit(responseEntity);
         return responseEntity;

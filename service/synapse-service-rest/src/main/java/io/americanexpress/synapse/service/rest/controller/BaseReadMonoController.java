@@ -20,14 +20,13 @@ import io.americanexpress.synapse.service.rest.service.BaseReadMonoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 /**
  * {@code BaseReadMonoController} class specifies the prototypes for listening for requests from the consumer
@@ -45,12 +44,6 @@ public abstract class BaseReadMonoController<I extends BaseServiceRequest, O ext
      * Constant string for inquiry_results.
      */
     public static final String INQUIRY_RESULTS = "/inquiry_results";
-
-    /**
-     * Entity creator that will create the response entity object that will be sent to the service layer.
-     */
-    @Autowired
-    private MonoResponseEntityCreator<O> monoResponseEntityCreator;
 
     /**
      * Get a single resource from the back end service.
@@ -72,7 +65,7 @@ public abstract class BaseReadMonoController<I extends BaseServiceRequest, O ext
         logger.entry(serviceRequest);
 
         final O serviceResponse = service.read(headers, serviceRequest);
-        ResponseEntity<O> responseEntity = monoResponseEntityCreator.create(serviceResponse);
+        ResponseEntity<O> responseEntity = MonoResponseEntityCreator.create(serviceResponse);
 
         logger.exit(responseEntity);
         return responseEntity;

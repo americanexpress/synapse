@@ -29,10 +29,6 @@
             <groupId>io.americanexpress.synapse</groupId>
             <artifactId>synapse-function</artifactId>
         </dependency>
-        <dependency>
-            <groupId>io.americanexpress.synapse</groupId>
-            <artifactId>sample-data-cassandra-reactive</artifactId>
-        </dependency>
 
         <!--Third Party-->
         <dependency>

@@ -17,7 +17,6 @@ import io.americanexpress.synapse.service.rest.controller.helpers.MonoResponseEn
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.rest.service.BaseGetMonoService;
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,12 +34,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 public class BaseGetMonoController<O extends BaseServiceResponse, S extends BaseGetMonoService<O>> extends BaseController<S> {
 
     /**
-     * Entity creator that will create the response entity object that will be sent to the service layer.
-     */
-    @Autowired
-    private MonoResponseEntityCreator<O> monoResponseEntityCreator;
-
-    /**
      * Read response entity.
      *
      * @param headers containing the HTTP headers from the consumer
@@ -53,7 +46,7 @@ public class BaseGetMonoController<O extends BaseServiceResponse, S extends Base
         logger.entry(id);
 
         final O response = service.read(headers, id);
-        ResponseEntity<O> responseEntity = monoResponseEntityCreator.create(response);
+        ResponseEntity<O> responseEntity = MonoResponseEntityCreator.create(response);
 
         logger.exit(responseEntity);
         return responseEntity;
