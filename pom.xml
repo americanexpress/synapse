@@ -40,7 +40,7 @@
         <maven.compiler.target>17</maven.compiler.target>
 
         <!--Kotlin-->
-        <kotlin.version>1.7.20</kotlin.version>
+        <kotlin.version>1.7.22</kotlin.version>
 
         <!--Spring Versions-->
         <spring-framework.version>6.0.2</spring-framework.version>
@@ -873,19 +873,6 @@
                 <version>3.3.4</version>
             </dependency>
 
-            <!--Spring Native-->
-            <dependency>
-                <groupId>org.springframework.experimental</groupId>
-                <artifactId>spring-native</artifactId>
-                <version>${spring-native.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.experimental</groupId>
-                <artifactId>spring-aot</artifactId>
-                <version>${spring-native.version}</version>
-                <scope>provided</scope>
-            </dependency>
-
             <!--Springdoc-->
             <dependency>
                 <groupId>org.springdoc</groupId>
@@ -1239,42 +1226,6 @@
                 <plugin>
                     <artifactId>maven-project-info-reports-plugin</artifactId>
                     <version>3.0.0</version>
-                </plugin>
-
-                <!--Native Plugins-->
-                <plugin>
-                    <groupId>org.springframework.experimental</groupId>
-                    <artifactId>spring-aot-maven-plugin</artifactId>
-                    <version>${spring-native.version}</version>
-                    <executions>
-                        <execution>
-                            <id>generate</id>
-                            <goals>
-                                <goal>generate</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.graalvm.nativeimage</groupId>
-                    <artifactId>native-image-maven-plugin</artifactId>
-                    <version>21.2.0</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.graalvm.buildtools</groupId>
-                    <artifactId>native-maven-plugin</artifactId>
-                    <version>${native-plugin.version}</version>
-                    <configuration>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>build-native</id>
-                            <goals>
-                                <goal>build</goal>
-                            </goals>
-                            <phase>package</phase>
-                        </execution>
-                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>
