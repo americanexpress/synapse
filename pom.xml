@@ -1020,6 +1020,13 @@
                 <artifactId>testcontainers</artifactId>
                 <version>${testcontainers.version}</version>
             </dependency>
+
+            <!--Reactor-->
+            <dependency>
+                <groupId>io.projectreactor</groupId>
+                <artifactId>reactor-test</artifactId>
+                <version>3.5.0</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
