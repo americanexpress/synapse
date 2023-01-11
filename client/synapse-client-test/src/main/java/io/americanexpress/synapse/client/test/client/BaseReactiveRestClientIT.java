@@ -46,11 +46,6 @@ public abstract class BaseReactiveRestClientIT<I extends BaseClientRequest,
     protected C client;
 
     /**
-     * The Client request.
-     */
-    protected I clientRequest;
-
-    /**
      * Gets default client headers.
      *
      * @return the default client headers

@@ -14,12 +14,10 @@
 package io.americanexpress.synapse.client.test.client;
 
 import io.americanexpress.synapse.client.rest.client.BasePostReactiveRestClient;
-import io.americanexpress.synapse.client.rest.client.BaseReactiveRestClient;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import reactor.core.publisher.Mono;
@@ -48,7 +46,7 @@ public abstract class BasePostReactiveRestClientIT<I extends BaseClientRequest,
                 .expectNextCount(1)
                 .expectComplete()
                 .verify();
-    };
+    }
 
     /**
      * Call mono service given invalid id expected error.
