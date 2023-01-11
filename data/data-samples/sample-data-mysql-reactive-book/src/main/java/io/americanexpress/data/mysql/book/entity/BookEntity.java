@@ -13,21 +13,31 @@
  */
 package io.americanexpress.data.mysql.book.entity;
 
+//import jakarta.persistence.Column;
+//import jakarta.persistence.Entity;
+//import jakarta.persistence.GeneratedValue;
+//import jakarta.persistence.GenerationType;
+//import jakarta.persistence.Id;
+//import jakarta.persistence.Table;
+//import jakarta.persistence.Version;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Version;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.annotation.Version;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
 
 /**
  * {@code BookEntity} example of a child module using BaseEntity
  */
+@Table
 public class BookEntity {
 
     /**
@@ -75,11 +85,13 @@ public class BookEntity {
     /**
      * title
      */
+    @Column(name = "title")
     private String title;
 
     /**
      * author
      */
+    @Column(name = "author")
     private String author;
 
     /**

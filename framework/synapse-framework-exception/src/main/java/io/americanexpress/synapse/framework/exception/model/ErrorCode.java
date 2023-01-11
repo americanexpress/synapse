@@ -31,7 +31,7 @@ public enum ErrorCode {
     GENERIC_4XX_ERROR(HttpStatus.BAD_REQUEST, "Invalid Request."),
 
     /**
-     *
+     * Used for if the resource isn't found.
      */
     NOT_FOUND(HttpStatus.NOT_FOUND, "Not Found."),
 

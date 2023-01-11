@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS book CASCADE;
  */
 CREATE TABLE book
 (
-    id                      INT PRIMARY KEY,
+    id                      INT PRIMARY KEY AUTO_INCREMENT,
     title                   VARCHAR(150) NOT NULL UNIQUE,--this is the business primary key
     author                  VARCHAR(100),
     created_by              VARCHAR(100),

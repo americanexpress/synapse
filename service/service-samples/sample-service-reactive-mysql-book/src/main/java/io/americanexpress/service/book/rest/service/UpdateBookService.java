@@ -47,13 +47,13 @@ public class UpdateBookService extends BaseUpdateReactiveService<UpdateBookReque
      * ExecuteUpdate will be used to update a book resource by request
      * @param headers http server headers.
      * @param request Request object used to update.
-     * @return void
+     * @return void Returns nothing but a successful 204 status code if the resource is updated.
      */
     @Override
     protected Mono<Void> executeUpdate(HttpHeaders headers, UpdateBookRequest request) {
         return bookRepository.findByTitleAndAuthor(request.getTitle(), request.getAuthor())
                 .publishOn(Schedulers.boundedElastic())
-                .switchIfEmpty(Mono.error(new ApplicationClientException("Bad request", ErrorCode.GENERIC_4XX_ERROR, (String[]) null)))
+                .switchIfEmpty(Mono.error(new ApplicationClientException("Bad request", ErrorCode.NOT_FOUND, (String[]) null)))
                 .doOnSuccess(bookEntity -> bookRepository.save(BookServiceMapper.populateBookEntityForUpdate(request, bookEntity)).subscribe())
                 .then();
     }
