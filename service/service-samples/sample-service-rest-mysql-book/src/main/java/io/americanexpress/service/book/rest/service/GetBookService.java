@@ -30,7 +30,7 @@ import org.springframework.stereotype.Service;
 public class GetBookService extends BaseGetMonoService<ReadBookResponse> {
 
     /**
-     * bookRepository
+     * bookRepository used to query the database.
      */
     private final BookRepository bookRepository;
 
@@ -45,8 +45,8 @@ public class GetBookService extends BaseGetMonoService<ReadBookResponse> {
 
     /**
      * executeRead will be used to retrieve a specific book resource by title
-     * @param title
-     * @return
+     * @param title of the book
+     * @return A read response object of BookEntity.
      */
     @Override
     protected ReadBookResponse executeRead(HttpHeaders headers, String title) {

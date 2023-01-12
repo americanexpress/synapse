@@ -31,7 +31,7 @@ import org.springframework.stereotype.Service;
 public class CreateBookService extends BaseCreateService<CreateBookRequest, CreateBookResponse> {
 
     /**
-     * bookRepository
+     * bookRepository used to query the database.
      */
     private final BookRepository bookRepository;
 
@@ -54,6 +54,11 @@ public class CreateBookService extends BaseCreateService<CreateBookRequest, Crea
         }
     }
 
+    /**
+     * Checks to see if title is present in the database or not.
+     * @param title of the book.
+     * @return A boolean indiciating if title exist in the database or not.
+     */
     private boolean isTitlePresent(String title) {
         return bookRepository.findByTitle(title) == null;
     }

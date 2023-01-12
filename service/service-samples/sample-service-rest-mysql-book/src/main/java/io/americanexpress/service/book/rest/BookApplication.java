@@ -36,8 +36,8 @@ public class BookApplication {
     private static final XLogger LOGGER = XLoggerFactory.getXLogger(BookApplication.class);
 
     /**
-     * main
-     * @param args
+     * Main method of the application.
+     * @param args of the application.
      */
     public static void main(String... args) {
         SpringApplication.run(BookApplication.class, args);

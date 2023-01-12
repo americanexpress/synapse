@@ -29,7 +29,7 @@ public class BookDataConfig extends BaseReactiveMySqlConfig {
     /**
      * Instantiates a new Base postgres data config.
      *
-     * @param environment      the environment
+     * @param environment      the environment.
      */
     public BookDataConfig(Environment environment) {
         super(environment);

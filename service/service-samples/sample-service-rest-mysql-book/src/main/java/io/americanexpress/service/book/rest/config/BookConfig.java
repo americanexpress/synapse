@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 
 /**
- * {@code BookConfig} Book Configuration in enabling services querying an mysql database.
+ * {@code BookConfig} Book Configuration in enabling services querying a mysql database.
  */
 @Configuration
 @PropertySource("classpath:service-book-application.properties")

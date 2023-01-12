@@ -20,8 +20,8 @@ public class UpdateBookRequest extends BookRequest {
 
     /**
      * Constructor takes in title as string & author as string
-     * @param title
-     * @param author
+     * @param title of the book.
+     * @param author of the book.
      */
     public UpdateBookRequest(String title, String author) {
         super(title, author);
@@ -29,16 +29,16 @@ public class UpdateBookRequest extends BookRequest {
 
     /**
      * Constructor takes in title as string, author as string, and createdBy as string
-     * @param title
-     * @param author
-     * @param createdBy
+     * @param title of the book.
+     * @param author of the book.
+     * @param createdBy who created the book record.
      */
     public UpdateBookRequest(String title, String author, String createdBy) {
         super(title, author, createdBy);
     }
 
     /**
-     * Default constructor
+     * The default constructor.
      */
     public UpdateBookRequest(){
 

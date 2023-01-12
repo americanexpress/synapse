@@ -29,7 +29,7 @@ import reactor.core.scheduler.Schedulers;
 public class DeleteBookService extends BaseDeleteReactiveService {
 
     /**
-     * bookRepository
+     * The bookRepository to access the database.
      */
     private final BookRepository bookRepository;
 

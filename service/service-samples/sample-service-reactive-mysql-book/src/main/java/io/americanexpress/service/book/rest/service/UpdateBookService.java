@@ -31,7 +31,7 @@ import reactor.core.scheduler.Schedulers;
 public class UpdateBookService extends BaseUpdateReactiveService<UpdateBookRequest> {
 
     /**
-     * bookRepository
+     * The bookRepository to access the database.
      */
     private BookRepository bookRepository;
 

@@ -29,20 +29,20 @@ import java.util.Objects;
 public class BookEntity extends BaseEntity {
 
     /**
-     * Title
+     * The title of the book.
      */
     @Column(name = "title")
     @NaturalId(mutable = true)
     private String title;
 
     /**
-     * Author
+     * The author of the book.
      */
     @Column(name = "author")
     private String author;
 
     /**
-     * Gets title.
+     * Gets the string representation of title of the book.
      * @return
      */
     public String getTitle() {
@@ -50,32 +50,37 @@ public class BookEntity extends BaseEntity {
     }
 
     /**
-     * Sets title.
+     * Sets the title of the book by the provided string.
      *
-     * @param title the title
+     * @param title of the book.
      */
     public void setTitle(String title) {
         this.title = title;
     }
 
     /**
-     * Gets author.
+     * Gets the string representation of author of the book.
      *
-     * @return the author
+     * @return The string representation of author.
      */
     public String getAuthor() {
         return author;
     }
 
     /**
-     * Sets author.
+     * Sets the author of the book by the provided string.
      *
-     * @param author the author
+     * @param author the author of the book.
      */
     public void setAuthor(String author) {
         this.author = author;
     }
 
+    /**
+     * Compares an object with another object of BookEntity.
+     * @param o an object.
+     * @return A boolean if the object is of BookEntity.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -85,6 +90,10 @@ public class BookEntity extends BaseEntity {
         return Objects.equals(getTitle(), that.getTitle());
     }
 
+    /**
+     * HashCode of BookEntity.
+     * @return an integer representation of the hashcode of BookEntity.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), getTitle());

@@ -18,7 +18,7 @@ import reactor.core.publisher.Mono;
 public class GetAllBookService extends BaseGetPolyReactiveService<ReadBookResponse> {
 
     /**
-     * bookRepository
+     * The bookRepository to access the database.
      */
     private BookRepository bookRepository;
 

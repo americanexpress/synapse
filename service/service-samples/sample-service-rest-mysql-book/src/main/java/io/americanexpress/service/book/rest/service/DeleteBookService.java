@@ -28,7 +28,7 @@ import org.springframework.stereotype.Service;
 public class DeleteBookService extends BaseDeleteService {
 
     /**
-     * bookRepository
+     * bookRepository used to query the database.
      */
     private final BookRepository bookRepository;
 
@@ -42,7 +42,7 @@ public class DeleteBookService extends BaseDeleteService {
 
     /**
      * executeDelete will be used to delete book resource by title
-     * @param title
+     * @param title of the book.
      */
     @Override
     protected void executeDelete(HttpHeaders headers, String title) {

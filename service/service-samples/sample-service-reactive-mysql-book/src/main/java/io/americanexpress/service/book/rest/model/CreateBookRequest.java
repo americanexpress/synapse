@@ -28,7 +28,7 @@ public class CreateBookRequest extends BookRequest {
     }
 
     /**
-     * Default constructor
+     * The default constructor.
      */
     public CreateBookRequest(){}
 }

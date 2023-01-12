@@ -41,61 +41,61 @@ import java.time.LocalDateTime;
 public class BookEntity {
 
     /**
-     * Id
+     * The primary key of the bookEntity.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
     /**
-     * Created Date Time
+     * Created Date Time of the bookEntity.
      */
     @CreatedDate
     @Column(name = "created_date_time")
     protected LocalDateTime createdDateTime;
 
     /**
-     * Last Modified Date Time
+     * Last Modified Date Time of the bookEntity.
      */
     @LastModifiedDate
     @Column(name = "last_modified_date_time")
     protected LocalDateTime lastModifiedDateTime;
 
     /**
-     * Created By
+     * Created By record of the bookEntity.
      */
     @CreatedBy
     @Column(name = "created_by")
     protected String createdBy;
 
     /**
-     * Last Modified By
+     * The last modification of the bookEntity.
      */
     @LastModifiedBy
     @Column(name = "last_modified_by")
     protected String lastModifiedBy;
 
     /**
-     * Version
+     * Version of the bookEntity.
      */
     @Version
     @Column(name = "version")
     protected Long version;
 
     /**
-     * title
+     * Title of the bookEntity.
      */
     @Column(name = "title")
     private String title;
 
     /**
-     * author
+     * Author of the bookEntity.
      */
     @Column(name = "author")
     private String author;
 
     /**
-     * Gets title.
+     * Gets title of the bookEntity.
      * @return
      */
     public String getTitle() {
@@ -103,7 +103,7 @@ public class BookEntity {
     }
 
     /**
-     * Sets title.
+     * Sets title of the bookEntity.
      *
      * @param title the title
      */
@@ -112,7 +112,7 @@ public class BookEntity {
     }
 
     /**
-     * Gets author.
+     * Gets author of the bookEntity.
      *
      * @return the author
      */
@@ -121,7 +121,7 @@ public class BookEntity {
     }
 
     /**
-     * Sets author.
+     * Sets author of the bookEntity.
      *
      * @param author the author
      */
@@ -131,40 +131,40 @@ public class BookEntity {
 
 
     /**
-     * Gets id as a long
-     * @return
+     * Gets ID as a long representation.
+     * @return ID as a long.
      */
     public Long getId() {
         return id;
     }
 
     /**
-     * Sets id with provided long value
-     * @param id
+     * Sets id with provided long value.
+     * @param id of the bookEntity.
      */
     public void setId(Long id) {
         this.id = id;
     }
 
     /**
-     * Gets createdDateTime as LocalDateTime
-     * @return
+     * Gets createdDateTime as LocalDateTime.
+     * @return CreatedDateTime of localDateTime.
      */
     public LocalDateTime getCreatedDateTime() {
         return createdDateTime;
     }
 
     /**
-     * Sets createdDateTime with provided LocalDateTime
-     * @param createdDateTime
+     * Sets createdDateTime with the provided LocalDateTime.
+     * @param createdDateTime of the bookEntity.
      */
     public void setCreatedDateTime(LocalDateTime createdDateTime) {
         this.createdDateTime = createdDateTime;
     }
 
     /**
-     * Gets lastModifiedDateTime as LocalDateTime
-     * @return
+     * Gets lastModifiedDateTime as LocalDateTime.
+     * @return LocalDateTime representation of lastModifiedDateTime.
      */
     public LocalDateTime getLastModifiedDateTime() {
         return lastModifiedDateTime;
@@ -172,7 +172,7 @@ public class BookEntity {
 
     /**
      * Sets lastModifiedDateTime with provided localDateTime
-     * @param lastModifiedDateTime
+     * @param lastModifiedDateTime of bookEntity.
      */
     public void setLastModifiedDateTime(LocalDateTime lastModifiedDateTime) {
         this.lastModifiedDateTime = lastModifiedDateTime;
@@ -180,7 +180,7 @@ public class BookEntity {
 
     /**
      * Gets createdBy as a String
-     * @return
+     * @return A string representation of createdBy.
      */
     public String getCreatedBy() {
         return createdBy;
@@ -188,7 +188,7 @@ public class BookEntity {
 
     /**
      * Sets createdBy with provided String.
-     * @param createdBy
+     * @param createdBy of bookEntity.
      */
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
@@ -196,7 +196,7 @@ public class BookEntity {
 
     /**
      * Gets lastModifiedBy as a string.
-     * @return
+     * @return String representation of lastModifiedBy.
      */
     public String getLastModifiedBy() {
         return lastModifiedBy;
@@ -204,7 +204,7 @@ public class BookEntity {
 
     /**
      * Sets lastModifiedBy with provided string.
-     * @param lastModifiedBy
+     * @param lastModifiedBy as a string.
      */
     public void setLastModifiedBy(String lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;
@@ -219,12 +219,16 @@ public class BookEntity {
 
     /**
      * Sets version with provided long.
-     * @param version
+     * @param version of a long.
      */
     public void setVersion(Long version) {
         this.version = version;
     }
 
+    /**
+     * A string representation of BookEntity.
+     * @return A string of BookEntity.
+     */
     @Override
     public String toString() {
         return "BookEntity{" +

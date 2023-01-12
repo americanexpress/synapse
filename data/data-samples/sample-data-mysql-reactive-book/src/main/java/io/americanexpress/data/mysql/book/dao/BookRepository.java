@@ -24,14 +24,40 @@ import reactor.core.publisher.Mono;
  */
 @Repository
 public interface BookRepository extends R2dbcRepository<BookEntity, Long> {
+
+    /**
+     * Finds a BookEntity in the database by title and author.
+     * @param title of the book.
+     * @param author of the book.
+     * @return A BookEntity of the provided title and author.
+     */
     Mono<BookEntity> findByTitleAndAuthor(String title, String author);
 
+    /**
+     * Blind find of every BookEntity in the database.
+     * @return
+     */
     Flux<BookEntity> findAll();
 
+    /**
+     * Finds a BookEntity in the database by title.
+     * @param title of the book.
+     * @return A BookEntity of the provided title.
+     */
     Mono<BookEntity> findByTitle(String title);
 
+    /**
+     * Finds a BookEntity in the database by author.
+     * @param author of the book.
+     * @return A BookEntity of the provided author.
+     */
     Mono<BookEntity> findByAuthor(String author);
 
+    /**
+     * Deletes a BookEntity in the database by title.
+     * @param title of the book.
+     * @return Void.
+     */
     Mono<Void> deleteByTitle(String title);
 
 }

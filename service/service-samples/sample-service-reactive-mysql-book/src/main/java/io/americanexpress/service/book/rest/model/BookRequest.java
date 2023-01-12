@@ -22,36 +22,36 @@ import jakarta.validation.constraints.NotBlank;
 public class BookRequest implements BaseServiceRequest {
 
     /**
-     * id
+     * The ID of the book.
      */
     private Long id;
 
     /**
-     * title
+     * The title of the book.
      */
     @NotBlank
     private String title;
 
     /**
-     * author
+     * The author of the book.
      */
     @NotBlank
     private String author;
 
     /**
-     * Created By
+     * A record of who is creating the book request.
      */
     private String createdBy;
 
     /**
-     * Default constructor
+     * Default constructor.
      */
     public BookRequest(){}
 
     /**
      * Constructor taking title and author
-     * @param title
-     * @param author
+     * @param title of the book.
+     * @param author of the book.
      */
     public BookRequest(String title, String author) {
         this.title = title;
@@ -60,8 +60,9 @@ public class BookRequest implements BaseServiceRequest {
 
     /**
      * Constructor taking title and author
-     * @param title
-     * @param author
+     * @param title of the book.
+     * @param author of the book.
+     * @param createdBy who is creating the record of the book.
      */
     public BookRequest(String title, String author, String createdBy) {
         this.title = title;
@@ -70,9 +71,11 @@ public class BookRequest implements BaseServiceRequest {
     }
 
     /**
-     * Constructor taking title and author
-     * @param title
-     * @param author
+     * Constructor taking title and author.
+     * @param id of the book.
+     * @param title of the book.
+     * @param author of the book.
+     * @param createdBy who is creating the record of the book.
      */
     public BookRequest(Long id, String title, String author, String createdBy) {
         this.id = id;
@@ -82,24 +85,24 @@ public class BookRequest implements BaseServiceRequest {
     }
 
     /**
-     * Gets id as long
-     * @return
+     * Gets id as a long.
+     * @return A long representation of id.
      */
     public Long getId() {
         return id;
     }
 
     /**
-     * Sets id with provided long
-     * @param id
+     * Sets id with provided long.
+     * @param id of the book.
      */
     public void setId(Long id) {
         this.id = id;
     }
 
     /**
-     * Gets the title as string
-     * @return
+     * Gets the title as string.
+     * @return The title of the book.
      */
     public String getTitle() {
         return title;
@@ -107,7 +110,7 @@ public class BookRequest implements BaseServiceRequest {
 
     /**
      * Sets the title with provided string.
-     * @param title
+     * @param title of the book.
      */
     public void setTitle(String title) {
         this.title = title;
@@ -115,7 +118,7 @@ public class BookRequest implements BaseServiceRequest {
 
     /**
      * Gets author as string.
-     * @return
+     * @return The author of the book.
      */
     public String getAuthor() {
         return author;
@@ -123,7 +126,7 @@ public class BookRequest implements BaseServiceRequest {
 
     /**
      * Sets author with provided string.
-     * @param author
+     * @param author of the book.
      */
     public void setAuthor(String author) {
         this.author = author;
@@ -131,7 +134,7 @@ public class BookRequest implements BaseServiceRequest {
 
     /**
      * gets createdBy as string.
-     * @return
+     * @return createdBy record of the book.
      */
     public String getCreatedBy() {
         return createdBy;
@@ -139,15 +142,15 @@ public class BookRequest implements BaseServiceRequest {
 
     /**
      * Sets createdBy with provided string.
-     * @param createdBy
+     * @param createdBy Who is creating the record of the book.
      */
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
 
     /**
-     * Returns a string of the obejct
-     * @return
+     * Returns a string of Book Request.
+     * @return A string representation of BookRequest.
      */
     @Override
     public String toString() {

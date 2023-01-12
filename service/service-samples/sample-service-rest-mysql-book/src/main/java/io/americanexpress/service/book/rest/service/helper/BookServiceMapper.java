@@ -26,7 +26,7 @@ import org.apache.commons.lang3.StringUtils;
 public class BookServiceMapper {
 
     /**
-     * Populates ReadBookResponse with BookEntity
+     * Populates ReadBookResponse with BookEntity.
      * @param bookEntity A book object from the database.
      * @return A service response representation of BookEntity.
      */
@@ -42,7 +42,7 @@ public class BookServiceMapper {
     }
 
     /**
-     * Populates BookEntity with CreateBookRequest
+     * Populates BookEntity with CreateBookRequest.
      * @param request Request object that will be used to create a new BookEntity.
      * @return BookEntity object that will be stored in the database.
      */
@@ -55,7 +55,7 @@ public class BookServiceMapper {
     }
 
     /**
-     * Populates CreateBookResponse with BookEntity
+     * Populates CreateBookResponse with BookEntity.
      * @param bookEntity A BookEntity object from the database.
      * @return A service response representation of BookEntity.
      */
@@ -70,7 +70,7 @@ public class BookServiceMapper {
     }
 
     /**
-     * Populate BookEntity with updated request
+     * Populate BookEntity with updated request.
      * @param request Will be used for updating a BookEntity.
      * @param bookEntity Is used for determining if BookEntity needs to be updated.
      * @return A BookEntity to update in the database.

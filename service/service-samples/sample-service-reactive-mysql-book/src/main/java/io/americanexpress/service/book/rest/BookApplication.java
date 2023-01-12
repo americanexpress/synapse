@@ -30,10 +30,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication()
 public class BookApplication {
 
+    /**
+     * Will be used to log the application.
+     */
     private static final XLogger LOGGER = XLoggerFactory.getXLogger(BookApplication.class);
 
     /**
-     * main
+     * Main method of the application.
      * @param args An array of arguments.
      */
     public static void main(String... args) {

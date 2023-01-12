@@ -22,6 +22,7 @@ public class CreateBookRequest extends BookRequest {
      * {@link CreateBookRequest} default constructor.
      */
     public CreateBookRequest(){}
+
     /**
      * {@link CreateBookRequest} overloaded constructor.
      * @param title the title

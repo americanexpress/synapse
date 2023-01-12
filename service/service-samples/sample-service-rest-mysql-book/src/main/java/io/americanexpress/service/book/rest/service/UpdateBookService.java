@@ -30,7 +30,7 @@ import org.springframework.stereotype.Service;
 public class UpdateBookService extends BaseUpdateService<UpdateBookRequest> {
 
     /**
-     * bookRepository
+     * bookRepository to query the database.
      */
     private BookRepository bookRepository;
 
@@ -44,7 +44,8 @@ public class UpdateBookService extends BaseUpdateService<UpdateBookRequest> {
 
     /**
      * executeUpdate will be used to update a book resource by request.
-     * @param request
+     * @param headers of the request.
+     * @param request Request object used to update.
      */
     @Override
     protected void executeUpdate(HttpHeaders headers, UpdateBookRequest request) {

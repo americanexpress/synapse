@@ -48,7 +48,7 @@ public enum ErrorCode {
     /**
      * Used for when the consumer is forbidden to access a resource.
      */
-    AUTHENTICATION_ERROR(HttpStatus.FORBIDDEN, "Fobidden");
+    AUTHENTICATION_ERROR(HttpStatus.FORBIDDEN, "Forbidden.");
 
     /**
      * Gets the HttpStatus of the ErrorCode.

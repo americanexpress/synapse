@@ -19,21 +19,21 @@ package io.americanexpress.service.book.rest.model;
 public class UpdateBookRequest extends BookRequest {
 
     /**
-     * Default constructor
+     * The default constructor.
      */
     public UpdateBookRequest(){}
 
     /**
-     * Constructor takes in title as string & author as string
-     * @param title
-     * @param author
+     * Constructor takes in title as string & author as string.
+     * @param title of the book.
+     * @param author of the book.
      */
     public UpdateBookRequest(String title, String author) {
         super(title, author);
     }
 
     /**
-     * Constructor takes in title as string, author as string, and createdBy as string
+     * Constructor takes in title as string, author as string, and createdBy as string.
      * @param title Title of the book.
      * @param author Author of the book.
      * @param createdBy When the BookEntity was created.

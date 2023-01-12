@@ -49,25 +49,25 @@ public class BookRequest implements BaseServiceRequest {
     }
 
     /**
-     * title
+     * The title of the book.
      */
     @NotBlank
     private String title;
 
     /**
-     * author
+     * The author of the book.
      */
     @NotBlank
     private String author;
 
     /**
-     * createdBy
+     * A record of who is creating the book request.
      */
     private String createdBy;
 
     /**
-     * Gets the title as string
-     * @return
+     * Gets the title as string.
+     * @return The title of the book.
      */
     public String getTitle() {
         return title;
@@ -75,7 +75,7 @@ public class BookRequest implements BaseServiceRequest {
 
     /**
      * Sets the title with provided string.
-     * @param title
+     * @param title of the book.
      */
     public void setTitle(String title) {
         this.title = title;
@@ -83,15 +83,15 @@ public class BookRequest implements BaseServiceRequest {
 
     /**
      * Gets author as string.
-     * @return
+     * @return The author of the book.s
      */
     public String getAuthor() {
         return author;
     }
 
     /**
-     * Gets createdBy as string.
-     * @return
+     * gets createdBy as string.
+     * @return createdBy record of the book.
      */
     public String getCreatedBy() {
         return createdBy;
@@ -99,7 +99,7 @@ public class BookRequest implements BaseServiceRequest {
 
     /**
      * Sets createdBy with provided string.
-     * @param createdBy
+     * @param createdBy Who is creating the record of the book.
      */
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
@@ -107,15 +107,15 @@ public class BookRequest implements BaseServiceRequest {
 
     /**
      * Sets author with provided string.
-     * @param author
+     * @param author of the book.
      */
     public void setAuthor(String author) {
         this.author = author;
     }
 
     /**
-     * Returns a string of the obejct
-     * @return
+     * Returns a string of Book Request.
+     * @return A string representation of BookRequest.
      */
     @Override
     public String toString() {

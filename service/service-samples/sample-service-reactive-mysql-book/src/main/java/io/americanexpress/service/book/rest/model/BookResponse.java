@@ -22,45 +22,45 @@ import jakarta.validation.constraints.NotBlank;
 public class BookResponse extends BaseServiceResponse {
 
     /**
-     * title
+     * The title of the book.
      */
     @NotBlank
     private String title;
 
     /**
-     * author
+     * The author of the book.
      */
     @NotBlank
     private String author;
 
     /**
-     * createdDateTime
+     * The createdDateTime of the book record.
      */
     private String createdDateTime;
 
     /**
-     * lastModifiedDateTime
+     * The lastModifiedDateTime of the book record.
      */
     private String lastModifiedDateTime;
 
     /**
-     * createdBy
+     * The createdBy of the book record.
      */
     private String createdBy;
 
     /**
-     * lastModifiedBy
+     * The lastModifiedBy of the book record.
      */
     private String lastModifiedBy;
 
     /**
-     * version
+     * The version of the book record.
      */
     private String version;
 
     /**
      * Gets title as string.
-     * @return
+     * @return The title of the book.
      */
     public String getTitle() {
         return title;
@@ -68,7 +68,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Sets title with provided String
-     * @param title
+     * @param title of the book.
      */
     public void setTitle(String title) {
         this.title = title;
@@ -76,7 +76,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Gets author as string.
-     * @return
+     * @return The author of the book.
      */
     public String getAuthor() {
         return author;
@@ -84,7 +84,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Sets author with provided string.
-     * @param author
+     * @param author of the book.
      */
     public void setAuthor(String author) {
         this.author = author;
@@ -92,7 +92,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Gets createdDateTime as String.
-     * @return
+     * @return The createdDateTime of the book record.
      */
     public String getCreatedDateTime() {
         return createdDateTime;
@@ -100,7 +100,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Sets createdDateTime with provied string.
-     * @param createdDateTime
+     * @param createdDateTime of the book record.
      */
     public void setCreatedDateTime(String createdDateTime) {
         this.createdDateTime = createdDateTime;
@@ -108,15 +108,15 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Gets lastModifiedDateTime as string.
-     * @return
+     * @return String representation of lastModifiedDateTime.
      */
     public String getLastModifiedDateTime() {
         return lastModifiedDateTime;
     }
 
     /**
-     * Sets lastModifiedDateTime with provied string.
-     * @param lastModifiedDateTime
+     * Sets lastModifiedDateTime with provided string.
+     * @param lastModifiedDateTime of the book record.
      */
     public void setLastModifiedDateTime(String lastModifiedDateTime) {
         this.lastModifiedDateTime = lastModifiedDateTime;
@@ -124,7 +124,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Gets createdBy as string.
-     * @return
+     * @return CreatedBy the book record.
      */
     public String getCreatedBy() {
         return createdBy;
@@ -132,7 +132,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Sets createdBy with provided string.
-     * @param createdBy
+     * @param createdBy as a string.
      */
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
@@ -140,7 +140,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * gets lastModifiedBy as string.
-     * @return
+     * @return lastModifiedBy as a string.
      */
     public String getLastModifiedBy() {
         return lastModifiedBy;
@@ -148,7 +148,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Sets lastModifiedBy with provided string.
-     * @param lastModifiedBy
+     * @param lastModifiedBy as a string.
      */
     public void setLastModifiedBy(String lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;
@@ -156,7 +156,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Gets version as string.
-     * @return
+     * @return String representation of version.
      */
     public String getVersion() {
         return version;
@@ -164,15 +164,15 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Sets version with provided string.
-     * @param version
+     * @param version of the book.
      */
     public void setVersion(String version) {
         this.version = version;
     }
 
     /**
-     * prints object as string.
-     * @return
+     * A string representation of BookResponse.
+     * @return A string of bookResponse.
      */
     @Override
     public String toString() {

@@ -30,7 +30,7 @@ import reactor.core.publisher.Mono;
 public class GetBookService extends BaseGetMonoReactiveService<ReadBookResponse> {
 
     /**
-     * bookRepository
+     * The bookRepository to access the database.
      */
     private final BookRepository bookRepository;
 

@@ -14,7 +14,7 @@
 package io.americanexpress.service.book.rest.model;
 
 /**
- * {@code CreateBookResponse} Create Book Response
+ * {@code CreateBookResponse} Create Book Response.
  */
 public class CreateBookResponse extends BookResponse {
 }

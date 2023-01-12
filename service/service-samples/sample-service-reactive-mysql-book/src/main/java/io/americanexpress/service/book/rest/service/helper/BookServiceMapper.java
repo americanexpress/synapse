@@ -26,6 +26,11 @@ import org.apache.commons.lang3.StringUtils;
 public class BookServiceMapper {
 
     /**
+     * The private constructor.
+     */
+    private BookServiceMapper() {}
+
+    /**
      * Populates ReadBookResponse with BookEntity.
      * @param bookEntity Used for mapping bookEntity from database to response object.
      * @return A response object representation of BookEntity.
