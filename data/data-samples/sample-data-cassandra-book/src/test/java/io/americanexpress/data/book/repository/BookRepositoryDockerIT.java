@@ -17,13 +17,12 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @ContextConfiguration(classes = BookDataTestConfig.class)
 @Testcontainers
 @DataCassandraTest
 @EnableAutoConfiguration
-class BookRepositoryDockerIT {
+class  BookRepositoryDockerIT {
 
     @Autowired
     private BookRepository bookRepository;

@@ -11,10 +11,10 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.data.oracle.book.test.config;
+package io.americanexpress.data.mysql.book.config;
 
 import com.zaxxer.hikari.HikariDataSource;
-import io.americanexpress.synapse.data.oracle.config.BaseOracleDataConfig;
+import io.americanexpress.synapse.data.mysql.config.BaseMySqlDataConfig;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -29,19 +29,19 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 /**
- * {code OracleDataConfigTest} Configuration file uses h2 database for integration test purpose.
+ * {code MySqlDataConfigTest} Configuration file uses h2 database for integration test purpose.
  */
 @TestConfiguration
-@TestPropertySource("classpath:data-oracle-book-application-test.properties")
-@EnableJpaRepositories(basePackages = "io.americanexpress.data.oracle.book.dao")
+@TestPropertySource("classpath:data-mysql-book-application-test.properties")
+@EnableJpaRepositories(basePackages = "io.americanexpress.data.mysql.book.dao")
 @ActiveProfiles("test")
-public class OracleDataConfigTest extends BaseOracleDataConfig {
+public class MySqlDataConfigTest extends BaseMySqlDataConfig {
     /**
      * Instantiates a new Base postgres data config.
      *
      * @param environment  the environment
      */
-    public OracleDataConfigTest(Environment environment) {
+    public MySqlDataConfigTest(Environment environment) {
         super(environment);
     }
 
@@ -55,7 +55,7 @@ public class OracleDataConfigTest extends BaseOracleDataConfig {
     @Override
     public DataSource dataSource() {
         HikariDataSource dataSource = DataSourceBuilder.create().type(HikariDataSource.class).build();
-        dataSource.setSchema(environment.getRequiredProperty("spring.jpa.properties.hibernate.default_schema"));
+        dataSource.setSchema("PUBLIC");
         dataSource.setLeakDetectionThreshold(2000);
         dataSource.setDataSourceProperties(additionalHibernateSpringProperties());
         return dataSource;
@@ -68,10 +68,10 @@ public class OracleDataConfigTest extends BaseOracleDataConfig {
      */
     private Properties additionalHibernateSpringProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", environment.getRequiredProperty("hibernate.hbm2ddl.auto"));
-        properties.setProperty("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
-        properties.setProperty("hibernate.format_sql", environment.getRequiredProperty("hibernate.format_sql"));
-        properties.setProperty("spring.datasource.h2.initialization-mode", environment.getRequiredProperty("spring.datasource.h2.initialization-mode"));
+        properties.setProperty("hibernate.hbm2ddl.auto", "none");
+        properties.setProperty("hibernate.show_sql", "true");
+        properties.setProperty("hibernate.format_sql", "true");
+        properties.setProperty("spring.datasource.h2.initialization-mode", "always");
         properties.setProperty("hibernate.cache.use_query_cache", "true");
         properties.setProperty("hibernate.cache.provider_class", "net.sf.ehcache.hibernate.EhCacheProvider");
         return properties;
@@ -85,6 +85,6 @@ public class OracleDataConfigTest extends BaseOracleDataConfig {
      */
     @Override
     protected void setPackagesToScan(LocalContainerEntityManagerFactoryBean entityManagerFactoryBean) {
-        entityManagerFactoryBean.setPackagesToScan("io.americanexpress.data.oracle.book.entity");
+        entityManagerFactoryBean.setPackagesToScan("io.americanexpress.data.mysql.book.entity");
     }
 }

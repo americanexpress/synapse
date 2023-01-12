@@ -61,7 +61,7 @@ public class InputValidationErrorHandler {
 
         // Create the error response
         final ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_4XX_ERROR,
-                ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE,
+                ErrorCode.GENERIC_4XX_ERROR.getMessage(),
                 errorMessageJoiner.toString(),
                 "Input validation");
 
