@@ -92,7 +92,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Gets createdDateTime as String.
-     * @return
+     * @return the created data time
      */
     public String getCreatedDateTime() {
         return createdDateTime;
@@ -100,7 +100,6 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Gets createdDateTime as String.
-     * @return The createdDateTime of the book record.
      */
     public void setCreatedDateTime(String createdDateTime) {
         this.createdDateTime = createdDateTime;
@@ -140,7 +139,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * gets lastModifiedBy as string.
-     * @return
+     * @return the last modified by
      */
     public String getLastModifiedBy() {
         return lastModifiedBy;
@@ -148,7 +147,6 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * gets lastModifiedBy as string.
-     * @return lastModifiedBy as a string.
      */
     public void setLastModifiedBy(String lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;

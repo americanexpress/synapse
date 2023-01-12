@@ -99,7 +99,7 @@ public class BookResponse extends BaseServiceResponse {
     }
 
     /**
-     * Sets createdDateTime with provied string.
+     * Sets createdDateTime with provider string.
      * @param createdDateTime of the book record.
      */
     public void setCreatedDateTime(String createdDateTime) {

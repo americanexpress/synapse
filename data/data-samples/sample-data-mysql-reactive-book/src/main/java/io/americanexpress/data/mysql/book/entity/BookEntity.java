@@ -88,7 +88,7 @@ public class BookEntity {
 
     /**
      * Gets title of the bookEntity.
-     * @return
+     * @return the title
      */
     public String getTitle() {
         return title;

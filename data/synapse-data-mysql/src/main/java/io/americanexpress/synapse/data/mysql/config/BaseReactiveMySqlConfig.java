@@ -60,8 +60,8 @@ public abstract class BaseReactiveMySqlConfig extends AbstractR2dbcConfiguration
 
     /**
      * Loads the transaction manager.
-     * @param connectionFactory
-     * @return
+     * @param connectionFactory the connection factory
+     * @return the reactive transaction manager
      */
     @Bean
     ReactiveTransactionManager transactionManager(ConnectionFactory connectionFactory) {

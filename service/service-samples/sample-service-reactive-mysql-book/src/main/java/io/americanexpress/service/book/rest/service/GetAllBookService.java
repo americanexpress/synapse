@@ -20,7 +20,7 @@ public class GetAllBookService extends BaseGetPolyReactiveService<ReadBookRespon
     /**
      * The bookRepository to access the database.
      */
-    private BookRepository bookRepository;
+    private final BookRepository bookRepository;
 
     /**
      * Constructor taking in and autowiring BookRepository

@@ -35,7 +35,7 @@ public interface BookRepository extends R2dbcRepository<BookEntity, Long> {
 
     /**
      * Blind find of every BookEntity in the database.
-     * @return
+     * @return the list of books
      */
     Flux<BookEntity> findAll();
 

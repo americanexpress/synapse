@@ -43,8 +43,8 @@ public class BookDataConfig extends BaseMySqlDataConfig {
     }
 
     /**
-     * Scans package containing jpa entity
-     * @param entityManagerFactoryBean
+     * Scans package containing jpa entity.
+     * @param entityManagerFactoryBean the entity manager factory bean
      */
     @Override
     protected void setPackagesToScan(LocalContainerEntityManagerFactoryBean entityManagerFactoryBean) {

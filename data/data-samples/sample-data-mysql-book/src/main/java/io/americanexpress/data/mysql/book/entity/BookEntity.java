@@ -43,7 +43,7 @@ public class BookEntity extends BaseEntity {
 
     /**
      * Gets the string representation of title of the book.
-     * @return
+     * @return the title
      */
     public String getTitle() {
         return title;

@@ -82,40 +82,40 @@ public abstract class BaseEntity {
     protected Long version;
 
     /**
-     * Gets id as a long
-     * @return
+     * Gets id as a long.
+     * @return the identifier
      */
     public Long getId() {
         return id;
     }
 
     /**
-     * Sets id with provided long value
-     * @param id
+     * Sets id with provided long value.
+     * @param id the identifier
      */
     public void setId(Long id) {
         this.id = id;
     }
 
     /**
-     * Gets createdDateTime as LocalDateTime
-     * @return
+     * Gets createdDateTime as LocalDateTime.
+     * @return hte created date time
      */
     public LocalDateTime getCreatedDateTime() {
         return createdDateTime;
     }
 
     /**
-     * Sets createdDateTime with provided LocalDateTime
-     * @param createdDateTime
+     * Sets createdDateTime with provided LocalDateTime.
+     * @param createdDateTime the created date time
      */
     public void setCreatedDateTime(LocalDateTime createdDateTime) {
         this.createdDateTime = createdDateTime;
     }
 
     /**
-     * Gets lastModifiedDateTime as LocalDateTime
-     * @return
+     * Gets lastModifiedDateTime as LocalDateTime.
+     * @return the last modified date time
      */
     public LocalDateTime getLastModifiedDateTime() {
         return lastModifiedDateTime;
@@ -123,15 +123,15 @@ public abstract class BaseEntity {
 
     /**
      * Sets lastModifiedDateTime with provided localDateTime
-     * @param lastModifiedDateTime
+     * @param lastModifiedDateTime the last modified date time
      */
     public void setLastModifiedDateTime(LocalDateTime lastModifiedDateTime) {
         this.lastModifiedDateTime = lastModifiedDateTime;
     }
 
     /**
-     * Gets createdBy as a String
-     * @return
+     * Gets createdBy as a string.
+     * @return the created by
      */
     public String getCreatedBy() {
         return createdBy;
@@ -139,7 +139,7 @@ public abstract class BaseEntity {
 
     /**
      * Sets createdBy with provided String.
-     * @param createdBy
+     * @param createdBy the created by
      */
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
@@ -147,7 +147,7 @@ public abstract class BaseEntity {
 
     /**
      * Gets lastModifiedBy as a string.
-     * @return
+     * @return the last modified by
      */
     public String getLastModifiedBy() {
         return lastModifiedBy;
@@ -155,7 +155,7 @@ public abstract class BaseEntity {
 
     /**
      * Sets lastModifiedBy with provided string.
-     * @param lastModifiedBy
+     * @param lastModifiedBy the last modified by
      */
     public void setLastModifiedBy(String lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;
@@ -170,7 +170,7 @@ public abstract class BaseEntity {
 
     /**
      * Sets version with provided long.
-     * @param version
+     * @param version the version number
      */
     public void setVersion(Long version) {
         this.version = version;
@@ -193,8 +193,8 @@ public abstract class BaseEntity {
     }
 
     /**
-     * Gets hashcode of object
-     * @return
+     * Gets hashcode of object.
+     * @return the hash code
      */
     @Override
     public int hashCode() {
@@ -203,7 +203,7 @@ public abstract class BaseEntity {
 
     /**
      * Builds object as a string.
-     * @return
+     * @return the object as a string
      */
     @Override
     public String toString() {
