@@ -31,8 +31,14 @@ import org.slf4j.ext.XLoggerFactory;
 @SpringBootApplication
 public class ${className}Application {
 
+    /**
+     * The logger for your service main method.
+     */
     private static final XLogger LOGGER = XLoggerFactory.getXLogger(${className}Application.class);
 
+    /**
+     * The main method which is used to run your application.
+     */
     public static void main(String[] args) {
         SpringApplication.run(${className}Application.class, args);
         LOGGER.info("Rest Application is up and running ...");

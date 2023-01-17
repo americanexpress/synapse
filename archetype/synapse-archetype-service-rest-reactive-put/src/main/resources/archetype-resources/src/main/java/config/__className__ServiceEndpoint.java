@@ -21,7 +21,13 @@ import ${package}.service.${className}UpdateReactiveService;
  * @author ${author}
  */
 public class ${className}ServiceEndpoint {
+    /**
+     * Private constructor for constants class.
+     */
     private ${className}ServiceEndpoint() {}
 
+    /**
+     * This the resource path for your service.
+     */
     public static final String SERVICE_ENDPOINT = "${baseUrl}";
 }
