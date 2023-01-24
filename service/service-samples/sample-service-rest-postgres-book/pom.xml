@@ -17,7 +17,7 @@
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
         <artifactId>service-samples</artifactId>
-        <version>0.3.11</version>
+        <version>0.3.12-SNAPSHOT</version>
     </parent>
 
     <artifactId>sample-service-rest-postgres-book</artifactId>
