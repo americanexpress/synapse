@@ -13,6 +13,7 @@
  */
 package io.americanexpress.sample.client.reactive.weather.config;
 
+import io.americanexpress.synapse.utilities.common.config.UtilitiesCommonConfig;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
@@ -20,6 +21,6 @@ import org.springframework.context.annotation.Import;
  * {@code WeatherReactiveClientTestConfig} contains configurations for tests.
  */
 @Configuration
-@Import(WeatherReactiveClientConfig.class)
+@Import({WeatherReactiveClientConfig.class, UtilitiesCommonConfig.class})
 public class WeatherReactiveClientTestConfig {
 }

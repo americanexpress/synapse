@@ -16,38 +16,33 @@ package io.americanexpress.sample.client.reactive.weather.client;
 import io.americanexpress.sample.client.reactive.weather.config.WeatherReactiveClientTestConfig;
 import io.americanexpress.sample.client.reactive.weather.model.WeatherRequest;
 import io.americanexpress.sample.client.reactive.weather.model.WeatherResponse;
-import io.americanexpress.synapse.client.test.client.BaseGetReactiveRestClientIT;
-import org.junit.jupiter.api.extension.ExtendWith;
+import io.americanexpress.synapse.client.test.client.BaseReactiveRestClientUnitTest;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
- * {@code WeatherReactiveClientIT} tests the {@link WeatherReactiveClient}.
+ * {@code WeatherReactiveClientTest} tests the {@link WeatherReactiveClient}.
  */
 @ContextConfiguration(classes = WeatherReactiveClientTestConfig.class)
-@ExtendWith(SpringExtension.class)
-class WeatherReactiveClientIT extends BaseGetReactiveRestClientIT<WeatherRequest, WeatherResponse, WeatherReactiveClient> {
+public class WeatherReactiveClientTest extends BaseReactiveRestClientUnitTest<WeatherRequest, WeatherResponse, WeatherReactiveClient> {
+
     @Override
-    protected String mockPathVariables() {
+    public WeatherRequest mockDefaultClientRequest() {
         return null;
     }
 
     @Override
-    protected HttpHeaders getDefaultClientHeaders() {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        return headers;
+    public WeatherResponse mockDefaultClientResponse() {
+        return new WeatherResponse();
     }
 
     @Override
-    protected WeatherRequest mockDefaultClientRequest() {
-        return null;
+    public HttpHeaders mockClientHeaders() {
+        return new HttpHeaders();
     }
 
     @Override
-    protected WeatherRequest mockInvalidClientRequest() {
+    public String mockPathVariables() {
         return null;
     }
 }
