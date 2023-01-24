@@ -17,7 +17,7 @@
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
         <artifactId>archetype</artifactId>
-        <version>0.3.9</version>
+        <version>0.3.10-SNAPSHOT</version>
     </parent>
     <artifactId>synapse-archetype-service-rest-post</artifactId>
     <build>
