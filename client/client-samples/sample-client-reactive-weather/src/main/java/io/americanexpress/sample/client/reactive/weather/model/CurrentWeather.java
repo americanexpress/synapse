@@ -41,6 +41,11 @@ public class CurrentWeather {
     private int weatherCode;
 
     /**
+     * The date and time
+     */
+    private LocalDateTime time;
+
+    /**
      * Gets temperature.
      *
      * @return the temperature
@@ -130,5 +135,4 @@ public class CurrentWeather {
         this.time = time;
     }
 
-    private LocalDateTime time;
 }
