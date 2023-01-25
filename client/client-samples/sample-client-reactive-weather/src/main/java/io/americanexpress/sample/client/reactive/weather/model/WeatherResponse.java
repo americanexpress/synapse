@@ -13,6 +13,7 @@
  */
 package io.americanexpress.sample.client.reactive.weather.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
 
 /**
@@ -38,6 +39,7 @@ public class WeatherResponse implements BaseClientResponse {
     /**
      * The current weather
      */
+    @JsonProperty("current_weather")
     private CurrentWeather currentWeather;
 
     /**
