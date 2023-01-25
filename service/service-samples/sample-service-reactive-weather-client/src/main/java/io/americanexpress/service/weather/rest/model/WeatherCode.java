@@ -14,7 +14,7 @@
 package io.americanexpress.service.weather.rest.model;
 
 /**
- * The enum Weather code.
+ * {@code WeatherCode} represents the different types of weather.
  */
 public enum WeatherCode {
 
@@ -123,6 +123,9 @@ public enum WeatherCode {
      */
     THUNDERSTROM_SLIGHT_HAIL(96);
 
+    /**
+     * The weather code
+     */
     private int value;
 
     WeatherCode(int value) {this.value = value;}

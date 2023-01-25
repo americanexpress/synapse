@@ -29,6 +29,9 @@ import reactor.core.publisher.Mono;
 @Service
 public class GetWeatherService extends BaseGetMonoReactiveService<GetWeatherResponse> {
 
+    /**
+     * Used to make call to Weather API to retrieve current weather
+     */
     private final WeatherReactiveClient weatherReactiveClient;
 
     /**
@@ -40,6 +43,12 @@ public class GetWeatherService extends BaseGetMonoReactiveService<GetWeatherResp
         this.weatherReactiveClient = weatherReactiveClient;
     }
 
+    /**
+     * Calls weather client and parses response to retrieve current weather
+     *
+     * @param headers the headers
+     * @param request the request
+     */
     @Override
     protected Mono<GetWeatherResponse> executeRead(HttpHeaders headers, String request) {
         return weatherReactiveClient.callMonoService(new HttpHeaders(), new WeatherRequest())

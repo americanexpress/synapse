@@ -20,22 +20,48 @@ import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
  */
 public class GetWeatherResponse extends BaseServiceResponse {
 
+    /**
+     * The current temperature
+     */
     private double temperature;
 
+    /**
+     * The current weather
+     */
     private WeatherCode weather;
 
+    /**
+     * Gets temperature.
+     *
+     * @return the temperature
+     */
     public double getTemperature() {
         return temperature;
     }
 
+    /**
+     * Sets temperature.
+     *
+     * @param temperature the temperature
+     */
     public void setTemperature(double temperature) {
         this.temperature = temperature;
     }
 
+    /**
+     * Gets weather.
+     *
+     * @return the weather
+     */
     public WeatherCode getWeather() {
         return weather;
     }
 
+    /**
+     * Sets weather.
+     *
+     * @param weather the weather
+     */
     public void setWeather(WeatherCode weather) {
         this.weather = weather;
     }
