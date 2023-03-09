@@ -15,7 +15,7 @@ package io.americanexpress.service.book.rest.service;
 
 
 import io.americanexpress.data.book.entity.BookEntity;
-import io.americanexpress.book.repository.BookRepository;
+import io.americanexpress.data.book.repository.BookRepository;
 import io.americanexpress.service.book.rest.model.CreateBookRequest;
 import io.americanexpress.service.book.rest.model.CreateBookResponse;
 import io.americanexpress.synapse.service.rest.service.reactive.BaseCreateReactiveService;
