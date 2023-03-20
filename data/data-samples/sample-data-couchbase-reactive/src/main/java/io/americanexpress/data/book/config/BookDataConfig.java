@@ -19,14 +19,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.couchbase.repository.config.EnableReactiveCouchbaseRepositories;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import static io.americanexpress.data.book.config.BookDataConfig.PACKAGE_NAME;
 
 @Configuration
 @PropertySource("classpath:/data-book-application.properties")
 @EnableReactiveCouchbaseRepositories(basePackages = PACKAGE_NAME)
-@EnableTransactionManagement
 public class BookDataConfig extends BaseReactiveCouchbaseDataConfig {
 
     /**
