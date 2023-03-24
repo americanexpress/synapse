@@ -23,14 +23,15 @@ import io.americanexpress.synapse.client.rest.handler.BaseReactiveRestResponseEr
  * {@code WeatherReactiveClient} contains configurations for reactive weather client.
  */
 @ReactiveRestClient
-public class WeatherReactiveClient extends BaseGetReactiveRestClient<WeatherRequest, WeatherResponse> {
+public class WeatherReactiveClient extends BaseGetReactiveRestClient<WeatherRequest, WeatherResponse, WeatherReactiveClientHeadersFactory> {
 
     /**
      * Argument constructor creates a new instance of BaseGetReactiveRestClient with given values.
      *
+     * @param httpHeadersFactory               HTTP headers factory used to produce the custom HTTP headers required to consume the back end service
      * @param reactiveRestResponseErrorHandler used to handle errors from the reactive REST client
      */
-    protected WeatherReactiveClient(BaseReactiveRestResponseErrorHandler reactiveRestResponseErrorHandler) {
-        super(reactiveRestResponseErrorHandler);
+    protected WeatherReactiveClient(WeatherReactiveClientHeadersFactory httpHeadersFactory, BaseReactiveRestResponseErrorHandler reactiveRestResponseErrorHandler) {
+        super(httpHeadersFactory, reactiveRestResponseErrorHandler);
     }
 }

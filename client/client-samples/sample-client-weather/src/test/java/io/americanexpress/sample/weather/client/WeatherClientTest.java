@@ -1,6 +1,7 @@
 package io.americanexpress.sample.weather.client;
 
 import io.americanexpress.sample.client.weather.client.WeatherClient;
+import io.americanexpress.sample.client.weather.client.WeatherClientHeadersFactory;
 import io.americanexpress.sample.client.weather.model.WeatherRequest;
 import io.americanexpress.sample.client.weather.model.WeatherResponse;
 import io.americanexpress.sample.weather.config.WeatherClientTestConfig;
@@ -13,7 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
  * {@code WeatherClientTest} tests the {@link WeatherClient}
  */
 @ContextConfiguration(classes = WeatherClientTestConfig.class)
-public class WeatherClientTest extends BaseRestClientUnitTest<WeatherRequest, WeatherResponse, WeatherClient> {
+public class WeatherClientTest extends BaseRestClientUnitTest<WeatherRequest, WeatherResponse, WeatherClientHeadersFactory, WeatherClient> {
 
     /**
      * To provide a mock client request.
@@ -28,8 +29,7 @@ public class WeatherClientTest extends BaseRestClientUnitTest<WeatherRequest, We
      */
     @Override
     protected WeatherResponse mockDefaultClientResponse() {
-        WeatherResponse weatherResponse = new WeatherResponse();
-        return weatherResponse;
+        return new WeatherResponse();
     }
 
     /**

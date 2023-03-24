@@ -29,8 +29,8 @@ import org.springframework.http.HttpHeaders;
 /**
  * {@code BaseClientHttpHeadersFactoryTest} is for testing {@link BaseClientHttpHeadersFactory}
  *
- * @param <I> the type parameter
- * @param <H> the type parameter
+ * @param <I> the input type
+ * @param <H> the headers factory
  */
 public abstract class BaseClientHttpHeadersFactoryTest<I extends BaseClientRequest,
         H extends BaseClientHttpHeadersFactory<I>> extends BaseClientTest {
@@ -55,34 +55,18 @@ public abstract class BaseClientHttpHeadersFactoryTest<I extends BaseClientReque
 
     @Test
     void create_givenNullClientRequest_expectedNullPointerException() {
-        Assertions.assertThrows(NullPointerException.class, () -> httpHeadersFactory.create(new ClientHeaders(), null, url), CommonAssertionMessages.EXCEPTION_NOT_THROWN);
+        Assertions.assertThrows(NullPointerException.class, () -> httpHeadersFactory.create(new HttpHeaders(), null, url), CommonAssertionMessages.EXCEPTION_NOT_THROWN);
     }
 
     @Test
     void create_givenEmptyClientHeaders_expectedNullPointerException() {
         I clientRequest = mockDefaultClientRequest();
-        Assertions.assertThrows(NullPointerException.class, () -> httpHeadersFactory.create(new ClientHeaders(), clientRequest, url), CommonAssertionMessages.EXCEPTION_NOT_THROWN);
-    }
-
-    @Test
-    void create_givenEmptyClientHeadersRouting_expectedNullPointerException() {
-        ClientHeaders headers = new ClientHeaders();
-        headers.setTrace(new ClientTrace());
-        I clientRequest = mockDefaultClientRequest();
-        Assertions.assertThrows(NullPointerException.class, () -> httpHeadersFactory.create(headers, clientRequest, url), CommonAssertionMessages.EXCEPTION_NOT_THROWN);
-    }
-
-    @Test
-    void create_givenEmptyClientHeadersTrace_expectedNullPointerException() {
-        ClientHeaders headers = new ClientHeaders();
-        headers.setRouting(new ClientRouting());
-        I clientRequest = mockDefaultClientRequest();
-        Assertions.assertThrows(NullPointerException.class, () -> httpHeadersFactory.create(headers, clientRequest, url), CommonAssertionMessages.EXCEPTION_NOT_THROWN);
+        Assertions.assertThrows(NullPointerException.class, () -> httpHeadersFactory.create(new HttpHeaders(), clientRequest, url), CommonAssertionMessages.EXCEPTION_NOT_THROWN);
     }
 
     @Test
     void create_givenValidClientHeaders_expectedValidHttpHeaders() throws Exception {
-        ClientHeaders clientHeaders = getDefaultClientHeaders();
+        HttpHeaders clientHeaders = getDefaultClientHeaders();
         I clientRequest = mockDefaultClientRequest();
         String url = "https://example.com";
         HttpHeaders actual = httpHeadersFactory.create(clientHeaders, clientRequest, url);
@@ -91,7 +75,7 @@ public abstract class BaseClientHttpHeadersFactoryTest<I extends BaseClientReque
     
     protected abstract void initialize(String url);
     
-    protected abstract ClientHeaders getDefaultClientHeaders() throws Exception;
+    protected abstract HttpHeaders getDefaultClientHeaders() throws Exception;
 
     protected abstract I mockDefaultClientRequest();
 }
