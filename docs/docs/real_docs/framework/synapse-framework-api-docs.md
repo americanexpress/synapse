@@ -12,6 +12,6 @@
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-framework-api-docs</artifactId>
-            <version>0.3.8-SNAPSHOT</version>
+            <version>0.3.13-SNAPSHOT</version>
         </dependency>
 ```
