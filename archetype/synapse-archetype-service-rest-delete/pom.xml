@@ -17,7 +17,7 @@
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
         <artifactId>archetype</artifactId>
-        <version>0.3.8-SNAPSHOT</version>
+        <version>0.3.13-SNAPSHOT</version>
     </parent>
     <artifactId>synapse-archetype-service-rest-delete</artifactId>
     <build>
