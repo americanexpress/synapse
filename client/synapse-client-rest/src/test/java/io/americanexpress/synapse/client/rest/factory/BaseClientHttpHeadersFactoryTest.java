@@ -39,7 +39,7 @@ class BaseClientHttpHeadersFactoryTest {
 
         @SuppressWarnings("unchecked")
         BaseClientHttpHeadersFactory<BaseClientRequest> factory = (BaseClientHttpHeadersFactory<BaseClientRequest>) mock(BaseClientHttpHeadersFactory.class);
-        when(factory.create(any(ClientHeaders.class), any(BaseClientRequest.class), any())).thenReturn(null);
+        when(factory.create(any(HttpHeaders.class), any(BaseClientRequest.class), any())).thenReturn(null);
         HttpHeaders actual = factory.create(null, null, null);
         assertNull(actual, "HTTP headers are null.");
     }
