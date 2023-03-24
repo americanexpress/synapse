@@ -241,7 +241,10 @@ public abstract class BaseControllerTest<O extends BaseServiceResponse> {
                 resultActions.andExpect(MockMvcResultMatchers.status().isUnauthorized());
             } else if (HttpStatus.NO_CONTENT.equals(httpStatusExpected)) {
                 resultActions.andExpect(MockMvcResultMatchers.status().isNoContent());
-            } else {
+            } else if (HttpStatus.PARTIAL_CONTENT.equals(httpStatusExpected)) {
+                resultActions.andExpect(MockMvcResultMatchers.status().isPartialContent());
+            }
+            else {
                 Assertions.fail();
             }
         }

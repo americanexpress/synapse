@@ -13,6 +13,7 @@
  */
 package io.americanexpress.sample.client.reactive.weather.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
 
 /**
@@ -34,6 +35,12 @@ public class WeatherResponse implements BaseClientResponse {
      * The elevation
      */
     private String elevation;
+
+    /**
+     * The current weather
+     */
+    @JsonProperty("current_weather")
+    private CurrentWeather currentWeather;
 
     /**
      * Gets latitude.
@@ -87,5 +94,23 @@ public class WeatherResponse implements BaseClientResponse {
      */
     public void setElevation(String elevation) {
         this.elevation = elevation;
+    }
+
+    /**
+     * Gets current weather.
+     *
+     * @return the current weather
+     */
+    public CurrentWeather getCurrentWeather() {
+        return currentWeather;
+    }
+
+    /**
+     * Sets current weather.
+     *
+     * @param currentWeather the current weather
+     */
+    public void setCurrentWeather(CurrentWeather currentWeather) {
+        this.currentWeather = currentWeather;
     }
 }

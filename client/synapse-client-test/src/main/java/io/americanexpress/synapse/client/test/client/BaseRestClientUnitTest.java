@@ -54,7 +54,8 @@ public abstract class BaseRestClientUnitTest<I extends BaseClientRequest,
         O extends BaseClientResponse,
         C extends BaseRestClient<I, O>> extends BaseRestClientTest<I, O, C> {
 
-	protected O clientResponse;
+    public static final String CLIENT_RESPONSE = "Client response {}";
+    protected O clientResponse;
 
     protected HttpHeaders headers;
 
@@ -77,7 +78,7 @@ public abstract class BaseRestClientUnitTest<I extends BaseClientRequest,
         O actual = restClient.callMonoService(headers, clientRequest);
         mockServer.verify();
         assertNotNull(actual, CommonAssertionMessages.RESPONSE_IS_NULL);
-        logger.debug("Client response {}", actual);
+        logger.debug(CLIENT_RESPONSE, actual);
     }
 
     @Test
@@ -102,7 +103,7 @@ public abstract class BaseRestClientUnitTest<I extends BaseClientRequest,
         // Assert that the expectations have been met
         pathVariableMockServer.verify();
         assertNotNull(actual, CommonAssertionMessages.RESPONSE_IS_NULL);
-        logger.debug("Client response {}", actual);
+        logger.debug(CLIENT_RESPONSE, actual);
     }
 
     @Test
@@ -125,7 +126,7 @@ public abstract class BaseRestClientUnitTest<I extends BaseClientRequest,
         O actual = restClient.callMonoService(headers, clientRequest, mockQueryParameter());
         queryParameterMockServer.verify();
         assertNotNull(actual, CommonAssertionMessages.RESPONSE_IS_NULL);
-        logger.debug("Client response {}", actual);
+        logger.debug(CLIENT_RESPONSE, actual);
     }
 
     @Test
@@ -148,7 +149,7 @@ public abstract class BaseRestClientUnitTest<I extends BaseClientRequest,
         O actual = restClient.callMonoService(headers, clientRequest, mockQueryParameter(), mockPathVariable());
         queryParameterMockServer.verify();
         assertNotNull(actual, CommonAssertionMessages.RESPONSE_IS_NULL);
-        logger.debug("Client response {}", actual);
+        logger.debug(CLIENT_RESPONSE, actual);
     }
 
     @Test

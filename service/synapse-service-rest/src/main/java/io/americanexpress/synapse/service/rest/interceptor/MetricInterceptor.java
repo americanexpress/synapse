@@ -68,10 +68,10 @@ public class MetricInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception exception) throws Exception {
         long startTime = (Long) request.getAttribute("startTime");
-        long endTime = System.nanoTime();
+        long endTime = System.currentTimeMillis();
         long executeTime = endTime - startTime;
         int status = (response).getStatus();
-        logger.info("RESPONSE TIME: REQUEST_ID: {}, HTTP_METHOD: {}, URI: {}, STATUS: {}, TIME: {} nanoseconds.",
+        logger.info("RESPONSE TIME: REQUEST_ID: {}, HTTP_METHOD: {}, URI: {}, STATUS: {}, TIME: {} milliseconds.",
                 request.getAttribute("requestId"), request.getMethod(), request.getRequestURI(), status, executeTime);
     }
 }

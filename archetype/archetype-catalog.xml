@@ -107,5 +107,10 @@
 			<artifactId>synapse-archetype-service-rest-reactive-post</artifactId>
 			<version>0.3.8-SNAPSHOT</version>
 		</archetype>
+		<archetype>
+			<groupId>io.americanexpress.synapse</groupId>
+			<artifactId>synapse-archetype-service-rest-reactive-put</artifactId>
+			<version>0.3.8-SNAPSHOT</version>
+		</archetype>
 	</archetypes>
 </archetype-catalog>

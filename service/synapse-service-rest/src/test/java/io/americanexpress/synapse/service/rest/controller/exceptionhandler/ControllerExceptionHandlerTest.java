@@ -72,14 +72,14 @@ class ControllerExceptionHandlerTest {
     @Test
     void handleApplicationException_whenApplicationExceptionContainsNoCause_expected400() {
         ResponseEntity<ErrorResponse> errorResponseEntity = CONTROLLER_EXCEPTION_HANDLER.handleApplicationClientException(new ApplicationClientException("There was an error from the external provider", ErrorCode.GENERIC_4XX_ERROR));
-        assertErrorResponse(errorResponseEntity, ErrorCode.GENERIC_4XX_ERROR, ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE, "Your client has issued a malformed or illegal request.", HttpStatus.BAD_REQUEST);
+        assertErrorResponse(errorResponseEntity, ErrorCode.GENERIC_4XX_ERROR, ErrorCode.GENERIC_4XX_ERROR.getMessage(), "Your client has issued a malformed or illegal request.", HttpStatus.BAD_REQUEST);
     }
 
     @Test
     void handleApplicationException_whenApplicationExceptionContainsCause_expected500() {
         HttpServletRequest mockedRequest = new MockHttpServletRequest();
         ResponseEntity<ErrorResponse> errorResponseEntity = CONTROLLER_EXCEPTION_HANDLER.handleApplicationServerException(new ApplicationServerException(new IOException()), mockedRequest);
-        assertErrorResponse(errorResponseEntity, ErrorCode.GENERIC_5XX_ERROR, ControllerExceptionHandler.GENERIC_5XX_HEADER_MESSAGE, "There was an error. Please try again later.", HttpStatus.INTERNAL_SERVER_ERROR);
+        assertErrorResponse(errorResponseEntity, ErrorCode.GENERIC_5XX_ERROR, ErrorCode.GENERIC_5XX_ERROR.getMessage(), "There was an error. Please try again later.", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @Test
@@ -93,7 +93,7 @@ class ControllerExceptionHandlerTest {
         methodParameter.withTypeIndex(1);
 
         ResponseEntity<ErrorResponse> errorResponseEntity = CONTROLLER_EXCEPTION_HANDLER.handleMethodArgumentNotValidException(new MethodArgumentNotValidException(methodParameter, bindingResult));
-        assertErrorResponse(errorResponseEntity, ErrorCode.GENERIC_4XX_ERROR, ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE, FIELD_DEFAULT_MESSAGE, HttpStatus.BAD_REQUEST);
+        assertErrorResponse(errorResponseEntity, ErrorCode.GENERIC_4XX_ERROR, ErrorCode.GENERIC_4XX_ERROR.getMessage(), FIELD_DEFAULT_MESSAGE, HttpStatus.BAD_REQUEST);
     }
     
     @Test
@@ -102,25 +102,25 @@ class ControllerExceptionHandlerTest {
         when(bindingResult.getFieldErrors()).thenReturn(fieldErrors);
         methodParameter.withTypeIndex(1);
         ResponseEntity<ErrorResponse> errorResponseEntity = CONTROLLER_EXCEPTION_HANDLER.handleBindException(new MethodArgumentNotValidException(methodParameter, bindingResult));
-        assertErrorResponse(errorResponseEntity, ErrorCode.GENERIC_4XX_ERROR, ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE, "sampleField " + FIELD_DEFAULT_MESSAGE, HttpStatus.BAD_REQUEST);
+        assertErrorResponse(errorResponseEntity, ErrorCode.GENERIC_4XX_ERROR, ErrorCode.GENERIC_4XX_ERROR.getMessage(), "sampleField " + FIELD_DEFAULT_MESSAGE, HttpStatus.BAD_REQUEST);
     }
 
     @Test
     void handleHttpMessageNotReadableException_whenHttpMessageNotReadableExceptionContainsFieldErrors_expected400() {
         ResponseEntity<ErrorResponse> errorResponseEntity = CONTROLLER_EXCEPTION_HANDLER.handleHttpMessageNotReadableException(new HttpMessageNotReadableException(FIELD_DEFAULT_MESSAGE, httpInputMessage));
-        assertErrorResponse(errorResponseEntity, ErrorCode.GENERIC_4XX_ERROR, ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE, FIELD_DEFAULT_MESSAGE, HttpStatus.BAD_REQUEST);
+        assertErrorResponse(errorResponseEntity, ErrorCode.GENERIC_4XX_ERROR, ErrorCode.GENERIC_4XX_ERROR.getMessage(), FIELD_DEFAULT_MESSAGE, HttpStatus.BAD_REQUEST);
     }
 
     @Test
     void handleThrowable_whenExceptionThrown_expected500() {
         ResponseEntity<ErrorResponse> errorResponseEntity = CONTROLLER_EXCEPTION_HANDLER.handleThrowable(new NullPointerException());
-        assertErrorResponse(errorResponseEntity, ErrorCode.GENERIC_5XX_ERROR, ControllerExceptionHandler.GENERIC_5XX_HEADER_MESSAGE, "There was an error. Please try again later.", HttpStatus.INTERNAL_SERVER_ERROR);
+        assertErrorResponse(errorResponseEntity, ErrorCode.GENERIC_5XX_ERROR, ErrorCode.GENERIC_5XX_ERROR.getMessage(), "There was an error. Please try again later.", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @Test
     void handleThrowable_whenErrorThrown_expected500() {
         ResponseEntity<ErrorResponse> errorResponseEntity = CONTROLLER_EXCEPTION_HANDLER.handleThrowable(new Error());
-        assertErrorResponse(errorResponseEntity, ErrorCode.GENERIC_5XX_ERROR, ControllerExceptionHandler.GENERIC_5XX_HEADER_MESSAGE, "There was an error. Please try again later.", HttpStatus.INTERNAL_SERVER_ERROR);
+        assertErrorResponse(errorResponseEntity, ErrorCode.GENERIC_5XX_ERROR, ErrorCode.GENERIC_5XX_ERROR.getMessage(), "There was an error. Please try again later.", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     private void assertErrorResponse(ResponseEntity<ErrorResponse> errorResponseEntity, ErrorCode expectedErrorCode, String expectedHeaderMessage, String expectedUserMessage, HttpStatus expectedStatusCode) {
