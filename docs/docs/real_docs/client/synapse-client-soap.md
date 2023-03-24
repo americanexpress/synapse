@@ -13,6 +13,6 @@
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-client-soap</artifactId>
-            <version>0.3.8-SNAPSHOT</version>
+            <version>0.3.13-SNAPSHOT</version>
         </dependency>
 ```
