@@ -30,6 +30,7 @@
         <module>synapse-utility-cryptography</module>
         <module>synapse-utility-number</module>
         <module>synapse-utility-telephone</module>
+        <module>synapse-utility-feature-flags</module>
     </modules>
 
 </project>
