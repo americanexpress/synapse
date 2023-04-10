@@ -25,6 +25,7 @@
         <module>sample-service-rest-mysql-book</module>
         <module>sample-service-rest-oracle-book</module>
         <module>sample-service-rest-postgres-book</module>
+        <module>sample-service-reactive-rest-book</module>
     </modules>
 
 </project>
