@@ -18,19 +18,17 @@ import io.americanexpress.synapse.framework.api.docs.ApiDocsConfig;
 import io.americanexpress.synapse.framework.exception.config.ExceptionConfig;
 import io.americanexpress.synapse.utilities.common.config.UtilitiesCommonConfig;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.http.codec.ServerCodecConfigurer;
+import org.springframework.http.codec.json.Jackson2JsonDecoder;
+import org.springframework.http.codec.json.Jackson2JsonEncoder;
 import org.springframework.web.reactive.config.EnableWebFlux;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
 
-import java.util.Collections;
-
 /**
- * {@code ServiceReactiveRestConfig} sets common configurations for the service layer.
+ * {@code BaseServiceReactiveRestConfig} sets common configurations for the service layer.
  *
  * @author Elisha Aquino
  */
@@ -38,33 +36,31 @@ import java.util.Collections;
 @EnableWebFlux
 @ComponentScan(basePackages = "io.americanexpress.synapse.service.reactive.rest")
 @Import({ExceptionConfig.class, ApiDocsConfig.class, UtilitiesCommonConfig.class})
-public class ServiceReactiveRestConfig implements WebFluxConfigurer {
+public class BaseServiceReactiveRestConfig implements WebFluxConfigurer {
 
     /**
      * Default object mapper.
      */
     private final ObjectMapper defaultObjectMapper;
 
-
     /**
      * Constructor taking in objectMapper & metricInterceptor
      * @param defaultObjectMapper   the default object mapper.
      */
     @Autowired
-    public ServiceReactiveRestConfig(ObjectMapper defaultObjectMapper) {
+    public BaseServiceReactiveRestConfig(ObjectMapper defaultObjectMapper) {
         this.defaultObjectMapper = defaultObjectMapper;
     }
 
     /**
-     * Get the JSON message converter.
-     *
-     * @return the JSON message converter.
+     * Configures the HTTP message readers and writers for reading from the request body and
+     * for writing to the response body in annotated controllers and functional endpoints.
+     * @param configurer the service codec configurer
      */
-    @Bean
-    public MappingJackson2HttpMessageConverter jsonMessageConverter() {
-        final MappingJackson2HttpMessageConverter messageConverter = new MappingJackson2HttpMessageConverter(getObjectMapper());
-        messageConverter.setSupportedMediaTypes(Collections.singletonList(MediaType.APPLICATION_JSON));
-        return messageConverter;
+    @Override
+    public void configureHttpMessageCodecs(ServerCodecConfigurer configurer) {
+        configurer.defaultCodecs().jackson2JsonEncoder(new Jackson2JsonEncoder(getObjectMapper()));
+        configurer.defaultCodecs().jackson2JsonDecoder(new Jackson2JsonDecoder(getObjectMapper()));
     }
 
     /**

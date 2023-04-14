@@ -1,7 +1,7 @@
 package io.americanexpress.service.book.reactive.rest.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.americanexpress.synapse.service.reactive.rest.config.ServiceReactiveRestConfig;
+import io.americanexpress.synapse.service.reactive.rest.config.BaseServiceReactiveRestConfig;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -12,7 +12,7 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @PropertySource("classpath:/service-book-application.properties")
 @ComponentScan(basePackages = "io.americanexpress.service.book.reactive.rest")
-public class BookConfig extends ServiceReactiveRestConfig {
+public class BookConfig extends BaseServiceReactiveRestConfig {
 
     /**
      * The constant BOOK_ENDPOINT.

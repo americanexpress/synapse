@@ -16,7 +16,7 @@ package io.americanexpress.synapse.service.reactive.rest.model;
 /**
  * {@code BaseServiceResponse} specifies the prototypes for all service responses.
  */
-public class BaseServiceResponse {
+public abstract class BaseServiceResponse {
 
     /**
      * Id used to uniquely get, update or remove a resource.
