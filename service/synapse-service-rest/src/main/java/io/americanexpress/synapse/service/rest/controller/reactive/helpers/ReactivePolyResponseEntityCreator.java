@@ -20,8 +20,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
 import reactor.core.publisher.Flux;
 
-import jakarta.servlet.http.HttpServletResponse;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**

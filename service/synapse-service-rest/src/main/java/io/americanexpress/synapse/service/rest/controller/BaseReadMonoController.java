@@ -26,7 +26,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
+
 
 /**
  * {@code BaseReadMonoController} class specifies the prototypes for listening for requests from the consumer

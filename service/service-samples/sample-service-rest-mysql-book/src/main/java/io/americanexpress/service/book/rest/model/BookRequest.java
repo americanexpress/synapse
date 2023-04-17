@@ -14,7 +14,7 @@
 package io.americanexpress.service.book.rest.model;
 
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
-import jakarta.validation.constraints.NotBlank;
+import javax.validation.constraints.NotBlank;
 
 /**
  * {@code BookRequest} Parent request object.

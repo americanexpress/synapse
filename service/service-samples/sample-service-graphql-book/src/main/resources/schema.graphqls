@@ -10,8 +10,6 @@
  # or implied. See the License for the specific language governing permissions and limitations under
  # the License.
 
-directive @connection(role : String!) on ARGUMENT_DEFINITION
-
 # GraphQL schema provides the root query and root mutation
 schema {
 

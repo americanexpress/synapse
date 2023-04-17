@@ -43,9 +43,9 @@
         <kotlin.version>1.7.20</kotlin.version>
 
         <!--Spring Versions-->
-        <spring-framework.version>6.0.2</spring-framework.version>
-        <spring-security.version>6.0.0</spring-security.version>
-        <spring-boot-framework.version>3.0.0</spring-boot-framework.version>
+        <spring-framework.version>5.3.23</spring-framework.version>
+        <spring-security.version>5.7.3</spring-security.version>
+        <spring-boot-framework.version>2.7.4</spring-boot-framework.version>
         <spring-boot-ws-framework.version>1.4.7.RELEASE</spring-boot-ws-framework.version>
         <spring-cloud.version>3.2.7</spring-cloud.version>
         <spring-native.version>0.12.1</spring-native.version>
@@ -68,7 +68,7 @@
 
         <!--Logging-->
         <log4j.version>2.19.0</log4j.version>
-        <slf4j.version>2.0.4</slf4j.version>
+        <sl4j.version>1.7.36</sl4j.version>
 
         <!--Plugins-->
         <native-plugin.version>0.9.16</native-plugin.version>
@@ -184,11 +184,6 @@
                 <artifactId>synapse-archetype-service-rest-reactive-post</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <dependency>
-                <groupId>io.americanexpress.synapse</groupId>
-                <artifactId>synapse-archetype-service-rest-reactive-put</artifactId>
-                <version>${project.version}</version>
-            </dependency>
             <!--Framework-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
@@ -299,17 +294,17 @@
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-utility-cryptography</artifactId>
-                <version>0.3.13-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-utility-date</artifactId>
-                <version>0.3.13-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-utility-number</artifactId>
-                <version>0.3.13-SNAPSHOT</version>
+                <version>${project.version}</version>
             </dependency>
             <!-- Publisher -->
             <dependency>
@@ -357,11 +352,6 @@
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>sample-service-reactive-cassandra-book</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.americanexpress.synapse</groupId>
-                <artifactId>sample-service-reactive-mysql-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -455,7 +445,7 @@
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-r2dbc</artifactId>
-                <version>${spring-boot-framework.version}</version>
+                <version>1.5.3</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.plugin</groupId>
@@ -478,7 +468,7 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
-                <version>${spring-framework.version}</version>
+                <version>5.3.18</version>
             </dependency>
 
             <!--Spring Security -->
@@ -503,7 +493,6 @@
                 <version>${spring-security.version}</version>
             </dependency>
 
-            <!--Spring Boot Dependencies-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -599,13 +588,6 @@
             <!--Spring Cloud-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2022.0.0-RC3</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-function-web</artifactId>
                 <version>${spring-cloud.version}</version>
             </dependency>
@@ -624,7 +606,7 @@
             <dependency>
                 <groupId>com.graphql-java</groupId>
                 <artifactId>graphql-java-tools</artifactId>
-                <version>5.2.4</version>
+                <version>5.2.0</version>
                 <exclusions>
                     <exclusion>
                         <groupId>com.fasterxml.jackson.core</groupId>
@@ -641,16 +623,31 @@
                 </exclusions>
             </dependency>
             <dependency>
+                <groupId>com.graphql-java</groupId>
+                <artifactId>graphql-java-extended-scalars</artifactId>
+                <version>18.3</version>
+            </dependency>
+            <dependency>
                 <groupId>com.graphql-java-kickstart</groupId>
                 <artifactId>graphql-spring-boot-starter</artifactId>
-                <version>15.0.0</version>
+                <version>${spring-boot-graphql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.graphql-java-kickstart</groupId>
+                <artifactId>graphiql-spring-boot-starter</artifactId>
+                <version>${spring-boot-graphql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.graphql-java-kickstart</groupId>
+                <artifactId>voyager-spring-boot-starter</artifactId>
+                <version>${spring-boot-graphql.version}</version>
             </dependency>
 
             <!--Tomcat-->
             <dependency>
                 <groupId>org.apache.tomcat.embed</groupId>
                 <artifactId>tomcat-embed-core</artifactId>
-                <version>10.1.5</version>
+                <version>9.0.62</version>
             </dependency>
 
             <!--Netty-->
@@ -780,23 +777,6 @@
                 <version>${jackson.version}</version>
             </dependency>
 
-            <!--Jakarta-->
-            <dependency>
-                <groupId>jakarta.validation</groupId>
-                <artifactId>jakarta.validation-api</artifactId>
-                <version>3.0.2</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.servlet</groupId>
-                <artifactId>jakarta.servlet-api</artifactId>
-                <version>6.0.0</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.xml.bind</groupId>
-                <artifactId>jakarta.xml.bind-api</artifactId>
-                <version>4.0.0</version>
-            </dependency>
-
             <!--Mock Dependencies-->
             <dependency>
                 <groupId>org.mockito</groupId>
@@ -883,12 +863,12 @@
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-ext</artifactId>
-                <version>${slf4j.version}</version>
+                <version>${sl4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>${slf4j.version}</version>
+                <version>${sl4j.version}</version>
             </dependency>
 
             <!--Couchbase-->
@@ -949,17 +929,17 @@
             <dependency>
                 <groupId>org.mongodb</groupId>
                 <artifactId>mongodb-driver-sync</artifactId>
-                <version>4.8.0</version>
+                <version>4.7.2</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
-                <version>${spring-boot-framework.version}</version>
+                <version>2.7.4</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-mongodb</artifactId>
-                <version>4.0.0</version>
+                <version>3.4.5</version>
             </dependency>
 
             <!--Kotlin-->
@@ -974,11 +954,12 @@
                 <version>${kotlin.version}</version>
                 <scope>test</scope>
             </dependency>
+
             <!--Cassandra-->
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-cassandra</artifactId>
-                <version>4.0.0</version>
+                <version>3.4.3</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -991,11 +972,23 @@
                 <version>3.4.24</version>
             </dependency>
 
+            <!-- MY SQL -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>8.0.31</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.miku</groupId>
+                <artifactId>r2dbc-mysql</artifactId>
+                <version>0.8.2.RELEASE</version>
+            </dependency>
+
             <!-- Oracle -->
             <dependency>
                 <groupId>com.oracle.database.jdbc</groupId>
                 <artifactId>ojdbc11</artifactId>
-                <version>21.7.0.0</version>
+                <version>21.5.0.0</version>
             </dependency>
             <dependency>
                 <groupId>com.oracle.database.r2dbc</groupId>
@@ -1007,24 +1000,12 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-redis</artifactId>
-                <version>${spring-boot-framework.version}</version>
+                <version>2.7.3</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-redis</artifactId>
-                <version>${spring-boot-framework.version}</version>
-            </dependency>
-
-            <!-- MY SQL -->
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>8.0.31</version>
-            </dependency>
-            <dependency>
-                <groupId>dev.miku</groupId>
-                <artifactId>r2dbc-mysql</artifactId>
-                <version>0.8.2.RELEASE</version>
+                <version>2.7.3</version>
             </dependency>
 
             <!--AWS-->
@@ -1056,13 +1037,6 @@
                 <groupId>org.testcontainers</groupId>
                 <artifactId>testcontainers</artifactId>
                 <version>${testcontainers.version}</version>
-            </dependency>
-
-            <!--Reactor-->
-            <dependency>
-                <groupId>io.projectreactor</groupId>
-                <artifactId>reactor-test</artifactId>
-                <version>3.5.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -1498,14 +1472,6 @@
             <url>https://repo.spring.io/snapshot</url>
             <snapshots>
                 <enabled>true</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
             </snapshots>
         </repository>
     </repositories>

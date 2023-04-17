@@ -23,7 +23,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
+
 
 /**
  * {@code BaseUpdateController} class specifies the prototypes for listening for requests from the consumer
