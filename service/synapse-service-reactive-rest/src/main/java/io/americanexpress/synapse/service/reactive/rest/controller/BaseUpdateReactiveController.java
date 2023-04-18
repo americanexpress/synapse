@@ -29,8 +29,8 @@ import reactor.core.publisher.Mono;
 /**
  * {@code BaseUpdateReactiveController} class specifies the prototypes for listening for requests from the consumer
  * to Update (PUT/PATCH) a resource. This controller expects only one object.
- * @param <I>
- * @param <S>
+ * @param <I> an object extending the {@link BaseServiceRequest}
+ * @param <S> an object extending the {@link BaseUpdateReactiveService}
  */
 public class BaseUpdateReactiveController<I extends BaseServiceRequest, S extends BaseUpdateReactiveService<I>> extends BaseController<S> {
 

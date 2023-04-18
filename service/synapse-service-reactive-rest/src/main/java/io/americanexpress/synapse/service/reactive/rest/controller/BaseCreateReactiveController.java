@@ -32,9 +32,9 @@ import reactor.core.publisher.Mono;
  * {@code BaseCreateReactiveController} class specifies the prototypes for listening for requests from the consumer
  * to Create (POST), Update (PUT/PATCH) or Delete (DELETE) a resource.
  *
- * @param <I> input request type
- * @param <O> output response type
- * @param <S> service type
+ * @param <I> an object extending the {@link BaseServiceRequest}
+ * @param <O> an object extending the {@link BaseServiceResponse}
+ * @param <S> an object extending the {@link BaseCreateReactiveService}
  * @author Gabriel Jimenez
  */
 public abstract class BaseCreateReactiveController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseCreateReactiveService<I, O>> extends BaseController<S> {
@@ -53,7 +53,6 @@ public abstract class BaseCreateReactiveController<I extends BaseServiceRequest,
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 403, message = "Forbidden"),
     })
-    // ResponseEntity<Mono<O>>
     public Mono<ResponseEntity<O>> create(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
 

@@ -20,8 +20,8 @@ import reactor.core.publisher.Mono;
 
 /**
  * {@code BaseCreateReactiveService} specifies the prototypes for performing business logic.
- * @param <I> service request
- * @param <O> service response
+ * @param <I> an object extending the {@link BaseServiceRequest}
+ * @param <O> an object extending the {@link BaseServiceResponse}
  */
 public abstract class BaseCreateReactiveService<I extends BaseServiceRequest, O extends BaseServiceResponse> extends BaseService {
 

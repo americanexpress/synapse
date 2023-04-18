@@ -28,7 +28,7 @@ import reactor.core.publisher.Mono;
  * {@code BaseDeleteReactiveController} is base class for delete mono controller. This controller handles DELETE
  *  method requests, but specifically for delete purposes.
  *  This controller returns a single object.
- * @param <S>
+ * @param <S> an object extending the {@link BaseDeleteReactiveService}
  */
 public abstract class BaseDeleteReactiveController<S extends BaseDeleteReactiveService> extends BaseController<S> {
 

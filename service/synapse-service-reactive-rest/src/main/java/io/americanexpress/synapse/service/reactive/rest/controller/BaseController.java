@@ -13,7 +13,6 @@
  */
 package io.americanexpress.synapse.service.reactive.rest.controller;
 
-import io.americanexpress.synapse.service.reactive.rest.service.BaseReadMonoReactiveService;
 import io.americanexpress.synapse.service.reactive.rest.service.BaseService;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
@@ -21,7 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * {@code BaseController} The base controller every child controller should extend this parent controller
- * @param <S> an object extending the {@link BaseReadMonoReactiveService}
+ * @param <S> an object extending the {@link BaseService}
  */
 public abstract class BaseController<S extends BaseService> {
 

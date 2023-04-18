@@ -31,9 +31,9 @@ import reactor.core.publisher.Flux;
  * {@code BaseReadPolyReactiveController} class specifies the prototypes for listening for requests from the consumer
  * to Read (POST) a resource.
  *
- * @param <I> input request type
- * @param <O> output response type
- * @param <S> service type
+ * @param <I> an object extending the {@link BaseServiceRequest}
+ * @param <O> an object extending the {@link BaseServiceResponse}
+ * @param <S> an object extending the {@link BaseReadPolyReactiveService}
  * @author Gabriel Jimenez
  */
 public abstract class BaseReadPolyReactiveController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadPolyReactiveService<I, O>> extends BaseController<S> {
