@@ -36,7 +36,8 @@ public abstract class BaseDeleteReactiveService extends BaseService {
     }
 
     /**
-     * Prototype for deleting a resource
+     * Prototype for deleting a resource.
+     *
      * @param headers containing the HTTP headers from the consumer
      * @param identifier an identifier
      * @return a mono void

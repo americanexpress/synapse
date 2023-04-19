@@ -35,6 +35,13 @@ public abstract class BaseMetricsFilter implements WebFilter {
      */
     private final XLogger logger = XLoggerFactory.getXLogger(getClass());
 
+    /**
+     * Captures metrics for the request.
+     *
+     * @param exchange the server web exchange
+     * @param chain the web filter chain
+     * @return a void mono
+     */
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         long startTime = System.currentTimeMillis();

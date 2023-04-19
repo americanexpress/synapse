@@ -18,12 +18,23 @@ import io.americanexpress.synapse.service.reactive.rest.model.BaseServiceRequest
 import java.util.Objects;
 
 /**
- * ReadBookRequest is the model used on the request of the Read Book Controller.
+ * {@code ReadBookRequest} is the model used on the request of the Read Book Controller.
  */
 public class ReadBookRequest implements BaseServiceRequest {
 
+    /**
+     * The book identifier.
+     */
     private String identifier;
+
+    /**
+     * The book title.
+     */
     private String title;
+
+    /**
+     * The author of the book.
+     */
     private String author;
 
     /**
@@ -33,7 +44,7 @@ public class ReadBookRequest implements BaseServiceRequest {
     }
 
     /**
-     * Instantiates a new Read book request.
+     * Instantiates a new ReadBookRequest.
      *
      * @param title  the title
      * @param author the author
@@ -43,16 +54,32 @@ public class ReadBookRequest implements BaseServiceRequest {
         this.author = author;
     }
 
+    /**
+     * Instantiates a new ReadBookRequest.
+     * @param identifier the identifier
+     * @param title the title
+     * @param author the author
+     */
     public ReadBookRequest(String identifier, String title, String author) {
         this.identifier = identifier;
         this.title = title;
         this.author = author;
     }
 
+    /**
+     * Gets identifier.
+     *
+     * @return the identifier
+     */
     public String getIdentifier() {
         return identifier;
     }
 
+    /**
+     * Gets identifier.
+     *
+     * @param identifier the identifier
+     */
     public void setIdentifier(String identifier) {
         this.identifier = identifier;
     }
@@ -93,6 +120,12 @@ public class ReadBookRequest implements BaseServiceRequest {
         this.author = author;
     }
 
+    /**
+     * Determines if one object is equal to another.
+     *
+     * @param o the object
+     * @return true if equal, else false
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -101,11 +134,19 @@ public class ReadBookRequest implements BaseServiceRequest {
         return identifier == that.identifier && Objects.equals(title, that.title) && Objects.equals(author, that.author);
     }
 
+    /**
+     * Returns a hash code value for the object.
+     * @return the object's hashcode
+     */
     @Override
     public int hashCode() {
         return Objects.hash(identifier, title, author);
     }
 
+    /**
+     * Returns a string representation of the object.
+     * @return the string representation of the object
+     */
     @Override
     public String toString() {
         return "ReadPolyBookRequest{" +

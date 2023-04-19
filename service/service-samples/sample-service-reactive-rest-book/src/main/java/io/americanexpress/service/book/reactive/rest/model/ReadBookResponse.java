@@ -18,21 +18,28 @@ import io.americanexpress.synapse.service.reactive.rest.model.BaseServiceRespons
 import java.util.Objects;
 
 /**
- * ReadBookResponse is the response used on the mono and poly read controllers.
+ * {@code ReadBookResponse} is the response used on the mono and poly read controllers.
  */
 public class ReadBookResponse extends BaseServiceResponse {
 
+    /**
+     * The book title.
+     */
     private String title;
+
+    /**
+     * The author of the book.
+     */
     private String author;
 
     /**
-     * Instantiates a new Read book response.
+     * Instantiates a new ReadBookResponse.
      */
     public ReadBookResponse() {
     }
 
     /**
-     * Instantiates a new Read book response.
+     * Instantiates a new ReadBookResponse.
      *
      * @param title  the title
      * @param author the author
@@ -42,12 +49,18 @@ public class ReadBookResponse extends BaseServiceResponse {
         this.author = author;
     }
 
+    /**
+     * Instantiates a new ReadBookResponse.
+     *
+     * @param id the identifier
+     * @param title  the title
+     * @param author the author
+     */
     public ReadBookResponse(String id, String title, String author) {
         this.title = title;
         this.author = author;
         super.setId(id);
     }
-
 
     /**
      * Gets title.
@@ -85,6 +98,12 @@ public class ReadBookResponse extends BaseServiceResponse {
         this.author = author;
     }
 
+    /**
+     * Determines if one object is equal to another.
+     *
+     * @param o the object
+     * @return true if equal, else false
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -93,6 +112,10 @@ public class ReadBookResponse extends BaseServiceResponse {
         return Objects.equals(title, that.title) && Objects.equals(author, that.author);
     }
 
+    /**
+     * Returns a hash code value for the object.
+     * @return the object's hashcode
+     */
     @Override
     public int hashCode() {
         return Objects.hash(title, author);

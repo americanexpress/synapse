@@ -44,7 +44,8 @@ public class BaseServiceReactiveRestConfig implements WebFluxConfigurer {
     private final ObjectMapper defaultObjectMapper;
 
     /**
-     * Constructor taking in objectMapper & metricInterceptor
+     * Constructor taking in objectMapper.
+     *
      * @param defaultObjectMapper   the default object mapper.
      */
     @Autowired
@@ -55,6 +56,7 @@ public class BaseServiceReactiveRestConfig implements WebFluxConfigurer {
     /**
      * Configures the HTTP message readers and writers for reading from the request body and
      * for writing to the response body in annotated controllers and functional endpoints.
+     *
      * @param configurer the service codec configurer
      */
     @Override
@@ -65,6 +67,7 @@ public class BaseServiceReactiveRestConfig implements WebFluxConfigurer {
 
     /**
      * Returns default objectMapper.
+     *
      * @return an object mapper
      */
     protected ObjectMapper getObjectMapper() {

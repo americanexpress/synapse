@@ -36,6 +36,8 @@ public abstract class BaseGetMonoReactiveController<O extends BaseServiceRespons
 
     /**
      * Get a single resource from the back end service.
+     *
+     * @param headers the headers
      * @param id used for retrieval
      * @return response
      */

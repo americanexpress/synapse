@@ -28,6 +28,7 @@ public abstract class BaseCreateReactiveService<I extends BaseServiceRequest, O 
     /**
      * Add a single resource.
      *
+     * @param headers the headers
      * @param request body received from the controller
      * @return response body to the controller
      */
@@ -41,6 +42,7 @@ public abstract class BaseCreateReactiveService<I extends BaseServiceRequest, O 
     /**
      * Prototype for adding a resource.
      *
+     * @param headers the headers
      * @param request body received from the controller
      * @return response body to the controller
      */

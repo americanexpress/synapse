@@ -38,11 +38,15 @@ import reactor.core.publisher.Flux;
  */
 public abstract class BaseReadPolyReactiveController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadPolyReactiveService<I, O>> extends BaseController<S> {
 
+    /**
+     * The constant MULTIPLE_RESULTS.
+     */
     public static final String MULTIPLE_RESULTS = "/multiple_results";
 
     /**
      * Get a list of multiple resources from the back end service.
      *
+     * @param headers the headers
      * @param serviceRequest body from the consumer
      * @return a list of resources from the back end service
      */

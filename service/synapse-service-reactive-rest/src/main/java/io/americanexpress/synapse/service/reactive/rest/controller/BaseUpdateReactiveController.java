@@ -37,6 +37,7 @@ public class BaseUpdateReactiveController<I extends BaseServiceRequest, S extend
     /**
      * Update a single resource entirely.
      *
+     * @param headers the headers
      * @param serviceRequest body from the consumer
      */
     @Operation(tags = "Update Operation", summary = "Updates a resource reactively")

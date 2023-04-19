@@ -26,6 +26,7 @@ public abstract class BaseGetPolyReactiveService<O extends BaseServiceResponse> 
 
     /**
      * Retrieves multiple resource.
+     *
      * @param headers headers
      * @return a flux read response
      */
@@ -37,7 +38,8 @@ public abstract class BaseGetPolyReactiveService<O extends BaseServiceResponse> 
     }
 
     /**
-     * Prototype for reading multiple resources
+     * Prototype for reading multiple resources.
+     *
      * @param headers headers
      * @return a flux read response
      */

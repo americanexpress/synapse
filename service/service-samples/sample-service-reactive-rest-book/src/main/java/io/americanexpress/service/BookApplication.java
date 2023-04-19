@@ -21,7 +21,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * BookApplication starts the Spring Boot Application for the book rest sample.
+ * {@code BookApplication} starts the Spring Boot Application for the book rest sample.
  */
 @OpenAPIDefinition(info = @Info(
         title = "Book API",
@@ -30,8 +30,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class BookApplication {
 
+    /**
+     * Logs the exceptions.
+     */
     private static final XLogger LOGGER = XLoggerFactory.getXLogger(BookApplication.class);
 
+    /**
+     * Runs the BookApplication.
+     *
+     * @param args the arguments
+     */
     public static void main(String[] args) {
         SpringApplication.run(BookApplication.class, args);
         LOGGER.info("Rest Book Application is up and running ...");

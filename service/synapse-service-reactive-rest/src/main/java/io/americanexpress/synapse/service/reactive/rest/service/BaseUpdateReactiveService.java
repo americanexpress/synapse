@@ -25,6 +25,7 @@ public abstract class BaseUpdateReactiveService<I extends BaseServiceRequest> ex
 
     /**
      * Update a single resource reactively.
+     *
      * @param headers headers
      * @param request body received from the controller
      * @return a mono void
@@ -38,7 +39,9 @@ public abstract class BaseUpdateReactiveService<I extends BaseServiceRequest> ex
 
     /**
      * Prototype for updating a resource.
-     * @param request ody received from the controller
+     *
+     * @param headers the headers
+     * @param request body received from the controller
      * @return a mono void
      */
     protected abstract Mono<Void> executeUpdate(HttpHeaders headers, I request);

@@ -15,6 +15,7 @@ package io.americanexpress.synapse.service.reactive.rest.healthcheck;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
 
 /**
  * {@code HealthCheckController} class specifies health check endpoint URIs to ensure that requests are being received by the application.
@@ -37,7 +38,7 @@ public class HealthCheckController {
      * @return a constant message to notify that the service is receiving a request
      */
     @GetMapping(HEALTH_CHECK_ENDPOINT)
-    public String healthCheck() {
-        return HEALTH_MESSAGE;
+    public Mono<String> healthCheck() {
+        return Mono.just(HEALTH_MESSAGE);
     }
 }

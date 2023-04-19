@@ -39,11 +39,15 @@ import reactor.core.publisher.Mono;
  */
 public abstract class BaseReadMonoReactiveController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadMonoReactiveService<I, O>> extends BaseController<S> {
 
+    /**
+     * The constant INQUIRY_RESULTS.
+     */
     public static final String INQUIRY_RESULTS = "/inquiry_results";
 
     /**
      * Get a single resource from the back end service.
      *
+     * @param headers the headers
      * @param serviceRequest body from the consumer
      * @return a single resource from the back end service
      */

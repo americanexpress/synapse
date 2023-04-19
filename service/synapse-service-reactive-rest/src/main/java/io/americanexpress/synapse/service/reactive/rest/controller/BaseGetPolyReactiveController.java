@@ -34,8 +34,9 @@ import reactor.core.publisher.Flux;
 public abstract class BaseGetPolyReactiveController<O extends BaseServiceResponse, S extends BaseGetPolyReactiveService<O>> extends BaseController<S> {
 
     /**
-     *
      * Get a list of multiple resources from the back end service.
+     *
+     * @param headers the headers
      * @return response
      */
     @ApiOperation(value = "Reactive get flux", notes = "Gets all resources reactively")

@@ -25,6 +25,7 @@ public abstract class BaseGetMonoReactiveService<O extends BaseServiceResponse> 
 
     /**
      * Retrieves one resource.
+     *
      * @param headers headers
      * @param identifier an identifier
      * @return a mono read response
@@ -37,7 +38,8 @@ public abstract class BaseGetMonoReactiveService<O extends BaseServiceResponse> 
     }
 
     /**
-     * Prototype for reading a resource
+     * Prototype for reading a resource.
+     *
      * @param headers headers
      * @param request an identifier
      * @return a mono read response

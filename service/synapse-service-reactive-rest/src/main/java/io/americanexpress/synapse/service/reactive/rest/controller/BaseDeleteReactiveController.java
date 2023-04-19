@@ -35,6 +35,7 @@ public abstract class BaseDeleteReactiveController<S extends BaseDeleteReactiveS
     /**
      * Delete a single resource.
      *
+     * @param headers the headers
      * @param identifier of the resource to be deleted
      */
     @DeleteMapping("/{identifier}")
