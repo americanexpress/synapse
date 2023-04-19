@@ -68,7 +68,7 @@
 
         <!--Logging-->
         <log4j.version>2.19.0</log4j.version>
-        <sl4j.version>1.7.36</sl4j.version>
+        <slf4j.version>1.7.36</slf4j.version>
 
         <!--Plugins-->
         <native-plugin.version>0.9.16</native-plugin.version>
@@ -874,12 +874,12 @@
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-ext</artifactId>
-                <version>${sl4j.version}</version>
+                <version>${slf4j.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>${sl4j.version}</version>
+                <version>${slf4j.version}</version>
             </dependency>
 
             <!--Couchbase-->
