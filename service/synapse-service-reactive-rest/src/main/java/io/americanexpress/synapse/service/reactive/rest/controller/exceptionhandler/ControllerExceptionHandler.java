@@ -16,8 +16,12 @@ package io.americanexpress.synapse.service.reactive.rest.controller.exceptionhan
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.americanexpress.synapse.framework.exception.ApplicationClientException;
+import io.americanexpress.synapse.framework.exception.ApplicationServerException;
+import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 import io.americanexpress.synapse.service.reactive.rest.model.ErrorResponse;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.ext.XLogger;
+import org.slf4j.ext.XLoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpStatus;
@@ -38,6 +42,8 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class ControllerExceptionHandler implements WebExceptionHandler {
 
+    private final XLogger logger = XLoggerFactory.getXLogger(getClass());
+
     /**
      * Handles input validation errors.
      */
@@ -53,13 +59,17 @@ public class ControllerExceptionHandler implements WebExceptionHandler {
     public Mono<Void> handle(ServerWebExchange exchange, Throwable throwable) {
         ErrorResponse errorResponse = null;
 
-        if (throwable instanceof WebExchangeBindException) {
+        if (throwable instanceof WebExchangeBindException webExchangeBindException) {
             exchange.getResponse().setStatusCode(HttpStatus.BAD_REQUEST);
-            errorResponse = inputValidationErrorHandler.handleInputValidationErrorMessage((WebExchangeBindException) throwable);
-        } else if (throwable instanceof ApplicationClientException) {
-            exchange.getResponse().setStatusCode(((ApplicationClientException) throwable).getErrorCode().getHttpStatus());
-            errorResponse = new ErrorResponse(((ApplicationClientException) throwable).getErrorCode(), ((ApplicationClientException) throwable).getErrorCode().getMessage(),
-                    throwable.getMessage(), ((ApplicationClientException) throwable).getDeveloperMessage());
+            errorResponse = inputValidationErrorHandler.handleInputValidationErrorMessage(webExchangeBindException);
+        } else if (throwable instanceof ApplicationClientException applicationClientException) {
+            exchange.getResponse().setStatusCode(applicationClientException.getErrorCode().getHttpStatus());
+            errorResponse = new ErrorResponse(applicationClientException.getErrorCode(), applicationClientException.getErrorCode().getMessage(),
+                    throwable.getMessage(), applicationClientException.getDeveloperMessage());
+        } else if (throwable instanceof ApplicationServerException) {
+            errorResponse = handleInternalServerError(throwable);
+        } else {
+            errorResponse = handleInternalServerError(throwable);
         }
 
         return createResponseBody(exchange, errorResponse);
@@ -80,5 +90,16 @@ public class ControllerExceptionHandler implements WebExceptionHandler {
         }
         exchange.getResponse().getHeaders().add("Content-Type", "application/json");
         return exchange.getResponse().writeWith(Flux.just(buffer));
+    }
+
+    /**
+     * Handles internal server errors.
+     * @param throwable the throwable exception
+     * @return the error response
+     */
+    public ErrorResponse handleInternalServerError(Throwable throwable) {
+        logger.catching(throwable);
+        return new ErrorResponse(ErrorCode.GENERIC_5XX_ERROR, ErrorCode.GENERIC_5XX_ERROR.getMessage(), throwable.getMessage(),
+                ApplicationServerException.getStackTrace(throwable, System.lineSeparator()));
     }
 }
