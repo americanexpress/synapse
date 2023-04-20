@@ -27,6 +27,10 @@
 
     <!--Dependencies-->
     <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
         <!--Synapse-->
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>
