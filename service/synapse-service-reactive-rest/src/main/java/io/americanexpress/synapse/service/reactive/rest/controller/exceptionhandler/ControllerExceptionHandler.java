@@ -34,6 +34,7 @@ import reactor.core.publisher.Mono;
 
 /**
  * {@code ControllerExceptionHandler} handles all the exceptions and errors thrown by the application.
+ * The order is -2 to capture exceptions from other filters.
  *
  * @author Wendy Hu
  */

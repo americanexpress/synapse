@@ -25,7 +25,7 @@ public abstract class BaseHttpHeadersFilter implements WebFilter {
      * Used for logging.
      */
     private final XLogger logger = XLoggerFactory.getXLogger(getClass());
-    
+
     /**
      * Intercepts the request to check the headers.
      *
