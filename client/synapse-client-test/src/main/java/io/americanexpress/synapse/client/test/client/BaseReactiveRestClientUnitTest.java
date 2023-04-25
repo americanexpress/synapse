@@ -15,6 +15,7 @@ package io.americanexpress.synapse.client.test.client;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.americanexpress.synapse.client.rest.client.BaseReactiveRestClient;
+import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
 import io.americanexpress.synapse.framework.exception.ApplicationServerException;
@@ -33,11 +34,13 @@ import reactor.test.StepVerifier;
  *
  * @param <I> the input type parameter
  * @param <O> the output type parameter
+ * @param <H> httpHeadersFactory used to set the HTTP headers for each web service call
  * @param <C> the client type parameter
  */
 public abstract class BaseReactiveRestClientUnitTest<I extends BaseClientRequest,
         O extends BaseClientResponse,
-        C extends BaseReactiveRestClient<I, O>> extends BaseClientTest {
+        H extends BaseClientHttpHeadersFactory<I>,
+        C extends BaseReactiveRestClient<I, O, H>> extends BaseClientTest {
 
     /**
      * The Client.

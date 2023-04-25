@@ -16,7 +16,7 @@ package io.americanexpress.synapse.framework.exception.model;
 import org.springframework.http.HttpStatus;
 
 /**
- * <code>ErrorCode</code> enum is used to return to the consumer a specific error message.
+ * {@code ErrorCode} enum is used to return to the consumer a specific error message.
  * <p>
  * ErrorCode enum class hold keys for the resource file:
  * /src/main/resources/error-messages.properties
@@ -31,6 +31,21 @@ public enum ErrorCode {
     GENERIC_4XX_ERROR(HttpStatus.BAD_REQUEST, "Invalid Request."),
 
     /**
+     * Used to validate the HTTP headers received at the HTTP layer.
+     */
+    MISSING_HTTP_HEADER_ERROR(HttpStatus.BAD_REQUEST, "Bad Request."),
+
+    /**
+     * Used for unauthorized requests.
+     */
+    UNAUTHORIZED(HttpStatus.UNAUTHORIZED, "Unauthorized"),
+
+    /**
+     * Used for forbidden requests.
+     */
+    FORBIDDEN(HttpStatus.FORBIDDEN, "Forbidden"),
+
+    /**
      * Used for if the resource isn't found.
      */
     NOT_FOUND(HttpStatus.NOT_FOUND, "Not Found."),
@@ -39,11 +54,6 @@ public enum ErrorCode {
      * Used for all of the generic 5XX series errors.
      */
     GENERIC_5XX_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Internal Error."),
-
-    /**
-     * Used to validate the HTTP headers received at the HTTP layer.
-     */
-    MISSING_HTTP_HEADER_ERROR(HttpStatus.BAD_REQUEST, "Bad Request."),
 
     /**
      * Used for when the consumer is forbidden to access a resource.

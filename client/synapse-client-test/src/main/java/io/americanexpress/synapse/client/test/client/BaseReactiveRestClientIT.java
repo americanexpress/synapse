@@ -14,6 +14,7 @@
 package io.americanexpress.synapse.client.test.client;
 
 import io.americanexpress.synapse.client.rest.client.BaseReactiveRestClient;
+import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,11 +26,13 @@ import org.springframework.http.HttpHeaders;
  *
  * @param <I> the input type parameter
  * @param <O> the output type parameter
+ * @param <H> httpHeadersFactory used to set the HTTP headers for each web service call
  * @param <C> the reactive client type parameter
  */
 public abstract class BaseReactiveRestClientIT<I extends BaseClientRequest,
         O extends BaseClientResponse,
-        C extends BaseReactiveRestClient<I, O>> extends BaseClientTest {
+        H extends BaseClientHttpHeadersFactory<I>,
+        C extends BaseReactiveRestClient<I, O, H>> extends BaseClientTest {
 
     /**
      * Initialize.

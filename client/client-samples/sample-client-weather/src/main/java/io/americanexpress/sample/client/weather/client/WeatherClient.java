@@ -23,13 +23,16 @@ import org.springframework.http.HttpMethod;
  * {@code WeatherClient} for making an api call to a weather api.
  */
 @RestClient
-public class WeatherClient extends BaseRestClient<WeatherRequest, WeatherResponse> {
+public class WeatherClient extends BaseRestClient<WeatherRequest, WeatherResponse, WeatherClientHeadersFactory> {
 
     /**
      * Argument constructor creates a new instance of BaseRestClient with given values.
+     *
+     * @param httpHeadersFactory HTTP headers factory used to produce the custom HTTP headers required to consume the back end service
+     * @param httpMethod         HTTP method of the back end service
      */
-    protected WeatherClient() {
-        super(HttpMethod.GET);
+    protected WeatherClient(WeatherClientHeadersFactory httpHeadersFactory, HttpMethod httpMethod) {
+        super(httpHeadersFactory, httpMethod);
     }
 
 }

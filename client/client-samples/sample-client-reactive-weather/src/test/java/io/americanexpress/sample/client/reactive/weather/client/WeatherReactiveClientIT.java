@@ -28,7 +28,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
  */
 @ContextConfiguration(classes = WeatherReactiveClientTestConfig.class)
 @ExtendWith(SpringExtension.class)
-class WeatherReactiveClientIT extends BaseGetReactiveRestClientIT<WeatherRequest, WeatherResponse, WeatherReactiveClient> {
+class WeatherReactiveClientIT extends BaseGetReactiveRestClientIT<WeatherRequest, WeatherResponse, WeatherReactiveClientHeadersFactory, WeatherReactiveClient> {
     @Override
     protected String mockPathVariables() {
         return null;

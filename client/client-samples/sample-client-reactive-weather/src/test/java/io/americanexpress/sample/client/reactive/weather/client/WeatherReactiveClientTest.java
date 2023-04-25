@@ -24,7 +24,7 @@ import org.springframework.test.context.ContextConfiguration;
  * {@code WeatherReactiveClientTest} tests the {@link WeatherReactiveClient}.
  */
 @ContextConfiguration(classes = WeatherReactiveClientTestConfig.class)
-public class WeatherReactiveClientTest extends BaseReactiveRestClientUnitTest<WeatherRequest, WeatherResponse, WeatherReactiveClient> {
+public class WeatherReactiveClientTest extends BaseReactiveRestClientUnitTest<WeatherRequest, WeatherResponse, WeatherReactiveClientHeadersFactory, WeatherReactiveClient> {
 
     @Override
     public WeatherRequest mockDefaultClientRequest() {

@@ -14,6 +14,7 @@
 package io.americanexpress.synapse.client.test.client;
 
 import io.americanexpress.synapse.client.rest.client.BasePostReactiveRestClient;
+import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
 import org.junit.jupiter.api.Test;
@@ -28,12 +29,14 @@ import reactor.test.StepVerifier;
  *
  * @param <I> the input type
  * @param <O> the output type
+ * @param <H> httpHeadersFactory used to set the HTTP headers for each web service call
  * @param <C> the reactive client type
  */
 @ExtendWith(SpringExtension.class)
 public abstract class BasePostReactiveRestClientIT<I extends BaseClientRequest,
         O extends BaseClientResponse,
-        C extends BasePostReactiveRestClient<I, O>> extends BaseReactiveRestClientIT<I, O, C> {
+        H extends BaseClientHttpHeadersFactory<I>,
+        C extends BasePostReactiveRestClient<I, O, H>> extends BaseReactiveRestClientIT<I, O, H, C> {
 
 
     /**
@@ -41,7 +44,7 @@ public abstract class BasePostReactiveRestClientIT<I extends BaseClientRequest,
      */
     @Test
     void callMonoService_givenValidRequest_expectedSuccessResponse() {
-        Mono<O> response = client.callMonoService(new HttpHeaders(), mockDefaultClientRequest());
+        Mono<O> response = client.callMonoService(getDefaultClientHeaders(), mockDefaultClientRequest());
         StepVerifier.create(response)
                 .expectNextCount(1)
                 .expectComplete()
@@ -53,7 +56,7 @@ public abstract class BasePostReactiveRestClientIT<I extends BaseClientRequest,
      */
     @Test
     void callMonoService_givenInvalidId_expectedError() {
-        Mono<O> response = client.callMonoService(new HttpHeaders(), mockInvalidClientRequest());
+        Mono<O> response = client.callMonoService(getDefaultClientHeaders(), mockInvalidClientRequest());
         StepVerifier.create(response)
                 .expectError()
                 .verify();
