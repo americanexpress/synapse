@@ -39,10 +39,6 @@
             <groupId>dev.miku</groupId>
             <artifactId>r2dbc-mysql</artifactId>
         </dependency>
-        <dependency>
-            <groupId>jakarta.persistence</groupId>
-            <artifactId>jakarta.persistence-api</artifactId>
-        </dependency>
         <!-- spring -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
