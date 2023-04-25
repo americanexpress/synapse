@@ -18,7 +18,6 @@ import io.americanexpress.synapse.service.rest.service.BaseGetMonoService
 import org.apache.commons.lang3.StringUtils
 import org.springframework.http.HttpHeaders
 import org.springframework.stereotype.Service
-import java.util.*
 
 /**
  * {@code GetBookService} Get book sample service in Kotlin using Synapse.
