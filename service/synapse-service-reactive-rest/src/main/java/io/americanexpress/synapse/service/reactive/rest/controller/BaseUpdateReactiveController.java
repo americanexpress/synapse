@@ -32,7 +32,7 @@ import reactor.core.publisher.Mono;
  * @param <I> an object extending the {@link BaseServiceRequest}
  * @param <S> an object extending the {@link BaseUpdateReactiveService}
  */
-public class BaseUpdateReactiveController<I extends BaseServiceRequest, S extends BaseUpdateReactiveService<I>> extends BaseController<S> {
+public abstract class BaseUpdateReactiveController<I extends BaseServiceRequest, S extends BaseUpdateReactiveService<I>> extends BaseController<S> {
 
     /**
      * Update a single resource entirely.

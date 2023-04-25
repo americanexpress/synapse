@@ -19,11 +19,11 @@ import org.springframework.http.HttpHeaders;
 import reactor.core.publisher.Flux;
 
 /**
- * {@code BaseReadPolyReactiveService} class specifies the prototypes for performing business logic.
+ * {@code BaseReadFluxReactiveService} class specifies the prototypes for performing business logic.
  * @param <I> an object extending the {@link BaseServiceRequest}
  * @param <O> an object extending the {@link BaseServiceResponse}
  */
-public abstract class BaseReadPolyReactiveService<I extends BaseServiceRequest, O extends BaseServiceResponse> extends BaseService {
+public abstract class BaseReadFluxReactiveService<I extends BaseServiceRequest, O extends BaseServiceResponse> extends BaseService {
 
     /**
      * Retrieves multiple resources with a request body.
