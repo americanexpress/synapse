@@ -15,7 +15,7 @@ package io.americanexpress.synapse.client.rest.handler;
 
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
-import org.springframework.http.HttpStatusCode;
+import org.springframework.http.HttpStatus;
 
 /**
  * {@code BaseResponseErrorHandler} class specifies the prototypes
@@ -42,7 +42,7 @@ abstract class BaseResponseErrorHandler {
      * @param responseBody the response body
      * @return the developer message
      */
-    protected String buildDeveloperMessage(HttpStatusCode statusCode, String responseBody) {
+    protected String buildDeveloperMessage(HttpStatus statusCode, String responseBody) {
         return EXTERNAL_PROVIDER_ERROR + " " + statusCode.toString() + " " + responseBody;
     }
 }

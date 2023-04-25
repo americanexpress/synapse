@@ -13,7 +13,7 @@
  */
 package io.americanexpress.function.greeting.rest.model;
 
-import jakarta.validation.constraints.NotBlank;
+import javax.validation.constraints.NotBlank;
 
 public class Greeting {
 

@@ -14,7 +14,6 @@
 package io.americanexpress.service.book.rest.service;
 
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
-import io.americanexpress.synapse.service.rest.model.ServiceHeaders;
 import io.americanexpress.synapse.service.rest.service.BaseGetMonoService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;

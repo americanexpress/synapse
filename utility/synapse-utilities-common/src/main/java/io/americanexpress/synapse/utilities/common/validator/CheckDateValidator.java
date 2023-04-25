@@ -13,8 +13,8 @@
  */
 package io.americanexpress.synapse.utilities.common.validator;
 
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 import java.text.SimpleDateFormat;
 
 /**

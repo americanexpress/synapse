@@ -27,7 +27,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import reactor.core.publisher.Mono;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
+
 
 /**
  * {@code BaseReadMonoReactiveController} class specifies the prototypes for listening for requests from the consumer
