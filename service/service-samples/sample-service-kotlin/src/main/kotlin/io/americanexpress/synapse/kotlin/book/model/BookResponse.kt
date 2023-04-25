@@ -11,20 +11,16 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.rest.service
+package io.americanexpress.synapse.kotlin.book.model
 
-import io.americanexpress.synapse.rest.model.BookResponse
-import io.americanexpress.synapse.service.rest.service.BaseGetMonoService
-import org.apache.commons.lang3.StringUtils
-import org.springframework.http.HttpHeaders
-import org.springframework.stereotype.Service
-import java.util.*
+import io.americanexpress.synapse.service.rest.model.BaseServiceResponse
 
-@Service
-class GetBookService : BaseGetMonoService<BookResponse>() {
-
-    override fun executeRead(headers: HttpHeaders?, title: String?): BookResponse {
-        val actualTitle = title ?: StringUtils.EMPTY
-        return BookResponse(title = actualTitle, author = "Gabriel")
-    }
-}
+/**
+ * {@code BookResponse} Response object for Kotlin example using Synapse.
+ */
+open class BookResponse(
+        val title: String,
+        val author: String
+        ) : BaseServiceResponse() {
+                constructor() : this("", "")
+        }

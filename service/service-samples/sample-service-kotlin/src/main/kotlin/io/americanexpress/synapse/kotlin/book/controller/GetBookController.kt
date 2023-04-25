@@ -11,16 +11,18 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.rest.controller
+package io.americanexpress.synapse.kotlin.book.controller
 
-import io.americanexpress.synapse.rest.config.BookConfig
-import io.americanexpress.synapse.rest.model.BookRequest
-import io.americanexpress.synapse.rest.model.BookResponse
-import io.americanexpress.synapse.rest.service.ReadBookService
-import io.americanexpress.synapse.service.rest.controller.BaseReadMonoController
+import io.americanexpress.synapse.kotlin.book.config.BookConfig.Companion.BOOK_ENDPOINT
+import io.americanexpress.synapse.kotlin.book.model.BookResponse
+import io.americanexpress.synapse.kotlin.book.service.GetBookService
+import io.americanexpress.synapse.service.rest.controller.BaseGetMonoController
+import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
 
-@RestController
-@RequestMapping(BookConfig.BOOK_ENDPOINT)
-class ReadBookController : BaseReadMonoController<BookRequest, BookResponse, ReadBookService>()
+/**
+ * {@code GetBookController} Get book controller Kotlin example for Synapse.
+ */
+@Controller
+@RequestMapping(BOOK_ENDPOINT)
+open class GetBookController : BaseGetMonoController<BookResponse, GetBookService>()

@@ -11,18 +11,27 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.rest.service
+package io.americanexpress.synapse.kotlin.book.service
 
-import io.americanexpress.synapse.rest.model.BookRequest
-import io.americanexpress.synapse.rest.model.BookResponse
+import io.americanexpress.synapse.kotlin.book.model.BookRequest
+import io.americanexpress.synapse.kotlin.book.model.BookResponse
 import io.americanexpress.synapse.service.rest.service.BaseReadMonoService
 import org.springframework.http.HttpHeaders
 import org.springframework.stereotype.Service
 import java.util.*
 
+/**
+ * {@code ReadBookService} Read book sample service in Kotlin using Synapse.
+ * Extends {@link BaseReadMonoService} and takes {@link BookRequest} and {@link BookResponse} as an input.
+ */
 @Service
-class ReadBookService : BaseReadMonoService<BookRequest, BookResponse>() {
+open class ReadBookService : BaseReadMonoService<BookRequest, BookResponse>() {
 
+    /**
+     * Sample executeRead function from Synapse {@link BaseReadMonoService}
+     * {@param headers} http headers from client.
+     * {@param request} request object from client.
+     */
     override fun executeRead(headers: HttpHeaders?, request: BookRequest?): BookResponse {
         val actualBookRequest = request ?: BookRequest(UUID.randomUUID().toString(), "Synapse", "Gabriel")
         return BookResponse(title = actualBookRequest.title, author = actualBookRequest.author)

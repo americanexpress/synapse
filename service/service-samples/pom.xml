@@ -15,6 +15,7 @@
     <!--Modules-->
     <modules>
         <module>sample-service-graphql-book</module>
+        <module>sample-service-kotlin</module>
         <module>sample-service-reactive-cassandra-book</module>
         <module>sample-service-reactive-mongodb-book</module>
         <module>sample-service-reactive-mysql-book</module>

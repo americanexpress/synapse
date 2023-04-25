@@ -11,16 +11,17 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.rest.controller
+package io.americanexpress.synapse.kotlin.book.controller
 
-import io.americanexpress.synapse.rest.config.BookConfig
-import io.americanexpress.synapse.rest.model.BookRequest
-import io.americanexpress.synapse.rest.model.BookResponse
-import io.americanexpress.synapse.rest.service.CreateBookService
-import io.americanexpress.synapse.service.rest.controller.BaseCreateController
-import org.springframework.stereotype.Controller
+import io.americanexpress.synapse.kotlin.book.config.BookConfig.Companion.BOOK_ENDPOINT
+import io.americanexpress.synapse.kotlin.book.service.DeleteBookService
+import io.americanexpress.synapse.service.rest.controller.BaseDeleteController
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
 
-@Controller
-@RequestMapping(BookConfig.BOOK_ENDPOINT)
-class CreateBookController : BaseCreateController<BookRequest, BookResponse, CreateBookService>()
+/**
+ * {@code DeleteBookController} Delete book controller Kotlin example for Synapse.
+ */
+@RestController
+@RequestMapping(BOOK_ENDPOINT)
+open class DeleteBookController : BaseDeleteController<DeleteBookService>()

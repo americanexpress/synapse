@@ -11,17 +11,20 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.rest
+package io.americanexpress.synapse.kotlin.book
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 /**
- * Main
+ * {@code BookApplication} starts the Spring Boot Application for the book Kotlin sample.
  */
 @SpringBootApplication
-class Main {
+open class BookApplication
+
+    /**
+     * Spring Boot main method to launch application
+     */
     fun main(args: Array<String>) {
-        runApplication<Main>(*args)
+        runApplication<BookApplication>(*args)
     }
-}

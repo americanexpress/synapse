@@ -33,7 +33,12 @@
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib-jdk8</artifactId>
+            <artifactId>kotlin-stdlib</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-maven-allopen</artifactId>
             <version>${kotlin.version}</version>
         </dependency>
     </dependencies>
@@ -52,7 +57,7 @@
                             <goal>compile</goal>
                         </goals>
                         <configuration>
-                            <jvmTarget>1.8</jvmTarget>
+                            <jvmTarget>17</jvmTarget>
                         </configuration>
                     </execution>
                     <execution>
@@ -61,7 +66,7 @@
                             <goal>test-compile</goal>
                         </goals>
                         <configuration>
-                            <jvmTarget>1.8</jvmTarget>
+                            <jvmTarget>17</jvmTarget>
                         </configuration>
                     </execution>
                 </executions>

@@ -11,19 +11,17 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.rest.config
+package io.americanexpress.synapse.kotlin.book.model
 
-import io.americanexpress.synapse.service.rest.config.ServiceRestConfig
-import org.springframework.context.annotation.ComponentScan
-import org.springframework.context.annotation.Configuration
-import org.springframework.context.annotation.Import
+import io.americanexpress.synapse.service.rest.model.BaseServiceRequest
 
-@Configuration
-@ComponentScan(basePackages = ["io.americanexpress.synapse.rest"])
-@Import(ServiceRestConfig::class)
-class BookConfig {
-
-    companion object {
-        const val BOOK_ENDPOINT = "/v1/books"
-    }
-}
+/**
+ * {@code BookRequest} Request object for Kotlin example using Synpase.
+ */
+open class BookRequest(
+        val identifier: String,
+        val title: String,
+        val author: String,
+        ) : BaseServiceRequest {
+                constructor() : this("", "", "")
+        }

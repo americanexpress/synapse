@@ -11,16 +11,26 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.rest.service
+package io.americanexpress.synapse.kotlin.book.service
 
-import io.americanexpress.synapse.service.rest.service.BaseDeleteService
+import io.americanexpress.synapse.kotlin.book.model.BookRequest
+import io.americanexpress.synapse.service.rest.service.BaseUpdateService
 import org.springframework.http.HttpHeaders
 import org.springframework.stereotype.Service
 
+/**
+ * {@code UpdateBookService} Update book sample service in Kotlin using Synapse.
+ * Extends {@link BaseUpdateService} and takes {@link BookRequest} as an input.
+ */
 @Service
-class DeleteBookService : BaseDeleteService() {
+open class UpdateBookService : BaseUpdateService<BookRequest>()  {
 
-    override fun executeDelete(headers: HttpHeaders?, id: String?) {
-        println("delete") //TODO: you would delete something here but for now print.
+    /**
+     * Sample executeUpdate function from Synapse {@link BaseUpdateService}
+     * {@param headers} http headers from client.
+     * {@param request} request object from client.
+     */
+    override fun executeUpdate(headers: HttpHeaders?, request: BookRequest?) {
+        println("update")
     }
 }
