@@ -14,6 +14,7 @@
 package io.americanexpress.sample.weather.client;
 
 import io.americanexpress.sample.client.weather.client.WeatherClient;
+import io.americanexpress.sample.client.weather.client.WeatherClientHeadersFactory;
 import io.americanexpress.sample.client.weather.model.WeatherRequest;
 import io.americanexpress.sample.client.weather.model.WeatherResponse;
 import io.americanexpress.sample.weather.config.WeatherClientTestConfig;
@@ -30,7 +31,7 @@ import org.springframework.test.context.ContextConfiguration;
  * {@code WeatherClientIT} tests the WeatherClient.
  */
 @ContextConfiguration(classes = WeatherClientTestConfig.class)
-class WeatherClientIT extends BaseRestClientIT<WeatherRequest, WeatherResponse, WeatherClient> {
+class WeatherClientIT extends BaseRestClientIT<WeatherRequest, WeatherResponse, WeatherClientHeadersFactory, WeatherClient> {
 
     /**
      * Weather client

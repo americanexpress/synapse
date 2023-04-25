@@ -15,6 +15,7 @@ package io.americanexpress.synapse.client.rest.client;
 
 import java.util.List;
 
+import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 
@@ -32,16 +33,18 @@ import reactor.core.publisher.Mono;
  *
  * @param <I> input request type
  * @param <O> output response type
+ * @param <H> httpHeadersFactory used to set the HTTP headers for each web service call
  * @author Paolo Claudio
  */
-public abstract class BaseGetReactiveRestClient<I extends BaseClientRequest, O extends BaseClientResponse> extends BaseReactiveRestClient<I, O> {
+public abstract class BaseGetReactiveRestClient<I extends BaseClientRequest, O extends BaseClientResponse, H extends BaseClientHttpHeadersFactory<I>> extends BaseReactiveRestClient<I, O, H> {
 
 	/**
 	 * Argument constructor creates a new instance of BaseGetReactiveRestClient with given values.
+	 * @param httpHeadersFactory HTTP headers factory used to produce the custom HTTP headers required to consume the back end service
 	 * @param reactiveRestResponseErrorHandler used to handle errors from the reactive REST client
 	 */
-	protected BaseGetReactiveRestClient(BaseReactiveRestResponseErrorHandler reactiveRestResponseErrorHandler) {
-		super(HttpMethod.GET, reactiveRestResponseErrorHandler);
+	protected BaseGetReactiveRestClient(H httpHeadersFactory, BaseReactiveRestResponseErrorHandler reactiveRestResponseErrorHandler) {
+		super(httpHeadersFactory, HttpMethod.GET, reactiveRestResponseErrorHandler);
 	}
 	
 	/**
@@ -62,7 +65,7 @@ public abstract class BaseGetReactiveRestClient<I extends BaseClientRequest, O e
 		return webClient.get()
 			.uri(updatedUrl)
 			.headers(httpHeaders ->
-				httpHeaders.addAll(headers))
+				httpHeaders.addAll(httpHeadersFactory.create(headers, clientRequest, updatedUrl)))
 			.retrieve()
 			.onStatus(HttpStatus::isError, reactiveRestResponseErrorHandler)
 			.bodyToMono(clientResponseType);
@@ -86,7 +89,7 @@ public abstract class BaseGetReactiveRestClient<I extends BaseClientRequest, O e
 		return webClient.get()
 			.uri(updatedUrl)
 			.headers(httpHeaders ->
-				httpHeaders.addAll(headers))
+				httpHeaders.addAll(httpHeadersFactory.create(headers, clientRequest, updatedUrl)))
 			.retrieve()
 			.onStatus(HttpStatus::isError, reactiveRestResponseErrorHandler)
 			.bodyToFlux(clientResponseType);

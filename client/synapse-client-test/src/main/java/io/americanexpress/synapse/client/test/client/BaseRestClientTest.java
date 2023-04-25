@@ -14,6 +14,7 @@
 package io.americanexpress.synapse.client.test.client;
 
 import io.americanexpress.synapse.client.rest.client.BaseRestClient;
+import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
 
@@ -23,13 +24,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * {@code BaseRestClientTest} is the base test class for testing rest clients.
  *
- * @param <I> the type parameter
- * @param <O> the type parameter
- * @param <C> the type parameter
+ * @param <I> input request type
+ * @param <O> output response type
+ * @param <H> httpHeadersFactory used to set the HTTP headers for each web service call
+ * @param <C> the client
  */
 abstract class BaseRestClientTest<I extends BaseClientRequest,
         O extends BaseClientResponse,
-        C extends BaseRestClient<I, O>> extends BaseClientTest {
+        H extends BaseClientHttpHeadersFactory<I>,
+        C extends BaseRestClient<I, O, H>> extends BaseClientTest {
 
     /**
      * Initialize.
