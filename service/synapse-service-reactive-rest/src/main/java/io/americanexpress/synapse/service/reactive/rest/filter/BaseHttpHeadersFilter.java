@@ -4,6 +4,7 @@ import io.americanexpress.synapse.framework.exception.ApplicationClientException
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
@@ -37,13 +38,15 @@ public abstract class BaseHttpHeadersFilter implements WebFilter {
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         logger.entry(exchange.getRequest(), exchange.getResponse());
 
-        // If any of the required HTTP headers are missing, this request is invalid
-        String httpHeaderValue;
-        for (String requiredHttpHeaderName : getRequiredHttpHeaderNames()) {
-            httpHeaderValue = exchange.getRequest().getHeaders().getFirst(requiredHttpHeaderName);
-            if (httpHeaderValue == null) {
-                throw new ApplicationClientException("Request HTTP Header " + requiredHttpHeaderName + " is missing.",
-                        ErrorCode.MISSING_HTTP_HEADER_ERROR, requiredHttpHeaderName);
+        if(!shouldNotFilter(exchange.getRequest())) {
+            // If any of the required HTTP headers are missing, this request is invalid
+            String httpHeaderValue;
+            for (String requiredHttpHeaderName : getRequiredHttpHeaderNames()) {
+                httpHeaderValue = exchange.getRequest().getHeaders().getFirst(requiredHttpHeaderName);
+                if (httpHeaderValue == null) {
+                    throw new ApplicationClientException("Request HTTP Header " + requiredHttpHeaderName + " is missing.",
+                            ErrorCode.MISSING_HTTP_HEADER_ERROR, requiredHttpHeaderName);
+                }
             }
         }
 
@@ -61,5 +64,15 @@ public abstract class BaseHttpHeadersFilter implements WebFilter {
         // Note: it is possible that a service needs no request HTTP header validation
         // Should a service require request HTTP header validation, then override this method
         return new ArrayList<>();
+    }
+
+    /**
+     * Subclasses can override this method to control what requests should not be filtered.
+     *
+     * @param request the incoming request
+     * @return true if url should not be filtered
+     */
+    protected boolean shouldNotFilter(ServerHttpRequest request) {
+        return false;
     }
 }

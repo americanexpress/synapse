@@ -86,9 +86,11 @@ public class ControllerExceptionHandler implements WebExceptionHandler {
         DataBuffer buffer;
         try {
             buffer = exchange.getResponse().bufferFactory().wrap(new ObjectMapper().writeValueAsBytes(errorResponse));
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+        } catch (JsonProcessingException exception) {
+            throw new ApplicationServerException(exception);
         }
+
+        exchange.getResponse().setStatusCode(errorResponse.getCode().getHttpStatus());
         exchange.getResponse().getHeaders().add("Content-Type", "application/json");
         return exchange.getResponse().writeWith(Flux.just(buffer));
     }
@@ -99,7 +101,7 @@ public class ControllerExceptionHandler implements WebExceptionHandler {
      * @return the error response
      */
     public ErrorResponse handleInternalServerError(Throwable throwable) {
-        logger.catching(throwable);
+        logger.warn("Error", throwable);
         return new ErrorResponse(ErrorCode.GENERIC_5XX_ERROR, ErrorCode.GENERIC_5XX_ERROR.getMessage(), throwable.getMessage(),
                 ApplicationServerException.getStackTrace(throwable, System.lineSeparator()));
     }
