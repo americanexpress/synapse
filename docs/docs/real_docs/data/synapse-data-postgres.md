@@ -23,6 +23,6 @@
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-data-postgres</artifactId>
-            <version>0.3.13-SNAPSHOT</version>
+            <version>0.3.14-SNAPSHOT</version>
         </dependency>
 ```
