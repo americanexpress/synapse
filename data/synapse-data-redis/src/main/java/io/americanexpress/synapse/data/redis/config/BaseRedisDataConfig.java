@@ -19,11 +19,14 @@ import org.springframework.core.env.Environment;
 import org.springframework.data.redis.connection.RedisClusterConfiguration;
 import org.springframework.data.redis.connection.RedisSentinelConfiguration;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
+import org.springframework.data.redis.connection.jedis.JedisClientConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+
+import java.time.Duration;
 
 /**
  * {@code BaseRedisDataConfig} class is used to hold the common configuration for all data-redis modules.
@@ -33,24 +36,15 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  */
 @Configuration
 @EnableRedisRepositories
-public class BaseRedisDataConfig {
-
-    /**
-     * {@link Environment} interface representing the environment in which the current application is running.
-     * Models two key aspects of the application environment (profiles and properties).
-     * A profile is a named, logical group of bean definitions to be registered with the container
-     * only if the given profile is active. Beans may be assigned to a profile whether defined in XML or via
-     * annotations; The role of the {@link Environment} object with relation to profiles is in determining which
-     * profiles (if any) are currently active, and which profiles (if any) should be active by default.
-     */
-    private final Environment environment;
+public class BaseRedisDataConfig extends BaseRedisConfig {
 
     /**
      * The overloaded constructor for the base redis data config that initialized the {@link Environment}.
+     *
      * @param environment the environment
      */
     public BaseRedisDataConfig(Environment environment) {
-        this.environment = environment;
+        super(environment);
     }
 
     /**
@@ -64,12 +58,13 @@ public class BaseRedisDataConfig {
      */
     @Bean
     JedisConnectionFactory jedisConnectionFactory() {
-        JedisConnectionFactory jedisConFactory = new JedisConnectionFactory();
-        jedisConFactory.setHostName("localhost");
-        jedisConFactory.setPort(6379);
-        jedisConFactory.afterPropertiesSet();
-        return jedisConFactory;
+        JedisClientConfiguration.JedisClientConfigurationBuilder jedisClientConfiguration = JedisClientConfiguration.builder();
+        jedisClientConfiguration.connectTimeout(Duration.ofSeconds(60));
+
+        return new JedisConnectionFactory(redisStandaloneConfiguration(),
+                jedisClientConfiguration.build());
     }
+
 
     /**
      * Performs automatic serialization/deserialization between the given objects and the underlying binary data in
