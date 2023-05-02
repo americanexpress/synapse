@@ -27,7 +27,7 @@ public class BookDataConfigTest {
     private RedisServer redisServer;
 
     public BookDataConfigTest(Environment environment) {
-        this.redisServer = new RedisServer(Integer.parseInt(environment.getRequiredProperty("spring.redis.port")));
+        this.redisServer = new RedisServer(Integer.parseInt(environment.getRequiredProperty("spring.data.redis.port")));
     }
 
     @PostConstruct

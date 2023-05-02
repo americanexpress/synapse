@@ -61,8 +61,10 @@ public class BaseRedisDataConfig extends BaseRedisConfig {
         JedisClientConfiguration.JedisClientConfigurationBuilder jedisClientConfiguration = JedisClientConfiguration.builder();
         jedisClientConfiguration.connectTimeout(Duration.ofSeconds(60));
 
-        return new JedisConnectionFactory(redisStandaloneConfiguration(),
+        JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory(redisStandaloneConfiguration(),
                 jedisClientConfiguration.build());
+        jedisConnectionFactory.afterPropertiesSet();
+        return jedisConnectionFactory;
     }
 
 
@@ -78,7 +80,6 @@ public class BaseRedisDataConfig extends BaseRedisConfig {
     public RedisTemplate<String, Object> redisTemplate() {
         RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(jedisConnectionFactory());
-        template.setEnableTransactionSupport(true);
 
         template.setHashKeySerializer(new StringRedisSerializer());
         template.setHashKeySerializer(new JdkSerializationRedisSerializer());

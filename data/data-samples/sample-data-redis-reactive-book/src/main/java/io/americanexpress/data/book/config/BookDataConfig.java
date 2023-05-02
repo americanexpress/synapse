@@ -13,20 +13,28 @@
  */
 package io.americanexpress.data.book.config;
 
-import io.americanexpress.synapse.data.redis.config.BaseRedisDataConfig;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
+import io.americanexpress.data.book.entity.BookEntity;
+import io.americanexpress.synapse.data.redis.config.BaseReactiveRedisDataConfig;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.data.redis.connection.ReactiveRedisConnectionFactory;
+import org.springframework.data.redis.core.ReactiveRedisTemplate;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.GenericToStringSerializer;
+import org.springframework.data.redis.serializer.RedisSerializationContext;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
  * {@code BookDataConfig} is the configuration class to load all the properties for the book data module.
  */
 @Configuration
 @PropertySource("classpath:data-book-application.properties")
+@ComponentScan(basePackages = BookDataConfig.PACKAGE_NAME)
 @EnableRedisRepositories(basePackages = BookDataConfig.PACKAGE_NAME)
-public class BookDataConfig extends BaseRedisDataConfig {
+public class BookDataConfig extends BaseReactiveRedisDataConfig {
 
     /**
      * The Package name.
@@ -41,4 +49,19 @@ public class BookDataConfig extends BaseRedisDataConfig {
         super(environment);
     }
 
+    @Override
+    public ReactiveRedisTemplate<String, BookEntity> reactiveRedisTemplate(ReactiveRedisConnectionFactory factory) {
+        return new ReactiveRedisTemplate<>(factory, getSerializationContext());
+    }
+
+    @Override
+    protected RedisSerializationContext<String, BookEntity> getSerializationContext() {
+        return  RedisSerializationContext
+                .<String, BookEntity>newSerializationContext(new StringRedisSerializer())
+                .key(new StringRedisSerializer())
+                .value(new GenericToStringSerializer<>(BookEntity.class))
+                .hashKey(new StringRedisSerializer())
+                .hashValue(new GenericJackson2JsonRedisSerializer())
+                .build();
+    }
 }

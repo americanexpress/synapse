@@ -38,8 +38,7 @@ class BookRepositoryIT {
     private BookRepository bookRepository;
 
     @Test
-    public void save_givenValidBook_expectedSavedBookSuccess() {
-        UUID id = UUID.randomUUID();
+    void save_givenValidBook_expectedSavedBookSuccess() {
         BookEntity bookEntity = new BookEntity("Alice Wonderland", "Lewis Carroll");
         BookEntity saved = bookRepository.save(bookEntity);
         assertNotNull(saved);

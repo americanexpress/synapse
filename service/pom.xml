@@ -30,6 +30,7 @@
         <module>synapse-service-reactive-rest</module>
         <module>synapse-service-rest</module>
         <module>synapse-service-test</module>
+        <module>service-samples/sample-service-rest-redis-book</module>
     </modules>
 
 </project>
