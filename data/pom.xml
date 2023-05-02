@@ -35,7 +35,6 @@
         <module>synapse-data-oracle</module>
         <module>synapse-data-postgres</module>
         <module>synapse-data-redis</module>
-        <module>data-samples/sample-data-redis-reactive-book</module>
     </modules>
 
 </project>

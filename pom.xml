@@ -424,7 +424,11 @@
                 <artifactId>sample-data-redis-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-redis-reactive-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
             <!--External Dependencies-->
             <dependency>

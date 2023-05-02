@@ -20,12 +20,14 @@ import org.springframework.data.redis.connection.ReactiveRedisConnectionFactory;
 import org.springframework.data.redis.connection.lettuce.LettuceClientConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.ReactiveRedisTemplate;
+import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 
 /**
- * {@code BaseReactiveRedisDataConfig}
+ * {@code BaseReactiveRedisDataConfig} class is used to hold the common configuration for all reactive data-redis modules.
  */
 @Configuration
+@EnableRedisRepositories
 public class BaseReactiveRedisDataConfig extends BaseRedisConfig {
 
     /**
@@ -38,9 +40,9 @@ public class BaseReactiveRedisDataConfig extends BaseRedisConfig {
     }
 
     /**
-     * Lettuce connection factory reactive redis connection factory.
+     * Creates a LettuceConnectionFactory bean for reactive redis connection.
      *
-     * @return the reactive redis connection factory
+     * @return the lettuce connection factory.
      */
     @Bean
     public LettuceConnectionFactory lettuceConnectionFactory() {
@@ -48,7 +50,8 @@ public class BaseReactiveRedisDataConfig extends BaseRedisConfig {
     }
 
     /**
-     * Lettuce client configuration lettuce client configuration.
+     * Creates a LettuceClientConfiguration for configuring LettuceConnection.
+     * This method can be overridden by subclasses to fit redis connection configuration needs.
      *
      * @return the lettuce client configuration
      */
@@ -58,11 +61,24 @@ public class BaseReactiveRedisDataConfig extends BaseRedisConfig {
                 .build();
     }
 
+    /**
+     * Performs automatic serialization/deserialization between the given objects and the underlying binary data in the Redis store
+     * This method can be overridden by subclasses to fit redis access needs.
+     *
+     * @return the ReactiveRedisTemplate
+     */
     @Bean
     public ReactiveRedisTemplate reactiveRedisTemplate(ReactiveRedisConnectionFactory factory) {
         return new ReactiveRedisTemplate<>(factory, getSerializationContext());
     }
 
+    /**
+     * This method returns the RedisSerializationContext which is used to tell ReactiveRedisTemplate
+     * what the retrieved object from Redis should be deserialized/serialized to.
+     * This method can be overridden by subclasses to fit their redis serialization needs.
+     *
+     * @return RedisSerializationContext
+     */
     protected RedisSerializationContext getSerializationContext() {
         return RedisSerializationContext.string();
     }

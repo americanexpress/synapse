@@ -18,7 +18,7 @@ import org.springframework.data.redis.connection.RedisPassword;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 
 /**
- * The type Base redis config.
+ * {@code BaseRedisConfig} contains common configuration for redis configuration such as methods to retrieve port, host, etc.
  */
 public abstract class BaseRedisConfig {
 
@@ -34,7 +34,7 @@ public abstract class BaseRedisConfig {
     }
 
     /**
-     * Redis standalone configuration redis standalone configuration.
+     * Creates a RedisStandaloneConfiguration, this method can be overridden for further redis configurations.
      *
      * @return the redis standalone configuration
      */
