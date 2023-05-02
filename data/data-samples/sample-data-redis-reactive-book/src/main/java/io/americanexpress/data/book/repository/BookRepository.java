@@ -39,7 +39,7 @@ public class BookRepository {
                 .singleOrEmpty();
     }
     public Mono<BookEntity> save(BookEntity book) {
-        if (book.getIdentifier() != null) {
+        if (book.getIdentifier() == null) {
             String id = UUID.randomUUID().toString();
             book.setIdentifier(id);
         }

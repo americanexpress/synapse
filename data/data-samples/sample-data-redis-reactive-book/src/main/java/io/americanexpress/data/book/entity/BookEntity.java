@@ -42,6 +42,8 @@ public class BookEntity extends BaseEntity {
         this.author = author;
     }
 
+    public BookEntity() {}
+
     public String getTitle() {
         return title;
     }

@@ -37,15 +37,15 @@ public class BaseReactiveRedisDataConfig extends BaseRedisConfig {
         super(environment);
     }
 
-//    /**
-//     * Lettuce connection factory reactive redis connection factory.
-//     *
-//     * @return the reactive redis connection factory
-//     */
-//    @Bean
-//    public ReactiveRedisConnectionFactory lettuceConnectionFactory() {
-//        return new LettuceConnectionFactory(redisStandaloneConfiguration(), lettuceClientConfiguration());
-//    }
+    /**
+     * Lettuce connection factory reactive redis connection factory.
+     *
+     * @return the reactive redis connection factory
+     */
+    @Bean
+    public LettuceConnectionFactory lettuceConnectionFactory() {
+        return new LettuceConnectionFactory(redisStandaloneConfiguration(), lettuceClientConfiguration());
+    }
 
     /**
      * Lettuce client configuration lettuce client configuration.
