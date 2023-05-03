@@ -14,7 +14,6 @@
 package io.americanexpress.data.book.config;
 
 import io.americanexpress.synapse.data.redis.config.BaseRedisDataConfig;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;

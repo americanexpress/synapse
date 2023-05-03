@@ -21,23 +21,51 @@ import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
+/**
+ * {@code BookRepository} is used to access redis store by using {@link ReactiveRedisOperations}.
+ * Spring-data-redis does not provide built in reactive repository so need to create access methods using ReactiveRedisOperations.
+ */
 @Repository
 public class BookRepository {
 
+    /**
+     * Used to access data in redis store.
+     */
     private final ReactiveRedisOperations<String, BookEntity> reactiveRedisOperations;
 
-    private final String BOOKS = "books";
+    /**
+     * The constant BOOKS.
+     */
+    private static final String BOOKS = "books";
 
+    /**
+     * Instantiates a new Book repository.
+     *
+     * @param reactiveRedisOperations the reactive redis operations
+     */
     public BookRepository(ReactiveRedisOperations<String, BookEntity> reactiveRedisOperations) {
         this.reactiveRedisOperations = reactiveRedisOperations;
     }
 
+    /**
+     * Find by title.
+     *
+     * @param title the title
+     * @return the mono BookEntity if book exists with title
+     */
     public Mono<BookEntity> findByTitle(String title) {
         return reactiveRedisOperations.<String, BookEntity>opsForHash()
                 .values(BOOKS)
                 .filter(book -> book.getTitle().equals(title))
                 .singleOrEmpty();
     }
+
+    /**
+     * Save bookEntity to redis store.
+     *
+     * @param book the bookEntity
+     * @return the mono BookEntity if saved successfully
+     */
     public Mono<BookEntity> save(BookEntity book) {
         if (book.getIdentifier() == null) {
             String id = UUID.randomUUID().toString();
@@ -49,10 +77,21 @@ public class BookRepository {
 
     }
 
+    /**
+     * Find by id.
+     *
+     * @param id the id of the bookEntity in redis store.
+     * @return the mono BookEntity if id found
+     */
     public Mono<BookEntity> findById(String id) {
         return reactiveRedisOperations.<String, BookEntity>opsForHash().get(BOOKS, id);
     }
 
+    /**
+     * Find all
+     *
+     * @return the flux of BookEntity
+     */
     public Flux<BookEntity> findAll() {
         return this.reactiveRedisOperations.<String, BookEntity>opsForHash().values(BOOKS);
     }

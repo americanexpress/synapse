@@ -49,11 +49,22 @@ public class BookDataConfig extends BaseReactiveRedisDataConfig {
         super(environment);
     }
 
+    /**
+     * Overriding method to configure redis template for serialization/deserialization for key, value mapping of String and {@link BookEntity} type.
+     *
+     * @param factory the redis connection factory
+     * @return the reactive redis template specifically for <Stirng, BookEntity>
+     */
     @Override
     public ReactiveRedisTemplate<String, BookEntity> reactiveRedisTemplate(ReactiveRedisConnectionFactory factory) {
         return new ReactiveRedisTemplate<>(factory, getSerializationContext());
     }
 
+    /**
+     * Overriding method to provide configuration for serialization/deserialization of {@link BookEntity}.
+     *
+     * @return the redis serialization context
+     */
     @Override
     protected RedisSerializationContext<String, BookEntity> getSerializationContext() {
         return  RedisSerializationContext

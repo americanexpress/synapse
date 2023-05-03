@@ -17,7 +17,7 @@ import io.americanexpress.synapse.service.reactive.rest.model.BaseServiceRespons
 
 
 /**
- * {@code CreateBookResponse}
+ * {@code CreateBookResponse} is the response for create book.
  */
 public class CreateBookResponse extends BaseServiceResponse {
 

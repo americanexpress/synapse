@@ -33,39 +33,56 @@ public class BookEntity extends BaseEntity {
     private String author;
 
     /**
-     * The number of copies.
+     * Instantiates a new Book entity.
+     *
+     * @param title  the title
+     * @param author the author
      */
-    private int numberOfCopies;
-
     public BookEntity(String title, String author) {
         this.title = title;
         this.author = author;
     }
 
+    /**
+     * Instantiates a new Book entity.
+     */
     public BookEntity() {}
 
+    /**
+     * Gets title.
+     *
+     * @return the title
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Sets title.
+     *
+     * @param title the title
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     * Gets author.
+     *
+     * @return the author
+     */
     public String getAuthor() {
         return author;
     }
 
+    /**
+     * Sets author.
+     *
+     * @param author the author
+     */
     public void setAuthor(String author) {
         this.author = author;
     }
 
-    public int getNumberOfCopies() {
-        return numberOfCopies;
-    }
-
-    public void setNumberOfCopies(int numberOfCopies) {
-        this.numberOfCopies = numberOfCopies;
-    }
 }
 

@@ -22,6 +22,9 @@ import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
  */
 public abstract class BaseRedisConfig {
 
+    /**
+     * Used to retrieve properties from property files.
+     */
     private final Environment environment;
 
     /**

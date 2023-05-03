@@ -27,16 +27,26 @@ import reactor.core.publisher.Mono;
 @Service
 public class ReadBookReactiveService extends BaseReadMonoReactiveService<ReadBookRequest, ReadBookResponse> {
 
+    /**
+     * Used to retrieve book from redis store.
+     */
     private final BookRepository bookRepository;
 
+    /**
+     * Instantiates a new Read book reactive service.
+     *
+     * @param bookRepository the book repository
+     */
     public ReadBookReactiveService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
     /**
-     * Overriding executeRead.
-     * @param request a read mono book service request
-     * @return a mono read book response
+     * Retrieves book from redis store using book title provided in request.
+     *
+     * @param headers the httpHeaders
+     * @param request the request
+     * @return a mono read book response if book is found in redis store
      */
     @Override
     protected Mono<ReadBookResponse> executeRead(HttpHeaders headers, ReadBookRequest request) {

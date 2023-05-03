@@ -27,6 +27,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class CreateBookService extends BaseCreateService<CreateBookRequest, CreateBookResponse> {
 
+    /**
+     * Used to save book to redis store.
+     */
     private final BookRepository bookRepository;
 
     /**
@@ -38,6 +41,13 @@ public class CreateBookService extends BaseCreateService<CreateBookRequest, Crea
         this.bookRepository = bookRepository;
     }
 
+    /**
+     * Creates book entity and saves to redis store.
+     *
+     * @param headers the httpHeaders
+     * @param request the request
+     * @return createBookResponse
+     */
     @Override
     protected CreateBookResponse executeCreate(HttpHeaders headers, CreateBookRequest request) {
         BookEntity book = new BookEntity(request.getTitle(), request.getAuthor());

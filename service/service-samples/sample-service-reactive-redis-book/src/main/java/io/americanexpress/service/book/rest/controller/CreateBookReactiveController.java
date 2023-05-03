@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * {@code CreateBookReactiveController}
+ * {@code CreateBookReactiveController} is the controller for creating book in redis store.
  */
 @RestController
 @RequestMapping(BookEndpoints.BOOK_ENDPOINT)
