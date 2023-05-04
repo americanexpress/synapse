@@ -22,9 +22,15 @@ import javax.validation.constraints.NotBlank;
  */
 public class BookRequest implements BaseServiceRequest {
 
+    /**
+     * The book title.
+     */
     @NotBlank
     private String title;
 
+    /**
+     * The book author.
+     */
     @NotBlank
     private String author;
 
