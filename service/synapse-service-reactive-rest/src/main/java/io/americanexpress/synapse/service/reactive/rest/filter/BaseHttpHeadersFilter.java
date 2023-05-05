@@ -68,6 +68,8 @@ public abstract class BaseHttpHeadersFilter implements WebFilter {
 
     /**
      * Subclasses can override this method to control what requests should not be filtered.
+     * for example override the method with the following to prevent
+     * health endpoint : return request.getURI().getPath().equals("/health")
      *
      * @param request the incoming request
      * @return true if url should not be filtered
