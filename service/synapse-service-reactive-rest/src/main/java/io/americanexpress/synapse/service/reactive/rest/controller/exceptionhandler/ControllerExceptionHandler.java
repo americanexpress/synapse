@@ -28,6 +28,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.support.WebExchangeBindException;
 import org.springframework.web.server.ServerWebExchange;
+import org.springframework.web.server.ServerWebInputException;
 import org.springframework.web.server.WebExceptionHandler;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -63,6 +64,9 @@ public class ControllerExceptionHandler implements WebExceptionHandler {
         if (throwable instanceof WebExchangeBindException webExchangeBindException) {
             exchange.getResponse().setStatusCode(HttpStatus.BAD_REQUEST);
             errorResponse = inputValidationErrorHandler.handleInputValidationErrorMessage(webExchangeBindException);
+        } else if (throwable instanceof ServerWebInputException serverWebInputException) {
+            exchange.getResponse().setStatusCode(HttpStatus.BAD_REQUEST);
+            errorResponse = new ErrorResponse(ErrorCode.GENERIC_4XX_ERROR, serverWebInputException.getMessage(), throwable.getMessage(), serverWebInputException.getLocalizedMessage());
         } else if (throwable instanceof ApplicationClientException applicationClientException) {
             exchange.getResponse().setStatusCode(applicationClientException.getErrorCode().getHttpStatus());
             errorResponse = new ErrorResponse(applicationClientException.getErrorCode(), applicationClientException.getErrorCode().getMessage(),
@@ -86,9 +90,11 @@ public class ControllerExceptionHandler implements WebExceptionHandler {
         DataBuffer buffer;
         try {
             buffer = exchange.getResponse().bufferFactory().wrap(new ObjectMapper().writeValueAsBytes(errorResponse));
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+        } catch (JsonProcessingException exception) {
+            throw new ApplicationServerException(exception);
         }
+
+        exchange.getResponse().setStatusCode(errorResponse.getCode().getHttpStatus());
         exchange.getResponse().getHeaders().add("Content-Type", "application/json");
         return exchange.getResponse().writeWith(Flux.just(buffer));
     }
@@ -99,7 +105,7 @@ public class ControllerExceptionHandler implements WebExceptionHandler {
      * @return the error response
      */
     public ErrorResponse handleInternalServerError(Throwable throwable) {
-        logger.catching(throwable);
+        logger.warn("Error", throwable);
         return new ErrorResponse(ErrorCode.GENERIC_5XX_ERROR, ErrorCode.GENERIC_5XX_ERROR.getMessage(), throwable.getMessage(),
                 ApplicationServerException.getStackTrace(throwable, System.lineSeparator()));
     }
