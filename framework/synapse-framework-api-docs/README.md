@@ -12,7 +12,7 @@
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-framework-api-docs</artifactId>
-            <version>0.3.14-SNAPSHOT</version>
+            <version>0.3.16-SNAPSHOT</version>
         </dependency>
 ```
 Or add the following to the build.gradle file:
