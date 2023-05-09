@@ -16,7 +16,7 @@
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
         <artifactId>framework</artifactId>
-        <version>0.3.16</version>
+        <version>0.3.17-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
