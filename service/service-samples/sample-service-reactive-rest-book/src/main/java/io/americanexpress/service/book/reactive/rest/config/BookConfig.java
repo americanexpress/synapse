@@ -30,7 +30,7 @@ public class BookConfig extends BaseServiceReactiveRestConfig {
     /**
      * The constant BOOK_ENDPOINT.
      */
-    public static final String BOOK_ENDPOINT = "";
+    public static final String BOOK_ENDPOINT = "/v1/books";
 
     /**
      * Constructor taking in objectMapper & metricInterceptor

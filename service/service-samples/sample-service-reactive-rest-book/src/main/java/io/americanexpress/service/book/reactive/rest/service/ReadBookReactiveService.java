@@ -33,8 +33,8 @@ public class ReadBookReactiveService extends BaseReadMonoReactiveService<ReadBoo
      */
     @Override
     protected Mono<ReadBookResponse> executeRead(HttpHeaders headers, ReadBookRequest request) {
-//        logger.entry(request);
-//        logger.debug("emulating post read...");
+        logger.entry(request);
+        logger.debug("emulating post read...");
         return Mono.just(new ReadBookResponse("1", "title", "title"));
     }
 }
