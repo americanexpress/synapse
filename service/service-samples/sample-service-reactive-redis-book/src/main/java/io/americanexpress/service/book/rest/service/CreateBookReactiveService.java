@@ -22,6 +22,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 /**
  * {@code CreateBookReactiveService} service layer to create and save book to redis store.
  */
@@ -52,6 +54,7 @@ public class CreateBookReactiveService extends BaseCreateReactiveService<CreateB
     @Override
     protected Mono<CreateBookResponse> executeCreate(HttpHeaders headers, CreateBookRequest request) {
         BookEntity book = new BookEntity(request.getTitle(), request.getAuthor());
+        book.setIdentifier(UUID.randomUUID().toString());
         return bookRepository.save(book).map(bookEntity -> new CreateBookResponse());
     }
 }
