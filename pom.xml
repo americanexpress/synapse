@@ -424,7 +424,11 @@
                 <artifactId>sample-data-redis-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-redis-reactive-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
             <!--External Dependencies-->
             <dependency>
@@ -1010,13 +1014,18 @@
             <!-- Redis -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-data-redis</artifactId>
-                <version>2.7.3</version>
+                <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
+                <version>2.7.5</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-redis</artifactId>
                 <version>2.7.3</version>
+            </dependency>
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>3.8.0</version>
             </dependency>
 
             <!--AWS-->

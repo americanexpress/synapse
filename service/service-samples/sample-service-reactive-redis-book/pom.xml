@@ -12,30 +12,29 @@
     or implied. See the License for the specific language governing permissions and limitations under
     the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
-        <artifactId>data</artifactId>
+        <artifactId>service-samples</artifactId>
         <version>0.3.14-SNAPSHOT</version>
     </parent>
 
-    <modelVersion>4.0.0</modelVersion>
-    <artifactId>synapse-data-redis</artifactId>
+    <artifactId>sample-service-reactive-redis-book</artifactId>
 
+    <!--Dependencies-->
     <dependencies>
-        <!-- Spring Dependencies -->
+        <!--Synapse-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
+            <groupId>io.americanexpress.synapse</groupId>
+            <artifactId>synapse-service-reactive-rest</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-redis</artifactId>
-        </dependency>
-        <!-- Third Party Dependencies -->
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
+            <groupId>io.americanexpress.synapse</groupId>
+            <artifactId>sample-data-redis-reactive-book</artifactId>
+            <version>0.3.14-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

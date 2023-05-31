@@ -15,31 +15,25 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
         <artifactId>service</artifactId>
         <version>0.3.14-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <modelVersion>4.0.0</modelVersion>
-    <artifactId>service-samples</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>sample-service-rest-redis-book</artifactId>
 
-    <!--Modules-->
-    <modules>
-        <module>sample-service-graphql-book</module>
-        <module>sample-service-reactive-cassandra-book</module>
-        <module>sample-service-reactive-mongodb-book</module>
-        <module>sample-service-reactive-mysql-book</module>
-        <module>sample-service-reactive-oracle-book</module>
-        <module>sample-service-reactive-rest-book</module>
-        <module>sample-service-reactive-weather-client</module>
-        <module>sample-service-rest-book</module>
-        <module>sample-service-rest-cassandra-book</module>
-        <module>sample-service-rest-mysql-book</module>
-        <module>sample-service-rest-oracle-book</module>
-        <module>sample-service-rest-postgres-book</module>
-        <module>sample-service-reactive-redis-book</module>
-    </modules>
+        <dependencies>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-redis-book</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-service-rest</artifactId>
+            </dependency>
+        </dependencies>
 
 </project>

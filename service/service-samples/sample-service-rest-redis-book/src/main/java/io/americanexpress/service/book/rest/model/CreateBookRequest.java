@@ -11,15 +11,11 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.data.book.config;
-
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
+package io.americanexpress.service.book.rest.model;
 
 /**
- * {@code BookDataTestConfig} class contains configurations for tests.
+ * {@code CreateBookRequest} is the request object for creating book.
  */
-@Configuration
-@Import({BookDataConfigTest.class})
-public class BookDataTestConfig {
+public class CreateBookRequest extends BookRequest {
+
 }
