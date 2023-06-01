@@ -86,6 +86,7 @@
         <module>client</module>
         <module>data</module>
         <module>publisher</module>
+        <module>subscriber</module>
         <module>utility</module>
     </modules>
 
