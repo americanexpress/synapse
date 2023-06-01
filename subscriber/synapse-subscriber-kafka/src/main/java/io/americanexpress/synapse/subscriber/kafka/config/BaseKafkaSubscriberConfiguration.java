@@ -17,9 +17,9 @@ import java.util.Optional;
  * {@code BaseKafkaSubscriberConfiguration} class is used to host the configurations needed for creating a kafka subscriber.
  *
  * @param <C> class type of BaseKafkaPropertiesConfiguration
- * @param <E> class type of ErrorHandler
- * @param <F> class type of KafkaMessageFilter
- * @param <I> class type of KafkaMetricInterceptor
+ * @param <E> class type of BaseKafkaSubscriberErrorHandler
+ * @param <F> class type of BaseKafkaSubscriberMessageFilter
+ * @param <I> class type of BaseKafkaSubscriberMetricInterceptor
  *
  * @author Krishna Kuchikulla
  */
