@@ -191,10 +191,10 @@ Or add the following to the build.gradle file:
 
 - To intercept a message, create `SampleKafkaSubscriberMetricInterceptor` and extend `BaseKafkaSubscriberMetricInterceptor`,
     override any of the following methods for desired functionality.
-    `preHandle(ConsumerRecord<K, V> consumerRecord)` - to intercept message before subscriber.
-    `postHandle(ConsumerRecord<K,V> consumerRecord, Consumer<K,V> consumer)` - to intercept message after subscriber.
-    `preHandleBatch(ConsumerRecords<K, V> consumerRecords)` - to intercept messages before subscriber when batch subscriber is used.
-    `postHandleBatch(ConsumerRecords<K,V> consumerRecords, Consumer<K,V> consumer)` - to intercept messages after subscriber when batch subscriber is used.
+    - `preHandle(ConsumerRecord<K, V> consumerRecord)` - to intercept message before subscriber.
+    - `postHandle(ConsumerRecord<K,V> consumerRecord, Consumer<K,V> consumer)` - to intercept message after subscriber.
+    - `preHandleBatch(ConsumerRecords<K, V> consumerRecords)` - to intercept messages before subscriber when batch subscriber is used.
+    - `postHandleBatch(ConsumerRecords<K,V> consumerRecords, Consumer<K,V> consumer)` - to intercept messages after subscriber when batch subscriber is used.
 
 - Pass `SampleKafkaSubscriberMetricInterceptor` in `SampleKafkaSubscriberConfiguration` constructor. 
 ```
