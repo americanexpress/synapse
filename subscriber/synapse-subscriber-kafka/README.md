@@ -23,31 +23,22 @@ In order to set up, you'll need the following
 ```
 Or add the following to the build.gradle file:
 ```
-implementation 'io.americanexpress.synapse:synapse-subscriber-kafka:+'
+    implementation 'io.americanexpress.synapse:synapse-subscriber-kafka:+'
 ```
 
 
 ### Creating a Kafka Subscriber module
 
 1. Create `SampleKafkaPropertiesConfiguration` configuration class and extend `KafkaPropertiesConfiguration` to capture the kafka properties.
-2. Annotate `SampleKafkaPropertiesConfiguration` configuration bean as `@Primary`
+    Annotate `SampleKafkaPropertiesConfiguration` configuration bean as `@Primary`
 ```
 @Configuration
 @Primary
-public class SampleKafkaPropertiesConfiguration extends KafkaPropertiesConfiguration<SampleKafkaPropertiesConfiguration.SampleKafkaTemplate,
-                                                                                     SampleKafkaPropertiesConfiguration.SampleKafkaConsumer,
-                                                                                     SampleKafkaPropertiesConfiguration.SampleKafkaSSL> {
+public class SampleKafkaPropertiesConfiguration extends BaseKafkaPropertiesConfiguration<SampleKafkaPropertiesConfiguration.SampleKafkaConsumer,
+        SampleKafkaPropertiesConfiguration.SampleKafkaSSL> {
 
-    public SampleKafkaPropertiesConfiguration(SampleKafkaTemplate template, SampleKafkaConsumer consumer, SampleKafkaSSL ssl, Environment environment) {
-        super(template, consumer, ssl, environment);
-    }
-
-    @Configuration
-    public static class SampleKafkaTemplate extends BaseKafkaTemplate {
-
-        public SampleKafkaTemplate(Environment environment) {
-            super(environment);
-        }
+    public SampleKafkaPropertiesConfiguration(SampleKafkaConsumer consumer, SampleKafkaSSL ssl, Environment environment) {
+        super(consumer, ssl, environment);
     }
 
     @Configuration
@@ -69,55 +60,48 @@ public class SampleKafkaPropertiesConfiguration extends KafkaPropertiesConfigura
 }
 ```
 
-3. Create a `SampleKafkaErrorHandler` class and extend `ErrorHandler`
-
-4. Annotate `SampleKafkaErrorHandler` with `@KafkaErrorHandler`
+2. Create a `SampleKafkaErrorHandler` class and extend `ErrorHandler`.
+    Annotate `SampleKafkaErrorHandler` with `@KafkaErrorHandler`.
 ```
 @KafkaErrorHandler
-public class SampleKafkaErrorHandler extends ErrorHandler {
+public class SampleKafkaErrorHandler extends BaseKafkaSubscriberErrorHandler {
 }
 ```
 
-5. Create `SampleKafkaSubscriberConfiguration` configuration class and extend `KafkaSubscriberConfiguration` to create subscriber configurations.
+3. Create `SampleKafkaSubscriberConfiguration` configuration class and extend `KafkaSubscriberConfiguration` to create subscriber configurations.
 ```
 @Configuration
-public class SampleKafkaSubscriberConfiguration extends KafkaSubscriberConfiguration {
-
-    protected SampleKafkaSubscriberConfiguration(SampleKafkaPropertiesConfiguration sampleKafkaPropertiesConfiguration, SampleKafkaErrorHandler sampleKafkaErrorHandler, Environment environment, KafkaMetricInterceptor recordInterceptor) {
-        super(sampleKafkaPropertiesConfiguration, sampleKafkaErrorHandler, environment, recordInterceptor);
+public class SampleKafkaSubscriberConfiguration extends BaseKafkaSubscriberConfiguration {
+    protected SampleKafkaSubscriberConfiguration(SampleKafkaPropertiesConfiguration kafkaPropertiesConfiguration, SampleKafkaErrorHandler kafkaErrorHandler, Environment environment, BaseKafkaSubscriberMetricInterceptor recordInterceptor) {
+        super(kafkaPropertiesConfiguration, kafkaErrorHandler, environment, recordInterceptor);
     }
 
 }
 ```
 
-6. Create a `SampleKafkaSubscriber` class and extend `BaseKafkaMonoSubscriber<String, DesiredDeserializationObject>` or `BaseKafkaPolySubscriber<String, DesiredDeserializationObject>`
-
-7. Annotate `SampleKafkaSubscriber` class with `@KakfaSubscriber`
+4. Create a `SampleKafkaSubscriber` class and extend `BaseKafkaMonoSubscriber<String, DesiredDeserializationObject>` or `BaseKafkaPolySubscriber<String, DesiredDeserializationObject>`
+    Annotate `SampleKafkaSubscriber` class with `@KakfaSubscriber`
 ```
 @KafkaSubscriber
 @Slf4j
-public class SampleKafkaSubscriber extends BaseKafkaMonoSubscriber<String, String> {
+public class SampleKafkaMonoSubscriber extends BaseKafkaMonoSubscriber<String, String> {
 
-    public SampleKafkaSubscriber(ExecutorService executorService) {
+    public SampleKafkaMonoSubscriber(ExecutorService executorService) {
         super(executorService);
     }
 
-    @Override
-    protected Runnable processMessage(ConsumerRecord<String, String> consumerRecord) {
-        return () -> log.info("Message: "+ consumerRecord);
-    }
 }
 ```
 
-8. Override the method `processMessage(ConsumerRecord<String, DesiredDeserializationObject> consumerRecord)` from the `SampleKafkaSubscriber` instance to provide a runnable to process the message.
+5. Override the method `processMono(ConsumerRecord<String, DesiredDeserializationObject> consumerRecord, Acknowledgement acknowledgement)` from the `BaseKafkaMonoSubscriber` to provide a runnable to process the message.
 ```
-@Override
-    protected Runnable processMessage(ConsumerRecord<String, String> consumerRecord) {
+    @Override
+    protected Runnable processMono(ConsumerRecord<String, String> consumerRecord, Acknowledgment acknowledgment) {
         return () -> log.info("Message: "+ consumerRecord);
     }
 ```
 
-9. Add the following properties to connect to the Kafka topic
+6. Add the following properties to connect to the Kafka topic.
 ```
 # Properties required for synapse-subscriber-kafka.
 key.identification=
@@ -128,54 +112,87 @@ trustStore.location=classpath:
 trustStore.identification=
 trustStore.type=JKS
 protocol=SSL
-bootstrap.servers=
+kafka.bootstrap.servers=localhost:9092
 
-# If schema registry is enabled
-kafka.schema.registry.enabled=true
-basic.auth.credentials.source=USER_INFO
-basic.auth.user=
-basic.auth.identification=
-schema.registry.url=
-
-# Properties required for subscriber.
-kafka.partitions.count=
-kafka.subscriber.topics=
-kafka.subscriber.auto.startup=
-kafka.subscriber.group.id=
+# Properties required to control subscriber behaviour.
+kafka.partitions.count=5
+kafka.subscriber.topics=sample-synapse-topic
+kafka.subscriber.auto.startup=true
+kafka.subscriber.group.id=test-consumer-group
+kafka.subscriber.maximum.poll.records=5
+kafka.subscriber.enable.auto.commit=true
 ```
 
 #### Batch kafka subscriber
-- To run the kafka subscriber in batch mode, enable the following property and use `BaseKafkaSingularSubscriber` and `KafkaBatchSubscriberErrorHandler`
+- To run the kafka subscriber in batch mode, enable the following property.
 ```
-kafka.subscriber.batch.enabled=true
+    kafka.subscriber.batch.enabled=true
 ```
+- Update `SampleKafkaSubscriber` to extend `BaseKafkaPolySubscriber` and override `processPoly(ConsumerRecords<String, String> consumerRecords, Acknowledgment acknowledgment)` method.
+```
+    @KafkaSubscriber
+    @Slf4j
+    public class SampleKafkaPolySubscriber extends BaseKafkaPolySubscriber<String, String> {
+
+        public SampleKafkaPolySubscriber(ExecutorService executorService) {
+            super(executorService);
+        }
+
+    @Override
+    protected Runnable processPoly(ConsumerRecords<String, String> consumerRecords, Acknowledgment acknowledgment) {
+        return () -> consumerRecords.iterator()
+                .forEachRemaining(consumerRecord -> log.info("Message: "+ consumerRecord));
+    }
+}
+```
+
 
 #### Message filter
 - To add filtering capability for kafka subscriber , enable the following property
 ```
-kafka.subscriber.filter.enabled=true
+    kafka.subscriber.filter.enabled=true
 ```
 
-- Create `SampleKafkaMessageFilter` and extend `KafkaMessageFilter<String, DesiredDeserializationObject>`. Provide predicate to filter messages by overriding the ``method.
+- Create `SampleKafkaMessageFilter` and extend `BaseKafkaSubscriberMessageFilter<String, DesiredDeserializationObject>`.
+    Provide predicate to filter messages by overriding the `filterMessage()`method.
 ```
-@Configuration
-public class SampleKafkaMessageFilter extends KafkaMessageFilter<String, DesiredDeserializationObject> {
+@Component
+public class SampleKafkaSubscriberMessageFilter extends BaseKafkaSubscriberMessageFilter<String, String> {
+
     @Override
-    protected boolean filterMessage(ConsumerRecord<String, DesiredDeserializationObject> consumerRecord) {
+    protected boolean filterMessage(ConsumerRecord<String, String> consumerRecord) {
         // logic to filter out the message. 
         // return true to discard the message.
     }
 }
 ```
+- Note: To filter multiple messages at once, override `filterBatch(List<ConsumerRecord<K, V>> records)` method.
 
-- Pass `SampleKafkaMessageFilter` in `SampleSubscriberConfiguration` constructor.
+- Pass `SampleKafkaMessageFilter` in `SampleKafkaSubscriberConfiguration` constructor.
 ```
 @Configuration
-public class SampleKafkaMessageFilter extends KafkaSubscriberConfiguration {
-
-    protected SampleKafkaMessageFilter(KafkaPropertiesConfiguration kafkaPropertiesConfiguration, SubscriberErrorHandler subscriberErrorHandler, SampleKafkaMessageFilter filter) {
-        super(kafkaPropertiesConfiguration, subscriberErrorHandler, filter);
+public class SampleKafkaSubscriberConfiguration extends BaseKafkaSubscriberConfiguration {
+    protected SampleKafkaSubscriberConfiguration(SampleKafkaPropertiesConfiguration kafkaPropertiesConfiguration, SampleKafkaErrorHandler kafkaErrorHandler, SampleKafkaSubscriberMessageFilter recordFilteringStrategy, Environment environment, BaseKafkaSubscriberMetricInterceptor recordInterceptor) {
+        super(kafkaPropertiesConfiguration, kafkaErrorHandler, recordFilteringStrategy, environment, recordInterceptor);
     }
-
 }
+```
+
+#### Message interceptor
+
+- To intercept a message, create `SampleKafkaSubscriberMetricInterceptor` and extend `BaseKafkaSubscriberMetricInterceptor`,
+    override any of the following methods for desired functionality.
+    `preHandle(ConsumerRecord<K, V> consumerRecord)` - to intercept message before subscriber.
+    `postHandle(ConsumerRecord<K,V> consumerRecord, Consumer<K,V> consumer)` - to intercept message after subscriber.
+    `preHandleBatch(ConsumerRecords<K, V> consumerRecords)` - to intercept messages before subscriber when batch subscriber is used.
+    `postHandleBatch(ConsumerRecords<K,V> consumerRecords, Consumer<K,V> consumer)` - to intercept messages after subscriber when batch subscriber is used.
+
+- Pass `SampleKafkaSubscriberMetricInterceptor` in `SampleKafkaSubscriberConfiguration` constructor. 
+```
+    @Configuration
+    public class SampleKafkaSubscriberConfiguration extends BaseKafkaSubscriberConfiguration {
+        protected SampleKafkaSubscriberConfiguration(SampleKafkaPropertiesConfiguration kafkaPropertiesConfiguration, SampleKafkaErrorHandler kafkaErrorHandler, SampleKafkaSubscriberMessageFilter recordFilteringStrategy, Environment environment, SampleKafkaSubscriberMetricInterceptor recordInterceptor) {
+        super(kafkaPropertiesConfiguration, kafkaErrorHandler, recordFilteringStrategy, environment, recordInterceptor);
+        }
+    }
 ```
