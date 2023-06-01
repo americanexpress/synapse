@@ -11,6 +11,15 @@
 
 ## Table of contents
 - [Pre requisites](#pre-requisites)
+- [How to use](#how-to-use)
+  - [Integrating with your application](#integrating-with-your-application)
+  - [Creating Kafka Subscriber Module](#creating-kafka-subscriber-module)
+  - [Batch Kafka Subscriber](#batch-kafka-subscriber)
+  - [Custom Message Filter](#custom-message-filter)
+  - [Custom Message Interceptor](#custom-message-interceptor)
+  - [Custom Error Handler](#custom-error-handler)
+  - [Kafka Subscriber Support APIs](#kafka-subscriber-support-apis)
+
 
 ## Pre requisites
 In order to set up, you'll need the following
@@ -101,24 +110,24 @@ Or add the following to the build.gradle file:
 
 5. Add the following properties to connect to the Kafka topic.
 ```
-# Properties required for synapse-subscriber-kafka.
-key.identification=
-keyStore.location=classpath:
-keyStore.identification=
-keyStore.type=JKS
-trustStore.location=classpath:
-trustStore.identification=
-trustStore.type=JKS
-protocol=SSL
-kafka.bootstrap.servers=localhost:9092
-
-# Properties required to control subscriber behaviour.
-kafka.partitions.count=5
-kafka.subscriber.topics=sample-synapse-topic
-kafka.subscriber.auto.startup=true
-kafka.subscriber.group.id=test-consumer-group
-kafka.subscriber.maximum.poll.records=5
-kafka.subscriber.enable.auto.commit=true
+    # Properties required for synapse-subscriber-kafka.
+    key.identification=
+    keyStore.location=classpath:
+    keyStore.identification=
+    keyStore.type=JKS
+    trustStore.location=classpath:
+    trustStore.identification=
+    trustStore.type=JKS
+    protocol=SSL
+    kafka.bootstrap.servers=localhost:9092
+    
+    # Properties required to control subscriber behaviour.
+    kafka.partitions.count=5
+    kafka.subscriber.topics=sample-synapse-topic
+    kafka.subscriber.auto.startup=true
+    kafka.subscriber.group.id=test-consumer-group
+    kafka.subscriber.maximum.poll.records=5
+    kafka.subscriber.enable.auto.commit=true
 ```
 
 #### Batch Kafka Subscriber
@@ -219,7 +228,7 @@ kafka.subscriber.enable.auto.commit=true
 
 #### Kafka Subscriber Support APIs
 
-- The following APIs are provided by the framework to interact with kafka broker
+- The following APIs are provided by the framework to interact with kafka broker.
   - `GET` : `/kafkaSubscriberSupport/startSubscribers` - to start the subscribers.
   - `GET` : `/kafkaSubscriberSupport/stopSubscribers` - to stop the subscribers.
   - `GET` : `/kafkaSubscriberSupport/getSubscribersStatus` - to get the status of the subscribers.
