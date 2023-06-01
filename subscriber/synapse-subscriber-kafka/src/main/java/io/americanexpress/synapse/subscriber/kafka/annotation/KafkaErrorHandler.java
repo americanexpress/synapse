@@ -10,7 +10,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * {@code KafkaErrorHandler} annotation is used as annotate a class as a kafka listener error handler.
+ * {@code KafkaErrorHandler} annotation is used as annotate a class as a kafka subscriber error handler.
  * This annotation serves as a specialization of @Component, allowing for implementation classes
  * to be auto-detected through classpath scanning.
  *

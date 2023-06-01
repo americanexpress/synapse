@@ -1,5 +1,13 @@
 # Synapse-subscriber-kafka
-This project is the go-to solution for any application which has to interact with the Kafka topics.
+
+## Description
+- This project is the synapse kafka subscriber framework used for any application which has to subscribe to Kafka topics.
+  It provides several out-of-the-box functionalities like:
+  - Built-in Kafka subscriber which can connect to topic with minimal properties.
+  - Built-in functionality to interact with kafka broker via API to start, stop and get subscriber status.
+  - An open to extension base class to support interceptors
+  - An open to extension base class to support filtering capability
+  - An open to extension base class to support batch subscribers
 
 ## Table of contents
 - [Pre requisites](#pre-requisites)
@@ -27,62 +35,60 @@ Or add the following to the build.gradle file:
 ```
 
 
-### Creating a Kafka Subscriber module
+### Creating Kafka Subscriber Module
 
 1. Create `SampleKafkaPropertiesConfiguration` configuration class and extend `KafkaPropertiesConfiguration` to capture the kafka properties.
     Annotate `SampleKafkaPropertiesConfiguration` configuration bean as `@Primary`
 ```
-@Configuration
-@Primary
-public class SampleKafkaPropertiesConfiguration extends BaseKafkaPropertiesConfiguration<SampleKafkaPropertiesConfiguration.SampleKafkaConsumer,
-        SampleKafkaPropertiesConfiguration.SampleKafkaSSL> {
-
-    public SampleKafkaPropertiesConfiguration(SampleKafkaConsumer consumer, SampleKafkaSSL ssl, Environment environment) {
-        super(consumer, ssl, environment);
-    }
-
     @Configuration
-    public static class SampleKafkaConsumer extends BaseKafkaConsumer {
+    @Primary
+    public class SampleKafkaPropertiesConfiguration extends BaseKafkaPropertiesConfiguration<SampleKafkaPropertiesConfiguration.SampleKafkaConsumer,
+            SampleKafkaPropertiesConfiguration.SampleKafkaSSL> {
 
-        public SampleKafkaConsumer(Environment environment) {
-            super(environment);
+        public SampleKafkaPropertiesConfiguration(SampleKafkaConsumer consumer, SampleKafkaSSL ssl, Environment environment) {
+            super(consumer, ssl, environment);
         }
-    }
 
-    @Configuration
-    public static class SampleKafkaSSL extends BaseKafkaSsl {
+        @Configuration
+        public static class SampleKafkaConsumer extends BaseKafkaConsumer {
 
-        public SampleKafkaSSL(Environment environment, ResourceLoader resourceLoader) {
-            super(environment, resourceLoader);
+            public SampleKafkaConsumer(Environment environment) {
+                super(environment);
+            }
         }
-    }
 
-}
+        @Configuration
+        public static class SampleKafkaSSL extends BaseKafkaSsl {
+
+            public SampleKafkaSSL(Environment environment, ResourceLoader resourceLoader) {
+                super(environment, resourceLoader);
+            }
+        }
+
+    }
 ```
 
 2. Create `SampleKafkaSubscriberConfiguration` configuration class and extend `KafkaSubscriberConfiguration` to create subscriber configurations.
 ```
-@Configuration
-public class SampleKafkaSubscriberConfiguration extends BaseKafkaSubscriberConfiguration {
-    protected SampleKafkaSubscriberConfiguration(SampleKafkaPropertiesConfiguration kafkaPropertiesConfiguration, BaseKafkaSubscriberErrorHandler kafkaErrorHandler, Environment environment, BaseKafkaSubscriberMetricInterceptor recordInterceptor) {
-        super(kafkaPropertiesConfiguration, kafkaErrorHandler, environment, recordInterceptor);
+    @Configuration
+    public class SampleKafkaSubscriberConfiguration extends BaseKafkaSubscriberConfiguration {
+        protected SampleKafkaSubscriberConfiguration(SampleKafkaPropertiesConfiguration kafkaPropertiesConfiguration, BaseKafkaSubscriberErrorHandler kafkaErrorHandler, Environment environment, BaseKafkaSubscriberMetricInterceptor recordInterceptor) {
+            super(kafkaPropertiesConfiguration, kafkaErrorHandler, environment, recordInterceptor);
+        }
     }
-
-}
 ```
 
 3. Create a `SampleKafkaSubscriber` class and extend `BaseKafkaMonoSubscriber<String, DesiredDeserializationObject>` or `BaseKafkaPolySubscriber<String, DesiredDeserializationObject>`
     Annotate `SampleKafkaSubscriber` class with `@KakfaSubscriber`
 ```
-@KafkaSubscriber
-@Slf4j
-public class SampleKafkaMonoSubscriber extends BaseKafkaMonoSubscriber<String, String> {
+    @KafkaSubscriber
+    @Slf4j
+    public class SampleKafkaMonoSubscriber extends BaseKafkaMonoSubscriber<String, String> {
 
-    public SampleKafkaMonoSubscriber(ExecutorService executorService) {
-        super(executorService);
+        public SampleKafkaMonoSubscriber(ExecutorService executorService) {
+            super(executorService);
+        }
     }
-
-}
 ```
 
 4. Override the method `processMono(ConsumerRecord<String, DesiredDeserializationObject> consumerRecord, Acknowledgement acknowledgement)` from the `BaseKafkaMonoSubscriber` to provide a runnable to process the message.
@@ -116,6 +122,7 @@ kafka.subscriber.enable.auto.commit=true
 ```
 
 #### Batch Kafka Subscriber
+
 - To run the kafka subscriber in batch mode, enable the following property.
 ```
     kafka.subscriber.batch.enabled=true
@@ -134,12 +141,13 @@ kafka.subscriber.enable.auto.commit=true
     protected Runnable processPoly(ConsumerRecords<String, String> consumerRecords, Acknowledgment acknowledgment) {
         return () -> consumerRecords.iterator()
                 .forEachRemaining(consumerRecord -> log.info("Message: "+ consumerRecord));
+        }
     }
-}
 ```
 
 
 #### Custom Message Filter
+
 - To add filtering capability for kafka subscriber , enable the following property
 ```
     kafka.subscriber.filter.enabled=true
@@ -148,26 +156,26 @@ kafka.subscriber.enable.auto.commit=true
 - Create `SampleKafkaMessageFilter` and extend `BaseKafkaSubscriberMessageFilter<String, DesiredDeserializationObject>`.
     Provide predicate to filter messages by overriding the `filterMessage()`method.
 ```
-@Component
-public class SampleKafkaSubscriberMessageFilter extends BaseKafkaSubscriberMessageFilter<String, String> {
+    @Component
+    public class SampleKafkaSubscriberMessageFilter extends BaseKafkaSubscriberMessageFilter<String, String> {
 
-    @Override
-    protected boolean filterMessage(ConsumerRecord<String, String> consumerRecord) {
-        // logic to filter out the message. 
-        // return true to discard the message.
+        @Override
+        protected boolean filterMessage(ConsumerRecord<String, String> consumerRecord) {
+            // logic to filter out the message. 
+            // return true to discard the message.
+        }
     }
-}
 ```
 - Note: To filter multiple messages at once, override `filterBatch(List<ConsumerRecord<K, V>> records)` method.
 
 - Pass `SampleKafkaMessageFilter` in `SampleKafkaSubscriberConfiguration` constructor.
 ```
-@Configuration
-public class SampleKafkaSubscriberConfiguration extends BaseKafkaSubscriberConfiguration {
-    protected SampleKafkaSubscriberConfiguration(SampleKafkaPropertiesConfiguration kafkaPropertiesConfiguration, SampleKafkaErrorHandler kafkaErrorHandler, SampleKafkaSubscriberMessageFilter recordFilteringStrategy, Environment environment, BaseKafkaSubscriberMetricInterceptor recordInterceptor) {
-        super(kafkaPropertiesConfiguration, kafkaErrorHandler, recordFilteringStrategy, environment, recordInterceptor);
+    @Configuration
+    public class SampleKafkaSubscriberConfiguration extends BaseKafkaSubscriberConfiguration {
+        protected SampleKafkaSubscriberConfiguration(SampleKafkaPropertiesConfiguration kafkaPropertiesConfiguration, SampleKafkaErrorHandler kafkaErrorHandler, SampleKafkaSubscriberMessageFilter recordFilteringStrategy, Environment environment, BaseKafkaSubscriberMetricInterceptor recordInterceptor) {
+            super(kafkaPropertiesConfiguration, kafkaErrorHandler, recordFilteringStrategy, environment, recordInterceptor);
+        }
     }
-}
 ```
 
 #### Custom Message Interceptor
@@ -190,6 +198,7 @@ public class SampleKafkaSubscriberConfiguration extends BaseKafkaSubscriberConfi
 ```
 
 #### Custom Error Handler
+
 - For a custom error handler, Create a `SampleKafkaSubscriberErrorHandler` class and extend `BaseKafkaSubscriberErrorHandler`.
   Annotate `SampleKafkaSubscriberErrorHandler` with `@KafkaErrorHandler`.
 ```
@@ -207,3 +216,10 @@ public class SampleKafkaSubscriberConfiguration extends BaseKafkaSubscriberConfi
         }
     }
 ```
+
+#### Kafka Subscriber Support APIs
+
+- The following APIs are provided by the framework to interact with kafka broker
+  - `GET` : `/kafkaSubscriberSupport/startSubscribers` - to start the subscribers.
+  - `GET` : `/kafkaSubscriberSupport/stopSubscribers` - to stop the subscribers.
+  - `GET` : `/kafkaSubscriberSupport/getSubscribersStatus` - to get the status of the subscribers.

@@ -6,7 +6,7 @@ import org.springframework.kafka.listener.adapter.RecordFilterStrategy;
 
 
 /**
- * {@code BaseKafkaSubscriberMessageFilter} class is used as the base message filtering class for Kafka Listener.
+ * {@code BaseKafkaSubscriberMessageFilter} class is used as the base message filtering class for Kafka Subscriber.
  *
  * @author Krishna Kuchikulla
  */

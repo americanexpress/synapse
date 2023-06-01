@@ -9,28 +9,41 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * {@code BaseKafkaSupportService} class is used interact with the KafkaListenerEndpointRegistry to start, stop and get status of listeners.
+ * {@code BaseKafkaSubscriberSupportService} class is used interact with the KafkaListenerEndpointRegistry to start, stop and get status of subscribers.
  *
  * @author Krishna Kuchikulla
  */
 @Service
 @RequiredArgsConstructor
-public class BaseKafkaSupportService {
+public class BaseKafkaSubscriberSupportService {
 
+    /**
+     * KafkaListenerEndpointRegistry
+     */
     private final KafkaListenerEndpointRegistry kafkaListenerEndpointRegistry;
 
-    public void startListeners() {
+    /**
+     * This method is used to start kafka subscribers.
+     */
+    public void startSubscribers() {
         kafkaListenerEndpointRegistry.getListenerContainers().forEach(Lifecycle::start);
     }
 
-    public Map<String, String> getListenersStatus() {
+    /**
+     * This method is used to get the status of kafka subscribers.
+     */
+    public Map<String, String> getSubscribersStatus() {
         HashMap<String, String> listenerStatus = new HashMap<>();
         kafkaListenerEndpointRegistry.getAllListenerContainers()
                 .forEach(listenerContainer -> listenerStatus.put(listenerContainer.getListenerId(), String.valueOf(listenerContainer.isRunning())));
         return listenerStatus;
     }
 
-    public void stopListeners() {
+    /**
+     * This method is used to stop kafka subscribers.
+     */
+    public void stopSubscribers() {
         kafkaListenerEndpointRegistry.getListenerContainers().forEach(Lifecycle::stop);
     }
+
 }
