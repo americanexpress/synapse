@@ -1,5 +1,6 @@
 package io.americanexpress.synapse.subscriber.kafka.errorhandler;
 
+import io.americanexpress.synapse.subscriber.kafka.annotation.KafkaErrorHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -20,7 +21,8 @@ import java.util.Optional;
  * @author Krishna Kuchikulla
  */
 @Slf4j
-public abstract class BaseKafkaSubscriberErrorHandler implements CommonErrorHandler {
+@KafkaErrorHandler
+public class BaseKafkaSubscriberErrorHandler implements CommonErrorHandler {
 
     @Override
     public void handleRecord(Exception thrownException, ConsumerRecord<?, ?> record, Consumer<?, ?> consumer, MessageListenerContainer container) {
@@ -73,7 +75,7 @@ public abstract class BaseKafkaSubscriberErrorHandler implements CommonErrorHand
         TopicPartition topicPartition = new TopicPartition(topic, partition);
         consumer.seek(topicPartition, offset++);
         consumer.commitAsync();
-        log.info("Skipped message in topic {} for offset {} - cause {} and exception {}", topic, offset,
+        log.info("MESSAGE_SKIPPED, TOPIC: {}, OFFSET: {}, CAUSE: {}, EXCEPTION: {}", topic, offset,
                 thrownException.getCause(), thrownException.getLocalizedMessage());
     }
 
