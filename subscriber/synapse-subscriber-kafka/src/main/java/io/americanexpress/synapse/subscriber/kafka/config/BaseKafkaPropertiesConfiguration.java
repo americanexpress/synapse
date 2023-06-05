@@ -76,7 +76,7 @@ public abstract class BaseKafkaPropertiesConfiguration<C extends BaseKafkaProper
 
 
     /**
-     * <code>BaseKafkaConsumer</code> class contains the properties related to a consumer configuration.
+     * {@code BaseKafkaConsumer} class contains the properties related to a consumer configuration.
      */
     @RequiredArgsConstructor
     public abstract static class BaseKafkaConsumer extends Consumer {
@@ -128,7 +128,7 @@ public abstract class BaseKafkaPropertiesConfiguration<C extends BaseKafkaProper
     }
 
     /**
-     * <code>BaseKafkaSSL</code> class contains the properties related to a ssl configuration.
+     * {@code BaseKafkaSsl} class contains the properties related to a ssl configuration.
      */
     @RequiredArgsConstructor
     public abstract static class BaseKafkaSsl extends Ssl {
@@ -148,7 +148,7 @@ public abstract class BaseKafkaPropertiesConfiguration<C extends BaseKafkaProper
          */
         @Override
         public String getKeyPassword() {
-            return environment.getRequiredProperty("key.identification");
+            return environment.getRequiredProperty("kafka.key.identification");
         }
 
         /**
@@ -156,7 +156,7 @@ public abstract class BaseKafkaPropertiesConfiguration<C extends BaseKafkaProper
          */
         @Override
         public String getKeyStorePassword() {
-            return environment.getRequiredProperty("keyStore.identification");
+            return environment.getRequiredProperty("kafka.keyStore.identification");
         }
 
         /**
@@ -164,7 +164,7 @@ public abstract class BaseKafkaPropertiesConfiguration<C extends BaseKafkaProper
          */
         @Override
         public String getKeyStoreType() {
-            return environment.getRequiredProperty("keyStore.type");
+            return environment.getRequiredProperty("kafka.keyStore.type");
         }
 
         /**
@@ -175,7 +175,7 @@ public abstract class BaseKafkaPropertiesConfiguration<C extends BaseKafkaProper
         @SneakyThrows
         @Override
         public Resource getKeyStoreLocation() {
-            Resource resource = resourceLoader.getResource(environment.getRequiredProperty("keyStore.location"));
+            Resource resource = resourceLoader.getResource(environment.getRequiredProperty("kafka.keyStore.location"));
             if (!resource.exists()) {
                 throw new FileNotFoundException(resource.getDescription() + " not found");
             }
@@ -190,7 +190,7 @@ public abstract class BaseKafkaPropertiesConfiguration<C extends BaseKafkaProper
         @SneakyThrows
         @Override
         public Resource getTrustStoreLocation() {
-            Resource resource = resourceLoader.getResource(environment.getRequiredProperty("trustStore.location"));
+            Resource resource = resourceLoader.getResource(environment.getRequiredProperty("kafka.trustStore.location"));
             if (!resource.exists()) {
                 throw new FileNotFoundException(resource.getDescription() + " not found");
             }
@@ -202,7 +202,7 @@ public abstract class BaseKafkaPropertiesConfiguration<C extends BaseKafkaProper
          */
         @Override
         public String getTrustStorePassword() {
-            return environment.getRequiredProperty("trustStore.identification");
+            return environment.getRequiredProperty("kafka.trustStore.identification");
         }
 
         /**
@@ -210,7 +210,7 @@ public abstract class BaseKafkaPropertiesConfiguration<C extends BaseKafkaProper
          */
         @Override
         public String getTrustStoreType() {
-            return environment.getRequiredProperty("trustStore.type");
+            return environment.getRequiredProperty("kafka.trustStore.type");
         }
 
         /**

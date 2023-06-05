@@ -111,13 +111,13 @@ Or add the following to the build.gradle file:
 5. Add the following properties to connect to the Kafka topic.
 ```
     # Properties required for synapse-subscriber-kafka.
-    key.identification=
-    keyStore.location=classpath:
-    keyStore.identification=
-    keyStore.type=JKS
-    trustStore.location=classpath:
-    trustStore.identification=
-    trustStore.type=JKS
+    kafka.key.identification=
+    kafka.keyStore.location=classpath:
+    kafka.keyStore.identification=
+    kafka.keyStore.type=JKS
+    kafka.trustStore.location=classpath:
+    kafka.trustStore.identification=
+    kafka.trustStore.type=JKS
     protocol=SSL
     kafka.bootstrap.servers=localhost:9092
     
