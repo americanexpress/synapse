@@ -217,11 +217,7 @@ public abstract class BaseKafkaPropertiesConfiguration<C extends BaseKafkaProper
         public Resource getKeyStoreLocation() {
             Resource resource = resourceLoader.getResource(environment.getRequiredProperty("kafka.keyStore.location"));
             if (!resource.exists()) {
-                try {
-                    throw new FileNotFoundException(resource.getDescription() + " not found");
-                } catch (FileNotFoundException exception) {
-                    throw new ApplicationServerException(exception);
-                }
+                throw new ApplicationServerException(new FileNotFoundException(resource.getDescription() + " not found"));
             }
             return resource;
         }
@@ -235,11 +231,7 @@ public abstract class BaseKafkaPropertiesConfiguration<C extends BaseKafkaProper
         public Resource getTrustStoreLocation() {
             Resource resource = resourceLoader.getResource(environment.getRequiredProperty("kafka.trustStore.location"));
             if (!resource.exists()) {
-                try {
-                    throw new FileNotFoundException(resource.getDescription() + " not found");
-                } catch (FileNotFoundException exception) {
-                    throw new ApplicationServerException(exception);
-                }
+                throw new ApplicationServerException(new FileNotFoundException(resource.getDescription() + " not found"));
             }
             return resource;
         }
