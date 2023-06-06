@@ -210,8 +210,6 @@ public abstract class BaseKafkaPropertiesConfiguration<C extends BaseKafkaProper
 
         /**
          * This method is used to get keyStore location.
-         *
-         * @throws FileNotFoundException if the keyStore is not found in a given location
          */
         @Override
         public Resource getKeyStoreLocation() {
@@ -224,8 +222,6 @@ public abstract class BaseKafkaPropertiesConfiguration<C extends BaseKafkaProper
 
         /**
          * This method is used to get trustStore location.
-         *
-         * @throws FileNotFoundException if the trustStore is not found in a given location
          */
         @Override
         public Resource getTrustStoreLocation() {
