@@ -29,8 +29,16 @@
             <groupId>io.americanexpress.synapse</groupId>
             <artifactId>synapse-framework-exception</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.americanexpress.synapse</groupId>
+            <artifactId>synapse-framework-logging</artifactId>
+        </dependency>
 
         <!--Third-Party-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -39,17 +47,6 @@
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
         </dependency>
-        <dependency>
-            <groupId>io.americanexpress.synapse</groupId>
-            <artifactId>synapse-framework-logging</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-        </dependency>
+
     </dependencies>
 </project>

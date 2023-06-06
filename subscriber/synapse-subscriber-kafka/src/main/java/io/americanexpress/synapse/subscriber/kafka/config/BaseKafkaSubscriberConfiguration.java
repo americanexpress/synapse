@@ -1,3 +1,16 @@
+/*
+ * Copyright 2020 American Express Travel Related Services Company, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
+ */
 package io.americanexpress.synapse.subscriber.kafka.config;
 
 import io.americanexpress.synapse.subscriber.kafka.errorhandler.BaseKafkaSubscriberErrorHandler;
@@ -12,6 +25,7 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.listener.ContainerProperties;
 
 import java.util.Optional;
+
 
 /**
  * {@code BaseKafkaSubscriberConfiguration} class is used to host the configurations needed for creating a kafka subscriber.
@@ -93,11 +107,28 @@ public abstract class BaseKafkaSubscriberConfiguration<C extends BaseKafkaProper
         return this.batchSubscriberEnabled;
     }
 
+    /**
+     * BaseKafkaSubscriberConfiguration constructor.
+     *
+     * @param kafkaPropertiesConfiguration kafkaPropertiesConfiguration
+     * @param kafkaErrorHandler kafkaErrorHandler
+     * @param recordFilteringStrategy recordFilteringStrategy
+     * @param environment environment
+     * @param recordInterceptor recordInterceptor
+     */
     protected BaseKafkaSubscriberConfiguration(C kafkaPropertiesConfiguration, E kafkaErrorHandler, F recordFilteringStrategy, Environment environment, I recordInterceptor) {
         this(kafkaPropertiesConfiguration, kafkaErrorHandler, environment, recordInterceptor);
         this.recordFilteringStrategy = recordFilteringStrategy;
     }
 
+    /**
+     * BaseKafkaSubscriberConfiguration constructor.
+     *
+     * @param kafkaPropertiesConfiguration kafkaPropertiesConfiguration
+     * @param kafkaErrorHandler kafkaErrorHandler
+     * @param environment environment
+     * @param recordInterceptor recordInterceptor
+     */
     protected BaseKafkaSubscriberConfiguration(C kafkaPropertiesConfiguration, E kafkaErrorHandler, Environment environment, I recordInterceptor) {
         this.kafkaPropertiesConfiguration = kafkaPropertiesConfiguration;
         this.kafkaErrorHandler = kafkaErrorHandler;

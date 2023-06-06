@@ -1,11 +1,25 @@
+/*
+ * Copyright 2020 American Express Travel Related Services Company, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
+ */
 package io.americanexpress.synapse.subscriber.kafka.errorhandler;
 
 import io.americanexpress.synapse.subscriber.kafka.annotation.KafkaErrorHandler;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.common.TopicPartition;
+import org.slf4j.ext.XLogger;
+import org.slf4j.ext.XLoggerFactory;
 import org.springframework.kafka.listener.CommonErrorHandler;
 import org.springframework.kafka.listener.MessageListenerContainer;
 import org.springframework.lang.Nullable;
@@ -15,14 +29,19 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+
 /**
  * {@code BaseKafkaSubscriberErrorHandler} class is used to handle exceptions.
  *
  * @author Krishna Kuchikulla
  */
-@Slf4j
 @KafkaErrorHandler
 public class BaseKafkaSubscriberErrorHandler implements CommonErrorHandler {
+
+    /**
+     * Logger used for this class.
+     */
+    protected final XLogger log = XLoggerFactory.getXLogger(getClass());
 
     @Override
     public void handleRecord(Exception thrownException, ConsumerRecord<?, ?> record, Consumer<?, ?> consumer, MessageListenerContainer container) {
