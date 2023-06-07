@@ -20,10 +20,6 @@ buildscript {
         springBootVersion = '2.7.12'
         reactiveGrpcVersion = '1.0.0'
     }
-
-//    dependencies {
-//        classPath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-//    }
 }
 
 plugins {
