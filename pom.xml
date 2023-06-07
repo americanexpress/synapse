@@ -272,6 +272,11 @@
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-data-mssql</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-data-mysql</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -747,6 +752,13 @@
                 <groupId>io.r2dbc</groupId>
                 <artifactId>r2dbc-h2</artifactId>
                 <version>1.0.0.RC1</version>
+            </dependency>
+
+            <!--MSSQL-->
+            <dependency>
+                <groupId>io.r2dbc</groupId>
+                <artifactId>r2dbc-mssql</artifactId>
+                <version>1.0.1.RELEASE</version>
             </dependency>
 
             <!--Persistence-->

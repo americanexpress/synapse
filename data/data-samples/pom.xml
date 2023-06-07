@@ -35,6 +35,7 @@
         <module>sample-data-mysql-book</module>
         <module>sample-data-mysql-reactive-book</module>
         <module>sample-data-redis-book</module>
+        <module>sample-data-mssql-reactive-book</module>
     </modules>
 
 </project>

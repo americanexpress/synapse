@@ -31,6 +31,7 @@
         <module>synapse-data-cassandra</module>
         <module>synapse-data-couchbase</module>
         <module>synapse-data-mongodb</module>
+        <module>synapse-data-mssql</module>
         <module>synapse-data-mysql</module>
         <module>synapse-data-oracle</module>
         <module>synapse-data-postgres</module>
