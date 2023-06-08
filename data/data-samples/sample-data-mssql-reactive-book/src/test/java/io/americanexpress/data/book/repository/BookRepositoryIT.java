@@ -24,6 +24,9 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 
+/**
+ * {@code BookRepositoryIT} tests the {@link BookRepository} with local instance of Mssql database.
+ */
 @ContextConfiguration(classes = BookDataTestConfig.class)
 @ExtendWith(SpringExtension.class)
 @DataR2dbcTest

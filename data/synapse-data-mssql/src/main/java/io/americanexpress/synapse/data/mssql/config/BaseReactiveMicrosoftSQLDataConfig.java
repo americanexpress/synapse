@@ -48,6 +48,14 @@ public abstract class BaseReactiveMicrosoftSQLDataConfig extends AbstractR2dbcCo
         this.environment = environment;
     }
 
+    /**
+     * Create connection factory for connecting to Mssql database.
+     * Customization to Mssql database connection can be provided in the spring.r2dbc.url.
+     * Ref to https://github.com/r2dbc/r2dbc-mssql,
+     * https://learn.microsoft.com/en-us/sql/connect/jdbc/building-the-connection-url?view=sql-server-ver16
+     * for customization options
+     * Ex: r2dbc:sqlserver://localhost:1433/tempdb
+     */
     @Bean
     @ConfigurationProperties("spring.r2dbc")
     public ConnectionFactory connectionFactory() {
@@ -57,6 +65,12 @@ public abstract class BaseReactiveMicrosoftSQLDataConfig extends AbstractR2dbcCo
                 .build();
     }
 
+    /**
+     * Reactive transaction manager
+     *
+     * @param connectionFactory the connection factory
+     * @return the reactive transaction manager
+     */
     @Bean
     ReactiveTransactionManager transactionManager(ConnectionFactory connectionFactory) {
         return new R2dbcTransactionManager(connectionFactory);

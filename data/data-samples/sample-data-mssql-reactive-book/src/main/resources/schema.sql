@@ -1,24 +1,21 @@
-DROP SCHEMA IF EXISTS synapse CASCADE;
-CREATE SCHEMA synapse;
+USE tempdb;
 
-SET
-SCHEMA_SEARCH_PATH TO synapse;
-
-DROP TABLE IF EXISTS book CASCADE;
-
-/*
- * book table create script
- */
-create table book
-(
-    id                      serial           PRIMARY KEY NOT NULL,
-    title                   VARCHAR(150)     NOT NULL UNIQUE,--this is the business primary key
-    author                  VARCHAR(100),
-    created_by              VARCHAR(100),
-    last_modified_by        VARCHAR(100),
-    created_date_time       TIMESTAMP             DEFAULT current_timestamp,
-    last_modified_date_time TIMESTAMP,
-    version                 INTEGER               NOT NULL
+CREATE TABLE book_entity (
+                      id                      INT              IDENTITY(1,1) PRIMARY KEY NOT NULL,
+                      title                   NVARCHAR(150)    NOT NULL UNIQUE,
+                      author                  NVARCHAR(100),
+                      created_by              NVARCHAR(100),
+                      last_modified_by        NVARCHAR(100),
+                      created_date_time       DATETIME         DEFAULT GETDATE(),
+                      last_modified_date_time DATETIME,
+                      version                 INT              NOT NULL
 );
 
-COMMIT;
+
+INSERT INTO book_entity (title, author, created_date_time, last_modified_date_time, created_by, last_modified_by, version)
+VALUES ('Synapse', 'Gabriel', GETDATE(), GETDATE(), 'John-Appleseed@email.com', 'John-Appleseed@email.com', 0);
+
+INSERT INTO book_entity (title, author, created_date_time, last_modified_date_time, created_by, last_modified_by, version)
+VALUES ('Revenge of Synapse', 'John', GETDATE(), GETDATE(), 'John-Appleseed@email.com', 'John-Appleseed@email.com', 0);
+
+GO
