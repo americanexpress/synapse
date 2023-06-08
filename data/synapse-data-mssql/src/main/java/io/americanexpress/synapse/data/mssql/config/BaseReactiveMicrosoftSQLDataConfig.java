@@ -16,10 +16,17 @@ package io.americanexpress.synapse.data.mssql.config;
 
 import io.r2dbc.mssql.MssqlConnectionConfiguration;
 import io.r2dbc.mssql.MssqlConnectionFactory;
+import io.r2dbc.spi.ConnectionFactories;
+import io.r2dbc.spi.ConnectionFactory;
+import io.r2dbc.spi.ConnectionFactoryOptions;
+import org.springframework.boot.r2dbc.ConnectionFactoryBuilder;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.data.r2dbc.config.EnableR2dbcAuditing;
 import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
+
+import static io.r2dbc.spi.ConnectionFactoryOptions.*;
 
 /**
  * {@code BaseReactiveMicrosoftSQLDataConfig} contains base configuration for connecting to Microsoft SQL (MSSQL) database.
@@ -48,8 +55,9 @@ public abstract class BaseReactiveMicrosoftSQLDataConfig {
      *
      * @return the mssql connection factory
      */
-    public MssqlConnectionFactory mssqlConnectionFactory() {
-        return new MssqlConnectionFactory(mssqlConnectionConfiguration());
+    @Bean
+    public ConnectionFactory mssqlConnectionFactory() {
+        return ConnectionFactoryBuilder.withOptions(connectionFactoryOptions()).build();
     }
 
     /**
@@ -60,14 +68,14 @@ public abstract class BaseReactiveMicrosoftSQLDataConfig {
      *
      * @return the mssql connection configuration
      */
-    public MssqlConnectionConfiguration mssqlConnectionConfiguration() {
-        return MssqlConnectionConfiguration.builder()
-                .host(getHost())
-                .port(getPort())
-                .username(getUserName())
-                .password(getPassword())
-                .database(getDatabase())
-                .build();
+    public Builder connectionFactoryOptions() {
+        return ConnectionFactoryOptions.builder()
+                .option(DRIVER, "sqlserver")
+                .option(HOST, getHost())
+                .option(PORT, getPort())  // optional, defaults to 1433
+                .option(USER, getUserName())
+                .option(PASSWORD, getPassword())
+                .option(DATABASE, getDatabase());
     }
 
     /**

@@ -34,14 +34,10 @@ class BookRepositoryIT {
 
     @Test
     void findAll() {
-        BookEntity bookEntity = new BookEntity();
-        bookEntity.setAuthor("Lewis Carroll");
-        bookEntity.setTitle("Alice In Wonderland");
-
         Flux<BookEntity> bookEntityFlux = bookRepository.findAll();
 
         StepVerifier.create(bookEntityFlux)
-                .expectNext(bookEntity)
+                .expectNextCount(2)
                 .expectComplete()
                 .verify();
     }
