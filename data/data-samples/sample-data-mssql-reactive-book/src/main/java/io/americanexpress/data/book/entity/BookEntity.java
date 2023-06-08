@@ -15,9 +15,14 @@ package io.americanexpress.data.book.entity;
 
 import io.americanexpress.synapse.data.mssql.entity.BaseEntity;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * The type Book entity.
  */
+@Entity
+@Table(name = "book")
 public class BookEntity extends BaseEntity {
 
     private String title;

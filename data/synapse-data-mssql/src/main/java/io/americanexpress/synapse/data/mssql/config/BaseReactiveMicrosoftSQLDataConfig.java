@@ -14,19 +14,17 @@
 
 package io.americanexpress.synapse.data.mssql.config;
 
-import io.r2dbc.mssql.MssqlConnectionConfiguration;
-import io.r2dbc.mssql.MssqlConnectionFactory;
-import io.r2dbc.spi.ConnectionFactories;
 import io.r2dbc.spi.ConnectionFactory;
-import io.r2dbc.spi.ConnectionFactoryOptions;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.r2dbc.ConnectionFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.data.r2dbc.config.AbstractR2dbcConfiguration;
 import org.springframework.data.r2dbc.config.EnableR2dbcAuditing;
 import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
-
-import static io.r2dbc.spi.ConnectionFactoryOptions.*;
+import org.springframework.r2dbc.connection.R2dbcTransactionManager;
+import org.springframework.transaction.ReactiveTransactionManager;
 
 /**
  * {@code BaseReactiveMicrosoftSQLDataConfig} contains base configuration for connecting to Microsoft SQL (MSSQL) database.
@@ -34,7 +32,7 @@ import static io.r2dbc.spi.ConnectionFactoryOptions.*;
 @Configuration
 @EnableR2dbcRepositories
 @EnableR2dbcAuditing
-public abstract class BaseReactiveMicrosoftSQLDataConfig {
+public abstract class BaseReactiveMicrosoftSQLDataConfig extends AbstractR2dbcConfiguration {
 
     /**
      * Used to retrieve properties.
@@ -50,77 +48,18 @@ public abstract class BaseReactiveMicrosoftSQLDataConfig {
         this.environment = environment;
     }
 
-    /**
-     * Creates a MssqlConnectionFactory configured to connect to Mssql database.
-     *
-     * @return the mssql connection factory
-     */
     @Bean
-    public ConnectionFactory mssqlConnectionFactory() {
-        return ConnectionFactoryBuilder.withOptions(connectionFactoryOptions()).build();
+    @ConfigurationProperties("spring.r2dbc")
+    public ConnectionFactory connectionFactory() {
+        return ConnectionFactoryBuilder.withUrl(environment.getRequiredProperty("spring.r2dbc.url"))
+                .username(environment.getRequiredProperty("spring.r2dbc.username"))
+                .password(environment.getRequiredProperty("spring.r2dbc.password"))
+                .build();
     }
 
-    /**
-     * Creates MssqlConnectionConfiguration with configurations to connect to Mssql database.
-     * This method can be overriden to add more configurations based on usecase.
-     * Ex: adding ssl - add .enableSsl()
-     * Ref https://github.com/r2dbc/r2dbc-mssql for more information on possible configuration.
-     *
-     * @return the mssql connection configuration
-     */
-    public Builder connectionFactoryOptions() {
-        return ConnectionFactoryOptions.builder()
-                .option(DRIVER, "sqlserver")
-                .option(HOST, getHost())
-                .option(PORT, getPort())  // optional, defaults to 1433
-                .option(USER, getUserName())
-                .option(PASSWORD, getPassword())
-                .option(DATABASE, getDatabase());
-    }
-
-    /**
-     * Gets host.
-     *
-     * @return the host
-     */
-    public String getHost() {
-        return environment.getRequiredProperty("spring.r2dbc.mssql.host");
-    }
-
-    /**
-     * Gets port.
-     *
-     * @return the port
-     */
-    public Integer getPort() {
-        return environment.getProperty("spring.r2dbc.mssql.port", Integer.class);
-    }
-
-    /**
-     * Gets user name.
-     *
-     * @return the user name
-     */
-    public String getUserName() {
-        return environment.getRequiredProperty("spring.r2dbc.mssql.username");
-    }
-
-    /**
-     * Gets password.
-     *
-     * @return the password
-     */
-    public String getPassword() {
-        return environment.getRequiredProperty("spring.r2dbc.mssql.password");
-    }
-
-    /**
-     * Gets database.
-     *
-     * @return the database
-     */
-    public String getDatabase() {
-        return environment.getProperty("spring.r2dbc.mssql.database");
+    @Bean
+    ReactiveTransactionManager transactionManager(ConnectionFactory connectionFactory) {
+        return new R2dbcTransactionManager(connectionFactory);
     }
 
 }
