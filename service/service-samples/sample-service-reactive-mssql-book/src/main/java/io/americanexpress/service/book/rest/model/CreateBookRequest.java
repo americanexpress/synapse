@@ -11,18 +11,24 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.data.book.repository;
-
-import io.americanexpress.data.book.entity.BookEntity;
-import org.springframework.data.r2dbc.repository.R2dbcRepository;
-import org.springframework.stereotype.Repository;
-import reactor.core.publisher.Mono;
+package io.americanexpress.service.book.rest.model;
 
 /**
- * The interface Book repository.
+ * {@code CreateBookRequest} Child of BookRequest that will be used for creating new book records.
  */
-@Repository
-public interface BookRepository extends R2dbcRepository<BookEntity, Long> {
+public class CreateBookRequest extends BookRequest {
 
-    Mono<BookEntity> findByTitle(String title);
+    /**
+     * Constructor taking in title as string and author as string.
+     * @param title string value of title of book.
+     * @param author string value of author of book.
+     */
+    public CreateBookRequest(String title, String author) {
+        super(title, author);
+    }
+
+    /**
+     * The default constructor.
+     */
+    public CreateBookRequest(){}
 }

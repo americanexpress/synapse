@@ -11,18 +11,10 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.data.book.repository;
-
-import io.americanexpress.data.book.entity.BookEntity;
-import org.springframework.data.r2dbc.repository.R2dbcRepository;
-import org.springframework.stereotype.Repository;
-import reactor.core.publisher.Mono;
+package io.americanexpress.service.book.rest.model;
 
 /**
- * The interface Book repository.
+ * {@code ReadBookRequest} Request to give when invoking Get and Read services.
  */
-@Repository
-public interface BookRepository extends R2dbcRepository<BookEntity, Long> {
-
-    Mono<BookEntity> findByTitle(String title);
+public class ReadBookRequest extends BookRequest {
 }

@@ -11,18 +11,20 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.data.book.repository;
-
-import io.americanexpress.data.book.entity.BookEntity;
-import org.springframework.data.r2dbc.repository.R2dbcRepository;
-import org.springframework.stereotype.Repository;
-import reactor.core.publisher.Mono;
+package io.americanexpress.service.book.rest.config;
 
 /**
- * The interface Book repository.
+ * {@code BookEndpoints} Gets Book endpoint
  */
-@Repository
-public interface BookRepository extends R2dbcRepository<BookEntity, Long> {
+public class BookEndpoints {
 
-    Mono<BookEntity> findByTitle(String title);
+    /**
+     * The book endpoint.
+     */
+    public static final String BOOK_ENDPOINT = "/v1/books";
+
+    /**
+     * Private constructor.
+     */
+    private BookEndpoints(){}
 }
