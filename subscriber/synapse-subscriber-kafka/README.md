@@ -229,6 +229,15 @@ Or add the following to the build.gradle file:
 #### Kafka Subscriber Support APIs
 
 - The following APIs are provided by the framework to interact with kafka broker.
-  - `GET` : `/kafkaSubscriberSupport/startSubscribers` - to start the subscribers.
-  - `GET` : `/kafkaSubscriberSupport/stopSubscribers` - to stop the subscribers.
-  - `GET` : `/kafkaSubscriberSupport/getSubscribersStatus` - to get the status of the subscribers.
+  - `GET` : `/kafka_subscriber_support/start_subscribers` - to start the subscribers.
+  - `GET` : `/kafka_subscriber_support/stop_subscribers` - to stop the subscribers.
+  - `GET` : `/kafka_subscriber_support/get_subscribers_status` - to get the status of the subscribers.
+
+- To customize the endpoints, use the following properties.
+```
+    # Properties required to customize subscriber endpoints.
+    kafka.support.subscriber.base.endpoint=
+    kafka.support.subscriber.start.endpoint=
+    kafka.support.subscriber.status.endpoint=
+    kafka.support.subscriber.stop.endpoint=
+```

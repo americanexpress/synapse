@@ -22,12 +22,12 @@ import java.util.Map;
 
 
 /**
- * {@code KafkaSubscriberSupportController} class is used interact with the KafkaSubscriberSupportService to start, stop and get status of listeners.
+ * {@code KafkaSubscriberSupportController} class is used interact with the KafkaSubscriberSupportService to start, stop and get status of subscribers.
  *
  * @author Krishna Kuchikulla
  */
 @RestController()
-@RequestMapping("/kafkaSubscriberSupport")
+@RequestMapping("${kafka.support.subscriber.base.endpoint:/kafka_subscriber_support}")
 public class KafkaSubscriberSupportController {
 
     /**
@@ -48,7 +48,7 @@ public class KafkaSubscriberSupportController {
     /**
      * This endpoint is used to start kafka subscribers.
      */
-    @GetMapping("/startSubscribers")
+    @GetMapping("${kafka.support.subscriber.start.endpoint:/start_subscribers}")
     public void startSubscribers() {
         kafkaSubscriberSupportService.startSubscribers();
     }
@@ -56,7 +56,7 @@ public class KafkaSubscriberSupportController {
     /**
      * This endpoint is used to get status of the kafka subscribers.
      */
-    @GetMapping("/getSubscribersStatus")
+    @GetMapping("${kafka.support.subscriber.status.endpoint:/get_subscribers_status}")
     public Map<String, String> getSubscribersStatus() {
         return kafkaSubscriberSupportService.getSubscribersStatus();
     }
@@ -64,7 +64,7 @@ public class KafkaSubscriberSupportController {
     /**
      * This endpoint is used to stop kafka subscribers.
      */
-    @GetMapping("/stopSubscribers")
+    @GetMapping("${kafka.support.subscriber.stop.endpoint:/stop_subscribers}")
     public void stopSubscribers() {
         kafkaSubscriberSupportService.stopSubscribers();
     }
