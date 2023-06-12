@@ -13,7 +13,6 @@
  */
 package io.americanexpress.service.book.rest.service;
 
-
 import io.americanexpress.data.book.entity.BookEntity;
 import io.americanexpress.data.book.repository.BookRepository;
 import io.americanexpress.service.book.rest.model.CreateBookRequest;

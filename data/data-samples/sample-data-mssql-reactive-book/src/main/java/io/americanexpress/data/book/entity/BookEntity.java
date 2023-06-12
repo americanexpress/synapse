@@ -20,8 +20,14 @@ import io.americanexpress.synapse.data.mssql.entity.BaseEntity;
  */
 public class BookEntity extends BaseEntity {
 
+    /**
+     * The book title.
+     */
     private String title;
 
+    /**
+     * The book author.
+     */
     private String author;
 
     /**
