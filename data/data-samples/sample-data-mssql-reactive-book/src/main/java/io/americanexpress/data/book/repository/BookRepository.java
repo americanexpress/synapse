@@ -14,8 +14,10 @@
 package io.americanexpress.data.book.repository;
 
 import io.americanexpress.data.book.entity.BookEntity;
+import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.r2dbc.repository.R2dbcRepository;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
@@ -24,5 +26,19 @@ import reactor.core.publisher.Mono;
 @Repository
 public interface BookRepository extends R2dbcRepository<BookEntity, Long> {
 
+    /**
+     * Find books by title.
+     * @param title the book title
+     * @return mono book entity
+     */
     Mono<BookEntity> findByTitle(String title);
+
+
+    /**
+     * Example of using stored procedure to get books by author.
+     * @param author the author
+     * @return flux of books
+     */
+    @Procedure("GET_BOOKS_BY_AUTHOR")
+    Flux<BookEntity> getBooksByAuthor(String author);
 }

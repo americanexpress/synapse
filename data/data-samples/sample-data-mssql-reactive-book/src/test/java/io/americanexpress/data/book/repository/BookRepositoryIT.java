@@ -22,6 +22,7 @@ import org.springframework.boot.test.autoconfigure.data.r2dbc.DataR2dbcTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 /**
@@ -41,6 +42,16 @@ class BookRepositoryIT {
 
         StepVerifier.create(bookEntityFlux)
                 .expectNextCount(2)
+                .expectComplete()
+                .verify();
+    }
+
+    @Test
+    void getTotalBooksByAuthor() {
+        Flux<BookEntity> bookEntityFlux = bookRepository.getBooksByAuthor("Lewis Carroll");
+
+        StepVerifier.create(bookEntityFlux)
+                .expectNextCount(1L)
                 .expectComplete()
                 .verify();
     }

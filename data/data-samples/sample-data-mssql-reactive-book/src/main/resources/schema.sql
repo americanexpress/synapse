@@ -29,4 +29,9 @@ VALUES ('Synapse', 'Gabriel', GETDATE(), GETDATE(), 'John-Appleseed@email.com', 
 INSERT INTO book_entity (title, author, created_date_time, last_modified_date_time, created_by, last_modified_by, version)
 VALUES ('Revenge of Synapse', 'John', GETDATE(), GETDATE(), 'John-Appleseed@email.com', 'John-Appleseed@email.com', 0);
 
-GO
+CREATE PROCEDURE GET_BOOKS_BY_AUTHOR @author nvarchar(100)
+AS
+    SELECT * FROM book_entity WHERE author=@author
+GO;
+
+EXEC GET_BOOKS_BY_AUTHOR @author = 'Gabriel';
