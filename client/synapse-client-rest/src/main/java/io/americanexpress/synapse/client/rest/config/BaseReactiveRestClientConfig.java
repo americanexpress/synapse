@@ -18,6 +18,7 @@ import io.americanexpress.synapse.client.rest.helper.ReactiveRestClientLoggingEx
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.web.reactive.function.client.WebClient;
 
 /**
@@ -56,7 +57,16 @@ public abstract class BaseReactiveRestClientConfig extends BaseClientConfig {
         return WebClient.builder()
     		.filter(ReactiveRestClientLoggingExchangeFilterFunction.logClientRequest())
     		.filter(ReactiveRestClientLoggingExchangeFilterFunction.logClientResponse())
+                .clientConnector(defaultClientConnector())
         	.baseUrl(destinationUrl)
         	.build();
+    }
+
+    /**
+     * Generate the default http client connector.
+     * @return the default http client connector
+     */
+    protected ReactorClientHttpConnector defaultClientConnector() {
+        return new ReactorClientHttpConnector();
     }
 }
