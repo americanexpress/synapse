@@ -18,7 +18,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
@@ -39,49 +38,49 @@ import java.util.Objects;
 public abstract class BaseEntity {
 
     /**
-     * Id
+     * Id.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
     /**
-     * Created Date Time
+     * Created Date Time.
      */
     @CreatedDate
     @Column(name = "created_date_time")
     protected LocalDateTime createdDateTime;
 
     /**
-     * Last Modified Date Time
+     * Last Modified Date Time.
      */
     @LastModifiedDate
     @Column(name = "last_modified_date_time")
     protected LocalDateTime lastModifiedDateTime;
 
     /**
-     * Created By
+     * Created By.
      */
     @CreatedBy
     @Column(name = "created_by")
     protected String createdBy;
 
     /**
-     * Last Modified By
+     * Last Modified By.
      */
     @LastModifiedBy
     @Column(name = "last_modified_by")
     protected String lastModifiedBy;
 
     /**
-     * Version
+     * Version.
      */
     @Version
     @Column(name = "version")
     protected Long version;
 
     /**
-     * Gets id as a long
+     * Gets id as a long.
      * @return
      */
     public Long getId() {
@@ -89,7 +88,7 @@ public abstract class BaseEntity {
     }
 
     /**
-     * Sets id with provided long value
+     * Sets id with provided long value.
      * @param id
      */
     public void setId(Long id) {
@@ -97,15 +96,15 @@ public abstract class BaseEntity {
     }
 
     /**
-     * Gets createdDateTime as LocalDateTime
-     * @return
+     * Gets createdDateTime as LocalDateTime.
+     * @return createdDateTIme
      */
     public LocalDateTime getCreatedDateTime() {
         return createdDateTime;
     }
 
     /**
-     * Sets createdDateTime with provided LocalDateTime
+     * Sets createdDateTime with provided LocalDateTime.
      * @param createdDateTime
      */
     public void setCreatedDateTime(LocalDateTime createdDateTime) {
@@ -113,15 +112,15 @@ public abstract class BaseEntity {
     }
 
     /**
-     * Gets lastModifiedDateTime as LocalDateTime
-     * @return
+     * Gets lastModifiedDateTime as LocalDateTime.
+     * @return lastModifiedDateTime
      */
     public LocalDateTime getLastModifiedDateTime() {
         return lastModifiedDateTime;
     }
 
     /**
-     * Sets lastModifiedDateTime with provided localDateTime
+     * Sets lastModifiedDateTime with provided localDateTime.
      * @param lastModifiedDateTime
      */
     public void setLastModifiedDateTime(LocalDateTime lastModifiedDateTime) {
@@ -129,8 +128,8 @@ public abstract class BaseEntity {
     }
 
     /**
-     * Gets createdBy as a String
-     * @return
+     * Gets createdBy as a String.
+     * @return createdBy
      */
     public String getCreatedBy() {
         return createdBy;
@@ -162,6 +161,7 @@ public abstract class BaseEntity {
 
     /**
      * Gets version as a long.
+     * @return version
      */
     public Long getVersion() {
         return version;
@@ -176,7 +176,7 @@ public abstract class BaseEntity {
     }
 
     /**
-     * Compares object
+     * Compares object.
      * @param o an object
      * @return a boolean
      */
@@ -192,8 +192,8 @@ public abstract class BaseEntity {
     }
 
     /**
-     * Gets hashcode of object
-     * @return
+     * Gets hashcode of object.
+     * @return hashcode
      */
     @Override
     public int hashCode() {
@@ -202,7 +202,7 @@ public abstract class BaseEntity {
 
     /**
      * Builds object as a string.
-     * @return
+     * @return the string
      */
     @Override
     public String toString() {

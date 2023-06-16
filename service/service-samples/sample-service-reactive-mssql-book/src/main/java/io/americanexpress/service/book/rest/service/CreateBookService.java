@@ -49,7 +49,7 @@ public class CreateBookService extends BaseCreateReactiveService<CreateBookReque
      */
     @Override
     protected Mono<CreateBookResponse> executeCreate(HttpHeaders headers, CreateBookRequest request) {
-        return bookRepository.save(BookEntityMapper.populateBookEntityForCreation(request)) //fix with onError
+        return bookRepository.save(BookEntityMapper.populateBookEntityForCreation(request))
                 .map(BookEntityMapper::populateCreateBookResponse);
     }
 

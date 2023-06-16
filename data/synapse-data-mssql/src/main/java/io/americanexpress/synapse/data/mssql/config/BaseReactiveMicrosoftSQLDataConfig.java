@@ -30,8 +30,8 @@ import org.springframework.transaction.ReactiveTransactionManager;
  * {@code BaseReactiveMicrosoftSQLDataConfig} contains base configuration for connecting to Microsoft SQL (MSSQL) database.
  */
 @Configuration
-@EnableR2dbcRepositories
 @EnableR2dbcAuditing
+@EnableR2dbcRepositories
 public abstract class BaseReactiveMicrosoftSQLDataConfig extends AbstractR2dbcConfiguration {
 
     /**
@@ -66,7 +66,7 @@ public abstract class BaseReactiveMicrosoftSQLDataConfig extends AbstractR2dbcCo
     }
 
     /**
-     * Reactive transaction manager
+     * Reactive transaction manager.
      *
      * @param connectionFactory the connection factory
      * @return the reactive transaction manager

@@ -2,7 +2,7 @@
 
 ## Description
 
-- This is the synapse Microsoft SQL abstraction framework used whenever the re is a need to connect to
+- This is the synapse Microsoft SQL abstraction framework used whenever there is a need to connect to
   Microsoft SQL database. It provides several out-of-the-box functionalities like:
 
     - Connection to Microsoft SQL database through r2dbc-mssql and configurable
@@ -25,7 +25,7 @@
 ```
 Or add the following to the build.gradle file:
 ```
-implementation 'io.americanexpress.synapse:synapse-data-mssql:0.3.8'
+implementation 'io.americanexpress.synapse:synapse-data-mssql:0.3.14-SNAPSHOT'
 ```
 
 - Have a configuration class that import or extends `BaseReactiveMicrosoftSQLDataConfig` for reactive support.
@@ -35,3 +35,4 @@ implementation 'io.americanexpress.synapse:synapse-data-mssql:0.3.8'
 ## Examples
 Examples of utilizing the synapse-data-oracle module can be found in the following modules:
 - sample-data-mssql-reactive-book
+- sample-service-reactive-mssql-book

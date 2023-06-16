@@ -391,17 +391,17 @@
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
-                <artifactId>sample-data-mssql-reactive-book</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>sample-data-mongodb-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>sample-data-mongodb-reactive</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-mssql-reactive-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -434,7 +434,6 @@
                 <artifactId>sample-data-redis-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
 
             <!--External Dependencies-->
             <dependency>
@@ -747,6 +746,7 @@
                 <artifactId>postgresql</artifactId>
                 <version>42.5.0</version>
             </dependency>
+
             <!-- h2 -->
             <dependency>
                 <groupId>com.h2database</groupId>

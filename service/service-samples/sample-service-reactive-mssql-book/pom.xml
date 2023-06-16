@@ -27,11 +27,11 @@
     <dependencies>
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>
-            <artifactId>synapse-service-reactive-rest</artifactId>
+            <artifactId>sample-data-mssql-reactive-book</artifactId>
         </dependency>
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>
-            <artifactId>sample-data-mssql-reactive-book</artifactId>
+            <artifactId>synapse-service-reactive-rest</artifactId>
         </dependency>
     </dependencies>
 
