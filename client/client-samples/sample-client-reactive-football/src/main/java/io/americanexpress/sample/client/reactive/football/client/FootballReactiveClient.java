@@ -13,8 +13,9 @@
  */
 package io.americanexpress.sample.client.reactive.football.client;
 
-import io.americanexpress.sample.client.reactive.football.model.FootBallRequest;
-import io.americanexpress.sample.client.reactive.football.model.FootballResponse;
+import io.americanexpress.sample.client.reactive.football.factory.FootballReactiveClientHeadersFactory;
+import io.americanexpress.sample.client.reactive.football.model.FootBallClientRequest;
+import io.americanexpress.sample.client.reactive.football.model.FootballClientResponse;
 import io.americanexpress.synapse.client.rest.client.BaseGetReactiveRestClient;
 import io.americanexpress.synapse.client.rest.client.ReactiveRestClient;
 import io.americanexpress.synapse.client.rest.handler.BaseReactiveRestResponseErrorHandler;
@@ -25,7 +26,7 @@ import io.americanexpress.synapse.client.rest.handler.BaseReactiveRestResponseEr
  * @author eperjust
  */
 @ReactiveRestClient
-public class FootballReactiveClient extends BaseGetReactiveRestClient<FootBallRequest, FootballResponse, FootballReactiveClientHeadersFactory> {
+public class FootballReactiveClient extends BaseGetReactiveRestClient<FootBallClientRequest, FootballClientResponse, FootballReactiveClientHeadersFactory> {
     /**
      * Argument constructor creates a new instance of BaseReactiveRestClient with given values.
      *

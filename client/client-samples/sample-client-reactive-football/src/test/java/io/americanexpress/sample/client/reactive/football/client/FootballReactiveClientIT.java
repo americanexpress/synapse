@@ -14,8 +14,9 @@
 package io.americanexpress.sample.client.reactive.football.client;
 
 import io.americanexpress.sample.client.reactive.football.config.FootballReactiveClientTestConfig;
-import io.americanexpress.sample.client.reactive.football.model.FootBallRequest;
-import io.americanexpress.sample.client.reactive.football.model.FootballResponse;
+import io.americanexpress.sample.client.reactive.football.factory.FootballReactiveClientHeadersFactory;
+import io.americanexpress.sample.client.reactive.football.model.FootBallClientRequest;
+import io.americanexpress.sample.client.reactive.football.model.FootballClientResponse;
 import io.americanexpress.synapse.client.test.client.BaseGetReactiveRestClientIT;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.http.HttpHeaders;
@@ -30,7 +31,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
  */
 @ContextConfiguration(classes = FootballReactiveClientTestConfig.class)
 @ExtendWith(SpringExtension.class)
-class FootballReactiveClientIT extends BaseGetReactiveRestClientIT<FootBallRequest, FootballResponse, FootballReactiveClientHeadersFactory, FootballReactiveClient> {
+class FootballReactiveClientIT extends BaseGetReactiveRestClientIT<FootBallClientRequest, FootballClientResponse, FootballReactiveClientHeadersFactory, FootballReactiveClient> {
     @Override
     protected String mockPathVariables() {
         return null;
@@ -44,12 +45,12 @@ class FootballReactiveClientIT extends BaseGetReactiveRestClientIT<FootBallReque
     }
 
     @Override
-    protected FootBallRequest mockDefaultClientRequest() {
+    protected FootBallClientRequest mockDefaultClientRequest() {
         return null;
     }
 
     @Override
-    protected FootBallRequest mockInvalidClientRequest() {
+    protected FootBallClientRequest mockInvalidClientRequest() {
         return null;
     }
 }

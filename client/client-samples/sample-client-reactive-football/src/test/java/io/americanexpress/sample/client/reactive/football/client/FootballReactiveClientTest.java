@@ -14,8 +14,9 @@
 package io.americanexpress.sample.client.reactive.football.client;
 
 import io.americanexpress.sample.client.reactive.football.config.FootballReactiveClientTestConfig;
-import io.americanexpress.sample.client.reactive.football.model.FootBallRequest;
-import io.americanexpress.sample.client.reactive.football.model.FootballResponse;
+import io.americanexpress.sample.client.reactive.football.factory.FootballReactiveClientHeadersFactory;
+import io.americanexpress.sample.client.reactive.football.model.FootBallClientRequest;
+import io.americanexpress.sample.client.reactive.football.model.FootballClientResponse;
 import io.americanexpress.synapse.client.test.client.BaseReactiveRestClientUnitTest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.test.context.ContextConfiguration;
@@ -26,16 +27,16 @@ import org.springframework.test.context.ContextConfiguration;
  * @author eperjust
  */
 @ContextConfiguration(classes = FootballReactiveClientTestConfig.class)
-public class FootballReactiveClientTest extends BaseReactiveRestClientUnitTest<FootBallRequest, FootballResponse, FootballReactiveClientHeadersFactory, FootballReactiveClient> {
+public class FootballReactiveClientTest extends BaseReactiveRestClientUnitTest<FootBallClientRequest, FootballClientResponse, FootballReactiveClientHeadersFactory, FootballReactiveClient> {
 
     @Override
-    public FootBallRequest mockDefaultClientRequest() {
+    public FootBallClientRequest mockDefaultClientRequest() {
         return null;
     }
 
     @Override
-    public FootballResponse mockDefaultClientResponse() {
-        return new FootballResponse();
+    public FootballClientResponse mockDefaultClientResponse() {
+        return new FootballClientResponse();
     }
 
     @Override

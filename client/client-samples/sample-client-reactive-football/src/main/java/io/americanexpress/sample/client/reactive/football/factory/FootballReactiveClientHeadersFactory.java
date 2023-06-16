@@ -11,11 +11,11 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.sample.client.reactive.football.client;
+package io.americanexpress.sample.client.reactive.football.factory;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.americanexpress.sample.client.reactive.football.model.FootBallRequest;
+import io.americanexpress.sample.client.reactive.football.model.FootBallClientRequest;
 import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -27,7 +27,7 @@ import org.springframework.stereotype.Component;
  * @author eperjust
  */
 @Component
-public class FootballReactiveClientHeadersFactory extends BaseClientHttpHeadersFactory<FootBallRequest> {
+public class FootballReactiveClientHeadersFactory extends BaseClientHttpHeadersFactory<FootBallClientRequest> {
 
     /**
      * Initialize the client http headers factory.
@@ -39,7 +39,7 @@ public class FootballReactiveClientHeadersFactory extends BaseClientHttpHeadersF
     }
 
     @Override
-    public HttpHeaders create(HttpHeaders clientHeaders, FootBallRequest request, String url) {
+    public HttpHeaders create(HttpHeaders clientHeaders, FootBallClientRequest request, String url) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return headers;
