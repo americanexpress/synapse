@@ -19,6 +19,6 @@
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-data-couchbase</artifactId>
-            <version>0.3.19-SNAPSHOT</version>
+            <version>0.3.21-SNAPSHOT</version>
         </dependency>
 ```
