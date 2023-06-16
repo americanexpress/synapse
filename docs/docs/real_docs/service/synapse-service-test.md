@@ -16,5 +16,5 @@
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-service-test</artifactId>
-            <version>0.3.14-SNAPSHOT</version>
+            <version>0.3.19-SNAPSHOT</version>
         </dependency>

@@ -12,7 +12,7 @@
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-client-graphql</artifactId>
-            <version>0.3.14-SNAPSHOT</version>
+            <version>0.3.19-SNAPSHOT</version>
         </dependency>
 ```
 Or add the following to the build.gradle file:
