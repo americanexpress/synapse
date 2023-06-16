@@ -19,6 +19,7 @@ import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFacto
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import io.americanexpress.synapse.client.rest.handler.BaseReactiveRestResponseErrorHandler;
@@ -110,6 +111,30 @@ public abstract class BaseReactiveRestClient<I extends BaseClientRequest, O exte
 			.retrieve()
 			.onStatus(HttpStatus::isError, reactiveRestResponseErrorHandler)
 			.bodyToMono(clientResponseType);
+	}
+
+	/**
+	 * Get the mono response entity from the service given the HTTP headers and request body.
+	 *
+	 * @param headers      headers for the back end service
+	 * @param clientRequest      body of the request
+	 * @param queryParameters    parameters needed to be added to URI
+	 * @param pathVariables      variables needed to be added to URI
+	 * @return the mono response entity from the back end service which contains response headers and body
+	 */
+	public Mono<ResponseEntity<O>> callMonoServiceToEntity(HttpHeaders headers, I clientRequest, List<QueryParameter> queryParameters, String... pathVariables) {
+
+		// Get the updated URL which may change in each client request due to path variables and/or query parameters
+		String updatedUrl = UrlBuilder.build(url, queryParameters, pathVariables);
+
+		return webClient.method(httpMethod)
+				.uri(updatedUrl)
+				.headers(httpHeaders ->
+						httpHeaders.addAll(httpHeadersFactory.create(headers, clientRequest, updatedUrl)))
+				.body(Mono.just(clientRequest), clientRequestType)
+				.retrieve()
+				.onStatus(HttpStatus::isError, reactiveRestResponseErrorHandler)
+				.toEntity(clientResponseType);
 	}
 	
 	/**
