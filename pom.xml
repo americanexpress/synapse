@@ -272,6 +272,11 @@
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-data-mssql</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-data-mysql</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -396,6 +401,11 @@
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-mssql-reactive-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>sample-data-mysql-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -424,7 +434,6 @@
                 <artifactId>sample-data-redis-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
 
             <!--External Dependencies-->
             <dependency>
@@ -737,6 +746,7 @@
                 <artifactId>postgresql</artifactId>
                 <version>42.5.0</version>
             </dependency>
+
             <!-- h2 -->
             <dependency>
                 <groupId>com.h2database</groupId>
@@ -747,6 +757,13 @@
                 <groupId>io.r2dbc</groupId>
                 <artifactId>r2dbc-h2</artifactId>
                 <version>1.0.0.RC1</version>
+            </dependency>
+
+            <!--MSSQL-->
+            <dependency>
+                <groupId>io.r2dbc</groupId>
+                <artifactId>r2dbc-mssql</artifactId>
+                <version>1.0.1.RELEASE</version>
             </dependency>
 
             <!--Persistence-->
