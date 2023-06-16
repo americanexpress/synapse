@@ -11,7 +11,7 @@
 -- the License.
 USE tempdb;
 
-CREATE TABLE book_entity (
+CREATE TABLE book (
                       id                      INT              IDENTITY(1,1) PRIMARY KEY NOT NULL,
                       title                   NVARCHAR(150)    NOT NULL UNIQUE,
                       author                  NVARCHAR(100),
@@ -23,15 +23,15 @@ CREATE TABLE book_entity (
 );
 
 
-INSERT INTO book_entity (title, author, created_date_time, last_modified_date_time, created_by, last_modified_by, version)
+INSERT INTO book (title, author, created_date_time, last_modified_date_time, created_by, last_modified_by, version)
 VALUES ('Synapse', 'Gabriel', GETDATE(), GETDATE(), 'John-Appleseed@email.com', 'John-Appleseed@email.com', 0);
 
-INSERT INTO book_entity (title, author, created_date_time, last_modified_date_time, created_by, last_modified_by, version)
+INSERT INTO book (title, author, created_date_time, last_modified_date_time, created_by, last_modified_by, version)
 VALUES ('Revenge of Synapse', 'John', GETDATE(), GETDATE(), 'John-Appleseed@email.com', 'John-Appleseed@email.com', 0);
 
 CREATE PROCEDURE GET_BOOKS_BY_AUTHOR @author nvarchar(100)
 AS
-    SELECT * FROM book_entity WHERE author=@author
+    SELECT * FROM book WHERE author=@author
 GO;
 
 EXEC GET_BOOKS_BY_AUTHOR @author = 'Gabriel';

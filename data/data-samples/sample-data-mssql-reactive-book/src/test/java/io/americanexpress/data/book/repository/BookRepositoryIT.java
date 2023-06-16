@@ -22,22 +22,21 @@ import org.springframework.boot.test.autoconfigure.data.r2dbc.DataR2dbcTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 /**
  * {@code BookRepositoryIT} tests the {@link BookRepository} with local instance of Mssql database.
  */
 @ContextConfiguration(classes = BookDataTestConfig.class)
-@ExtendWith(SpringExtension.class)
 @DataR2dbcTest
+@ExtendWith(SpringExtension.class)
 class BookRepositoryIT {
 
     @Autowired
     private BookRepository bookRepository;
 
     @Test
-    void findAll() {
+    void findAll_givenBooksInDatabase_expectedBooksReturned() {
         Flux<BookEntity> bookEntityFlux = bookRepository.findAll();
 
         StepVerifier.create(bookEntityFlux)
@@ -47,8 +46,8 @@ class BookRepositoryIT {
     }
 
     @Test
-    void getTotalBooksByAuthor() {
-        Flux<BookEntity> bookEntityFlux = bookRepository.getBooksByAuthor("Lewis Carroll");
+    void findAllBookByAuthor_givenBooksInDatabase_expectedBooksByAuthorReturned() {
+        Flux<BookEntity> bookEntityFlux = bookRepository.findAllBookByAuthor("Lewis Carroll");
 
         StepVerifier.create(bookEntityFlux)
                 .expectNextCount(1L)

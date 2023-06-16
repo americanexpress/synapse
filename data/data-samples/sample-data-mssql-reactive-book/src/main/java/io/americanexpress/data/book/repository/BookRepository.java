@@ -21,18 +21,17 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
- * The interface Book repository.
+ * {@code BookRepository} contains methods for accessing Book table in Mssql database.
  */
 @Repository
 public interface BookRepository extends R2dbcRepository<BookEntity, Long> {
 
     /**
-     * Find books by title.
+     * Finds book by title.
      * @param title the book title
      * @return mono book entity
      */
     Mono<BookEntity> findByTitle(String title);
-
 
     /**
      * Example of using stored procedure to get books by author.
@@ -40,5 +39,5 @@ public interface BookRepository extends R2dbcRepository<BookEntity, Long> {
      * @return flux of books
      */
     @Procedure("GET_BOOKS_BY_AUTHOR")
-    Flux<BookEntity> getBooksByAuthor(String author);
+    Flux<BookEntity> findAllBookByAuthor(String author);
 }

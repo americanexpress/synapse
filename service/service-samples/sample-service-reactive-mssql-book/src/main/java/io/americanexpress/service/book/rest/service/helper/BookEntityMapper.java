@@ -19,14 +19,14 @@ import io.americanexpress.service.book.rest.model.CreateBookResponse;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 
 /**
- * {@code BookServiceMapper} Helps service modules in mapping object.
+ * {@code BookEntityMapper} Helps service modules in mapping object.
  */
-public class BookServiceMapper {
+public class BookEntityMapper {
 
     /**
      * The private constructor.
      */
-    private BookServiceMapper() {}
+    private BookEntityMapper() {}
 
     /**
      * Populates ReadBookResponse with BookEntity.

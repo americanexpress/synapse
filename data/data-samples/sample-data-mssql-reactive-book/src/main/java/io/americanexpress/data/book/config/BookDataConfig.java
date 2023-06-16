@@ -20,12 +20,13 @@ import org.springframework.core.env.Environment;
 import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
 
 /**
- * The type Book data config.
+ * {@code BookDataConfig} contains configurations for connecting to Mssql database.
  */
 @Configuration
-@PropertySource("classpath:data-mmsql-book-application.properties")
 @EnableR2dbcRepositories(basePackages = "io.americanexpress.data.book")
+@PropertySource("classpath:data-mmsql-book-application.properties")
 public class BookDataConfig extends BaseReactiveMicrosoftSQLDataConfig {
+
     /**
      * Instantiates a new Book data config.
      *

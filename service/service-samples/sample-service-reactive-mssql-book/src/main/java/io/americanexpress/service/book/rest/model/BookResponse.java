@@ -15,7 +15,7 @@ package io.americanexpress.service.book.rest.model;
 
 import io.americanexpress.synapse.service.reactive.rest.model.BaseServiceResponse;
 
-import javax.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
 
 /**
  * {@code BookResponse} Book response object.
@@ -25,24 +25,22 @@ public class BookResponse extends BaseServiceResponse {
     /**
      * The title of the book.
      */
-    @NotBlank
     private String title;
 
     /**
      * The author of the book.
      */
-    @NotBlank
     private String author;
 
     /**
      * The createdDateTime of the book record.
      */
-    private String createdDateTime;
+    private LocalDateTime createdDateTime;
 
     /**
      * The lastModifiedDateTime of the book record.
      */
-    private String lastModifiedDateTime;
+    private LocalDateTime lastModifiedDateTime;
 
     /**
      * The createdBy of the book record.
@@ -92,34 +90,34 @@ public class BookResponse extends BaseServiceResponse {
     }
 
     /**
-     * Gets createdDateTime as String.
+     * Gets createdDateTime.
      * @return The createdDateTime of the book record.
      */
-    public String getCreatedDateTime() {
+    public LocalDateTime getCreatedDateTime() {
         return createdDateTime;
     }
 
     /**
-     * Sets createdDateTime with provider string.
+     * Sets createdDateTime.
      * @param createdDateTime of the book record.
      */
-    public void setCreatedDateTime(String createdDateTime) {
+    public void setCreatedDateTime(LocalDateTime createdDateTime) {
         this.createdDateTime = createdDateTime;
     }
 
     /**
-     * Gets lastModifiedDateTime as string.
+     * Gets lastModifiedDateTime.
      * @return String representation of lastModifiedDateTime.
      */
-    public String getLastModifiedDateTime() {
+    public LocalDateTime getLastModifiedDateTime() {
         return lastModifiedDateTime;
     }
 
     /**
-     * Sets lastModifiedDateTime with provided string.
+     * Sets lastModifiedDateTime.
      * @param lastModifiedDateTime of the book record.
      */
-    public void setLastModifiedDateTime(String lastModifiedDateTime) {
+    public void setLastModifiedDateTime(LocalDateTime lastModifiedDateTime) {
         this.lastModifiedDateTime = lastModifiedDateTime;
     }
 

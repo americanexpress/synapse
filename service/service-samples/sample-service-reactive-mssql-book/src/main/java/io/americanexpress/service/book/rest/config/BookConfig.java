@@ -24,10 +24,10 @@ import org.springframework.context.annotation.PropertySource;
 /**
  * {@code BookConfig} Book Configuration in enabling reactive services querying a mysql database.
  */
-@Configuration
-@PropertySource("classpath:service-book-application.properties")
 @ComponentScan(basePackages = "io.americanexpress.service.book.rest")
+@Configuration
 @Import(BookDataConfig.class)
+@PropertySource("classpath:service-book-application.properties")
 public class BookConfig extends BaseServiceReactiveRestConfig {
 
     /**
