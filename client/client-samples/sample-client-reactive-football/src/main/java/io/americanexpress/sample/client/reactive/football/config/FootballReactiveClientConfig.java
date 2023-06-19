@@ -13,7 +13,7 @@
  */
 package io.americanexpress.sample.client.reactive.football.config;
 
-import io.americanexpress.sample.client.reactive.football.client.FootballReactiveClient;
+import io.americanexpress.sample.client.reactive.football.client.FootballGetReactiveRestClient;
 import io.americanexpress.sample.client.reactive.football.handler.FootballReactiveResponseErrorHandler;
 import io.americanexpress.synapse.client.rest.config.BaseReactiveRestClientConfig;
 import org.springframework.beans.factory.annotation.Value;
@@ -43,7 +43,7 @@ public class FootballReactiveClientConfig extends BaseReactiveRestClientConfig {
     /**
      * Reactive client for making call to weather api.
      */
-    private final FootballReactiveClient footballReactiveClient;
+    private final FootballGetReactiveRestClient footballReactiveClient;
 
     /**
      * Reactive response error handler for football client.
@@ -56,7 +56,7 @@ public class FootballReactiveClientConfig extends BaseReactiveRestClientConfig {
      * @param footballReactiveClient               the football reactive client
      * @param footballReactiveResponseErrorHandler the football reactive response error handler
      */
-    public FootballReactiveClientConfig(FootballReactiveClient footballReactiveClient, FootballReactiveResponseErrorHandler footballReactiveResponseErrorHandler, Environment environment) {
+    public FootballReactiveClientConfig(FootballGetReactiveRestClient footballReactiveClient, FootballReactiveResponseErrorHandler footballReactiveResponseErrorHandler, Environment environment) {
         this.footballReactiveClient = footballReactiveClient;
         this.footballReactiveResponseErrorHandler = footballReactiveResponseErrorHandler;
         this.environment = environment;

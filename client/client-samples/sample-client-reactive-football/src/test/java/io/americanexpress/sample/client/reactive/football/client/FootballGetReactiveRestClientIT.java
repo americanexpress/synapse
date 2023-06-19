@@ -25,13 +25,13 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
- * {@code FootballReactiveClientIT} tests the {@link FootballReactiveClient}.
+ * {@code FootballGetReactiveRestClientIT} tests the {@link FootballGetReactiveRestClient}.
  *
  * @author eperjust
  */
 @ContextConfiguration(classes = FootballReactiveClientTestConfig.class)
 @ExtendWith(SpringExtension.class)
-class FootballReactiveClientIT extends BaseGetReactiveRestClientIT<FootBallClientRequest, FootballClientResponse, FootballReactiveClientHeadersFactory, FootballReactiveClient> {
+class FootballGetReactiveRestClientIT extends BaseGetReactiveRestClientIT<FootBallClientRequest, FootballClientResponse, FootballReactiveClientHeadersFactory, FootballGetReactiveRestClient> {
     @Override
     protected String mockPathVariables() {
         return null;

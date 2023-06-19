@@ -22,12 +22,12 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.test.context.ContextConfiguration;
 
 /**
- * {@code FootballReactiveClientTest} tests the {@link FootballReactiveClient}.
+ * {@code FootballGetReactiveRestClientTest} tests the {@link FootballGetReactiveRestClient}.
  *
  * @author eperjust
  */
 @ContextConfiguration(classes = FootballReactiveClientTestConfig.class)
-public class FootballReactiveClientTest extends BaseReactiveRestClientUnitTest<FootBallClientRequest, FootballClientResponse, FootballReactiveClientHeadersFactory, FootballReactiveClient> {
+public class FootballGetReactiveRestClientTest extends BaseReactiveRestClientUnitTest<FootBallClientRequest, FootballClientResponse, FootballReactiveClientHeadersFactory, FootballGetReactiveRestClient> {
 
     @Override
     public FootBallClientRequest mockDefaultClientRequest() {

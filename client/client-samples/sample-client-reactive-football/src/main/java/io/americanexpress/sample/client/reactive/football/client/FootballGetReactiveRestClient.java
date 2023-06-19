@@ -21,19 +21,19 @@ import io.americanexpress.synapse.client.rest.client.ReactiveRestClient;
 import io.americanexpress.synapse.client.rest.handler.BaseReactiveRestResponseErrorHandler;
 
 /**
- * {@code FootballReactiveClient} contains configurations for reactive football client.
+ * {@code FootballGetReactiveRestClient} contains configurations for reactive football client.
  *
  * @author eperjust
  */
 @ReactiveRestClient
-public class FootballReactiveClient extends BaseGetReactiveRestClient<FootBallClientRequest, FootballClientResponse, FootballReactiveClientHeadersFactory> {
+public class FootballGetReactiveRestClient extends BaseGetReactiveRestClient<FootBallClientRequest, FootballClientResponse, FootballReactiveClientHeadersFactory> {
     /**
      * Argument constructor creates a new instance of BaseReactiveRestClient with given values.
      *
      * @param httpHeadersFactory               HTTP headers factory used to produce the custom HTTP headers required to consume the back end service
      * @param reactiveRestResponseErrorHandler used to handle errors from the reactive REST client
      */
-    protected FootballReactiveClient(FootballReactiveClientHeadersFactory httpHeadersFactory, BaseReactiveRestResponseErrorHandler reactiveRestResponseErrorHandler) {
+    protected FootballGetReactiveRestClient(FootballReactiveClientHeadersFactory httpHeadersFactory, BaseReactiveRestResponseErrorHandler reactiveRestResponseErrorHandler) {
         super(httpHeadersFactory, reactiveRestResponseErrorHandler);
     }
 }
