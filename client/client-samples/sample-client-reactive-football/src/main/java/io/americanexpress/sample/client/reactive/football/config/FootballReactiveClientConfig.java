@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import reactor.netty.http.client.HttpClient;
 import reactor.netty.transport.ProxyProvider;
@@ -35,16 +36,9 @@ import reactor.netty.transport.ProxyProvider;
 public class FootballReactiveClientConfig extends BaseReactiveRestClientConfig {
 
     /**
-     * The client proxy host information.
+     * The environment information.
      */
-    @Value("${client.proxy.host}")
-    private String clientProxyHost;
-
-    /**
-     * The client proxy port information.
-     */
-    @Value("${client.proxy.port}")
-    private int clientProxyPort;
+    protected Environment environment;
 
     /**
      * Reactive client for making call to weather api.
@@ -62,9 +56,10 @@ public class FootballReactiveClientConfig extends BaseReactiveRestClientConfig {
      * @param footballReactiveClient               the football reactive client
      * @param footballReactiveResponseErrorHandler the football reactive response error handler
      */
-    public FootballReactiveClientConfig(FootballReactiveClient footballReactiveClient, FootballReactiveResponseErrorHandler footballReactiveResponseErrorHandler) {
+    public FootballReactiveClientConfig(FootballReactiveClient footballReactiveClient, FootballReactiveResponseErrorHandler footballReactiveResponseErrorHandler, Environment environment) {
         this.footballReactiveClient = footballReactiveClient;
         this.footballReactiveResponseErrorHandler = footballReactiveResponseErrorHandler;
+        this.environment = environment;
     }
 
     /**
@@ -72,7 +67,7 @@ public class FootballReactiveClientConfig extends BaseReactiveRestClientConfig {
      *
      * @param destinationUrl of the provider
      */
-    @Value("${client.url}")
+    @Value("${football.client.url}")
     @Override
     protected void initialize(String destinationUrl) {
         initializeClient(destinationUrl, footballReactiveClient);
@@ -87,8 +82,8 @@ public class FootballReactiveClientConfig extends BaseReactiveRestClientConfig {
     protected ReactorClientHttpConnector defaultClientConnector() {
         HttpClient httpClient = HttpClient.create()
                 .proxy(proxy -> proxy.type(ProxyProvider.Proxy.HTTP)
-                        .host(this.clientProxyHost)
-                        .port(this.clientProxyPort));
+                        .host(environment.getRequiredProperty("football.client.proxy.host"))
+                        .port(Integer.valueOf(environment.getRequiredProperty("football.client.proxy.port"))));
         return new ReactorClientHttpConnector(httpClient);
     }
 }
