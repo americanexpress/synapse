@@ -31,18 +31,30 @@ import java.nio.charset.Charset;
  * @author Alexei Morgado
  */
 public abstract class BaseRestResponseErrorHandler extends BaseResponseErrorHandler implements ResponseErrorHandler {
-	
-    @Override
-    public boolean hasError(ClientHttpResponse httpResponse)
-            throws IOException {
 
-        return (httpResponse
-                .getStatusCode()
-                .series() == HttpStatus.Series.CLIENT_ERROR || httpResponse
-                .getStatusCode()
+    /**
+     * Indicates whether response has error.
+     *
+     * @param httpResponse     the http response
+     * @throws IOException the io exception
+     * @return true if response contains error.
+     */
+    @Override
+    public boolean hasError(ClientHttpResponse httpResponse) throws IOException {
+
+        return (((HttpStatus)httpResponse
+                .getStatusCode())
+                .series() == HttpStatus.Series.CLIENT_ERROR || ((HttpStatus)httpResponse
+                .getStatusCode())
                 .series() == HttpStatus.Series.SERVER_ERROR);
     }
 
+    /**
+     * Handles error in client http response.
+     *
+     * @param httpResponse     the http response
+     * @throws IOException the io exception
+     */
     @Override
     public void handleError(ClientHttpResponse httpResponse) throws IOException {
         String responseBody = getResponseBodyAsString(httpResponse);
@@ -53,15 +65,29 @@ public abstract class BaseRestResponseErrorHandler extends BaseResponseErrorHand
         throw new ApplicationClientException(developerMessage, ErrorCode.GENERIC_4XX_ERROR);
     }
 
+    /**
+     * Log error.
+     *
+     * @param httpResponse     the http response
+     * @param developerMessage the developer message
+     * @throws IOException the io exception
+     */
     protected void logError(ClientHttpResponse httpResponse, String developerMessage) throws IOException {
         //Only error level when server error family to avoid spam of email alerts.
-        if (httpResponse
-                .getStatusCode()
+        if (((HttpStatus) httpResponse
+                .getStatusCode())
                 .series() == HttpStatus.Series.SERVER_ERROR) {
             logger.error(developerMessage);
         }
     }
 
+    /**
+     * Gets response body as string.
+     *
+     * @param response the response
+     * @return the response body as string
+     * @throws IOException the io exception
+     */
     protected String getResponseBodyAsString(ClientHttpResponse response) throws IOException {
         return StreamUtils.copyToString(response.getBody(), Charset.defaultCharset());
     }

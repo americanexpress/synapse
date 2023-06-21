@@ -20,13 +20,16 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class FixedLengthMaskBigDecimalSerializerTest extends BaseTestStringSerializer {
+/**
+ * {@code FixedLengthMaskBigDecimalSerializerTest} tests the {@link FixedLengthMaskBigDecimalSerializer}.
+ */
+class FixedLengthMaskBigDecimalSerializerTest extends BaseTestStringSerializer {
 
     @BeforeEach
     @Override
     public void initializeModel() {
         super.initializeModel();
-        setTestField("character_masking");
+        setTestField("balanceMasking");
     }
 
     @Override
@@ -61,7 +64,7 @@ public class FixedLengthMaskBigDecimalSerializerTest extends BaseTestStringSeria
     @Override
     public void serialize_clean() throws Exception {
         model.setBalanceMasking(new BigDecimal(1000000000000.00));
-        String expected = "{\"character_masking\":\"***\"}";
+        String expected = "{\"balanceMasking\":\"***\"}";
         String actual = mapper.writeValueAsString(model);
         assertEquals(expected, actual, SERIALIZATION_FAILED);
     }

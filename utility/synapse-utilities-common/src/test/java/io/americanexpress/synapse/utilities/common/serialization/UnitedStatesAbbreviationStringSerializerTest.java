@@ -19,7 +19,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class UnitedStatesAbbreviationStringSerializerTest extends BaseTestStringSerializer {
+/**
+ * {@code UnitedStatesAbbreviationStringSerializerTest} tests the {@link UnitedStatesAbbreviationStringSerializer}.
+ */
+class UnitedStatesAbbreviationStringSerializerTest extends BaseTestStringSerializer {
 
     private static String[] unitedStateNames;
     private static String[] unitedStateAbbreviations;
@@ -28,7 +31,7 @@ public class UnitedStatesAbbreviationStringSerializerTest extends BaseTestString
     @Override
     public void initializeModel() {
         super.initializeModel();
-        setTestField("united_state");
+        setTestField("unitedState");
     }
 
     @Override
@@ -72,7 +75,7 @@ public class UnitedStatesAbbreviationStringSerializerTest extends BaseTestString
     }
 
     @Test
-    public void serialize_allUnitedStates() throws Exception {
+    void serialize_allUnitedStates() throws Exception {
         String expected;
         String actual;
         for (int i = 0; i < unitedStateNames.length; i++) {

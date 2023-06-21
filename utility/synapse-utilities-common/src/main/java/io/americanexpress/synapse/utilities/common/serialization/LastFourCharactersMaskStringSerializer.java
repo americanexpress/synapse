@@ -19,7 +19,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import java.io.IOException;
 
 /**
- * LastFourCharactersMaskStringSerializer class masks the last 4 characters in a string.
+ * {@code LastFourCharactersMaskStringSerializer} class masks the last 4 characters in a string.
  * e.g. if the text is 123456879 then the text will be serialized as *****6789
  *
  * @author Paolo Claudio

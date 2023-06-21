@@ -14,11 +14,12 @@
 package io.americanexpress.synapse.service.rest.service;
 
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
+import org.springframework.http.HttpHeaders;
 
 /**
- * BaseService class specifies the prototypes for performing business logic.
+ * {@code BaseUpdateService} class specifies the prototypes for performing business logic.
  *
- * @param <I> input request type
+ * @param <I> an object extending {@link BaseServiceRequest}
  * @author Alexei Morgado
  */
 public abstract class BaseUpdateService<I extends BaseServiceRequest> extends BaseService {
@@ -28,9 +29,9 @@ public abstract class BaseUpdateService<I extends BaseServiceRequest> extends Ba
      *
      * @param request body received from the controller
      */
-    public void update(I request) {
+    public void update(HttpHeaders headers, I request) {
         logger.entry(request);
-        executeUpdate(request);
+        executeUpdate(headers, request);
         logger.exit();
     }
 
@@ -39,5 +40,5 @@ public abstract class BaseUpdateService<I extends BaseServiceRequest> extends Ba
      *
      * @param request body received from the controller
      */
-    protected abstract void executeUpdate(I request);
+    protected abstract void executeUpdate(HttpHeaders headers, I request);
 }

@@ -67,7 +67,7 @@ public class RestClientLoggingInterceptor implements ClientHttpRequestIntercepto
 
         ClientHttpResponse response = execution.execute(request, body);
 
-        HttpStatus.Series httpStatusSeries = response.getStatusCode().series();
+        HttpStatus.Series httpStatusSeries = ((HttpStatus)response.getStatusCode()).series();
         if (httpStatusSeries == HttpStatus.Series.CLIENT_ERROR || httpStatusSeries == HttpStatus.Series.SERVER_ERROR) {
             logger.info(restClientLogFormatter.formatClientRequest(request, body));
             logger.info(restClientLogFormatter.formatClientResponse(response));

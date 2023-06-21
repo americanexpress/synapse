@@ -82,7 +82,7 @@ class InputValidationErrorHandlerTest {
 
     private void assertErrorResponse(String expectedUserMessage, ErrorResponse actualErrorResponse) {
         ErrorCode expectedErrorCode = ErrorCode.GENERIC_4XX_ERROR;
-        String expectedHeaderMessage = ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE;
+        String expectedHeaderMessage = ErrorCode.GENERIC_4XX_ERROR.getMessage();
         String expectedDeveloperMessage = "Input validation";
         assertAll("Error response values",
                 () -> assertEquals(expectedErrorCode, actualErrorResponse.getCode()),

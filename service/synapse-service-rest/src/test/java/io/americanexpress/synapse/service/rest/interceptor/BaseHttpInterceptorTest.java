@@ -34,7 +34,7 @@ class BaseHttpInterceptorTest extends BaseHttpInterceptor {
     private BaseHttpInterceptor baseHttpInterceptor;
 
     @BeforeEach
-    private void initialize() {
+    void initialize() {
         baseHttpInterceptor = mock(BaseHttpInterceptor.class, withSettings().useConstructor().defaultAnswer(CALLS_REAL_METHODS));
     }
 

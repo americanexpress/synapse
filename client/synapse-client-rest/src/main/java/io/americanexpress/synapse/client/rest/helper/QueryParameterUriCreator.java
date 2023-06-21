@@ -40,7 +40,7 @@ final class QueryParameterUriCreator {
 	
     /**
      * Get the new URI if there are query parameters present in the format of
-     * <code>?key1=value1&key2=value2</code>
+     * {@code ?key1=value1&key2=value2}
      *
      * @param queryParameters parameters that need to be added to the URI
      * @return the new URI containing the query parameters if any are present; empty string otherwise

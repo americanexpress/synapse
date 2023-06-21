@@ -17,17 +17,20 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class UrlEncoderTest {
+/**
+ * {@code UrlEncoderTest} tests the {@link UrlEncoder}.
+ */
+class UrlEncoderTest {
 
     private static final String ENCODING_FAILED = "Encoding failed.";
 
     @Test
-    public void urlEncoder_clean() {
+    void urlEncoder_clean() {
         new UrlEncoder();
     }
 
     @Test
-    public void encode_empty() {
+    void encode_empty() {
         String expected = "";
         Encoder encoder = new UrlEncoder();
         String actual = encoder.encode("");
@@ -35,7 +38,7 @@ public class UrlEncoderTest {
     }
 
     @Test
-    public void encode_alphaNumeric() {
+    void encode_alphaNumeric() {
         String expected = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         Encoder encoder = new UrlEncoder();
         String actual = encoder.encode("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
@@ -43,7 +46,7 @@ public class UrlEncoderTest {
     }
 
     @Test
-    public void encode_reservedCharacters() {
+    void encode_reservedCharacters() {
         String expected = "-_.~";
         Encoder encoder = new UrlEncoder();
         String actual = encoder.encode("-_.~");
@@ -51,7 +54,7 @@ public class UrlEncoderTest {
     }
 
     @Test
-    public void encode_allOtherCharacters() {
+    void encode_allOtherCharacters() {
         Encoder encoder = new UrlEncoder();
         StringBuilder builder = new StringBuilder();
         for (char c = 0; c <= 127; c++) {

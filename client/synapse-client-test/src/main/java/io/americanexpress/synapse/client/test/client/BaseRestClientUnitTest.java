@@ -17,7 +17,6 @@ import io.americanexpress.synapse.client.rest.client.BaseRestClient;
 import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
-import io.americanexpress.synapse.client.rest.model.ClientHeaders;
 import io.americanexpress.synapse.client.rest.model.QueryParameter;
 import io.americanexpress.synapse.framework.exception.ApplicationClientException;
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
@@ -27,6 +26,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.client.ExpectedCount;
@@ -44,15 +44,24 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withStatus;
 
+/**
+ * {@code BaseRestClientUnitTest} is the extensible class for unit testing rest clients.
+ *
+ * @param <I> input request type
+ * @param <O> output response type
+ * @param <H> httpHeadersFactory used to set the HTTP headers for each web service call
+ * @param <C> the client
+ */
 public abstract class BaseRestClientUnitTest<I extends BaseClientRequest,
         O extends BaseClientResponse,
         H extends BaseClientHttpHeadersFactory<I>,
         C extends BaseRestClient<I, O, H>> extends BaseRestClientTest<I, O, H, C> {
 
-	protected O clientResponse;
+    public static final String CLIENT_RESPONSE = "Client response {}";
+    protected O clientResponse;
 
-    protected ClientHeaders clientHeaders;
-	
+    protected HttpHeaders headers;
+
 	protected MockRestServiceServer mockServer;
 
     protected ResponseActions responseActions;
@@ -61,7 +70,7 @@ public abstract class BaseRestClientUnitTest<I extends BaseClientRequest,
     void init() throws Exception {
         this.clientRequest = mockDefaultClientRequest();
         this.clientResponse = mockDefaultClientResponse();
-        this.clientHeaders = getDefaultClientHeaders();
+        this.headers = getDefaultClientHeaders();
         mockServer = getMockServer();
         responseActions = getResponseActions(mockServer, url);
     }
@@ -69,10 +78,10 @@ public abstract class BaseRestClientUnitTest<I extends BaseClientRequest,
     @Test
     void callMonoService_givenValidClientRequest_expectedNonNullClientResponse() throws JsonProcessingException {
         responseActions.andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(clientResponse)));
-        O actual = restClient.callMonoService(clientHeaders, clientRequest);
+        O actual = restClient.callMonoService(headers, clientRequest);
         mockServer.verify();
         assertNotNull(actual, CommonAssertionMessages.RESPONSE_IS_NULL);
-        logger.debug("Client response {}", actual);
+        logger.debug(CLIENT_RESPONSE, actual);
     }
 
     @Test
@@ -92,12 +101,12 @@ public abstract class BaseRestClientUnitTest<I extends BaseClientRequest,
         pathVariableResponseActions.andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(clientResponse)));
 
         // Act on the path variable mock server
-        O actual = restClient.callMonoService(clientHeaders, clientRequest, mockPathVariable());
+        O actual = restClient.callMonoService(headers, clientRequest, mockPathVariable());
 
         // Assert that the expectations have been met
         pathVariableMockServer.verify();
         assertNotNull(actual, CommonAssertionMessages.RESPONSE_IS_NULL);
-        logger.debug("Client response {}", actual);
+        logger.debug(CLIENT_RESPONSE, actual);
     }
 
     @Test
@@ -117,10 +126,10 @@ public abstract class BaseRestClientUnitTest<I extends BaseClientRequest,
         pathVariableResponseActions.andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(clientResponse)));
 
         // Act on the path variable mock server
-        O actual = restClient.callMonoService(clientHeaders, clientRequest, mockQueryParameter());
+        O actual = restClient.callMonoService(headers, clientRequest, mockQueryParameter());
         queryParameterMockServer.verify();
         assertNotNull(actual, CommonAssertionMessages.RESPONSE_IS_NULL);
-        logger.debug("Client response {}", actual);
+        logger.debug(CLIENT_RESPONSE, actual);
     }
 
     @Test
@@ -140,10 +149,10 @@ public abstract class BaseRestClientUnitTest<I extends BaseClientRequest,
         pathVariableResponseActions.andRespond(withStatus(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(clientResponse)));
 
         // Act on the path variable mock server
-        O actual = restClient.callMonoService(clientHeaders, clientRequest, mockQueryParameter(), mockPathVariable());
+        O actual = restClient.callMonoService(headers, clientRequest, mockQueryParameter(), mockPathVariable());
         queryParameterMockServer.verify();
         assertNotNull(actual, CommonAssertionMessages.RESPONSE_IS_NULL);
-        logger.debug("Client response {}", actual);
+        logger.debug(CLIENT_RESPONSE, actual);
     }
 
     @Test
@@ -185,7 +194,7 @@ public abstract class BaseRestClientUnitTest<I extends BaseClientRequest,
     
     private void callMonoServiceAndAssertErrorResponse() {
         try {
-            restClient.callMonoService(clientHeaders, clientRequest);
+            restClient.callMonoService(headers, clientRequest);
             mockServer.verify();
         } catch (ApplicationClientException applicationClientException) {
             assertEquals(ErrorCode.GENERIC_4XX_ERROR, applicationClientException.getErrorCode());
@@ -197,5 +206,5 @@ public abstract class BaseRestClientUnitTest<I extends BaseClientRequest,
 
     protected abstract O mockDefaultClientResponse();
 
-    protected abstract ClientHeaders getDefaultClientHeaders() throws Exception;
+    protected abstract HttpHeaders getDefaultClientHeaders() throws Exception;
 }

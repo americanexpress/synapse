@@ -20,33 +20,36 @@ import io.americanexpress.synapse.service.rest.service.BaseReadMonoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 import javax.validation.Valid;
 
+
 /**
- * <code>BaseReadMonoController</code> class specifies the prototypes for listening for requests from the consumer
- * to Read (POST) a resource. This Controller expects only one object in request and one object in the response, hence, "Mono" in the name.
- * *
+ * {@code BaseReadMonoController} class specifies the prototypes for listening for requests from the consumer
+ * to Read (POST) a resource. This Controller expects only one object in request and one object in the
+ * response, hence, "Mono" in the name.
  *
- * @param <I> input request type
- * @param <O> output response type
- * @param <S> service type
+ * @param <I> an object extending the {@link BaseServiceRequest}
+ * @param <O> an object extending the {@link BaseServiceResponse}
+ * @param <S> an object extending the {@link BaseReadMonoService}
  * @author Gabriel Jimenez
  */
 public abstract class BaseReadMonoController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadMonoService<I, O>> extends BaseController<S> {
 
+    /**
+     * Constant string for inquiry_results.
+     */
     public static final String INQUIRY_RESULTS = "/inquiry_results";
-
-    @Autowired
-    private MonoResponseEntityCreator<O> monoResponseEntityCreator;
 
     /**
      * Get a single resource from the back end service.
      *
+     * @param headers containing the HTTP headers from the consumer
      * @param serviceRequest body from the consumer
      * @return a single resource from the back end service
      */
@@ -59,11 +62,11 @@ public abstract class BaseReadMonoController<I extends BaseServiceRequest, O ext
             @ApiResponse(responseCode = "403", description = "Forbidden"),
     })
     @PostMapping(INQUIRY_RESULTS)
-    public ResponseEntity<O> read(@Valid @RequestBody I serviceRequest) {
+    public ResponseEntity<O> read(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
 
-        final O serviceResponse = service.read(serviceRequest);
-        ResponseEntity<O> responseEntity = monoResponseEntityCreator.create(serviceResponse);
+        final O serviceResponse = service.read(headers, serviceRequest);
+        ResponseEntity<O> responseEntity = MonoResponseEntityCreator.create(serviceResponse);
 
         logger.exit(responseEntity);
         return responseEntity;

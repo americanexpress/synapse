@@ -21,8 +21,8 @@ import io.americanexpress.synapse.client.graphql.model.GraphQLClientRequest;
 import io.americanexpress.synapse.client.rest.client.BasePostReactiveRestClient;
 import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
 import io.americanexpress.synapse.client.rest.handler.BaseReactiveRestResponseErrorHandler;
-import io.americanexpress.synapse.client.rest.model.ClientHeaders;
 import io.americanexpress.synapse.client.rest.model.QueryParameter;
+import org.springframework.http.HttpHeaders;
 import reactor.core.publisher.Flux;
 
 /**
@@ -36,10 +36,10 @@ import reactor.core.publisher.Flux;
 public abstract class BaseReactiveGraphQLClient<T extends BaseGraphQLData, O extends BaseGraphQLClientResponse<T>, H extends BaseClientHttpHeadersFactory<GraphQLClientRequest>> extends BasePostReactiveRestClient<GraphQLClientRequest, O, H> {
 
 	/**
-     * Argument constructor creates a new instance of BaseReactiveGraphQLClient with given values.
-     * @param httpHeadersFactory HTTP headers factory used to produce the custom HTTP headers required to consume the back end service
-     * @param reactiveRestResponseErrorHandler used to handle errors from the reactive REST client
-     */
+	 * Argument constructor creates a new instance of BaseReactiveGraphQLClient with given values.
+	 * @param httpHeadersFactory HTTP headers factory used to produce the custom HTTP headers required to consume the back end service
+	 * @param reactiveRestResponseErrorHandler used to handle errors from the reactive REST client
+	 */
 	protected BaseReactiveGraphQLClient(H httpHeadersFactory, BaseReactiveRestResponseErrorHandler reactiveRestResponseErrorHandler) {
 		super(httpHeadersFactory, reactiveRestResponseErrorHandler);
 	}
@@ -48,7 +48,7 @@ public abstract class BaseReactiveGraphQLClient<T extends BaseGraphQLData, O ext
 	 * This operation is unsupported for reactive GraphQL clients.
 	 */
 	@Override
-	public Flux<O> callPolyService(ClientHeaders clientHeaders, GraphQLClientRequest clientRequest, String... pathVariables) {
+	public Flux<O> callPolyService(HttpHeaders headers, GraphQLClientRequest clientRequest, String... pathVariables) {
 		throw new UnsupportedOperationException();
 	}
 	
@@ -56,7 +56,7 @@ public abstract class BaseReactiveGraphQLClient<T extends BaseGraphQLData, O ext
 	 * This operation is unsupported for reactive GraphQL clients.
 	 */
 	@Override
-	public Flux<O> callPolyService(ClientHeaders clientHeaders, GraphQLClientRequest clientRequest, List<QueryParameter> queryParameters, String... pathVariables) {
+	public Flux<O> callPolyService(HttpHeaders headers, GraphQLClientRequest clientRequest, List<QueryParameter> queryParameters, String... pathVariables) {
 		throw new UnsupportedOperationException();
 	}
 }

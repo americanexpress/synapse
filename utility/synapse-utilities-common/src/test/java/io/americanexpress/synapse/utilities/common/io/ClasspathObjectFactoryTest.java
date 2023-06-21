@@ -30,15 +30,18 @@ import java.lang.reflect.Constructor;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+/**
+ * {@code ClasspathObjectFactoryTest} tests the {@link ClasspathObjectFactory}.
+ */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {UtilitiesCommonConfig.class})
-public class ClasspathObjectFactoryTest {
+class ClasspathObjectFactoryTest {
 
     @Autowired
     private ClasspathObjectFactory classpathObjectFactory;
 
     @Test
-    public void classpathObjectFactory_constructor() throws Exception {
+    void classpathObjectFactory_constructor() throws Exception {
         Constructor<ClasspathObjectFactory> constructor = ClasspathObjectFactory.class.getDeclaredConstructor();
         constructor.setAccessible(true);
         constructor.newInstance();
@@ -46,53 +49,53 @@ public class ClasspathObjectFactoryTest {
     }
 
     @Test
-    public void create_nullArguments() {
+    void create_nullArguments() {
        assertThrows(IllegalArgumentException.class, () -> classpathObjectFactory.create(null, null));
     }
 
     @Test
-    public void create_nullPath() {
+    void create_nullPath() {
         assertThrows(IllegalArgumentException.class, () -> classpathObjectFactory.create(null, Phone.class));
     }
 
     @Test
-    public void create_nullClassType() {
+    void create_nullClassType() {
         assertThrows(IllegalArgumentException.class, () -> classpathObjectFactory.create("sample-empty-file.json", null));
     }
 
     @Test
-    public void create_fileNotFound() {
+    void create_fileNotFound() {
         assertThrows(FileNotFoundException.class, () -> classpathObjectFactory.create("nonexistentFile", Phone.class));
     }
 
     @Test
-    public void create_emptyFile() {
+    void create_emptyFile() {
         assertThrows(MismatchedInputException.class, () -> classpathObjectFactory.create("sample-empty-file.json", Phone.class));
     }
 
     @Test
-    public void create_emptyJson() throws Exception{
+    void create_emptyJson() throws Exception{
         classpathObjectFactory.create("sample-empty-json.json", Phone.class);
     }
 
     @Test
-    public void create_malformedJson() {
+    void create_malformedJson() {
         assertThrows(JsonEOFException.class, () -> classpathObjectFactory.create("sample-malformed-json.json", Phone.class));
     }
 
     @Test
-    public void create_wrongFileFormat() {
+    void create_wrongFileFormat() {
         assertThrows(JsonParseException.class, () -> classpathObjectFactory.create("sample-wrong-format.txt", Phone.class));
     }
 
     @Test
-    public void create_clean() throws Exception {
+    void create_clean() throws Exception {
         Phone actual = (Phone) classpathObjectFactory.create("sample-body.json", Phone.class);
         assertNotNull(actual, "Unmarshal of file failed.");
     }
 
     @Test
-    public void create_clean_string() throws Exception {
+    void create_clean_string() throws Exception {
         classpathObjectFactory.create("sample-body.json");
     }
 }

@@ -15,6 +15,7 @@ package io.americanexpress.service.book.rest.service;
 
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.synapse.service.rest.service.BaseGetMonoService;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 
 /**
@@ -24,8 +25,7 @@ import org.springframework.stereotype.Service;
 public class ReadMonoBookService extends BaseGetMonoService<ReadBookResponse> {
 
     @Override
-    protected ReadBookResponse executeRead(String identifier) {
+    protected ReadBookResponse executeRead(HttpHeaders headers, String identifier) {
         return new ReadBookResponse("Synapse", "Gabriel");
     }
-
 }

@@ -15,11 +15,11 @@ package io.americanexpress.synapse.client.rest.client;
 
 import java.lang.reflect.ParameterizedType;
 
+import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 import org.springframework.http.HttpMethod;
 
-import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
 
@@ -31,12 +31,17 @@ import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
  * @param <H> httpHeadersFactory used to set the HTTP headers for each web service call
  * @author Paolo Claudio
  */
-abstract class BaseClient<I extends BaseClientRequest, O extends BaseClientResponse, H extends BaseClientHttpHeadersFactory<I>> {
+abstract class BaseClient<I extends BaseClientRequest, O extends BaseClientResponse,  H extends BaseClientHttpHeadersFactory<I>> {
 
 	/**
      * Logger used for this client.
      */
     protected final XLogger logger = XLoggerFactory.getXLogger(getClass());
+
+    /**
+     * HTTP headers factory used to produce the custom HTTP headers required to consume the back end service.
+     */
+    protected final H httpHeadersFactory;
 	
     /**
      * Client request type which is determined from the generic type argument <I>.
@@ -47,11 +52,6 @@ abstract class BaseClient<I extends BaseClientRequest, O extends BaseClientRespo
      * Client response type which is determined from the generic type argument <O>.
      */
     protected Class<O> clientResponseType;
-    
-	/**
-     * HTTP headers factory used to produce the custom HTTP headers required to consume the back end service.
-     */
-    protected final H httpHeadersFactory;
 	
 	/**
      * HTTP method of the back end service.
@@ -69,7 +69,7 @@ abstract class BaseClient<I extends BaseClientRequest, O extends BaseClientRespo
      * @param httpMethod HTTP method of the back end service
      */
     protected BaseClient(H httpHeadersFactory, HttpMethod httpMethod) {
-    	this.httpHeadersFactory = httpHeadersFactory;
+        this.httpHeadersFactory = httpHeadersFactory;
     	this.httpMethod = httpMethod;
     	initialize();
     }

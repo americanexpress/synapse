@@ -14,15 +14,13 @@
 package io.americanexpress.synapse.client.rest.factory;
 
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
-import io.americanexpress.synapse.client.rest.model.ClientHeaders;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 
 /**
- * <code>BaseClientHttpHeadersFactory</code> class specifies the prototypes for creating the the client HTTP headers for the backend service.
+ * {@code BaseClientHttpHeadersFactory} class specifies the prototypes for creating the client HTTP headers for the backend service.
  *
  * @param <I> type of client request
  * @author Paolo Claudio
@@ -37,8 +35,14 @@ public abstract class BaseClientHttpHeadersFactory<I extends BaseClientRequest> 
     /**
      * ObjectMapper used to serialize an object for HMAC generation. This mapper object can be overridden in a child class in their Spring config.
      */
-    @Autowired
-    protected ObjectMapper mapper;
+    protected final ObjectMapper mapper;
+
+    /**
+     * Initialize the client http headers factory.
+     */
+    protected BaseClientHttpHeadersFactory(ObjectMapper mapper) {
+        this.mapper = mapper;
+    }
 
     /**
      * Prototype for creating the client HTTP headers. The default implementation returns a default HttpHeaders object.
@@ -47,5 +51,5 @@ public abstract class BaseClientHttpHeadersFactory<I extends BaseClientRequest> 
      * @param request       containing the body of the request to this API
      * @return the client HTTP headers
      */
-    public abstract HttpHeaders create(ClientHeaders clientHeaders, I request, String url);
+    public abstract HttpHeaders create(HttpHeaders clientHeaders, I request, String url);
 }

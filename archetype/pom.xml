@@ -12,13 +12,11 @@
     or implied. See the License for the specific language governing permissions and limitations under
     the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
         <artifactId>synapse</artifactId>
-        <version>0.2.19-SNAPSHOT</version>
+        <version>0.3.21-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -35,8 +33,15 @@
     	<module>synapse-archetype-client-rest-reactive-delete</module>
     	<module>synapse-archetype-client-rest-reactive-get</module>
     	<module>synapse-archetype-client-rest-reactive-post</module>
-    	<module>synapse-archetype-client-rest-reactive-put</module>
     	<module>synapse-archetype-client-rest</module>
+        <module>synapse-archetype-client-rest-reactive-put</module>
         <module>synapse-archetype-data-postgres</module>
+        <module>synapse-archetype-service-rest-delete</module>
+        <module>synapse-archetype-service-rest-post</module>
+        <module>synapse-archetype-service-rest-get</module>
+        <module>synapse-archetype-service-rest-put</module>
+        <module>synapse-archetype-service-rest-reactive-get</module>
+        <module>synapse-archetype-service-rest-reactive-post</module>
+        <module>synapse-archetype-service-rest-reactive-put</module>
     </modules>
 </project>

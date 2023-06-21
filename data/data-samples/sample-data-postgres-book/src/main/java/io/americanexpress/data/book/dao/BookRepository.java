@@ -17,10 +17,16 @@ import io.americanexpress.data.book.entity.BookEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 /**
  * BookRepository is the dao repository to handle the queries for the book table.
  */
 @Repository
-interface BookRepository extends JpaRepository<BookEntity, Long> {
+public interface BookRepository extends JpaRepository<BookEntity, Long> {
+
+    Optional<BookEntity> findByTitle(String title);
+
+    Optional<BookEntity> findByTitleAndAuthor(String title, String author);
 }
 

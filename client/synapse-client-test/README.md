@@ -16,10 +16,17 @@
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-client-test</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>0.3.21-SNAPSHOT</version>
         </dependency>
 ```
 Or add the following to the build.gradle file:
 ```
-implementation 'io.americanexpress.synapse:synapse-client-test:0.2.1!!'
+implementation 'io.americanexpress.synapse:synapse-client-test:0.3.21-SNAPSHOT'
 ```
+
+- For testing a client extend the `BaseRestClientUnitTest` and implement the overridden methods.
+- 
+## Examples
+Examples of utilizing the synapse-client-test module can be found in the following modules:
+- sample-client-weather
+

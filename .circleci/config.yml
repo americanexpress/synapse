@@ -8,7 +8,7 @@ jobs:
   # Build and Test
   build-test-job:
     docker:
-      - image: circleci/openjdk:17.0.4
+      - image: circleci/openjdk:17-jdk-buster
     steps:
       - checkout
       - restore_cache:
@@ -26,7 +26,7 @@ jobs:
   # Test
   test-job:
     docker:
-      - image: circleci/openjdk:17.0.4
+      - image: circleci/openjdk:17-jdk-buster
     steps:
       - checkout
       - run: mvn test
@@ -37,7 +37,7 @@ jobs:
   # SNAPSHOT Deploy to Maven Central
   snapshot-maven-central-deploy-job:
     docker:
-      - image: circleci/openjdk:17.0.4
+      - image: circleci/openjdk:17-jdk-buster
     steps:
       - checkout
       - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy
@@ -46,7 +46,7 @@ jobs:
   # SNAPSHOT to RELEASE Deploy to Maven Central
   snapshot-release-maven-central-deploy-job:
     docker:
-      - image: circleci/openjdk:17.0.4
+      - image: circleci/openjdk:17-jdk-buster
     steps:
       - checkout
       - run:
@@ -62,7 +62,7 @@ jobs:
   # RELEASE Deploy to Maven Central
   release-maven-central-deploy-job:
     docker:
-      - image: circleci/openjdk:17.0.4
+      - image: circleci/openjdk:17-jdk-buster
     steps:
       - checkout
       - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy -P release -e -X # uses maven-deploy-plugin
@@ -79,7 +79,7 @@ workflows:
           filters:
             branches:
               only:
-                - develop
+                - /develop
                 - /feature.*/
                 - /bugfix.*/
                 - /dependabot.*/
@@ -87,7 +87,7 @@ workflows:
           filters:
             branches:
               only:
-                - develop
+                - /develop
                 - /feature.*/
                 - /bugfix.*/
                 - /dependabot.*/

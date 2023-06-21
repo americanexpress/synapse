@@ -20,37 +20,39 @@ import io.americanexpress.synapse.service.rest.service.BaseReadPolyService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 
 /**
- * <code>BaseReadPolyController</code> class specifies the prototypes for listening for requests from the consumer
+ * {@code BaseReadPolyController} class specifies the prototypes for listening for requests from the consumer
  * to Read (POST) a resource. This Controller expects only one object in request and a list of objects as response, hence, "Poly" in the name.
  *
- * @param <I> input request type
- * @param <O> output response type
- * @param <S> service type
+ * @param <I> an object extending {@link BaseServiceRequest}
+ * @param <O> an object extending {@link BaseServiceResponse}
+ * @param <S> an object extending {@link BaseReadPolyService}
  * @author Gabriel Jimenez
  */
 public abstract class BaseReadPolyController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadPolyService<I, O>> extends BaseController<S> {
 
+    /**
+     * Constant string used for multiple_results.
+     */
     public static final String MULTIPLE_RESULTS = "/multiple_results";
-
-    @Autowired
-    private PolyResponseEntityCreator<O> polyResponseEntityCreator;
 
     /**
      * Get a list of multiple resources from the back end service.
      *
-     * @param serviceRequest      body from the consumer
-     * @param httpServletResponse HttpServletResponse
+     * @param headers               containing the HTTP headers from the consumer
+     * @param serviceRequest        body from the consumer
+     * @param httpServletResponse   HttpServletResponse
      * @return a list of resources from the back end service
      */
     @Operation(summary = "Read operation based on criteria.", description = "Read a collection of resources based on request criteria.")
@@ -62,11 +64,11 @@ public abstract class BaseReadPolyController<I extends BaseServiceRequest, O ext
             @ApiResponse(responseCode = "403", description = "Forbidden"),
     })
     @PostMapping(MULTIPLE_RESULTS)
-    public ResponseEntity<List<O>> read(@Valid @RequestBody I serviceRequest, HttpServletResponse httpServletResponse) {
+    public ResponseEntity<List<O>> read(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest, HttpServletResponse httpServletResponse) {
         logger.entry(serviceRequest);
 
-        final Page<O> page = service.read(serviceRequest);
-        final ResponseEntity<List<O>> responseEntity = polyResponseEntityCreator.create(page, httpServletResponse);
+        final Page<O> page = service.read(headers, serviceRequest);
+        final ResponseEntity<List<O>> responseEntity = PolyResponseEntityCreator.create(page, httpServletResponse);
 
         logger.exit(responseEntity);
         return responseEntity;

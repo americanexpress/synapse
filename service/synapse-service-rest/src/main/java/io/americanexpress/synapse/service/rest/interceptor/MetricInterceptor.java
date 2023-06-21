@@ -16,20 +16,20 @@ package io.americanexpress.synapse.service.rest.interceptor;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
 /**
- * MetricInterceptor class captures metrics about Synapse such as logging API response times.<br>
+ * {@code MetricInterceptor} class captures metrics about Synapse such as logging API response times.<br>
  * <strong>Example:</strong> RESPONSE TIME: The request 0cfcb89d-0d50-4d4c-889d-083cb817b547 POST: /path/to/api with status 400 took 424 milliseconds.
  *
  * @author Alexei Morgado
  */
 @Component
-public class MetricInterceptor extends HandlerInterceptorAdapter {
+public class MetricInterceptor implements HandlerInterceptor {
 
     /**
      * Used to log the metrics.
@@ -67,12 +67,11 @@ public class MetricInterceptor extends HandlerInterceptorAdapter {
      */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception exception) throws Exception {
-        super.afterCompletion(request, response, handler, exception);
         long startTime = (Long) request.getAttribute("startTime");
-        long endTime = System.nanoTime();
+        long endTime = System.currentTimeMillis();
         long executeTime = endTime - startTime;
         int status = (response).getStatus();
-        logger.info("RESPONSE TIME: REQUEST_ID: {}, HTTP_METHOD: {}, URI: {}, STATUS: {}, TIME: {} nanoseconds.",
+        logger.info("RESPONSE TIME: REQUEST_ID: {}, HTTP_METHOD: {}, URI: {}, STATUS: {}, TIME: {} milliseconds.",
                 request.getAttribute("requestId"), request.getMethod(), request.getRequestURI(), status, executeTime);
     }
 }

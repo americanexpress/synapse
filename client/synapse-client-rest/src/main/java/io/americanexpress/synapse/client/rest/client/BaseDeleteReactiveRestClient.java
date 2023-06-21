@@ -15,16 +15,16 @@ package io.americanexpress.synapse.client.rest.client;
 
 import java.util.List;
 
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-
 import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+
 import io.americanexpress.synapse.client.rest.handler.BaseReactiveRestResponseErrorHandler;
 import io.americanexpress.synapse.client.rest.helper.UrlBuilder;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
-import io.americanexpress.synapse.client.rest.model.ClientHeaders;
 import io.americanexpress.synapse.client.rest.model.QueryParameter;
+import org.springframework.http.HttpStatus;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -46,18 +46,17 @@ public abstract class BaseDeleteReactiveRestClient<I extends BaseClientRequest, 
 	protected BaseDeleteReactiveRestClient(H httpHeadersFactory, BaseReactiveRestResponseErrorHandler reactiveRestResponseErrorHandler) {
 		super(httpHeadersFactory, HttpMethod.DELETE, reactiveRestResponseErrorHandler);
 	}
-	
 	/**
      * Get the mono response from the service given the HTTP headers and request body.
      *
-     * @param clientHeaders      headers for the back end service
+     * @param headers      headers for the back end service
      * @param clientRequest      body of the request
      * @param queryParameters    parameters needed to be added to URI
      * @param pathVariables      variables needed to be added to URI
      * @return the mono response body from the back end service
      */
 	@Override
-	public Mono<O> callMonoService(ClientHeaders clientHeaders, I clientRequest, List<QueryParameter> queryParameters, String... pathVariables) {
+	public Mono<O> callMonoService(HttpHeaders headers, I clientRequest, List<QueryParameter> queryParameters, String... pathVariables) {
 		
 		// Get the updated URL which may change in each client request due to path variables and/or query parameters
 		String updatedUrl = UrlBuilder.build(url, queryParameters, pathVariables);
@@ -65,23 +64,23 @@ public abstract class BaseDeleteReactiveRestClient<I extends BaseClientRequest, 
 		return webClient.delete()
 			.uri(updatedUrl)
 			.headers(httpHeaders ->
-				httpHeaders.addAll(httpHeadersFactory.create(clientHeaders, clientRequest, updatedUrl)))
+				httpHeaders.addAll(httpHeadersFactory.create(headers, clientRequest, updatedUrl)))
 			.retrieve()
-			.onStatus(HttpStatus::isError, reactiveRestResponseErrorHandler::apply)
+			.onStatus(HttpStatus::isError, reactiveRestResponseErrorHandler)
 			.bodyToMono(clientResponseType);
 	}
 	
 	/**
      * Get the flux of responses from the service given the HTTP headers and request body.
      *
-     * @param clientHeaders      headers for the back end service
+     * @param headers      headers for the back end service
      * @param clientRequest      body of the request
      * @param queryParameters    parameters needed to be added to URI
      * @param pathVariables      variables needed to be added to URI
      * @return the flux of response bodies from the back end service
      */
 	@Override
-	public Flux<O> callPolyService(ClientHeaders clientHeaders, I clientRequest, List<QueryParameter> queryParameters, String... pathVariables) {
+	public Flux<O> callPolyService(HttpHeaders headers, I clientRequest, List<QueryParameter> queryParameters, String... pathVariables) {
 		
 		// Get the updated URL which may change in each client request due to path variables and/or query parameters
 		String updatedUrl = UrlBuilder.build(url, queryParameters, pathVariables);
@@ -89,9 +88,9 @@ public abstract class BaseDeleteReactiveRestClient<I extends BaseClientRequest, 
 		return webClient.delete()
 			.uri(updatedUrl)
 			.headers(httpHeaders ->
-				httpHeaders.addAll(httpHeadersFactory.create(clientHeaders, clientRequest, updatedUrl)))
+				httpHeaders.addAll(httpHeadersFactory.create(headers, clientRequest, updatedUrl)))
 			.retrieve()
-			.onStatus(HttpStatus::isError, reactiveRestResponseErrorHandler::apply)
+			.onStatus(HttpStatus::isError, reactiveRestResponseErrorHandler)
 			.bodyToFlux(clientResponseType);
 	}
 }

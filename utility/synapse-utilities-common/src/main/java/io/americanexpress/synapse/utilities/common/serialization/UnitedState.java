@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * UnitedState enum has the full set of United States and their abbreviations.
+ * {@code UnitedState} enum has the full set of United States and their abbreviations.
  *
  * @author Paolo Claudio
  */

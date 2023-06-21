@@ -19,7 +19,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import java.io.IOException;
 
 /**
- * UnitedStatesAbbreviationStringSerializer class is used to convert a fully qualified U.S. state name into its abbreviated form during serialization.
+ * {@code UnitedStatesAbbreviationStringSerializer} class is used to convert a fully qualified U.S. state name into its abbreviated form during serialization.
  * For example, "Florida" will get formatted to "FL".
  *
  * @author Paolo Claudio

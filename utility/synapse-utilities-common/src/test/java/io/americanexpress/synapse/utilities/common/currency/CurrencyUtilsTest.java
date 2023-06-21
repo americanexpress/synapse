@@ -18,30 +18,33 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class CurrencyUtilsTest {
+/**
+ * {@code CurrencyUtilsTest} tests the {@link CurrencyUtils}.
+ */
+class CurrencyUtilsTest {
 
     @Test
-    public void currencyUtils_doubleNull() {
+    void currencyUtils_doubleNull() {
         Double actual = CurrencyUtils.convertCurrencyForDouble(10.0, 1.5);
         Double expected = 15.0;
         assertEquals(expected, actual);
     }
 
     @Test
-    public void currencyUtils_doubleSuccess() {
+    void currencyUtils_doubleSuccess() {
         Double actual = CurrencyUtils.convertCurrencyForDouble(null, 1.5);
         assertNull(actual);
     }
 
     @Test
-    public void currencyUtils_stringNull() {
+    void currencyUtils_stringNull() {
         String actual = CurrencyUtils.convertCurrencyForString("10.0", 1.5);
         String expected = "15.0";
         assertEquals(expected, actual);
     }
 
     @Test
-    public void currencyUtils_stringSuccess() {
+    void currencyUtils_stringSuccess() {
         String actual = CurrencyUtils.convertCurrencyForString(null, 1.5);
         assertNull(actual);
     }

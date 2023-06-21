@@ -16,19 +16,38 @@ package io.americanexpress.synapse.service.rest.service;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
 
+/**
+ * {@code BaseReadPolyService} class specifies the prototypes for performing business logic.
+ * @param <I> an object extending {@link BaseServiceRequest}
+ * @param <O> an object extending {@link BaseServiceResponse}
+ */
 public abstract class BaseReadPolyService<I extends BaseServiceRequest, O extends BaseServiceResponse> extends BaseService {
 
-    public Page<O> read(final I request) {
+    /**
+     * Get multiple resources from the back end service.
+     *
+     * @param headers received from the controller
+     * @param request body received from the controller
+     * @return a single resource from the back end service.
+     */
+    public Page<O> read(HttpHeaders headers, final I request) {
 
         logger.entry(request);
 
-        final Page<O> responses = executeRead(request);
+        final Page<O> responses = executeRead(headers, request);
 
         logger.exit(responses);
 
         return responses;
     }
 
-    protected abstract Page<O> executeRead(I request);
+    /**
+     * Prototype for reading multiple resources.
+     * @param headers the Http header map
+     * @param request a read poly request
+     * @return a page of responses
+     */
+    protected abstract Page<O> executeRead(HttpHeaders headers,I request);
 }

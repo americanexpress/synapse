@@ -22,6 +22,7 @@ import java.util.Objects;
  */
 public class ReadPolyBookRequest extends BasePaginatedServiceRequest {
 
+    private String identifier;
     private String title;
     private String author;
 
@@ -42,6 +43,19 @@ public class ReadPolyBookRequest extends BasePaginatedServiceRequest {
         this.author = author;
     }
 
+    public ReadPolyBookRequest(String identifier, String title, String author) {
+        this.identifier = identifier;
+        this.title = title;
+        this.author = author;
+    }
+
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
+    }
 
     /**
      * Gets title.
@@ -84,21 +98,20 @@ public class ReadPolyBookRequest extends BasePaginatedServiceRequest {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ReadPolyBookRequest that = (ReadPolyBookRequest) o;
-        return title.equals(that.title) && author.equals(that.author);
+        return identifier == that.identifier && Objects.equals(title, that.title) && Objects.equals(author, that.author);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, author);
+        return Objects.hash(identifier, title, author);
     }
 
     @Override
     public String toString() {
-        return "ReadBookRequest{" +
-                "title='" + title + '\'' +
+        return "ReadPolyBookRequest{" +
+                "identifier=" + identifier +
+                ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 '}';
     }
-
-
 }

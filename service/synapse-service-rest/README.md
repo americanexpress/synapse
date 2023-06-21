@@ -25,7 +25,7 @@
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-service-rest</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>0.3.21-SNAPSHOT</version>
         </dependency>
 ```
 Or add the following to the build.gradle file:

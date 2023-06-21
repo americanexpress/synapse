@@ -19,6 +19,7 @@ import io.americanexpress.synapse.framework.exception.helper.ErrorMessagePropert
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 import io.americanexpress.synapse.service.rest.model.ErrorResponse;
 import io.americanexpress.synapse.utilities.common.cryptography.CryptoUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,25 +34,14 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * ControllerExceptionHandler class handles all the exceptions and errors thrown by the application, excluding Spring Security.
+ * {@code ControllerExceptionHandler} class handles all the exceptions and errors thrown by the application, excluding Spring Security.
  *
  * @author Alexei Morgado
  */
 @RestControllerAdvice
 public class ControllerExceptionHandler {
-
     /**
-     * The friendly header message for 4XX series errors.
-     */
-    static final String GENERIC_4XX_HEADER_MESSAGE = "Invalid Request.";
-
-    /**
-     * The friendly header message for 5XX series errors.
-     */
-    static final String GENERIC_5XX_HEADER_MESSAGE = "Internal Error";
-
-    /**
-     * Used to log the exceptions
+     * Used to log the exceptions.
      */
     private final XLogger logger = XLoggerFactory.getXLogger(getClass());
 
@@ -103,12 +93,13 @@ public class ControllerExceptionHandler {
         
         ResponseEntity<ErrorResponse> errorResponseEntity;
         
-        if(applicationClientException.getCause() == null) {
+        if (applicationClientException.getCause() == null) {
         	ErrorCode errorCode = applicationClientException.getErrorCode();
-            String message = errorMessagePropertyReader.getErrorMessage(errorCode, applicationClientException.getMessageArguments());
-            String developerMessage = applicationClientException.getDeveloperMessage();
-            ErrorResponse errorResponse = new ErrorResponse(errorCode, ControllerExceptionHandler.GENERIC_4XX_HEADER_MESSAGE, message, developerMessage);
-            errorResponseEntity = ResponseEntity.badRequest().body(errorResponse);
+            String message = errorMessagePropertyReader.getErrorMessage(errorCode, applicationClientException.getMessageArguments() != null
+                    ? applicationClientException.getMessageArguments() : new String[]{StringUtils.EMPTY});
+            String developerMessage = StringUtils.isNotBlank(applicationClientException.getDeveloperMessage()) ? applicationClientException.getDeveloperMessage() : StringUtils.EMPTY;
+            ErrorResponse errorResponse = new ErrorResponse(errorCode, errorCode.getMessage(), message, developerMessage);
+            errorResponseEntity = ResponseEntity.status(errorCode.getHttpStatus()).body(errorResponse);
         } else {
         	errorResponseEntity = handleInternalServerError(applicationClientException);
         }
@@ -157,8 +148,9 @@ public class ControllerExceptionHandler {
     public ResponseEntity<ErrorResponse> handleHttpMessageNotReadableException(HttpMessageNotReadableException httpMessageNotReadableException) {
         logger.warn("HTTP message is not readable", httpMessageNotReadableException);
         String userMessage = httpMessageNotReadableException.getMessage();
-        final ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_4XX_ERROR, GENERIC_4XX_HEADER_MESSAGE, userMessage, "Input validation");
-        final ResponseEntity<ErrorResponse> errorResponseEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+        ErrorCode errorCode = ErrorCode.GENERIC_4XX_ERROR;
+        final ErrorResponse errorResponse = new ErrorResponse(errorCode, errorCode.getMessage(), userMessage, "Input validation");
+        final ResponseEntity<ErrorResponse> errorResponseEntity = ResponseEntity.status(errorCode.getHttpStatus()).body(errorResponse);
         logger.exit(errorResponseEntity);
         return errorResponseEntity;
     }
@@ -186,21 +178,26 @@ public class ControllerExceptionHandler {
     private ResponseEntity<ErrorResponse> handleInternalServerError(Throwable throwable) {
         String message = errorMessagePropertyReader.getErrorMessage(ErrorCode.GENERIC_5XX_ERROR);
         String fullStackTrace = ApplicationServerException.getStackTrace(throwable, System.lineSeparator());
-        ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_5XX_ERROR, GENERIC_5XX_HEADER_MESSAGE, message, CryptoUtil.jasyptEncrypt(fullStackTrace));
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+        ErrorCode errorCode = ErrorCode.GENERIC_5XX_ERROR;
+        ErrorResponse errorResponse = new ErrorResponse(errorCode, errorCode.getMessage(), message, CryptoUtil.encrypt(fullStackTrace));
+        return ResponseEntity.status(errorCode.getHttpStatus()).body(errorResponse);
     }
 
     /**
-     * This method will handle all the internal server errors. Meaning all the 500s family errors which is when we have an exception in our code and we catch and rethrow it or a runtime exception is thrown somewhere.
+     * This method will handle all the internal server errors. Meaning all the 500s family
+     * errors which is when we have an exception in our code and we catch and rethrow it or a
+     * runtime exception is thrown somewhere.
      *
-     * @param throwable
+     * @param throwable the error that was thrown
      * @return response of type ResponseEntity<ErrorResponse>
      */
     private ResponseEntity<ErrorResponse> handleInternalServerError(final Throwable throwable, final HttpServletRequest httpServletRequest) {
         logger.catching(throwable);
-        final String message = errorMessagePropertyReader.getErrorMessage(ErrorCode.GENERIC_5XX_ERROR);
+        String message = errorMessagePropertyReader.getErrorMessage(ErrorCode.GENERIC_5XX_ERROR);
         String fullStackTrace = ApplicationServerException.getStackTrace(throwable, System.lineSeparator());
-        final ErrorResponse errorResponse = new ErrorResponse(ErrorCode.GENERIC_5XX_ERROR, GENERIC_5XX_HEADER_MESSAGE, message, CryptoUtil.jasyptEncrypt(fullStackTrace));
+        ErrorCode  errorCode = ErrorCode.GENERIC_5XX_ERROR;
+        ErrorResponse errorResponse = new ErrorResponse(errorCode, errorCode.getMessage(), message, CryptoUtil.encrypt(fullStackTrace));
+
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
 }

@@ -13,9 +13,9 @@
  */
 package io.americanexpress.synapse.client.rest.client;
 
+import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
 import org.springframework.http.HttpMethod;
 
-import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
 import io.americanexpress.synapse.client.rest.handler.BaseReactiveRestResponseErrorHandler;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;

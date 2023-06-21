@@ -15,9 +15,9 @@ package io.americanexpress.synapse.client.rest.handler;
 
 import io.americanexpress.synapse.framework.exception.ApplicationClientException;
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
+import org.springframework.http.HttpStatus;
 import reactor.core.publisher.Mono;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.web.reactive.function.client.ClientResponse;
 
 import java.util.function.Function;

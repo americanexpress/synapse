@@ -13,15 +13,6 @@
  */
 package io.americanexpress.synapse.utilities.common.config;
 
-import io.americanexpress.synapse.framework.exception.config.ExceptionConfig;
-import io.americanexpress.synapse.utilities.common.serialization.CurrencySerializer;
-import io.americanexpress.synapse.utilities.common.serialization.DateIsoDeserializer;
-import io.americanexpress.synapse.utilities.common.serialization.DateIsoSerializer;
-import io.americanexpress.synapse.utilities.common.serialization.DateTimeDeserializer;
-import io.americanexpress.synapse.utilities.common.serialization.DateTimeSerializer;
-import io.americanexpress.synapse.utilities.common.serialization.DecimalSerializer;
-import io.americanexpress.synapse.utilities.common.serialization.MoneyDeserializer;
-import io.americanexpress.synapse.utilities.common.serialization.StringSerializerModule;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -32,7 +23,15 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
+import io.americanexpress.synapse.framework.exception.config.ExceptionConfig;
+import io.americanexpress.synapse.utilities.common.serialization.CurrencySerializer;
+import io.americanexpress.synapse.utilities.common.serialization.DateIsoDeserializer;
+import io.americanexpress.synapse.utilities.common.serialization.DateIsoSerializer;
+import io.americanexpress.synapse.utilities.common.serialization.DateTimeDeserializer;
+import io.americanexpress.synapse.utilities.common.serialization.DateTimeSerializer;
+import io.americanexpress.synapse.utilities.common.serialization.DecimalSerializer;
+import io.americanexpress.synapse.utilities.common.serialization.MoneyDeserializer;
+import io.americanexpress.synapse.utilities.common.serialization.StringSerializerModule;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -44,7 +43,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
- * <code>UtilitiesCommonConfig</code> class is used to initialize the configurations for utilities-common.
+ * {@code UtilitiesCommonConfig} class is used to initialize the configurations for utilities-common.
  *
  * @author Gabriel Jimenez
  */
@@ -140,7 +139,6 @@ public class UtilitiesCommonConfig {
     @Bean(SYNAPSE_XML_OBJECT_MAPPER)
     public ObjectMapper xmlObjectMapper() {
         final ObjectMapper objectMapper = new XmlMapper();
-        objectMapper.registerModule(new JaxbAnnotationModule());
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         return objectMapper;

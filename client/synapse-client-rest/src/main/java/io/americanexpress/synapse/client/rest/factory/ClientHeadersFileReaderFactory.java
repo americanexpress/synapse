@@ -24,7 +24,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * <code>ClientHeadersFileReaderFactory</code> class produces ClientHeaders objects from a properties file on the class path.
+ * {@code ClientHeadersFileReaderFactory} class produces {@link ClientHeaders} objects from a properties file on the class path.
  *
  * @author Paolo Claudio
  */

@@ -15,21 +15,34 @@ package io.americanexpress.synapse.service.rest.service;
 
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
+import org.springframework.http.HttpHeaders;
 
+/**
+ * {@code BaseReadMonoService} class specifies the prototypes for performing business logic.
+ * @param <I>
+ * @param <O>
+ */
 public abstract class BaseReadMonoService<I extends BaseServiceRequest, O extends BaseServiceResponse> extends BaseService {
 
     /**
      * Get a single resource from the back end service.
      *
+     * @param headers received from the controller
      * @param request body received from the controller
      * @return a single resource from the back end service.
      */
-    public O read(I request) {
+    public O read(HttpHeaders headers, I request) {
         logger.entry(request);
-        final O response = executeRead(request);
+        final O response = executeRead(headers, request);
         logger.exit(response);
         return response;
     }
 
-    protected abstract O executeRead(I request);
+    /**
+     * Prototype for reading a resource.
+     * @param headers the http header map
+     * @param request the request
+     * @return a read mono response
+     */
+    protected abstract O executeRead(HttpHeaders headers,I request);
 }

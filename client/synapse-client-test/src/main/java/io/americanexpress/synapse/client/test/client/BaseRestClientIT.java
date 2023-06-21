@@ -19,11 +19,24 @@ import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFacto
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
 
+/**
+ * {@code BaseRestClientIT} is the base test class for client integration tests.
+ *
+ * @param <I> input request type
+ * @param <O> output response type
+ * @param <H> httpHeadersFactory used to set the HTTP headers for each web service call
+ * @param <C> the client
+ */
 public abstract class BaseRestClientIT<I extends BaseClientRequest,
         O extends BaseClientResponse,
         H extends BaseClientHttpHeadersFactory<I>,
         C extends BaseRestClient<I, O, H>> extends BaseRestClientTest<I, O, H, C> {
 
+    /**
+     * Call mono service given valid request expected success response.
+     *
+     * @throws Exception the exception
+     */
     protected abstract void callMonoService_givenValidRequest_expectedSuccessResponse() throws Exception;
 
 }
