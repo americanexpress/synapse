@@ -15,7 +15,7 @@ package io.americanexpress.service.book.rest.model;
 
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 
-import jakarta.validation.constraints.NotBlank;
+import javax.validation.constraints.NotBlank;
 
 /**
  * {@code BookResponse} Book response object.
@@ -61,15 +61,15 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Gets title as string.
-     * @return
+     * @return the title of the book.
      */
     public String getTitle() {
         return title;
     }
 
     /**
-     * Sets title with provided String
-     * @param title
+     * Sets title with provided String.
+     * @param title String representation of the title
      */
     public void setTitle(String title) {
         this.title = title;
@@ -100,7 +100,7 @@ public class BookResponse extends BaseServiceResponse {
     }
 
     /**
-     * Sets createdDateTime with provied string.
+     * Sets createdDateTime with provided string.
      * @param createdDateTime
      */
     public void setCreatedDateTime(String createdDateTime) {

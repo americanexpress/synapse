@@ -18,6 +18,6 @@
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-framework-exception</artifactId>
-            <version>0.3.8-SNAPSHOT</version>
+            <version>0.3.21-SNAPSHOT</version>
         </dependency>
 ```

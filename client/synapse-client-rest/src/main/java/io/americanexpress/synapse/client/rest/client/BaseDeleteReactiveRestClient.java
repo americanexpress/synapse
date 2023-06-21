@@ -15,6 +15,7 @@ package io.americanexpress.synapse.client.rest.client;
 
 import java.util.List;
 
+import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 
@@ -23,7 +24,7 @@ import io.americanexpress.synapse.client.rest.helper.UrlBuilder;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
 import io.americanexpress.synapse.client.rest.model.QueryParameter;
-import org.springframework.http.HttpStatusCode;
+import org.springframework.http.HttpStatus;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -32,18 +33,19 @@ import reactor.core.publisher.Mono;
  *
  * @param <I> input request type
  * @param <O> output response type
+ * @param <H> httpHeadersFactory used to set the HTTP headers for each web service call
  * @author Paolo Claudio
  */
-public abstract class BaseDeleteReactiveRestClient<I extends BaseClientRequest, O extends BaseClientResponse> extends BaseReactiveRestClient<I, O> {
+public abstract class BaseDeleteReactiveRestClient<I extends BaseClientRequest, O extends BaseClientResponse, H extends BaseClientHttpHeadersFactory<I>> extends BaseReactiveRestClient<I, O, H> {
 
 	/**
 	 * Argument constructor creates a new instance of BaseDeleteReactiveRestClient with given values.
+	 * @param httpHeadersFactory HTTP headers factory used to produce the custom HTTP headers required to consume the back end service
 	 * @param reactiveRestResponseErrorHandler used to handle errors from the reactive REST client
 	 */
-	protected BaseDeleteReactiveRestClient(BaseReactiveRestResponseErrorHandler reactiveRestResponseErrorHandler) {
-		super(HttpMethod.DELETE, reactiveRestResponseErrorHandler);
+	protected BaseDeleteReactiveRestClient(H httpHeadersFactory, BaseReactiveRestResponseErrorHandler reactiveRestResponseErrorHandler) {
+		super(httpHeadersFactory, HttpMethod.DELETE, reactiveRestResponseErrorHandler);
 	}
-	
 	/**
      * Get the mono response from the service given the HTTP headers and request body.
      *
@@ -62,9 +64,9 @@ public abstract class BaseDeleteReactiveRestClient<I extends BaseClientRequest, 
 		return webClient.delete()
 			.uri(updatedUrl)
 			.headers(httpHeaders ->
-				httpHeaders.addAll(headers))
+				httpHeaders.addAll(httpHeadersFactory.create(headers, clientRequest, updatedUrl)))
 			.retrieve()
-			.onStatus(HttpStatusCode::isError, reactiveRestResponseErrorHandler)
+			.onStatus(HttpStatus::isError, reactiveRestResponseErrorHandler)
 			.bodyToMono(clientResponseType);
 	}
 	
@@ -86,9 +88,9 @@ public abstract class BaseDeleteReactiveRestClient<I extends BaseClientRequest, 
 		return webClient.delete()
 			.uri(updatedUrl)
 			.headers(httpHeaders ->
-				httpHeaders.addAll(headers))
+				httpHeaders.addAll(httpHeadersFactory.create(headers, clientRequest, updatedUrl)))
 			.retrieve()
-			.onStatus(HttpStatusCode::isError, reactiveRestResponseErrorHandler)
+			.onStatus(HttpStatus::isError, reactiveRestResponseErrorHandler)
 			.bodyToFlux(clientResponseType);
 	}
 }

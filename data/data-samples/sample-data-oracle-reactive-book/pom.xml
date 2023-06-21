@@ -18,7 +18,7 @@
     <parent>
         <artifactId>data-samples</artifactId>
         <groupId>io.americanexpress.synapse</groupId>
-        <version>0.3.8-SNAPSHOT</version>
+        <version>0.3.21-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -37,10 +37,6 @@
         <dependency>
             <groupId>com.oracle.database.r2dbc</groupId>
             <artifactId>oracle-r2dbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.persistence</groupId>
-            <artifactId>jakarta.persistence-api</artifactId>
         </dependency>
         <!-- spring -->
         <dependency>

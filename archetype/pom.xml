@@ -16,7 +16,7 @@
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
         <artifactId>synapse</artifactId>
-        <version>0.3.8-SNAPSHOT</version>
+        <version>0.3.21-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -42,5 +42,6 @@
         <module>synapse-archetype-service-rest-put</module>
         <module>synapse-archetype-service-rest-reactive-get</module>
         <module>synapse-archetype-service-rest-reactive-post</module>
+        <module>synapse-archetype-service-rest-reactive-put</module>
     </modules>
 </project>

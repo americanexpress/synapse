@@ -14,7 +14,6 @@
 package io.americanexpress.synapse.client.rest.factory;
 
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
-import io.americanexpress.synapse.client.rest.model.ClientHeaders;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
@@ -52,5 +51,5 @@ public abstract class BaseClientHttpHeadersFactory<I extends BaseClientRequest> 
      * @param request       containing the body of the request to this API
      * @return the client HTTP headers
      */
-    public abstract HttpHeaders create(ClientHeaders clientHeaders, I request, String url);
+    public abstract HttpHeaders create(HttpHeaders clientHeaders, I request, String url);
 }

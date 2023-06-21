@@ -15,7 +15,6 @@ package io.americanexpress.data.book.entity;
 
 import io.americanexpress.synapse.data.cassandra.entity.BaseEntity;
 import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
-import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
 

@@ -16,7 +16,7 @@
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
         <artifactId>synapse</artifactId>
-        <version>0.3.8-SNAPSHOT</version>
+        <version>0.3.21-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -31,6 +31,8 @@
         <module>synapse-data-cassandra</module>
         <module>synapse-data-couchbase</module>
         <module>synapse-data-mongodb</module>
+        <module>synapse-data-mssql</module>
+        <module>synapse-data-mysql</module>
         <module>synapse-data-oracle</module>
         <module>synapse-data-postgres</module>
         <module>synapse-data-redis</module>

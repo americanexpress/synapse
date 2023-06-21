@@ -27,7 +27,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import reactor.core.publisher.Mono;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
+
 
 /**
  * {@code BaseReadMonoReactiveController} class specifies the prototypes for listening for requests from the consumer
@@ -58,14 +59,14 @@ public abstract class BaseReadMonoReactiveController<I extends BaseServiceReques
     })
     @PostMapping(INQUIRY_RESULTS)
     public Mono<ResponseEntity<O>> read(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest) {
-        logger.entry(serviceRequest);
+//        logger.entry(serviceRequest);
 
         var serviceResponse = service.read(headers, serviceRequest);
         var responseEntity = serviceResponse
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.noContent().build());
 
-        logger.exit(responseEntity);
+//        logger.exit(responseEntity);
         return responseEntity;
     }
 

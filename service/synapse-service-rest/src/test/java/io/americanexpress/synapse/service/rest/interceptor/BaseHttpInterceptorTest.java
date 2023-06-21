@@ -17,7 +17,7 @@ import io.americanexpress.synapse.framework.exception.ApplicationClientException
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;

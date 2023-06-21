@@ -26,7 +26,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import reactor.core.publisher.Mono;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
+
 
 /**
  * {@code BaseUpdateReactiveController} class specifies the prototypes for listening for requests from the consumer
