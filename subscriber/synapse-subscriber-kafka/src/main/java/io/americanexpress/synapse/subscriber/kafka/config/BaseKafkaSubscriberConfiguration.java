@@ -71,7 +71,7 @@ public abstract class BaseKafkaSubscriberConfiguration<C extends BaseKafkaProper
     /**
      * KafkaSubscriberErrorHandler.
      */
-    private E kafkaErrorHandler;
+    private final E kafkaErrorHandler;
 
     /**
      * RecordFilteringStrategy.
@@ -91,7 +91,7 @@ public abstract class BaseKafkaSubscriberConfiguration<C extends BaseKafkaProper
     /**
      * Kafka batch subscriber enabled Flag.
      */
-    private boolean batchSubscriberEnabled;
+    private final boolean batchSubscriberEnabled;
 
     /**
      * This method is used to get record filtering enabled flag.
@@ -136,6 +136,7 @@ public abstract class BaseKafkaSubscriberConfiguration<C extends BaseKafkaProper
         this.partitions = Optional.ofNullable(environment.getProperty(partitionCountKey, Integer.class)).orElse(1);
         this.batchSubscriberEnabled = Optional.ofNullable(environment.getProperty(batchSubscriberEnabledKey, Boolean.class)).orElse(Boolean.FALSE);
         this.recordFilteringEnabled = Optional.ofNullable(environment.getProperty(recordFilterEnabledKey, Boolean.class)).orElse(Boolean.FALSE);
+        this.recordFilteringStrategy = null;
     }
 
     /**
