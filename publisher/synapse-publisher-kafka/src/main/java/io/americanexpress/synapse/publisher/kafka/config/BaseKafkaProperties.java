@@ -234,7 +234,7 @@ public abstract class BaseKafkaProperties<T extends BaseKafkaProperties.BaseKafk
 		 */
 		@Override
 		public String getKeyStorePassword() {
-			return environment.getRequiredProperty("keyStore.password");
+			return environment.getRequiredProperty("kafka.keyStore.password");
 		}
 
 		/**
@@ -266,7 +266,7 @@ public abstract class BaseKafkaProperties<T extends BaseKafkaProperties.BaseKafk
 		 */
 		@Override
 		public Resource getTrustStoreLocation() {
-			Resource resource = resourceLoader.getResource(environment.getRequiredProperty("trustStore.location"));
+			Resource resource = resourceLoader.getResource(environment.getRequiredProperty("kafka.trustStore.location"));
 			if (!resource.exists()) {
 				throw new ApplicationServerException(new FileNotFoundException(resource.getDescription() + " not found"));
 			}
@@ -278,7 +278,7 @@ public abstract class BaseKafkaProperties<T extends BaseKafkaProperties.BaseKafk
 		 */
 		@Override
 		public String getTrustStorePassword() {
-			return environment.getRequiredProperty("trustStore.password");
+			return environment.getRequiredProperty("kafka.trustStore.password");
 		}
 
 		/**
@@ -286,7 +286,7 @@ public abstract class BaseKafkaProperties<T extends BaseKafkaProperties.BaseKafk
 		 */
 		@Override
 		public String getTrustStoreType() {
-			return environment.getRequiredProperty("trustStore.type");
+			return environment.getRequiredProperty("kafka.trustStore.type");
 		}
 
 		/**
