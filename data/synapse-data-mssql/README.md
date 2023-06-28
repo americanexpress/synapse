@@ -25,7 +25,7 @@
 ```
 Or add the following to the build.gradle file:
 ```
-implementation 'io.americanexpress.synapse:synapse-data-mssql:0.3.14-SNAPSHOT'
+implementation 'io.americanexpress.synapse:synapse-data-mssql:\0.3.21-SNAPSHOT'
 ```
 
 - Have a configuration class that import or extends `BaseReactiveMicrosoftSQLDataConfig` for reactive support.

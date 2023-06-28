@@ -35,7 +35,7 @@ In order to set up, you'll need the following
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-subscriber-kafka</artifactId>
-            <version>0.3.14-SNAPSHOT</version>
+            <version>0.3.21-SNAPSHOT</version>
         </dependency>
 ```
 Or add the following to the build.gradle file:
