@@ -44,7 +44,7 @@
 
         <!--Spring Versions-->
         <spring-framework.version>5.3.23</spring-framework.version>
-        <spring-security.version>6.1.0</spring-security.version>
+        <spring-security.version>6.0.2</spring-security.version>
         <spring-boot-framework.version>2.7.4</spring-boot-framework.version>
         <spring-boot-ws-framework.version>1.4.7.RELEASE</spring-boot-ws-framework.version>
         <spring-cloud.version>3.2.7</spring-cloud.version>
@@ -764,7 +764,7 @@
             <dependency>
                 <groupId>io.r2dbc</groupId>
                 <artifactId>r2dbc-mssql</artifactId>
-                <version>1.0.1.RELEASE</version>
+                <version>1.0.0.RELEASE</version>
             </dependency>
 
             <!--Persistence-->
@@ -958,7 +958,7 @@
             <dependency>
                 <groupId>org.mongodb</groupId>
                 <artifactId>mongodb-driver-sync</artifactId>
-                <version>4.9.1</version>
+                <version>4.8.1</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
