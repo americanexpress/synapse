@@ -18,7 +18,7 @@
     <groupId>io.americanexpress.synapse</groupId>
     <artifactId>synapse</artifactId>
     <packaging>pom</packaging>
-    <version>0.3.14-SNAPSHOT</version>
+    <version>0.3.21-SNAPSHOT</version>
 
     <description>
         Synapse is a set of lightweight foundational framework modules for rapid development built-in with enterprise
@@ -57,7 +57,7 @@
         <spring-boot-graphql.version>11.1.0</spring-boot-graphql.version>
 
         <!--Mock Dependency Versions-->
-        <mockito.version>4.8.0</mockito.version>
+        <mockito.version>4.8.1</mockito.version>
 
         <!--JUnit Versions-->
         <junit.version>1.9.1</junit.version>
@@ -86,6 +86,7 @@
         <module>client</module>
         <module>data</module>
         <module>publisher</module>
+        <module>subscriber</module>
         <module>utility</module>
     </modules>
 
@@ -272,6 +273,11 @@
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-data-mssql</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-data-mysql</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -396,6 +402,11 @@
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-mssql-reactive-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>sample-data-mysql-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -425,7 +436,6 @@
                 <version>${project.version}</version>
             </dependency>
 
-
             <!--External Dependencies-->
             <dependency>
                 <groupId>com.github.stefanbirkner</groupId>
@@ -450,7 +460,7 @@
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-r2dbc</artifactId>
-                <version>1.5.3</version>
+                <version>3.1.0</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.plugin</groupId>
@@ -737,6 +747,7 @@
                 <artifactId>postgresql</artifactId>
                 <version>42.5.0</version>
             </dependency>
+
             <!-- h2 -->
             <dependency>
                 <groupId>com.h2database</groupId>
@@ -747,6 +758,13 @@
                 <groupId>io.r2dbc</groupId>
                 <artifactId>r2dbc-h2</artifactId>
                 <version>1.0.0.RC1</version>
+            </dependency>
+
+            <!--MSSQL-->
+            <dependency>
+                <groupId>io.r2dbc</groupId>
+                <artifactId>r2dbc-mssql</artifactId>
+                <version>1.0.1.RELEASE</version>
             </dependency>
 
             <!--Persistence-->
@@ -940,7 +958,7 @@
             <dependency>
                 <groupId>org.mongodb</groupId>
                 <artifactId>mongodb-driver-sync</artifactId>
-                <version>4.7.2</version>
+                <version>4.9.1</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -1155,7 +1173,7 @@
                         <dependency>
                             <groupId>com.google.code.findbugs</groupId>
                             <artifactId>jsr305</artifactId>
-                            <version>3.0.0</version>
+                            <version>3.0.2</version>
                         </dependency>
                     </dependencies>
                 </plugin>

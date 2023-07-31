@@ -16,7 +16,7 @@
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
         <artifactId>function-samples</artifactId>
-        <version>0.3.14-SNAPSHOT</version>
+        <version>0.3.21-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -59,7 +59,7 @@
                     <dependency>
                         <groupId>org.springframework.cloud</groupId>
                         <artifactId>spring-cloud-function-adapter-gcp</artifactId>
-                        <version>3.2.7</version>
+                        <version>3.2.8</version>
                     </dependency>
                 </dependencies>
             </plugin>
