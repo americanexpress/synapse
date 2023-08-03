@@ -16,48 +16,38 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>data-samples</artifactId>
         <groupId>io.americanexpress.synapse</groupId>
-        <version>0.3.21-SNAPSHOT</version>
+        <artifactId>service-samples</artifactId>
+        <version>0.3.14-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>sample-data-oracle-reactive-book</artifactId>
+    <artifactId>sample-service-reactive-sp-oracle-book</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
 
     <dependencies>
         <!-- Synapse -->
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>
-            <artifactId>synapse-data-oracle</artifactId>
+            <artifactId>synapse-service-reactive-rest</artifactId>
         </dependency>
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>
-            <artifactId>synapse-framework-test</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.oracle.database.r2dbc</groupId>
-            <artifactId>oracle-r2dbc</artifactId>
-        </dependency>
-        <!-- Test -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-suite-api</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-runner</artifactId>
-            <scope>test</scope>
+            <artifactId>sample-data-oracle-reactive-book</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

@@ -26,10 +26,9 @@ import javax.persistence.GenerationType;
 import java.time.LocalDateTime;
 
 /**
- * {@code BookEntity} example of a child module using BaseEntity
+ * {@code BookEntity} A BookEntity representation of
  */
 public class BookEntity {
-
 
     /**
      * Id
