@@ -31,18 +31,24 @@ import reactor.core.scheduler.Schedulers;
 public class UpdateBookService extends BaseUpdateReactiveService<UpdateBookRequest> {
 
     /**
-     * bookRepository
+     * bookPersistenceService
      */
     private BookPersistenceService bookPersistenceService;
 
+    /**
+     * Constructor of {@Ccode UpdateBookService} with provided {@link BookPersistenceService}.
+     * @param bookPersistenceService The {@link BookPersistenceService} used to perform CRUD operations asynchronously
+     *                               through a connection pool.
+     */
     public UpdateBookService(BookPersistenceService bookPersistenceService) {
         this.bookPersistenceService = bookPersistenceService;
     }
 
     /**
-     * executeUpdate will be used to update a book resource by request
-     * @param request
-     * @return
+     * executeUpdate will be used to update a book resource by request.
+     * @param headers The {@link HttpHeaders} of the request.
+     * @param request The {@link UpdateBookRequest} is used to update a book resource in the database.
+     * @return A {@link Mono<Void>} that completes when the update operation is done.
      */
     @Override
     protected Mono<Void> executeUpdate(HttpHeaders headers, UpdateBookRequest request) {

@@ -29,17 +29,24 @@ import reactor.core.scheduler.Schedulers;
 public class DeleteBookService extends BaseDeleteReactiveService {
 
     /**
-     * bookRepository
+     * bookPersistenceService
      */
     private final BookPersistenceService bookPersistenceService;
 
+    /**
+     * Constructor of {@Ccode DeleteBookService} with provided {@link BookPersistenceService}.
+     * @param bookPersistenceService The {@link BookPersistenceService} used to perform CRUD operations asynchronously
+     *                               through a connection pool.
+     */
     public DeleteBookService(BookPersistenceService bookPersistenceService) {
         this.bookPersistenceService = bookPersistenceService;
     }
 
     /**
      * executeDelete will be used to delete book resource by title
-     * @param title
+     * @param headers The {@link HttpHeaders} of the request.
+     * @param title The title of the book.
+     * @return A {@link Mono<Void>} that completes when the delete operation is done.
      */
     @Override
     protected Mono<Void> executeDelete(HttpHeaders headers, String title) {

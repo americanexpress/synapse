@@ -35,14 +35,20 @@ public class ReadBookService extends BaseReadMonoReactiveService<ReadBookRequest
      */
     private final BookPersistenceService bookPersistenceService;
 
+    /**
+     * Constructor of {@Ccode ReadBookService} with provided {@link BookPersistenceService}.
+     * @param bookPersistenceService The {@link BookPersistenceService} used to perform CRUD operations asynchronously
+     *                               through a connection pool.
+     */
     public ReadBookService(BookPersistenceService bookPersistenceService) {
         this.bookPersistenceService = bookPersistenceService;
     }
 
     /**
      * executeRead will be used to retrieve a book resource by request.
-     * @param request
-     * @return
+     * @param headers The {@link HttpHeaders} of the request.
+     * @param request The {@link ReadBookRequest} to be found in the database.
+     * @return A {@link Mono} emitting the found {@link ReadBookResponse}.
      */
     @Override
     protected Mono<ReadBookResponse> executeRead(HttpHeaders headers, ReadBookRequest request) {

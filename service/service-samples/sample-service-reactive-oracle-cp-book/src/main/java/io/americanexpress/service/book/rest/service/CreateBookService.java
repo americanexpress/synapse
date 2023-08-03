@@ -32,18 +32,24 @@ import reactor.core.publisher.Mono;
 public class CreateBookService extends BaseCreateReactiveService<CreateBookRequest, CreateBookResponse> {
 
     /**
-     * bookRepository
+     * bookPersistenceService
      */
     private final BookPersistenceService bookPersistenceService;
 
+    /**
+     * Constructor of {@Ccode CreateBookService} with provided {@link BookPersistenceService}.
+     * @param bookPersistenceService The {@link BookPersistenceService} used to perform CRUD operations asynchronously
+     *                               through a connection pool.
+     */
     public CreateBookService(BookPersistenceService bookPersistenceService) {
         this.bookPersistenceService = bookPersistenceService;
     }
 
     /**
      * executeCreate will be used to create a book resource by request
-     * @param request
-     * @return
+     * @param headers The {@link HttpHeaders} of the request.
+     * @param request The {@link CreateBookRequest} would create a new {@link BookEntity} resource.
+     * @return A {@link Mono} emitting the created {@link CreateBookResponse}.
      */
     @Override
     protected Mono<CreateBookResponse> executeCreate(HttpHeaders headers, CreateBookRequest request) {

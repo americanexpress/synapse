@@ -37,12 +37,7 @@ public class BookApplication {
      * @param args
      */
     public static void main(String... args) {
-        try {
         SpringApplication.run(BookApplication.class, args);
-
-        } catch(Exception e) {
-            System.out.println(e.getMessage());
-        }
-        LOGGER.info("Reactive Rest Book Oracle Sample Application is up and running...");
+        LOGGER.info("Reactive Rest Book Oracle Connection Pool Sample Application is up and running...");
     }
 }

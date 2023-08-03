@@ -26,9 +26,9 @@ import org.apache.commons.lang3.StringUtils;
 public class BookServiceMapper {
 
     /**
-     * Populates ReadBookResponse with BookEntity
-     * @param bookEntity
-     * @return
+     * Populates ReadBookResponse with BookEntity.
+     * @param bookEntity The BookEntity from the database.
+     * @return A {@link ReadBookResponse} mapped from {@link BookEntity}.
      */
     public static ReadBookResponse populateReadBookResponse(BookEntity bookEntity) {
         ReadBookResponse response = new ReadBookResponse();
@@ -42,9 +42,9 @@ public class BookServiceMapper {
     }
 
     /**
-     * Populates BookEntity with CreateBookRequest
-     * @param request
-     * @return
+     * Populates BookEntity with CreateBookRequest.
+     * @param request A {@link CreateBookRequest} will create a new {@link BookEntity}.
+     * @return The new {@link BookEntity} from the database.
      */
     public static BookEntity populateBookEntityForCreation(CreateBookRequest request) {
         BookEntity bookEntity = new BookEntity();
@@ -55,9 +55,9 @@ public class BookServiceMapper {
     }
 
     /**
-     * Populates CreateBookResponse with BookEntity
-     * @param bookEntity
-     * @return
+     * Populates CreateBookResponse with BookEntity.
+     * @param bookEntity A {@link BookEntity} from the database.
+     * @return A {@link CreateBookResponse} from {@link BookEntity}.
      */
     public static CreateBookResponse populateCreateBookResponse(BookEntity bookEntity) {
         CreateBookResponse response = new CreateBookResponse();
@@ -70,9 +70,10 @@ public class BookServiceMapper {
     }
 
     /**
-     * Populate BookEntity with updated request
-     * @param request
-     * @return
+     * Populate BookEntity with updated request.
+     * @param request A {@link UpdateBookRequest} to update the proper {@link BookEntity} resource in the database.
+     * @param bookEntity A {@link BookEntity} from the database that was retrieved.
+     * @return A {@link BookEntity} of the updated {@link BookEntity} resource.
      */
     public static BookEntity populateBookEntityForUpdate(UpdateBookRequest request, BookEntity bookEntity) {
 

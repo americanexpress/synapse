@@ -18,17 +18,23 @@ import reactor.core.publisher.Mono;
 public class GetAllBookService extends BaseGetPolyReactiveService<ReadBookResponse> {
 
     /**
-     * bookRepository
+     * bookPersistenceService
      */
     private BookPersistenceService bookPersistenceService;
 
+    /**
+     * Constructor of {@Ccode GetAllBookService} with provided {@link BookPersistenceService}.
+     * @param bookPersistenceService The {@link BookPersistenceService} used to perform CRUD operations asynchronously
+     *                               through a connection pool.
+     */
     public GetAllBookService(BookPersistenceService bookPersistenceService) {
         this.bookPersistenceService = bookPersistenceService;
     }
 
     /**
      * executeRead will be used to get all book resources.
-     * @return
+     * @param headers The {@link HttpHeaders} of the request.
+     * @return A {@link Flux} emitting all {@link ReadBookResponse} records found in the database.
      */
     @Override
     protected Flux<ReadBookResponse> executeRead(HttpHeaders headers) {
