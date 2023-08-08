@@ -28,7 +28,7 @@
         <classifier/>
 
         <!-- Specify main class to allow your native-image-maven-plugin to find it -->
-        <main.class>io.americanexpress.service.book.io.americanexpress.service.book.rest.BookApplication</main.class>
+        <main.class>io.americanexpress.service.book.rest.BookApplication</main.class>
 
         <!-- This specifies the build pack to be used in your generated cloud image. -->
         <!-- Valid options are tiny, base, full -->
