@@ -166,7 +166,7 @@ public abstract class BaseReactiveRestClient<I extends BaseClientRequest, O exte
 			.uri(updatedUrl)
 			.headers(httpHeaders ->
 				httpHeaders.addAll(httpHeadersFactory.create(headers, clientRequest, updatedUrl)))
-			.body(Flux.just(clientRequest), clientRequestType)
+			.body(Mono.just(clientRequest), clientRequestType)
 			.retrieve()
 			.onStatus(HttpStatus::isError, reactiveRestResponseErrorHandler)
 			.bodyToFlux(clientResponseType);
