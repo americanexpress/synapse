@@ -16,12 +16,12 @@
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-client-test</artifactId>
-            <version>0.3.21-SNAPSHOT</version>
+            <version>0.3.23-SNAPSHOT</version>
         </dependency>
 ```
 Or add the following to the build.gradle file:
 ```
-implementation 'io.americanexpress.synapse:synapse-client-test:0.3.21-SNAPSHOT'
+implementation 'io.americanexpress.synapse:synapse-client-test:0.3.23-SNAPSHOT'
 ```
 
 - For testing a client extend the `BaseRestClientUnitTest` and implement the overridden methods.

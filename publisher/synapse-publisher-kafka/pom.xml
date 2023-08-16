@@ -3,7 +3,7 @@
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
         <artifactId>publisher</artifactId>
-        <version>0.3.21-SNAPSHOT</version>
+        <version>0.3.23-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
