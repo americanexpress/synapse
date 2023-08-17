@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.data.oracle.book.entity;
+package io.americanexpress.data.oracle.cp.book.entity;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -26,7 +26,7 @@ import javax.persistence.GenerationType;
 import java.time.LocalDateTime;
 
 /**
- * {@code BookEntity} A BookEntity representation of
+ * {@code BookEntity} example of a child module using BaseEntity
  */
 public class BookEntity {
 

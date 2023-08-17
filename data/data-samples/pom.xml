@@ -29,6 +29,7 @@
         <module>sample-data-cassandra-reactive</module>
         <module>sample-data-oracle-book</module>
         <module>sample-data-oracle-reactive-book</module>
+        <module>sample-data-oracle-reactive-cp-book</module>
         <module>sample-data-postgres-book</module>
         <module>sample-data-mongodb-book</module>
         <module>sample-data-mongodb-reactive</module>

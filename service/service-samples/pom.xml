@@ -33,6 +33,7 @@
         <module>sample-service-reactive-mssql-book</module>
         <module>sample-service-reactive-mysql-book</module>
         <module>sample-service-reactive-oracle-book</module>
+        <module>sample-service-reactive-oracle-cp-book</module>
         <module>sample-service-reactive-rest-book</module>
         <module>sample-service-reactive-weather-client</module>
         <module>sample-service-rest-book</module>
