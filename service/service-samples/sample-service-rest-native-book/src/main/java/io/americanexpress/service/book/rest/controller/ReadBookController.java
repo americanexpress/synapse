@@ -11,26 +11,20 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.service.book.rest;
+package io.americanexpress.service.book.rest.controller;
 
+import io.americanexpress.service.book.rest.config.BookConfig;
 import io.americanexpress.service.book.rest.model.ReadBookRequest;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import io.americanexpress.service.book.rest.service.ReadBookService;
+import io.americanexpress.synapse.service.rest.controller.BaseReadMonoController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
- * {@link BookApplication} starts the Spring Boot Application.
+ * {@link ReadBookController} is the controller for /v1/books/inquiry_results
  */
-@SpringBootApplication
-public class BookApplication {
-
-    /**
-     * Main method to run the Spring Boot Book Application.
-     *
-     * @param args the args
-     */
-    public static void main(String[] args) {
-        SpringApplication.run(BookApplication.class, args);
-    }
-
+@RestController
+@RequestMapping(BookConfig.BOOK_ENDPOINT)
+public class ReadBookController extends BaseReadMonoController<ReadBookRequest, ReadBookResponse, ReadBookService> {
 }
