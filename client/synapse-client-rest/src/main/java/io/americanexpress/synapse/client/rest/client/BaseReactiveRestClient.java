@@ -13,9 +13,12 @@
  */
 package io.americanexpress.synapse.client.rest.client;
 
+import java.time.Duration;
 import java.util.List;
 
 import io.americanexpress.synapse.client.rest.factory.BaseClientHttpHeadersFactory;
+import io.americanexpress.synapse.framework.exception.ApplicationClientException;
+import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -29,6 +32,7 @@ import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
 import io.americanexpress.synapse.client.rest.model.QueryParameter;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.util.retry.Retry;
 
 /**
  * {@code BaseReactiveRestClient} class specifies the prototypes for all reactive REST clients.
@@ -111,6 +115,37 @@ public abstract class BaseReactiveRestClient<I extends BaseClientRequest, O exte
 			.retrieve()
 			.onStatus(HttpStatus::isError, reactiveRestResponseErrorHandler)
 			.bodyToMono(clientResponseType);
+	}
+
+	/**
+	 * Get the mono response from the service given the HTTP headers and request body. If call to service fails,
+	 * can retry after delayInMilliSeconds and will retry up to numberOfRetries.
+	 *
+	 * @param headers      headers for the back end service
+	 * @param clientRequest      body of the request
+	 * @param numberOfRetries the max number of retries
+	 * @param delayInMilliSeconds the delay between retry attempts in milliseconds
+	 * @param queryParameters    parameters needed to be added to URI
+	 * @param pathVariables      variables needed to be added to URI
+	 * @return the mono response body from the back end service
+	 */
+	public Mono<O> callMonoServiceWithRetry(HttpHeaders headers, I clientRequest, int numberOfRetries, long delayInMilliSeconds, List<QueryParameter> queryParameters, String... pathVariables) {
+		// Get the updated URL which may change in each client request due to path variables and/or query parameters
+		String updatedUrl = UrlBuilder.build(url, queryParameters, pathVariables);
+
+		return webClient.method(httpMethod)
+				.uri(updatedUrl)
+				.headers(httpHeaders ->
+						httpHeaders.addAll(httpHeadersFactory.create(headers, clientRequest, updatedUrl)))
+				.body(Mono.just(clientRequest), clientRequestType)
+				.retrieve()
+				.onStatus(HttpStatus::isError, reactiveRestResponseErrorHandler)
+				.bodyToMono(clientResponseType)
+				.retryWhen(Retry.fixedDelay(numberOfRetries, Duration.ofMillis(delayInMilliSeconds))
+					.filter(throwable -> throwable instanceof ApplicationClientException applicationClientException && applicationClientException.getErrorCode() == ErrorCode.GENERIC_5XX_ERROR)
+						.onRetryExhaustedThrow((retryBackoffSpec, retrySignal) -> {
+									throw new ApplicationClientException("External Service failed to process after max retries", ErrorCode.GENERIC_5XX_ERROR);
+						}));
 	}
 
 	/**
