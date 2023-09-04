@@ -765,6 +765,13 @@
                 <version>1.0.0.RC1</version>
             </dependency>
 
+            <!-- Data Pool -->
+            <dependency>
+                <groupId>io.r2dbc</groupId>
+                <artifactId>r2dbc-pool</artifactId>
+                <version>1.0.0.RELEASE</version>
+            </dependency>
+
             <!--MSSQL-->
             <dependency>
                 <groupId>io.r2dbc</groupId>
