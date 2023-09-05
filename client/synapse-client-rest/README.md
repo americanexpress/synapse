@@ -19,12 +19,12 @@
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-client-rest</artifactId>
-            <version>0.3.23-SNAPSHOT</version>
+            <version>0.3.25-SNAPSHOT</version>
         </dependency>
 ```
 Or add the following to the build.gradle file:
 ```
-implementation 'io.americanexpress.synapse:synapse-client-rest:0.3.23-SNAPSHOT'
+implementation 'io.americanexpress.synapse:synapse-client-rest:0.3.25-SNAPSHOT'
 ```
 
 - Have a configuration class that extends `BaseRestClientConfig` or `BaseReactiveRestClientConfig` for reactive support.
