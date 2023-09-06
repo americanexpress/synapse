@@ -17,7 +17,7 @@ import io.americanexpress.service.book.rest.config.BookEndpoints;
 import io.americanexpress.service.book.rest.model.CreateBookRequest;
 import io.americanexpress.service.book.rest.model.CreateBookResponse;
 import io.americanexpress.service.book.rest.service.CreateBookReactiveService;
-import io.americanexpress.synapse.service.rest.controller.reactive.BaseCreateReactiveController;
+import io.americanexpress.synapse.service.reactive.rest.controller.BaseCreateReactiveController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

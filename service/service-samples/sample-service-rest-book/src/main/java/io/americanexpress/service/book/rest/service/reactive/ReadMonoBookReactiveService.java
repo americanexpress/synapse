@@ -15,7 +15,7 @@ package io.americanexpress.service.book.rest.service.reactive;
 
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.model.ReadPolyBookRequest;
-import io.americanexpress.synapse.service.rest.service.reactive.BaseReadMonoReactiveService;
+import io.americanexpress.synapse.service.reactive.rest.service.BaseReadMonoReactiveService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -28,6 +28,7 @@ public class ReadMonoBookReactiveService extends BaseReadMonoReactiveService<Rea
 
     /**
      * Overriding executeRead
+     *
      * @param request a read mono book service request
      * @return a mono read book response
      */

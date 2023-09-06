@@ -18,7 +18,7 @@ import io.americanexpress.service.book.rest.model.UpdateBookRequest;
 import io.americanexpress.service.book.rest.service.helper.BookServiceMapper;
 import io.americanexpress.synapse.framework.exception.ApplicationClientException;
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
-import io.americanexpress.synapse.service.rest.service.reactive.BaseUpdateReactiveService;
+import io.americanexpress.synapse.service.reactive.rest.service.BaseUpdateReactiveService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -37,6 +37,7 @@ public class UpdateBookService extends BaseUpdateReactiveService<UpdateBookReque
 
     /**
      * Constructor taking in and autowiring BookRepository
+     *
      * @param bookRepository will be used to query the database.
      */
     public UpdateBookService(BookRepository bookRepository) {
@@ -45,6 +46,7 @@ public class UpdateBookService extends BaseUpdateReactiveService<UpdateBookReque
 
     /**
      * ExecuteUpdate will be used to update a book resource by request
+     *
      * @param headers http server headers.
      * @param request Request object used to update.
      * @return void Returns nothing but a successful 204 status code if the resource is updated.

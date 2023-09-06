@@ -16,7 +16,7 @@ package io.americanexpress.service.book.rest.service;
 import io.americanexpress.data.oracle.book.dao.BookRepository;
 import io.americanexpress.synapse.framework.exception.ApplicationClientException;
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
-import io.americanexpress.synapse.service.rest.service.reactive.BaseDeleteReactiveService;
+import io.americanexpress.synapse.service.reactive.rest.service.BaseDeleteReactiveService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -39,6 +39,7 @@ public class DeleteBookService extends BaseDeleteReactiveService {
 
     /**
      * executeDelete will be used to delete book resource by title
+     *
      * @param title
      */
     @Override

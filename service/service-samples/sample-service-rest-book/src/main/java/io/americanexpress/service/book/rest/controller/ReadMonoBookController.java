@@ -16,7 +16,7 @@ package io.americanexpress.service.book.rest.controller;
 import io.americanexpress.service.book.rest.config.BookConfig;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.service.ReadMonoBookService;
-import io.americanexpress.synapse.service.rest.controller.BaseGetMonoController;
+import io.americanexpress.synapse.service.reactive.rest.controller.BaseReadMonoReactiveController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(BookConfig.BOOK_ENDPOINT)
-public class ReadMonoBookController extends BaseGetMonoController<ReadBookResponse, ReadMonoBookService> {
+public class ReadMonoBookController extends BaseReadMonoReactiveController<ReadBookResponse, ReadMonoBookService> {
 
 }
 

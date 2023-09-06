@@ -15,7 +15,7 @@ package io.americanexpress.service.book.rest.service.reactive;
 
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.model.ReadPolyBookRequest;
-import io.americanexpress.synapse.service.rest.service.reactive.BaseCreateReactiveService;
+import io.americanexpress.synapse.service.reactive.rest.service.BaseCreateReactiveService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -28,6 +28,7 @@ public class CreateBookReactiveService extends BaseCreateReactiveService<ReadPol
 
     /**
      * Overriding executeCreate
+     *
      * @param request body received from the controller
      * @return a mono read book response
      */
@@ -40,6 +41,7 @@ public class CreateBookReactiveService extends BaseCreateReactiveService<ReadPol
 
     /**
      * Emulates the creation of a book resource object
+     *
      * @param request a read book poly request
      * @return a read book response
      */

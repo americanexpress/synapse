@@ -15,12 +15,12 @@ package io.americanexpress.service.book.rest.service;
 
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.model.ReadPolyBookRequest;
-import io.americanexpress.synapse.service.rest.model.ServiceHeaders;
-import io.americanexpress.synapse.service.rest.service.BaseReadPolyService;
+import io.americanexpress.synapse.service.reactive.rest.service.BaseReadFluxReactiveService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,10 +29,10 @@ import java.util.List;
  * ReadPolyBookService retrieves a collection of books and the results can be filtered by some given parameters.
  */
 @Service
-public class ReadPolyBookService extends BaseReadPolyService<ReadPolyBookRequest, ReadBookResponse> {
+public class ReadPolyBookService extends BaseReadFluxReactiveService<ReadPolyBookRequest, ReadBookResponse> {
 
     @Override
-    protected Page<ReadBookResponse> executeRead(HttpHeaders headers, ReadPolyBookRequest readBookRequest) {
+    protected Flux<Page<ReadBookResponse>> executeRead(HttpHeaders headers, ReadPolyBookRequest readBookRequest) {
         List<ReadBookResponse> readBookResponses = new ArrayList<>();
         ReadBookResponse readBookResponse = new ReadBookResponse("Synapse", "Gabriel");
         readBookResponses.add(readBookResponse);

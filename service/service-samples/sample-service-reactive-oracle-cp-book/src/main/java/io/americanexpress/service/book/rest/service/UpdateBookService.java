@@ -18,7 +18,7 @@ import io.americanexpress.service.book.rest.model.UpdateBookRequest;
 import io.americanexpress.service.book.rest.service.helper.BookServiceMapper;
 import io.americanexpress.synapse.framework.exception.ApplicationClientException;
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
-import io.americanexpress.synapse.service.rest.service.reactive.BaseUpdateReactiveService;
+import io.americanexpress.synapse.service.reactive.rest.service.BaseUpdateReactiveService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -37,6 +37,7 @@ public class UpdateBookService extends BaseUpdateReactiveService<UpdateBookReque
 
     /**
      * Constructor of {@Ccode UpdateBookService} with provided {@link BookPersistenceService}.
+     *
      * @param bookPersistenceService The {@link BookPersistenceService} used to perform CRUD operations asynchronously
      *                               through a connection pool.
      */
@@ -46,6 +47,7 @@ public class UpdateBookService extends BaseUpdateReactiveService<UpdateBookReque
 
     /**
      * executeUpdate will be used to update a book resource by request.
+     *
      * @param headers The {@link HttpHeaders} of the request.
      * @param request The {@link UpdateBookRequest} is used to update a book resource in the database.
      * @return A {@link Mono<Void>} that completes when the update operation is done.

@@ -15,7 +15,7 @@ package io.americanexpress.service.book.rest.service.reactive;
 
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.model.ReadBookResponses;
-import io.americanexpress.synapse.service.rest.service.reactive.BaseGetPolyReactiveService;
+import io.americanexpress.synapse.service.reactive.rest.service.BaseGetFluxReactiveService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -27,10 +27,11 @@ import java.util.List;
  * {@code GetPolyBookReactiveService} service layer for retrieving multiple book resources
  */
 @Service
-public class GetPolyBookReactiveService extends BaseGetPolyReactiveService<ReadBookResponses> {
+public class GetPolyBookReactiveService extends BaseGetFluxReactiveService<ReadBookResponses> {
 
     /**
      * Overriding executeRead
+     *
      * @return a flux read book response
      */
     @Override
@@ -42,6 +43,7 @@ public class GetPolyBookReactiveService extends BaseGetPolyReactiveService<ReadB
 
     /**
      * Emulates retrieving multiple booking resource.
+     *
      * @return a list of read book response
      */
     private List<ReadBookResponse> populateReadBookList() {

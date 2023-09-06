@@ -18,7 +18,7 @@ import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.service.helper.BookServiceMapper;
 import io.americanexpress.synapse.framework.exception.ApplicationClientException;
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
-import io.americanexpress.synapse.service.rest.service.reactive.BaseGetMonoReactiveService;
+import io.americanexpress.synapse.service.reactive.rest.service.BaseGetMonoReactiveService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -36,6 +36,7 @@ public class GetBookService extends BaseGetMonoReactiveService<ReadBookResponse>
 
     /**
      * Constructor of {@Ccode GetBookService} with provided {@link BookPersistenceService}.
+     *
      * @param bookPersistenceService The {@link BookPersistenceService} used to perform CRUD operations asynchronously
      *                               through a connection pool.
      */
@@ -45,8 +46,9 @@ public class GetBookService extends BaseGetMonoReactiveService<ReadBookResponse>
 
     /**
      * executeRead will be used to retrieve a specific book resource by title
+     *
      * @param headers The {@link HttpHeaders} of the request.
-     * @param title The title of the book.
+     * @param title   The title of the book.
      * @return A {@link Mono} emitting a {@link ReadBookResponse}.
      */
     @Override

@@ -13,7 +13,8 @@
  */
 package io.americanexpress.service.weather.rest.model;
 
-import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
+
+import io.americanexpress.synapse.service.reactive.rest.model.BaseServiceResponse;
 
 /**
  * {@code GetWeatherResponse} is the response for GET weather.

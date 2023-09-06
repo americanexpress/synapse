@@ -16,7 +16,7 @@ package io.americanexpress.service.book.rest.controller;
 import io.americanexpress.service.book.rest.config.BookEndpoints;
 import io.americanexpress.service.book.rest.model.UpdateBookRequest;
 import io.americanexpress.service.book.rest.service.UpdateBookReactiveService;
-import io.americanexpress.synapse.service.rest.controller.reactive.BaseUpdateReactiveController;
+import io.americanexpress.synapse.service.reactive.rest.controller.BaseUpdateReactiveController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

@@ -13,7 +13,8 @@
  */
 package io.americanexpress.service.book.rest.model;
 
-import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
+
+import io.americanexpress.synapse.service.reactive.rest.model.BaseServiceResponse;
 
 import java.util.List;
 import java.util.Objects;

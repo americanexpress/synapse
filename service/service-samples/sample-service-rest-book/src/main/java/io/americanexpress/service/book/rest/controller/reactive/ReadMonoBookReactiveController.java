@@ -17,7 +17,7 @@ import io.americanexpress.service.book.rest.config.BookConfig;
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.model.ReadPolyBookRequest;
 import io.americanexpress.service.book.rest.service.reactive.ReadMonoBookReactiveService;
-import io.americanexpress.synapse.service.rest.controller.reactive.BaseReadMonoReactiveController;
+import io.americanexpress.synapse.service.reactive.rest.controller.BaseReadMonoReactiveController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

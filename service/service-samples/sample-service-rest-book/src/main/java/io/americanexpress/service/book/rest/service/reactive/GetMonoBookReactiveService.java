@@ -14,7 +14,7 @@
 package io.americanexpress.service.book.rest.service.reactive;
 
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
-import io.americanexpress.synapse.service.rest.service.reactive.BaseGetMonoReactiveService;
+import io.americanexpress.synapse.service.reactive.rest.service.BaseGetMonoReactiveService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -27,6 +27,7 @@ public class GetMonoBookReactiveService extends BaseGetMonoReactiveService<ReadB
 
     /**
      * Overriding executeRead
+     *
      * @param request
      * @return
      */
@@ -39,6 +40,7 @@ public class GetMonoBookReactiveService extends BaseGetMonoReactiveService<ReadB
 
     /**
      * Emulates retrieving BookResponse object
+     *
      * @param identifier an identifier
      * @return a read book response
      */
