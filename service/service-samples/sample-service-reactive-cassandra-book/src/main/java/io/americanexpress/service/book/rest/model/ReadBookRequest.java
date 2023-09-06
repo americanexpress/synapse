@@ -13,8 +13,29 @@
  */
 package io.americanexpress.service.book.rest.model;
 
+import io.americanexpress.synapse.service.reactive.rest.model.BaseServiceRequest;
+
 /**
  * {@code ReadBookRequest} is the request object for retrieving a book.
  */
-public class ReadBookRequest extends BookRequest {
+public class ReadBookRequest implements BaseServiceRequest {
+
+    private String title;
+    private String author;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 }

@@ -20,7 +20,7 @@ import io.americanexpress.service.book.rest.model.CreateBookResponse;
 import io.americanexpress.service.book.rest.service.helper.BookServiceMapper;
 import io.americanexpress.synapse.framework.exception.ApplicationClientException;
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
-import io.americanexpress.synapse.service.rest.service.reactive.BaseCreateReactiveService;
+import io.americanexpress.synapse.service.reactive.rest.service.BaseCreateReactiveService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -38,6 +38,7 @@ public class CreateBookService extends BaseCreateReactiveService<CreateBookReque
 
     /**
      * Constructor of {@Ccode CreateBookService} with provided {@link BookPersistenceService}.
+     *
      * @param bookPersistenceService The {@link BookPersistenceService} used to perform CRUD operations asynchronously
      *                               through a connection pool.
      */
@@ -47,6 +48,7 @@ public class CreateBookService extends BaseCreateReactiveService<CreateBookReque
 
     /**
      * executeCreate will be used to create a book resource by request
+     *
      * @param headers The {@link HttpHeaders} of the request.
      * @param request The {@link CreateBookRequest} would create a new {@link BookEntity} resource.
      * @return A {@link Mono} emitting the created {@link CreateBookResponse}.

@@ -13,7 +13,8 @@
  */
 package io.americanexpress.service.book.rest.model;
 
-import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
+import io.americanexpress.synapse.service.reactive.rest.model.BaseServiceResponse;
+
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -60,6 +61,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Gets title as string.
+     *
      * @return The title of the book.
      */
     public String getTitle() {
@@ -68,6 +70,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Sets title with provided String
+     *
      * @param title of the book.
      */
     public void setTitle(String title) {
@@ -76,6 +79,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Gets author as string.
+     *
      * @return The author of the book.
      */
     public String getAuthor() {
@@ -84,6 +88,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Sets author with provided string.
+     *
      * @param author of the book.
      */
     public void setAuthor(String author) {
@@ -92,6 +97,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Gets createdDateTime as String.
+     *
      * @return The createdDateTime of the book record.
      */
     public String getCreatedDateTime() {
@@ -100,6 +106,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Sets createdDateTime with provider string.
+     *
      * @param createdDateTime of the book record.
      */
     public void setCreatedDateTime(String createdDateTime) {
@@ -108,6 +115,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Gets lastModifiedDateTime as string.
+     *
      * @return String representation of lastModifiedDateTime.
      */
     public String getLastModifiedDateTime() {
@@ -116,6 +124,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Sets lastModifiedDateTime with provided string.
+     *
      * @param lastModifiedDateTime of the book record.
      */
     public void setLastModifiedDateTime(String lastModifiedDateTime) {
@@ -124,6 +133,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Gets createdBy as string.
+     *
      * @return CreatedBy the book record.
      */
     public String getCreatedBy() {
@@ -132,6 +142,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Sets createdBy with provided string.
+     *
      * @param createdBy as a string.
      */
     public void setCreatedBy(String createdBy) {
@@ -140,6 +151,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * gets lastModifiedBy as string.
+     *
      * @return lastModifiedBy as a string.
      */
     public String getLastModifiedBy() {
@@ -148,6 +160,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Sets lastModifiedBy with provided string.
+     *
      * @param lastModifiedBy as a string.
      */
     public void setLastModifiedBy(String lastModifiedBy) {
@@ -156,6 +169,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Gets version as string.
+     *
      * @return String representation of version.
      */
     public String getVersion() {
@@ -164,6 +178,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * Sets version with provided string.
+     *
      * @param version of the book.
      */
     public void setVersion(String version) {
@@ -172,6 +187,7 @@ public class BookResponse extends BaseServiceResponse {
 
     /**
      * A string representation of BookResponse.
+     *
      * @return A string of bookResponse.
      */
     @Override

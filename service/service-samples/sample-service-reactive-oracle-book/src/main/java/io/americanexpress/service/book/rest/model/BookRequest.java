@@ -13,7 +13,8 @@
  */
 package io.americanexpress.service.book.rest.model;
 
-import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
+
+import io.americanexpress.synapse.service.reactive.rest.model.BaseServiceRequest;
 
 import javax.validation.constraints.NotBlank;
 
@@ -47,10 +48,12 @@ public class BookRequest implements BaseServiceRequest {
     /**
      * Default constructor
      */
-    public BookRequest(){}
+    public BookRequest() {
+    }
 
     /**
      * Constructor taking title and author
+     *
      * @param title
      * @param author
      */
@@ -61,6 +64,7 @@ public class BookRequest implements BaseServiceRequest {
 
     /**
      * Constructor taking title and author
+     *
      * @param title
      * @param author
      */
@@ -72,6 +76,7 @@ public class BookRequest implements BaseServiceRequest {
 
     /**
      * Constructor taking title and author
+     *
      * @param title
      * @param author
      */
@@ -84,6 +89,7 @@ public class BookRequest implements BaseServiceRequest {
 
     /**
      * Gets id as long
+     *
      * @return
      */
     public Long getId() {
@@ -92,6 +98,7 @@ public class BookRequest implements BaseServiceRequest {
 
     /**
      * Sets id with provided long
+     *
      * @param id
      */
     public void setId(Long id) {
@@ -100,6 +107,7 @@ public class BookRequest implements BaseServiceRequest {
 
     /**
      * Gets the title as string
+     *
      * @return
      */
     public String getTitle() {
@@ -108,6 +116,7 @@ public class BookRequest implements BaseServiceRequest {
 
     /**
      * Sets the title with provided string.
+     *
      * @param title
      */
     public void setTitle(String title) {
@@ -116,6 +125,7 @@ public class BookRequest implements BaseServiceRequest {
 
     /**
      * Gets author as string.
+     *
      * @return
      */
     public String getAuthor() {
@@ -124,6 +134,7 @@ public class BookRequest implements BaseServiceRequest {
 
     /**
      * Sets author with provided string.
+     *
      * @param author
      */
     public void setAuthor(String author) {
@@ -132,6 +143,7 @@ public class BookRequest implements BaseServiceRequest {
 
     /**
      * gets createdBy as string.
+     *
      * @return
      */
     public String getCreatedBy() {
@@ -140,6 +152,7 @@ public class BookRequest implements BaseServiceRequest {
 
     /**
      * Sets createdBy with provided string.
+     *
      * @param createdBy
      */
     public void setCreatedBy(String createdBy) {
@@ -148,6 +161,7 @@ public class BookRequest implements BaseServiceRequest {
 
     /**
      * Returns a string of the obejct
+     *
      * @return
      */
     @Override

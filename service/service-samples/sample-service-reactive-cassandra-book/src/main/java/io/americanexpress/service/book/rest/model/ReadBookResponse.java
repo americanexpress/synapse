@@ -13,7 +13,7 @@
  */
 package io.americanexpress.service.book.rest.model;
 
-import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
+import io.americanexpress.synapse.service.reactive.rest.model.BaseServiceResponse;
 
 /**
  * {@code ReadBookResponse} is the response for the read book operation.

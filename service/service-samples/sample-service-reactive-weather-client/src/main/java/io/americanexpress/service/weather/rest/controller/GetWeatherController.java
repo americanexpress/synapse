@@ -15,7 +15,7 @@ package io.americanexpress.service.weather.rest.controller;
 
 import io.americanexpress.service.weather.rest.model.GetWeatherResponse;
 import io.americanexpress.service.weather.rest.service.GetWeatherService;
-import io.americanexpress.synapse.service.rest.controller.reactive.BaseGetMonoReactiveController;
+import io.americanexpress.synapse.service.reactive.rest.controller.BaseGetMonoReactiveController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,5 +24,5 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/weather")
-public class GetWeatherController extends BaseGetMonoReactiveController<GetWeatherResponse, GetWeatherService>{
+public class GetWeatherController extends BaseGetMonoReactiveController<GetWeatherResponse, GetWeatherService> {
 }

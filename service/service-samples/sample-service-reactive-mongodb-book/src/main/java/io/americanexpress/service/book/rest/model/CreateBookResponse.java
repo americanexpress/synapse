@@ -13,7 +13,8 @@
  */
 package io.americanexpress.service.book.rest.model;
 
-import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
+
+import io.americanexpress.synapse.service.reactive.rest.model.BaseServiceResponse;
 
 /**
  * {@code CreateBookResponse} is the response for the create book operation.

@@ -18,7 +18,7 @@ import io.americanexpress.sample.client.reactive.weather.model.CurrentWeather;
 import io.americanexpress.sample.client.reactive.weather.model.WeatherRequest;
 import io.americanexpress.service.weather.rest.model.GetWeatherResponse;
 import io.americanexpress.service.weather.rest.model.WeatherCode;
-import io.americanexpress.synapse.service.rest.service.reactive.BaseGetMonoReactiveService;
+import io.americanexpress.synapse.service.reactive.rest.service.BaseGetMonoReactiveService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -55,7 +55,7 @@ public class GetWeatherService extends BaseGetMonoReactiveService<GetWeatherResp
                 .map(weatherResponse -> {
                     GetWeatherResponse getWeatherResponse = new GetWeatherResponse();
                     CurrentWeather currentWeather = weatherResponse.getCurrentWeather();
-                    if(currentWeather != null) {
+                    if (currentWeather != null) {
                         getWeatherResponse.setTemperature(currentWeather.getTemperature());
                         getWeatherResponse.setWeather(WeatherCode.getWeatherCode(currentWeather.getWeatherCode()));
                     }

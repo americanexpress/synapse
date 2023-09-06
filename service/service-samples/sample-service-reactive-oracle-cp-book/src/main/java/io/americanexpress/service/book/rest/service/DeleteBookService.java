@@ -16,7 +16,7 @@ package io.americanexpress.service.book.rest.service;
 import io.americanexpress.data.oracle.cp.book.service.BookPersistenceService;
 import io.americanexpress.synapse.framework.exception.ApplicationClientException;
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
-import io.americanexpress.synapse.service.rest.service.reactive.BaseDeleteReactiveService;
+import io.americanexpress.synapse.service.reactive.rest.service.BaseDeleteReactiveService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -35,6 +35,7 @@ public class DeleteBookService extends BaseDeleteReactiveService {
 
     /**
      * Constructor of {@Ccode DeleteBookService} with provided {@link BookPersistenceService}.
+     *
      * @param bookPersistenceService The {@link BookPersistenceService} used to perform CRUD operations asynchronously
      *                               through a connection pool.
      */
@@ -44,8 +45,9 @@ public class DeleteBookService extends BaseDeleteReactiveService {
 
     /**
      * executeDelete will be used to delete book resource by title
+     *
      * @param headers The {@link HttpHeaders} of the request.
-     * @param title The title of the book.
+     * @param title   The title of the book.
      * @return A {@link Mono<Void>} that completes when the delete operation is done.
      */
     @Override

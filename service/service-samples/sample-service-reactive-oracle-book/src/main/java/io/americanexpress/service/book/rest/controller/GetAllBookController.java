@@ -15,7 +15,7 @@ package io.americanexpress.service.book.rest.controller;
 
 import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.service.GetAllBookService;
-import io.americanexpress.synapse.service.rest.controller.reactive.BaseGetPolyReactiveController;
+import io.americanexpress.synapse.service.reactive.rest.controller.BaseGetFluxReactiveController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,6 +26,6 @@ import static io.americanexpress.service.book.rest.config.BookEndpoints.BOOK_END
  */
 @RestController
 @RequestMapping(BOOK_ENDPOINT)
-public class GetAllBookController extends BaseGetPolyReactiveController<ReadBookResponse, GetAllBookService> {
+public class GetAllBookController extends BaseGetFluxReactiveController<ReadBookResponse, GetAllBookService> {
 
 }

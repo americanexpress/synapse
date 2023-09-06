@@ -16,7 +16,7 @@ package io.americanexpress.service.book.rest.service;
 import io.americanexpress.data.book.entity.BookEntity;
 import io.americanexpress.data.book.repository.BookRepository;
 import io.americanexpress.service.book.rest.model.UpdateBookRequest;
-import io.americanexpress.synapse.service.rest.service.reactive.BaseUpdateReactiveService;
+import io.americanexpress.synapse.service.reactive.rest.service.BaseUpdateReactiveService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

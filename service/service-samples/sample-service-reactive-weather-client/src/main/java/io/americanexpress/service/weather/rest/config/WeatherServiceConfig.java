@@ -15,8 +15,7 @@ package io.americanexpress.service.weather.rest.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.americanexpress.sample.client.reactive.weather.config.WeatherReactiveClientConfig;
-import io.americanexpress.synapse.service.rest.config.ServiceRestConfig;
-import io.americanexpress.synapse.service.rest.interceptor.MetricInterceptor;
+import io.americanexpress.synapse.service.reactive.rest.config.BaseServiceReactiveRestConfig;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -29,7 +28,7 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:/service-weather-application.properties")
 @ComponentScan(basePackages = "io.americanexpress.service.weather.rest")
 @Import({WeatherReactiveClientConfig.class})
-public class WeatherServiceConfig extends ServiceRestConfig {
+public class WeatherServiceConfig extends BaseServiceReactiveRestConfig {
 
     /**
      * Constructor taking in objectMapper & metricInterceptor
@@ -37,7 +36,7 @@ public class WeatherServiceConfig extends ServiceRestConfig {
      * @param defaultObjectMapper the default object mapper.
      * @param interceptor         the metric interceptor.
      */
-    public WeatherServiceConfig(ObjectMapper defaultObjectMapper, MetricInterceptor interceptor) {
-        super(defaultObjectMapper, interceptor);
+    public WeatherServiceConfig(ObjectMapper defaultObjectMapper) {
+        super(defaultObjectMapper);
     }
 }

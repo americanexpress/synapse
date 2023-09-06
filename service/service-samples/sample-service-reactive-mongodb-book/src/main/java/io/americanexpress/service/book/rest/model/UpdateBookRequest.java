@@ -13,7 +13,9 @@
  */
 package io.americanexpress.service.book.rest.model;
 
-import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
+
+
+import io.americanexpress.synapse.service.reactive.rest.model.BaseServiceRequest;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
