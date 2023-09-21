@@ -13,44 +13,46 @@
  */
 package io.americanexpress.synapse.service.graphql.model;
 
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
-
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
 /**
  * {@code ReactiveResponseCreator} class creates reactive responses.
- * @author Paolo Claudio
  *
+ * @author Paolo Claudio
  */
 public final class ReactiveResponseCreator {
 
-	/**
-	 * Default constructor creates a new instance of ReactiveResponseCreator with default values.
-	 */
-	private ReactiveResponseCreator() {
-		
-		// A class containing only static methods is a utility class that requires a private default constructor
-	}
-	
-	/**
-	 * Create the reactive response.
-	 * @param element to be set in the response
-	 * @return the reactive response
-	 */
-	public static final <T> CompletableFuture<T> create(T element) {
-		return Mono.fromSupplier(() -> element).toFuture();
-	}
-	
-	/**
-	 * Create the reactive response.
-	 * @param elements to be set in the response
-	 * @return the reactive response
-	 */
-	public static final <T> CompletableFuture<List<T>> create(List<T> elements) {
-		return Flux.fromIterable(elements)
-			.collectList()
-			.toFuture();
-	}
+    /**
+     * Default constructor creates a new instance of ReactiveResponseCreator with default values.
+     */
+    private ReactiveResponseCreator() {
+
+        // A class containing only static methods is a utility class that requires a private default constructor
+    }
+
+    /**
+     * Create the reactive response.
+     *
+     * @param element to be set in the response
+     * @return the reactive response
+     */
+    public static <T> CompletableFuture<T> create(T element) {
+        return Mono.fromSupplier(() -> element).toFuture();
+    }
+
+    /**
+     * Create the reactive response.
+     *
+     * @param elements to be set in the response
+     * @return the reactive response
+     */
+    public static <T> CompletableFuture<List<T>> create(List<T> elements) {
+        return Flux.fromIterable(elements)
+                .collectList()
+                .toFuture();
+    }
 }

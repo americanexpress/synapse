@@ -14,9 +14,11 @@
 package io.americanexpress.synapse.service.rest.controller.exceptionhandler;
 
 import io.americanexpress.synapse.framework.exception.ApplicationClientException;
+import io.americanexpress.synapse.framework.exception.ApplicationException;
 import io.americanexpress.synapse.framework.exception.ApplicationServerException;
 import io.americanexpress.synapse.framework.exception.helper.ErrorMessagePropertyReader;
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
+import io.americanexpress.synapse.framework.exception.model.ExceptionCode;
 import io.americanexpress.synapse.service.rest.model.ErrorResponse;
 import io.americanexpress.synapse.utilities.common.cryptography.CryptoUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -32,6 +34,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 
 /**
  * {@code ControllerExceptionHandler} class handles all the exceptions and errors thrown by the application, excluding Spring Security.
@@ -90,22 +93,62 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(ApplicationClientException.class)
     public ResponseEntity<ErrorResponse> handleApplicationClientException(final ApplicationClientException applicationClientException) {
         logger.entry(applicationClientException);
-        
+
         ResponseEntity<ErrorResponse> errorResponseEntity;
-        
+
         if (applicationClientException.getCause() == null) {
-        	ErrorCode errorCode = applicationClientException.getErrorCode();
+            ErrorCode errorCode = applicationClientException.getErrorCode();
             String message = errorMessagePropertyReader.getErrorMessage(errorCode, applicationClientException.getMessageArguments() != null
                     ? applicationClientException.getMessageArguments() : new String[]{StringUtils.EMPTY});
             String developerMessage = StringUtils.isNotBlank(applicationClientException.getDeveloperMessage()) ? applicationClientException.getDeveloperMessage() : StringUtils.EMPTY;
             ErrorResponse errorResponse = new ErrorResponse(errorCode, errorCode.getMessage(), message, developerMessage);
             errorResponseEntity = ResponseEntity.status(errorCode.getHttpStatus()).body(errorResponse);
         } else {
-        	errorResponseEntity = handleInternalServerError(applicationClientException);
+            errorResponseEntity = handleInternalServerError(applicationClientException);
         }
-        
+
         logger.exit(errorResponseEntity);
         return errorResponseEntity;
+    }
+
+
+    /**
+     * Creates a mapping between the generic {@link ApplicationException} object and the REST ResponseEntity, so that the
+     * API can return the correct response status code and messages in case of an exception.
+     * <p>
+     * This is done, so that we could
+     * extract the business exception vs the REST layer.
+     *
+     * @param applicationException generic exception object that would be used to map to the REST exception ResponseEntity
+     * @return an object of type {@link ResponseEntity<ErrorResponse>}
+     */
+    @ExceptionHandler(ApplicationException.class)
+    public ResponseEntity<ErrorResponse> handleApplicationException(final ApplicationException applicationException) {
+        logger.entry(applicationException);
+        ErrorCode errorCode = mapErrorCode(applicationException.getExceptionCode());
+        ErrorResponse errorResponse = new ErrorResponse(
+                errorCode,
+                errorCode.getMessage(),
+                Arrays.toString(applicationException.getMessageArguments()),
+                applicationException.getDeveloperMessage() == null ? null : applicationException.getDeveloperMessage()
+        );
+        logger.exit(errorResponse);
+        return ResponseEntity.status(errorCode.getHttpStatus()).body(errorResponse);
+
+    }
+
+    /**
+     * Handles the mapping between the {@link ExceptionCode} and the {@link ErrorCode}
+     *
+     * @param exceptionCode generic ENUM that is associated with a business exception
+     * @return a value from ENUM {@link ErrorCode}
+     */
+    private ErrorCode mapErrorCode(ExceptionCode exceptionCode) {
+        return switch (exceptionCode) {
+            case VALIDATION_EXCEPTION -> ErrorCode.GENERIC_4XX_ERROR;
+            case NOT_FOUND -> ErrorCode.NOT_FOUND;
+            case UNABLE_PROCESS -> ErrorCode.GENERIC_5XX_ERROR;
+        };
     }
 
     /**
@@ -122,7 +165,7 @@ public class ControllerExceptionHandler {
         logger.exit(errorResponseEntity);
         return errorResponseEntity;
     }
-    
+
     /**
      * Handle BindingExceptions that were thrown by the application due to constraint violations on request models.
      *
@@ -195,7 +238,7 @@ public class ControllerExceptionHandler {
         logger.catching(throwable);
         String message = errorMessagePropertyReader.getErrorMessage(ErrorCode.GENERIC_5XX_ERROR);
         String fullStackTrace = ApplicationServerException.getStackTrace(throwable, System.lineSeparator());
-        ErrorCode  errorCode = ErrorCode.GENERIC_5XX_ERROR;
+        ErrorCode errorCode = ErrorCode.GENERIC_5XX_ERROR;
         ErrorResponse errorResponse = new ErrorResponse(errorCode, errorCode.getMessage(), message, CryptoUtil.encrypt(fullStackTrace));
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
