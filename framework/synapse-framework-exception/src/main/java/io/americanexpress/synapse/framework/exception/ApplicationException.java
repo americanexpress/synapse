@@ -15,7 +15,7 @@ public class ApplicationException extends RuntimeException {
 
     private String[] messageArguments;
 
-    public ApplicationException(String developerMessage, ExceptionCode exceptionCode, String[] messageArguments) {
+    public ApplicationException(ExceptionCode exceptionCode, String developerMessage, String[] messageArguments) {
         this.developerMessage = developerMessage;
         this.exceptionCode = exceptionCode;
         this.messageArguments = messageArguments;

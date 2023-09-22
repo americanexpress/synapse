@@ -14,9 +14,11 @@
 package io.americanexpress.synapse.service.rest.controller.exceptionhandler;
 
 import io.americanexpress.synapse.framework.exception.ApplicationClientException;
+import io.americanexpress.synapse.framework.exception.ApplicationException;
 import io.americanexpress.synapse.framework.exception.ApplicationServerException;
 import io.americanexpress.synapse.framework.exception.helper.ErrorMessagePropertyReader;
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
+import io.americanexpress.synapse.framework.exception.model.ExceptionCode;
 import io.americanexpress.synapse.service.rest.model.ErrorResponse;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -38,9 +40,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -62,6 +64,12 @@ class ControllerExceptionHandlerTest {
 
     @Mock
     private HttpInputMessage httpInputMessage;
+
+    @Mock
+    private InputValidationErrorHandler inputValidationErrorHandler;
+
+    @Mock
+    private ErrorMessagePropertyReader errorMessagePropertyReader;
 
     private static final MessageSource getErrorMessageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
@@ -95,10 +103,10 @@ class ControllerExceptionHandlerTest {
         ResponseEntity<ErrorResponse> errorResponseEntity = CONTROLLER_EXCEPTION_HANDLER.handleMethodArgumentNotValidException(new MethodArgumentNotValidException(methodParameter, bindingResult));
         assertErrorResponse(errorResponseEntity, ErrorCode.GENERIC_4XX_ERROR, ErrorCode.GENERIC_4XX_ERROR.getMessage(), FIELD_DEFAULT_MESSAGE, HttpStatus.BAD_REQUEST);
     }
-    
+
     @Test
     void handleBindException_whenBindException_expected400() {
-    	List<FieldError> fieldErrors = List.of(new FieldError("sampleObject", "sampleField", FIELD_DEFAULT_MESSAGE));
+        List<FieldError> fieldErrors = List.of(new FieldError("sampleObject", "sampleField", FIELD_DEFAULT_MESSAGE));
         when(bindingResult.getFieldErrors()).thenReturn(fieldErrors);
         methodParameter.withTypeIndex(1);
         ResponseEntity<ErrorResponse> errorResponseEntity = CONTROLLER_EXCEPTION_HANDLER.handleBindException(new MethodArgumentNotValidException(methodParameter, bindingResult));
@@ -130,5 +138,30 @@ class ControllerExceptionHandlerTest {
                 () -> assertEquals(expectedHeaderMessage, actual.getMessage()),
                 () -> assertEquals(expectedUserMessage, actual.getMoreInfo()),
                 () -> assertEquals(expectedStatusCode, errorResponseEntity.getStatusCode()));
+    }
+
+    @Test
+    void handleApplicationException() {
+        ControllerExceptionHandler controllerExceptionHandler = new ControllerExceptionHandler(errorMessagePropertyReader, inputValidationErrorHandler);
+        var applicationExceptionResponse = controllerExceptionHandler.handleApplicationException(new ApplicationException(ExceptionCode.VALIDATION_EXCEPTION, "Some kind of exception", new String[]{"arg1", "arg2"}));
+        assertAll(
+                () -> assertEquals(ErrorCode.GENERIC_4XX_ERROR.getHttpStatus(), applicationExceptionResponse.getStatusCode(), "ApplicationException status code don't match."),
+                () -> assertEquals(ErrorCode.GENERIC_4XX_ERROR.getMessage(), Objects.requireNonNull(applicationExceptionResponse.getBody()).getMessage(), "ApplicationException message do not match."),
+                () -> assertNotNull(Objects.requireNonNull(applicationExceptionResponse.getBody()).getDeveloperMessage(), "ApplicationException's developer message is null."),
+                () -> assertEquals(Objects.requireNonNull(applicationExceptionResponse.getBody()).getMoreInfo(), "[arg1, arg2]", "ApplicationException more info doesn't match.")
+        );
+    }
+
+
+    @Test
+    void handleApplicationException_givenDataNotFound_expectsGeneric4XXError() {
+        ControllerExceptionHandler controllerExceptionHandler = new ControllerExceptionHandler(errorMessagePropertyReader, inputValidationErrorHandler);
+        var applicationExceptionResponse = controllerExceptionHandler.handleApplicationException(new ApplicationException(ExceptionCode.NOT_FOUND, "Data not found", new String[]{"arg1", "arg2"}));
+        assertAll(
+                () -> assertEquals(ErrorCode.NOT_FOUND.getHttpStatus(), applicationExceptionResponse.getStatusCode(), "ApplicationException status code don't match."),
+                () -> assertEquals(ErrorCode.NOT_FOUND.getMessage(), Objects.requireNonNull(applicationExceptionResponse.getBody()).getMessage(), "ApplicationException message do not match."),
+                () -> assertNotNull(Objects.requireNonNull(applicationExceptionResponse.getBody()).getDeveloperMessage(), "ApplicationException's developer message is null."),
+                () -> assertEquals(Objects.requireNonNull(applicationExceptionResponse.getBody()).getMoreInfo(), "[arg1, arg2]", "ApplicationException more info doesn't match.")
+        );
     }
 }
