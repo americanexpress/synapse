@@ -129,7 +129,7 @@ public class ControllerExceptionHandler {
         ErrorResponse errorResponse = new ErrorResponse(
                 errorCode,
                 errorCode.getMessage(),
-                Arrays.toString(applicationException.getMessageArguments()),
+                applicationException.getMessageArguments() == null ? null : Arrays.toString(applicationException.getMessageArguments()),
                 applicationException.getDeveloperMessage() == null ? null : applicationException.getDeveloperMessage()
         );
         logger.exit(errorResponse);

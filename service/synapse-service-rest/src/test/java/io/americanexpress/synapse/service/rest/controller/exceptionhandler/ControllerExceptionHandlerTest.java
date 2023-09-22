@@ -164,4 +164,16 @@ class ControllerExceptionHandlerTest {
                 () -> assertEquals(Objects.requireNonNull(applicationExceptionResponse.getBody()).getMoreInfo(), "[arg1, arg2]", "ApplicationException more info doesn't match.")
         );
     }
+
+    @Test
+    void handleApplicationException_givenNoArguments_expectsSuccess() {
+        ControllerExceptionHandler controllerExceptionHandler = new ControllerExceptionHandler(errorMessagePropertyReader, inputValidationErrorHandler);
+        var applicationExceptionResponse = controllerExceptionHandler.handleApplicationException(new ApplicationException(ExceptionCode.NOT_FOUND, "Data not found"));
+        assertAll(
+                () -> assertEquals(ErrorCode.NOT_FOUND.getHttpStatus(), applicationExceptionResponse.getStatusCode(), "ApplicationException status code don't match."),
+                () -> assertEquals(ErrorCode.NOT_FOUND.getMessage(), Objects.requireNonNull(applicationExceptionResponse.getBody()).getMessage(), "ApplicationException message do not match."),
+                () -> assertNotNull(Objects.requireNonNull(applicationExceptionResponse.getBody()).getDeveloperMessage(), "ApplicationException's developer message is null."),
+                () -> assertNull(Objects.requireNonNull(applicationExceptionResponse.getBody()).getMoreInfo(), "ApplicationException moreInfo is not null as expected.")
+        );
+    }
 }

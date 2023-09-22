@@ -21,6 +21,11 @@ public class ApplicationException extends RuntimeException {
         this.messageArguments = messageArguments;
     }
 
+    public ApplicationException(ExceptionCode exceptionCode, String developerMessage) {
+        this.developerMessage = developerMessage;
+        this.exceptionCode = exceptionCode;
+    }
+
     public String getDeveloperMessage() {
         return developerMessage;
     }
