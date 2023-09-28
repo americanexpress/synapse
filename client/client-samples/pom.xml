@@ -26,6 +26,7 @@
 
     <!--Modules-->
     <modules>
+        <module>sample-client-graphql-book</module>
         <module>sample-client-reactive-football</module>
         <module>sample-client-reactive-weather</module>
         <module>sample-client-weather</module>

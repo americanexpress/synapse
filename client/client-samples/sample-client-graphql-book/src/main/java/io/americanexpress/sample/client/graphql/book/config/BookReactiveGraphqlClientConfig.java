@@ -1,0 +1,29 @@
+package io.americanexpress.sample.client.graphql.book.config;
+
+import io.americanexpress.sample.client.graphql.book.client.BookReactiveGraphqlClient;
+import io.americanexpress.synapse.client.rest.config.BaseReactiveRestClientConfig;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+
+/**
+ * {@code BookReactiveGraphqlClientConfig}
+ */
+@ComponentScan("io.americanexpress.sample.client.graphql.book")
+@Configuration
+@PropertySource("classpath:client-graphql-book.properties")
+public class BookReactiveGraphqlClientConfig extends BaseReactiveRestClientConfig {
+
+    private final BookReactiveGraphqlClient bookReactiveGraphqlClient;
+
+    public BookReactiveGraphqlClientConfig(BookReactiveGraphqlClient bookReactiveGraphqlClient) {
+        this.bookReactiveGraphqlClient = bookReactiveGraphqlClient;
+    }
+
+    @Value("${book.graphql.client.url}")
+    @Override
+    protected void initialize(String destinationUrl) {
+        initializeClient(destinationUrl, bookReactiveGraphqlClient);
+    }
+}
