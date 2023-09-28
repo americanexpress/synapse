@@ -10,19 +10,20 @@
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
- *//**
- * {@code BaseController} The base controller every child controller should extend this parent controller
- * @param <S>
  */
-package io.americanexpress.synapse.service.rest.controller;
+package io.americanexpress.synapse.api.rest.imperative.controller;
 
-import io.americanexpress.synapse.service.rest.service.BaseService;
+import io.americanexpress.synapse.service.imperative.service.BaseService;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
-public abstract class BaseController<S extends BaseService> {
+/**
+ * {@code BaseController} The base controller every child controller should extend this parent controller
+ * @param <S> the service
+ * @author Francois Gutt
+ */
+public class BaseController<S extends BaseService> {
 
     /**
      * Service that will be called to get a single resource or multiple resources.
@@ -34,5 +35,4 @@ public abstract class BaseController<S extends BaseService> {
      * Used for logging.
      */
     protected final XLogger logger = XLoggerFactory.getXLogger(this.getClass());
-
 }

@@ -12,27 +12,22 @@
     or implied. See the License for the specific language governing permissions and limitations under
     the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
-        <artifactId>synapse</artifactId>
+        <artifactId>api-samples</artifactId>
         <version>0.3.28-SNAPSHOT</version>
     </parent>
 
-    <modelVersion>4.0.0</modelVersion>
-    <artifactId>service</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>sample-api-rest-reactive-book</artifactId>
 
-    <!--Modules-->
-    <modules>
-        <module>service-samples</module>
-        <module>synapse-service-graphql</module>
-        <module>synapse-service-imperative</module>
-        <module>synapse-service-reactive</module>
-        <module>synapse-service-reactive-rest</module>
-        <module>synapse-service-rest</module>
-        <module>synapse-service-test</module>
-    </modules>
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
 </project>
