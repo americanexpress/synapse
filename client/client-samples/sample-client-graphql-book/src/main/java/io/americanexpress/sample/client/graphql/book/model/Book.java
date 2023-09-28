@@ -2,6 +2,9 @@ package io.americanexpress.sample.client.graphql.book.model;
 
 import java.util.UUID;
 
+/**
+ * {@code Book} contains the data regarding book.
+ */
 public class Book {
 
     /**
