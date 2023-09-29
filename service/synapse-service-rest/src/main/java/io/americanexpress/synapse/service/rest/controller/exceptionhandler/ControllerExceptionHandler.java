@@ -116,8 +116,7 @@ public class ControllerExceptionHandler {
      * Creates a mapping between the generic {@link ApplicationException} object and the REST ResponseEntity, so that the
      * API can return the correct response status code and messages in case of an exception.
      * <p>
-     * This is done, so that we could
-     * extract the business exception vs the REST layer.
+     * This is done, so that we could extract the business exception vs the REST layer.
      *
      * @param applicationException generic exception object that would be used to map to the REST exception ResponseEntity
      * @return an object of type {@link ResponseEntity<ErrorResponse>}
