@@ -20,6 +20,7 @@ import io.americanexpress.synapse.framework.exception.helper.ErrorMessagePropert
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 import io.americanexpress.synapse.framework.exception.model.ExceptionCode;
 import io.americanexpress.synapse.service.rest.model.ErrorResponse;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -42,7 +43,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -145,10 +147,10 @@ class ControllerExceptionHandlerTest {
         ControllerExceptionHandler controllerExceptionHandler = new ControllerExceptionHandler(errorMessagePropertyReader, inputValidationErrorHandler);
         var applicationExceptionResponse = controllerExceptionHandler.handleApplicationException(new ApplicationException(ExceptionCode.VALIDATION_EXCEPTION, "Some kind of exception", new String[]{"arg1", "arg2"}));
         assertAll(
-                () -> assertEquals(ErrorCode.GENERIC_4XX_ERROR.getHttpStatus(), applicationExceptionResponse.getStatusCode(), "ApplicationException status code don't match."),
-                () -> assertEquals(ErrorCode.GENERIC_4XX_ERROR.getMessage(), Objects.requireNonNull(applicationExceptionResponse.getBody()).getMessage(), "ApplicationException message do not match."),
-                () -> assertNotNull(Objects.requireNonNull(applicationExceptionResponse.getBody()).getDeveloperMessage(), "ApplicationException's developer message is null."),
-                () -> assertEquals(Objects.requireNonNull(applicationExceptionResponse.getBody()).getMoreInfo(), "[arg1, arg2]", "ApplicationException more info doesn't match.")
+                () -> Assertions.assertEquals(ErrorCode.GENERIC_4XX_ERROR.getHttpStatus(), applicationExceptionResponse.getStatusCode(), "ApplicationException status code don't match."),
+                () -> Assertions.assertEquals(ErrorCode.GENERIC_4XX_ERROR.getMessage(), Objects.requireNonNull(applicationExceptionResponse.getBody()).getMessage(), "ApplicationException message do not match."),
+                () -> Assertions.assertNotNull(Objects.requireNonNull(applicationExceptionResponse.getBody()).getDeveloperMessage(), "ApplicationException's developer message is null."),
+                () -> Assertions.assertEquals(Objects.requireNonNull(applicationExceptionResponse.getBody()).getMoreInfo(), "[arg1, arg2]", "ApplicationException more info doesn't match.")
         );
     }
 
@@ -158,11 +160,11 @@ class ControllerExceptionHandlerTest {
         ControllerExceptionHandler controllerExceptionHandler = new ControllerExceptionHandler(errorMessagePropertyReader, inputValidationErrorHandler);
         var applicationExceptionResponse = controllerExceptionHandler.handleApplicationException(new ApplicationException(ExceptionCode.NOT_FOUND, "Data not found", new String[]{"arg1", "arg2"}));
         assertAll(
-                () -> assertEquals(ErrorCode.NOT_FOUND.getHttpStatus(), applicationExceptionResponse.getStatusCode(), "ApplicationException status code don't match."),
-                () -> assertEquals(ErrorCode.NOT_FOUND.getMessage(), Objects.requireNonNull(applicationExceptionResponse.getBody()).getMessage(), "ApplicationException message do not match."),
-                () -> assertNotNull(Objects.requireNonNull(applicationExceptionResponse.getBody()).getDeveloperMessage(), "ApplicationException's developer message is null."),
-                () -> assertEquals(Objects.requireNonNull(applicationExceptionResponse.getBody()).getMoreInfo(), "[arg1, arg2]", "ApplicationException more info doesn't match.")
-        );
+                () -> Assertions.assertEquals(ErrorCode.NOT_FOUND.getHttpStatus(), applicationExceptionResponse.getStatusCode(), "ApplicationException status code don't match."),
+                () -> Assertions.assertEquals(Objects.requireNonNull(applicationExceptionResponse.getBody()).getMessage(), ErrorCode.NOT_FOUND.getMessage(), "ApplicationException message do not match."),
+                () -> Assertions.assertNotNull(Objects.requireNonNull(applicationExceptionResponse.getBody()).getDeveloperMessage(),"ApplicationException's developer message is null."),
+                () -> Assertions.assertEquals("[arg1, arg2]", Objects.requireNonNull(applicationExceptionResponse.getBody()).getMoreInfo(), "ApplicationException more info doesn't match.")
+                        );
     }
 
     @Test
@@ -170,10 +172,10 @@ class ControllerExceptionHandlerTest {
         ControllerExceptionHandler controllerExceptionHandler = new ControllerExceptionHandler(errorMessagePropertyReader, inputValidationErrorHandler);
         var applicationExceptionResponse = controllerExceptionHandler.handleApplicationException(new ApplicationException(ExceptionCode.NOT_FOUND, "Data not found"));
         assertAll(
-                () -> assertEquals(ErrorCode.NOT_FOUND.getHttpStatus(), applicationExceptionResponse.getStatusCode(), "ApplicationException status code don't match."),
-                () -> assertEquals(ErrorCode.NOT_FOUND.getMessage(), Objects.requireNonNull(applicationExceptionResponse.getBody()).getMessage(), "ApplicationException message do not match."),
-                () -> assertNotNull(Objects.requireNonNull(applicationExceptionResponse.getBody()).getDeveloperMessage(), "ApplicationException's developer message is null."),
-                () -> assertNull(Objects.requireNonNull(applicationExceptionResponse.getBody()).getMoreInfo(), "ApplicationException moreInfo is not null as expected.")
+                () -> Assertions.assertEquals(ErrorCode.NOT_FOUND.getHttpStatus(), applicationExceptionResponse.getStatusCode(), "ApplicationException status code don't match."),
+                () -> Assertions.assertEquals(ErrorCode.NOT_FOUND.getMessage(), Objects.requireNonNull(applicationExceptionResponse.getBody()).getMessage(), "ApplicationException message do not match."),
+                () -> Assertions.assertNotNull(Objects.requireNonNull(applicationExceptionResponse.getBody()).getDeveloperMessage(), "ApplicationException's developer message is null."),
+                () -> Assertions.assertNull(Objects.requireNonNull(applicationExceptionResponse.getBody()).getMoreInfo(), "ApplicationException moreInfo is not null as expected.")
         );
     }
 }
