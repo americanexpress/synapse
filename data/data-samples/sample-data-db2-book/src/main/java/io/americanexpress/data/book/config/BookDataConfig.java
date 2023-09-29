@@ -16,6 +16,7 @@ package io.americanexpress.data.book.config;
 import io.americanexpress.synapse.data.db2.config.BaseDb2Config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
@@ -26,6 +27,14 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 @PropertySource("classpath:/data-book-application.properties")
 @EnableJpaRepositories(basePackages = {"io.americanexpress.data.book"})
 public class BookDataConfig extends BaseDb2Config {
+
+    /**
+     * Creates a new instance of {@code BookDataConfig} with the given parameters.
+     * @param environment the environment containing application secrets
+     */
+    public BookDataConfig(Environment environment) {
+        super(environment);
+    }
 
     /**
      * Set the packages to Scan property to the entityManagerFactory.
