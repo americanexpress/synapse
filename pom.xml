@@ -216,11 +216,6 @@
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
-                <artifactId>synapse-service-reactive</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-service-reactive-rest</artifactId>
                 <version>${project.version}</version>
             </dependency>
