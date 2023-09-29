@@ -28,6 +28,7 @@
     <modules>
         <module>service-samples</module>
         <module>synapse-service-graphql</module>
+        <module>synapse-service-reactive</module>
         <module>synapse-service-reactive-rest</module>
         <module>synapse-service-rest</module>
         <module>synapse-service-test</module>
