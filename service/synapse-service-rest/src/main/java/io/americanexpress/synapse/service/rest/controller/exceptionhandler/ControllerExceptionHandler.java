@@ -124,7 +124,7 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(ApplicationException.class)
     public ResponseEntity<ErrorResponse> handleApplicationException(final ApplicationException applicationException) {
         logger.entry(applicationException);
-        ErrorCode errorCode = mapErrorCode(applicationException.getExceptionCode());
+        ErrorCode errorCode = mapExceptionCode(applicationException.getExceptionCode());
         ErrorResponse errorResponse = new ErrorResponse(
                 errorCode,
                 errorCode.getMessage(),
@@ -142,7 +142,7 @@ public class ControllerExceptionHandler {
      * @param exceptionCode generic ENUM that is associated with a business exception
      * @return a value from ENUM {@link ErrorCode}
      */
-    private ErrorCode mapErrorCode(ExceptionCode exceptionCode) {
+    private ErrorCode mapExceptionCode(ExceptionCode exceptionCode) {
         return switch (exceptionCode) {
             case VALIDATION_EXCEPTION -> ErrorCode.GENERIC_4XX_ERROR;
             case NOT_FOUND -> ErrorCode.NOT_FOUND;
