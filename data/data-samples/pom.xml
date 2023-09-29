@@ -28,6 +28,7 @@
     <modules>
         <module>sample-data-cassandra-book</module>
         <module>sample-data-cassandra-reactive</module>
+        <module>sample-data-db2-book</module>
         <module>sample-data-oracle-book</module>
         <module>sample-data-oracle-reactive-book</module>
         <module>sample-data-oracle-reactive-cp-book</module>
