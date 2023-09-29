@@ -146,7 +146,7 @@ class ControllerExceptionHandlerTest {
     void handleApplicationException() {
         ControllerExceptionHandler controllerExceptionHandler = new ControllerExceptionHandler(errorMessagePropertyReader, inputValidationErrorHandler);
         var applicationExceptionResponse = controllerExceptionHandler.handleApplicationException(new ApplicationException(ExceptionCode.VALIDATION_EXCEPTION, "Some kind of exception", new String[]{"arg1", "arg2"}));
-        assertAll(
+        Assertions.assertAll(
                 () -> Assertions.assertEquals(ErrorCode.GENERIC_4XX_ERROR.getHttpStatus(), applicationExceptionResponse.getStatusCode(), "ApplicationException status code don't match."),
                 () -> Assertions.assertEquals(ErrorCode.GENERIC_4XX_ERROR.getMessage(), Objects.requireNonNull(applicationExceptionResponse.getBody()).getMessage(), "ApplicationException message do not match."),
                 () -> Assertions.assertNotNull(Objects.requireNonNull(applicationExceptionResponse.getBody()).getDeveloperMessage(), "ApplicationException's developer message is null."),
@@ -159,19 +159,19 @@ class ControllerExceptionHandlerTest {
     void handleApplicationException_givenDataNotFound_expectsGeneric4XXError() {
         ControllerExceptionHandler controllerExceptionHandler = new ControllerExceptionHandler(errorMessagePropertyReader, inputValidationErrorHandler);
         var applicationExceptionResponse = controllerExceptionHandler.handleApplicationException(new ApplicationException(ExceptionCode.NOT_FOUND, "Data not found", new String[]{"arg1", "arg2"}));
-        assertAll(
+        Assertions.assertAll(
                 () -> Assertions.assertEquals(ErrorCode.NOT_FOUND.getHttpStatus(), applicationExceptionResponse.getStatusCode(), "ApplicationException status code don't match."),
                 () -> Assertions.assertEquals(Objects.requireNonNull(applicationExceptionResponse.getBody()).getMessage(), ErrorCode.NOT_FOUND.getMessage(), "ApplicationException message do not match."),
                 () -> Assertions.assertNotNull(Objects.requireNonNull(applicationExceptionResponse.getBody()).getDeveloperMessage(),"ApplicationException's developer message is null."),
                 () -> Assertions.assertEquals("[arg1, arg2]", Objects.requireNonNull(applicationExceptionResponse.getBody()).getMoreInfo(), "ApplicationException more info doesn't match.")
-                        );
+        );
     }
 
     @Test
     void handleApplicationException_givenNoArguments_expectsSuccess() {
         ControllerExceptionHandler controllerExceptionHandler = new ControllerExceptionHandler(errorMessagePropertyReader, inputValidationErrorHandler);
         var applicationExceptionResponse = controllerExceptionHandler.handleApplicationException(new ApplicationException(ExceptionCode.NOT_FOUND, "Data not found"));
-        assertAll(
+        Assertions.assertAll(
                 () -> Assertions.assertEquals(ErrorCode.NOT_FOUND.getHttpStatus(), applicationExceptionResponse.getStatusCode(), "ApplicationException status code don't match."),
                 () -> Assertions.assertEquals(ErrorCode.NOT_FOUND.getMessage(), Objects.requireNonNull(applicationExceptionResponse.getBody()).getMessage(), "ApplicationException message do not match."),
                 () -> Assertions.assertNotNull(Objects.requireNonNull(applicationExceptionResponse.getBody()).getDeveloperMessage(), "ApplicationException's developer message is null."),
