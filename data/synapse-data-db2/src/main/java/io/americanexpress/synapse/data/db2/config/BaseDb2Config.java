@@ -13,7 +13,6 @@
  */
 package io.americanexpress.synapse.data.db2.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
@@ -35,11 +34,15 @@ import java.util.Properties;
 @EnableTransactionManagement
 public abstract class BaseDb2Config {
 
+    protected final Environment environment;
+
     /**
-     * Contains environment variables needed for connection.
+     * Creates a new instance of {@code BaseDb2Config} with the given parameters.
+     * @param environment the environment
      */
-    @Autowired
-    protected Environment environment;
+    protected BaseDb2Config(Environment environment) {
+        this.environment = environment;
+    }
 
     /**
      * Used to create and edit the datasource bean
