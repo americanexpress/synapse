@@ -15,10 +15,12 @@ package io.americanexpress.synapse.client.rest.config;
 
 import io.americanexpress.synapse.client.rest.client.BaseReactiveRestClient;
 import io.americanexpress.synapse.client.rest.helper.ReactiveRestClientLoggingExchangeFilterFunction;
-
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
+import org.springframework.http.codec.json.Jackson2JsonDecoder;
+import org.springframework.http.codec.json.Jackson2JsonEncoder;
+import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
 
 /**
@@ -54,12 +56,20 @@ public abstract class BaseReactiveRestClientConfig extends BaseClientConfig {
      * @return the default web client
      */
     public WebClient defaultWebClient(String destinationUrl) {
+        ExchangeStrategies exchangeStrategies = ExchangeStrategies.builder()
+                .codecs(configurer -> {
+                    configurer.defaultCodecs().jackson2JsonEncoder(new Jackson2JsonEncoder(getObjectMapper()));
+                    configurer.defaultCodecs().jackson2JsonDecoder(new Jackson2JsonDecoder(getObjectMapper()));
+                })
+                .build();
+
         return WebClient.builder()
-    		.filter(ReactiveRestClientLoggingExchangeFilterFunction.logClientRequest())
-    		.filter(ReactiveRestClientLoggingExchangeFilterFunction.logClientResponse())
+                .exchangeStrategies(exchangeStrategies)
+                .filter(ReactiveRestClientLoggingExchangeFilterFunction.logClientRequest())
+                .filter(ReactiveRestClientLoggingExchangeFilterFunction.logClientResponse())
                 .clientConnector(defaultClientConnector())
-        	.baseUrl(destinationUrl)
-        	.build();
+                .baseUrl(destinationUrl)
+                .build();
     }
 
     /**
