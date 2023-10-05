@@ -34,7 +34,7 @@ public abstract class BaseGraphQLClientResponse<T extends BaseGraphQLData> imple
 	/**
 	 * Errors returned from the GraphQL API.
 	 */
-	private List<GraphQLError> errors;
+	private List<BaseGraphQLError> errors;
 
 	/**
 	 * Get the data.
@@ -56,7 +56,7 @@ public abstract class BaseGraphQLClientResponse<T extends BaseGraphQLData> imple
 	 * Get the errors.
 	 * @return the errors
 	 */
-	public List<GraphQLError> getErrors() {
+	public List<BaseGraphQLError> getErrors() {
 		return errors;
 	}
 
@@ -64,7 +64,7 @@ public abstract class BaseGraphQLClientResponse<T extends BaseGraphQLData> imple
 	 * Set the errors.
 	 * @param errors the errors to set
 	 */
-	public void setErrors(List<GraphQLError> errors) {
+	public void setErrors(List<BaseGraphQLError> errors) {
 		this.errors = errors;
 	}
 }
