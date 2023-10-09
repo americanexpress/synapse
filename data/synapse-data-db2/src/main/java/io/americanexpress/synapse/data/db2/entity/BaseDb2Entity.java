@@ -13,8 +13,6 @@
  */
 package io.americanexpress.synapse.data.db2.entity;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
@@ -29,7 +27,6 @@ public abstract class BaseDb2Entity {
      * The id of the entity.
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
