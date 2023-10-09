@@ -24,9 +24,14 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
  * {@code BookDataConfig} is the configuration class to load all the properties for the book data module.
  */
 @Configuration
+@EnableJpaRepositories(basePackages = BookDataConfig.PACKAGE_NAME)
 @PropertySource("classpath:/data-book-application.properties")
-@EnableJpaRepositories(basePackages = {"io.americanexpress.data.book"})
 public class BookDataConfig extends BaseDb2Config {
+
+    /**
+     * The packages to be scanned.
+     */
+    static final String PACKAGE_NAME = "io.americanexpress.data.book";
 
     /**
      * Creates a new instance of {@code BookDataConfig} with the given parameters.
@@ -43,6 +48,6 @@ public class BookDataConfig extends BaseDb2Config {
      */
     @Override
     protected void setPackagesToScan(LocalContainerEntityManagerFactoryBean entityManagerFactory) {
-        entityManagerFactory.setPackagesToScan("io.americanexpress.data.book");
+        entityManagerFactory.setPackagesToScan(BookDataConfig.PACKAGE_NAME);
     }
 }
