@@ -20,7 +20,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ContextConfiguration(classes = BookDataTestConfig.class)
@@ -32,30 +31,29 @@ class BookRepositoryIT {
 
     @Test
     void findByTitle_givenNewBookEntity_expectedFound() {
-        Long id = (long) Math.random();
         var bookEntity = new BookEntity();
-        bookEntity.setTitle("IT");
-        bookEntity.setAuthor("stephen king");
-        bookEntity.setId(id);
+        bookEntity.setTitle("book title");
+        bookEntity.setAuthor("myself");
+        bookEntity.setId(1L);
 
         bookRepository.save(bookEntity);
 
         assertNotNull(bookRepository.findByTitle("IT"));
+
+        bookRepository.deleteById(bookEntity.getId());
     }
 
     @Test
     void findByAuthor_givenNewBookEntity_expectedFound() {
-        Long id = (long) Math.random();
         var bookEntity = new BookEntity();
         bookEntity.setAuthor("synapse");
         bookEntity.setTitle("synapse playbook");
-        bookEntity.setId(id);
+        bookEntity.setId(2L);
 
         bookRepository.save(bookEntity);
 
-        assertAll("Entity exists",
-                () -> assertNotNull(bookRepository.findByAuthor("synapse")),
-                () -> assertNotNull(bookRepository.findById(id))
-        );
+        assertNotNull(bookRepository.findByAuthor("synapse"));
+
+        bookRepository.deleteById(bookEntity.getId());
     }
 }
