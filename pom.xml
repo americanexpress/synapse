@@ -75,6 +75,10 @@
         <native-plugin.version>0.9.16</native-plugin.version>
         <jaxws-maven-plugin.version>2.5</jaxws-maven-plugin.version>
 
+        <!--Db2-->
+        <db2-db2jcc4.version>11.5</db2-db2jcc4.version>
+        <db2-jcc.version>11.5.0.0</db2-jcc.version>
+
         <!--TestContainers-->
         <testcontainers.version>1.17.5</testcontainers.version>
     </properties>
@@ -265,6 +269,11 @@
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-data-couchbase</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-data-db2</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -965,6 +974,23 @@
                 <groupId>io.swagger</groupId>
                 <artifactId>swagger-annotations</artifactId>
                 <version>1.6.6</version>
+            </dependency>
+
+            <!--DB2-->
+            <dependency>
+                <groupId>com.ibm.db2.jcc</groupId>
+                <artifactId>db2jcc4</artifactId>
+                <version>${db2-db2jcc4.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-jpa</artifactId>
+                <version>${spring-boot-framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ibm.db2</groupId>
+                <artifactId>jcc</artifactId>
+                <version>${db2-jcc.version}</version>
             </dependency>
 
             <!--MongoDB-->
