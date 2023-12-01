@@ -58,17 +58,27 @@ public enum ErrorCode {
     /**
      * Used for when the consumer is forbidden to access a resource.
      */
-    AUTHENTICATION_ERROR(HttpStatus.FORBIDDEN, "Forbidden.");
+    AUTHENTICATION_ERROR(HttpStatus.FORBIDDEN, "Forbidden."),
+
+    /**
+     * Used for when the consumer makes too many requests.
+     */
+    TOO_MANY_REQUESTS(HttpStatus.TOO_MANY_REQUESTS, "Too Many Requests."),
+
+    /**
+     * Used for when the consumer makes a request to a locked resource.
+     */
+    LOCKED(HttpStatus.LOCKED, "Locked.");
 
     /**
      * Gets the HttpStatus of the ErrorCode.
      */
-    private HttpStatus httpStatus;
+    private final HttpStatus httpStatus;
 
     /**
      * Gets the message of the ErrorCode.
      */
-    private String message;
+    private final String message;
 
     /**
      * Takes in HttpStatus and a message as a string.
@@ -82,7 +92,7 @@ public enum ErrorCode {
 
     /**
      * Gets HttpStatus.
-     * @return
+     * @return the http status of the error code.
      */
     public HttpStatus getHttpStatus() {
         return httpStatus;
@@ -90,7 +100,7 @@ public enum ErrorCode {
 
     /**
      * Gets message as a String.
-     * @return
+     * @return the message of the error code.
      */
     public String getMessage() {
         return message;
