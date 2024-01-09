@@ -40,5 +40,4 @@ public @interface CheckOnlyOneNotBlank {
     Class<? extends Payload>[] payload() default {};
 
     String[] fieldNames();
-
 }
