@@ -73,12 +73,12 @@ public enum ErrorCode {
     /**
      * Gets the HttpStatus of the ErrorCode.
      */
-    private final HttpStatus httpStatus;
+    private HttpStatus httpStatus;
 
     /**
      * Gets the message of the ErrorCode.
      */
-    private final String message;
+    private String message;
 
     /**
      * Takes in HttpStatus and a message as a string.
