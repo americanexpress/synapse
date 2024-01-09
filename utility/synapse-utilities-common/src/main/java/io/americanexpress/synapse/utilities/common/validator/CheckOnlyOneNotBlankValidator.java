@@ -20,6 +20,7 @@ import javax.validation.ConstraintValidatorContext;
 
 /**
  * {@code CheckOnlyOneNotBlankValidator} validates that only one of the fields is not blank.
+ *
  * @author Breno Pinto
  */
 public class CheckOnlyOneNotBlankValidator implements ConstraintValidator<CheckOnlyOneNotBlank, Object> {

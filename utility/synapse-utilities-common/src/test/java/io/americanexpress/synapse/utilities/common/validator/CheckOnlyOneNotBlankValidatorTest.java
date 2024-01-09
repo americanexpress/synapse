@@ -26,12 +26,16 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
+/**
+ * {@code CheckOnlyOneNotBlankValidatorTest} unit test class for {@link CheckOnlyOneNotBlankValidator}.
+ *
+ * @author Breno Pinto
+ */
 @ExtendWith(MockitoExtension .class)
 class CheckOnlyOneNotBlankValidatorTest {
 
     @Mock
     private ConstraintValidatorContext constraintValidatorContext;
-
     @Mock
     private CheckOnlyOneNotBlank checkOnlyOneNotBlank;
 
