@@ -33,7 +33,7 @@ import java.lang.annotation.Target;
 @Documented
 public @interface CheckOnlyOneNotBlank {
 
-    String message() default "Only one of the fields must be not blank";
+    String message() default "Only one of the fields must not be blank";
 
     Class<?>[] groups() default {};
 

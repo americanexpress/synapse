@@ -14,6 +14,7 @@
 package io.americanexpress.synapse.utilities.common.validator;
 
 import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
@@ -25,6 +26,7 @@ public class CheckOnlyOneNotBlankValidator implements ConstraintValidator<CheckO
 
     private String[] fieldNames;
 
+    @Override
     public void initialize(CheckOnlyOneNotBlank constraintAnnotation) {
         this.fieldNames = constraintAnnotation.fieldNames();
     }
@@ -32,19 +34,20 @@ public class CheckOnlyOneNotBlankValidator implements ConstraintValidator<CheckO
     @Override
     public boolean isValid(Object object, ConstraintValidatorContext context) {
 
-        if (object == null) {
+        if (object == null || ArrayUtils.isEmpty(fieldNames)) {
             return true;
         }
         try {
+            var count = 0;
             for (String fieldName:fieldNames){
-                Object property = PropertyUtils.getProperty(object, fieldName);
-
-                if (property != null) return true;
+                var property = PropertyUtils.getProperty(object, fieldName);
+                if (property != null) {
+                    count++;
+                }
             }
-            return false;
+            return count == 1;
         } catch (Exception e) {
             return false;
         }
     }
-
 }
