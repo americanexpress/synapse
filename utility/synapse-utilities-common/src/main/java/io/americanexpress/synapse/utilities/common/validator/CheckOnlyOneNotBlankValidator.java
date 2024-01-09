@@ -27,11 +27,21 @@ public class CheckOnlyOneNotBlankValidator implements ConstraintValidator<CheckO
 
     private String[] fieldNames;
 
+    /**
+     * Initialize the validator in preparation for isValid calls.
+     * @param constraintAnnotation annotation instance for a given constraint declaration
+     */
     @Override
     public void initialize(CheckOnlyOneNotBlank constraintAnnotation) {
         this.fieldNames = constraintAnnotation.fieldNames();
     }
 
+    /**
+     * Check if only one of the fields is not blank.
+     * @param object object to validate
+     * @param context context in which the constraint is evaluated
+     * @return true if only one of the fields is not blank
+     */
     @Override
     public boolean isValid(Object object, ConstraintValidatorContext context) {
 
