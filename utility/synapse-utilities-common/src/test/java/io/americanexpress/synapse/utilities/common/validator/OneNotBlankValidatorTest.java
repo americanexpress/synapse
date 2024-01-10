@@ -27,37 +27,37 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 /**
- * {@code CheckOnlyOneNotBlankValidatorTest} unit test class for {@link CheckOnlyOneNotBlankValidator}.
+ * {@code OneNotBlankValidatorTest} unit test class for {@link OneNotBlankValidator}.
  *
  * @author Breno Pinto
  */
 @ExtendWith(MockitoExtension .class)
-class CheckOnlyOneNotBlankValidatorTest {
+class OneNotBlankValidatorTest {
 
     @Mock
     private ConstraintValidatorContext constraintValidatorContext;
     @Mock
-    private CheckOnlyOneNotBlank checkOnlyOneNotBlank;
+    private OneNotBlank oneNotBlank;
 
-    private CheckOnlyOneNotBlankValidator checkOnlyOneNotBlankValidator;
+    private OneNotBlankValidator oneNotBlankValidator;
 
     @BeforeEach
     void setup() {
-        when(checkOnlyOneNotBlank.fieldNames()).thenReturn(new String[] {"someText1", "someText2"});
-        checkOnlyOneNotBlankValidator = new CheckOnlyOneNotBlankValidator();
-        checkOnlyOneNotBlankValidator.initialize(checkOnlyOneNotBlank);
+        when(oneNotBlank.fieldNames()).thenReturn(new String[] {"someText1", "someText2"});
+        oneNotBlankValidator = new OneNotBlankValidator();
+        oneNotBlankValidator.initialize(oneNotBlank);
     }
     @Test
     void isValid_givenNullObject_expectedTrue() {
-        assertTrue(checkOnlyOneNotBlankValidator.isValid(null, constraintValidatorContext));
+        assertTrue(oneNotBlankValidator.isValid(null, constraintValidatorContext));
     }
 
     @Test
     void isValid_givenFieldNamesNull_expectedTrue() {
-        when(checkOnlyOneNotBlank.fieldNames()).thenReturn(new String[] {});
-        checkOnlyOneNotBlankValidator = new CheckOnlyOneNotBlankValidator();
-        checkOnlyOneNotBlankValidator.initialize(checkOnlyOneNotBlank);
-        assertTrue(checkOnlyOneNotBlankValidator.isValid(new SampleNestedObject(), constraintValidatorContext));
+        when(oneNotBlank.fieldNames()).thenReturn(new String[] {});
+        oneNotBlankValidator = new OneNotBlankValidator();
+        oneNotBlankValidator.initialize(oneNotBlank);
+        assertTrue(oneNotBlankValidator.isValid(new SampleNestedObject(), constraintValidatorContext));
     }
 
     @ParameterizedTest
@@ -66,7 +66,7 @@ class CheckOnlyOneNotBlankValidatorTest {
         var sampleNestedObject  = new SampleNestedObject();
         sampleNestedObject.setSomeText1(value1);
         sampleNestedObject.setSomeText2(value2);
-        assertTrue(checkOnlyOneNotBlankValidator.isValid(sampleNestedObject, constraintValidatorContext));
+        assertTrue(oneNotBlankValidator.isValid(sampleNestedObject, constraintValidatorContext));
     }
 
     @ParameterizedTest
@@ -75,6 +75,6 @@ class CheckOnlyOneNotBlankValidatorTest {
         var sampleNestedObject  = new SampleNestedObject();
         sampleNestedObject.setSomeText1(value1);
         sampleNestedObject.setSomeText2(value2);
-        assertFalse(checkOnlyOneNotBlankValidator.isValid(sampleNestedObject, constraintValidatorContext));
+        assertFalse(oneNotBlankValidator.isValid(sampleNestedObject, constraintValidatorContext));
     }
 }

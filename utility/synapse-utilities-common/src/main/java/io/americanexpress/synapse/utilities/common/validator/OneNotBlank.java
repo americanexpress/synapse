@@ -23,17 +23,17 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * {@code CheckOnlyOneNotBlank} validates that only one of the fields is not blank.
+ * {@code OneNotBlank} validates that one and only one of the fields is not blank.
  *
  * @author Breno Pinto
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = CheckOnlyOneNotBlankValidator.class)
+@Constraint(validatedBy = OneNotBlankValidator.class)
 @Documented
-public @interface CheckOnlyOneNotBlank {
+public @interface OneNotBlank {
 
-    String message() default "Only one of the fields must not be blank";
+    String message() default "One and only one of the fields must not be blank";
 
     Class<?>[] groups() default {};
 
