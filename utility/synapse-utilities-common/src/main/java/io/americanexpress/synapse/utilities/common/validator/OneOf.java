@@ -33,7 +33,7 @@ import java.lang.annotation.Target;
 @Documented
 public @interface OneOf {
 
-    String message() default "One and only one of the fields must be provided.";
+    String message() default "One and only one of the fields %s must be provided.";
 
     Class<?>[] groups() default {};
 

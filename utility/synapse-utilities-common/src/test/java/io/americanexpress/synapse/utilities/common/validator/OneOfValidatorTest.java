@@ -24,6 +24,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import javax.validation.ConstraintValidatorContext;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -49,16 +52,22 @@ class OneOfValidatorTest {
         oneOfValidator.initialize(oneOf);
     }
     @Test
-    void isValid_givenNullObject_expectedTrue() {
-        assertTrue(oneOfValidator.isValid(null, constraintValidatorContext));
+    void isValid_givenNullObject_expectedFalse() {
+        var builder = mock(ConstraintValidatorContext.ConstraintViolationBuilder.class);
+        when(constraintValidatorContext.buildConstraintViolationWithTemplate(anyString())).thenReturn(builder);
+        assertFalse(oneOfValidator.isValid(null, constraintValidatorContext));
+        verify(constraintValidatorContext).buildConstraintViolationWithTemplate("Invalid configuration for @OneOf annotation. At least two fields must be provided.");
     }
 
     @Test
-    void isValid_givenFieldNamesNull_expectedTrue() {
+    void isValid_givenFieldNamesNull_expectedFalse() {
+        var builder = mock(ConstraintValidatorContext.ConstraintViolationBuilder.class);
+        when(constraintValidatorContext.buildConstraintViolationWithTemplate(anyString())).thenReturn(builder);
         when(oneOf.fieldNames()).thenReturn(new String[] {});
         oneOfValidator = new OneOfValidator();
         oneOfValidator.initialize(oneOf);
-        assertTrue(oneOfValidator.isValid(new SampleNestedObject(), constraintValidatorContext));
+        assertFalse(oneOfValidator.isValid(new SampleNestedObject(), constraintValidatorContext));
+        verify(constraintValidatorContext).buildConstraintViolationWithTemplate("Invalid configuration for @OneOf annotation. At least two fields must be provided.");
     }
 
     @ParameterizedTest
@@ -73,9 +82,13 @@ class OneOfValidatorTest {
     @ParameterizedTest
     @CsvSource({",", "   ,   ", "test,test"})
     void isInvalid_givenObjectWithInvalidFields_expectedFalse(String value1, String value2) {
+        var builder = mock(ConstraintValidatorContext.ConstraintViolationBuilder.class);
+        when(constraintValidatorContext.buildConstraintViolationWithTemplate(anyString())).thenReturn(builder);
+        when(constraintValidatorContext.getDefaultConstraintMessageTemplate()).thenReturn("One and only one of the fields %s must be provided.");
         var sampleNestedObject  = new SampleNestedObject();
         sampleNestedObject.setSomeText1(value1);
         sampleNestedObject.setSomeText2(value2);
         assertFalse(oneOfValidator.isValid(sampleNestedObject, constraintValidatorContext));
+        verify(constraintValidatorContext).buildConstraintViolationWithTemplate("One and only one of the fields [someText1, someText2] must be provided.");
     }
 }

@@ -18,6 +18,8 @@ import org.apache.commons.lang3.ArrayUtils;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
+import static java.lang.String.*;
 
 /**
  * {@code OneOfValidator} validates that only one of the fields is provided.
@@ -49,8 +51,9 @@ public class OneOfValidator implements ConstraintValidator<OneOf, Object> {
     @Override
     public boolean isValid(Object object, ConstraintValidatorContext context) {
 
-        if (object == null || ArrayUtils.isEmpty(fieldNames)) {
-            return true;
+        if (object == null || ArrayUtils.isEmpty(fieldNames) || fieldNames.length < 2) {
+            setErrorMessage(context, "Invalid configuration for @OneOf annotation. At least two fields must be provided.");
+            return false;
         }
         try {
             var isOneOf = false;
@@ -58,14 +61,29 @@ public class OneOfValidator implements ConstraintValidator<OneOf, Object> {
                 var property = PropertyUtils.getProperty(object, fieldName);
                 if (property != null) {
                     if (isOneOf) {
-                        return false;
+                        isOneOf = false;
+                        break;
                     }
                     isOneOf = true;
                 }
             }
-            return isOneOf;
+            if (isOneOf) {
+                return true;
+            } else {
+                setErrorMessage(context, format(context.getDefaultConstraintMessageTemplate(), Arrays.toString(this.fieldNames)));
+                return false;
+            }
         } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             return false;
         }
+    }
+
+    /**
+     * Set the error message.
+     * @param context context in which the constraint is evaluated.
+     */
+    private void setErrorMessage(ConstraintValidatorContext context, String message) {
+        context.disableDefaultConstraintViolation();
+        context.buildConstraintViolationWithTemplate(message).addConstraintViolation();
     }
 }
