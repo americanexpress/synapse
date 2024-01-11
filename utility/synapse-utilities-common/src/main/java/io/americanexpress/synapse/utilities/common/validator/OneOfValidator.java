@@ -81,6 +81,7 @@ public class OneOfValidator implements ConstraintValidator<OneOf, Object> {
     /**
      * Set the error message.
      * @param context context in which the constraint is evaluated.
+     * @param message error message.
      */
     private void setErrorMessage(ConstraintValidatorContext context, String message) {
         context.disableDefaultConstraintViolation();
