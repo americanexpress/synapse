@@ -23,17 +23,17 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * {@code OneNotBlank} validates that one and only one of the fields is not blank.
+ * {@code OneOf} validates that one and only one of the fields is provided.
  *
  * @author Breno Pinto
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = OneNotBlankValidator.class)
+@Constraint(validatedBy = OneOfValidator.class)
 @Documented
-public @interface OneNotBlank {
+public @interface OneOf {
 
-    String message() default "One and only one of the fields must not be blank";
+    String message() default "One and only one of the fields must be provided.";
 
     Class<?>[] groups() default {};
 

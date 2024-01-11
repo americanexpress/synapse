@@ -19,28 +19,28 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 /**
- * {@code OneNotBlankValidator} validates that only one of the fields is not blank.
+ * {@code OneOfValidator} validates that only one of the fields is provided.
  *
  * @author Breno Pinto
  */
-public class OneNotBlankValidator implements ConstraintValidator<OneNotBlank, Object> {
+public class OneOfValidator implements ConstraintValidator<OneOf, Object> {
 
     private String[] fieldNames;
 
     /**
      * Initialize the validator in preparation for isValid calls.
-     * @param constraintAnnotation annotation instance for a given constraint declaration
+     * @param constraintAnnotation annotation instance for a given constraint declaration.
      */
     @Override
-    public void initialize(OneNotBlank constraintAnnotation) {
+    public void initialize(OneOf constraintAnnotation) {
         this.fieldNames = constraintAnnotation.fieldNames();
     }
 
     /**
-     * Check if one and only one of the fields is not blank.
-     * @param object object to validate
-     * @param context context in which the constraint is evaluated
-     * @return true if only one of the fields is not blank
+     * Check if one and only one of the fields is provided.
+     * @param object object to validate.
+     * @param context context in which the constraint is evaluated.
+     * @return true if only one of the fields is provided.
      */
     @Override
     public boolean isValid(Object object, ConstraintValidatorContext context) {
