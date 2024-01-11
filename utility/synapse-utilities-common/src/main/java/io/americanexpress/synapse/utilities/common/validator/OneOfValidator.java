@@ -17,6 +17,7 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * {@code OneOfValidator} validates that only one of the fields is provided.
@@ -25,6 +26,9 @@ import javax.validation.ConstraintValidatorContext;
  */
 public class OneOfValidator implements ConstraintValidator<OneOf, Object> {
 
+    /**
+     * Fields to be validated.
+     */
     private String[] fieldNames;
 
     /**
@@ -49,15 +53,18 @@ public class OneOfValidator implements ConstraintValidator<OneOf, Object> {
             return true;
         }
         try {
-            var count = 0;
-            for (String fieldName:fieldNames){
+            var isOneOf = false;
+            for (String fieldName : fieldNames) {
                 var property = PropertyUtils.getProperty(object, fieldName);
                 if (property != null) {
-                    count++;
+                    if (isOneOf) {
+                        return false;
+                    }
+                    isOneOf = true;
                 }
             }
-            return count == 1;
-        } catch (Exception e) {
+            return isOneOf;
+        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             return false;
         }
     }

@@ -36,6 +36,7 @@ class OneOfValidatorTest {
 
     @Mock
     private ConstraintValidatorContext constraintValidatorContext;
+
     @Mock
     private OneOf oneOf;
 
