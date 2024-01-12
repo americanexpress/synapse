@@ -74,6 +74,7 @@ public class OneOfValidator implements ConstraintValidator<OneOf, Object> {
                 return false;
             }
         } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            setErrorMessage(context, e.getMessage());
             return false;
         }
     }
