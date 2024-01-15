@@ -20,12 +20,12 @@
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-data-db2</artifactId>
-            <version>0.3.28-SNAPSHOT</version>
+            <version>0.3.30-SNAPSHOT</version>
         </dependency>
 ```
 Or add the following to the build.gradle file:
 ```
-implementation 'io.americanexpress.synapse:synapse-data-db2:0.3.28-SNAPSHOT'
+implementation 'io.americanexpress.synapse:synapse-data-db2:0.3.30-SNAPSHOT'
 ```
 - Have a configuration class that import or extends `BaseDb2Config`.
 - Add the `@EnableJpaRepositories(basePackages = PACKAGE_NAME)`.
