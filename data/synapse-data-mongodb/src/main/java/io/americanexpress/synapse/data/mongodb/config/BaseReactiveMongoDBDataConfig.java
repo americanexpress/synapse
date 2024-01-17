@@ -42,6 +42,10 @@ public abstract class BaseReactiveMongoDBDataConfig extends AbstractReactiveMong
         this.environment = environment;
     }
 
+    protected String getDatabaseUri() {
+        return environment.getRequiredProperty("spring.data.mongodb.uri");
+    }
+
     @Override
     protected String getDatabaseName() {
         return environment.getRequiredProperty("spring.data.mongodb.database");
@@ -49,7 +53,7 @@ public abstract class BaseReactiveMongoDBDataConfig extends AbstractReactiveMong
 
     @Override
     public MongoClient reactiveMongoClient() {
-        ConnectionString connectionString = new ConnectionString(environment.getRequiredProperty("spring.data.mongodb.uri"));
+        ConnectionString connectionString = new ConnectionString(getDatabaseUri());
         MongoClientSettings mongoClientSettings = setMongoClientSettings(connectionString);
         return this.createReactiveMongoClient(mongoClientSettings);
     }
