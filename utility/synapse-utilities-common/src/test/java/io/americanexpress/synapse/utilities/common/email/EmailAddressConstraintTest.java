@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -31,5 +32,16 @@ public class EmailAddressConstraintTest {
 
         boolean actual = emailAddressConstraint.isValid(testModel.getEmail(), constraintValidatorContext);
         Assertions.assertTrue(actual);
+    }
+
+    @ParameterizedTest
+    @NullSource
+    @ValueSource(strings = {"    ", "EMAIL@SYNAPSE", "email1234@.COM"})
+    void isValid_givenInvalidEmailAddress_expectedFalse(String email) {
+        var testModel = new TestModel();
+        testModel.setEmail(email);
+
+        boolean actual = emailAddressConstraint.isValid(testModel.getEmail(), constraintValidatorContext);
+        Assertions.assertFalse(actual);
     }
 }
