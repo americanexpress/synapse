@@ -5,8 +5,6 @@ import java.util.regex.Pattern;
 
 /**
  * {@code EmailAddressValidator} is used for email address validation.
- *
- * @author Wendy Hu
  */
 public class EmailAddressValidator {
 
