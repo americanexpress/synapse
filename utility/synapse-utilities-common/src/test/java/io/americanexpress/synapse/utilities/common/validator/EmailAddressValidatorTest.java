@@ -1,4 +1,17 @@
-package io.americanexpress.synapse.utilities.common.email;
+/*
+ * Copyright 2020 American Express Travel Related Services Company, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
+ */
+package io.americanexpress.synapse.utilities.common.validator;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,17 +24,17 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import javax.validation.ConstraintValidatorContext;
 
 @ExtendWith(MockitoExtension.class)
-public class EmailAddressConstraintTest {
+class EmailAddressValidatorTest {
 
     private final EmailAddress emailAddress = Mockito.mock(EmailAddress.class);
 
     private final ConstraintValidatorContext constraintValidatorContext = Mockito.mock(ConstraintValidatorContext.class);
 
-    private final EmailAddressConstraint emailAddressConstraint = new EmailAddressConstraint();
+    private final EmailAddressValidator emailAddressValidator = new EmailAddressValidator();
 
     @BeforeEach
     void init() {
-        emailAddressConstraint.initialize(emailAddress);
+        emailAddressValidator.initialize(emailAddress);
     }
 
     @ParameterizedTest
@@ -30,7 +43,7 @@ public class EmailAddressConstraintTest {
         var testModel = new TestModel();
         testModel.setEmail(email);
 
-        boolean actual = emailAddressConstraint.isValid(testModel.getEmail(), constraintValidatorContext);
+        boolean actual = emailAddressValidator.isValid(testModel.getEmail(), constraintValidatorContext);
         Assertions.assertTrue(actual);
     }
 
@@ -41,7 +54,7 @@ public class EmailAddressConstraintTest {
         var testModel = new TestModel();
         testModel.setEmail(email);
 
-        boolean actual = emailAddressConstraint.isValid(testModel.getEmail(), constraintValidatorContext);
+        boolean actual = emailAddressValidator.isValid(testModel.getEmail(), constraintValidatorContext);
         Assertions.assertFalse(actual);
     }
 }
