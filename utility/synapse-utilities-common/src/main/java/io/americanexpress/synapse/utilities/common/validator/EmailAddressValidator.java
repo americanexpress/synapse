@@ -18,7 +18,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 /**
- * {@code EmailAddressUtils} is used for constraining {@link EmailAddress} annotation.
+ * {@code EmailAddressValidator} is used for constraining {@link EmailAddress} annotation.
  */
 public class EmailAddressValidator implements ConstraintValidator<EmailAddress, String> {
 
