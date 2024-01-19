@@ -38,7 +38,8 @@ class EmailAddressValidatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"email@synapse.com", "EMAIL@SYNAPSE.COM", "email1234@SYNAPSE.COM"})
+    @NullSource
+    @ValueSource(strings = {"    ", "email@synapse.com", "EMAIL@SYNAPSE.COM", "email1234@SYNAPSE.COM"})
     void isValid_givenValidEmailAddress_expectedTrue(String email) {
         var testModel = new TestModel();
         testModel.setEmail(email);
@@ -48,8 +49,7 @@ class EmailAddressValidatorTest {
     }
 
     @ParameterizedTest
-    @NullSource
-    @ValueSource(strings = {"    ", "EMAIL@SYNAPSE", "email1234@.COM"})
+    @ValueSource(strings = {"EMAIL@SYNAPSE", "email1234@.COM"})
     void isValid_givenInvalidEmailAddress_expectedFalse(String email) {
         var testModel = new TestModel();
         testModel.setEmail(email);

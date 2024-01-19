@@ -14,6 +14,7 @@
 package io.americanexpress.synapse.utilities.common.validator;
 
 import io.americanexpress.synapse.utilities.common.email.EmailAddressUtils;
+import org.apache.commons.lang3.StringUtils;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
@@ -30,7 +31,7 @@ public class EmailAddressValidator implements ConstraintValidator<EmailAddress, 
      */
     @Override
     public boolean isValid(String emailAddress, ConstraintValidatorContext constraintValidatorContext) {
-        return EmailAddressUtils.isValid(emailAddress);
+        return StringUtils.isNotBlank(emailAddress) ? EmailAddressUtils.isValid(emailAddress) : true;
     }
 
 }
