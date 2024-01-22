@@ -13,6 +13,7 @@
  */
 package io.americanexpress.synapse.data.db2.entity;
 
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 /**
@@ -22,4 +23,25 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class BaseDb2Entity {
 
+    /**
+     * The id of the entity.
+     */
+    @Id
+    private Long id;
+
+    /**
+     * Gets the entity's id.
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * Sets the entity's id.
+     * @param id the id of this entity
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

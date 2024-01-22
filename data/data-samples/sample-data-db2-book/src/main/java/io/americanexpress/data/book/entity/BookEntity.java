@@ -15,7 +15,6 @@ package io.americanexpress.data.book.entity;
 
 import io.americanexpress.synapse.data.db2.entity.BaseDb2Entity;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -27,12 +26,6 @@ import javax.persistence.Table;
 public class BookEntity extends BaseDb2Entity {
 
     /**
-     * The id of the book.
-     */
-    @Id
-    private Long id;
-
-    /**
      * The title of the book.
      */
     private String title;
@@ -41,22 +34,6 @@ public class BookEntity extends BaseDb2Entity {
      * The author of the book.
      */
     private String author;
-
-    /**
-     * Get the id of the book.
-     * @return the id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * Sets the id of the book
-     * @param id the id
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     /**
      * Get the title of the book.
