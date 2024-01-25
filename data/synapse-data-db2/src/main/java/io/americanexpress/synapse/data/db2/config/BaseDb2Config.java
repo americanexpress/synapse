@@ -105,7 +105,7 @@ public abstract class BaseDb2Config {
      * Can be overridden by child classes to add other configurations as needed per use case
      * @param hikariDataSource the data source
      */
-    public void addAdditionalProperties(HikariDataSource hikariDataSource) {
+    protected void addAdditionalProperties(HikariDataSource hikariDataSource) {
     }
 
     /**
