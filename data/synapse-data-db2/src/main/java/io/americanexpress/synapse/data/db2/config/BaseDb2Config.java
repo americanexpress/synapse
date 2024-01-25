@@ -13,17 +13,17 @@
  */
 package io.americanexpress.synapse.data.db2.config;
 
+import com.zaxxer.hikari.HikariDataSource;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.core.env.Environment;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import javax.sql.DataSource;
 import java.util.Properties;
 
 /**
@@ -46,16 +46,20 @@ public abstract class BaseDb2Config {
 
     /**
      * Used to create and edit the datasource bean
-     * @return a new instance of {@link DataSource} configured for the required database connection
+     * @return a new instance of {@link HikariDataSource} configured for the required database connection
      */
     @Bean
-    public DataSource dataSource() {
-        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-        driverManagerDataSource.setDriverClassName(environment.getProperty("spring.datasource.driver-class-name"));
-        driverManagerDataSource.setUrl(environment.getProperty("spring.datasource.url"));
-        driverManagerDataSource.setUsername(environment.getProperty("spring.datasource.username"));
-        driverManagerDataSource.setPassword(environment.getProperty("spring.datasource.password"));
-        return driverManagerDataSource;
+    public HikariDataSource dataSource() {
+        var hikariDataSource = DataSourceBuilder.create().type(HikariDataSource.class).build();
+
+        hikariDataSource.setUsername(environment.getProperty("spring.datasource.username"));
+        hikariDataSource.setPassword(environment.getProperty("spring.datasource.password"));
+        hikariDataSource.setJdbcUrl(environment.getProperty("spring.datasource.url"));
+        hikariDataSource.setDriverClassName(environment.getProperty("spring.datasource.driver-class-name"));
+
+        addAdditionalProperties(hikariDataSource);
+
+        return hikariDataSource;
     }
 
     /**
@@ -64,9 +68,9 @@ public abstract class BaseDb2Config {
      */
     @Bean
     @DependsOn("entityManagerFactory")
-    public PlatformTransactionManager transactionManager() {
+    public PlatformTransactionManager transactionManager(LocalContainerEntityManagerFactoryBean entityManagerFactoryBean) {
         JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
-        jpaTransactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+        jpaTransactionManager.setEntityManagerFactory(entityManagerFactoryBean.getObject());
 
         return jpaTransactionManager;
     }
@@ -77,9 +81,9 @@ public abstract class BaseDb2Config {
      */
     @Bean
     @DependsOn("dataSource")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(HikariDataSource hikariDataSource) {
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactory.setDataSource(dataSource());
+        entityManagerFactory.setDataSource(hikariDataSource);
         entityManagerFactory.setJpaProperties(setJpaProperties());
         entityManagerFactory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         setPackagesToScan(entityManagerFactory);
@@ -95,6 +99,13 @@ public abstract class BaseDb2Config {
         jpaProperties.put("hibernate.dialect", environment.getProperty("spring.jpa.properties.hibernate.dialect"));
         jpaProperties.put("hibernate.hbm2ddl.auto", environment.getProperty("spring.jpa.hibernate.ddl-auto"));
         return jpaProperties;
+    }
+
+    /**
+     * Can be overridden by child classes to add other configurations as needed per use case
+     * @param hikariDataSource the data source
+     */
+    public void addAdditionalProperties(HikariDataSource hikariDataSource) {
     }
 
     /**
