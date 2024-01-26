@@ -16,7 +16,6 @@ package io.americanexpress.data.book.repository;
 import io.americanexpress.data.book.entity.BookEntity;
 import io.americanexpress.synapse.data.db2.repository.BaseCrudDb2Repository;
 import org.springframework.stereotype.Repository;
-import java.util.Optional;
 
 /**
  * {@code BookRepository} is the dao repository to handle the queries for the books table.
@@ -30,12 +29,12 @@ public interface BookRepository extends BaseCrudDb2Repository<BookEntity, Long> 
      * @param title the title of the book
      * @return the book matching the given title
      */
-    Optional<BookEntity> findByTitle(String title);
+    BookEntity findByTitle(String title);
 
     /**
      * Find book with a specific author.
      * @param author the author of the book
      * @return the book matching the given author
      */
-    Optional<BookEntity> findByAuthor(String author);
+    BookEntity findByAuthor(String author);
 }
