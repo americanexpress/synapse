@@ -21,6 +21,7 @@
 
 - Local instance of DB2 must be running
 - Use the startup.sh script to start the DB2 instance that also creates the BOOK table
+  - replace the /insert/path/here with the path to a folder you'd like to create the database in
 - update the following properties:
   - ```spring.datasource.username=db2inst1```
   - ```spring.datasource.password=the one set from the docker command```
