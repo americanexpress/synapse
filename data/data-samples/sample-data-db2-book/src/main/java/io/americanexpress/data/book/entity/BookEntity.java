@@ -41,16 +41,6 @@ public class BookEntity extends BaseDb2Entity {
     private String description;
 
     /**
-     * The number of pages of the book.
-     */
-    private int pageCount;
-
-    /**
-     * The rating of the book 1-5.
-     */
-    private String rating;
-
-    /**
      * Get the title of the book.
      * @return the book's title
      */
@@ -96,37 +86,5 @@ public class BookEntity extends BaseDb2Entity {
      */
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    /**
-     * Get the number of pages of the book.
-     * @return the book's page count
-     */
-    public int getPageCount() {
-        return pageCount;
-    }
-
-    /**
-     * Set the number of pages of the book.
-     * @param pageCount the book's page count
-     */
-    public void setPageCount(int pageCount) {
-        this.pageCount = pageCount;
-    }
-
-    /**
-     * Get the rating of the book.
-     * @return the book's rating
-     */
-    public String getRating() {
-        return rating;
-    }
-
-    /**
-     * Set the rating of the book.
-     * @param rating the book's rating
-     */
-    public void setRating(String rating) {
-        this.rating = rating;
     }
 }
