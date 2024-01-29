@@ -11,6 +11,3 @@ db2stop
 # docker stop <insert the db2 container id>
 # remove the container
 # docker rm <insert the db2 container id>
-
-
-
