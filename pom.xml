@@ -407,6 +407,11 @@
             </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-data-db2-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>sample-data-mongodb-reactive</artifactId>
                 <version>${project.version}</version>
             </dependency>
