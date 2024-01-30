@@ -21,6 +21,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.Version;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * {@code BaseEntity} is the redis base entity.
@@ -115,5 +116,19 @@ public class BaseEntity implements Serializable {
 
     public void setVersion(Long version) {
         this.version = version;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (!(object instanceof BaseEntity that)) return false;
+        return Objects.equals(identifier, that.identifier) && Objects.equals(createdDateTime, that.createdDateTime) &&
+                Objects.equals(lastModifiedDateTime, that.lastModifiedDateTime) && Objects.equals(createdBy, that.createdBy) &&
+                Objects.equals(lastModifiedBy, that.lastModifiedBy) && Objects.equals(version, that.version);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(identifier, createdDateTime, lastModifiedDateTime, createdBy, lastModifiedBy, version);
     }
 }

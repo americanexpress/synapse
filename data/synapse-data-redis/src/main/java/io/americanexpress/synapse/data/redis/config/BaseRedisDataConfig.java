@@ -17,13 +17,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.data.redis.connection.RedisClusterConfiguration;
+import org.springframework.data.redis.connection.RedisPassword;
 import org.springframework.data.redis.connection.RedisSentinelConfiguration;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
+import org.springframework.data.redis.connection.jedis.JedisClientConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import java.time.Duration;
 
 /**
  * {@code BaseRedisDataConfig} class is used to hold the common configuration for all data-redis modules.
@@ -54,6 +57,78 @@ public class BaseRedisDataConfig {
     }
 
     /**
+     * Retrieves the host name.
+     *
+     * @return the host name.
+     */
+    protected String getHostName() {
+        return environment.getProperty("spring.data.redis.host.name");
+    }
+
+    /**
+     * Retrieves the port.
+     *
+     * @return the port.
+     */
+    protected String getPort() {
+        return environment.getProperty("spring.data.redis.port");
+    }
+
+    /**
+     * Retrieves the database index.
+     *
+     * @return the database index.
+     */
+    protected String getDatabase() {
+        return environment.getProperty("spring.data.redis.database");
+    }
+
+    /**
+     * Retrieves the username.
+     *
+     * @return the username.
+     */
+    protected String getUsername() {
+        return environment.getProperty("spring.data.redis.username");
+    }
+
+    /**
+     * Retrieves the password.
+     *
+     * @return the password.
+     */
+    protected String getPassword() {
+        return environment.getProperty("spring.data.redis.password");
+    }
+
+
+    /**
+     * Creates a {@link RedisStandaloneConfiguration} with the necessary properties.
+     *
+     * @return a Redis Standalone Configuration.
+     */
+    @Bean
+    public RedisStandaloneConfiguration redisStandaloneConfiguration() {
+        var port = getPort();
+        var database = getDatabase();
+        var password = getPassword();
+        var hostname = getHostName();
+        var redisStandaloneConfiguration = new RedisStandaloneConfiguration();
+        if (port != null) {
+            redisStandaloneConfiguration.setPort(Integer.parseInt(port));
+        }
+        if (database != null) {
+            redisStandaloneConfiguration.setDatabase(Integer.parseInt(database));
+        }
+        if (hostname != null) {
+            redisStandaloneConfiguration.setHostName(hostname);
+        }
+        redisStandaloneConfiguration.setUsername(getUsername());
+        redisStandaloneConfiguration.setPassword(password != null ? RedisPassword.of(password) : RedisPassword.none());
+        return redisStandaloneConfiguration;
+    }
+
+    /**
      * {@link JedisConnectionFactory} is configured using an environmental configuration and the client configuration.
      * Jedis supports the following environmental configurations:
      * <li>{@link RedisStandaloneConfiguration}</li>
@@ -63,12 +138,12 @@ public class BaseRedisDataConfig {
      * @return a Jedis Connection factory
      */
     @Bean
-    JedisConnectionFactory jedisConnectionFactory() {
-        JedisConnectionFactory jedisConFactory = new JedisConnectionFactory();
-        jedisConFactory.setHostName("localhost");
-        jedisConFactory.setPort(6379);
-        jedisConFactory.afterPropertiesSet();
-        return jedisConFactory;
+    public JedisConnectionFactory jedisConnectionFactory(RedisStandaloneConfiguration redisStandaloneConfiguration) {
+        JedisClientConfiguration.JedisClientConfigurationBuilder jedisClientConfiguration = JedisClientConfiguration.builder();
+        jedisClientConfiguration.connectTimeout(Duration.ofSeconds(60));
+
+        return new JedisConnectionFactory(redisStandaloneConfiguration,
+                jedisClientConfiguration.build());
     }
 
     /**
@@ -80,9 +155,9 @@ public class BaseRedisDataConfig {
      * @return a redis template
      */
     @Bean
-    public RedisTemplate<String, Object> redisTemplate() {
+    public RedisTemplate<String, Object> redisTemplate(JedisConnectionFactory jedisConnectionFactory) {
         RedisTemplate<String, Object> template = new RedisTemplate<>();
-        template.setConnectionFactory(jedisConnectionFactory());
+        template.setConnectionFactory(jedisConnectionFactory);
         template.setEnableTransactionSupport(true);
 
         template.setHashKeySerializer(new StringRedisSerializer());
