@@ -12,14 +12,13 @@
     or implied. See the License for the specific language governing permissions and limitations under
     the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.americanexpress.synapse</groupId>
     <artifactId>synapse</artifactId>
     <packaging>pom</packaging>
-    <version>0.3.31-SNAPSHOT</version>
+    <version>0.3.31</version>
 
     <description>
         Synapse is a set of lightweight foundational framework modules for rapid development built-in with enterprise
@@ -1578,7 +1577,7 @@
         <url>https://github.com/americanexpress/synapse</url>
         <connection>scm:git:https://github.com/americanexpress/synapse.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/americanexpress/synapse.git</developerConnection>
-        <tag>synapse-0.1.0</tag>
+        <tag>synapse-0.3.31</tag>
     </scm>
 
     <issueManagement>
