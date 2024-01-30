@@ -21,12 +21,13 @@
 
 - Local instance of DB2 must be running
 - Use the startup.sh script to start the DB2 instance that also creates the BOOK table
-  - replace the /insert/path/here with the path to a folder you'd like to create the database in
-- update the following properties:
+  - Replace the /insert/path/here with the path to a folder you'd like to create the database in
+- Update the following properties:
   - ```spring.datasource.username=db2inst1```
   - ```spring.datasource.password=the one set from the docker command```
   - ```spring.datasource.url=jdbc:db2://localhost:50000/BOOKS```
-    - if you used a different port then replace the `50000` with the port from the command in `startup.sh`.
+    - If you used a different port then replace the `50000` with the port from the command in `startup.sh`.
 - Use the shutdown.sh script to stop the DB2 instance
+  - There are additional commands inside this script that are for shutting down and deleting the docker container which you would have to run yourself manually
 - To run the application, start the ```BookApplication``` 
 - Postman collection is available in the ```src/test/resources``` folder.
