@@ -28,7 +28,6 @@
     <modules>
 
         <!-- Base api Synapse dependencies-->
-        <module>api-samples</module>
         <module>synapse-api-rest-imperative</module>
         <module>synapse-api-rest-reactive</module>
     </modules>
