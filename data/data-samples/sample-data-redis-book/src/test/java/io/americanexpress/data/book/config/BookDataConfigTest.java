@@ -13,7 +13,6 @@
  */
 package io.americanexpress.data.book.config;
 
-import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
