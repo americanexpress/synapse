@@ -17,30 +17,22 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
-        <artifactId>service</artifactId>
+        <artifactId>service-samples</artifactId>
         <version>0.3.31-SNAPSHOT</version>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>service-samples</artifactId>
-    <packaging>pom</packaging>
 
-    <!--Modules-->
-    <modules>
-        <module>sample-service-db2-book</module>
-        <module>sample-service-graphql-book</module>
-        <module>sample-service-reactive-cassandra-book</module>
-        <module>sample-service-reactive-mongodb-book</module>
-        <module>sample-service-reactive-mssql-book</module>
-        <module>sample-service-reactive-mysql-book</module>
-        <module>sample-service-reactive-oracle-book</module>
-        <module>sample-service-reactive-oracle-cp-book</module>
-        <module>sample-service-reactive-rest-book</module>
-        <module>sample-service-reactive-weather-client</module>
-        <module>sample-service-rest-cassandra-book</module>
-        <module>sample-service-rest-mysql-book</module>
-        <module>sample-service-rest-oracle-book</module>
-        <module>sample-service-rest-postgres-book</module>
-    </modules>
+    <artifactId>sample-service-db2-book</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.americanexpress.synapse</groupId>
+            <artifactId>sample-data-db2-book</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.americanexpress.synapse</groupId>
+            <artifactId>synapse-service-rest</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

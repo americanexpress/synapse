@@ -11,19 +11,14 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.data.book.entity;
+package io.americanexpress.service.book.rest.model;
 
-import io.americanexpress.synapse.data.db2.entity.BaseDb2Entity;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 
 /**
- * {@code BookEntity} class represents the domain of the books table.
- * @author tisla4
+ * {@code BookServiceRequest} is the base book request pojo.
  */
-@Entity
-@Table(name = "BOOK")
-public class BookEntity extends BaseDb2Entity {
+public class BookServiceRequest implements BaseServiceRequest {
 
     /**
      * The title of the book.
