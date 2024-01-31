@@ -15,28 +15,9 @@ package io.americanexpress.synapse.service.reactive.model;
 
 /**
  * {@code BaseServiceResponse} specifies the prototypes for all service responses.
+ *
  * @author Francois Gutt
  */
-public abstract class BaseServiceResponse {
+public interface BaseServiceResponse {
 
-    /**
-     * Id used to uniquely get, update or remove a resource.
-     */
-    protected String id;
-
-    /**
-     * Get the id.
-     * @return the id
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * Set the id.
-     * @param id the identifier to set
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
 }

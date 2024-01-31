@@ -17,28 +17,9 @@ import java.util.Map;
 
 /**
  * {@code BaseServiceRequest} specifies the prototypes for all service requests.
+ *
  * @author Francois Gutt
  */
-public abstract class BaseServiceRequest {
+public interface BaseServiceRequest {
 
-    /**
-     * The service header map.
-     */
-    private Map<String, String> serviceHeaders;
-
-    /**
-     * Get the service headers map
-     * @return a map of service headers
-     */
-    public Map<String, String> getServiceHeaders() {
-        return serviceHeaders;
-    }
-
-    /**
-     * Sets the service header map.
-     * @param serviceHeaders a mapl of service headers.
-     */
-    public void setServiceHeaders(Map<String, String> serviceHeaders) {
-        this.serviceHeaders = serviceHeaders;
-    }
 }
