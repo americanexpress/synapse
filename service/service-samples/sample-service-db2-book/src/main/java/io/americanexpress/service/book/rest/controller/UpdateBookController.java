@@ -13,7 +13,7 @@
  */
 package io.americanexpress.service.book.rest.controller;
 
-import io.americanexpress.service.book.rest.model.UpdateBookRequest;
+import io.americanexpress.service.book.rest.model.UpdateBookServiceRequest;
 import io.americanexpress.service.book.rest.service.UpdateBookService;
 import io.americanexpress.synapse.service.rest.controller.BaseUpdateController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,5 +25,5 @@ import static io.americanexpress.service.book.rest.config.BookEndpoint.BOOK_ENDP
  */
 @RequestMapping(BOOK_ENDPOINT)
 @RestController
-public class UpdateBookController extends BaseUpdateController<UpdateBookRequest, UpdateBookService> {
+public class UpdateBookController extends BaseUpdateController<UpdateBookServiceRequest, UpdateBookService> {
 }

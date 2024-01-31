@@ -15,7 +15,7 @@ package io.americanexpress.service.book.rest.service;
 
 import io.americanexpress.data.book.entity.BookEntity;
 import io.americanexpress.data.book.repository.BookRepository;
-import io.americanexpress.service.book.rest.model.UpdateBookRequest;
+import io.americanexpress.service.book.rest.model.UpdateBookServiceRequest;
 import io.americanexpress.service.book.rest.service.helper.BookServiceMapper;
 import io.americanexpress.synapse.framework.exception.ApplicationClientException;
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
@@ -27,7 +27,7 @@ import org.springframework.stereotype.Service;
  * {@code UpdateBookService} updates a book's information in the database.
  */
 @Service
-public class UpdateBookService extends BaseUpdateService<UpdateBookRequest> {
+public class UpdateBookService extends BaseUpdateService<UpdateBookServiceRequest> {
 
     /**
      * The book repository for querying the database.
@@ -53,10 +53,10 @@ public class UpdateBookService extends BaseUpdateService<UpdateBookRequest> {
      * Updates book information in the database.
      *
      * @param headers the headers.
-     * @param request the {@link UpdateBookRequest}.
+     * @param request the {@link UpdateBookServiceRequest}.
      */
     @Override
-    protected void executeUpdate(HttpHeaders headers, UpdateBookRequest request) {
+    protected void executeUpdate(HttpHeaders headers, UpdateBookServiceRequest request) {
         BookEntity bookEntity = bookRepository.findByAuthor(request.getAuthor());
 
         if (bookEntity != null) {

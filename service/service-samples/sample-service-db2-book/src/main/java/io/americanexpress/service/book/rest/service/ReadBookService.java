@@ -15,8 +15,8 @@ package io.americanexpress.service.book.rest.service;
 
 import io.americanexpress.data.book.entity.BookEntity;
 import io.americanexpress.data.book.repository.BookRepository;
-import io.americanexpress.service.book.rest.model.ReadBookRequest;
-import io.americanexpress.service.book.rest.model.ReadBookResponse;
+import io.americanexpress.service.book.rest.model.ReadBookServiceRequest;
+import io.americanexpress.service.book.rest.model.ReadBookServiceResponse;
 import io.americanexpress.service.book.rest.service.helper.BookServiceMapper;
 import io.americanexpress.synapse.service.rest.service.BaseReadMonoService;
 import org.apache.commons.lang3.StringUtils;
@@ -27,7 +27,7 @@ import org.springframework.stereotype.Service;
  * {@code ReadBookService} reads a book from the database using id, author, or title.
  */
 @Service
-public class ReadBookService extends BaseReadMonoService<ReadBookRequest, ReadBookResponse> {
+public class ReadBookService extends BaseReadMonoService<ReadBookServiceRequest, ReadBookServiceResponse> {
 
     /**
      * The book repository for querying the database.
@@ -54,10 +54,10 @@ public class ReadBookService extends BaseReadMonoService<ReadBookRequest, ReadBo
      *
      * @param headers the http header map.
      * @param request the request.
-     * @return the {@link ReadBookResponse}.
+     * @return the {@link ReadBookServiceResponse}.
      */
     @Override
-    protected ReadBookResponse executeRead(HttpHeaders headers, ReadBookRequest request) {
+    protected ReadBookServiceResponse executeRead(HttpHeaders headers, ReadBookServiceRequest request) {
         BookEntity bookEntity = null;
 
         if (request.getId() != null) {

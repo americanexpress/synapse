@@ -13,9 +13,6 @@
  */
 package io.americanexpress.service.book.rest.model;
 
-/**
- * {@code CreateBookRequest} is the request object for creating a new book.
- */
-public class CreateBookRequest extends BookRequest {
+public class ReadBookServiceResponse extends BookServiceResponse {
 
 }

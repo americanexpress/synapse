@@ -13,31 +13,5 @@
  */
 package io.americanexpress.service.book.rest.model;
 
-/**
- *
- */
-public class ReadBookRequest extends BookRequest {
-
-    /**
-     * Id used to uniquely get, update or remove a resource.
-     */
-    private Long id;
-
-    /**
-     * Get the id.
-     *
-     * @return the id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * Set the id.
-     *
-     * @param id the identifier to set
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
+public class UpdateBookServiceRequest extends BookServiceRequest {
 }

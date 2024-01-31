@@ -13,8 +13,8 @@
  */
 package io.americanexpress.service.book.rest.controller;
 
-import io.americanexpress.service.book.rest.model.CreateBookRequest;
-import io.americanexpress.service.book.rest.model.CreateBookResponse;
+import io.americanexpress.service.book.rest.model.CreateBookServiceRequest;
+import io.americanexpress.service.book.rest.model.CreateBookServiceResponse;
 import io.americanexpress.service.book.rest.service.CreateBookService;
 import io.americanexpress.synapse.service.rest.controller.BaseCreateController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,5 +26,5 @@ import static io.americanexpress.service.book.rest.config.BookEndpoint.BOOK_ENDP
  */
 @RequestMapping(BOOK_ENDPOINT)
 @RestController
-public class CreateBookController extends BaseCreateController<CreateBookRequest, CreateBookResponse, CreateBookService> {
+public class CreateBookController extends BaseCreateController<CreateBookServiceRequest, CreateBookServiceResponse, CreateBookService> {
 }

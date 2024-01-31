@@ -13,6 +13,9 @@
  */
 package io.americanexpress.service.book.rest.model;
 
-public class ReadBookResponse extends BookResponse {
+/**
+ * {@code CreateBookServiceResponse} is the response object for creating a new book.
+ */
+public class CreateBookServiceResponse extends BookServiceResponse {
 
 }

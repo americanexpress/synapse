@@ -14,8 +14,8 @@
 package io.americanexpress.service.book.rest.service;
 
 import io.americanexpress.data.book.repository.BookRepository;
-import io.americanexpress.service.book.rest.model.CreateBookRequest;
-import io.americanexpress.service.book.rest.model.CreateBookResponse;
+import io.americanexpress.service.book.rest.model.CreateBookServiceRequest;
+import io.americanexpress.service.book.rest.model.CreateBookServiceResponse;
 import io.americanexpress.service.book.rest.service.helper.BookServiceMapper;
 import io.americanexpress.synapse.service.rest.service.BaseCreateService;
 import org.springframework.http.HttpHeaders;
@@ -25,7 +25,7 @@ import org.springframework.stereotype.Service;
  * {@code CreateBookService} creates a new book and inserts it into the database.
  */
 @Service
-public class CreateBookService extends BaseCreateService<CreateBookRequest, CreateBookResponse> {
+public class CreateBookService extends BaseCreateService<CreateBookServiceRequest, CreateBookServiceResponse> {
 
     /**
      * The book repository for querying the database.
@@ -51,10 +51,10 @@ public class CreateBookService extends BaseCreateService<CreateBookRequest, Crea
      * Saves the book into the database.
      * @param headers the http header map.
      * @param request the request.
-     * @return the {@link CreateBookResponse}.
+     * @return the {@link CreateBookServiceResponse}.
      */
     @Override
-    protected CreateBookResponse executeCreate(HttpHeaders headers, CreateBookRequest request) {
+    protected CreateBookServiceResponse executeCreate(HttpHeaders headers, CreateBookServiceRequest request) {
         var bookEntity = bookServiceMapper.mapCreateRequestToEntity(request);
         bookRepository.save(bookEntity);
         return bookServiceMapper.mapCreateBookResponse(bookEntity);

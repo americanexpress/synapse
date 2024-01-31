@@ -14,8 +14,30 @@
 package io.americanexpress.service.book.rest.model;
 
 /**
- * {@code CreateBookResponse} is the response object for creating a new book.
+ *
  */
-public class CreateBookResponse extends BookResponse {
+public class ReadBookServiceRequest extends BookServiceRequest {
 
+    /**
+     * Id used to uniquely get, update or remove a resource.
+     */
+    private Long id;
+
+    /**
+     * Get the id.
+     *
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * Set the id.
+     *
+     * @param id the identifier to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

@@ -16,9 +16,9 @@ package io.americanexpress.service.book.rest.model;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 
 /**
- * {@code BookResponse} class is the response object for the book service.
+ * {@code BookServiceResponse} class is the response object for the book service.
  */
-public class BookResponse extends BaseServiceResponse {
+public class BookServiceResponse extends BaseServiceResponse {
 
     /**
      * The title of the book.

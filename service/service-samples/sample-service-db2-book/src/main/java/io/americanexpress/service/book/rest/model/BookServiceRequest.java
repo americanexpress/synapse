@@ -16,9 +16,9 @@ package io.americanexpress.service.book.rest.model;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 
 /**
- * {@code BookRequest} is the base book request pojo.
+ * {@code BookServiceRequest} is the base book request pojo.
  */
-public class BookRequest implements BaseServiceRequest {
+public class BookServiceRequest implements BaseServiceRequest {
 
     /**
      * The title of the book.

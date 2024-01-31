@@ -14,17 +14,23 @@
 package io.americanexpress.service.book.rest.service.helper;
 
 import io.americanexpress.data.book.entity.BookEntity;
-import io.americanexpress.service.book.rest.model.CreateBookRequest;
-import io.americanexpress.service.book.rest.model.CreateBookResponse;
-import io.americanexpress.service.book.rest.model.ReadBookResponse;
-import io.americanexpress.service.book.rest.model.UpdateBookRequest;
+import io.americanexpress.service.book.rest.model.CreateBookServiceRequest;
+import io.americanexpress.service.book.rest.model.CreateBookServiceResponse;
+import io.americanexpress.service.book.rest.model.ReadBookServiceResponse;
+import io.americanexpress.service.book.rest.model.UpdateBookServiceRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import java.util.Random;
 
+/**
+ * {@code BookServiceMapper} maps entities to service request / responses & vice versa.
+ */
 @Component
 public class BookServiceMapper {
 
+    /**
+     * Random number generator for the id column.
+     */
     private final Random random;
 
     /**
@@ -34,7 +40,12 @@ public class BookServiceMapper {
         random = new Random();
     }
 
-    public BookEntity mapCreateRequestToEntity(CreateBookRequest createBookRequest) {
+    /**
+     * Maps the {@link CreateBookServiceRequest} to a {@link BookEntity}.
+     * @param createBookRequest the {@link CreateBookServiceRequest}.
+     * @return a new {@link BookEntity}.
+     */
+    public BookEntity mapCreateRequestToEntity(CreateBookServiceRequest createBookRequest) {
         BookEntity bookEntity = null;
 
         if (createBookRequest != null) {
@@ -48,22 +59,32 @@ public class BookServiceMapper {
         return bookEntity;
     }
 
-    public CreateBookResponse mapCreateBookResponse(BookEntity bookEntity) {
-        CreateBookResponse createBookResponse = null;
+    /**
+     * Maps the {@link BookEntity} to a {@link CreateBookServiceResponse}.
+     * @param bookEntity the {@link BookEntity}.
+     * @return a new {@link CreateBookServiceResponse}.
+     */
+    public CreateBookServiceResponse mapCreateBookResponse(BookEntity bookEntity) {
+        CreateBookServiceResponse createBookResponse = null;
 
         if (bookEntity != null) {
-            createBookResponse = new CreateBookResponse();
+            createBookResponse = new CreateBookServiceResponse();
             createBookResponse.setId(String.valueOf(bookEntity.getId()));
         }
 
         return createBookResponse;
     }
 
-    public ReadBookResponse mapEntityToReadResponse(BookEntity bookEntity) {
-        ReadBookResponse readBookResponse = null;
+    /**
+     * Maps the {@link BookEntity} to a {@link ReadBookServiceResponse}.
+     * @param bookEntity the {@link BookEntity}.
+     * @return a new {@link ReadBookServiceResponse}.
+     */
+    public ReadBookServiceResponse mapEntityToReadResponse(BookEntity bookEntity) {
+        ReadBookServiceResponse readBookResponse = null;
 
         if (bookEntity != null) {
-            readBookResponse = new ReadBookResponse();
+            readBookResponse = new ReadBookServiceResponse();
             readBookResponse.setId(Long.toString(bookEntity.getId()));
             readBookResponse.setAuthor(bookEntity.getAuthor());
             readBookResponse.setTitle(bookEntity.getTitle());
@@ -73,7 +94,13 @@ public class BookServiceMapper {
         return readBookResponse;
     }
 
-    public BookEntity mapUpdateRequestToEntity(UpdateBookRequest updateBookRequest, BookEntity bookEntity) {
+    /**
+     * Maps the {@link UpdateBookServiceRequest} to a {@link BookEntity}.
+     * @param updateBookRequest the {@link UpdateBookServiceRequest}.
+     * @param bookEntity the {@link BookEntity}.
+     * @return the updated {@link BookEntity}.
+     */
+    public BookEntity mapUpdateRequestToEntity(UpdateBookServiceRequest updateBookRequest, BookEntity bookEntity) {
 
         if (StringUtils.isNotBlank(updateBookRequest.getAuthor())) {
             bookEntity.setAuthor(updateBookRequest.getAuthor());
