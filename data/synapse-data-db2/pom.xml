@@ -23,12 +23,6 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>synapse-data-db2</artifactId>
 
-    <properties>
-        <synapse.version>0.3.30-SNAPSHOT</synapse.version>
-        <hibernate.core.version>5.6.15.Final</hibernate.core.version>
-        <hibernate.entitymanager.version>5.6.15.Final</hibernate.entitymanager.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -43,7 +37,6 @@
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>
             <artifactId>synapse-utilities-common</artifactId>
-            <version>${synapse.version}</version>
         </dependency>
         <dependency>
             <groupId>com.ibm.db2</groupId>
@@ -52,12 +45,10 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>${hibernate.core.version}</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>${hibernate.entitymanager.version}</version>
         </dependency>
     </dependencies>
     <build>
