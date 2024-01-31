@@ -21,14 +21,13 @@ public class BaseDeleteImperativeRestController<S extends BaseDeleteImperativeSe
      * Delete a single resource.
      *
      * @param headers containing the HTTP headers from the consumer
-     * @param identifier of the resource to be deleted
      */
-    @DeleteMapping("/{id}")
+    @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(tags = "Delete Operation", summary = "Deletes a resource")
-    public void delete(@RequestHeader HttpHeaders headers, @PathVariable String identifier) {
-        logger.entry(identifier);
-        service.delete(headers, identifier);
+    public void delete(@RequestHeader HttpHeaders headers) {
+        logger.entry(headers);
+        service.delete(headers);
         logger.exit();
     }
 }

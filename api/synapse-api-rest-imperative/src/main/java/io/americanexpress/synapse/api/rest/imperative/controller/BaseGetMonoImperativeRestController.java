@@ -24,14 +24,13 @@ public class BaseGetMonoImperativeRestController<O extends BaseServiceResponse, 
     /**
      * Read response entity.
      * @param headers containing the HTTP headers from the consumer
-     * @param id the id
      * @return the response entity
      */
     @Operation(summary = "Read operation based on path.", description = "Read one resource based on a path variable.")
-    @GetMapping("/{id}")
-    public ResponseEntity<O> read(@RequestHeader HttpHeaders headers, @PathVariable String id) {
-        logger.entry(id);
-        final O response = service.read(headers, id);
+    @GetMapping
+    public ResponseEntity<O> read(@RequestHeader HttpHeaders headers) {
+        logger.entry(headers);
+        final O response = service.read(headers);
         ResponseEntity<O> responseEntity = MonoResponseEntityCreator.create(response);
         logger.exit(responseEntity);
         return responseEntity;

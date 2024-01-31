@@ -24,22 +24,23 @@ import org.springframework.http.HttpHeaders;
 public abstract class BaseGetMonoImperativeService<O extends BaseServiceResponse> extends BaseService {
 
     /**
-     * Gets a single resource.
-     * @param headers received from the controller
-     * @param identifier received from the controller
+     * Unique identifier for the resource.
+     *
+     * @param headers the http headers
+     * @return a service response
      */
-    public O read(org.springframework.http.HttpHeaders headers, String identifier) {
-        logger.entry(identifier);
-        O response = executeRead(headers, identifier);
+    public O read(HttpHeaders headers) {
+        logger.entry(headers);
+        O response = executeRead(headers);
         logger.exit(response);
         return response;
     }
 
     /**
      * Prototype for reading a resource.
+     *
      * @param headers the http headers
-     * @param identifier the unique identifier
      * @return a service response
      */
-    protected abstract O executeRead(HttpHeaders headers, String identifier);
+    protected abstract O executeRead(HttpHeaders headers);
 }

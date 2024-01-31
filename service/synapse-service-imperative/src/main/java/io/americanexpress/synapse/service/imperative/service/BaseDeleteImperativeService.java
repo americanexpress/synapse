@@ -25,17 +25,16 @@ public abstract class BaseDeleteImperativeService extends BaseService {
      * Remove a single resource.
      *
      * @param headers received from the controller
-     * @param id received from the controller
      */
-    public void delete(org.springframework.http.HttpHeaders headers, String id) {
-        logger.entry(id);
-        executeDelete(headers, id);
+    public void delete(org.springframework.http.HttpHeaders headers) {
+        logger.entry(headers);
+        executeDelete(headers);
         logger.exit();
     }
 
     /**
      * Prototype for removing a resource.
-     * @param id body received from the controller
+     * @param headers received from the controller
      */
-    protected abstract void executeDelete(HttpHeaders headers, String id);
+    protected abstract void executeDelete(HttpHeaders headers);
 }
