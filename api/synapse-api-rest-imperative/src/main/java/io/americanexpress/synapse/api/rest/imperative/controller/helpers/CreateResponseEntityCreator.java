@@ -22,6 +22,7 @@ import java.net.URI;
 /**
  * {@code CreateResponseEntityCreator} Helps creates ResponseEntity.
  * @param <O> BaseServiceResponse will be used for the response object.
+ *
  * @author Francois Gutt
  */
 public class CreateResponseEntityCreator<O extends BaseServiceResponse> {

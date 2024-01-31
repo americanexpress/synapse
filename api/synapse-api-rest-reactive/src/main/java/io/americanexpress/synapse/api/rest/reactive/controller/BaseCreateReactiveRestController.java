@@ -13,6 +13,7 @@
  */
 package io.americanexpress.synapse.api.rest.reactive.controller;
 
+import io.americanexpress.synapse.api.rest.reactive.controller.helper.MonoResponseEntityCreator;
 import io.americanexpress.synapse.service.reactive.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.reactive.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.reactive.service.BaseCreateReactiveService;
@@ -40,6 +41,7 @@ public class BaseCreateReactiveRestController<I extends BaseServiceRequest, O ex
 
     /**
      * Create a single resource.
+     *
      * @param headers the headers
      * @param serviceRequest body from the consumer
      * @return response to the consumer
@@ -52,12 +54,10 @@ public class BaseCreateReactiveRestController<I extends BaseServiceRequest, O ex
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 403, message = "Forbidden"),
     })
-    public Mono<ResponseEntity<O>> create(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest) {
+    public ResponseEntity<Mono<O>> create(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
         final var serviceResponse = service.create(headers, serviceRequest);
-        final var responseEntity = serviceResponse
-                .map(ResponseEntity.status(HttpStatus.CREATED)::body)
-                .defaultIfEmpty(ResponseEntity.noContent().build());
+        ResponseEntity<Mono<O>> responseEntity = MonoResponseEntityCreator.create(serviceResponse);
         logger.exit();
         return responseEntity;
     }

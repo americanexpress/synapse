@@ -17,6 +17,7 @@ package io.americanexpress.synapse.service.reactive.service;
 import io.americanexpress.synapse.service.reactive.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.reactive.model.BaseServiceResponse;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import reactor.core.publisher.Mono;
 
 /**

@@ -24,6 +24,7 @@ import java.util.List;
 /**
  * {@code PolyResponseEntityCreator} creates ResponseEntity for poly responses.
  * @param <O> a response extending {@link BaseServiceResponse}
+ *
  * @author Francois Gutt
  */
 public class PolyResponseEntityCreator<O extends BaseServiceResponse> {
