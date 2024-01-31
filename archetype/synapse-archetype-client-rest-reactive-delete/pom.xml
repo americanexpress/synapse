@@ -17,7 +17,7 @@
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
         <artifactId>archetype</artifactId>
-        <version>0.3.30-SNAPSHOT</version>
+        <version>0.3.31-SNAPSHOT</version>
     </parent>
     <artifactId>synapse-archetype-client-rest-reactive-delete</artifactId>
     <build>

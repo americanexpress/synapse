@@ -19,7 +19,8 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
-import static java.lang.String.*;
+import static java.lang.String.format;
+import static org.apache.commons.lang3.ObjectUtils.isEmpty;
 
 /**
  * {@code OneOfValidator} validates that only one of the fields is provided.
@@ -59,7 +60,7 @@ public class OneOfValidator implements ConstraintValidator<OneOf, Object> {
             var isOneOf = false;
             for (String fieldName : fieldNames) {
                 var property = PropertyUtils.getProperty(object, fieldName);
-                if (property != null) {
+                if (!isEmpty(property)) {
                     if (isOneOf) {
                         isOneOf = false;
                         break;

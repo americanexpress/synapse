@@ -80,7 +80,7 @@ class OneOfValidatorTest {
     }
 
     @ParameterizedTest
-    @CsvSource({",", "   ,   ", "test,test"})
+    @CsvSource({",", "   ,   ", "test,test", "'',''", ",''"})
     void isInvalid_givenObjectWithInvalidFields_expectedFalse(String value1, String value2) {
         var builder = mock(ConstraintValidatorContext.ConstraintViolationBuilder.class);
         when(constraintValidatorContext.buildConstraintViolationWithTemplate(anyString())).thenReturn(builder);
