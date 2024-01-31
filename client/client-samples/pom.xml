@@ -17,7 +17,7 @@
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
         <artifactId>client</artifactId>
-        <version>0.3.28-SNAPSHOT</version>
+        <version>0.3.31-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -26,6 +26,7 @@
 
     <!--Modules-->
     <modules>
+        <module>sample-client-graphql-book</module>
         <module>sample-client-reactive-football</module>
         <module>sample-client-reactive-weather</module>
         <module>sample-client-weather</module>
