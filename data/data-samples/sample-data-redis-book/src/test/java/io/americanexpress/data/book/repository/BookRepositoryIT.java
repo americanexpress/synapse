@@ -45,9 +45,9 @@ class BookRepositoryIT {
     }
 
     @Test
-    void findByTitle_givenTitle_expectedBookFound() {
-        var title = "Harry Potter";
-        BookEntity book = bookRepository.findByTitle(title);
-        Assertions.assertEquals(title, book.getTitle());
+    void findById_givenTitle_expectedBookFound() {
+        var title = "Alice Wonderland";
+        Optional<BookEntity> book = bookRepository.findById(title);
+        Assertions.assertEquals(title, book.get().getTitle());
     }
 }

@@ -1,4 +1,2 @@
 SADD books 'Harry Potter'
-SADD 'books:Harry Potter:idx' 'books:title:Harry Potter'
-SADD 'books:title:Harry Potter' 'Harry Potter'
 HSET 'books:Harry Potter' numberOfCopies 0 title 'Harry Potter' author 'JK Rowling' _class 'io.americanexpress.data.book.entity.BookEntity'

@@ -13,21 +13,20 @@
  */
 package io.americanexpress.data.book.entity;
 
+import io.americanexpress.synapse.data.redis.entity.BaseEntity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
-import org.springframework.data.redis.core.index.Indexed;
 
 /**
  * {@code BookEntity} class represents the domain of the books table.
  */
 @RedisHash("books")
-public class BookEntity {
+public class BookEntity extends BaseEntity {
 
     /**
      * The title.
      */
     @Id
-    @Indexed
     private String title;
 
     /**

@@ -26,5 +26,4 @@ import java.util.UUID;
 @Repository
 public interface BookRepository extends CrudRepository<BookEntity, String> {
 
-    BookEntity findByTitle(String title);
 }
