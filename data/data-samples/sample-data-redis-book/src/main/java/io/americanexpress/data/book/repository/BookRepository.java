@@ -24,9 +24,6 @@ import java.util.UUID;
  * {@code BookRepository} is the dao repository to handle the queries for the books table.
  */
 @Repository
-public interface BookRepository extends CrudRepository<BookEntity, UUID> {
+public interface BookRepository extends CrudRepository<BookEntity, String> {
 
-    Optional<BookEntity> findByTitleAndAuthor(String title, String author);
-
-    Optional<BookEntity> findByTitle(String title);
 }

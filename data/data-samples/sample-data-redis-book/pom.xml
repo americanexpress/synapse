@@ -38,13 +38,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-test-autoconfigure</artifactId>
         </dependency>
-        <!-- Third party dependencies -->
-        <dependency>
-            <groupId>it.ozimov</groupId>
-            <artifactId>embedded-redis</artifactId>
-            <version>0.7.2</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
 </project>

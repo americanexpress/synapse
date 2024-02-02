@@ -32,12 +32,6 @@ import java.util.Objects;
 public abstract class BaseEntity {
 
     /**
-     * Identifier
-     */
-    @Id
-    private String identifier;
-
-    /**
      * Created Date Time
      */
     @CreatedDate
@@ -71,14 +65,6 @@ public abstract class BaseEntity {
      * Empty constructor, do not delete it. It is used by Spring Data.
      */
     public BaseEntity() {
-    }
-
-    public String getIdentifier() {
-        return identifier;
-    }
-
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
     }
 
     public LocalDateTime getCreatedDateTime() {
@@ -125,13 +111,13 @@ public abstract class BaseEntity {
     public boolean equals(Object object) {
         if (this == object) return true;
         if (!(object instanceof BaseEntity that)) return false;
-        return Objects.equals(identifier, that.identifier) && Objects.equals(createdDateTime, that.createdDateTime) &&
+        return Objects.equals(createdDateTime, that.createdDateTime) &&
                 Objects.equals(lastModifiedDateTime, that.lastModifiedDateTime) && Objects.equals(createdBy, that.createdBy) &&
                 Objects.equals(lastModifiedBy, that.lastModifiedBy) && Objects.equals(version, that.version);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(identifier, createdDateTime, lastModifiedDateTime, createdBy, lastModifiedBy, version);
+        return Objects.hash(createdDateTime, lastModifiedDateTime, createdBy, lastModifiedBy, version);
     }
 }
