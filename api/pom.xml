@@ -21,18 +21,14 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>service</artifactId>
+    <artifactId>api</artifactId>
     <packaging>pom</packaging>
 
     <!--Modules-->
     <modules>
-        <module>service-samples</module>
-        <module>synapse-service-graphql</module>
-        <module>synapse-service-imperative</module>
-        <module>synapse-service-reactive</module>
-        <module>synapse-service-reactive-rest</module>
-        <module>synapse-service-rest</module>
-        <module>synapse-service-test</module>
-    </modules>
 
+        <!-- Base api Synapse dependencies-->
+        <module>synapse-api-rest-imperative</module>
+        <module>synapse-api-rest-reactive</module>
+    </modules>
 </project>

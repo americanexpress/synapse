@@ -84,6 +84,7 @@
     </properties>
 
     <modules>
+        <module>api</module>
         <module>archetype</module>
         <module>framework</module>
         <module>service</module>
@@ -212,10 +213,33 @@
                 <version>${project.version}</version>
             </dependency>
 
+            <!-- Api -->
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-api-rest-imperative</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-api-rest-reactive</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
             <!--Service-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-service-graphql</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-service-imperative</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-service-reactive</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
