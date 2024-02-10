@@ -18,6 +18,7 @@ import org.springframework.http.HttpHeaders;
 
 /**
  * {@code BaseUpdateService} class specifies the prototypes for performing business logic.
+ *
  * @param <I> class extending the {@link BaseServiceRequest}
  * @author Francois Gutt
  */

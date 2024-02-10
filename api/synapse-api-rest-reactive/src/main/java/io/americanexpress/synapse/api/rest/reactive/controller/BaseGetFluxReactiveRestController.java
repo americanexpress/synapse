@@ -13,6 +13,7 @@
  */
 package io.americanexpress.synapse.api.rest.reactive.controller;
 
+import io.americanexpress.synapse.service.reactive.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.reactive.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.reactive.service.BaseGetFluxReactiveService;
 import io.americanexpress.synapse.service.reactive.service.BaseGetMonoReactiveService;
@@ -32,7 +33,12 @@ import reactor.core.publisher.Flux;
  * @param <S> an object extending the {@link BaseGetMonoReactiveService}
  * @author Francois Gutt
  */
-public class BaseGetFluxReactiveRestController<O extends BaseServiceResponse, S extends BaseGetFluxReactiveService<O>> extends BaseController<S> {
+public class BaseGetFluxReactiveRestController<
+            I extends BaseServiceRequest,
+            O extends BaseServiceResponse,
+            S extends BaseGetFluxReactiveService<I,O>
+        >
+        extends BaseController<S> {
 
     /**
      * Get a list of multiple resources from the back end service.
@@ -43,14 +49,15 @@ public class BaseGetFluxReactiveRestController<O extends BaseServiceResponse, S 
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Ok"),
             @ApiResponse(code = 204, message = "No Content"),
+            @ApiResponse(code = 206, message = "Partial Content"),
             @ApiResponse(code = 400, message = "Bad Request"),
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 403, message = "Forbidden"),
     })
     @GetMapping()
-    public Flux<O> read(@RequestHeader HttpHeaders headers) {
+    public Flux<O> read(@RequestHeader HttpHeaders headers, I serviceRequest) {
         logger.entry();
-        final var serviceResponse = service.read(headers);
+        final var serviceResponse = service.read(serviceRequest);
         logger.exit();
         return serviceResponse;
     }

@@ -24,26 +24,29 @@ import reactor.core.publisher.Flux;
  * @param <O> an object extending the {@link BaseServiceResponse}
  * @author Francois Gutt
  */
-public abstract class BaseReadFluxReactiveService<I extends BaseServiceRequest, O extends BaseServiceResponse> extends BaseService {
+public abstract class BaseReadFluxReactiveService<
+            I extends BaseServiceRequest,
+            O extends BaseServiceResponse
+        > extends BaseService {
 
     /**
      * Retrieves multiple resources with a request body.
-     * @param headers headers
+     *
      * @param request a base service request
      * @return a flux read response
      */
-    public Flux<O> read(HttpHeaders headers, final I request) {
+    public Flux<O> read(final I request) {
         logger.entry(request);
-        final var response  = executeRead(headers, request);
+        final var response  = executeRead(request);
         logger.exit(response);
         return response;
     }
 
     /**
      * Prototype for reading multiple resources.
-     * @param headers headers
+     *
      * @param request a base service request
      * @return a flux read response
      */
-    protected abstract Flux<O> executeRead(HttpHeaders headers, I request);
+    protected abstract Flux<O> executeRead(I request);
 }

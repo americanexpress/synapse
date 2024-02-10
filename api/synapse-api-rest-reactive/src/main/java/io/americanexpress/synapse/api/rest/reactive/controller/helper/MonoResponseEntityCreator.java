@@ -28,6 +28,7 @@ public class MonoResponseEntityCreator<O extends BaseServiceResponse> {
 
     /**
      * Creates a response entity.
+     *
      * @param serviceResponse service response.
      * @return response entity.
      * @param <O> an object extending {@link BaseServiceResponse}.

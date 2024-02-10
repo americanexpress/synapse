@@ -13,8 +13,6 @@
  */
 package io.americanexpress.synapse.service.reactive.model;
 
-import java.util.Map;
-
 /**
  * {@code BaseServiceRequest} specifies the prototypes for all service requests.
  *

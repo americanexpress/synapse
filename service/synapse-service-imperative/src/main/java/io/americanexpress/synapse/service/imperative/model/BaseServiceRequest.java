@@ -17,6 +17,7 @@ import java.util.Map;
 
 /**
  * {@code BaseServiceRequest} specifies the prototypes for all service requests.
+ *
  * @author Francois Gutt
  */
 public abstract class BaseServiceRequest {
@@ -27,7 +28,8 @@ public abstract class BaseServiceRequest {
     private Map<String, String> serviceHeaders;
 
     /**
-     * Get the service headers map
+     * Get the service headers map.
+     *
      * @return a map of service headers
      */
     public Map<String, String> getServiceHeaders() {
@@ -36,7 +38,8 @@ public abstract class BaseServiceRequest {
 
     /**
      * Sets the service header map.
-     * @param serviceHeaders a mapl of service headers.
+     *
+     * @param serviceHeaders a map of service headers.
      */
     public void setServiceHeaders(Map<String, String> serviceHeaders) {
         this.serviceHeaders = serviceHeaders;

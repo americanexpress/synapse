@@ -15,6 +15,7 @@ package io.americanexpress.synapse.service.imperative.model;
 
 /**
  * {@code BaseServiceResponse} specifies the prototypes for all service responses.
+ *
  * @author Francois Gutt
  */
 public abstract class BaseServiceResponse {

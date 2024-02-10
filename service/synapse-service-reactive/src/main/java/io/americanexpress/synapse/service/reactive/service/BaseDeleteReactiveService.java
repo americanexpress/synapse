@@ -13,33 +13,33 @@
  */
 package io.americanexpress.synapse.service.reactive.service;
 
-import org.springframework.http.HttpHeaders;
+import io.americanexpress.synapse.service.reactive.model.BaseServiceRequest;
 import reactor.core.publisher.Mono;
 
 /**
  * {@code BaseDeleteReactiveService} class specifies the prototypes for performing business logic.
+ *
  * @author Francois Gutt
  */
-public abstract class BaseDeleteReactiveService extends BaseService {
-
+public abstract class BaseDeleteReactiveService<
+            I extends BaseServiceRequest
+        > extends BaseService {
     /**
      * Deletes a resource by id.
-     * @param headers containing the HTTP headers from the consumer
-     * @param identifier an identifier
+     *
      * @return a mono void
      */
-    public Mono<Void> delete(org.springframework.http.HttpHeaders headers, String identifier) {
+    public Mono<Void> delete(I serviceRequest) {
         logger.entry();
-        var results = executeDelete(headers, identifier);
+        var results = executeDelete(serviceRequest);
         logger.exit();
         return results;
     }
 
     /**
      * Prototype for deleting a resource.
-     * @param headers containing the HTTP headers from the consumer
-     * @param identifier an identifier
+     *
      * @return a mono void
      */
-    protected abstract Mono<Void> executeDelete(HttpHeaders headers, String identifier);
+    protected abstract Mono<Void> executeDelete(I serviceRequest);
 }

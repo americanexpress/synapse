@@ -24,6 +24,7 @@ import java.util.StringJoiner;
 
 /**
  * {@code InputValidationErrorHandler} creates the error response containing the input validation errors.
+ *
  * @author Wendy Hu
  */
 @Component

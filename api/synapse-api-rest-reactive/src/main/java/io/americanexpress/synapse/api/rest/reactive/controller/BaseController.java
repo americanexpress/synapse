@@ -21,9 +21,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * {@code BaseController} The base controller every child controller should extend this parent controller
  * @param <S> an object extending the {@link BaseService}
+ *
  * @author Francois gutt
  */
 public class BaseController<S extends BaseService> {
+
     /**
      * Service that will be called to get a single resource or multiple resources.
      */
@@ -34,4 +36,5 @@ public class BaseController<S extends BaseService> {
      * Used for logging.
      */
     protected final XLogger logger = XLoggerFactory.getXLogger(this.getClass());
+
 }

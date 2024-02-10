@@ -16,7 +16,6 @@ package io.americanexpress.synapse.service.imperative.model;
 /**
  * {@code PageInformation} class specifies the parameters for a service request,
  * limiting the results to a subset of how many (size) and on which page (page).
- *
  */
 public class PageInformation {
 

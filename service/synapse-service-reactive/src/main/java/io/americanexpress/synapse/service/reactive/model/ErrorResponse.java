@@ -17,6 +17,7 @@ import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 
 /**
  * {@code ErrorResponse} class is the response model for 4XX and 5XX series errors.
+ *
  * @author Francois Gutt
  */
 public class ErrorResponse {
@@ -58,6 +59,7 @@ public class ErrorResponse {
 
     /**
      * Get the errorCode.
+     *
      * @return the errorCode
      */
     public ErrorCode getCode() {
@@ -66,6 +68,7 @@ public class ErrorResponse {
 
     /**
      * Get the userMessage.
+     *
      * @return the userMessage
      */
     public String getMoreInfo() {
@@ -74,6 +77,7 @@ public class ErrorResponse {
 
     /**
      * Get the headerMessage.
+     *
      * @return the headerMessage
      */
     public String getMessage() {
@@ -82,6 +86,7 @@ public class ErrorResponse {
 
     /**
      * Get the developerMessage.
+     *
      * @return the developerMessage
      */
     public String getDeveloperMessage() {
@@ -90,6 +95,7 @@ public class ErrorResponse {
 
     /**
      * Set the developerMessage.
+     *
      * @param developerMessage the developerMessage
      */
     public void setDeveloperMessage(String developerMessage) {

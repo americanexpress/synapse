@@ -18,6 +18,7 @@ import org.slf4j.ext.XLoggerFactory;
 
 /**
  * {@code BaseService} specifies the prototypes for all services.
+ *
  * @author Francois Gutt
  */
 public abstract class BaseService {
@@ -26,4 +27,5 @@ public abstract class BaseService {
      * Logger for the base service.
      */
     protected final XLogger logger = XLoggerFactory.getXLogger(getClass());
+
 }

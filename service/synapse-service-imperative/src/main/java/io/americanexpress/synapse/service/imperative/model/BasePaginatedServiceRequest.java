@@ -34,6 +34,7 @@ public abstract class BasePaginatedServiceRequest extends BaseServiceRequest {
 
     /**
      * Set the pageInformation.
+     *
      * @param pageInformation the pageInformation to set
      */
     public void setPageInformation(PageInformation pageInformation) {

@@ -13,6 +13,7 @@
  */
 package io.americanexpress.synapse.api.rest.reactive.controller;
 
+import io.americanexpress.synapse.service.reactive.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.reactive.service.BaseDeleteReactiveService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpHeaders;
@@ -31,19 +32,22 @@ import reactor.core.publisher.Mono;
  * @param <S> an object extending the {@link BaseDeleteReactiveService}
  * @author Francois Gutt
  */
-public class BaseDeleteReactiveRestController<S extends BaseDeleteReactiveService> extends BaseController<S> {
+public class BaseDeleteReactiveRestController<
+            I extends BaseServiceRequest,
+            S extends BaseDeleteReactiveService
+        > extends BaseController<S> {
 
     /**
      * Delete a single resource.
      * @param headers the headers
-     * @param identifier of the resource to be deleted
+     * @param serviceRequest of the resource to be deleted
      */
-    @DeleteMapping("/{id}")
+    @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(tags = "Delete Operation", summary = "Deletes a resource reactively")
-    public Mono<ResponseEntity<Void>> delete(@RequestHeader HttpHeaders headers, @PathVariable String identifier) {
-        logger.entry(identifier);
-        var serviceResults = service.delete(headers, identifier);
+    public Mono<ResponseEntity<Void>> delete(@RequestHeader HttpHeaders headers, @PathVariable I serviceRequest) {
+        logger.entry(serviceRequest);
+        var serviceResults = service.delete(serviceRequest);
         var responseEntity = serviceResults
                 .map(res -> new ResponseEntity<Void>(HttpStatus.NO_CONTENT));
         logger.exit(responseEntity);

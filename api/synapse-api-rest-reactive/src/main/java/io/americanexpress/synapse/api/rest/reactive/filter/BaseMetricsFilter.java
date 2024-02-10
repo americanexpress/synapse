@@ -24,6 +24,7 @@ import reactor.core.publisher.Mono;
 
 /**
  * {@code BaseMetricsFilter} captures metrics about the request such as the response time.
+ *
  * @author Elisha Aquino
  */
 @Component
@@ -47,8 +48,8 @@ public abstract class BaseMetricsFilter implements WebFilter {
         return chain.filter(exchange).doFinally(signalType -> {
             long totalTime = System.currentTimeMillis() - startTime;
             ServerHttpRequest request = exchange.getRequest();
-            logger.info("APPLICATION_METRICS REQUEST_ID={}, RESPONSE_TIME={}, URI={}, STATUS={}",
-                    request.getId(), totalTime, request.getPath(), exchange.getResponse().getStatusCode());
+            logger.info("APPLICATION_METRICS RESPONSE_TIME={}, URI={}, STATUS={}",
+                    totalTime, request.getPath(), exchange.getResponse().getStatusCode());
         });
     }
 }

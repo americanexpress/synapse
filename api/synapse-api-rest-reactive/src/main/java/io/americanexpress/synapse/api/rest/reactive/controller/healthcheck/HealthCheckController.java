@@ -19,6 +19,7 @@ import reactor.core.publisher.Mono;
 
 /**
  * {@code HealthCheckController} class specifies health check endpoint URIs to ensure that requests are being received by the application.
+ *
  * @author Paolo Claudio
  */
 @RestController

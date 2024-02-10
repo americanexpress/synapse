@@ -21,23 +21,29 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 import javax.validation.Valid;
 
 /**
  * {@code BaseCreateReactiveRestController} class specifies the prototypes for listening for requests from the consumer
  * to Create (POST), Update (PUT/PATCH) or Delete (DELETE) a resource.
+ *
  * @param <I> an object extending the {@link BaseServiceRequest}
  * @param <O> an object extending the {@link BaseServiceResponse}
  * @param <S> an object extending the {@link BaseCreateReactiveService}
  * @author Gabriel Jimenez
  */
-public class BaseCreateReactiveRestController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseCreateReactiveService<I, O>> extends BaseController<S> {
+@RestController
+public class BaseCreateReactiveRestController<
+            I extends BaseServiceRequest,
+            O extends BaseServiceResponse,
+            S extends BaseCreateReactiveService<I, O>
+        > extends BaseController<S> {
 
     /**
      * Create a single resource.
@@ -56,7 +62,7 @@ public class BaseCreateReactiveRestController<I extends BaseServiceRequest, O ex
     })
     public ResponseEntity<Mono<O>> create(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
-        final var serviceResponse = service.create(headers, serviceRequest);
+        final var serviceResponse = service.create(serviceRequest);
         ResponseEntity<Mono<O>> responseEntity = MonoResponseEntityCreator.create(serviceResponse);
         logger.exit();
         return responseEntity;

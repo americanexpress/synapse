@@ -35,7 +35,11 @@ import javax.validation.Valid;
  * @param <S> an object extending the {@link BaseReadFluxReactiveService}
  * @author Gabriel Jimenez
  */
-public class BaseReadFluxReactiveRestController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadFluxReactiveService<I, O>> extends BaseController<S> {
+public class BaseReadFluxReactiveRestController<
+            I extends BaseServiceRequest,
+            O extends BaseServiceResponse,
+            S extends BaseReadFluxReactiveService<I, O>
+        > extends BaseController<S> {
 
     /**
      * The constant MULTIPLE_RESULTS.
@@ -59,7 +63,7 @@ public class BaseReadFluxReactiveRestController<I extends BaseServiceRequest, O 
     @PostMapping(MULTIPLE_RESULTS)
     public Flux<ResponseEntity<O>> read(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
-        final var serviceResult = service.read(headers, serviceRequest);
+        final var serviceResult = service.read(serviceRequest);
         final var responseEntity = serviceResult
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.noContent().build());

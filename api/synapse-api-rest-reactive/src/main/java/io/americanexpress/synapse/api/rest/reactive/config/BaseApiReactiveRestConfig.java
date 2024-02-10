@@ -27,6 +27,7 @@ import org.springframework.web.reactive.config.WebFluxConfigurer;
 
 /**
  * {@code BaseServiceReactiveRestConfig} sets common configurations for the service layer.
+ *
  * @author Francois Gutt
  */
 @ComponentScan(basePackages = "io.americanexpress.synapse.api.rest.reactive")

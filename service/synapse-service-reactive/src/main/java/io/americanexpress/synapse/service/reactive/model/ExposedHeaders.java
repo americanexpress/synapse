@@ -15,6 +15,7 @@ package io.americanexpress.synapse.service.reactive.model;
 
 /**
  * {@code ExposedHeaders} enum has the names of the exposed HTTP headers that can be discovered in addition to the standard response HTTP headers that are exposed by Spring.
+ *
  * @author Paolo Claudio
  */
 public enum ExposedHeaders {
@@ -28,6 +29,7 @@ public enum ExposedHeaders {
 
     /**
      * Argument constructor creates a new instance of ExposedHeaders with given values.
+     *
      * @param name of the exposed header
      */
     ExposedHeaders(String name) {
@@ -36,6 +38,7 @@ public enum ExposedHeaders {
 
     /**
      * Get the name.
+     *
      * @return the name.
      */
     public String getName() {
@@ -44,6 +47,7 @@ public enum ExposedHeaders {
 
     /**
      * Set the name.
+     *
      * @param name the name to set
      */
     public void setName(String name) {

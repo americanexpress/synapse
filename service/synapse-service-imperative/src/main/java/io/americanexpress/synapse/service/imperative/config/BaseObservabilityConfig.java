@@ -18,6 +18,7 @@ import org.springframework.core.env.Environment;
 /**
  * {@code ObservabilityConfig} class sets the configuration setting up Tanzu Wavefront.
  * The service utilizing this config must set the properties defined in this class configure Tanzu Wavefront.
+ *
  * @author Francois gutt
  */
 public class BaseObservabilityConfig {

@@ -31,6 +31,7 @@ import java.util.List;
 
 /**
  * {@code ServiceRestConfig} class sets common configurations for the service layer.
+ *
  * @author Francois Gutt
  */
 @ComponentScan(basePackages = "io.americanexpress.synapse.service.imperative")
@@ -44,8 +45,9 @@ public class BaseImperativeServiceRestConfig implements WebMvcConfigurer {
     private final ObjectMapper defaultObjectMapper;
 
     /**
-     * Constructor taking in objectMapper & metricInterceptor
-     * @param defaultObjectMapper   the default object mapper.
+     * Constructor taking in objectMapper & metricInterceptor.
+     *
+     * @param defaultObjectMapper   the default object mapper
      */
     @Autowired
     public BaseImperativeServiceRestConfig(ObjectMapper defaultObjectMapper) {
@@ -55,7 +57,7 @@ public class BaseImperativeServiceRestConfig implements WebMvcConfigurer {
     /**
      * Get the JSON message converter.
      *
-     * @return the JSON message converter.
+     * @return the JSON message converter
      */
     @Bean
     public MappingJackson2HttpMessageConverter jsonMessageConverter() {
@@ -76,6 +78,7 @@ public class BaseImperativeServiceRestConfig implements WebMvcConfigurer {
 
     /**
      * Returns default objectMapper.
+     *
      * @return an object mapper
      */
     protected ObjectMapper getObjectMapper() {

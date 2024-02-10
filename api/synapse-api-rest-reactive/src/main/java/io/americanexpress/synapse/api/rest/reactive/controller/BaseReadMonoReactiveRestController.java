@@ -25,19 +25,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import reactor.core.publisher.Mono;
-
 import javax.validation.Valid;
 
 /**
  * {@code BaseReadMonoReactiveRestController} class specifies the prototypes for listening for requests from the consumer
  * to Read (POST) a resource. This Controller expects only one object in request and one object in the
  * response, hence, "Mono" in the name.
+ *
  * @param <I> an object extending the {@link BaseServiceRequest}
  * @param <O> an object extending the {@link BaseServiceResponse}
  * @param <S> an object extending the {@link BaseReadMonoReactiveService}
  * @author Gabriel Jimenez
  */
-public class BaseReadMonoReactiveRestController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadMonoReactiveService<I, O>> extends BaseController<S> {
+public class BaseReadMonoReactiveRestController<
+            I extends BaseServiceRequest,
+            O extends BaseServiceResponse,
+            S extends BaseReadMonoReactiveService<I, O>
+        > extends BaseController<S> {
 
     /**
      * The constant INQUIRY_RESULTS.
@@ -54,6 +58,7 @@ public class BaseReadMonoReactiveRestController<I extends BaseServiceRequest, O 
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Ok"),
             @ApiResponse(code = 204, message = "No Content"),
+            @ApiResponse(code = 206, message = "Partial Content"),
             @ApiResponse(code = 400, message = "Bad Request"),
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 403, message = "Forbidden"),
@@ -61,7 +66,7 @@ public class BaseReadMonoReactiveRestController<I extends BaseServiceRequest, O 
     @PostMapping(INQUIRY_RESULTS)
     public Mono<ResponseEntity<O>> read(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
-        var serviceResponse = service.read(headers, serviceRequest);
+        var serviceResponse = service.read(serviceRequest);
         var responseEntity = serviceResponse
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.noContent().build());

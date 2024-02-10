@@ -16,6 +16,7 @@ package io.americanexpress.synapse.service.reactive.model;
 /**
  * {@code PageInformation} class specifies the parameters for a service request,
  * limiting the results to a subset of how many (size) and on which page (page).
+ *
  * @author Francois Gutt
  */
 public class PageInformation {
@@ -32,6 +33,7 @@ public class PageInformation {
 
     /**
      * Get the page.
+     *
      * @return the page
      */
     public int getPage() {
@@ -40,6 +42,7 @@ public class PageInformation {
 
     /**
      * Set the page.
+     *
      * @param page the page to set
      */
     public void setPage(int page) {
@@ -48,6 +51,7 @@ public class PageInformation {
 
     /**
      * Get the size.
+     *
      * @return the size
      */
     public int getSize() {
@@ -56,6 +60,7 @@ public class PageInformation {
 
     /**
      * Set the size.
+     *
      * @param size the size to set
      */
     public void setSize(int size) {

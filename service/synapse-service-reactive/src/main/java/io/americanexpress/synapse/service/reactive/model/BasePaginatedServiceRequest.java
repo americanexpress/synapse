@@ -15,6 +15,7 @@ package io.americanexpress.synapse.service.reactive.model;
 
 /**
  * {@code BasePaginatedServiceRequest} should be used when pagination is needed in a Poly Controller.
+ *
  * @author Francois Gutt
  */
 public abstract class BasePaginatedServiceRequest implements BaseServiceRequest {
@@ -26,6 +27,7 @@ public abstract class BasePaginatedServiceRequest implements BaseServiceRequest 
 
     /**
      * Get the pageInformation.
+     *
      * @return the pageInformation
      */
     public PageInformation getPageInformation() {
@@ -34,6 +36,7 @@ public abstract class BasePaginatedServiceRequest implements BaseServiceRequest 
 
     /**
      * Set the pageInformation.
+     *
      * @param pageInformation the pageInformation to set
      */
     public void setPageInformation(PageInformation pageInformation) {
