@@ -21,19 +21,23 @@ import org.springframework.http.HttpHeaders;
  * {@code BaseReadMonoService} class specifies the prototypes for performing business logic.
  * @param <I> class extending the {@link BaseServiceRequest}
  * @param <O> class extending the {@link BaseServiceResponse}
+ *
  * @author Francois Gutt
  */
-public abstract class BaseReadMonoImperativeService<I extends BaseServiceRequest, O extends BaseServiceResponse> extends BaseService {
+public abstract non-sealed class BaseReadMonoImperativeService<
+            I extends BaseServiceRequest,
+            O extends BaseServiceResponse
+        > extends BaseService {
 
     /**
      * Get a single resource from the back end service.
-     * @param headers received from the controller
+     *
      * @param request body received from the controller
      * @return a single resource from the back end service.
      */
-    public O read(HttpHeaders headers, I request) {
+    public O read(I request) {
         logger.entry(request);
-        final O response = executeRead(headers, request);
+        final O response = executeRead(request);
         logger.exit(response);
         return response;
     }
@@ -44,5 +48,5 @@ public abstract class BaseReadMonoImperativeService<I extends BaseServiceRequest
      * @param request the request
      * @return a read mono response
      */
-    protected abstract O executeRead(HttpHeaders headers,I request);
+    protected abstract O executeRead(I request);
 }

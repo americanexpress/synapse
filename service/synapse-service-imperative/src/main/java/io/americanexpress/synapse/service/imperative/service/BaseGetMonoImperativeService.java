@@ -21,7 +21,7 @@ import org.springframework.http.HttpHeaders;
  * @param <O> BaseServiceResponse
  * @author Francois Gutt
  */
-public abstract class BaseGetMonoImperativeService<O extends BaseServiceResponse> extends BaseService {
+public abstract non-sealed class BaseGetMonoImperativeService<O extends BaseServiceResponse> extends BaseService {
 
     /**
      * Unique identifier for the resource.

@@ -17,7 +17,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.americanexpress.synapse.api.rest.imperative.interceptor.MetricInterceptor;
 import io.americanexpress.synapse.framework.api.docs.ApiDocsConfig;
 import io.americanexpress.synapse.framework.exception.config.ExceptionConfig;
-import io.americanexpress.synapse.service.imperative.config.BaseImperativeServiceRestConfig;
 import io.americanexpress.synapse.utilities.common.config.UtilitiesCommonConfig;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -27,11 +26,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * {@code ServiceRestConfig} class sets common configurations for the service layer.
+ *
  * @author Francois Gutt
  */
 @ComponentScan(basePackages = "io.americanexpress.synapse.api.rest.imperative")
 @Configuration
-@Import({ApiDocsConfig.class, BaseImperativeServiceRestConfig.class, ExceptionConfig.class, UtilitiesCommonConfig.class})
+@Import({ApiDocsConfig.class, ExceptionConfig.class, UtilitiesCommonConfig.class})
 public class BaseApiImperativeRestConfig implements WebMvcConfigurer {
 
     /**
@@ -45,9 +45,10 @@ public class BaseApiImperativeRestConfig implements WebMvcConfigurer {
     protected final MetricInterceptor interceptor;
 
     /**
-     * Constructor taking in objectMapper & metricInterceptor
-     * @param defaultObjectMapper   the default object mapper.
-     * @param interceptor           the metric interceptor.
+     * Constructor taking in objectMapper & metricInterceptor.
+     *
+     * @param defaultObjectMapper   the default object mapper
+     * @param interceptor           the metric interceptor
      */
     public BaseApiImperativeRestConfig(ObjectMapper defaultObjectMapper, MetricInterceptor interceptor) {
         this.defaultObjectMapper = defaultObjectMapper;
@@ -56,6 +57,7 @@ public class BaseApiImperativeRestConfig implements WebMvcConfigurer {
 
     /**
      * Adds interceptor to the registry.
+     *
      * @param registry interceptor registry
      */
     @Override

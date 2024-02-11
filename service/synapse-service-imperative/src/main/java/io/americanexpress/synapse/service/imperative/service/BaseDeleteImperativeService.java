@@ -13,28 +13,26 @@
  */
 package io.americanexpress.synapse.service.imperative.service;
 
-import org.springframework.http.HttpHeaders;
+import io.americanexpress.synapse.service.imperative.model.BaseServiceRequest;
 
 /**
  * {@code BaseDeleteService} class specifies the prototypes for performing business logic.
+ *
  * @author Francois Gutt
  */
-public abstract class BaseDeleteImperativeService extends BaseService {
+public abstract non-sealed class BaseDeleteImperativeService<
+            I extends BaseServiceRequest
+        > extends BaseService {
 
     /**
-     * Remove a single resource.
      *
-     * @param headers received from the controller
+     * @param serviceRequest
      */
-    public void delete(HttpHeaders headers) {
-        logger.entry(headers);
-        executeDelete(headers);
+    public void delete(I serviceRequest) {
+        logger.entry(serviceRequest);
+        executeDelete(serviceRequest);
         logger.exit();
     }
 
-    /**
-     * Prototype for removing a resource.
-     * @param headers received from the controller
-     */
-    protected abstract void executeDelete(HttpHeaders headers);
+    protected abstract void executeDelete(I serviceRequest);
 }

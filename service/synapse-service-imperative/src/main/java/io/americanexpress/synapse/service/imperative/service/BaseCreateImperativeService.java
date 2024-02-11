@@ -23,26 +23,29 @@ import org.springframework.http.HttpHeaders;
  * @param <O> output response type
  * @author Francois Gutt
  */
-public abstract class BaseCreateImperativeService<I extends BaseServiceRequest, O extends BaseServiceResponse> extends BaseService {
+public abstract non-sealed class BaseCreateImperativeService<
+            I extends BaseServiceRequest,
+            O extends BaseServiceResponse
+        > extends BaseService {
 
     /**
      * Add a single resource.
-     * @param headers received from the controller
+     *
      * @param request body received from the controller
      * @return response body to the controller
      */
-    public O create(HttpHeaders headers, I request) {
+    public O create(I request) {
         logger.entry(request);
-        final O response = executeCreate(headers, request);
+        final O response = executeCreate(request);
         logger.exit(response);
         return response;
     }
 
     /**
      * Prototype for adding a resource.
-     * @param headers received from the controller
+
      * @param request body received from the controller
      * @return response body to the controller
      */
-    protected abstract O executeCreate(HttpHeaders headers, I request);
+    protected abstract O executeCreate(I request);
 }

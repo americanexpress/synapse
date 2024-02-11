@@ -34,6 +34,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * {@code ControllerExceptionHandler} class handles all the exceptions and errors thrown by the application, excluding Spring Security.
+ *
  * @author Alexei Morgado
  */
 @RestControllerAdvice

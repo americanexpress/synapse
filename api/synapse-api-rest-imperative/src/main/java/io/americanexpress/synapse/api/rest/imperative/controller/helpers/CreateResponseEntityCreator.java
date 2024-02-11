@@ -37,13 +37,6 @@ public class CreateResponseEntityCreator<O extends BaseServiceResponse> {
         // Default URI location in case the response identifier is null
         String responseId = "0";
 
-        if (serviceResponse != null) {
-            String id = serviceResponse.getId();
-            if (StringUtils.isNotBlank(id)) {
-                responseId = id.trim();
-            }
-        }
-
         // Build the resource location to specify in the response
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()

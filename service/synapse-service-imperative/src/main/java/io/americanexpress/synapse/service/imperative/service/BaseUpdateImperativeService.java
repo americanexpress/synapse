@@ -14,31 +14,38 @@
 package io.americanexpress.synapse.service.imperative.service;
 
 import io.americanexpress.synapse.service.imperative.model.BaseServiceRequest;
-import org.springframework.http.HttpHeaders;
+import io.americanexpress.synapse.service.imperative.model.BaseServiceResponse;
 
 /**
  * {@code BaseUpdateService} class specifies the prototypes for performing business logic.
  *
  * @param <I> class extending the {@link BaseServiceRequest}
+ * @param <O> class extending the {@link BaseServiceResponse}
  * @author Francois Gutt
  */
-public abstract class BaseUpdateImperativeService<I extends BaseServiceRequest> extends BaseService {
+public abstract non-sealed class BaseUpdateImperativeService<
+        I extends BaseServiceRequest,
+        O extends BaseServiceResponse
+    > extends BaseService {
 
     /**
      * Update a single resource.
      *
      * @param request body received from the controller
      */
-    public void update(HttpHeaders headers, I request) {
+    public O update(I request) {
         logger.entry(request);
-        executeUpdate(headers, request);
+        executeUpdate(request);
         logger.exit();
+
+        return null;
     }
 
     /**
      * Prototype for updating a resource.
      *
      * @param request body received from the controller
+     * @return a single resource from the back end service.
      */
-    protected abstract void executeUpdate(HttpHeaders headers, I request);
+    protected abstract O executeUpdate(I request);
 }

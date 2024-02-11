@@ -24,7 +24,7 @@ import org.springframework.http.HttpHeaders;
  * @param <O> class extending the {@link BaseServiceResponse}
  * @author Francois Gutt
  */
-public abstract class BaseReadPolyImperativeService <I extends BaseServiceRequest, O extends BaseServiceResponse> extends BaseService {
+public abstract non-sealed class BaseReadPolyImperativeService <I extends BaseServiceRequest, O extends BaseServiceResponse> extends BaseService {
 
     /**
      * Get multiple resources from the back end service.
