@@ -16,7 +16,7 @@ package io.americanexpress.synapse.service.imperative.model;
 /**
  * {@code BasePaginatedServiceRequest} should be used when pagination is needed in a Poly Controller.
  */
-public abstract class BasePaginatedServiceRequest extends BaseServiceRequest {
+public abstract class BasePaginatedServiceRequest implements BaseServiceRequest {
 
     /**
      * Used for services that support pagination.

@@ -11,13 +11,24 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.service.imperative.model;
+package io.americanexpress.service.sample.imperativebook.config;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.americanexpress.synapse.service.imperative.config.BaseImperativeServiceConfig;
 
 /**
- * {@code BaseServiceRequest} specifies the prototypes for all service requests.
+ * The type Book service config.
  *
  * @author Francois Gutt
  */
-public interface BaseServiceRequest {
+public class BookServiceConfig extends BaseImperativeServiceConfig {
 
+    /**
+     * Constructor taking in objectMapper & metricInterceptor.
+     *
+     * @param defaultObjectMapper the default object mapper
+     */
+    public BookServiceConfig(ObjectMapper defaultObjectMapper) {
+        super(defaultObjectMapper);
+    }
 }

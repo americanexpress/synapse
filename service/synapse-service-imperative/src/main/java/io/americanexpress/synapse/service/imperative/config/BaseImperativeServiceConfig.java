@@ -14,7 +14,6 @@
 package io.americanexpress.synapse.service.imperative.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.americanexpress.synapse.framework.api.docs.ApiDocsConfig;
 import io.americanexpress.synapse.framework.exception.config.ExceptionConfig;
 import io.americanexpress.synapse.utilities.common.config.UtilitiesCommonConfig;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +35,8 @@ import java.util.List;
  */
 @ComponentScan(basePackages = "io.americanexpress.synapse.service.imperative")
 @Configuration
-@Import({ApiDocsConfig.class, ExceptionConfig.class, UtilitiesCommonConfig.class})
-public class BaseImperativeServiceRestConfig implements WebMvcConfigurer {
+@Import({ExceptionConfig.class, UtilitiesCommonConfig.class})
+public class BaseImperativeServiceConfig implements WebMvcConfigurer {
 
     /**
      * Default object mapper.
@@ -50,7 +49,7 @@ public class BaseImperativeServiceRestConfig implements WebMvcConfigurer {
      * @param defaultObjectMapper   the default object mapper
      */
     @Autowired
-    public BaseImperativeServiceRestConfig(ObjectMapper defaultObjectMapper) {
+    public BaseImperativeServiceConfig(ObjectMapper defaultObjectMapper) {
         this.defaultObjectMapper = defaultObjectMapper;
     }
 

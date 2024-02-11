@@ -12,19 +12,23 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
-
 import javax.validation.Valid;
 
 /**
  * {@code BaseReadMonoController} class specifies the prototypes for listening for requests from the consumer
  * to Read (POST) a resource. This Controller expects only one object in request and one object in the
  * response, hence, "Mono" in the name.
+ *
  * @param <I> an object extending the {@link BaseServiceRequest}
  * @param <O> an object extending the {@link BaseServiceResponse}
  * @param <S> an object extending the {@link BaseReadMonoImperativeService}
  * @author Gabriel Jimenez
  */
-public class BaseReadMonoImperativeRestController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadMonoImperativeService<I, O>> extends BaseController<S> {
+public class BaseReadMonoImperativeRestController<
+            I extends BaseServiceRequest,
+            O extends BaseServiceResponse,
+            S extends BaseReadMonoImperativeService<I, O>
+        > extends BaseController<S> {
 
     /**
      * Constant string for inquiry_results.
@@ -50,7 +54,7 @@ public class BaseReadMonoImperativeRestController<I extends BaseServiceRequest, 
     public ResponseEntity<O> read(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
 
-        final O serviceResponse = service.read(headers, serviceRequest);
+        final O serviceResponse = service.read(serviceRequest);
         ResponseEntity<O> responseEntity = MonoResponseEntityCreator.create(serviceResponse);
 
         logger.exit(responseEntity);

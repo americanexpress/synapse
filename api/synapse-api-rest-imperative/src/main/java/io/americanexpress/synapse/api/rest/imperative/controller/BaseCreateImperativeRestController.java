@@ -14,24 +14,29 @@ import javax.validation.Valid;
 
 /**
  * {@code BaseCreateService} class specifies the prototypes for performing business logic.
+ *
  * @param <I> input request type
  * @param <O> output response type
  * @author Francois Gutt
  */
-public class BaseCreateImperativeRestController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseCreateImperativeService<I, O>> extends BaseController<S> {
+public class BaseCreateImperativeRestController<
+            I extends BaseServiceRequest,
+            O extends BaseServiceResponse,
+            S extends BaseCreateImperativeService<I, O>
+        > extends BaseController<S> {
 
     /**
      * Create a single resource.
+     *
      * @param headers containing the HTTP headers from the consumer
      * @param serviceRequest body from the consumer
      * @return response to the consumer
-     * @author Francois Gutt
      */
     @PostMapping
     @Operation(tags = "Create Operation", summary = "Creates a resource")
     public ResponseEntity<O> create(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
-        O serviceResponse = service.create(headers, serviceRequest);
+        O serviceResponse = service.create(serviceRequest);
         ResponseEntity<O> responseEntity = CreateResponseEntityCreator.create(serviceResponse);
         logger.exit();
         return responseEntity;

@@ -11,13 +11,17 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.service.imperative.model;
+package io.americanexpress.service.sample.imperativebook.model;
+
+import io.americanexpress.synapse.service.imperative.model.BaseServiceRequest;
+import org.springframework.stereotype.Component;
 
 /**
- * {@code BaseServiceRequest} specifies the prototypes for all service requests.
+ * {@code CreateBookServiceRequest} class is responsible for creating the book service request.
  *
  * @author Francois Gutt
  */
-public interface BaseServiceRequest {
+@Component
+public class CreateBookServiceRequest extends BaseBook implements BaseServiceRequest {
 
 }
