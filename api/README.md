@@ -5,6 +5,8 @@
 
 Status code reference https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
 
+![image](./assets/synapse-api-architecture.drawio.png)
+
 ## Request Datasource
 
 - **Headers** 
