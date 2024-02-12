@@ -21,15 +21,12 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>api</artifactId>
+    <artifactId>api-samples</artifactId>
     <packaging>pom</packaging>
 
     <!--Modules-->
     <modules>
-
-        <!-- Base api Synapse dependencies-->
-        <module>api-samples</module>
-        <module>synapse-api-rest-imperative</module>
-        <module>synapse-api-rest-reactive</module>
+        <!-- Sample APIs-->
+        <module>sample-api-rest-book</module>
     </modules>
 </project>

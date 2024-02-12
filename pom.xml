@@ -361,6 +361,10 @@
             <!--Samples-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>api-samples</artifactId>
+                <version>${project.version}</version>
+            </dependency><dependency>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>data-samples</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -372,6 +376,11 @@
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>function-samples</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-api-imperative-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
