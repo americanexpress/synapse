@@ -44,9 +44,9 @@
         <kotlin.version>1.7.20</kotlin.version>
 
         <!--Spring Versions-->
-        <spring-framework.version>5.3.23</spring-framework.version>
+        <spring-framework.version>6.0.16</spring-framework.version>
         <spring-security.version>5.7.3</spring-security.version>
-        <spring-boot-framework.version>2.7.4</spring-boot-framework.version>
+        <spring-boot-framework.version>3.2.2</spring-boot-framework.version>
         <spring-boot-ws-framework.version>1.4.7.RELEASE</spring-boot-ws-framework.version>
         <spring-cloud.version>3.2.7</spring-cloud.version>
         <spring-native.version>0.12.2</spring-native.version>
@@ -392,6 +392,11 @@
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>sample-service-graphql-book</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>sample-service-imperative-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -834,6 +839,11 @@
             </dependency>
 
             <!--Persistence-->
+            <dependency>
+                <groupId>jakarta.persistence</groupId>
+                <artifactId>jakarta.persistence-api</artifactId>
+                <version>3.1.0</version>
+            </dependency>
             <dependency>
                 <groupId>javax.persistence</groupId>
                 <artifactId>javax.persistence-api</artifactId>
