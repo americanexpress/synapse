@@ -14,7 +14,7 @@
 package io.americanexpress.synapse.service.reactive.rest.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.americanexpress.synapse.framework.api.docs.ApiDocsConfig;
+//import io.americanexpress.synapse.framework.api.docs.ApiDocsConfig;
 import io.americanexpress.synapse.framework.exception.config.ExceptionConfig;
 import io.americanexpress.synapse.utilities.common.config.UtilitiesCommonConfig;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ import org.springframework.web.reactive.config.WebFluxConfigurer;
 @Configuration
 @EnableWebFlux
 @ComponentScan(basePackages = "io.americanexpress.synapse.service.reactive.rest")
-@Import({ExceptionConfig.class, ApiDocsConfig.class, UtilitiesCommonConfig.class})
+@Import({ExceptionConfig.class, UtilitiesCommonConfig.class})
 public class BaseServiceReactiveRestConfig implements WebFluxConfigurer {
 
     /**

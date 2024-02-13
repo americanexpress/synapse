@@ -16,6 +16,7 @@ package io.americanexpress.synapse.subscriber.kafka.config;
 import io.americanexpress.synapse.framework.exception.ApplicationServerException;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
+import org.springframework.boot.ssl.SslBundles;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -93,8 +94,8 @@ public abstract class BaseKafkaPropertiesConfiguration<C extends BaseKafkaProper
      * This method is used to build a HashMap of consumer properties.
      */
     @Override
-    public Map<String, Object> buildConsumerProperties() {
-        return this.getConsumer().buildProperties();
+    public Map<String, Object> buildConsumerProperties(SslBundles sslBundles) {
+        return this.getConsumer().buildProperties(sslBundles);
     }
 
 

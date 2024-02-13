@@ -17,6 +17,7 @@ import io.americanexpress.synapse.framework.exception.ApplicationServerException
 import org.apache.kafka.common.security.auth.SecurityProtocol;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
+import org.springframework.boot.ssl.SslBundles;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.FileSystemResourceLoader;
 import org.springframework.core.io.Resource;
@@ -101,11 +102,11 @@ public abstract class BaseKafkaProperties<T extends BaseKafkaProperties.BaseKafk
 	 * Added security.protocol property here as there is no support provided in kafkaProperties class
 	 */
 	@Override
-	public Map<String, Object> buildProducerProperties() {
+	public Map<String, Object> buildProducerProperties(SslBundles sslBundles) {
 		Map<String, Object> properties = new HashMap<>();
 		properties.put("security.protocol", SecurityProtocol.SSL.name);
-		properties.putAll(this.getSsl().buildProperties());
-		properties.putAll(this.getProducer().buildProperties());
+		properties.putAll(this.getSsl().buildProperties(null));
+		properties.putAll(this.getProducer().buildProperties(null));
 		return properties;
 	}
 
