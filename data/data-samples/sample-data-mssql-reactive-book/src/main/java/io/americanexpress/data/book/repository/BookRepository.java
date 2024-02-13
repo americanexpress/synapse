@@ -40,4 +40,5 @@ public interface BookRepository extends R2dbcRepository<BookEntity, Long> {
      */
     @Procedure("GET_BOOKS_BY_AUTHOR")
     Flux<BookEntity> findAllBookByAuthor(String author);
+
 }

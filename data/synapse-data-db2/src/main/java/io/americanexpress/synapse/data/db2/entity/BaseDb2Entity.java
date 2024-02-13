@@ -13,8 +13,8 @@
  */
 package io.americanexpress.synapse.data.db2.entity;
 
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 
 /**
  * {@code BaseDb2Entity} is the parent entity for all DB2 tables. All common fields are located here.

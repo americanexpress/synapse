@@ -16,7 +16,7 @@ package io.americanexpress.synapse.service.reactive.rest.controller;
 import io.americanexpress.synapse.service.reactive.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.reactive.rest.service.BaseUpdateReactiveService;
 import io.swagger.v3.oas.annotations.Operation;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -29,7 +29,7 @@
 //import org.springframework.web.bind.annotation.ExceptionHandler;
 //import org.springframework.web.bind.annotation.RestControllerAdvice;
 //
-//import javax.servlet.http.HttpServletRequest;
+//import jakarta.servlet.http.HttpServletRequest;
 //
 ///**
 // * ControllerExceptionHandler class handles all the exceptions and errors thrown by the application, excluding Spring Security.

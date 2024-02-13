@@ -45,7 +45,7 @@
 
         <!--Spring Versions-->
         <spring-framework.version>6.0.16</spring-framework.version>
-        <spring-security.version>5.7.3</spring-security.version>
+        <spring-security.version>6.2.1</spring-security.version>
         <spring-boot-framework.version>3.2.2</spring-boot-framework.version>
         <spring-boot-ws-framework.version>1.4.7.RELEASE</spring-boot-ws-framework.version>
         <spring-cloud.version>3.2.7</spring-cloud.version>
@@ -532,7 +532,7 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
-                <version>5.3.18</version>
+                <version>${spring-framework.version}</version>
             </dependency>
 
             <!--Spring Security -->
@@ -845,11 +845,6 @@
                 <version>3.1.0</version>
             </dependency>
             <dependency>
-                <groupId>javax.persistence</groupId>
-                <artifactId>javax.persistence-api</artifactId>
-                <version>2.2</version>
-            </dependency>
-            <dependency>
                 <groupId>com.openpojo</groupId>
                 <artifactId>openpojo</artifactId>
                 <version>0.9.1</version>
@@ -880,6 +875,23 @@
                 <groupId>com.fasterxml.jackson.dataformat</groupId>
                 <artifactId>jackson-dataformat-xml</artifactId>
                 <version>${jackson.version}</version>
+            </dependency>
+
+            <!--Jakarta-->
+            <dependency>
+                <groupId>jakarta.validation</groupId>
+                <artifactId>jakarta.validation-api</artifactId>
+                <version>3.0.2</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.servlet</groupId>
+                <artifactId>jakarta.servlet-api</artifactId>
+                <version>6.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.xml.bind</groupId>
+                <artifactId>jakarta.xml.bind-api</artifactId>
+                <version>4.0.0</version>
             </dependency>
 
             <!--Mock Dependencies-->
@@ -1051,7 +1063,7 @@
             <dependency>
                 <groupId>org.mongodb</groupId>
                 <artifactId>mongodb-driver-sync</artifactId>
-                <version>4.7.2</version>
+                <version>4.8.0</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -1061,7 +1073,7 @@
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-mongodb</artifactId>
-                <version>3.4.5</version>
+                <version>4.0.0</version>
             </dependency>
 
             <!--Kotlin-->
@@ -1081,7 +1093,7 @@
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-cassandra</artifactId>
-                <version>3.4.3</version>
+                <version>4.0.0</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -1110,7 +1122,7 @@
             <dependency>
                 <groupId>com.oracle.database.jdbc</groupId>
                 <artifactId>ojdbc11</artifactId>
-                <version>21.5.0.0</version>
+                <version>21.7.0.0</version>
             </dependency>
             <dependency>
                 <groupId>com.oracle.database.r2dbc</groupId>
@@ -1122,12 +1134,12 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-redis</artifactId>
-                <version>2.7.3</version>
+                <version>${spring-boot-framework.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-redis</artifactId>
-                <version>2.7.3</version>
+                <version>${spring-boot-framework.version}</version>
             </dependency>
 
             <!--AWS-->
@@ -1594,6 +1606,14 @@
             <url>https://repo.spring.io/snapshot</url>
             <snapshots>
                 <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
             </snapshots>
         </repository>
     </repositories>

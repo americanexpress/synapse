@@ -24,7 +24,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.sql.DataSource;
+import jakarta.sql.DataSource;
 
 /**
  * {@code BaseMySqlDataConfig} class is used to hold the common configuration for all data-mysql modules.
