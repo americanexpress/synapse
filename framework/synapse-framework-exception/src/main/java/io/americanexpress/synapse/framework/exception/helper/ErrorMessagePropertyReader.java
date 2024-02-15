@@ -15,6 +15,7 @@ package io.americanexpress.synapse.framework.exception.helper;
 
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
@@ -39,7 +40,7 @@ public class ErrorMessagePropertyReader {
      *
      * @param errorMessageSource containing the error messages from error-messages.properties
      */
-    public ErrorMessagePropertyReader(@Autowired MessageSource errorMessageSource) {
+    public ErrorMessagePropertyReader(@Autowired @Qualifier("errorMessageSource") MessageSource errorMessageSource) {
         this.errorMessageSource = errorMessageSource;
     }
 
