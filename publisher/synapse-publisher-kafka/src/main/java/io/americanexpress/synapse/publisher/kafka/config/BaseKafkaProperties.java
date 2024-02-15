@@ -102,11 +102,11 @@ public abstract class BaseKafkaProperties<T extends BaseKafkaProperties.BaseKafk
 	 * Added security.protocol property here as there is no support provided in kafkaProperties class
 	 */
 	@Override
-	public Map<String, Object> buildProducerProperties(SslBundles sslBundles) {
+	public Map<String, Object> buildProducerProperties() {
 		Map<String, Object> properties = new HashMap<>();
 		properties.put("security.protocol", SecurityProtocol.SSL.name);
-		properties.putAll(this.getSsl().buildProperties(null));
-		properties.putAll(this.getProducer().buildProperties(null));
+		properties.putAll(this.getSsl().buildProperties());
+		properties.putAll(this.getProducer().buildProperties());
 		return properties;
 	}
 

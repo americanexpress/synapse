@@ -94,8 +94,8 @@ public abstract class BaseKafkaPropertiesConfiguration<C extends BaseKafkaProper
      * This method is used to build a HashMap of consumer properties.
      */
     @Override
-    public Map<String, Object> buildConsumerProperties(SslBundles sslBundles) {
-        return this.getConsumer().buildProperties(sslBundles);
+    public Map<String, Object> buildConsumerProperties() {
+        return this.getConsumer().buildProperties();
     }
 
 
