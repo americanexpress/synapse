@@ -34,10 +34,6 @@
         <!--Synapse-->
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>
-            <artifactId>synapse-framework-api-docs</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.americanexpress.synapse</groupId>
             <artifactId>synapse-framework-logging</artifactId>
         </dependency>
         <dependency>

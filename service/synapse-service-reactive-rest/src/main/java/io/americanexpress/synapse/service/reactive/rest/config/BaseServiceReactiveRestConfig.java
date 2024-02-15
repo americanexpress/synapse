@@ -14,7 +14,6 @@
 package io.americanexpress.synapse.service.reactive.rest.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-//import io.americanexpress.synapse.framework.api.docs.ApiDocsConfig;
 import io.americanexpress.synapse.framework.exception.config.ExceptionConfig;
 import io.americanexpress.synapse.utilities.common.config.UtilitiesCommonConfig;
 import org.springframework.beans.factory.annotation.Autowired;
