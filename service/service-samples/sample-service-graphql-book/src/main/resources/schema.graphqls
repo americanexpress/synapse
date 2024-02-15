@@ -11,6 +11,8 @@
  # the License.
 
 # GraphQL schema provides the root query and root mutation
+directive @connection(role : String!) on ARGUMENT_DEFINITION
+
 schema {
 
 	# Root query

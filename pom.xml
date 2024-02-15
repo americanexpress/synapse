@@ -45,7 +45,7 @@
 
         <!--Spring Versions-->
         <spring-framework.version>6.0.11</spring-framework.version>
-        <spring-security.version>6.2.1</spring-security.version>
+        <spring-security.version>6.0.0</spring-security.version>
         <spring-boot-framework.version>3.1.3</spring-boot-framework.version>
         <spring-boot-ws-framework.version>1.4.7.RELEASE</spring-boot-ws-framework.version>
         <spring-cloud.version>3.2.7</spring-cloud.version>
@@ -670,7 +670,7 @@
             <dependency>
                 <groupId>com.graphql-java</groupId>
                 <artifactId>graphql-java-tools</artifactId>
-                <version>5.2.0</version>
+                <version>5.2.4</version>
                 <exclusions>
                     <exclusion>
                         <groupId>com.fasterxml.jackson.core</groupId>
@@ -687,42 +687,16 @@
                 </exclusions>
             </dependency>
             <dependency>
-                <groupId>com.graphql-java</groupId>
-                <artifactId>graphql-java-extended-scalars</artifactId>
-                <version>16.0.1</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.graphql-java</groupId>
-                        <artifactId>graphql-java</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>com.graphql-java</groupId>
-                <artifactId>graphql-java</artifactId>
-                <version>16.2</version>
-            </dependency>
-            <dependency>
                 <groupId>com.graphql-java-kickstart</groupId>
                 <artifactId>graphql-spring-boot-starter</artifactId>
-                <version>${spring-boot-graphql.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.graphql-java-kickstart</groupId>
-                <artifactId>graphiql-spring-boot-starter</artifactId>
-                <version>${spring-boot-graphql.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.graphql-java-kickstart</groupId>
-                <artifactId>voyager-spring-boot-starter</artifactId>
-                <version>${spring-boot-graphql.version}</version>
+                <version>15.0.0</version>
             </dependency>
 
             <!--Tomcat-->
             <dependency>
                 <groupId>org.apache.tomcat.embed</groupId>
                 <artifactId>tomcat-embed-core</artifactId>
-                <version>9.0.62</version>
+                <version>10.1.1</version>
             </dependency>
 
             <!--Netty-->
