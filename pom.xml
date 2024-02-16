@@ -1037,12 +1037,12 @@
             <dependency>
                 <groupId>org.mongodb</groupId>
                 <artifactId>mongodb-driver-sync</artifactId>
-                <version>4.8.0</version>
+                <version>4.9.1</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
-                <version>2.7.4</version>
+                <version>${spring-boot-framework.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.data</groupId>
