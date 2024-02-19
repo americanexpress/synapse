@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
+        <artifactId>service-samples</artifactId>
         <groupId>io.americanexpress.synapse</groupId>
-        <artifactId>synapse</artifactId>
         <version>0.3.32-SNAPSHOT</version>
     </parent>
 
