@@ -16,12 +16,9 @@ package io.americanexpress.synapse.data.mongodb.entity;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.Version;
-
-
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -30,6 +27,12 @@ import java.util.Objects;
  * All the common attributes are consolidated in this entity.
  */
 public abstract class BaseEntity {
+
+    /**
+     * Id.
+     * It can be overridden by the child class with the @Id annotation on a field.
+     */
+    private String id;
 
     /**
      * Created Date Time
@@ -65,6 +68,14 @@ public abstract class BaseEntity {
      * Empty constructor, do not delete it. It is used by Spring Data.
      */
     public BaseEntity() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public LocalDateTime getCreatedDateTime() {
@@ -111,13 +122,13 @@ public abstract class BaseEntity {
     public boolean equals(Object object) {
         if (this == object) return true;
         if (!(object instanceof BaseEntity that)) return false;
-        return Objects.equals(createdDateTime, that.createdDateTime) &&
+        return Objects.equals(id, that.id) && Objects.equals(createdDateTime, that.createdDateTime) &&
                 Objects.equals(lastModifiedDateTime, that.lastModifiedDateTime) && Objects.equals(createdBy, that.createdBy) &&
                 Objects.equals(lastModifiedBy, that.lastModifiedBy) && Objects.equals(version, that.version);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(createdDateTime, lastModifiedDateTime, createdBy, lastModifiedBy, version);
+        return Objects.hash(id, createdDateTime, lastModifiedDateTime, createdBy, lastModifiedBy, version);
     }
 }
