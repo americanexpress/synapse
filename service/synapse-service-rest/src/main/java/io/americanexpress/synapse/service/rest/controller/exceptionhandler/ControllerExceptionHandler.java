@@ -16,6 +16,7 @@ package io.americanexpress.synapse.service.rest.controller.exceptionhandler;
 import io.americanexpress.synapse.framework.exception.ApplicationClientException;
 import io.americanexpress.synapse.framework.exception.ApplicationException;
 import io.americanexpress.synapse.framework.exception.ApplicationServerException;
+import io.americanexpress.synapse.framework.exception.BaseControllerExceptionHandler;
 import io.americanexpress.synapse.framework.exception.helper.ErrorMessagePropertyReader;
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 import io.americanexpress.synapse.framework.exception.model.ExceptionCode;
@@ -42,7 +43,7 @@ import java.util.Arrays;
  * @author Alexei Morgado
  */
 @RestControllerAdvice
-public class ControllerExceptionHandler {
+public class ControllerExceptionHandler extends BaseControllerExceptionHandler {
     /**
      * Used to log the exceptions.
      */
@@ -133,7 +134,6 @@ public class ControllerExceptionHandler {
         );
         logger.exit(errorResponse);
         return ResponseEntity.status(errorCode.getHttpStatus()).body(errorResponse);
-
     }
 
     /**
@@ -142,7 +142,8 @@ public class ControllerExceptionHandler {
      * @param exceptionCode generic ENUM that is associated with a business exception
      * @return a value from ENUM {@link ErrorCode}
      */
-    private ErrorCode mapExceptionCode(ExceptionCode exceptionCode) {
+    @Override
+    ErrorCode mapExceptionCode(ExceptionCode exceptionCode) {
         return switch (exceptionCode) {
             case VALIDATION_EXCEPTION -> ErrorCode.GENERIC_4XX_ERROR;
             case NOT_FOUND -> ErrorCode.NOT_FOUND;
