@@ -23,4 +23,6 @@ public class MockEmail {
 
     public static String SOURCE = "test_domain";
 
+    private MockEmail(){}
+
 }
