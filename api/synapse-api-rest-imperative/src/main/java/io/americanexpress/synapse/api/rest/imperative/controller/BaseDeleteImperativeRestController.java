@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 /**
  * {@code BaseDeleteController} class specifies the prototypes for listening for requests from the consumer

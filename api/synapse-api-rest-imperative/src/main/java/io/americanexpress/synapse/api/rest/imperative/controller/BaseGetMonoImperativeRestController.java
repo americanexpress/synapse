@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 /**
  * {@code BaseGetMonoImperativeRestController} is base class for read mono controller. This controller handles POST method requests,

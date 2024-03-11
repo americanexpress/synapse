@@ -15,8 +15,7 @@ package io.americanexpress.synapse.service.reactive.rest.controller;
 
 import io.americanexpress.synapse.service.reactive.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.reactive.rest.service.BaseUpdateReactiveService;
-import io.swagger.v3.oas.annotations.Operation;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +39,6 @@ public abstract class BaseUpdateReactiveController<I extends BaseServiceRequest,
      * @param headers the headers
      * @param serviceRequest body from the consumer
      */
-    @Operation(tags = "Update Operation", summary = "Updates a resource reactively")
     @PutMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public Mono<ResponseEntity<Void>> update(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest) {

@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import reactor.core.publisher.Mono;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 /**
  * {@code BaseGetMonoReactiveRestController} is base class for read mono controller.

@@ -18,8 +18,7 @@ import io.americanexpress.synapse.service.reactive.rest.model.BaseServiceRespons
 import io.americanexpress.synapse.service.reactive.rest.service.BaseCreateReactiveService;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import io.swagger.v3.oas.annotations.Operation;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +46,6 @@ public abstract class BaseCreateReactiveController<I extends BaseServiceRequest,
      * @return response to the consumer
      */
     @PostMapping
-    @Operation(tags = "Reactive Create Operation", summary = "Creates a reactive resource")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Created"),
             @ApiResponse(code = 400, message = "Bad Request"),

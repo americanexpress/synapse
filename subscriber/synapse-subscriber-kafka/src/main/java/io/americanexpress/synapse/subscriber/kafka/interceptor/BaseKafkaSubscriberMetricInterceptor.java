@@ -43,13 +43,13 @@ public class BaseKafkaSubscriberMetricInterceptor<K, V> implements RecordInterce
      * <p>
      * Note: if you want to add logic in interceptor, please override preHandle() method.
      *
-     * @param consumerRecord Kafka message
+     * @param record Kafka message
      * @return kafka message
      */
     @Override
-    public ConsumerRecord<K, V> intercept(ConsumerRecord<K, V> consumerRecord) {
-        startMetricLog(consumerRecord);
-        return preHandle(consumerRecord);
+    public ConsumerRecord<K, V> intercept(ConsumerRecord<K, V> record, Consumer<K, V> consumer) {
+        startMetricLog(record);
+        return preHandle(record);
     }
 
     /**

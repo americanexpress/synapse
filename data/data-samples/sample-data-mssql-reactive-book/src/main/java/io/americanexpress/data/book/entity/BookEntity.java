@@ -15,7 +15,7 @@ package io.americanexpress.data.book.entity;
 
 import io.americanexpress.synapse.data.mssql.entity.BaseEntity;
 
-import javax.persistence.Table;
+import jakarta.persistence.Table;
 
 /**
  * The type Book entity.

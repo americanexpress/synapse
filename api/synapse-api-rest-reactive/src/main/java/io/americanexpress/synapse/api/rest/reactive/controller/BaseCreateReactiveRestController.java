@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 /**
  * {@code BaseCreateReactiveRestController} class specifies the prototypes for listening for requests from the consumer
