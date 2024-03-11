@@ -16,6 +16,7 @@ package io.americanexpress.synapse.utilities.common.validator;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import java.lang.reflect.InvocationTargetException;
@@ -61,7 +62,7 @@ public class OneOfValidator implements ConstraintValidator<OneOf, Object> {
             var isOneOf = false;
             for (String fieldName : fieldNames) {
                 var property = PropertyUtils.getProperty(object, fieldName);
-                if (!isEmpty(property)) {
+                if (!isEmpty(property) && (!property.getClass().equals(String.class) || StringUtils.isNotBlank((String) property))) {
                     if (isOneOf) {
                         isOneOf = false;
                         break;
