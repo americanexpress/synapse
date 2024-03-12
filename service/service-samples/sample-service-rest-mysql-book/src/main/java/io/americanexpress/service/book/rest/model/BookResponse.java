@@ -15,6 +15,7 @@ package io.americanexpress.service.book.rest.model;
 
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import javax.validation.constraints.NotBlank;
+import java.util.Objects;
 
 /**
  * {@code BookResponse} Parent module that handles the book response.
@@ -168,6 +169,23 @@ public class BookResponse extends BaseServiceResponse {
         this.version = version;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BookResponse)) return false;
+        BookResponse that = (BookResponse) o;
+        return Objects.equals(title, that.title)
+                && Objects.equals(author, that.author)
+                && Objects.equals(createdDateTime, that.createdDateTime)
+                && Objects.equals(lastModifiedDateTime, that.lastModifiedDateTime)
+                && Objects.equals(createdBy, that.createdBy)
+                && Objects.equals(lastModifiedBy, that.lastModifiedBy)
+                && Objects.equals(version, that.version);
+    }
+    public int hashCode() {
+        return Objects.hash(title, author);
+    }
+
     /**
      * A string representation of BookResponse.
      * @return A string of bookResponse.
@@ -175,7 +193,7 @@ public class BookResponse extends BaseServiceResponse {
     @Override
     public String toString() {
         return "BookRequest{" +
-                ", tittle='" + title + '\'' +
+                ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", createdDateTime='" + createdDateTime + '\'' +
                 ", lastModifiedDateTime='" + lastModifiedDateTime + '\'' +

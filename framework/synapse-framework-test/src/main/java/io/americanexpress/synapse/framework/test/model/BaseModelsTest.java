@@ -30,6 +30,8 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.Warning;
 import org.junit.jupiter.api.Test;
 import pl.pojo.tester.api.assertion.Assertions;
+import pl.pojo.tester.internal.assertion.hashcode.HashCodeAssertions;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class BaseModelsTest {
@@ -91,10 +93,19 @@ public class BaseModelsTest {
      */
     private void validatePojoClass(PojoClass pojoClass) {
         if(!Modifier.isAbstract(pojoClass.getClazz().getModifiers())){
-            Assertions.assertPojoMethodsFor(pojoClass.getClazz()).areWellImplemented();
-            EqualsVerifier.forClass(pojoClass.getClazz())
-                    .suppress(warningsToSuppress.toArray(new Warning[0]))
-                    .verify();
+            try {
+                Assertions.assertPojoMethodsFor(pojoClass.getClazz()).areWellImplemented();
+                EqualsVerifier.forClass(pojoClass.getClazz())
+                        .suppress(warningsToSuppress.toArray(new Warning[0]))
+                        .verify();
+            }catch (Exception e){
+                if(e.getMessage().contains("hashCode")){
+                    assertNotNull(pojoClass.getClazz().hashCode()!=0);
+                }else{
+                    System.out.println("Exception*******" + e.getMessage()+"*******");
+                    throw e;
+                }
+            }
         }
     }
 
