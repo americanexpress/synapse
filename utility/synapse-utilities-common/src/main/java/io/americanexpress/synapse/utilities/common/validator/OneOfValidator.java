@@ -11,13 +11,14 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
+
 package io.americanexpress.synapse.utilities.common.validator;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import static java.lang.String.format;

@@ -15,8 +15,8 @@ package io.americanexpress.synapse.utilities.common.validator;
 
 import io.americanexpress.synapse.utilities.common.email.EmailAddressUtils;
 import org.apache.commons.lang3.StringUtils;
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 /**
  * {@code EmailAddressValidator} is used for constraining {@link EmailAddress} annotation.

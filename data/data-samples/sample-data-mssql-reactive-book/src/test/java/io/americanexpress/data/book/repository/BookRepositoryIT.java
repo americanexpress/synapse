@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.r2dbc.DataR2dbcTest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import reactor.core.publisher.Flux;
@@ -37,7 +38,7 @@ class BookRepositoryIT {
 
     @Test
     void findAll_givenBooksInDatabase_expectedBooksReturned() {
-        Flux<BookEntity> bookEntityFlux = bookRepository.findAll();
+        Flux<BookEntity> bookEntityFlux = bookRepository.findAll(Sort.by(Sort.Order.asc("title")));
 
         StepVerifier.create(bookEntityFlux)
                 .expectNextCount(2)

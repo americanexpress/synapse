@@ -16,7 +16,7 @@ package io.americanexpress.service.book.rest.model;
 
 import io.americanexpress.synapse.service.reactive.rest.model.BaseServiceRequest;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 /**
  * {@code BookRequest} is the base book request object.

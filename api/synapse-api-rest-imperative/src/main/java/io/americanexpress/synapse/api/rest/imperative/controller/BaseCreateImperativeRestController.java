@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 /**
  * {@code BaseCreateService} class specifies the prototypes for performing business logic.

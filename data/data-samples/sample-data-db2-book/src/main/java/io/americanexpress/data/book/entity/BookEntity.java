@@ -14,8 +14,8 @@
 package io.americanexpress.data.book.entity;
 
 import io.americanexpress.synapse.data.db2.entity.BaseDb2Entity;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 /**
  * {@code BookEntity} class represents the domain of the books table.

@@ -24,7 +24,7 @@ import io.americanexpress.synapse.client.rest.helper.UrlBuilder;
 import io.americanexpress.synapse.client.rest.model.BaseClientRequest;
 import io.americanexpress.synapse.client.rest.model.BaseClientResponse;
 import io.americanexpress.synapse.client.rest.model.QueryParameter;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -66,7 +66,7 @@ public abstract class BaseDeleteReactiveRestClient<I extends BaseClientRequest, 
 			.headers(httpHeaders ->
 				httpHeaders.addAll(httpHeadersFactory.create(headers, clientRequest, updatedUrl)))
 			.retrieve()
-			.onStatus(HttpStatus::isError, reactiveRestResponseErrorHandler)
+			.onStatus(HttpStatusCode::isError, reactiveRestResponseErrorHandler)
 			.bodyToMono(clientResponseType);
 	}
 	
@@ -90,7 +90,7 @@ public abstract class BaseDeleteReactiveRestClient<I extends BaseClientRequest, 
 			.headers(httpHeaders ->
 				httpHeaders.addAll(httpHeadersFactory.create(headers, clientRequest, updatedUrl)))
 			.retrieve()
-			.onStatus(HttpStatus::isError, reactiveRestResponseErrorHandler)
+			.onStatus(HttpStatusCode::isError, reactiveRestResponseErrorHandler)
 			.bodyToFlux(clientResponseType);
 	}
 }

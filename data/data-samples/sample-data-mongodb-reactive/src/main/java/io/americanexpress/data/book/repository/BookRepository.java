@@ -31,4 +31,6 @@ public interface BookRepository extends ReactiveMongoRepository<BookEntity, Stri
 
     Mono<Void> deleteByTitle(String title);
 
+    Mono<Void> deleteAll();
+
 }

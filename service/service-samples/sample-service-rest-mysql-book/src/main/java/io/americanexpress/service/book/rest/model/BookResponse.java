@@ -14,7 +14,7 @@
 package io.americanexpress.service.book.rest.model;
 
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 import java.util.Objects;
 
 /**
