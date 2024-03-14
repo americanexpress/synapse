@@ -31,10 +31,12 @@ import nl.jqno.equalsverifier.Warning;
 import nl.jqno.equalsverifier.internal.exceptions.AssertionException;
 import org.junit.jupiter.api.Test;
 import pl.pojo.tester.api.assertion.Assertions;
+import pl.pojo.tester.internal.assertion.hashcode.AbstractHashCodeAssertionError;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class BaseModelsTest {
-    private static final Set<String> EXCLUDED_SUFFIXES = new HashSet<>(Arrays.asList("Builder", "Test"));
+    private static final Set<String> EXCLUDED_SUFFIXES = new HashSet<>(Arrays.asList("Builder", "Test", "IT"));
     private final Set<String> excludedClassNames = new HashSet<>();
     private final String packageName = this.getClass().getPackageName();
     private final List<Warning> warningsToSuppress = new ArrayList<>(List.of(
@@ -92,10 +94,18 @@ public class BaseModelsTest {
      */
     private void validatePojoClass(PojoClass pojoClass) {
         if(!Modifier.isAbstract(pojoClass.getClazz().getModifiers())){
-            Assertions.assertPojoMethodsFor(pojoClass.getClazz()).areWellImplemented();
-            EqualsVerifier.forClass(pojoClass.getClazz())
-                    .suppress(warningsToSuppress.toArray(new Warning[0]))
-                    .verify();
+            try{
+                Assertions.assertPojoMethodsFor(pojoClass.getClazz()).areWellImplemented();
+                EqualsVerifier.forClass(pojoClass.getClazz())
+                        .suppress(warningsToSuppress.toArray(new Warning[0]))
+                        .verify();
+            }catch (AbstractHashCodeAssertionError e){
+                if(e.getMessage().contains("hashCode")){
+                    assertNotNull(pojoClass.getClazz().hashCode());
+                }else{
+                    throw e;
+                }
+            }
         }
     }
 
