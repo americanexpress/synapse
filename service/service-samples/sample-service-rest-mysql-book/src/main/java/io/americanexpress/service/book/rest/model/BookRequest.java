@@ -113,7 +113,6 @@ public class BookRequest implements BaseServiceRequest {
         this.author = author;
     }
 
-
     /**
      * Returns a string of Book Request.
      * @return A string representation of BookRequest.

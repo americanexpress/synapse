@@ -28,11 +28,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.Warning;
-import nl.jqno.equalsverifier.internal.exceptions.AssertionException;
 import org.junit.jupiter.api.Test;
 import pl.pojo.tester.api.assertion.Assertions;
 import pl.pojo.tester.internal.assertion.hashcode.AbstractHashCodeAssertionError;
-
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class BaseModelsTest {
@@ -64,7 +62,6 @@ public class BaseModelsTest {
         enumClasses.forEach(this::testEnumClass);
         nonEnumClasses.forEach(this::validatePojoClass);
     }
-
 
     /**
      * Adds additional warnings to suppress in EqualsVerifier tests.
