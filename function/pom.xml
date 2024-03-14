@@ -15,6 +15,7 @@
     <modules>
         <module>function-samples</module>
         <module>synapse-function</module>
+        <module>function-samples/sample-function-book-gcp</module>
     </modules>
 
 </project>
