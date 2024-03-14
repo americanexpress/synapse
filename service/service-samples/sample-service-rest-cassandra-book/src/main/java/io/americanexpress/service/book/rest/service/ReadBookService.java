@@ -25,7 +25,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 /**
- * {@code ReadBookService} is the service class for creating a book in the Cassandra Book database.
+ * {@code ReadBookService} is the service class for reading a book in the Cassandra Book database.
  */
 @Service
 public class ReadBookService extends BaseReadMonoService<ReadBookRequest, ReadBookResponse> {
