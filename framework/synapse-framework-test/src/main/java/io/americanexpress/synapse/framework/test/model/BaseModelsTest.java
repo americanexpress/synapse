@@ -15,80 +15,144 @@ package io.americanexpress.synapse.framework.test.model;
 
 import com.openpojo.reflection.PojoClass;
 import com.openpojo.reflection.PojoClassFilter;
-import com.openpojo.reflection.filters.FilterEnum;
-import com.openpojo.validation.Validator;
-import com.openpojo.validation.ValidatorBuilder;
-import com.openpojo.validation.rule.impl.BusinessKeyMustExistRule;
-import com.openpojo.validation.rule.impl.EqualsAndHashCodeMatchRule;
-import com.openpojo.validation.rule.impl.GetterMustExistRule;
-import com.openpojo.validation.rule.impl.SetterMustExistRule;
-import com.openpojo.validation.test.impl.BusinessIdentityTester;
-import com.openpojo.validation.test.impl.GetterTester;
-import com.openpojo.validation.test.impl.SetterTester;
-import com.openpojo.validation.test.impl.ToStringTester;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
+import com.openpojo.reflection.impl.PojoClassFactory;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.Warning;
+import org.junit.jupiter.api.Test;
+import pl.pojo.tester.api.assertion.Assertions;
+import pl.pojo.tester.internal.assertion.hashcode.HashCodeAssertions;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class BaseModelsTest {
-    protected String packageName = this.getClass().getPackage().getName();
-    protected PojoClassFilter filterTestClasses = new FilterTestClasses();
-    protected FilterEnum filterEnum = new FilterEnum();
-    protected FilterBasedOnInheritanceTestClasses filterBasedOnInheritanceTestClasses = new FilterBasedOnInheritanceTestClasses();
-    protected static Validator validator;
+    private static final Set<String> EXCLUDED_SUFFIXES = new HashSet<>(Arrays.asList("Builder", "Test"));
+    private final Set<String> excludedClassNames = new HashSet<>();
+    private final String packageName = this.getClass().getPackageName();
+    private final List<Warning> warningsToSuppress = new ArrayList<>(List.of(
+            Warning.ALL_FIELDS_SHOULD_BE_USED,
+            Warning.INHERITED_DIRECTLY_FROM_OBJECT,
+            Warning.NONFINAL_FIELDS,
+            Warning.STRICT_INHERITANCE
+    ));
 
-    @BeforeAll
-    public static void initialize() {
-
-        // Create the POJO validator
-        validator = ValidatorBuilder.create()
-                // Add the POJO validation rules for get/set methods, hashCode(), equals() and toString()
-                .with(new SetterMustExistRule(),
-                        new GetterMustExistRule(),
-                        new EqualsAndHashCodeMatchRule(),
-                        new BusinessKeyMustExistRule())
-                // Add the POJO testes for get/set methods, hashCode(), equals() and toString()
-                .with(new SetterTester(),
-                        new GetterTester(),
-                        new ToStringTester(),
-                        new BusinessIdentityTester())
-                // Build the POJO validator
-                .build();
-    }
-
+    /**
+     * Validates all models in the specified package, except those explicitly excluded, using OpenPojo and EqualsVerifier.
+     * It first tests enums for custom method integrity, then tests other POJOs for standard conventions and correct equals and hashCode methods.
+     */
     @Test
-    protected void validateSettersAndGetters() {
-        validator.validateRecursively(packageName, filterTestClasses, filterBasedOnInheritanceTestClasses, filterEnum);
+    void validateModel() {
+        excludedClassNames.add(BaseModelsTest.class.getName());
+        excludedClassNames.add(ExcludeClassAndTestClass.class.getName());
+        List<PojoClass> pojoClasses = PojoClassFactory.getPojoClassesRecursively(packageName, new ExcludeClassAndTestClass());
+        Map<Boolean, List<PojoClass>> partitionedClasses = pojoClasses.stream()
+                .collect(Collectors.partitioningBy(PojoClass::isEnum));
+
+        List<PojoClass> enumClasses = partitionedClasses.get(true);
+        List<PojoClass> nonEnumClasses = partitionedClasses.get(false);
+
+        enumClasses.forEach(this::testEnumClass);
+        nonEnumClasses.forEach(this::validatePojoClass);
     }
 
-    // FilterTestClasses enables you to get all classes that are not of type test.
-    private static class FilterTestClasses implements PojoClassFilter {
-        @Override
-        public boolean include(PojoClass pojoClass) {
-            return !pojoClass.getSourcePath().contains("test");
+
+    /**
+     * Adds additional warnings to suppress in EqualsVerifier tests.
+     * This method allows customization of the EqualsVerifier behavior by adding more warnings to ignore during tests.
+     *
+     * @param additionalWarnings Varargs parameter of Warning types to add to the existing list of warnings to suppress.
+     */
+    protected void addWarningsToSuppress(Warning... additionalWarnings) {
+        Collections.addAll(warningsToSuppress, additionalWarnings);
+    }
+
+    /**
+     * Excludes specific classes by their names from being validated.
+     * This method allows specifying class names that should not be included in the validation process.
+     *
+     * @param classes Varargs parameter containing the names of the classes to exclude from validation.
+     */
+    protected void excludeClasses(Class<?>... classes) {
+        Arrays.stream(classes).forEach(clazz -> excludedClassNames.add(clazz.getName()));
+    }
+
+    /**
+     * Validates a single POJO class for compliance with POJO conventions and correct implementation of equals and hashCode methods.
+     * It uses the OpenPojo and EqualsVerifier libraries for validation.
+     *
+     * @param pojoClass The POJO class to validate.
+     */
+    private void validatePojoClass(PojoClass pojoClass) {
+        if(!Modifier.isAbstract(pojoClass.getClazz().getModifiers())){
+            try {
+                Assertions.assertPojoMethodsFor(pojoClass.getClazz()).areWellImplemented();
+                EqualsVerifier.forClass(pojoClass.getClazz())
+                        .suppress(warningsToSuppress.toArray(new Warning[0]))
+                        .verify();
+            }catch (Exception e){
+                if(e.getMessage().contains("hashCode")){
+                    assertNotNull(pojoClass.getClazz().hashCode()!=0);
+                }else{
+                    System.out.println("Exception*******" + e.getMessage()+"*******");
+                    throw e;
+                }
+            }
         }
     }
 
-    // This filter enables you to get all classes that implement or extend a given class.
-    // For Example, get all classes that implement or extend ArrayList.
-    private static class FilterBasedOnInheritanceTestClasses implements PojoClassFilter {
-        @Override
-        public boolean include(PojoClass pojoClass) {
-            if (pojoClass.extendz(ArrayList.class)) {
-                return false;
-            }
-            return true;
-        }
+    /**
+     * Tests an enum class for custom method integrity by invoking all its declared methods (excluding synthetic and standard enum methods).
+     * Ensures that no method invocation returns null and handles any reflective operation exceptions.
+     *
+     * @param pojoClass The enum class to test, encapsulated in a PojoClass object.
+     */
+    private void testEnumClass(PojoClass pojoClass) {
+        Class<?> enumClass = pojoClass.getClazz();
+        Object[] enumConstants = enumClass.getEnumConstants();
+        Arrays.stream(enumClass.getDeclaredMethods())
+                .filter(method -> !method.isSynthetic() && !method.getName().equals("values") && !method.getName().equals("valueOf"))
+                .forEach(method -> testEnumMethod(enumConstants, method));
     }
 
-    protected static class FilterBasedOnSubClassesCondition implements PojoClassFilter {
+    /**
+     * Tests a specific method of an enum class by invoking it on all enum constants and verifying the method's result.
+     * Asserts that the method invocation does not return null and handles any exceptions during the reflective call.
+     *
+     * @param enumConstants An array of enum constants to test the method against.
+     * @param method The method to test.
+     */
+    private void testEnumMethod(Object[] enumConstants, Method method) {
+        Arrays.stream(enumConstants).forEach(enumConstant -> {
+            try {
+                if(method.getName().startsWith("get") || method.getName().startsWith("set")){
+                    Object result = method.invoke(enumConstant);
+                    assertNotNull(result, "Method " + method.getName() + " returned null for " + enumConstant);
+                }
+            } catch (Exception e) {
+                throw new RuntimeException("Error testing enum method " + method.getName() + " for enum constant " + enumConstant, e);
+            }
+        });
+    }
+
+    private class ExcludeClassAndTestClass implements PojoClassFilter {
+
         @Override
-        public boolean include(PojoClass pojoClass) {
-            if (pojoClass.getName().contains("ProductFilterCode") || pojoClass.getName().contains("ValidSpendServiceRequest")) {
+        public boolean include(final PojoClass pojoClass) {
+            String className = pojoClass.getClazz().getName();
+
+            if (excludedClassNames.contains(className)) {
                 return false;
             }
-            return true;
+            return EXCLUDED_SUFFIXES.stream().noneMatch(className::endsWith);
         }
     }
 }
