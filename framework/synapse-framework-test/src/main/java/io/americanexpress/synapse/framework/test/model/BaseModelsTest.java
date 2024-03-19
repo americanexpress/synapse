@@ -30,12 +30,10 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.Warning;
 import org.junit.jupiter.api.Test;
 import pl.pojo.tester.api.assertion.Assertions;
-import pl.pojo.tester.internal.assertion.hashcode.HashCodeAssertions;
-
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class BaseModelsTest {
-    private static final Set<String> EXCLUDED_SUFFIXES = new HashSet<>(Arrays.asList("Builder", "Test"));
+    private static final Set<String> EXCLUDED_SUFFIXES = new HashSet<>(Arrays.asList("Builder", "Test", "IT"));
     private final Set<String> excludedClassNames = new HashSet<>();
     private final String packageName = this.getClass().getPackageName();
     private final List<Warning> warningsToSuppress = new ArrayList<>(List.of(
@@ -102,7 +100,6 @@ public class BaseModelsTest {
                 if(e.getMessage().contains("hashCode")){
                     assertNotNull(pojoClass.getClazz().hashCode()!=0);
                 }else{
-                    System.out.println("Exception*******" + e.getMessage()+"*******");
                     throw e;
                 }
             }
