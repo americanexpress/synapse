@@ -68,6 +68,14 @@
             <groupId>com.openpojo</groupId>
             <artifactId>openpojo</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.obsidiandynamics.pojotester</groupId>
+            <artifactId>core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>nl.jqno.equalsverifier</groupId>
+            <artifactId>equalsverifier</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
