@@ -33,6 +33,9 @@ import pl.pojo.tester.internal.assertion.AbstractAssertionError;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * {@code BaseModelsTest} Used to test model and enum classes.
+ */
 public class BaseModelsTest {
     private static final Set<String> EXCLUDED_SUFFIXES = new HashSet<>(Arrays.asList("Builder", "Test", "IT"));
     private final Set<String> excludedClassNames = new HashSet<>();
