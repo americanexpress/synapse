@@ -23,7 +23,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import nl.jqno.equalsverifier.EqualsVerifier;
@@ -32,6 +31,7 @@ import org.junit.jupiter.api.Test;
 import pl.pojo.tester.api.assertion.Assertions;
 import pl.pojo.tester.internal.assertion.AbstractAssertionError;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BaseModelsTest {
     private static final Set<String> EXCLUDED_SUFFIXES = new HashSet<>(Arrays.asList("Builder", "Test", "IT"));
@@ -50,17 +50,12 @@ public class BaseModelsTest {
      */
     @Test
     void validateModel() {
-        excludedClassNames.add(BaseModelsTest.class.getName());
-        excludedClassNames.add(ExcludeClassAndTestClass.class.getName());
-        List<PojoClass> pojoClasses = PojoClassFactory.getPojoClassesRecursively(packageName, new ExcludeClassAndTestClass());
-        Map<Boolean, List<PojoClass>> partitionedClasses = pojoClasses.stream()
-                .collect(Collectors.partitioningBy(PojoClass::isEnum));
-
-        List<PojoClass> enumClasses = partitionedClasses.get(true);
-        List<PojoClass> nonEnumClasses = partitionedClasses.get(false);
-
-        enumClasses.forEach(this::testEnumClass);
-        nonEnumClasses.forEach(this::validatePojoClass);
+        var pojoClasses = PojoClassFactory.getPojoClassesRecursively(packageName, new ExcludeClassAndTestClass());
+        var partitionedClasses = pojoClasses.stream().collect(Collectors.partitioningBy(PojoClass::isEnum));
+        //testing enum classes
+        partitionedClasses.get(true).forEach(this::testEnumClass);
+        //testing non enum classes
+        partitionedClasses.get(false).forEach(this::validatePojoClass);
     }
 
     /**
@@ -80,6 +75,8 @@ public class BaseModelsTest {
      * @param classes Varargs parameter containing the names of the classes to exclude from validation.
      */
     protected void excludeClasses(Class<?>... classes) {
+        excludedClassNames.add(BaseModelsTest.class.getName());
+        excludedClassNames.add(ExcludeClassAndTestClass.class.getName());
         Arrays.stream(classes).forEach(clazz -> excludedClassNames.add(clazz.getName()));
     }
 
@@ -98,7 +95,7 @@ public class BaseModelsTest {
                         .verify();
             }catch (AbstractAssertionError assertionError){
                 if(assertionError.getMessage().contains("hashCode")){
-                    assertNotNull(pojoClass.getClazz().hashCode()!=0);
+                    assertTrue(pojoClass.getClazz().hashCode() != 0);
                 }else{
                     throw assertionError;
                 }
@@ -113,10 +110,13 @@ public class BaseModelsTest {
      * @param pojoClass The enum class to test, encapsulated in a PojoClass object.
      */
     private void testEnumClass(PojoClass pojoClass) {
-        Class<?> enumClass = pojoClass.getClazz();
-        Object[] enumConstants = enumClass.getEnumConstants();
+        var enumClass = pojoClass.getClazz();
+        var enumConstants = enumClass.getEnumConstants();
         Arrays.stream(enumClass.getDeclaredMethods())
-                .filter(method -> !method.isSynthetic() && !method.getName().equals("values") && !method.getName().equals("valueOf"))
+                .filter(method -> !method.isSynthetic()
+                        && !method.getName().equals("values")
+                        && !method.getName().equals("valueOf")
+                        && (method.getName().startsWith("get") || method.getName().startsWith("set")))
                 .forEach(method -> testEnumMethod(enumConstants, method));
     }
 
@@ -130,26 +130,24 @@ public class BaseModelsTest {
     private void testEnumMethod(Object[] enumConstants, Method method) {
         Arrays.stream(enumConstants).forEach(enumConstant -> {
             try {
-                if(method.getName().startsWith("get") || method.getName().startsWith("set")){
-                    Object result = method.invoke(enumConstant);
-                    assertNotNull(result, "Method " + method.getName() + " returned null for " + enumConstant);
-                }
+                var result = method.invoke(enumConstant);
+                assertNotNull(result, "Method " + method.getName() + " returned null for " + enumConstant);
             } catch (Exception e) {
                 throw new RuntimeException("Error testing enum method " + method.getName() + " for enum constant " + enumConstant, e);
             }
         });
     }
 
+    /**
+     * Excludes classes and test classes from being validated.
+     * This class is used as a filter for OpenPojo to exclude specific classes from being validated.
+     */
     private class ExcludeClassAndTestClass implements PojoClassFilter {
 
         @Override
         public boolean include(final PojoClass pojoClass) {
             String className = pojoClass.getClazz().getName();
-
-            if (excludedClassNames.contains(className)) {
-                return false;
-            }
-            return EXCLUDED_SUFFIXES.stream().noneMatch(className::endsWith);
+            return excludedClassNames.contains(className) ? false : EXCLUDED_SUFFIXES.stream().noneMatch(className::endsWith);
         }
     }
 }
