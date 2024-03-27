@@ -91,7 +91,7 @@ public abstract class BaseRestClientConfig extends BaseClientConfig {
      *
      * @return The client http request factory.
      */
-    public ClientHttpRequestFactory defaultRequestFactory() {
+    protected ClientHttpRequestFactory defaultRequestFactory() {
         return new SimpleClientHttpRequestFactory();
     }
 }
