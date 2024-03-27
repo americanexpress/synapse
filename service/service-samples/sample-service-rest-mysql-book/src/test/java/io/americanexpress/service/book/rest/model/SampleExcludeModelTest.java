@@ -20,8 +20,8 @@ import io.americanexpress.synapse.framework.test.model.BaseModelsTest;
  *
  * @author @LuisDiaz79
  */
-public class SampleExcludeModelTest extends BaseModelsTest {
-    public SampleExcludeModelTest() {
+class SampleExcludeModelTest extends BaseModelsTest {
+    SampleExcludeModelTest() {
         excludeClasses(
                 ReadBookResponse.class,
                 UpdateBookRequest.class

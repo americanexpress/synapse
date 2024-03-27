@@ -21,8 +21,8 @@ import nl.jqno.equalsverifier.Warning;
  *
  * @author @LuisDiaz79
  */
-public class SampleWarningModelTest extends BaseModelsTest{
-    public SampleWarningModelTest() {
+class SampleWarningModelTest extends BaseModelsTest{
+    SampleWarningModelTest() {
         addWarningsToSuppress(
                 Warning.NONFINAL_FIELDS,
                 Warning.ALL_FIELDS_SHOULD_BE_USED

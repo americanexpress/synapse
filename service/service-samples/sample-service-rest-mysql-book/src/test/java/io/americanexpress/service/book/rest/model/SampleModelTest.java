@@ -20,5 +20,5 @@ import io.americanexpress.synapse.framework.test.model.BaseModelsTest;
  *
  * @author @LuisDiaz79
  */
-public class SampleModelTest extends BaseModelsTest {
+class SampleModelTest extends BaseModelsTest {
 }
