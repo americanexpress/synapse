@@ -16,9 +16,9 @@ package io.americanexpress.data.mysql.book.entity;
 import io.americanexpress.synapse.data.mysql.entity.BaseEntity;
 import org.hibernate.annotations.NaturalId;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import java.util.Objects;
 
 /**

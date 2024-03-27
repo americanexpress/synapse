@@ -14,6 +14,7 @@
 package io.americanexpress.data.book.entity;
 
 import io.americanexpress.synapse.data.redis.entity.BaseEntity;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 
 /**
@@ -25,6 +26,7 @@ public class BookEntity extends BaseEntity {
     /**
      * The title.
      */
+    @Id
     private String title;
 
     /**

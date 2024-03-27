@@ -13,11 +13,11 @@
  */
 package io.americanexpress.service.book.rest.service;
 
-import io.americanexpress.data.book.repository.BookRepository;
 import io.americanexpress.data.book.entity.BookEntity;
+import io.americanexpress.data.book.repository.BookRepository;
 import io.americanexpress.service.book.rest.model.CreateBookRequest;
 import io.americanexpress.service.book.rest.model.CreateBookResponse;
-import io.americanexpress.synapse.service.rest.service.reactive.BaseCreateReactiveService;
+import io.americanexpress.synapse.service.reactive.rest.service.BaseCreateReactiveService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;

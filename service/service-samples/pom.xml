@@ -18,7 +18,7 @@
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
         <artifactId>service</artifactId>
-        <version>0.3.21-SNAPSHOT</version>
+        <version>0.3.32-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -27,15 +27,17 @@
 
     <!--Modules-->
     <modules>
+        <module>sample-service-db2-book</module>
         <module>sample-service-graphql-book</module>
+        <module>sample-service-imperative-book</module>
         <module>sample-service-reactive-cassandra-book</module>
         <module>sample-service-reactive-mongodb-book</module>
         <module>sample-service-reactive-mssql-book</module>
         <module>sample-service-reactive-mysql-book</module>
         <module>sample-service-reactive-oracle-book</module>
+        <module>sample-service-reactive-oracle-cp-book</module>
         <module>sample-service-reactive-rest-book</module>
         <module>sample-service-reactive-weather-client</module>
-        <module>sample-service-rest-book</module>
         <module>sample-service-rest-cassandra-book</module>
         <module>sample-service-rest-mysql-book</module>
         <module>sample-service-rest-oracle-book</module>

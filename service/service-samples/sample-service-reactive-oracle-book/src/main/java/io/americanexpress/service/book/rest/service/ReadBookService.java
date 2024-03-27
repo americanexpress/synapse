@@ -19,7 +19,7 @@ import io.americanexpress.service.book.rest.model.ReadBookResponse;
 import io.americanexpress.service.book.rest.service.helper.BookServiceMapper;
 import io.americanexpress.synapse.framework.exception.ApplicationClientException;
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
-import io.americanexpress.synapse.service.rest.service.reactive.BaseReadMonoReactiveService;
+import io.americanexpress.synapse.service.reactive.rest.service.BaseReadMonoReactiveService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -41,6 +41,7 @@ public class ReadBookService extends BaseReadMonoReactiveService<ReadBookRequest
 
     /**
      * executeRead will be used to retrieve a book resource by request.
+     *
      * @param request
      * @return
      */

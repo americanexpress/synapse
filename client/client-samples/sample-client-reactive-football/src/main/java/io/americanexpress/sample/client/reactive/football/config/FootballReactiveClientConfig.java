@@ -78,7 +78,6 @@ public class FootballReactiveClientConfig extends BaseReactiveRestClientConfig {
      *
      * @return The client http connector.
      */
-    @Override
     protected ReactorClientHttpConnector defaultClientConnector() {
         HttpClient httpClient = HttpClient.create()
                 .proxy(proxy -> proxy.type(ProxyProvider.Proxy.HTTP)

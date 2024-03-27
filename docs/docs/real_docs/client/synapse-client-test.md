@@ -16,6 +16,6 @@
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-client-test</artifactId>
-            <version>0.3.21-SNAPSHOT</version>
+            <version>0.3.32-SNAPSHOT</version>
         </dependency>
 ```

@@ -18,7 +18,7 @@
     <parent>
         <artifactId>data-samples</artifactId>
         <groupId>io.americanexpress.synapse</groupId>
-        <version>0.3.21-SNAPSHOT</version>
+        <version>0.3.32-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -37,15 +37,6 @@
         <dependency>
             <groupId>com.oracle.database.r2dbc</groupId>
             <artifactId>oracle-r2dbc</artifactId>
-        </dependency>
-        <!-- spring -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <!-- Test -->
         <dependency>

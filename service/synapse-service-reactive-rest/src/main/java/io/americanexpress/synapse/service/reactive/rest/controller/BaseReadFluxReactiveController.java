@@ -19,7 +19,7 @@ import io.americanexpress.synapse.service.reactive.rest.service.BaseReadFluxReac
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -59,13 +59,11 @@ public abstract class BaseReadFluxReactiveController<I extends BaseServiceReques
             @ApiResponse(code = 403, message = "Forbidden"),
     })
     @PostMapping(MULTIPLE_RESULTS)
-    public Flux<ResponseEntity<O>> read(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest) {
+    public ResponseEntity<Flux<O>> read(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
 
         final var serviceResult = service.read(headers, serviceRequest);
-        final var responseEntity = serviceResult
-                .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.noContent().build());
+        final var responseEntity = ResponseEntity.ok(serviceResult);
 
         logger.exit(responseEntity);
         return responseEntity;

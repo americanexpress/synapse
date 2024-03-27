@@ -19,7 +19,7 @@
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
         <artifactId>service-samples</artifactId>
-        <version>0.3.21-SNAPSHOT</version>
+        <version>0.3.32-SNAPSHOT</version>
     </parent>
 
     <artifactId>sample-service-reactive-weather-client</artifactId>
@@ -28,12 +28,12 @@
         <!-- Synapse -->
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>
-            <artifactId>synapse-service-rest</artifactId>
+            <artifactId>synapse-service-reactive-rest</artifactId>
         </dependency>
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>
             <artifactId>sample-client-reactive-weather</artifactId>
-            <version>0.3.21-SNAPSHOT</version>
+            <version>0.3.32-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

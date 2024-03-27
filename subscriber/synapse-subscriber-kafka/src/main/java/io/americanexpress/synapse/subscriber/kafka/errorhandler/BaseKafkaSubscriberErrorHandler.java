@@ -44,8 +44,9 @@ public class BaseKafkaSubscriberErrorHandler implements CommonErrorHandler {
     protected final XLogger log = XLoggerFactory.getXLogger(getClass());
 
     @Override
-    public void handleRecord(Exception thrownException, ConsumerRecord<?, ?> record, Consumer<?, ?> consumer, MessageListenerContainer container) {
+    public boolean handleOne(Exception thrownException, ConsumerRecord<?, ?> record, Consumer<?, ?> consumer, MessageListenerContainer container) {
         this.handleException(thrownException, Collections.singletonList(record), consumer);
+        return true;
     }
 
     @Override

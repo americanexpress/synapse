@@ -20,7 +20,7 @@
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-data-mssql</artifactId>
-            <version>0.3.21-SNAPSHOT</version>
+            <version>0.3.32-SNAPSHOT</version>
         </dependency>
 ```
 Or add the following to the build.gradle file:

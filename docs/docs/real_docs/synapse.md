@@ -123,13 +123,13 @@ The following listing shows the pom.xml file that is created when you choose Mav
     <parent>
         <groupId>com.example</groupId>
         <artifactId>service</artifactId>
-        <version>0.3.21-SNAPSHOT</version>
+        <version>0.3.32-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example.synapse</groupId>
     <artifactId>service-greeting</artifactId>
-    <version>0.3.21-SNAPSHOT</version>
+    <version>0.3.32-SNAPSHOT</version>
 
     <properties>
         <start-class>com.example.synapse.bookstore.GreetingApplication</start-class>
@@ -139,7 +139,7 @@ The following listing shows the pom.xml file that is created when you choose Mav
         <dependency>
             <groupId>com.americanexpress</groupId>
             <artifactId>synapse-service-rest</artifactId>
-            <version>0.3.21-SNAPSHOT</version>
+            <version>0.3.32-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

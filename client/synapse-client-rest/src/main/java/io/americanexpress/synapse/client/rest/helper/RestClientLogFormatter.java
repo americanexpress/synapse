@@ -14,16 +14,13 @@
 package io.americanexpress.synapse.client.rest.helper;
 
 import java.io.IOException;
-import java.net.URI;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMessage;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpRequest;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.stereotype.Component;
@@ -45,9 +42,9 @@ public class RestClientLogFormatter {
 	 * @return the formatted client request
 	 */
 	public String formatClientRequest(HttpRequest httpRequest, byte[] bodyBytes) {
-		URI uri = httpRequest.getURI();
-		HttpMethod httpMethod = httpRequest.getMethod();
-		HttpHeaders httpHeaders = httpRequest.getHeaders();
+		var uri = httpRequest.getURI();
+		var httpMethod = httpRequest.getMethod();
+		var httpHeaders = httpRequest.getHeaders();
 		String formattedClientRequest = new String(bodyBytes, getCharset(httpRequest));
 		return String.format("Client Request: URI=%s, HTTP Method=%s, HTTP Headers=%s, Request=%s",
 			uri, httpMethod, httpHeaders, formattedClientRequest);
@@ -60,9 +57,9 @@ public class RestClientLogFormatter {
 	 * @throws IOException whenever an input/output exception occurs
 	 */
 	public String formatClientResponse(ClientHttpResponse clientHttpResponse) throws IOException {
-		HttpStatus httpStatus = clientHttpResponse.getStatusCode();
-		HttpHeaders httpHeaders = clientHttpResponse.getHeaders();
-		String formattedClientResponse = new String(StreamUtils.copyToByteArray(clientHttpResponse.getBody()), getCharset(clientHttpResponse));
+		var httpStatus = clientHttpResponse.getStatusCode();
+		var httpHeaders = clientHttpResponse.getHeaders();
+		var formattedClientResponse = new String(StreamUtils.copyToByteArray(clientHttpResponse.getBody()), getCharset(clientHttpResponse));
 		return String.format("Client Response: HTTP Status=%s, HTTP Headers=%s, Response=%s",
 			httpStatus, httpHeaders, formattedClientResponse);
 	}

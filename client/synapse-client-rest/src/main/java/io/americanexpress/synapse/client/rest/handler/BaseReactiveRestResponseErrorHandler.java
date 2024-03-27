@@ -38,7 +38,7 @@ public abstract class BaseReactiveRestResponseErrorHandler extends BaseResponseE
      */
     @Override
     public Mono<? extends Throwable> apply(ClientResponse clientResponse) {
-    	HttpStatus httpStatus = clientResponse.statusCode();
+    	var httpStatus = clientResponse.statusCode();
     	return httpStatus.is4xxClientError() ?
     		clientResponse.bodyToMono(String.class).map(errorMessage -> new ApplicationClientException(buildDeveloperMessage(httpStatus, errorMessage), ErrorCode.GENERIC_4XX_ERROR)) :
     		clientResponse.bodyToMono(String.class).map(errorMessage -> {

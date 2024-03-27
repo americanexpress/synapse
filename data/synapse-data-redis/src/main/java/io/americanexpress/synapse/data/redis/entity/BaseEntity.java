@@ -15,23 +15,17 @@ package io.americanexpress.synapse.data.redis.entity;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.Version;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * {@code BaseEntity} is the redis base entity.
  */
 public class BaseEntity implements Serializable {
-
-    /**
-     * Identifier
-     */
-    @Id
-    private String identifier;
 
     /**
      * Created Date Time
@@ -67,14 +61,6 @@ public class BaseEntity implements Serializable {
      * Empty constructor, do not delete it. It is used by Spring Data.
      */
     public BaseEntity() {
-    }
-
-    public String getIdentifier() {
-        return identifier;
-    }
-
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
     }
 
     public LocalDateTime getCreatedDateTime() {
@@ -115,5 +101,19 @@ public class BaseEntity implements Serializable {
 
     public void setVersion(Long version) {
         this.version = version;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (!(object instanceof BaseEntity that)) return false;
+        return Objects.equals(createdDateTime, that.createdDateTime) &&
+                Objects.equals(lastModifiedDateTime, that.lastModifiedDateTime) && Objects.equals(createdBy, that.createdBy) &&
+                Objects.equals(lastModifiedBy, that.lastModifiedBy) && Objects.equals(version, that.version);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(createdDateTime, lastModifiedDateTime, createdBy, lastModifiedBy, version);
     }
 }

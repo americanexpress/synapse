@@ -17,6 +17,7 @@ import io.americanexpress.synapse.framework.exception.ApplicationServerException
 import org.apache.kafka.common.security.auth.SecurityProtocol;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
+import org.springframework.boot.ssl.SslBundles;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.FileSystemResourceLoader;
 import org.springframework.core.io.Resource;

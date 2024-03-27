@@ -18,21 +18,21 @@
     <parent>
         <artifactId>client-samples</artifactId>
         <groupId>io.americanexpress.synapse</groupId>
-        <version>0.3.21-SNAPSHOT</version>
+        <version>0.3.32-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>sample-client-weather</artifactId>
 
-   <dependencies>
-       <dependency>
-           <groupId>io.americanexpress.synapse</groupId>
-           <artifactId>synapse-client-rest</artifactId>
-       </dependency>
-       <dependency>
-           <groupId>io.americanexpress.synapse</groupId>
-           <artifactId>synapse-client-test</artifactId>
-       </dependency>
-   </dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>io.americanexpress.synapse</groupId>
+            <artifactId>synapse-client-rest</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.americanexpress.synapse</groupId>
+            <artifactId>synapse-client-test</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

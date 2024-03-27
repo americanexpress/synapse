@@ -16,13 +16,11 @@ package io.americanexpress.synapse.data.mongodb.entity;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.Version;
-
-
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * {@code BaseEntity} class is the parent class for all mongodb documents.
@@ -31,10 +29,10 @@ import java.time.LocalDateTime;
 public abstract class BaseEntity {
 
     /**
-     * Identifier
+     * Id.
+     * It can be overridden by the child class with the @Id annotation on a field.
      */
-    @Id
-    private String identifier;
+    private String id;
 
     /**
      * Created Date Time
@@ -72,12 +70,12 @@ public abstract class BaseEntity {
     public BaseEntity() {
     }
 
-    public String getIdentifier() {
-        return identifier;
+    public String getId() {
+        return id;
     }
 
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public LocalDateTime getCreatedDateTime() {
@@ -118,5 +116,19 @@ public abstract class BaseEntity {
 
     public void setVersion(Long version) {
         this.version = version;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (!(object instanceof BaseEntity that)) return false;
+        return Objects.equals(id, that.id) && Objects.equals(createdDateTime, that.createdDateTime) &&
+                Objects.equals(lastModifiedDateTime, that.lastModifiedDateTime) && Objects.equals(createdBy, that.createdBy) &&
+                Objects.equals(lastModifiedBy, that.lastModifiedBy) && Objects.equals(version, that.version);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, createdDateTime, lastModifiedDateTime, createdBy, lastModifiedBy, version);
     }
 }

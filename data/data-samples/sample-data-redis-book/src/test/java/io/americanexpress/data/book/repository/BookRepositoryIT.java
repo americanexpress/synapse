@@ -39,19 +39,15 @@ class BookRepositoryIT {
 
     @Test
     public void save_givenValidBook_expectedSavedBookSuccess() {
-        UUID id = UUID.randomUUID();
         BookEntity bookEntity = new BookEntity("Alice Wonderland", "Lewis Carroll");
         BookEntity saved = bookRepository.save(bookEntity);
         assertNotNull(saved);
     }
 
     @Test
-    void findByTitleAndAuthor_givenBook_expectedBookFound() {
-        BookEntity bookEntity = new BookEntity("Alice In Wonderland", "Lewis Carroll");
-        bookEntity = bookRepository.save(bookEntity);
-
-        Optional<BookEntity> book = bookRepository.findById(UUID.fromString(bookEntity.getIdentifier()));
-        Assertions.assertEquals(bookEntity.getTitle(), book.get().getTitle());
+    void findById_givenTitle_expectedBookFound() {
+        var title = "Alice Wonderland";
+        Optional<BookEntity> book = bookRepository.findById(title);
+        Assertions.assertEquals(title, book.get().getTitle());
     }
-
 }
