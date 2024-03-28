@@ -101,23 +101,12 @@ public class BaseModelsTest {
     private void validatePojoClass(PojoClass pojoClass) {
         var pojoClazz = pojoClass.getClazz();
         if (!Modifier.isAbstract(pojoClazz.getModifiers())) {
-            try {
-                Assertions.assertPojoMethodsFor(pojoClazz).areWellImplemented();
-                EqualsVerifier.simple().forClass(pojoClazz)
-                        .suppress(warningsToSuppress.get(0))
-                        .suppress(warningsToSuppress.get(3))
-                        .verify();
-                Arrays.stream(pojoClazz.getConstructors()).map(constructor ->
-                    assertDoesNotThrow(() -> constructor.newInstance(new Object[constructor.getParameterCount()])
-                ));
-                assertDoesNotThrow(() -> pojoClazz.getConstructors());
-            } catch (AbstractAssertionError assertionError) {
-                if (assertionError.getMessage().contains("hashCode")) {
-                    assertTrue(pojoClazz.hashCode() != 0);
-                } else {
-                    throw assertionError;
-                }
-            }
+            Assertions.assertPojoMethodsFor(pojoClazz).areWellImplemented();
+            EqualsVerifier.simple().forClass(pojoClazz)
+                    .suppress(warningsToSuppress.get(0))
+                    .suppress(warningsToSuppress.get(3))
+                    .verify();
+
         }
     }
     /**
