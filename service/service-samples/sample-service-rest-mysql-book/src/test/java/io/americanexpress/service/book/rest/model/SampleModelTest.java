@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
- package io.americanexpress.service.book.rest.model;
+package io.americanexpress.service.book.rest.model;
 
 import io.americanexpress.synapse.framework.test.model.BaseModelsTest;
 

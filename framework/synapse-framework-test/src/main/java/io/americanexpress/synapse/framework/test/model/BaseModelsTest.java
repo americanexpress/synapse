@@ -55,8 +55,6 @@ public class BaseModelsTest {
      */
     private final List<Warning> warningsToSuppress = new ArrayList<>(List.of(
             Warning.ALL_FIELDS_SHOULD_BE_USED,
-            Warning.INHERITED_DIRECTLY_FROM_OBJECT,
-            Warning.NONFINAL_FIELDS,
             Warning.STRICT_INHERITANCE
     ));
     /**
@@ -101,23 +99,10 @@ public class BaseModelsTest {
     private void validatePojoClass(PojoClass pojoClass) {
         var pojoClazz = pojoClass.getClazz();
         if (!Modifier.isAbstract(pojoClazz.getModifiers())) {
-            try {
-                Assertions.assertPojoMethodsFor(pojoClazz).areWellImplemented();
-                EqualsVerifier.simple().forClass(pojoClazz)
-                        .suppress(warningsToSuppress.get(0))
-                        .suppress(warningsToSuppress.get(3))
-                        .verify();
-                Arrays.stream(pojoClazz.getConstructors()).map(constructor ->
-                    assertDoesNotThrow(() -> constructor.newInstance(new Object[constructor.getParameterCount()])
-                ));
-                assertDoesNotThrow(() -> pojoClazz.getConstructors());
-            } catch (AbstractAssertionError assertionError) {
-                if (assertionError.getMessage().contains("hashCode")) {
-                    assertTrue(pojoClazz.hashCode() != 0);
-                } else {
-                    throw assertionError;
-                }
-            }
+            Assertions.assertPojoMethodsFor(pojoClazz).areWellImplemented();
+            EqualsVerifier.forClass(pojoClazz)
+                    .suppress(warningsToSuppress.toArray(new Warning[0]))
+                    .verify();
         }
     }
     /**
