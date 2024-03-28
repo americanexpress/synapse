@@ -87,7 +87,7 @@ public abstract class BaseRestClientConfig extends BaseClientConfig {
     }
 
     /**
-     * Generate the default request factory to allow support for proxy configuration.
+     * Generate the default request factory to allow support for proxy configurations.
      *
      * @return The client http request factory.
      */
