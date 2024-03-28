@@ -99,19 +99,21 @@ public class BaseModelsTest {
      * @param pojoClass The POJO class to validate.
      */
     private void validatePojoClass(PojoClass pojoClass) {
-        if (!Modifier.isAbstract(pojoClass.getClazz().getModifiers())) {
+        var pojoClazz = pojoClass.getClazz();
+        if (!Modifier.isAbstract(pojoClazz.getModifiers())) {
             try {
-                Assertions.assertPojoMethodsFor(pojoClass.getClazz()).areWellImplemented();
-                EqualsVerifier.forClass(pojoClass.getClazz())
-                        .suppress(warningsToSuppress.toArray(new Warning[0]))
+                Assertions.assertPojoMethodsFor(pojoClazz).areWellImplemented();
+                EqualsVerifier.simple().forClass(pojoClazz)
+                        .suppress(warningsToSuppress.get(0))
+                        .suppress(warningsToSuppress.get(3))
                         .verify();
-                Arrays.stream(pojoClass.getClazz().getConstructors()).map(constructor ->
+                Arrays.stream(pojoClazz.getConstructors()).map(constructor ->
                     assertDoesNotThrow(() -> constructor.newInstance(new Object[constructor.getParameterCount()])
                 ));
-                assertDoesNotThrow(() -> pojoClass.getClazz().getConstructors());
+                assertDoesNotThrow(() -> pojoClazz.getConstructors());
             } catch (AbstractAssertionError assertionError) {
                 if (assertionError.getMessage().contains("hashCode")) {
-                    assertTrue(pojoClass.getClazz().hashCode() != 0);
+                    assertTrue(pojoClazz.hashCode() != 0);
                 } else {
                     throw assertionError;
                 }
