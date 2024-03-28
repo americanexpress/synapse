@@ -100,22 +100,10 @@ public class BaseModelsTest {
      */
     private void validatePojoClass(PojoClass pojoClass) {
         if (!Modifier.isAbstract(pojoClass.getClazz().getModifiers())) {
-            try {
-                Assertions.assertPojoMethodsFor(pojoClass.getClazz()).areWellImplemented();
-                EqualsVerifier.forClass(pojoClass.getClazz())
-                        .suppress(warningsToSuppress.toArray(new Warning[0]))
-                        .verify();
-                Arrays.stream(pojoClass.getClazz().getConstructors()).map(constructor ->
-                    assertDoesNotThrow(() -> constructor.newInstance(new Object[constructor.getParameterCount()])
-                ));
-                assertDoesNotThrow(() -> pojoClass.getClazz().getConstructors());
-            } catch (AbstractAssertionError assertionError) {
-                if (assertionError.getMessage().contains("hashCode")) {
-                    assertTrue(pojoClass.getClazz().hashCode() != 0);
-                } else {
-                    throw assertionError;
-                }
-            }
+            Assertions.assertPojoMethodsFor(pojoClass.getClazz()).areWellImplemented();
+            EqualsVerifier.forClass(pojoClass.getClazz())
+                    .suppress(warningsToSuppress.toArray(new Warning[0]))
+                    .verify();
         }
     }
     /**

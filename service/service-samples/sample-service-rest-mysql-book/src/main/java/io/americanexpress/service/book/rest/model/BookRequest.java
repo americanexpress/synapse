@@ -16,6 +16,8 @@ package io.americanexpress.service.book.rest.model;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.Objects;
+
 /**
  * {@code BookRequest} Parent request object.
  */
@@ -124,5 +126,27 @@ public class BookRequest implements BaseServiceRequest {
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 '}';
+    }
+
+    /**
+     * Compares two objects to see if they are equal.
+     * @param o
+     * @return
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BookRequest that = (BookRequest) o;
+        return Objects.equals(getTitle(), that.getTitle()) && Objects.equals(getAuthor(), that.getAuthor()) && Objects.equals(getCreatedBy(), that.getCreatedBy());
+    }
+
+    /**
+     * Returns the hashcode of the object.
+     * @return
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(getTitle(), getAuthor(), getCreatedBy());
     }
 }
