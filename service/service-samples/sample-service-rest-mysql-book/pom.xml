@@ -34,6 +34,10 @@
             <groupId>io.americanexpress.synapse</groupId>
             <artifactId>synapse-service-rest</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.americanexpress.synapse</groupId>
+            <artifactId>synapse-framework-exception</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
