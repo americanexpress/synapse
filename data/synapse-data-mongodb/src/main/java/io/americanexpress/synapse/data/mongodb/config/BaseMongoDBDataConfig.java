@@ -44,6 +44,10 @@ public abstract class BaseMongoDBDataConfig extends AbstractMongoClientConfigura
         this.environment = environment;
     }
 
+    protected String getDatabaseUri() {
+        return environment.getRequiredProperty("spring.data.mongodb.uri");
+    }
+
     @Override
     protected String getDatabaseName() {
         return environment.getRequiredProperty("spring.data.mongodb.database");
@@ -51,7 +55,7 @@ public abstract class BaseMongoDBDataConfig extends AbstractMongoClientConfigura
 
     @Override
     public MongoClient mongoClient() {
-        ConnectionString connectionString = new ConnectionString(environment.getRequiredProperty("spring.data.mongodb.uri"));
+        ConnectionString connectionString = new ConnectionString(getDatabaseUri());
         MongoClientSettings mongoClientSettings = setMongoClientSettings(connectionString);
         return MongoClients.create(mongoClientSettings);
     }
