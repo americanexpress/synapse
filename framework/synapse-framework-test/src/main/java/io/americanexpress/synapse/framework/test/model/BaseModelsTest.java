@@ -55,8 +55,6 @@ public class BaseModelsTest {
      */
     private final List<Warning> warningsToSuppress = new ArrayList<>(List.of(
             Warning.ALL_FIELDS_SHOULD_BE_USED,
-            Warning.INHERITED_DIRECTLY_FROM_OBJECT,
-            Warning.NONFINAL_FIELDS,
             Warning.STRICT_INHERITANCE
     ));
     /**
@@ -102,11 +100,9 @@ public class BaseModelsTest {
         var pojoClazz = pojoClass.getClazz();
         if (!Modifier.isAbstract(pojoClazz.getModifiers())) {
             Assertions.assertPojoMethodsFor(pojoClazz).areWellImplemented();
-            EqualsVerifier.simple().forClass(pojoClazz)
-                    .suppress(warningsToSuppress.get(0))
-                    .suppress(warningsToSuppress.get(3))
+            EqualsVerifier.forClass(pojoClazz)
+                    .suppress(warningsToSuppress.toArray(new Warning[0]))
                     .verify();
-
         }
     }
     /**
