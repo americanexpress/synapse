@@ -26,6 +26,8 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.http.client.ClientHttpRequestFactory;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
@@ -80,6 +82,16 @@ public abstract class BaseRestClientConfig extends BaseClientConfig {
         converter.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML));
         messagesConverters.add(converter);
         restTemplate.setMessageConverters(messagesConverters);
+        restTemplate.setRequestFactory(defaultRequestFactory());
         return restTemplate;
+    }
+
+    /**
+     * Generate the default request factory to allow support for proxy configurations.
+     *
+     * @return The client http request factory.
+     */
+    protected ClientHttpRequestFactory defaultRequestFactory() {
+        return new SimpleClientHttpRequestFactory();
     }
 }
