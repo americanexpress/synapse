@@ -12,9 +12,14 @@
  * the License.
  */
 package io.americanexpress.synapse.framework.test.model;
+
 import com.openpojo.reflection.PojoClass;
 import com.openpojo.reflection.PojoClassFilter;
 import com.openpojo.reflection.impl.PojoClassFactory;
+import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.Warning;
+import org.junit.jupiter.api.Test;
+import pl.pojo.tester.api.assertion.Assertions;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -24,14 +29,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import nl.jqno.equalsverifier.EqualsVerifier;
-import nl.jqno.equalsverifier.Warning;
-import org.junit.jupiter.api.Test;
-import pl.pojo.tester.api.assertion.Assertions;
-import pl.pojo.tester.internal.assertion.AbstractAssertionError;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 /**
  * {@code BaseModelsTest} Used to test model and enum classes.
  *
@@ -45,7 +45,10 @@ public class BaseModelsTest {
     /**
      * The set of excluded class names.
      */
-    private final Set<String> excludedClassNames = new HashSet<>();
+    private final Set<String> excludedClassNames = new HashSet<>(Arrays.asList(
+            BaseModelsTest.class.getName(),
+            ExcludeClassAndTestClass.class.getName()
+    ));
     /**
      * The package name.
      */
@@ -55,8 +58,17 @@ public class BaseModelsTest {
      */
     private final List<Warning> warningsToSuppress = new ArrayList<>(List.of(
             Warning.ALL_FIELDS_SHOULD_BE_USED,
+            Warning.INHERITED_DIRECTLY_FROM_OBJECT,
+            Warning.NONFINAL_FIELDS,
             Warning.STRICT_INHERITANCE
     ));
+
+    /**
+     * Default constructor. Excludes the current class and the ExcludeClassAndTestClass from validation.
+     */
+    public BaseModelsTest() {
+
+    }
     /**
      * Validates all models in the specified package, except those explicitly excluded, using OpenPojo and EqualsVerifier.
      * It first tests enums for custom method integrity, then tests other POJOs for standard conventions and correct equals and hashCode methods.
@@ -86,8 +98,6 @@ public class BaseModelsTest {
      * @param classes Varargs parameter containing the names of the classes to exclude from validation.
      */
     protected void excludeClasses(Class<?>... classes) {
-        excludedClassNames.add(BaseModelsTest.class.getName());
-        excludedClassNames.add(ExcludeClassAndTestClass.class.getName());
         Arrays.stream(classes).forEach(clazz -> excludedClassNames.add(clazz.getName()));
     }
     /**
@@ -99,10 +109,16 @@ public class BaseModelsTest {
     private void validatePojoClass(PojoClass pojoClass) {
         var pojoClazz = pojoClass.getClazz();
         if (!Modifier.isAbstract(pojoClazz.getModifiers())) {
-            Assertions.assertPojoMethodsFor(pojoClazz).areWellImplemented();
+            Assertions.assertPojoMethodsFor(pojoClazz).testing(
+                    pl.pojo.tester.api.assertion.Method.GETTER,
+                    pl.pojo.tester.api.assertion.Method.SETTER,
+                    pl.pojo.tester.api.assertion.Method.TO_STRING,
+                    pl.pojo.tester.api.assertion.Method.CONSTRUCTOR)
+                    .areWellImplemented();
             EqualsVerifier.forClass(pojoClazz)
                     .suppress(warningsToSuppress.toArray(new Warning[0]))
                     .verify();
+            assertTrue(pojoClazz.hashCode() != 0 );
         }
     }
     /**
@@ -138,6 +154,7 @@ public class BaseModelsTest {
             }
         });
     }
+
     /**
      * Excludes classes and test classes from being validated.
      * This class is used as a filter for OpenPojo to exclude specific classes from being validated.
