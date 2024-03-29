@@ -64,12 +64,6 @@ public class BaseModelsTest {
     ));
 
     /**
-     * Default constructor. Excludes the current class and the ExcludeClassAndTestClass from validation.
-     */
-    public BaseModelsTest() {
-
-    }
-    /**
      * Validates all models in the specified package, except those explicitly excluded, using OpenPojo and EqualsVerifier.
      * It first tests enums for custom method integrity, then tests other POJOs for standard conventions and correct equals and hashCode methods.
      */
