@@ -15,10 +15,10 @@ package io.americanexpress.synapse.service.rest.controller.helpers;
 
 
 import io.americanexpress.synapse.service.rest.controller.helpers.model.BaseServiceResponseTest;
-import org.junit.Test;
 
 import java.util.Objects;
 import java.util.UUID;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 

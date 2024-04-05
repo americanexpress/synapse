@@ -15,17 +15,16 @@ package io.americanexpress.synapse.api.rest.reactive.controller;
 
 import io.americanexpress.synapse.service.reactive.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.reactive.model.BaseServiceResponse;
-import io.americanexpress.synapse.service.reactive.service.BaseReadMonoReactiveService;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.americanexpress.synapse.service.reactive.service.BaseService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import org.reactivestreams.Publisher;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import reactor.core.publisher.Mono;
-import jakarta.validation.Valid;
 
 /**
  * {@code BaseReadMonoReactiveRestController} class specifies the prototypes for listening for requests from the consumer
@@ -34,14 +33,14 @@ import jakarta.validation.Valid;
  *
  * @param <I> an object extending the {@link BaseServiceRequest}
  * @param <O> an object extending the {@link BaseServiceResponse}
- * @param <S> an object extending the {@link BaseReadMonoReactiveService}
+ * @param <S> an object extending the {@link BaseService}
  * @author Gabriel Jimenez
  */
 public class BaseReadMonoReactiveRestController<
             I extends BaseServiceRequest,
-            O extends BaseServiceResponse,
-            S extends BaseReadMonoReactiveService<I, O>
-        > extends BaseController<S> {
+            O extends Publisher<? extends BaseServiceResponse>,
+            S extends BaseService<I, O>
+        > extends BaseController<I, O, S> {
 
     /**
      * The constant INQUIRY_RESULTS.
@@ -54,23 +53,17 @@ public class BaseReadMonoReactiveRestController<
      * @param serviceRequest body from the consumer
      * @return a single resource from the back end service
      */
-    @ApiOperation(value = "Reactive Read Mono", notes = "Gets one resource")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Ok"),
-            @ApiResponse(code = 204, message = "No Content"),
-            @ApiResponse(code = 206, message = "Partial Content"),
-            @ApiResponse(code = 400, message = "Bad Request"),
-            @ApiResponse(code = 401, message = "Unauthorized"),
-            @ApiResponse(code = 403, message = "Forbidden"),
-    })
+    @Operation(description = "Reactive Read Mono", summary = "Gets one resources",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Ok"),
+                    @ApiResponse(responseCode = "204", description = "No Content"),
+                    @ApiResponse(responseCode = "206", description = "Partial Content"),
+                    @ApiResponse(responseCode = "400", description = "Bad Request"),
+                    @ApiResponse(responseCode = "401", description = "Unauthorized"),
+                    @ApiResponse(responseCode = "403", description = "Forbidden"),
+            })
     @PostMapping(INQUIRY_RESULTS)
-    public Mono<ResponseEntity<O>> read(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest) {
-        logger.entry(serviceRequest);
-        var serviceResponse = service.read(serviceRequest);
-        var responseEntity = serviceResponse
-                .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.noContent().build());
-        logger.exit(responseEntity);
-        return responseEntity;
+    public Mono<ResponseEntity<O>> read(@RequestHeader HttpHeaders headers, @RequestBody I serviceRequest) {
+        return execute(headers, serviceRequest);
     }
 }

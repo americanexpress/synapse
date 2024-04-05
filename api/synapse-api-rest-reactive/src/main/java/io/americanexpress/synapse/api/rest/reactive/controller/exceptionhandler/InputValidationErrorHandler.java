@@ -13,14 +13,14 @@
  */
 package io.americanexpress.synapse.api.rest.reactive.controller.exceptionhandler;
 
+import io.americanexpress.synapse.api.rest.reactive.model.ErrorResponse;
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
-import io.americanexpress.synapse.service.reactive.model.ErrorResponse;
+import java.util.StringJoiner;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.support.WebExchangeBindException;
-import java.util.StringJoiner;
 
 /**
  * {@code InputValidationErrorHandler} creates the error response containing the input validation errors.

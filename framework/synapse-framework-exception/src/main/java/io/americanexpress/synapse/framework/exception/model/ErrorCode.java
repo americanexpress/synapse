@@ -13,8 +13,6 @@
  */
 package io.americanexpress.synapse.framework.exception.model;
 
-import org.springframework.http.HttpStatus;
-
 /**
  * {@code ErrorCode} enum is used to return to the consumer a specific error message.
  * <p>

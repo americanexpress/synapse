@@ -15,9 +15,9 @@ package io.americanexpress.synapse.service.reactive.rest.controller;
 
 import io.americanexpress.synapse.service.reactive.rest.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.reactive.rest.service.BaseGetMonoReactiveService;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,13 +41,13 @@ public abstract class BaseGetMonoReactiveController<O extends BaseServiceRespons
      * @param id used for retrieval
      * @return response
      */
-    @ApiOperation(value = "Reactive get mono", notes = "Gets one resource reactively")
+    @Operation(summary = "Reactive get mono", description = "Gets one resource reactively")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Ok"),
-            @ApiResponse(code = 204, message = "No Content"),
-            @ApiResponse(code = 400, message = "Bad Request"),
-            @ApiResponse(code = 401, message = "Unauthorized"),
-            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(responseCode = "200", description = "Ok"),
+            @ApiResponse(responseCode = "204", description = "No Content"),
+            @ApiResponse(responseCode = "400", description = "Bad Request"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
     })
     @GetMapping("/{id}")
     public Mono<ResponseEntity<O>> read(@RequestHeader HttpHeaders headers, @PathVariable String id) {

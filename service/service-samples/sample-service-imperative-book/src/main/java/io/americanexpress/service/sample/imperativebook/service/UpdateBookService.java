@@ -16,7 +16,7 @@ package io.americanexpress.service.sample.imperativebook.service;
 import io.americanexpress.service.sample.imperativebook.model.UpdateBookServiceRequest;
 import io.americanexpress.service.sample.imperativebook.model.UpdateBookServiceResponse;
 import io.americanexpress.service.sample.imperativebook.service.helper.UpdateBookServiceResponseCreator;
-import io.americanexpress.synapse.service.imperative.service.BaseUpdateImperativeService;
+import io.americanexpress.synapse.service.imperative.service.BaseService;
 import org.springframework.stereotype.Component;
 
 /**
@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
  * @author Francois Gutt
  */
 @Component
-public class UpdateBookService extends BaseUpdateImperativeService<
+public class UpdateBookService extends BaseService<
             UpdateBookServiceRequest,
             UpdateBookServiceResponse
         > {
@@ -50,7 +50,7 @@ public class UpdateBookService extends BaseUpdateImperativeService<
      * @param request body received from the controller
      */
     @Override
-    protected UpdateBookServiceResponse executeUpdate(UpdateBookServiceRequest request) {
+    protected UpdateBookServiceResponse doExecute(UpdateBookServiceRequest request) {
         var response = updateBookServiceResponseCreator.create(request);
         return response;
     }

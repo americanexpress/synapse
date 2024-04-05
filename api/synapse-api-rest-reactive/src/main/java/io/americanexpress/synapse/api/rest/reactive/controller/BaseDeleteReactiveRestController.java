@@ -14,8 +14,11 @@
 package io.americanexpress.synapse.api.rest.reactive.controller;
 
 import io.americanexpress.synapse.service.reactive.model.BaseServiceRequest;
-import io.americanexpress.synapse.service.reactive.service.BaseDeleteReactiveService;
+import io.americanexpress.synapse.service.reactive.model.BaseServiceResponse;
+import io.americanexpress.synapse.service.reactive.service.BaseService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import org.reactivestreams.Publisher;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,13 +32,14 @@ import reactor.core.publisher.Mono;
  * {@code BaseDeleteReactiveRestController} is base class for delete mono controller. This controller handles DELETE
  *  method requests, but specifically for delete purposes.
  *  This controller returns a single object.
- * @param <S> an object extending the {@link BaseDeleteReactiveService}
+ * @param <S> an object extending the {@link BaseService}
  * @author Francois Gutt
  */
 public class BaseDeleteReactiveRestController<
             I extends BaseServiceRequest,
-            S extends BaseDeleteReactiveService
-        > extends BaseController<S> {
+            O extends Publisher<? extends BaseServiceResponse>,
+            S extends BaseService<I, O>
+        > extends BaseController<I, O, S> {
 
     /**
      * Delete a single resource.
@@ -43,14 +47,15 @@ public class BaseDeleteReactiveRestController<
      * @param serviceRequest of the resource to be deleted
      */
     @DeleteMapping
+    @Operation(description = "Delete Operation", summary = "Deletes a resource reactively",
+            responses = {
+                    @ApiResponse(responseCode = "204", description = "No Content"),
+                    @ApiResponse(responseCode = "400", description = "Bad Request"),
+                    @ApiResponse(responseCode = "401", description = "Unauthorized"),
+                    @ApiResponse(responseCode = "403", description = "Forbidden"),
+            })
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @Operation(tags = "Delete Operation", summary = "Deletes a resource reactively")
-    public Mono<ResponseEntity<Void>> delete(@RequestHeader HttpHeaders headers, @PathVariable I serviceRequest) {
-        logger.entry(serviceRequest);
-        var serviceResults = service.delete(serviceRequest);
-        var responseEntity = serviceResults
-                .map(res -> new ResponseEntity<Void>(HttpStatus.NO_CONTENT));
-        logger.exit(responseEntity);
-        return responseEntity;
+    public Mono<ResponseEntity<O>> delete(@RequestHeader HttpHeaders headers, @PathVariable I serviceRequest) {
+        return execute(headers, serviceRequest);
     }
 }

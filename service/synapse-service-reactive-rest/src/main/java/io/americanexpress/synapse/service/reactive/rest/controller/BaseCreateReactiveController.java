@@ -16,8 +16,8 @@ package io.americanexpress.synapse.service.reactive.rest.controller;
 import io.americanexpress.synapse.service.reactive.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.reactive.rest.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.reactive.rest.service.BaseCreateReactiveService;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -47,10 +47,10 @@ public abstract class BaseCreateReactiveController<I extends BaseServiceRequest,
      */
     @PostMapping
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Created"),
-            @ApiResponse(code = 400, message = "Bad Request"),
-            @ApiResponse(code = 401, message = "Unauthorized"),
-            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(responseCode = "201", description = "Created"),
+            @ApiResponse(responseCode = "400", description = "Bad Request"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
     })
     public Mono<ResponseEntity<O>> create(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);

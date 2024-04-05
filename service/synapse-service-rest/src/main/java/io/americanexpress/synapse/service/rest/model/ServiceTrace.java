@@ -13,7 +13,7 @@
  */
 package io.americanexpress.synapse.service.rest.model;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.Objects;
 
@@ -42,7 +42,7 @@ public class ServiceTrace {
      *
      * @return the correlationId
      */
-    @ApiModelProperty(value = "This is a unique identifier used for operational logging purposes")
+    @Schema(description = "This is a unique identifier used for operational logging purposes")
     public String getCorrelationId() {
         return correlationId;
     }

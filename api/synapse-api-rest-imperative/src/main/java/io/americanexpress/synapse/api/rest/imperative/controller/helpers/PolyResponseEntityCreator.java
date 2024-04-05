@@ -14,12 +14,13 @@
 package io.americanexpress.synapse.api.rest.imperative.controller.helpers;
 
 import io.americanexpress.synapse.service.imperative.model.BaseServiceResponse;
-import org.springframework.data.domain.Page;
+import io.americanexpress.synapse.service.imperative.model.PageResponse;
+import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity.BodyBuilder;
+import org.springframework.http.ResponseEntity.HeadersBuilder;
 import org.springframework.util.CollectionUtils;
-import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
 
 /**
  * {@code PolyResponseEntityCreator} creates ResponseEntity for poly responses.
@@ -27,25 +28,25 @@ import java.util.List;
  *
  * @author Francois Gutt
  */
-public class PolyResponseEntityCreator<O extends BaseServiceResponse> {
+public class PolyResponseEntityCreator {
 
     /**
      * Creates a Poly ResponseEntity with pagination.
      * @param page will be used for pagination.
-     * @param httpServletResponse response from the service.
      * @return ResponseEntity that will have {@link BaseServiceResponse}
      */
-    public static <O extends BaseServiceResponse> ResponseEntity<List<O>> create(Page<O> page, HttpServletResponse httpServletResponse) {
+    public static <O extends BaseServiceResponse> ResponseEntity<List<O>> create(PageResponse<O> page) {
         final ResponseEntity<List<O>> responseEntity;
         List<O> pageContent = null;
         if (page != null) {
-            pageContent = page.getContent();
+            pageContent = page.getResponsesForPage();
         }
         if (page == null || CollectionUtils.isEmpty(pageContent)) {
             responseEntity = new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
-            setHeadersInResponse(page, httpServletResponse);
-            responseEntity = new ResponseEntity<>(pageContent, HttpStatus.OK);
+            BodyBuilder bodyBuilder = ResponseEntity.ok();
+            setHeadersInResponse(page, bodyBuilder);
+            responseEntity = bodyBuilder.body(pageContent);
         }
         return responseEntity;
     }
@@ -53,13 +54,11 @@ public class PolyResponseEntityCreator<O extends BaseServiceResponse> {
     /**
      * Creates pagination header
      * @param page pagination
-     * @param httpServletResponse response
+     * @param headersBuilder response headers
      */
-    private static <O extends BaseServiceResponse> void setHeadersInResponse(final Page<O> page, final HttpServletResponse httpServletResponse) {
-        if (page != null && !CollectionUtils.isEmpty(page.getContent())) {
-            httpServletResponse.setHeader("size", String.valueOf(page.getSize()));
-            httpServletResponse.setHeader("page", String.valueOf(page.getNumber()));
-            httpServletResponse.setHeader("total_results_count", String.valueOf(page.getNumberOfElements()));
-        }
+    private static <O extends BaseServiceResponse> void setHeadersInResponse(final PageResponse<O> page, final HeadersBuilder headersBuilder) {
+        headersBuilder.header("size", String.valueOf(page.getPageSize()));
+        headersBuilder.header("page", String.valueOf(page.getPage()));
+        headersBuilder.header("total_results_count", String.valueOf(page.getTotalResultsCount()));
     }
 }

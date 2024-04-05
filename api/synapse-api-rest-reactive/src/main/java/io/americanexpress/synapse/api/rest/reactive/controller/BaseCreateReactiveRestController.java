@@ -13,13 +13,13 @@
  */
 package io.americanexpress.synapse.api.rest.reactive.controller;
 
-import io.americanexpress.synapse.api.rest.reactive.controller.helper.MonoResponseEntityCreator;
 import io.americanexpress.synapse.service.reactive.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.reactive.model.BaseServiceResponse;
-import io.americanexpress.synapse.service.reactive.service.BaseCreateReactiveService;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.americanexpress.synapse.service.reactive.service.BaseService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.reactivestreams.Publisher;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +27,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
-import jakarta.validation.Valid;
 
 /**
  * {@code BaseCreateReactiveRestController} class specifies the prototypes for listening for requests from the consumer
@@ -35,15 +34,15 @@ import jakarta.validation.Valid;
  *
  * @param <I> an object extending the {@link BaseServiceRequest}
  * @param <O> an object extending the {@link BaseServiceResponse}
- * @param <S> an object extending the {@link BaseCreateReactiveService}
+ * @param <S> an object extending the {@link BaseService}
  * @author Gabriel Jimenez
  */
 @RestController
 public class BaseCreateReactiveRestController<
             I extends BaseServiceRequest,
-            O extends BaseServiceResponse,
-            S extends BaseCreateReactiveService<I, O>
-        > extends BaseController<S> {
+            O extends Publisher<? extends BaseServiceResponse>,
+            S extends BaseService<I, O>
+        > extends BaseController<I, O, S> {
 
     /**
      * Create a single resource.
@@ -52,19 +51,15 @@ public class BaseCreateReactiveRestController<
      * @param serviceRequest body from the consumer
      * @return response to the consumer
      */
-    @PostMapping
-    @Operation(tags = "Reactive Create Operation", summary = "Creates a reactive resource")
+    @Operation(description = "Reactive Create Operation", summary = "Creates a resource reactively")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Created"),
-            @ApiResponse(code = 400, message = "Bad Request"),
-            @ApiResponse(code = 401, message = "Unauthorized"),
-            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(responseCode = "201", description = "Created"),
+            @ApiResponse(responseCode = "400", description = "Bad Request"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
     })
-    public ResponseEntity<Mono<O>> create(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest) {
-        logger.entry(serviceRequest);
-        final var serviceResponse = service.create(serviceRequest);
-        ResponseEntity<Mono<O>> responseEntity = MonoResponseEntityCreator.create(serviceResponse);
-        logger.exit();
-        return responseEntity;
+    @PostMapping
+    public Mono<ResponseEntity<O>> create(@RequestHeader HttpHeaders headers, @RequestBody I serviceRequest) {
+        return execute(headers, serviceRequest);
     }
 }

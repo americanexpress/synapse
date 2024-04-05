@@ -11,8 +11,12 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.service.imperative.model;
+package io.americanexpress.synapse.api.rest.imperative.controller.helpers;
 
+import io.americanexpress.synapse.service.imperative.model.ServiceHeaderKey;
+import io.americanexpress.synapse.service.imperative.model.ServiceHeaders;
+import io.americanexpress.synapse.service.imperative.model.ServiceRouting;
+import io.americanexpress.synapse.service.imperative.model.ServiceTrace;
 import org.springframework.http.HttpHeaders;
 
 /**

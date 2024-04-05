@@ -14,23 +14,36 @@
 package io.americanexpress.synapse.service.imperative.service;
 
 import io.americanexpress.synapse.service.imperative.model.BaseServiceRequest;
+import io.americanexpress.synapse.service.imperative.model.BaseServiceResponse;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
+import jakarta.validation.Valid;
 
 /**
  * {@code BaseService} The base service every child controller should extend this parent service.
  * @author Francois Gutt
  */
-public sealed abstract class BaseService
-        permits BaseCreateImperativeService,
-        BaseDeleteImperativeService,
-        BaseGetMonoImperativeService,
-        BaseReadMonoImperativeService,
-        BaseReadPolyImperativeService,
-        BaseUpdateImperativeService {
+public abstract class BaseService<
+                 I extends BaseServiceRequest,
+                 O extends BaseServiceResponse> {
 
     /**
      * Logger for the base service.
      */
     protected final XLogger logger = XLoggerFactory.getXLogger(getClass());
+
+    /**
+     * Execute service logic
+     *
+     * @param request received from the controller
+     * @return response to the controller
+     */
+    public O execute(@Valid I request) {
+        logger.entry(request);
+        final var response = doExecute(request);
+        logger.exit();
+        return response;
+    }
+
+    protected abstract O doExecute(I request);
 }

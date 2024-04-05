@@ -19,7 +19,7 @@
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
         <artifactId>service-samples</artifactId>
-        <version>0.3.32-SNAPSHOT</version>
+        <version>0.4.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>sample-service-reactive-mssql-book</artifactId>

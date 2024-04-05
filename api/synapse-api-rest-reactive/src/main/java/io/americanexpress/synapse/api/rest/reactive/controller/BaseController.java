@@ -13,10 +13,18 @@
  */
 package io.americanexpress.synapse.api.rest.reactive.controller;
 
+import io.americanexpress.synapse.service.reactive.model.BaseServiceRequest;
+import io.americanexpress.synapse.service.reactive.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.reactive.service.BaseService;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.reactivestreams.Publisher;
+import reactor.core.publisher.Mono;
 
 /**
  * {@code BaseController} The base controller every child controller should extend this parent controller
@@ -24,7 +32,10 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author Francois gutt
  */
-public class BaseController<S extends BaseService> {
+public abstract class BaseController<
+               I extends BaseServiceRequest,
+               O extends Publisher<? extends BaseServiceResponse>,
+               S extends BaseService<I, O>> {
 
     /**
      * Service that will be called to get a single resource or multiple resources.
@@ -37,4 +48,22 @@ public class BaseController<S extends BaseService> {
      */
     protected final XLogger logger = XLoggerFactory.getXLogger(this.getClass());
 
+    protected Mono<ResponseEntity<O>> execute(@RequestHeader HttpHeaders headers, @RequestBody I serviceRequest) {
+        logger.entry(serviceRequest);
+        try {
+            return Mono.just(ResponseEntity.ok(service.execute(serviceRequest)));
+        }
+        catch (Throwable throwable) {
+            return handleThrowable(throwable);
+        }
+        finally {
+            logger.exit();
+        }
+    }
+
+    protected Mono<ResponseEntity<O>> handleThrowable(Throwable throwable) {
+        logger.catching(throwable);
+
+        return Mono.just(ResponseEntity.internalServerError().build());
+    }
 }

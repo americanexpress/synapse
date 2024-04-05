@@ -16,9 +16,9 @@ package io.americanexpress.synapse.service.reactive.rest.controller;
 import io.americanexpress.synapse.service.reactive.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.reactive.rest.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.reactive.rest.service.BaseReadFluxReactiveService;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -50,13 +50,13 @@ public abstract class BaseReadFluxReactiveController<I extends BaseServiceReques
      * @param serviceRequest body from the consumer
      * @return a list of resources from the back end service
      */
-    @ApiOperation(value = "Reactive Read Poly", notes = "Gets a collection of resources", response = ResponseEntity.class)
+    @Operation(summary = "Reactive Read Poly", description = "Gets a collection of resources")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Ok"),
-            @ApiResponse(code = 204, message = "No Content"),
-            @ApiResponse(code = 400, message = "Bad Request"),
-            @ApiResponse(code = 401, message = "Unauthorized"),
-            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(responseCode = "200", description = "Ok"),
+            @ApiResponse(responseCode = "204", description = "No Content"),
+            @ApiResponse(responseCode = "400", description = "Bad Request"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
     })
     @PostMapping(MULTIPLE_RESULTS)
     public ResponseEntity<Flux<O>> read(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest) {

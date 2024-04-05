@@ -95,7 +95,8 @@ public abstract class BaseKafkaPropertiesConfiguration<C extends BaseKafkaProper
      */
     @Override
     public Map<String, Object> buildConsumerProperties() {
-        return this.getConsumer().buildProperties();
+        //TODO: look into line below.
+        return this.getConsumer().buildProperties(null);
     }
 
 

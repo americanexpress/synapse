@@ -14,9 +14,9 @@
 package io.americanexpress.synapse.function.reactive.router;
 
 import io.americanexpress.synapse.function.reactive.handler.BaseCreateMonoHandler;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.server.RouterFunction;
@@ -43,13 +43,12 @@ public abstract class BaseCreateMonoRouter<S extends BaseCreateMonoHandler> exte
      * @param handler body from the consumer
      * @return a single resource from the back end service
      */
-    @ApiOperation(value = "Reactive Create Mono", notes = "Create one resource")
+    @Operation(description = "Reactive Create Mono", summary = "Create one resource")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Ok"),
-            @ApiResponse(code = 204, message = "No Content"),
-            @ApiResponse(code = 400, message = "Bad Request"),
-            @ApiResponse(code = 401, message = "Unauthorized"),
-            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(responseCode = "201", description = "Created"),
+            @ApiResponse(responseCode = "400", description = "Bad Request"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
     })
     @Bean
     public RouterFunction<ServerResponse> createRoute(S handler) {

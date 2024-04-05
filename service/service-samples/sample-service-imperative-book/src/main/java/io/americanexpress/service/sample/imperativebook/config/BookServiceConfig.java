@@ -13,7 +13,6 @@
  */
 package io.americanexpress.service.sample.imperativebook.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.americanexpress.synapse.service.imperative.config.BaseImperativeServiceConfig;
 
 /**
@@ -23,12 +22,4 @@ import io.americanexpress.synapse.service.imperative.config.BaseImperativeServic
  */
 public class BookServiceConfig extends BaseImperativeServiceConfig {
 
-    /**
-     * Constructor taking in objectMapper & metricInterceptor.
-     *
-     * @param defaultObjectMapper the default object mapper
-     */
-    public BookServiceConfig(ObjectMapper defaultObjectMapper) {
-        super(defaultObjectMapper);
-    }
 }

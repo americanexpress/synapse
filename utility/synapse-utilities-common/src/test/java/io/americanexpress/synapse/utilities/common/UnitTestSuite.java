@@ -13,11 +13,10 @@
  */
 package io.americanexpress.synapse.utilities.common;
 
-import org.junit.platform.runner.JUnitPlatform;
 import org.junit.platform.suite.api.SelectPackages;
-import org.junit.runner.RunWith;
+import org.junit.platform.suite.api.Suite;
 
-@RunWith(JUnitPlatform.class)
+@Suite
 @SelectPackages({"com.americanexpress.synapse.utilities.common"})
 public class UnitTestSuite {
 

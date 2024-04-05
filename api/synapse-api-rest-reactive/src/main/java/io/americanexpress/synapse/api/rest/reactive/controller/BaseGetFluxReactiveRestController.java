@@ -15,50 +15,46 @@ package io.americanexpress.synapse.api.rest.reactive.controller;
 
 import io.americanexpress.synapse.service.reactive.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.reactive.model.BaseServiceResponse;
-import io.americanexpress.synapse.service.reactive.service.BaseGetFluxReactiveService;
-import io.americanexpress.synapse.service.reactive.service.BaseGetMonoReactiveService;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.americanexpress.synapse.service.reactive.service.BaseService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import org.reactivestreams.Publisher;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
-import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 /**
  * {@code BaseGetFluxReactiveRestController} is base class for read mono controller.
  * This controller handles GET method requests, but specifically for read purposes.
  *  This controller returns a single object.
  * @param <O> an object extending the {@link BaseServiceResponse}
- * @param <S> an object extending the {@link BaseGetMonoReactiveService}
+ * @param <S> an object extending the {@link BaseService}
  * @author Francois Gutt
  */
 public class BaseGetFluxReactiveRestController<
             I extends BaseServiceRequest,
-            O extends BaseServiceResponse,
-            S extends BaseGetFluxReactiveService<I,O>
-        >
-        extends BaseController<S> {
+            O extends Publisher<? extends BaseServiceResponse>,
+            S extends BaseService<I, O>
+        > extends BaseController<I, O, S> {
 
     /**
      * Get a list of multiple resources from the back end service.
      * @param headers the headers
      * @return response
      */
-    @ApiOperation(value = "Reactive get flux", notes = "Gets all resources reactively")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Ok"),
-            @ApiResponse(code = 204, message = "No Content"),
-            @ApiResponse(code = 206, message = "Partial Content"),
-            @ApiResponse(code = 400, message = "Bad Request"),
-            @ApiResponse(code = 401, message = "Unauthorized"),
-            @ApiResponse(code = 403, message = "Forbidden"),
-    })
+    @Operation(description = "Reactive get flux", summary = "Gets all resources reactively",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Ok"),
+                    @ApiResponse(responseCode = "204", description = "No Content"),
+                    @ApiResponse(responseCode = "206", description = "Partial Content"),
+                    @ApiResponse(responseCode = "400", description = "Bad Request"),
+                    @ApiResponse(responseCode = "401", description = "Unauthorized"),
+                    @ApiResponse(responseCode = "403", description = "Forbidden"),
+            })
     @GetMapping()
-    public Flux<O> read(@RequestHeader HttpHeaders headers, I serviceRequest) {
-        logger.entry();
-        final var serviceResponse = service.read(serviceRequest);
-        logger.exit();
-        return serviceResponse;
+    public Mono<ResponseEntity<O>> read(@RequestHeader HttpHeaders headers, I serviceRequest) {
+        return execute(headers, serviceRequest);
     }
 }

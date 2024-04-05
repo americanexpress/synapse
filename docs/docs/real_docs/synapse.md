@@ -123,7 +123,7 @@ The following listing shows the pom.xml file that is created when you choose Mav
     <parent>
         <groupId>com.example</groupId>
         <artifactId>service</artifactId>
-        <version>0.3.32-SNAPSHOT</version>
+        <version>0.4.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>

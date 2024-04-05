@@ -17,7 +17,7 @@
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
         <artifactId>service-samples</artifactId>
-        <version>0.3.32-SNAPSHOT</version>
+        <version>0.4.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -44,11 +44,6 @@
         <!--            <groupId>io.americanexpress.synapse</groupId>-->
         <!--            <artifactId>synapse-service-rest</artifactId>-->
         <!--        </dependency>-->
-        <dependency>
-            <groupId>org.springframework.experimental</groupId>
-            <artifactId>spring-aot</artifactId>
-            <scope>provided</scope>
-        </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-function-web</artifactId>
@@ -84,25 +79,11 @@
                         </env>
                     </image>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.experimental</groupId>
-                <artifactId>spring-aot-maven-plugin</artifactId>
-                <configuration>
-                    <removeSpelSupport>true</removeSpelSupport>
-                    <removeXmlSupport>true</removeXmlSupport>
-                </configuration>
                 <executions>
                     <execution>
-                        <id>test-generate</id>
+                        <id>process-aot</id>
                         <goals>
-                            <goal>test-generate</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>generate</id>
-                        <goals>
-                            <goal>generate</goal>
+                            <goal>process-aot</goal>
                         </goals>
                     </execution>
                 </executions>

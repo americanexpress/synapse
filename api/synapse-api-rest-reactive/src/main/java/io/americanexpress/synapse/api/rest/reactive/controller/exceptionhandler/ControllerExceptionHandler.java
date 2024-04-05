@@ -15,10 +15,10 @@ package io.americanexpress.synapse.api.rest.reactive.controller.exceptionhandler
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.americanexpress.synapse.api.rest.reactive.model.ErrorResponse;
 import io.americanexpress.synapse.framework.exception.ApplicationClientException;
 import io.americanexpress.synapse.framework.exception.ApplicationServerException;
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
-import io.americanexpress.synapse.service.reactive.model.ErrorResponse;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
@@ -30,7 +30,6 @@ import org.springframework.web.bind.support.WebExchangeBindException;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.ServerWebInputException;
 import org.springframework.web.server.WebExceptionHandler;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
@@ -70,7 +69,7 @@ public class ControllerExceptionHandler implements WebExceptionHandler {
             exchange.getResponse().setStatusCode(HttpStatus.BAD_REQUEST);
             errorResponse = new ErrorResponse(ErrorCode.GENERIC_4XX_ERROR, serverWebInputException.getMessage(), throwable.getMessage(), serverWebInputException.getLocalizedMessage());
         } else if (throwable instanceof ApplicationClientException applicationClientException) {
-            exchange.getResponse().setStatusCode(applicationClientException.getErrorCode().getHttpStatus());
+            exchange.getResponse().setRawStatusCode(applicationClientException.getErrorCode().getHttpStatus().value());
             errorResponse = new ErrorResponse(applicationClientException.getErrorCode(), applicationClientException.getErrorCode().getMessage(),
                     throwable.getMessage(), applicationClientException.getDeveloperMessage());
         } else if (throwable instanceof ApplicationServerException) {
@@ -96,9 +95,9 @@ public class ControllerExceptionHandler implements WebExceptionHandler {
             throw new ApplicationServerException(exception);
         }
 
-        exchange.getResponse().setStatusCode(errorResponse.getCode().getHttpStatus());
+        exchange.getResponse().setRawStatusCode(errorResponse.getCode().getHttpStatus().value());
         exchange.getResponse().getHeaders().add("Content-Type", "application/json");
-        return exchange.getResponse().writeWith(Flux.just(buffer));
+        return exchange.getResponse().writeWith(Mono.just(buffer));
     }
 
     /**

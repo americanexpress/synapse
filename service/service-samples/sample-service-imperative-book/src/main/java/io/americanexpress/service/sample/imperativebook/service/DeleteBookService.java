@@ -14,7 +14,8 @@
 package io.americanexpress.service.sample.imperativebook.service;
 
 import io.americanexpress.service.sample.imperativebook.model.DeleteBookServiceRequest;
-import io.americanexpress.synapse.service.imperative.service.BaseDeleteImperativeService;
+import io.americanexpress.service.sample.imperativebook.model.DeleteBookServiceResponse;
+import io.americanexpress.synapse.service.imperative.service.BaseService;
 import org.springframework.stereotype.Component;
 
 /**
@@ -23,8 +24,9 @@ import org.springframework.stereotype.Component;
  * @author Francois Gutt
  */
 @Component
-public class DeleteBookService extends BaseDeleteImperativeService<
-            DeleteBookServiceRequest
+public class DeleteBookService extends BaseService<
+            DeleteBookServiceRequest,
+            DeleteBookServiceResponse
         > {
 
     /**
@@ -33,7 +35,7 @@ public class DeleteBookService extends BaseDeleteImperativeService<
      * @param serviceRequest the service request
      */
     @Override
-    protected void executeDelete(DeleteBookServiceRequest serviceRequest) {
-
+    protected DeleteBookServiceResponse doExecute(DeleteBookServiceRequest serviceRequest) {
+        return new DeleteBookServiceResponse();
     }
 }

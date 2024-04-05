@@ -13,8 +13,7 @@
  */
 package io.americanexpress.synapse.service.imperative.model;
 
-import io.swagger.annotations.ApiModelProperty;
-
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 
 /**
@@ -43,7 +42,7 @@ public class ServiceRouting {
      *
      * @return the client identifier.
      */
-    @ApiModelProperty(value = "Unique client id assigned to the consumer")
+    @Schema(description = "Unique client id assigned to the consumer")
     public String getClientId() {
         return clientId;
     }

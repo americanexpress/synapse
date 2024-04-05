@@ -13,6 +13,9 @@
  */
 package io.americanexpress.synapse.service.reactive.service;
 
+import io.americanexpress.synapse.service.reactive.model.BaseServiceRequest;
+import io.americanexpress.synapse.service.reactive.model.BaseServiceResponse;
+import org.reactivestreams.Publisher;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 
@@ -21,11 +24,27 @@ import org.slf4j.ext.XLoggerFactory;
  *
  * @author Francois Gutt
  */
-public abstract class BaseService {
+public abstract class BaseService<
+                  I extends BaseServiceRequest,
+                  O extends Publisher<? extends BaseServiceResponse>> {
 
     /**
      * Logger for the base service.
      */
     protected final XLogger logger = XLoggerFactory.getXLogger(getClass());
 
+    /**
+     * Execute service logic
+     *
+     * @param request received from the controller
+     * @return response to the controller
+     */
+    public O execute(I request) {
+        logger.entry(request);
+        final var response = doExecute(request);
+        logger.exit();
+        return response;
+    }
+
+    protected abstract O doExecute(I request);
 }

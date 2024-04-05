@@ -33,7 +33,7 @@
         <Logger name="org.springframework.core.log" level="OFF"/>
         <Logger name="org.springframework.core.io.support.PropertiesLoaderSupport" level="OFF"/>
         <Logger name="springfox.documentation" level="OFF"/>
-        <Logger name="net.sf.ehcache" level="OFF"/>
+        <Logger name="org.ehcache" level="OFF"/>
         <Logger name="org.apache" level="OFF"/>
         <Logger name="org.apache.logging.log4j.core.appender.RollingRandomAccessFileAppender" level="OFF"/>
         <Logger name="org.apache.http.impl.conn" level="OFF"/>

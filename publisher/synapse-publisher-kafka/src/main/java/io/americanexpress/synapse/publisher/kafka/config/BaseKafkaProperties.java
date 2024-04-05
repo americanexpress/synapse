@@ -105,8 +105,9 @@ public abstract class BaseKafkaProperties<T extends BaseKafkaProperties.BaseKafk
 	public Map<String, Object> buildProducerProperties() {
 		Map<String, Object> properties = new HashMap<>();
 		properties.put("security.protocol", SecurityProtocol.SSL.name);
+		//TODO: look into two lines below.
 		properties.putAll(this.getSsl().buildProperties());
-		properties.putAll(this.getProducer().buildProperties());
+		properties.putAll(this.getProducer().buildProperties(null));
 		return properties;
 	}
 

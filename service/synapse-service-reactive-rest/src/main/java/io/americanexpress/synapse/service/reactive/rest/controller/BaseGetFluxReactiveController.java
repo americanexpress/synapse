@@ -15,9 +15,9 @@ package io.americanexpress.synapse.service.reactive.rest.controller;
 
 import io.americanexpress.synapse.service.reactive.rest.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.reactive.rest.service.BaseGetFluxReactiveService;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -38,13 +38,13 @@ public abstract class BaseGetFluxReactiveController<O extends BaseServiceRespons
      * @param headers the headers
      * @return response
      */
-    @ApiOperation(value = "Reactive get flux", notes = "Gets all resources reactively")
+    @Operation(summary = "Reactive get flux", description = "Gets all resources reactively")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Ok"),
-            @ApiResponse(code = 204, message = "No Content"),
-            @ApiResponse(code = 400, message = "Bad Request"),
-            @ApiResponse(code = 401, message = "Unauthorized"),
-            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(responseCode = "200", description = "Ok"),
+            @ApiResponse(responseCode = "204", description = "No Content"),
+            @ApiResponse(responseCode = "400", description = "Bad Request"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
     })
     @GetMapping()
     public Flux<O> read(@RequestHeader HttpHeaders headers) {

@@ -3,7 +3,7 @@ package io.americanexpress.synapse.api.rest.imperative.controller;
 import io.americanexpress.synapse.api.rest.imperative.controller.helpers.MonoResponseEntityCreator;
 import io.americanexpress.synapse.service.imperative.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.imperative.model.BaseServiceResponse;
-import io.americanexpress.synapse.service.imperative.service.BaseReadMonoImperativeService;
+import io.americanexpress.synapse.service.imperative.service.BaseService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
-import jakarta.validation.Valid;
 
 /**
  * {@code BaseReadMonoController} class specifies the prototypes for listening for requests from the consumer
@@ -21,13 +20,13 @@ import jakarta.validation.Valid;
  *
  * @param <I> an object extending the {@link BaseServiceRequest}
  * @param <O> an object extending the {@link BaseServiceResponse}
- * @param <S> an object extending the {@link BaseReadMonoImperativeService}
+ * @param <S> an object extending the {@link BaseService}
  * @author Gabriel Jimenez
  */
 public class BaseReadMonoImperativeRestController<
             I extends BaseServiceRequest,
             O extends BaseServiceResponse,
-            S extends BaseReadMonoImperativeService<I, O>
+            S extends BaseService<I, O>
         > extends BaseController<S> {
 
     /**
@@ -51,10 +50,10 @@ public class BaseReadMonoImperativeRestController<
             @ApiResponse(responseCode = "403", description = "Forbidden"),
     })
     @PostMapping(INQUIRY_RESULTS)
-    public ResponseEntity<O> read(@RequestHeader HttpHeaders headers, @Valid @RequestBody I serviceRequest) {
+    public ResponseEntity<O> read(@RequestHeader HttpHeaders headers, @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
 
-        final O serviceResponse = service.read(serviceRequest);
+        final O serviceResponse = service.execute(serviceRequest);
         ResponseEntity<O> responseEntity = MonoResponseEntityCreator.create(serviceResponse);
 
         logger.exit(responseEntity);

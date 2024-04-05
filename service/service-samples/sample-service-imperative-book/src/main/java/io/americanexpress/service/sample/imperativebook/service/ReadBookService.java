@@ -16,7 +16,7 @@ package io.americanexpress.service.sample.imperativebook.service;
 import io.americanexpress.service.sample.imperativebook.model.ReadBookServiceRequest;
 import io.americanexpress.service.sample.imperativebook.model.ReadBookServiceResponse;
 import io.americanexpress.service.sample.imperativebook.service.helper.ReadBookServiceResponseCreator;
-import io.americanexpress.synapse.service.imperative.service.BaseReadMonoImperativeService;
+import io.americanexpress.synapse.service.imperative.service.BaseService;
 import org.springframework.stereotype.Component;
 
 /**
@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
  * @author Francois Gutt
  */
 @Component
-public class ReadBookService extends BaseReadMonoImperativeService<
+public class ReadBookService extends BaseService<
             ReadBookServiceRequest,
             ReadBookServiceResponse
         > {
@@ -51,7 +51,7 @@ public class ReadBookService extends BaseReadMonoImperativeService<
      * @return a read mono response
      */
     @Override
-    protected ReadBookServiceResponse executeRead(ReadBookServiceRequest request) {
+    protected ReadBookServiceResponse doExecute(ReadBookServiceRequest request) {
         return readBookServiceResponseCreator.create(request);
     }
 }

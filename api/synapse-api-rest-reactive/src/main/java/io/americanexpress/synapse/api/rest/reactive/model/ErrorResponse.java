@@ -11,14 +11,13 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.synapse.service.reactive.model;
+package io.americanexpress.synapse.api.rest.reactive.model;
 
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 
 /**
  * {@code ErrorResponse} class is the response model for 4XX and 5XX series errors.
  *
- * @author Francois Gutt
  */
 public class ErrorResponse {
 
@@ -43,7 +42,7 @@ public class ErrorResponse {
     private String developerMessage;
 
     /**
-     * Creates a new instance of ErrorResponse with given values.
+     * Argument constructor creates a new instance of ErrorResponse with given values.
      *
      * @param code             error code
      * @param message          friendly header message that gives a brief overview of the error
