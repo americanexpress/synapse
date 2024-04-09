@@ -12,9 +12,15 @@
  * the License.
  */
 package io.americanexpress.synapse.framework.test.model;
+
 import com.openpojo.reflection.PojoClass;
 import com.openpojo.reflection.PojoClassFilter;
 import com.openpojo.reflection.impl.PojoClassFactory;
+import io.americanexpress.synapse.framework.exception.ApplicationServerException;
+import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.Warning;
+import org.junit.jupiter.api.Test;
+import pl.pojo.tester.api.assertion.Assertions;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -24,32 +30,34 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import nl.jqno.equalsverifier.EqualsVerifier;
-import nl.jqno.equalsverifier.Warning;
-import org.junit.jupiter.api.Test;
-import pl.pojo.tester.api.assertion.Assertions;
-import pl.pojo.tester.internal.assertion.AbstractAssertionError;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 /**
  * {@code BaseModelsTest} Used to test model and enum classes.
  *
  * @author Luis Diaz, Angel Varela
  */
 public class BaseModelsTest {
+
     /**
      * The set of excluded suffixes.
      */
     private static final Set<String> EXCLUDED_SUFFIXES = new HashSet<>(Arrays.asList("Builder", "Test", "IT"));
+
     /**
      * The set of excluded class names.
      */
-    private final Set<String> excludedClassNames = new HashSet<>();
+    private final Set<String> excludedClassNames = new HashSet<>(Arrays.asList(
+            BaseModelsTest.class.getName(),
+            ExcludeClassAndTestClass.class.getName()
+    ));
+
     /**
      * The package name.
      */
     private String packageName = this.getClass().getPackageName();
+
     /**
      * The list of suppressed warnings.
      */
@@ -59,6 +67,7 @@ public class BaseModelsTest {
             Warning.NONFINAL_FIELDS,
             Warning.STRICT_INHERITANCE
     ));
+
     /**
      * Validates all models in the specified package, except those explicitly excluded, using OpenPojo and EqualsVerifier.
      * It first tests enums for custom method integrity, then tests other POJOs for standard conventions and correct equals and hashCode methods.
@@ -72,6 +81,7 @@ public class BaseModelsTest {
         //testing non enum classes
         partitionedClasses.get(false).forEach(this::validatePojoClass);
     }
+
     /**
      * Adds additional warnings to suppress in EqualsVerifier tests.
      * This method allows customization of the EqualsVerifier behavior by adding more warnings to ignore during tests.
@@ -81,6 +91,7 @@ public class BaseModelsTest {
     protected void addWarningsToSuppress(Warning... additionalWarnings) {
         Collections.addAll(warningsToSuppress, additionalWarnings);
     }
+
     /**
      * Excludes specific classes by their names from being validated.
      * This method allows specifying class names that should not be included in the validation process.
@@ -88,10 +99,9 @@ public class BaseModelsTest {
      * @param classes Varargs parameter containing the names of the classes to exclude from validation.
      */
     protected void excludeClasses(Class<?>... classes) {
-        excludedClassNames.add(BaseModelsTest.class.getName());
-        excludedClassNames.add(ExcludeClassAndTestClass.class.getName());
         Arrays.stream(classes).forEach(clazz -> excludedClassNames.add(clazz.getName()));
     }
+
     /**
      * Validates a single POJO class for compliance with POJO conventions and correct implementation of equals and hashCode methods.
      * It uses the OpenPojo and EqualsVerifier libraries for validation.
@@ -101,25 +111,19 @@ public class BaseModelsTest {
     private void validatePojoClass(PojoClass pojoClass) {
         var pojoClazz = pojoClass.getClazz();
         if (!Modifier.isAbstract(pojoClazz.getModifiers())) {
-            try {
-                Assertions.assertPojoMethodsFor(pojoClazz).areWellImplemented();
-                EqualsVerifier.simple().forClass(pojoClazz)
-                        .suppress(warningsToSuppress.get(0))
-                        .suppress(warningsToSuppress.get(3))
-                        .verify();
-                Arrays.stream(pojoClazz.getConstructors()).map(constructor ->
-                    assertDoesNotThrow(() -> constructor.newInstance(new Object[constructor.getParameterCount()])
-                ));
-                assertDoesNotThrow(() -> pojoClazz.getConstructors());
-            } catch (AbstractAssertionError assertionError) {
-                if (assertionError.getMessage().contains("hashCode")) {
-                    assertTrue(pojoClazz.hashCode() != 0);
-                } else {
-                    throw assertionError;
-                }
-            }
+            Assertions.assertPojoMethodsFor(pojoClazz).testing(
+                    pl.pojo.tester.api.assertion.Method.GETTER,
+                    pl.pojo.tester.api.assertion.Method.SETTER,
+                    pl.pojo.tester.api.assertion.Method.TO_STRING,
+                    pl.pojo.tester.api.assertion.Method.CONSTRUCTOR)
+                    .areWellImplemented();
+            EqualsVerifier.forClass(pojoClazz)
+                    .suppress(warningsToSuppress.toArray(new Warning[0]))
+                    .verify();
+            assertTrue(pojoClazz.hashCode() != 0 );
         }
     }
+
     /**
      * Tests an enum class for custom method integrity by invoking all its declared methods (excluding synthetic and standard enum methods).
      * Ensures that no method invocation returns null and handles any reflective operation exceptions.
@@ -136,6 +140,7 @@ public class BaseModelsTest {
                         && (method.getName().startsWith("get") || method.getName().startsWith("set")))
                 .forEach(method -> testEnumMethod(enumConstants, method));
     }
+
     /**
      * Tests a specific method of an enum class by invoking it on all enum constants and verifying the method's result.
      * Asserts that the method invocation does not return null and handles any exceptions during the reflective call.
@@ -148,11 +153,12 @@ public class BaseModelsTest {
             try {
                 var result = method.invoke(enumConstant);
                 assertNotNull(result, "Method " + method.getName() + " returned null for " + enumConstant);
-            } catch (Exception e) {
-                throw new RuntimeException("Error testing enum method " + method.getName() + " for enum constant " + enumConstant, e);
+            } catch (Exception exception) {
+                throw new ApplicationServerException(exception);
             }
         });
     }
+
     /**
      * Excludes classes and test classes from being validated.
      * This class is used as a filter for OpenPojo to exclude specific classes from being validated.

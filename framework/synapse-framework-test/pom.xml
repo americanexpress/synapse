@@ -30,7 +30,10 @@
             <groupId>io.americanexpress.synapse</groupId>
             <artifactId>synapse-framework-logging</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>io.americanexpress.synapse</groupId>
+            <artifactId>synapse-framework-exception</artifactId>
+        </dependency>
         <!--Third-Party-->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
