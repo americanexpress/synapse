@@ -13,6 +13,7 @@
  */
 package io.americanexpress.synapse.utilities.common.io;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.americanexpress.synapse.utilities.common.config.UtilitiesCommonConfig;
 import io.americanexpress.synapse.utilities.common.serialization.model.Phone;
 import com.fasterxml.jackson.core.JsonParseException;
@@ -42,9 +43,9 @@ class ClasspathObjectFactoryTest {
 
     @Test
     void classpathObjectFactory_constructor() throws Exception {
-        Constructor<ClasspathObjectFactory> constructor = ClasspathObjectFactory.class.getDeclaredConstructor();
+        Constructor<ClasspathObjectFactory> constructor = ClasspathObjectFactory.class.getDeclaredConstructor(ObjectMapper.class);
         constructor.setAccessible(true);
-        constructor.newInstance();
+        constructor.newInstance(new UtilitiesCommonConfig().camelCaseObjectMapper());
         constructor.setAccessible(false);
     }
 
