@@ -22,5 +22,4 @@ import org.springframework.context.annotation.Import;
 @Configuration
 @Import({BookDataConfig.class})
 public class BookDataTestConfig {
-
 }
