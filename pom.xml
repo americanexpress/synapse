@@ -449,11 +449,11 @@
                 <artifactId>sample-data-mssql-reactive-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
-                <dependency>
+            <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>sample-data-mssql-book</artifactId>
                 <version>${project.version}</version>
-            </dependency>        
+            </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>sample-data-mysql-book</artifactId>
