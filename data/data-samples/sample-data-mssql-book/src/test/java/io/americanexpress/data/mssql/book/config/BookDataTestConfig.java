@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.data.book.config;
+package io.americanexpress.data.mssql.book.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Import;
  * {@code BookDataTestConfig} class contains configurations for tests.
  */
 @Configuration
-@Import({BookDataConfig.class})
+@Import(BookDataConfig.class)
 public class BookDataTestConfig {
 
 }

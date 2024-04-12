@@ -11,16 +11,12 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.data.book.config;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
+SET
+SCHEMA_SEARCH_PATH TO synapse;
 
-/**
- * {@code BookDataTestConfig} class contains configurations for tests.
- */
-@Configuration
-@Import({BookDataConfig.class})
-public class BookDataTestConfig {
+INSERT INTO book (title, author, created_date_time, last_modified_date_time, created_by, last_modified_by, version)
+VALUES ('Synapse', 'Gabriel', GETDATE(), GETDATE(), 'John-Appleseed@email.com', 'John-Appleseed@email.com', 0);
 
-}
+INSERT INTO book (title, author, created_date_time, last_modified_date_time, created_by, last_modified_by, version)
+VALUES ('Revenge of Synapse', 'John', GETDATE(), GETDATE(), 'John-Appleseed@email.com', 'John-Appleseed@email.com', 0);
