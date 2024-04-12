@@ -38,14 +38,20 @@ class BookRepositoryIT {
     @Autowired
     private BookRepository bookRepository;
 
+    /**
+     * Find All test.
+     */
     @Test
     void findAll_givenBooksInDatabase_expectedBooksReturned() {
-        List<BookEntity> bookEntityFlux = bookRepository.findAll();
-        assertEquals(bookEntityFlux.size(), 2);
+        List<BookEntity> bookEntityList = bookRepository.findAll();
+        assertEquals(bookEntityList.size(), 2);
     }
 
+    /**
+     * Find by title test.
+     */
     @Test
-    void findAllBookByTitle_givenTitleInDatabase_expectedBookByTitleReturned() {
+    void findBookByTitle_givenTitleInDatabase_expectedBookByTitleReturned() {
         BookEntity bookRepositoryByTitle = bookRepository.findByTitle("Revenge of Synapse");
         assertNotNull(bookRepositoryByTitle);
     }
