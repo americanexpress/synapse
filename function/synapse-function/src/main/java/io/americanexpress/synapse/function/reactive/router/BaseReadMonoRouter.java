@@ -37,8 +37,6 @@ public abstract class BaseReadMonoRouter<S extends BaseReadMonoHandler> extends 
 
     public static final String INQUIRY_RESULTS = "/inquiry_results";
 
-    public static String endpoint = "not_a_valid_endpoint";
-
     /**
      * Get a single resource from the back end service.
      *
@@ -59,12 +57,8 @@ public abstract class BaseReadMonoRouter<S extends BaseReadMonoHandler> extends 
         logger.entry(handler);
 
         return RouterFunctions
-                .route(POST(getEndpoint()).and(accept(MediaType.APPLICATION_JSON)), handler::read);
+                .route(POST(getEndpoint() + INQUIRY_RESULTS).and(accept(MediaType.APPLICATION_JSON)), handler::read);
     }
 
-    private String getEndpoint() {
-        return endpoint + INQUIRY_RESULTS;
-    }
-
-    protected abstract void setEndpoint(String endpoint);
+    public abstract String getEndpoint();
 }

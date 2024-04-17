@@ -20,12 +20,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class BaseRouter<S extends BaseHandler> {
 
+    protected final XLogger logger = XLoggerFactory.getXLogger(this.getClass());
+
     /**
      * Service that will be called to get a single resource or multiple resources.
      */
     @Autowired
     protected S service;
-
-    protected final XLogger logger = XLoggerFactory.getXLogger(this.getClass());
-
 }

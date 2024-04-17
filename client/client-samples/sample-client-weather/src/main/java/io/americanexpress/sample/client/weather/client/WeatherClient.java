@@ -29,10 +29,9 @@ public class WeatherClient extends BaseRestClient<WeatherRequest, WeatherRespons
      * Argument constructor creates a new instance of BaseRestClient with given values.
      *
      * @param httpHeadersFactory HTTP headers factory used to produce the custom HTTP headers required to consume the back end service
-     * @param httpMethod         HTTP method of the back end service
      */
-    protected WeatherClient(WeatherClientHeadersFactory httpHeadersFactory, HttpMethod httpMethod) {
-        super(httpHeadersFactory, httpMethod);
+    protected WeatherClient(WeatherClientHeadersFactory httpHeadersFactory) {
+        super(httpHeadersFactory, HttpMethod.GET);
     }
 
 }

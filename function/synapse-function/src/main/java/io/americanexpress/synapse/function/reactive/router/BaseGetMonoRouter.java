@@ -35,8 +35,6 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
  */
 public abstract class BaseGetMonoRouter<S extends BaseGetMonoHandler> extends BaseRouter<S> {
 
-    public static String endpoint = "not_a_valid_endpoint";
-
     /**
      * Get a single resource from the back end service.
      *
@@ -57,9 +55,5 @@ public abstract class BaseGetMonoRouter<S extends BaseGetMonoHandler> extends Ba
                 .route(GET(getEndpoint()).and(accept(MediaType.APPLICATION_JSON)), handler::get);
     }
 
-    private String getEndpoint() {
-        return endpoint;
-    }
-
-    protected abstract void setEndpoint(String endpoint);
+    public abstract String getEndpoint();
 }

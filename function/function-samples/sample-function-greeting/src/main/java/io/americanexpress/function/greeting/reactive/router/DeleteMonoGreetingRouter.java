@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class DeleteMonoGreetingRouter extends BaseDeleteMonoRouter<DeleteMonoGreetingHandler> {
 
     @Override
-    protected void setEndpoint(String endpoint) {
-        BaseDeleteMonoRouter.endpoint = "/hello";
+    public String getEndpoint() {
+        return "/hello";
     }
 }

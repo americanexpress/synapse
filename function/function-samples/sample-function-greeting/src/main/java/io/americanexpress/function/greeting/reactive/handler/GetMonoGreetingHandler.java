@@ -16,6 +16,6 @@ public class GetMonoGreetingHandler extends BaseGetMonoHandler {
     @Override
     protected Mono<ServerResponse> executeGet(ServerRequest request) {
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
-                .body(BodyInserters.fromValue(new Greeting("Hello, Spring!!")));
+                .body(BodyInserters.fromValue(new Greeting("Hello, Spring!")));
     }
 }

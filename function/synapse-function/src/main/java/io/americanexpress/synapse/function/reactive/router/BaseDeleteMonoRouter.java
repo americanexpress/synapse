@@ -23,6 +23,7 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
+import static org.springframework.web.reactive.function.server.RequestPredicates.DELETE;
 import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 
@@ -34,8 +35,6 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
  * @author Gabriel Jimenez
  */
 public abstract class BaseDeleteMonoRouter<S extends BaseDeleteMonoHandler> extends BaseRouter<S> {
-
-    public static String endpoint = "not_a_valid_endpoint";
 
     /**
      * Get a single resource from the back end service.
@@ -56,15 +55,11 @@ public abstract class BaseDeleteMonoRouter<S extends BaseDeleteMonoHandler> exte
         logger.entry(handler);
 
         RouterFunction<ServerResponse> routerResponse = RouterFunctions
-                .route(POST(getEndpoint()).and(accept(MediaType.APPLICATION_JSON)), handler::delete);
+                .route(DELETE(getEndpoint()).and(accept(MediaType.APPLICATION_JSON)), handler::delete);
 
         logger.exit();
         return routerResponse;
     }
 
-    private String getEndpoint() {
-        return endpoint;
-    }
-
-    protected abstract void setEndpoint(String endpoint);
+    public abstract String getEndpoint();
 }

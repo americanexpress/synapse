@@ -35,8 +35,6 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
  */
 public abstract class BaseUpdateMonoRouter<S extends BaseUpdateMonoHandler> extends BaseRouter<S> {
 
-    public static String endpoint = "not_a_valid_endpoint";
-
     /**
      * Update a single resource from the back end service.
      *
@@ -62,9 +60,5 @@ public abstract class BaseUpdateMonoRouter<S extends BaseUpdateMonoHandler> exte
         return routerResponse;
     }
 
-    private String getEndpoint() {
-        return endpoint;
-    }
-
-    protected abstract void setEndpoint(String endpoint);
+    public abstract String getEndpoint();
 }

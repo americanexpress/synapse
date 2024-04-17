@@ -1,9 +1,13 @@
 package io.americanexpress.function.greeting.rest;
 
+import io.americanexpress.function.greeting.reactive.Application;
+import io.americanexpress.function.greeting.reactive.handler.GetMonoGreetingHandler;
 import io.americanexpress.function.greeting.reactive.model.Greeting;
+import io.americanexpress.function.greeting.reactive.router.GetMonoGreetingRouter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -11,9 +15,10 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@EnableAutoConfiguration
 @ExtendWith(SpringExtension.class)
 //  We create a `@SpringBootTest`, starting an actual server on a `RANDOM_PORT`
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = { Application.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class GreetingRouterTest {
 
     // Spring Boot will create a `WebTestClient` for you,

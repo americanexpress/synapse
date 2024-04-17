@@ -35,9 +35,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
  */
 public abstract class BaseReadPolyRouter<S extends BaseReadPolyHandler> extends BaseRouter<S> {
 
-    public static final String INQUIRY_RESULTS = "/multiple_results";
-
-    public static String endpoint = "not_a_valid_endpoint";
+    public static final String MULTIPLE_RESULTS = "/multiple_results";
 
     /**
      * Get a single resource from the back end service.
@@ -57,12 +55,8 @@ public abstract class BaseReadPolyRouter<S extends BaseReadPolyHandler> extends 
     @Bean
     public RouterFunction<ServerResponse> routePoly(S handler) {
         return RouterFunctions
-                .route(GET(getEndpoint()).and(accept(MediaType.APPLICATION_JSON)), handler::read);
+                .route(GET(getEndpoint() + MULTIPLE_RESULTS).and(accept(MediaType.APPLICATION_JSON)), handler::read);
     }
 
-    private String getEndpoint() {
-        return endpoint;
-    }
-
-    protected abstract void setEndpoint(String endpoint);
+    public abstract String getEndpoint();
 }

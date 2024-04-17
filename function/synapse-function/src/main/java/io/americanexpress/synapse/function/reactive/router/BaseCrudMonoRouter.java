@@ -37,9 +37,6 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 @Configuration
 public abstract class BaseCrudMonoRouter<S extends BaseCrudMonoHandler> extends BaseRouter<S> {
 
-    private String endpoint = "books";
-
-
     /**
      * Get a single resource from the back end service.
      *
@@ -71,9 +68,5 @@ public abstract class BaseCrudMonoRouter<S extends BaseCrudMonoHandler> extends 
         return routerResponse;
     }
 
-    private String getEndpoint() {
-        return endpoint;
-    }
-
-    protected abstract void setEndpoint(String endpoint);
+    public abstract String getEndpoint();
 }

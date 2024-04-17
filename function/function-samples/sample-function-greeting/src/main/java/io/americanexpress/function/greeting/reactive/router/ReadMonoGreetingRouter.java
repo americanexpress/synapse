@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 public class ReadMonoGreetingRouter extends BaseReadMonoRouter<ReadMonoGreetingHandler> {
 
     @Override
-    protected void setEndpoint(String endpoint) {
-        BaseReadMonoRouter.endpoint = "/hello";
+    public String getEndpoint() {
+        return "/hello";
     }
 }
