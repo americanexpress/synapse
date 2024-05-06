@@ -61,13 +61,15 @@ public abstract class BaseHttpInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         logger.entry(request, response, handler);
-
-        // If any of the required HTTP headers are missing, this request is invalid
-        String httpHeaderValue;
-        for (String requiredHttpHeaderName : getRequiredHttpHeaderNames()) {
-            httpHeaderValue = request.getHeader(requiredHttpHeaderName);
-            if (httpHeaderValue == null) {
-                throw new ApplicationClientException("Request HTTP Header " + requiredHttpHeaderName + " is missing.", ErrorCode.MISSING_HTTP_HEADER_ERROR, requiredHttpHeaderName);
+        
+        if(!shouldNotFilter(request)){
+            // If any of the required HTTP headers are missing, this request is invalid
+            String httpHeaderValue;
+            for (String requiredHttpHeaderName : getRequiredHttpHeaderNames()) {
+                httpHeaderValue = request.getHeader(requiredHttpHeaderName);
+                if (httpHeaderValue == null) {
+                    throw new ApplicationClientException("Request HTTP Header " + requiredHttpHeaderName + " is missing.", ErrorCode.MISSING_HTTP_HEADER_ERROR, requiredHttpHeaderName);
+                }
             }
         }
 
@@ -85,5 +87,17 @@ public abstract class BaseHttpInterceptor implements HandlerInterceptor {
         // Note: it is possible that a service needs no request HTTP header validation
         // Should a service require request HTTP header validation, then override this method
         return new ArrayList<>();
+    }
+    
+    /**
+     * Subclasses can override this method to control what requests should not be filtered.
+     * for example override the method with the following to prevent
+     * health endpoint : return request.getRequestURI().equals("/health")
+     *
+     * @param request the incoming request
+     * @return true if url should not be filtered
+     */
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        return false;
     }
 }
