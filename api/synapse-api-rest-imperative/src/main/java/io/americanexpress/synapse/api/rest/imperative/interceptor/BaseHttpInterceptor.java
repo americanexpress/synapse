@@ -23,7 +23,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import static io.americanexpress.synapse.service.imperative.model.ServiceHeaderKey.CORRELATION_IDENTIFIER_KEY;
 import static io.americanexpress.synapse.service.imperative.model.ServiceHeaderKey.USE_CASE_NAME_KEY;
@@ -42,7 +41,14 @@ public abstract class BaseHttpInterceptor implements HandlerInterceptor {
     /**
      * Required HTTP header names.
      */
-    protected Collection<String> requiredHttpHeaderNames = new ArrayList<>(Arrays.asList(HttpHeaders.CONTENT_TYPE, CORRELATION_IDENTIFIER_KEY.getValue(), USE_CASE_NAME_KEY.getValue()));
+    protected List<String> requiredHttpHeaderNames = new ArrayList<>(Arrays.asList(HttpHeaders.CONTENT_TYPE, CORRELATION_IDENTIFIER_KEY.getValue(), USE_CASE_NAME_KEY.getValue()));
+
+    /**
+     * Should not filter URIs.
+     * Specifies list of paths that should not be filtered.
+     * This might include health and actuator endpoints.
+     */
+    protected List<String> urisExcludedFromFilter = new ArrayList<>();
 
     /**
      * Validate the required HTTP headers.
@@ -81,7 +87,7 @@ public abstract class BaseHttpInterceptor implements HandlerInterceptor {
     protected List<String> getRequiredHttpHeaderNames() {
         // Note: it is possible that a service needs no request HTTP header validation
         // Should a service require request HTTP header validation, then override this method
-        return new ArrayList<>();
+        return requiredHttpHeaderNames;
     }
 
     /**
@@ -93,6 +99,6 @@ public abstract class BaseHttpInterceptor implements HandlerInterceptor {
      * @return true if url should not be filtered
      */
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        return false;
+        return urisExcludedFromFilter.contains(request.getRequestURI());
     }
 }
