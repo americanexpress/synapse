@@ -36,10 +36,10 @@
             <groupId>io.americanexpress.synapse</groupId>
             <artifactId>synapse-framework-exception</artifactId>
         </dependency>
-        <dependency>
-            <groupId>io.americanexpress.synapse</groupId>
-            <artifactId>synapse-framework-api-docs</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.americanexpress.synapse</groupId>-->
+<!--            <artifactId>synapse-framework-api-docs</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>
             <artifactId>synapse-service-imperative</artifactId>

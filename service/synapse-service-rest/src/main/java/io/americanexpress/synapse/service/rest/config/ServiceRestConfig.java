@@ -14,7 +14,7 @@
 package io.americanexpress.synapse.service.rest.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.americanexpress.synapse.framework.api.docs.ApiDocsConfig;
+//import io.americanexpress.synapse.framework.api.docs.ApiDocsConfig;
 import io.americanexpress.synapse.framework.exception.config.ExceptionConfig;
 import io.americanexpress.synapse.service.rest.interceptor.MetricInterceptor;
 import io.americanexpress.synapse.utilities.common.config.UtilitiesCommonConfig;
@@ -39,7 +39,8 @@ import java.util.List;
  */
 @Configuration
 @ComponentScan(basePackages = "io.americanexpress.synapse.service.rest")
-@Import({ExceptionConfig.class, ApiDocsConfig.class, UtilitiesCommonConfig.class})
+//@Import({ExceptionConfig.class, ApiDocsConfig.class, UtilitiesCommonConfig.class})
+@Import({ExceptionConfig.class, UtilitiesCommonConfig.class})
 public class ServiceRestConfig implements WebMvcConfigurer {
 
     /**
