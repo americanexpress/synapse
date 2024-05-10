@@ -18,8 +18,8 @@ jobs:
           paths:
             - ~/.m2
           key: synapse-{{ checksum "pom.xml" }}
-      - run: mvn clean install -DskipTests -pl !service/service-samples/sample-service-rest-native-book
-      - run: mvn test -pl !service/service-samples/sample-service-rest-native-book
+      - run: mvn clean install -DskipTests
+      - run: mvn test
       - store_test_results: # We use this timing data to optimize the future runs
           path: target/surefire-reports
 
@@ -29,7 +29,7 @@ jobs:
       - image: cimg/openjdk:21.0
     steps:
       - checkout
-      - run: mvn test -pl !service/service-samples/sample-service-rest-native-book
+      - run: mvn test
       - store_test_results: # We use this timing data to optimize the future runs
           path: target/surefire-reports
 
