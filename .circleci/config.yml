@@ -13,7 +13,7 @@ jobs:
       - checkout
       - restore_cache:
           key: synapse-{{ checksum "pom.xml" }}
-      - run: mvn -B clean package -DskipTests -pl !service/service-samples/sample-service-rest-native-book
+      - run: mvn -B clean package -DskipTests
       - save_cache: # saves the project dependencies
           paths:
             - ~/.m2
@@ -40,7 +40,7 @@ jobs:
       - image: cimg/openjdk:21.0
     steps:
       - checkout
-      - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy -pl !service/service-samples/sample-service-rest-native-book
+      - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy
 
 
   # SNAPSHOT to RELEASE Deploy to Maven Central
@@ -57,7 +57,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "0a:8a:6d:3a:22:28:74:a8:9e:a6:72:5d:bc:2b:aa:fe"
-      - run: mvn --settings ".circleci/settings.xml" -B release:clean release:prepare release:perform -P release -DscmCommentPrefix="[skip,ci]" -pl !service/service-samples/sample-service-rest-native-book # uses maven-release-plugin and nexus-staging-maven-plugin
+      - run: mvn --settings ".circleci/settings.xml" -B release:clean release:prepare release:perform -P release -DscmCommentPrefix="[skip,ci]"  # uses maven-release-plugin and nexus-staging-maven-plugin
 
   # RELEASE Deploy to Maven Central
   release-maven-central-deploy-job:
@@ -65,7 +65,7 @@ jobs:
       - image: cimg/openjdk:21.0
     steps:
       - checkout
-      - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy -P release -e -X -pl !service/service-samples/sample-service-rest-native-book# uses maven-deploy-plugin
+      - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy -P release -e -X # uses maven-deploy-plugin
 
 #-------------------------------------------------------
 # Workflows that will schedule and execute jobs.
