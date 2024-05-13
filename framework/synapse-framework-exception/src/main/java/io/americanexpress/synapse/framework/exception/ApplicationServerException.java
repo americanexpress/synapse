@@ -16,6 +16,7 @@ package io.americanexpress.synapse.framework.exception;
 /**
  * The type Application server exception.
  */
+@Deprecated
 public class ApplicationServerException extends RuntimeException {
 
 	/**

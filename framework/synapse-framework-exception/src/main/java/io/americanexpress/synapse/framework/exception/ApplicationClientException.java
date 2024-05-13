@@ -18,6 +18,7 @@ import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 /**
  * The type Application client exception.
  */
+@Deprecated
 public class ApplicationClientException extends RuntimeException {
 
     /**
