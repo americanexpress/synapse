@@ -553,6 +553,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-logging</artifactId>
+                <version>${spring-boot-framework.version}</version>
                 <scope>provided</scope> <!-- Exclude Spring Logging in favor of Log4j2 -->
             </dependency>
 
