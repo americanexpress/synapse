@@ -18,6 +18,25 @@ package io.americanexpress.synapse.service.imperative.model;
  *
  * @author Francois Gutt
  */
-public interface BaseServiceRequest {
+public abstract class BaseServiceRequest {
 
+    private TransactionMetadata transactionMetadata;
+
+    private SessionMetadata sessionMetadata;
+
+    public TransactionMetadata getTransactionMetadata() {
+        return transactionMetadata;
+    }
+
+    public void setTransactionMetadata(TransactionMetadata transactionMetadata) {
+        this.transactionMetadata = transactionMetadata;
+    }
+
+    public SessionMetadata getSessionMetadata() {
+        return sessionMetadata;
+    }
+
+    public void setSessionMetadata(SessionMetadata sessionMetadata) {
+        this.sessionMetadata = sessionMetadata;
+    }
 }
