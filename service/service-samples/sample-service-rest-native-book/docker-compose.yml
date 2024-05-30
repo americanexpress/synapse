@@ -1,8 +1,0 @@
-version: '3.9'
-services:
-  rest-service:
-    image: sample-service-rest-book
-    ports:
-      - "8080:8080"
-
-
