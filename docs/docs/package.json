@@ -5,7 +5,6 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "prebuild": "rm -rf ./assets ./img ./client ./service ./framework ./data ./utility synapse.html 404.html index.html sitemap.xml .nojekyll",
     "build": "docusaurus build",
     "postbuild": "cp -R ./build/. .",
     "swizzle": "docusaurus swizzle",
