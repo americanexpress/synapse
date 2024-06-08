@@ -14,13 +14,17 @@
 package io.americanexpress.synapse.api.rest.imperative.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.americanexpress.synapse.api.rest.imperative.controller.filter.TransactionMetadata;
+import io.americanexpress.synapse.api.rest.imperative.controller.filter.TransactionMetadataHolder;
 import io.americanexpress.synapse.api.rest.imperative.interceptor.MetricInterceptor;
 //import io.americanexpress.synapse.framework.api.docs.ApiDocsConfig;
 import io.americanexpress.synapse.framework.exception.config.ExceptionConfig;
 import io.americanexpress.synapse.utilities.common.config.UtilitiesCommonConfig;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -64,5 +68,12 @@ public class BaseApiImperativeRestConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(interceptor).addPathPatterns("/**");
+    }
+
+
+    @Bean
+    @RequestScope
+    public TransactionMetadata transactionMetadata() {
+        return TransactionMetadataHolder.getTransactionMetadata();
     }
 }
