@@ -1,5 +1,7 @@
-package io.americanexpress.synapse.api.rest.imperative.controller.filter;
+package io.americanexpress.synapse.api.rest.imperative.controller.interceptor.helper;
 
+
+import io.americanexpress.synapse.api.rest.imperative.controller.interceptor.model.TransactionMetadata;
 
 /**
  * {@code TransactionMetadataHolder} object that holds the transaction metadata during the transaction lifecycle. The
@@ -11,7 +13,8 @@ package io.americanexpress.synapse.api.rest.imperative.controller.filter;
  */
 public class TransactionMetadataHolder {
 
-    private TransactionMetadataHolder() {}
+    private TransactionMetadataHolder() {
+    }
 
     private static final ThreadLocal<TransactionMetadata> transactionMetadataThreadLocal = new ThreadLocal<>();
 
