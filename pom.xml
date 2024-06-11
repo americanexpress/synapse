@@ -418,11 +418,11 @@
                 <artifactId>sample-service-rest-book</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <dependency>
+<!--            <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>sample-service-rest-native-book</artifactId>
                 <version>${project.version}</version>
-            </dependency>
+            </dependency>-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>sample-service-rest-cassandra-book</artifactId>
@@ -553,6 +553,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-logging</artifactId>
+                <version>${spring-boot-framework.version}</version>
                 <scope>provided</scope> <!-- Exclude Spring Logging in favor of Log4j2 -->
             </dependency>
 
@@ -1260,8 +1261,18 @@
                     <version>3.12.1</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>3.5.3</version>
+                </plugin>
+                <plugin>
                     <artifactId>maven-project-info-reports-plugin</artifactId>
                     <version>3.5.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot-framework.version}</version>
                 </plugin>
 
                 <!--Native Plugins-->
@@ -1426,11 +1437,6 @@
                                     </goals>
                                 </execution>
                             </executions>
-                        </plugin>
-                        <plugin>
-                            <groupId>org.springframework.boot</groupId>
-                            <artifactId>spring-boot-maven-plugin</artifactId>
-                            <version>${spring-boot-framework.version}</version>
                         </plugin>
                     </plugins>
                 </pluginManagement>
