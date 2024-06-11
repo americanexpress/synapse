@@ -1,6 +1,6 @@
 package io.americanexpress.synapse.framework.exception;
 
-public abstract class BaseException extends RuntimeException {
+public abstract class BaseApplicationException extends RuntimeException {
 
     /**
      * Default serial version UID.
@@ -22,12 +22,22 @@ public abstract class BaseException extends RuntimeException {
     }
 
     /**
-     * Argument constructor creates a new instance of ApplicationException with given values.
+     * Argument constructor creates a new instance of BaseApplicationException with given values.
+     * Use this constructor when checked exceptions are caught in order to pass the original exception.
+     *
+     * @param developerMessage message from the developer
+     */
+    public BaseApplicationException(String developerMessage) {
+        this.developerMessage = developerMessage;
+    }
+
+    /**
+     * Argument constructor creates a new instance of BaseApplicationException with given values.
      * Use this constructor when checked exceptions are caught in order to pass the original exception.
      *
      * @param cause of the original caught exception
      */
-    public BaseException(String developerMessage, Throwable cause) {
+    public BaseApplicationException(String developerMessage, Throwable cause) {
         super(cause);
         this.developerMessage = developerMessage;
     }

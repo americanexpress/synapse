@@ -12,23 +12,21 @@
     or implied. See the License for the specific language governing permissions and limitations under
     the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
-        <artifactId>synapse</artifactId>
+        <artifactId>api</artifactId>
         <version>0.4.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>api</artifactId>
+    <artifactId>api-samples</artifactId>
     <packaging>pom</packaging>
 
     <!--Modules-->
     <modules>
-        <!-- Base api Synapse dependencies-->
-        <module>api-samples</module>
-        <module>synapse-api-rest-imperative</module>
-        <module>synapse-api-rest-reactive</module>
+        <module>sample-api-exception</module>
     </modules>
 </project>

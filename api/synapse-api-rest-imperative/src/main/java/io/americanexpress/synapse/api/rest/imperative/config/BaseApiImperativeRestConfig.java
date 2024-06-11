@@ -15,7 +15,6 @@ package io.americanexpress.synapse.api.rest.imperative.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.americanexpress.synapse.api.rest.imperative.interceptor.MetricInterceptor;
-import io.americanexpress.synapse.framework.api.docs.ApiDocsConfig;
 import io.americanexpress.synapse.framework.exception.config.ExceptionConfig;
 import io.americanexpress.synapse.utilities.common.config.UtilitiesCommonConfig;
 import org.springframework.context.annotation.ComponentScan;
@@ -31,7 +30,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 @ComponentScan(basePackages = "io.americanexpress.synapse.api.rest.imperative")
 @Configuration
-@Import({ApiDocsConfig.class, ExceptionConfig.class, UtilitiesCommonConfig.class})
+@Import({ExceptionConfig.class, UtilitiesCommonConfig.class})
 public class BaseApiImperativeRestConfig implements WebMvcConfigurer {
 
     /**

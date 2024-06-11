@@ -18,16 +18,24 @@
 
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
-        <artifactId>api</artifactId>
+        <artifactId>api-samples</artifactId>
         <version>0.4.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>synapse-api-rest-imperative</artifactId>
+    <artifactId>sample-api-exception</artifactId>
 
     <!--Dependencies-->
     <dependencies>
         <!--Synapse-->
+        <dependency>
+            <groupId>io.americanexpress.synapse</groupId>
+            <artifactId>synapse-api-rest-imperative</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.americanexpress.synapse</groupId>
+            <artifactId>synapse-service-imperative</artifactId>
+        </dependency>
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>
             <artifactId>synapse-framework-logging</artifactId>
@@ -36,17 +44,9 @@
             <groupId>io.americanexpress.synapse</groupId>
             <artifactId>synapse-framework-exception</artifactId>
         </dependency>
-        <!--dependency>
-            <groupId>io.americanexpress.synapse</groupId>
-            <artifactId>synapse-framework-api-docs</artifactId>
-        </dependency-->
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>
-            <artifactId>synapse-service-imperative</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.americanexpress.synapse</groupId>
-            <artifactId>synapse-utilities-common</artifactId>
+            <artifactId>sample-service-imperative-book</artifactId>
         </dependency>
         <dependency>
             <groupId>io.americanexpress.synapse</groupId>

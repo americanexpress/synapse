@@ -15,13 +15,15 @@ package io.americanexpress.synapse.api.rest.imperative.controller.exceptionhandl
 
 import io.americanexpress.synapse.framework.exception.ApplicationClientException;
 import io.americanexpress.synapse.framework.exception.ApplicationServerException;
+import io.americanexpress.synapse.framework.exception.ApplicationUnauthorizedException;
+import io.americanexpress.synapse.framework.exception.ApplicationValidationException;
 import io.americanexpress.synapse.framework.exception.helper.ErrorMessagePropertyReader;
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 import io.americanexpress.synapse.service.imperative.model.ErrorResponse;
-import io.americanexpress.synapse.framework.exception.BaseException;
-import io.americanexpress.synapse.framework.exception.RequestTimeoutException;
-import io.americanexpress.synapse.framework.exception.ServiceException;
-import io.americanexpress.synapse.framework.exception.NotFoundException;
+import io.americanexpress.synapse.framework.exception.BaseApplicationException;
+import io.americanexpress.synapse.framework.exception.ApplicationRequestTimeoutException;
+import io.americanexpress.synapse.framework.exception.ApplicationException;
+import io.americanexpress.synapse.framework.exception.ApplicationNotFoundException;
 import io.americanexpress.synapse.utilities.common.cryptography.CryptoUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.ext.XLogger;
@@ -74,7 +76,7 @@ public class ControllerExceptionHandler {
     /**
      * Handle application server exception response entity.
      * @param applicationServerException the application server exception
-     * @param httpServletRequest         the http servlet request
+     * @param httpServletRequest the http servlet request
      * @return errorResponseEntity of type ResponseEntity<ErrorResponse>
      */
     @Deprecated
@@ -204,6 +206,23 @@ public class ControllerExceptionHandler {
     }
 
     /**
+     * This method will handle all the unauthorized errors. Meaning all the 403
+     * errors which is when we have an exception in our code and we catch and rethrow it or a
+     * runtime exception is thrown somewhere.
+     *
+     * @param unauthorizedException the error that was thrown
+     * @return response of type ResponseEntity<ErrorResponse>
+     */
+    @ExceptionHandler(ApplicationUnauthorizedException.class)
+    public ResponseEntity<ErrorResponse> handleUnauthorizedException(final ApplicationUnauthorizedException unauthorizedException) {
+        logger.entry(unauthorizedException);
+        final ResponseEntity<ErrorResponse> errorResponseEntity =
+                handleServerError(unauthorizedException, ErrorCode.GENERIC_4XX_ERROR, HttpStatus.UNAUTHORIZED);
+        this.logger.exit(errorResponseEntity);
+        return errorResponseEntity;
+    }
+
+    /**
      * This method will handle all the internal server errors. Meaning all the 500s family
      * errors which is when we have an exception in our code and we catch and rethrow it or a
      * runtime exception is thrown somewhere.
@@ -211,15 +230,11 @@ public class ControllerExceptionHandler {
      * @param serviceException the error that was thrown
      * @return response of type ResponseEntity<ErrorResponse>
      */
-    @ExceptionHandler(ServiceException.class)
-    public ResponseEntity<ErrorResponse> handleServiceException(final ServiceException serviceException) {
+    @ExceptionHandler(ApplicationException.class)
+    public ResponseEntity<ErrorResponse> handleServiceException(final ApplicationException serviceException) {
         logger.entry(serviceException);
-        var msg = Optional.ofNullable(serviceException.getDeveloperMessage())
-                .orElseGet(() -> CryptoUtil.encrypt(ApplicationServerException.getStackTrace(serviceException, System.lineSeparator())));
         final ResponseEntity<ErrorResponse> errorResponseEntity =
-                handleServerError(serviceException, ErrorCode.GENERIC_5XX_ERROR, HttpStatus.INTERNAL_SERVER_ERROR,
-                        Optional.ofNullable(serviceException.getDeveloperMessage())
-                        .orElseGet(() -> CryptoUtil.encrypt(ApplicationServerException.getStackTrace(serviceException, System.lineSeparator()))));
+                handleServerError(serviceException, ErrorCode.GENERIC_5XX_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
         this.logger.exit(errorResponseEntity);
         return errorResponseEntity;
     }
@@ -232,12 +247,28 @@ public class ControllerExceptionHandler {
      * @param requestTimeoutException the error that was thrown
      * @return response of type ResponseEntity<ErrorResponse>
      */
-    @ExceptionHandler(RequestTimeoutException.class)
-    public ResponseEntity<ErrorResponse> handleRequestTimeOutException(final RequestTimeoutException requestTimeoutException) {
+    @ExceptionHandler({ApplicationRequestTimeoutException.class})
+    public ResponseEntity<ErrorResponse> handleRequestTimeOutException(final ApplicationRequestTimeoutException requestTimeoutException) {
         logger.entry(requestTimeoutException);
         final ResponseEntity<ErrorResponse> errorResponseEntity =
-                handleServerError(requestTimeoutException, ErrorCode.GENERIC_5XX_ERROR, HttpStatus.INTERNAL_SERVER_ERROR,
-                        requestTimeoutException.getDeveloperMessage());
+                handleServerError(requestTimeoutException, ErrorCode.GENERIC_5XX_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
+        this.logger.exit(errorResponseEntity);
+        return errorResponseEntity;
+    }
+
+    /**
+     * This method will handle all the internal server errors. Meaning all the 500s family
+     * errors which is when we have an exception in our code and we catch and rethrow it or a
+     * runtime exception is thrown somewhere.
+     *
+     * @param validationException the error that was thrown
+     * @return response of type ResponseEntity<ErrorResponse>
+     */
+    @ExceptionHandler(ApplicationValidationException.class)
+    public ResponseEntity<ErrorResponse> handleRequestTimeOutException(final ApplicationValidationException validationException) {
+        logger.entry(validationException);
+        final ResponseEntity<ErrorResponse> errorResponseEntity =
+                handleServerError(validationException, ErrorCode.GENERIC_4XX_ERROR, HttpStatus.REQUEST_TIMEOUT);
         this.logger.exit(errorResponseEntity);
         return errorResponseEntity;
     }
@@ -248,12 +279,11 @@ public class ControllerExceptionHandler {
      * @param notFoundException the error that was thrown
      * @return response of type ResponseEntity<ErrorResponse>
      */
-    @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleServiceNotFoundException(final NotFoundException notFoundException) {
+    @ExceptionHandler(ApplicationNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleServiceNotFoundException(final ApplicationNotFoundException notFoundException) {
         logger.entry(notFoundException);
         final ResponseEntity<ErrorResponse> errorResponseEntity =
-                handleServerError(notFoundException, ErrorCode.GENERIC_4XX_ERROR, HttpStatus.NOT_FOUND,
-                        notFoundException.getDeveloperMessage());
+                handleServerError(notFoundException, ErrorCode.GENERIC_4XX_ERROR, HttpStatus.NOT_FOUND);
         this.logger.exit(errorResponseEntity);
         return errorResponseEntity;
     }
@@ -266,15 +296,15 @@ public class ControllerExceptionHandler {
      * @param baseException the error that was thrown
      * @param errorCode the error code
      * @param httpStatus the http status
-     * @param developerMessage the developer message
      *
      * @return response of type ResponseEntity<ErrorResponse>
      */
-    private ResponseEntity<ErrorResponse> handleServerError( final BaseException baseException, final ErrorCode errorCode,
-            final HttpStatus httpStatus, String developerMessage) {
+    private ResponseEntity<ErrorResponse> handleServerError(final BaseApplicationException baseException,
+                                                            final ErrorCode errorCode,
+                                                            final HttpStatus httpStatus) {
         logger.catching(baseException);
         String message = errorMessagePropertyReader.getErrorMessage(ErrorCode.GENERIC_5XX_ERROR);
-        ErrorResponse errorResponse = new ErrorResponse(errorCode, errorCode.getMessage(), message, developerMessage);
+        ErrorResponse errorResponse = new ErrorResponse(errorCode, errorCode.getMessage(), message, baseException.getDeveloperMessage());
         return ResponseEntity.status(httpStatus).body(errorResponse);
     }
 }

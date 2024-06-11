@@ -14,12 +14,16 @@
 package io.americanexpress.service.sample.imperativebook.config;
 
 import io.americanexpress.synapse.service.imperative.config.BaseImperativeServiceConfig;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * The type Book service config.
  *
  * @author Francois Gutt
  */
+@ComponentScan(basePackages = "io.americanexpress.service.sample.imperativebook")
+@Configuration
 public class BookServiceConfig extends BaseImperativeServiceConfig {
 
 }
