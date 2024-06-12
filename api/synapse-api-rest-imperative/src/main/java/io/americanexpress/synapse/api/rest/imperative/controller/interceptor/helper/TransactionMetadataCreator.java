@@ -1,15 +1,24 @@
 package io.americanexpress.synapse.api.rest.imperative.controller.interceptor.helper;
 
-import io.americanexpress.synapse.api.rest.imperative.controller.interceptor.model.CommonMetadata;
+import io.americanexpress.synapse.api.rest.imperative.controller.interceptor.model.TransactionMetadata;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 
+/**
+ * {@code TransactionMetadataCreator} handles the creation of the {@link TransactionMetadata} object, to copy all the common
+ * header values from {@link HttpHeaders}.
+ * <p>
+ * Due to the amount of fields in this class, it was opted to use the builder pattern, to maintain a clean creation of
+ * the object instance, without a clutter constructor.
+ *
+ * @author John Robert Martinez Ponce
+ */
 @Component
-public class TransactionMetadataCreator<T> {
+public class TransactionMetadataCreator {
 
-    public CommonMetadata create(HttpServletRequest request) {
-        CommonMetadata.Builder builder = new CommonMetadata<T>.Builder();
+    public TransactionMetadata create(HttpServletRequest request) {
+        TransactionMetadata.Builder builder = new TransactionMetadata.Builder();
 
         builder.accept(request.getHeader(HttpHeaders.ACCEPT));
         builder.acceptCharset(request.getHeader(HttpHeaders.ACCEPT_CHARSET));
@@ -19,7 +28,6 @@ public class TransactionMetadataCreator<T> {
         builder.cacheControl(request.getHeader(HttpHeaders.CACHE_CONTROL));
         builder.connection(request.getHeader(HttpHeaders.CONNECTION));
         builder.contentLength(request.getHeader(HttpHeaders.CONTENT_LENGTH));
-        builder.contentMD5(request.getHeader("Content-MD5"));
         builder.contentType(request.getHeader(HttpHeaders.CONTENT_TYPE));
         builder.date(request.getHeader(HttpHeaders.DATE));
         builder.expect(request.getHeader(HttpHeaders.EXPECT));
@@ -41,13 +49,6 @@ public class TransactionMetadataCreator<T> {
         builder.via(request.getHeader(HttpHeaders.VIA));
         builder.warning(request.getHeader(HttpHeaders.WARNING));
 
-        builder.customMetadata(addCustomMetadata(request));
-
-
         return builder.build();
-    }
-
-    public T addCustomMetadata(HttpServletRequest request) {
-        return null;
     }
 }
