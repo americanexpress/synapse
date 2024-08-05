@@ -24,11 +24,19 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * {@code DateTimeDeserializer} deserializes string to date in datetime format.
+ * First the string is deserialized using "yyyy-MM-dd HH:mm:ss" format. If that fails, then ISO 8601 format is used
+ * via {@link DateTimeFormatter#ISO_DATE_TIME}.
  */
 public class DateTimeDeserializer extends JsonDeserializer<LocalDateTime> {
 
     @Override
     public LocalDateTime deserialize(JsonParser jsonParser, DeserializationContext context) throws IOException {
-        return LocalDateTime.parse(jsonParser.getValueAsString(), DateTimeFormatter.ofPattern(DateFormat.ISO_TIME.getValue()));
+        String jsonValue = jsonParser.getValueAsString();
+
+        try {
+            return LocalDateTime.parse(jsonValue, DateTimeFormatter.ofPattern(DateFormat.ISO_TIME.getValue()));
+        } catch (Exception e) {
+            return LocalDateTime.parse(jsonValue, DateTimeFormatter.ISO_DATE_TIME);
+        }
     }
 }
