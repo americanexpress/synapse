@@ -69,13 +69,13 @@ public class UtilitiesCommonConfig {
      * @return the initial ObjectMapper
      */
     private ObjectMapper getInitialObjectMapper() {
-        JavaTimeModule javaTimeDeserializerModule = new JavaTimeModule();
-        javaTimeDeserializerModule.addDeserializer(LocalDate.class, new DateIsoDeserializer());
-        javaTimeDeserializerModule.addDeserializer(LocalDateTime.class, new DateTimeDeserializer());
+        JavaTimeModule javaTimeModule = new JavaTimeModule();
+        javaTimeModule.addDeserializer(LocalDate.class, new DateIsoDeserializer());
+        javaTimeModule.addDeserializer(LocalDateTime.class, new DateTimeDeserializer());
 
         JavaTimeModule javaTimeSerializerModule = new JavaTimeModule();
-        javaTimeDeserializerModule.addSerializer(LocalDate.class, new DateIsoSerializer());
-        javaTimeDeserializerModule.addSerializer(LocalDateTime.class, new DateTimeSerializer());
+        javaTimeModule.addSerializer(LocalDate.class, new DateIsoSerializer());
+        javaTimeModule.addSerializer(LocalDateTime.class, new DateTimeSerializer());
 
 
         SimpleModule moneySerializer = new SimpleModule();
@@ -93,7 +93,7 @@ public class UtilitiesCommonConfig {
         mapper.registerModule(moneyDeserializer);//This one could be avoided if used the USE_BIG_...
         mapper.enable(DeserializationFeature.USE_BIG_DECIMAL_FOR_FLOATS);
 
-        mapper.registerModule(javaTimeDeserializerModule);//This is to register the local date deserializer
+        mapper.registerModule(javaTimeModule);//This is to register the local date deserializer
         mapper.registerModule(javaTimeSerializerModule);//Not needed with the below serialization feature.
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         mapper.registerModule(decimalSerializer); //This is to add commas and decimals to all Doubles
