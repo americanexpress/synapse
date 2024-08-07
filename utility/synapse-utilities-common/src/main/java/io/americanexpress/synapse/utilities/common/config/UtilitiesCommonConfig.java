@@ -28,6 +28,8 @@ import io.americanexpress.synapse.utilities.common.serialization.CurrencySeriali
 import io.americanexpress.synapse.utilities.common.serialization.DateIsoDeserializer;
 import io.americanexpress.synapse.utilities.common.serialization.DateIsoSerializer;
 import io.americanexpress.synapse.utilities.common.serialization.DateTimeDeserializer;
+import io.americanexpress.synapse.utilities.common.serialization.InstantDeserializer;
+import io.americanexpress.synapse.utilities.common.serialization.InstantSerializer;
 import io.americanexpress.synapse.utilities.common.serialization.DateTimeSerializer;
 import io.americanexpress.synapse.utilities.common.serialization.DecimalSerializer;
 import io.americanexpress.synapse.utilities.common.serialization.MoneyDeserializer;
@@ -39,6 +41,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Primary;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -72,11 +75,10 @@ public class UtilitiesCommonConfig {
         JavaTimeModule javaTimeModule = new JavaTimeModule();
         javaTimeModule.addDeserializer(LocalDate.class, new DateIsoDeserializer());
         javaTimeModule.addDeserializer(LocalDateTime.class, new DateTimeDeserializer());
-
-        JavaTimeModule javaTimeSerializerModule = new JavaTimeModule();
+        javaTimeModule.addDeserializer(Instant.class, new InstantDeserializer());
         javaTimeModule.addSerializer(LocalDate.class, new DateIsoSerializer());
         javaTimeModule.addSerializer(LocalDateTime.class, new DateTimeSerializer());
-
+        javaTimeModule.addSerializer(Instant.class, new InstantSerializer());
 
         SimpleModule moneySerializer = new SimpleModule();
         moneySerializer.addSerializer(BigDecimal.class, new CurrencySerializer());
@@ -94,7 +96,6 @@ public class UtilitiesCommonConfig {
         mapper.enable(DeserializationFeature.USE_BIG_DECIMAL_FOR_FLOATS);
 
         mapper.registerModule(javaTimeModule);//This is to register the local date deserializer
-        mapper.registerModule(javaTimeSerializerModule);//Not needed with the below serialization feature.
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         mapper.registerModule(decimalSerializer); //This is to add commas and decimals to all Doubles
         mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
