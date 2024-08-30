@@ -18,6 +18,7 @@ import io.americanexpress.synapse.utilities.common.serialization.CurrencySeriali
 import io.americanexpress.synapse.utilities.common.serialization.DecimalSerializer;
 import io.americanexpress.synapse.utilities.common.serialization.FixedLengthMaskBigDecimalSerializer;
 import io.americanexpress.synapse.utilities.common.serialization.Instant2LocalDateTimeStringSerializer;
+import io.americanexpress.synapse.utilities.common.serialization.InstantSerializer;
 import io.americanexpress.synapse.utilities.common.serialization.IntegerSerializer;
 import io.americanexpress.synapse.utilities.common.serialization.LastFourCharactersMaskStringSerializer;
 import io.americanexpress.synapse.utilities.common.serialization.LowerCaseStringSerializer;
@@ -32,6 +33,7 @@ import io.americanexpress.synapse.utilities.common.serialization.UpperCaseString
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.List;
 
 public class SampleModel {
@@ -83,6 +85,9 @@ public class SampleModel {
 
     @JsonSerialize(using = PercentSerializer.class)
     private Double odds;
+
+    @JsonSerialize(using = InstantSerializer.class)
+    private Instant currentDateTime;
 
     public SampleModel() {
 
@@ -215,4 +220,8 @@ public class SampleModel {
     public void setOdds(Double odds) {
         this.odds = odds;
     }
+
+    public Instant getCurrentDateTime() { return currentDateTime; }
+
+    public void setCurrentDateTime(Instant currentDateTime) { this.currentDateTime = currentDateTime; }
 }
