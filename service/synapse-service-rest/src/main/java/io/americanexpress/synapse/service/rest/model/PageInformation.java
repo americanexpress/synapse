@@ -13,6 +13,8 @@
  */
 package io.americanexpress.synapse.service.rest.model;
 
+import java.util.Objects;
+
 /**
  * {@code PageInformation} class specifies the parameters for a service request,
  * limiting the results to a subset of how many (size) and on which page (page).
@@ -64,5 +66,18 @@ public class PageInformation {
      */
     public void setSize(int size) {
         this.size = size;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PageInformation that = (PageInformation) o;
+        return page == that.page && size == that.size;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(page, size);
     }
 }
