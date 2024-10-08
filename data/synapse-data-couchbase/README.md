@@ -10,7 +10,7 @@
     - An open to extension base configuration java file with the standard connection parameters needed to connect to
       couchbase using Spring Data. The connection parameters will be provided by the property files on the module(s)that
       you as a developer are creating that will use this base-data-postgres module as a dependency.
-    - An open to extension BaseEntity containing the generated key identifier and the common auditing fields maintained
+    - An open to extension `BaseEntity` containing the generated key identifier and the common auditing fields maintained
       by the Spring Data framework itself (createdBy, lastModifiedBy, createdDate, lastModifiedDate and version).
 
 ## Usage
@@ -26,3 +26,10 @@ Or add the following to the build.gradle file:
 ```
 implementation 'io.americanexpress.synapse:synapse-data-couchbase:0.2.1!!'
 ```
+- Create a configuration class extending `BaseReactiveCouchbaseDataConfig` for reactive support or `BaseCrudCouchbaseDataConfig` for non-reactive usage.
+- Create repository interfaces extending `ReactiveCrudRepository` for reactive support or `BaseCrudCouchbaseRepository` for non-reactive.
+
+## Examples
+Examples of utilizing the synapse-data-couchbase module can be found in the following modules:
+- sample-data-couchbase-reactive
+- sample-service-reactive-couchbase-book
