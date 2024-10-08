@@ -58,7 +58,7 @@
         <spring-boot-graphql.version>11.1.0</spring-boot-graphql.version>
 
         <!--Mock Dependency Versions-->
-        <mockito.version>4.8.1</mockito.version>
+        <mockito.version>5.4.0</mockito.version>
 
         <!--JUnit Versions-->
         <junit.version>1.9.1</junit.version>
