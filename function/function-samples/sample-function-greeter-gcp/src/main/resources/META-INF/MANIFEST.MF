@@ -1,1 +1,1 @@
-Main-Class: io.americanexpress.function.book.rest.CloudFunctionMain
+Main-Class: io.americanexpress.function.greeting.GreetingApplication

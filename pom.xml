@@ -41,7 +41,7 @@
         <maven.compiler.target>17</maven.compiler.target>
 
         <!--Kotlin-->
-        <kotlin.version>1.7.20</kotlin.version>
+        <kotlin.version>1.5.10</kotlin.version>
 
         <!--Spring Versions-->
         <spring-framework.version>6.0.11</spring-framework.version>
@@ -1158,6 +1158,20 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib-jdk8</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-test</artifactId>
+            <version>${kotlin.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <!--Plugin Management-->
     <build>

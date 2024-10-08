@@ -11,23 +11,26 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package io.americanexpress.function.greeting.rest;
+package io.americanexpress.function.greeting.config
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
+import org.springframework.validation.Validator
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean
 
-import java.util.function.Function;
+/**
+ * `GreeterConfig` contains configurations for GreeterApplication.
+ */
+@Configuration
+open class GreetingConfig {
 
-@SpringBootApplication
-public class CloudFunctionMain {
-
-    public static void main(String[] args) {
-        SpringApplication.run(CloudFunctionMain.class, args);
-    }
-
+    /**
+     * Instantiates Spring validator bean.
+     *
+     * @return the validator
+     */
     @Bean
-    public Function<String, String> uppercase() {
-        return value -> value.toUpperCase();
+    open fun springValidator(): Validator {
+        return LocalValidatorFactoryBean()
     }
 }
