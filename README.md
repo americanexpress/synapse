@@ -1,6 +1,6 @@
 # Synapse
 
-- Tired of spending time and struggling in designing your foundational architecture and starting out your project?
+- Tired of spending time and struggling in designing your foundational architecture and starting out your project? testing
 - Tired of having the developers in your team not following the consistent standards and each of them doing things their
   own
   way?
