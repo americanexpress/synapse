@@ -23,6 +23,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -192,5 +193,23 @@ public class ControllerExceptionHandler {
         ErrorResponse errorResponse = new ErrorResponse(errorCode, errorCode.getMessage(), message, CryptoUtil.encrypt(fullStackTrace));
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+    }
+
+    @ExceptionHandler(OptimisticLockingFailureException.class)
+    public ResponseEntity<ErrorResponse> handleOptimisticLockingFailure(OptimisticLockingFailureException optimisticLockingFailureException) {
+        logger.entry(optimisticLockingFailureException);
+        ResponseEntity<ErrorResponse> errorResponseEntity;
+
+        if (optimisticLockingFailureException.getCause() == null) {
+            ErrorCode errorConflict = ErrorCode.CONFLICT;
+            String message = errorMessagePropertyReader.getErrorMessage(errorConflict);
+            String errorMessage = "The resource you are trying to update is outdated. Please try again.";
+            ErrorResponse errorResponse = new ErrorResponse(errorConflict, errorConflict.getMessage(), errorMessage, message);
+            errorResponseEntity = ResponseEntity.status(errorConflict.getHttpStatus().value()).body(errorResponse);
+        } else {
+            errorResponseEntity = handleInternalServerError(optimisticLockingFailureException);
+        }
+        logger.exit(errorResponseEntity);
+        return errorResponseEntity; // HTTP 409 Conflict
     }
 }
