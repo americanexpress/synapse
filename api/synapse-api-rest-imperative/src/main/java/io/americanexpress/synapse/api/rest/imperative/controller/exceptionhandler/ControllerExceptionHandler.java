@@ -210,6 +210,6 @@ public class ControllerExceptionHandler {
             errorResponseEntity = handleInternalServerError(optimisticLockingFailureException);
         }
         logger.exit(errorResponseEntity);
-        return errorResponseEntity; // HTTP 409 Conflict
+        return errorResponseEntity;
     }
 }
