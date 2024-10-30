@@ -200,15 +200,12 @@ public class ControllerExceptionHandler {
         logger.entry(optimisticLockingFailureException);
         ResponseEntity<ErrorResponse> errorResponseEntity;
 
-        if (optimisticLockingFailureException.getCause() == null) {
-            ErrorCode errorConflict = ErrorCode.CONFLICT;
-            String message = errorMessagePropertyReader.getErrorMessage(errorConflict);
-            String errorMessage = "The resource you are trying to update is outdated. Please try again.";
-            ErrorResponse errorResponse = new ErrorResponse(errorConflict, errorConflict.getMessage(), errorMessage, message);
-            errorResponseEntity = ResponseEntity.status(errorConflict.getHttpStatus().value()).body(errorResponse);
-        } else {
-            errorResponseEntity = handleInternalServerError(optimisticLockingFailureException);
-        }
+        ErrorCode errorConflictCode = ErrorCode.CONFLICT;
+        String message = errorMessagePropertyReader.getErrorMessage(errorConflictCode);
+        String errorMessage = "The resource you are trying to update is outdated. Please try again.";
+        ErrorResponse errorResponse = new ErrorResponse(errorConflictCode, errorConflictCode.getMessage(), errorMessage, message);
+        errorResponseEntity = ResponseEntity.status(errorConflictCode.getHttpStatus().value()).body(errorResponse);
+
         logger.exit(errorResponseEntity);
         return errorResponseEntity;
     }
