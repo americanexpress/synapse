@@ -197,7 +197,7 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(OptimisticLockingFailureException.class)
     public ResponseEntity<ErrorResponse> handleOptimisticLockingFailure(OptimisticLockingFailureException optimisticLockingFailureException) {
-        logger.warn("Client issued a request which resulted in a conflict.",optimisticLockingFailureException);
+        logger.warn("Client issued a request which resulted in a conflict.", optimisticLockingFailureException);
         ResponseEntity<ErrorResponse> errorResponseEntity;
         ErrorCode errorConflictCode = ErrorCode.CONFLICT;
         String fullStackTrace = ApplicationServerException.getStackTrace(optimisticLockingFailureException, System.lineSeparator());
