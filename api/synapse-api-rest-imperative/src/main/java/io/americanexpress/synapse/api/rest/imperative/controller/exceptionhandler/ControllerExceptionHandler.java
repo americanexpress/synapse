@@ -197,13 +197,13 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(OptimisticLockingFailureException.class)
     public ResponseEntity<ErrorResponse> handleOptimisticLockingFailure(OptimisticLockingFailureException optimisticLockingFailureException) {
-        logger.entry(optimisticLockingFailureException);
+        logger.warn("Client issued a request which resulted in a conflict.",optimisticLockingFailureException);
         ResponseEntity<ErrorResponse> errorResponseEntity;
-
         ErrorCode errorConflictCode = ErrorCode.CONFLICT;
+        String fullStackTrace = ApplicationServerException.getStackTrace(optimisticLockingFailureException, System.lineSeparator());
         String message = errorMessagePropertyReader.getErrorMessage(errorConflictCode);
-        String errorMessage = "The resource you are trying to update is outdated. Please try again.";
-        ErrorResponse errorResponse = new ErrorResponse(errorConflictCode, errorConflictCode.getMessage(), errorMessage, message);
+        ErrorResponse errorResponse = new ErrorResponse(errorConflictCode, errorConflictCode.getMessage(), message,
+                                                        CryptoUtil.encrypt(fullStackTrace));
         errorResponseEntity = ResponseEntity.status(errorConflictCode.getHttpStatus().value()).body(errorResponse);
 
         logger.exit(errorResponseEntity);
