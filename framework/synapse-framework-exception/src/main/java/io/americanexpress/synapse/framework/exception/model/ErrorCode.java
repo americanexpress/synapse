@@ -71,7 +71,7 @@ public enum ErrorCode {
     /**
      * Used for when the consumer makes a request with change in the Entity State.
      */
-    CONFLICT(HttpStatus.CONFLICT, "Entity Conflict.");
+    RESOURCE_OUT_OF_SYNC(HttpStatus.CONFLICT, "Resource out of sync.");
 
     /**
      * Gets the HttpStatus of the ErrorCode.

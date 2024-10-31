@@ -199,7 +199,7 @@ public class ControllerExceptionHandler {
     public ResponseEntity<ErrorResponse> handleOptimisticLockingFailure(OptimisticLockingFailureException optimisticLockingFailureException) {
         logger.warn("Client issued a request which resulted in a conflict.", optimisticLockingFailureException);
         ResponseEntity<ErrorResponse> errorResponseEntity;
-        ErrorCode errorConflictCode = ErrorCode.CONFLICT;
+        ErrorCode errorConflictCode = ErrorCode.RESOURCE_OUT_OF_SYNC;
         String fullStackTrace = ApplicationServerException.getStackTrace(optimisticLockingFailureException, System.lineSeparator());
         String message = errorMessagePropertyReader.getErrorMessage(errorConflictCode);
         ErrorResponse errorResponse = new ErrorResponse(errorConflictCode, errorConflictCode.getMessage(), message,
