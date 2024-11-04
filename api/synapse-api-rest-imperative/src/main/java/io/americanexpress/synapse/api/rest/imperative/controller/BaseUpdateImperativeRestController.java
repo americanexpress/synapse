@@ -1,8 +1,15 @@
 package io.americanexpress.synapse.api.rest.imperative.controller;
 
+import io.americanexpress.synapse.api.rest.imperative.controller.helpers.CreateResponseEntityCreator;
 import io.americanexpress.synapse.service.imperative.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.imperative.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.imperative.service.BaseService;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+
 /**
  * {@code BaseUpdateService} class specifies the prototypes for performing business logic.
  *
@@ -23,8 +30,7 @@ public class BaseUpdateImperativeRestController<
      * @param serviceRequest body from the consumer
      * @return response to the consumer
      */
-    @PostMapping
-    @Operation(tags = "Update Operation", summary = "Updates a resource")
+    @PutMapping
     public ResponseEntity<O> update(@RequestHeader HttpHeaders headers, @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
         O serviceResponse = service.execute(serviceRequest);
