@@ -23,6 +23,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -192,5 +193,20 @@ public class ControllerExceptionHandler {
         ErrorResponse errorResponse = new ErrorResponse(errorCode, errorCode.getMessage(), message, CryptoUtil.encrypt(fullStackTrace));
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+    }
+
+    @ExceptionHandler(OptimisticLockingFailureException.class)
+    public ResponseEntity<ErrorResponse> handleOptimisticLockingFailure(OptimisticLockingFailureException optimisticLockingFailureException) {
+        logger.warn("Client issued a request which resulted in a conflict.", optimisticLockingFailureException);
+        ResponseEntity<ErrorResponse> errorResponseEntity;
+        ErrorCode errorConflictCode = ErrorCode.RESOURCE_OUT_OF_SYNC;
+        String fullStackTrace = ApplicationServerException.getStackTrace(optimisticLockingFailureException, System.lineSeparator());
+        String message = errorMessagePropertyReader.getErrorMessage(errorConflictCode);
+        ErrorResponse errorResponse = new ErrorResponse(errorConflictCode, errorConflictCode.getMessage(), message,
+                                                        CryptoUtil.encrypt(fullStackTrace));
+        errorResponseEntity = ResponseEntity.status(errorConflictCode.getHttpStatus().value()).body(errorResponse);
+
+        logger.exit(errorResponseEntity);
+        return errorResponseEntity;
     }
 }
