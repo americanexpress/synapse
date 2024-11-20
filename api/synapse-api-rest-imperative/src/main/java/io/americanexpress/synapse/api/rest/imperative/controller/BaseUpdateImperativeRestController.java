@@ -7,7 +7,6 @@ import io.americanexpress.synapse.service.imperative.service.BaseService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
 /**
@@ -31,7 +30,7 @@ public class BaseUpdateImperativeRestController<
      * @return response to the consumer
      */
     @PutMapping
-    public ResponseEntity<O> update(@RequestHeader HttpHeaders headers, @RequestBody I serviceRequest) {
+    public ResponseEntity<O> update(@RequestHeader HttpHeaders headers, I serviceRequest) {
         logger.entry(serviceRequest);
         O serviceResponse = service.execute(serviceRequest);
         ResponseEntity<O> responseEntity = CreateResponseEntityCreator.create(serviceResponse);

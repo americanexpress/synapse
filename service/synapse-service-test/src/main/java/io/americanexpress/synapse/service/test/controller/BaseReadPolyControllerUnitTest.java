@@ -6,6 +6,8 @@ import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 import io.americanexpress.synapse.service.rest.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.rest.service.BaseReadPolyService;
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
@@ -16,9 +18,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * The type Base read poly controller test.
  *
@@ -26,6 +25,7 @@ import java.util.List;
  * @param <O> the type parameter
  * @param <S> the type parameter
  */
+@Deprecated
 public abstract class BaseReadPolyControllerUnitTest<O extends BaseServiceResponse, I extends BaseServiceRequest, S extends BaseReadPolyService<I, O>> extends BaseControllerUnitTest<O> {
 
     /**

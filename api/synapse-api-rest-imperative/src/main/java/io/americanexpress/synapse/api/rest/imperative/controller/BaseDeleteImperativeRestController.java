@@ -7,7 +7,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -32,7 +31,7 @@ public class BaseDeleteImperativeRestController<
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(tags = "Delete Operation", summary = "Deletes a resource")
-    public void delete(@RequestHeader HttpHeaders headers, @RequestBody I serviceRequest) {
+    public void delete(@RequestHeader HttpHeaders headers, I serviceRequest) {
         logger.entry(serviceRequest);
         service.execute(serviceRequest);
         logger.exit();

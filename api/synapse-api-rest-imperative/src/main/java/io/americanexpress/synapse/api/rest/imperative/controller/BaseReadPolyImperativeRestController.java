@@ -8,13 +8,10 @@ import io.americanexpress.synapse.service.imperative.service.BaseService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import jakarta.servlet.http.HttpServletResponse;
-
 import java.util.List;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
 /**
@@ -53,7 +50,7 @@ public class BaseReadPolyImperativeRestController<
             @ApiResponse(responseCode = "403", description = "Forbidden"),
     })
     @PostMapping(MULTIPLE_RESULTS)
-    public ResponseEntity<List<O>> read(@RequestHeader HttpHeaders headers, @RequestBody I serviceRequest, HttpServletResponse httpServletResponse) {
+    public ResponseEntity<List<O>> read(@RequestHeader HttpHeaders headers, I serviceRequest) {
         logger.entry(serviceRequest);
 
         final PageResponse<O> page = service.execute(serviceRequest);

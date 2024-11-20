@@ -22,7 +22,6 @@ import org.reactivestreams.Publisher;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import reactor.core.publisher.Mono;
 
@@ -59,7 +58,7 @@ public class BaseGetMonoReactiveRestController<
                     @ApiResponse(responseCode = "401", description = "Unauthorized"),
                     @ApiResponse(responseCode = "403", description = "Forbidden"),
             })
-    public Mono<ResponseEntity<O>> read(@RequestHeader HttpHeaders headers, @RequestBody I serviceRequest) {
+    public Mono<ResponseEntity<O>> read(@RequestHeader HttpHeaders headers, I serviceRequest) {
         return execute(headers, serviceRequest);
     }
 }

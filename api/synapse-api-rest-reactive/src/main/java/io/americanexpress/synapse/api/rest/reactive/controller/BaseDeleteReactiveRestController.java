@@ -23,7 +23,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import reactor.core.publisher.Mono;
@@ -55,7 +54,7 @@ public class BaseDeleteReactiveRestController<
                     @ApiResponse(responseCode = "403", description = "Forbidden"),
             })
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Mono<ResponseEntity<O>> delete(@RequestHeader HttpHeaders headers, @PathVariable I serviceRequest) {
+    public Mono<ResponseEntity<O>> delete(@RequestHeader HttpHeaders headers, I serviceRequest) {
         return execute(headers, serviceRequest);
     }
 }

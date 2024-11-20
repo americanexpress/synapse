@@ -1,9 +1,10 @@
 package io.americanexpress.synapse.service.test.controller;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doThrow;
 import io.americanexpress.synapse.framework.exception.ApplicationClientException;
 import io.americanexpress.synapse.framework.exception.model.ErrorCode;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
-import io.americanexpress.synapse.service.rest.model.ServiceHeaders;
 import io.americanexpress.synapse.service.rest.service.BaseDeleteService;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
@@ -13,15 +14,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doThrow;
-
 /**
  * The type Base delete controller test.
  *
  * @param <O> the type parameter
  * @param <S> the type parameter
  */
+@Deprecated
 public abstract class BaseDeleteControllerUnitTest<O extends BaseServiceResponse, S extends BaseDeleteService> extends BaseControllerUnitTest<O> {
 
     /**

@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Profile;
  * @param <O> the type parameter
  */
 @Profile(ProfileConstants.TEST)
+@Deprecated
 public abstract class BaseControllerUnitTest<O extends BaseServiceResponse> extends BaseControllerTest<O>  {
 
     /**

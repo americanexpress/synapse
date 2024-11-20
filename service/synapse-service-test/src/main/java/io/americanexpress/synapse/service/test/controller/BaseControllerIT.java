@@ -7,5 +7,6 @@ import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
  *
  * @param <O> the type parameter
  */
+@Deprecated
 public abstract class BaseControllerIT<O extends BaseServiceResponse> extends BaseControllerTest<O> {
 }

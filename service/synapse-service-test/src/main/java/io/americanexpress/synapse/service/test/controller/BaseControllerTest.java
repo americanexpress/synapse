@@ -1,8 +1,10 @@
 package io.americanexpress.synapse.service.test.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.americanexpress.synapse.service.rest.model.BaseServiceResponse;
 import io.americanexpress.synapse.utilities.common.io.IOUtils;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
@@ -23,9 +25,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-
 /**
  * The type Base controller test.
  * This class is not meant to be extended directly.
@@ -33,6 +32,7 @@ import java.lang.reflect.Type;
  * @param <O> the type parameter
  */
 @ExtendWith(SpringExtension.class)
+@Deprecated
 public abstract class BaseControllerTest<O extends BaseServiceResponse> {
 
     /**

@@ -21,6 +21,7 @@ import org.springframework.http.HttpStatus;
  * @param <O> the type parameter
  * @param <S> the type parameter
  */
+@Deprecated
 public abstract class BaseReadMonoControllerUnitTest<O extends BaseServiceResponse, I extends BaseServiceRequest, S extends BaseReadMonoService<I, O>> extends BaseControllerUnitTest<O> {
 
     /**
