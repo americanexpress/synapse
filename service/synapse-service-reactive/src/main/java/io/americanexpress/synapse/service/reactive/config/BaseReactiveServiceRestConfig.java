@@ -26,7 +26,6 @@ import org.springframework.context.annotation.Import;
 @ComponentScan(basePackages = "io.americanexpress.synapse.service.reactive")
 @Configuration
 @Import({ExceptionConfig.class})
-//@Import({ExceptionConfig.class, UtilitiesCommonConfig.class})
 public class BaseReactiveServiceRestConfig {
 
 }

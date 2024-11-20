@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 
 /**
- * {@code BaseUpdateService} class specifies the prototypes for performing business logic.
+ * {@code BaseUpdateImperativeRestController} class specifies the prototypes for performing business logic.
  *
  * @param <I> input request type
  * @param <O> output response type

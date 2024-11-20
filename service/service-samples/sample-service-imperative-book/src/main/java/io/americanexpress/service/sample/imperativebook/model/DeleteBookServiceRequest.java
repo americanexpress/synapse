@@ -16,7 +16,7 @@ package io.americanexpress.service.sample.imperativebook.model;
 import io.americanexpress.synapse.service.imperative.model.BaseServiceRequest;
 
 /**
- * {@code DeleteBookServiceRequest} class is responsible for deleting the book service request.
+ * {@code DeleteBookServiceRequest} class is the request model for {@link io.americanexpress.service.sample.imperativebook.service.DeleteBookService}
  *
  * @author Francois Gutt
  */

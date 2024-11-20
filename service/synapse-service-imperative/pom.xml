@@ -31,14 +31,6 @@
             <groupId>io.americanexpress.synapse</groupId>
             <artifactId>synapse-framework-exception</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>io.americanexpress.synapse</groupId>-->
-<!--            <artifactId>synapse-utilities-common</artifactId>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>io.americanexpress.synapse</groupId>-->
-<!--            <artifactId>synapse-framework-test</artifactId>-->
-<!--        </dependency>-->
 
         <!--External Dependencies-->
         <!-- JUnit -->

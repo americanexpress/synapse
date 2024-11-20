@@ -17,7 +17,7 @@ import io.americanexpress.synapse.service.imperative.model.BaseServiceRequest;
 import org.springframework.stereotype.Component;
 
 /**
- * {@code CreateBookServiceRequest} class is responsible for creating the book service request.
+ * {@code CreateBookServiceRequest} class is the request model for {@link io.americanexpress.service.sample.imperativebook.service.CreateBookService}
  *
  * @author Francois Gutt
  */

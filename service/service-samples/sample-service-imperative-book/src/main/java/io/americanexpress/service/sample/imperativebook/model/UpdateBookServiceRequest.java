@@ -16,6 +16,11 @@ package io.americanexpress.service.sample.imperativebook.model;
 import io.americanexpress.synapse.service.imperative.model.BaseServiceRequest;
 import org.springframework.stereotype.Component;
 
+/**
+ * {@code UpdateBookServiceRequest} class is the request model for {@link io.americanexpress.service.sample.imperativebook.service.UpdateBookService}
+ *
+ * @author Francois Gutt
+ */
 @Component
 public class UpdateBookServiceRequest extends BaseBook implements BaseServiceRequest {
     

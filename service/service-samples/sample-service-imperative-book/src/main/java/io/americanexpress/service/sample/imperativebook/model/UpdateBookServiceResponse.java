@@ -17,7 +17,7 @@ import io.americanexpress.synapse.service.imperative.model.BaseServiceResponse;
 import org.springframework.stereotype.Component;
 
 /**
- * UpdateBookServiceResponse class is responsible for updating the book service response.
+ * {@code UpdateBookServiceResponse} class is the response model for {@link io.americanexpress.service.sample.imperativebook.service.UpdateBookService}
  *
  * @author Francois Gutt
  */
