@@ -33,7 +33,7 @@ public class BaseGetMonoImperativeRestController<
      */
     @Operation(summary = "Read operation based on path.", description = "Read one resource based on a path variable.")
     @GetMapping
-    public ResponseEntity<O> read(@RequestHeader HttpHeaders headers, @PathVariable I serviceRequest) {
+    public ResponseEntity<O> read(@RequestHeader HttpHeaders headers, I serviceRequest) {
         logger.entry(serviceRequest);
         final O response = service.execute(serviceRequest);
         ResponseEntity<O> responseEntity = MonoResponseEntityCreator.create(response);

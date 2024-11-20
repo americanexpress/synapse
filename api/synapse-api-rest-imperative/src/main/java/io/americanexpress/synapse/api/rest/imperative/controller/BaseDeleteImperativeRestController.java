@@ -32,7 +32,7 @@ public class BaseDeleteImperativeRestController<
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(tags = "Delete Operation", summary = "Deletes a resource")
-    public void delete(@RequestHeader HttpHeaders headers, @RequestBody I serviceRequest) {
+    public void delete(@RequestHeader HttpHeaders headers, I serviceRequest) {
         logger.entry(serviceRequest);
         service.execute(serviceRequest);
         logger.exit();
