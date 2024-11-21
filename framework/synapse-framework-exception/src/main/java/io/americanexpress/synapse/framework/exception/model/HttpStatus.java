@@ -16,15 +16,17 @@ package io.americanexpress.synapse.framework.exception.model;
 
 import org.springframework.lang.Nullable;
 
+/**
+ * This class was added to avoid a dependency on spring-web and will be removed with the redesign of the exception handling.
+ */
+@Deprecated(since = "0.4.0", forRemoval = true)
 public enum HttpStatus {
     CONTINUE(100, HttpStatus.Series.INFORMATIONAL, "Continue"),
     SWITCHING_PROTOCOLS(101, HttpStatus.Series.INFORMATIONAL, "Switching Protocols"),
     PROCESSING(102, HttpStatus.Series.INFORMATIONAL, "Processing"),
     EARLY_HINTS(103, HttpStatus.Series.INFORMATIONAL, "Early Hints"),
     /** @deprecated */
-    @Deprecated(
-            since = "6.0.5"
-    )
+    @Deprecated
     CHECKPOINT(103, HttpStatus.Series.INFORMATIONAL, "Checkpoint"),
     OK(200, HttpStatus.Series.SUCCESSFUL, "OK"),
     CREATED(201, HttpStatus.Series.SUCCESSFUL, "Created"),
