@@ -28,7 +28,7 @@ import org.springframework.data.cassandra.repository.config.EnableCassandraRepos
 public class BookDataConfig extends BaseCassandraDataConfig {
 
     public BookDataConfig(Environment environment) {
-        super(environment);
+        super(environment, "book");
     }
 
     @Override

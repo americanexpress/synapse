@@ -29,43 +29,53 @@ import org.springframework.data.cassandra.repository.config.EnableCassandraRepos
 @EnableCassandraAuditing
 public abstract class BaseCassandraDataConfig extends AbstractCassandraConfiguration {
 
+    private static final String SPRING_DATA_CASSANDRA = "spring.data.cassandra.";
+
     private final Environment environment;
+
+    private final String propertiesPrefix;
 
     public BaseCassandraDataConfig(Environment environment) {
         this.environment = environment;
+        this.propertiesPrefix = SPRING_DATA_CASSANDRA;
+    }
+
+    public BaseCassandraDataConfig(Environment environment, String databaseName) {
+        this.environment = environment;
+        this.propertiesPrefix = SPRING_DATA_CASSANDRA + databaseName + ".";
     }
 
     @Override
     public SchemaAction getSchemaAction() {
-        return SchemaAction.valueOf(environment.getRequiredProperty("spring.data.cassandra.schema-action"));
+        return SchemaAction.valueOf(environment.getRequiredProperty(propertiesPrefix + "schema-action"));
     }
 
     @Override
     protected String getKeyspaceName() {
-        return environment.getRequiredProperty("spring.data.cassandra.keyspace-name");
+        return environment.getRequiredProperty(propertiesPrefix + "keyspace-name");
     }
 
     @Override
     protected String getContactPoints() {
-        return environment.getRequiredProperty("spring.data.cassandra.contact-points");
+        return environment.getRequiredProperty(propertiesPrefix + "contact-points");
     }
 
     @Override
     protected int getPort() {
-        return Integer.parseInt(environment.getRequiredProperty("spring.data.cassandra.port"));
+        return Integer.parseInt(environment.getRequiredProperty(propertiesPrefix + "port"));
     }
 
     @Override
     protected String getLocalDataCenter() {
-        return environment.getRequiredProperty("spring.data.cassandra.local-datacenter");
+        return environment.getRequiredProperty(propertiesPrefix + "local-datacenter");
     }
 
     protected String getUserName() {
-        return environment.getProperty("spring.data.cassandra.username");
+        return environment.getProperty(propertiesPrefix + "username");
     }
 
     protected String getPassword() {
-        return environment.getProperty("spring.data.cassandra.password");
+        return environment.getProperty(propertiesPrefix + "password");
     }
 
     @Override
