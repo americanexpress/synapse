@@ -13,6 +13,14 @@
         - spring.data.cassandra.contact-points
         - spring.data.cassandra.schema-action
 
+    - If needed to connect to multiple databases, a database name can be passed in the overloaded constructor of the `BaseCassandraDataConfig` class. 
+      the properties would need to be configured as:   
+        - spring.data.cassandra.<database-name>.keyspace-name
+        - spring.data.cassandra.<database-name>.local-datacenter
+        - spring.data.cassandra.<database-name>.port
+        - spring.data.cassandra.<database-name>.contact-points
+        - spring.data.cassandra.<database-name>.schema-action
+
     - An open to extension BaseEntity that contains the key identifier and the common auditing fields maintained by the Spring Data framework itself (createdBy,
       lastModifiedBy, createdDate, lastModifiedDate and version).
 
