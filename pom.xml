@@ -96,6 +96,7 @@
         <module>publisher</module>
         <module>subscriber</module>
         <module>utility</module>
+        <module>client/synapse-client-elastic-search</module>
     </modules>
 
     <!--Dependency Management-->
