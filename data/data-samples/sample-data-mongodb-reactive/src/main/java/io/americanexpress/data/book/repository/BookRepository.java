@@ -20,7 +20,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
- * {@code BookRepository} is the dao repository to handle the queries for the books table.
+ * {@code BookRepository} is the dao client to handle the queries for the books table.
  */
 @Repository
 public interface BookRepository extends ReactiveMongoRepository<BookEntity, String> {

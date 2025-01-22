@@ -96,7 +96,6 @@
         <module>publisher</module>
         <module>subscriber</module>
         <module>utility</module>
-        <module>client/synapse-client-elastic-search</module>
     </modules>
 
     <!--Dependency Management-->
@@ -271,6 +270,11 @@
             </dependency>
 
             <!--Client-->
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-client-elasticsearch</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-client-graphql</artifactId>

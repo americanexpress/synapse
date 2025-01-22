@@ -38,7 +38,7 @@ public class UpdateBookReactiveService extends BaseUpdateReactiveService<UpdateB
     /**
      * Instantiates a new UpdateBookReactiveService.
      *
-     * @param bookRepository the book repository
+     * @param bookRepository the book client
      */
     public UpdateBookReactiveService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;

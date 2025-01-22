@@ -37,7 +37,7 @@ public class ReadPolyBookReactiveService extends BaseReadFluxReactiveService<Rea
     /**
      * Instantiates a new ReadPolyBookReactiveService.
      *
-     * @param bookRepository the book repository
+     * @param bookRepository the book client
      */
     public ReadPolyBookReactiveService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;

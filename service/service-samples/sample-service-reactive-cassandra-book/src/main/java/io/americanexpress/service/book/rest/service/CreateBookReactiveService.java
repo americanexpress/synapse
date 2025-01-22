@@ -37,7 +37,7 @@ public class CreateBookReactiveService extends BaseCreateReactiveService<CreateB
     /**
      * Instantiates a new CreateBookReactiveService.
      *
-     * @param bookRepository the book repository
+     * @param bookRepository the book client
      */
     public CreateBookReactiveService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;

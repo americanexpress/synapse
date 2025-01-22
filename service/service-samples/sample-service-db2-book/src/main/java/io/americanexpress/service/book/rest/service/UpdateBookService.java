@@ -30,7 +30,7 @@ import org.springframework.stereotype.Service;
 public class UpdateBookService extends BaseUpdateService<UpdateBookServiceRequest> {
 
     /**
-     * The book repository for querying the database.
+     * The book client for querying the database.
      */
     private final BookRepository bookRepository;
 
@@ -41,7 +41,7 @@ public class UpdateBookService extends BaseUpdateService<UpdateBookServiceReques
 
     /**
      * Creates a new instance of {@code UpdateBookService} with the specified values.
-     * @param bookRepository the repository for the database.
+     * @param bookRepository the client for the database.
      * @param bookServiceMapper maps various request / responses into entities and vice versa.
      */
     public UpdateBookService(BookRepository bookRepository, BookServiceMapper bookServiceMapper) {

@@ -21,7 +21,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 /**
- * {@code BookRepository} is the dao repository to handle the queries for the books table.
+ * {@code BookRepository} is the dao client to handle the queries for the books table.
  */
 @Repository
 public interface BookRepository extends CrudRepository<BookEntity, String> {

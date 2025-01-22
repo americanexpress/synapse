@@ -18,7 +18,7 @@ import io.americanexpress.synapse.data.db2.repository.BaseCrudDb2Repository;
 import org.springframework.stereotype.Repository;
 
 /**
- * {@code BookRepository} is the dao repository to handle the queries for the books table.
+ * {@code BookRepository} is the dao client to handle the queries for the books table.
  * @author tisla4
  */
 @Repository

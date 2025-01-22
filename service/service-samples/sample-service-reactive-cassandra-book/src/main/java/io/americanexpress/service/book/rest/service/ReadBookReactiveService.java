@@ -36,7 +36,7 @@ public class ReadBookReactiveService extends BaseReadMonoReactiveService<ReadBoo
     /**
      * Instantiates a new ReadBookReactiveService.
      *
-     * @param bookRepository the book repository
+     * @param bookRepository the book client
      */
     public ReadBookReactiveService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;

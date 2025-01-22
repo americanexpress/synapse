@@ -51,7 +51,7 @@ public class BookFunction {
     /**
      * Instantiates a new Book function.
      *
-     * @param bookRepository the book repository
+     * @param bookRepository the book client
      */
     public BookFunction(BookRepository bookRepository) {
         this.bookRepository = bookRepository;

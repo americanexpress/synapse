@@ -20,7 +20,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 /**
- * BookRepository is the dao repository to handle the queries for the book table.
+ * BookRepository is the dao client to handle the queries for the book table.
  */
 @Repository
 public interface BookRepository extends JpaRepository<BookEntity, Long> {

@@ -25,7 +25,7 @@ import reactor.core.publisher.Mono;
  * {@code BookPersistenceService} A persistence service layer for managing data using
  * a connection pool for efficient database interactions.
  * The service encapsulates methods to perform all CRUD (Create, Read, Update, & Delete) operations on
- * {@link BookEntity} repository which manges the lifecycle of the underlying database connections.
+ * {@link BookEntity} client which manges the lifecycle of the underlying database connections.
  * It ensures that connections are acquired, used, and released correctly using a connection pool,
  * allowing for better performance and resource management.
  */
@@ -61,7 +61,7 @@ public class BookPersistenceService {
 
     /**
      * Retrieves all {@link BookEntity} records asynchronously.
-     * @return A {@link Flux} emitting all {@link BookEntity} records in the repository.
+     * @return A {@link Flux} emitting all {@link BookEntity} records in the client.
      */
     public Flux<BookEntity> executeFindAll() {
         return Flux.usingWhen(connectionPool.create(),

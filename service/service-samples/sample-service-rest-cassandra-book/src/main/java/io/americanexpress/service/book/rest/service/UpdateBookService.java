@@ -33,7 +33,7 @@ public class UpdateBookService extends BaseUpdateService<UpdateBookRequest> {
     /**
      * Instantiates a new UpdateBookService.
      *
-     * @param bookRepository the book repository
+     * @param bookRepository the book client
      */
     public UpdateBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
