@@ -9,9 +9,11 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import java.util.List;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
 /**
@@ -50,7 +52,7 @@ public class BaseReadPolyImperativeRestController<
             @ApiResponse(responseCode = "403", description = "Forbidden"),
     })
     @PostMapping(MULTIPLE_RESULTS)
-    public ResponseEntity<List<O>> read(@RequestHeader HttpHeaders headers, I serviceRequest) {
+    public ResponseEntity<List<O>> read(@RequestHeader HttpHeaders headers, @RequestBody @Valid I serviceRequest) {
         logger.entry(serviceRequest);
 
         final PageResponse<O> page = service.execute(serviceRequest);

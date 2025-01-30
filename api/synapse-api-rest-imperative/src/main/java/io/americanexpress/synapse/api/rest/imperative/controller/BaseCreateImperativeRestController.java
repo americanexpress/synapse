@@ -5,9 +5,11 @@ import io.americanexpress.synapse.service.imperative.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.imperative.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.imperative.service.BaseService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
 /**
@@ -32,7 +34,7 @@ public class BaseCreateImperativeRestController<
      */
     @PostMapping
     @Operation(tags = "Create Operation", summary = "Creates a resource")
-    public ResponseEntity<O> create(@RequestHeader HttpHeaders headers, I serviceRequest) {
+    public ResponseEntity<O> create(@RequestHeader HttpHeaders headers, @RequestBody @Valid I serviceRequest) {
         logger.entry(serviceRequest);
         O serviceResponse = service.execute(serviceRequest);
         ResponseEntity<O> responseEntity = CreateResponseEntityCreator.create(serviceResponse);
