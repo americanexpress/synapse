@@ -98,7 +98,6 @@ public abstract class BaseOracleDataConfig {
         return () -> Optional.of(Instant.now());
     }
 
-
     /**
      * Set the packages to Scan property to the entityManagerFactory.
      *
