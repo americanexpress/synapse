@@ -26,7 +26,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 /**
@@ -89,23 +88,14 @@ public abstract class BaseOracleDataConfig {
 
     /**
      * Provides to the Jpa Auditing with the {@link Instant} DateTime, that includes Zone information.
+     * IMPORTANT: The Auditor has to be enabled in the parent class so that the datetime is populated with @CreatedDateTime
+     * and @LastUpdatedDateTime.
      *
      * @return object of {@link DateTimeProvider}
      */
     @Bean
     public DateTimeProvider instantDateTimeProvider() {
         return () -> Optional.of(Instant.now());
-    }
-
-
-    /**
-     * Provides to the Jpa Auditing with {@link java.time.LocalDateTime}
-     *
-     * @return object of {@link DateTimeProvider}
-     */
-    @Bean
-    public DateTimeProvider localDateTimeProvider() {
-        return () -> Optional.of(LocalDateTime.now());
     }
 
 
