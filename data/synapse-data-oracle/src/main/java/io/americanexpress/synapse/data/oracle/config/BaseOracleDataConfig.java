@@ -19,12 +19,15 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.data.auditing.DateTimeProvider;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 /**
  * {@code BaseOracleDataConfig} class is used to hold the common configuration for all data-oracle modules.
@@ -32,7 +35,6 @@ import javax.sql.DataSource;
  * @author Gabriel Jimenez
  */
 @Configuration
-@EnableJpaAuditing
 @EnableTransactionManagement
 public abstract class BaseOracleDataConfig {
 
@@ -84,6 +86,28 @@ public abstract class BaseOracleDataConfig {
         this.setPackagesToScan(entityManagerFactoryBean);
         return entityManagerFactoryBean;
     }
+
+    /**
+     * Provides to the Jpa Auditing with the {@link Instant} DateTime, that includes Zone information.
+     *
+     * @return object of {@link DateTimeProvider}
+     */
+    @Bean
+    public DateTimeProvider instantDateTimeProvider() {
+        return () -> Optional.of(Instant.now());
+    }
+
+
+    /**
+     * Provides to the Jpa Auditing with {@link java.time.LocalDateTime}
+     *
+     * @return object of {@link DateTimeProvider}
+     */
+    @Bean
+    public DateTimeProvider localDateTimeProvider() {
+        return () -> Optional.of(LocalDateTime.now());
+    }
+
 
     /**
      * Set the packages to Scan property to the entityManagerFactory.
