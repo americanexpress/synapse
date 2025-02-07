@@ -30,6 +30,7 @@
         <!-- Base data Synapse dependencies-->
         <module>data-samples</module>
         <module>synapse-data-jpa</module>
+        <module>synapse-data-jdbc</module>
         <module>synapse-data-cassandra</module>
         <module>synapse-data-couchbase</module>
         <module>synapse-data-db2</module>
