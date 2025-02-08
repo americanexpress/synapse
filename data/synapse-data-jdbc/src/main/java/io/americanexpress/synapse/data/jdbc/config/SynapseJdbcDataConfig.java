@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 
 @Configuration
-@ComponentScan(basePackages = "io.americanexpress.synapse.data.jpa")
+@ComponentScan(basePackages = "io.americanexpress.synapse.data.jdbc")
 @EnableTransactionManagement
 public class SynapseJdbcDataConfig {
 
