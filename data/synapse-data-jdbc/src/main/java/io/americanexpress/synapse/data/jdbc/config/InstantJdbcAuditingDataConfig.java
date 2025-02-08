@@ -9,7 +9,7 @@ import java.time.Instant;
 import java.util.Optional;
 
 /**
- * {@code InstantJpaAuditingDataConfig} configuration class that includes the JPA Auditing to be saved into the database.
+ * {@code InstantJdbcAuditingDataConfig} configuration class that includes the JDBC Auditing to be saved into the database.
  *
  * @author John Robert Martinez Ponce
  */
@@ -18,7 +18,7 @@ import java.util.Optional;
 public class InstantJdbcAuditingDataConfig {
 
     /**
-     * Provides to the Jpa Auditing with the {@link Instant} DateTime, that includes Zone information.
+     * Provides to the Jdbc Auditing with the {@link Instant} DateTime, that includes Zone information.
      *
      * @return object of {@link DateTimeProvider}
      */

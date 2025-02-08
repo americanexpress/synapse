@@ -27,7 +27,7 @@ import java.time.Instant;
 import java.util.Objects;
 
 /**
- * {@code BaseOracleEntity} class is the parent class for all the database entities.
+ * {@code BaseEntity} class is the parent class for all the database entities.
  * All the common attributes are consolidated in this entity.
  *
  * @author John Robert Martinez Ponce
