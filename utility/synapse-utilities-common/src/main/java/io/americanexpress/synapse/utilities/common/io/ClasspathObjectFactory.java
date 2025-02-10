@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
+import com.fasterxml.jackson.module.jakarta.xmlbind.JakartaXmlBindAnnotationModule;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
@@ -96,7 +96,7 @@ public class ClasspathObjectFactory {
         ClassPathResource resource = new ClassPathResource(filePath);
         InputStream inputStream = resource.getInputStream();
         ObjectMapper objectMapper = new XmlMapper();
-        objectMapper.registerModule(new JaxbAnnotationModule());
+        objectMapper.registerModule(new JakartaXmlBindAnnotationModule());
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         return objectMapper.readValue(inputStream, classType);
