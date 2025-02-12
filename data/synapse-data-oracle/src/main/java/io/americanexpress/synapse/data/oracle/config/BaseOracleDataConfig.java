@@ -19,14 +19,12 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-import org.springframework.data.auditing.DateTimeProvider;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
-import java.time.Instant;
-import java.util.Optional;
 
 /**
  * {@code BaseOracleDataConfig} class is used to hold the common configuration for all data-oracle modules.
@@ -34,6 +32,7 @@ import java.util.Optional;
  * @author Gabriel Jimenez
  */
 @Configuration
+@EnableJpaAuditing
 @EnableTransactionManagement
 public abstract class BaseOracleDataConfig {
 
@@ -84,18 +83,6 @@ public abstract class BaseOracleDataConfig {
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         this.setPackagesToScan(entityManagerFactoryBean);
         return entityManagerFactoryBean;
-    }
-
-    /**
-     * Provides to the Jpa Auditing with the {@link Instant} DateTime, that includes Zone information.
-     * IMPORTANT: The Auditor has to be enabled in the parent class so that the datetime is populated with @CreatedDateTime
-     * and @LastUpdatedDateTime.
-     *
-     * @return object of {@link DateTimeProvider}
-     */
-    @Bean
-    public DateTimeProvider instantDateTimeProvider() {
-        return () -> Optional.of(Instant.now());
     }
 
     /**
