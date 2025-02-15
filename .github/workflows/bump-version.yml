@@ -18,11 +18,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Use Maven Versions Plugin to update the version across all modules.
+      # Step 2: Display current Maven version
+      - name: Display current Maven version
+        run: |
+          current_version=$(xmllint --xpath "string(//project/version)" pom.xml)
+          echo "Current Maven version: $current_version"
+
+      # Step 3: Use Maven Versions Plugin to update the version across all modules.
       - name: Set Maven version
         run: mvn versions:set -DnewVersion=${{ github.event.inputs.newVersion }} -DprocessAllModules=true
 
-      # Step 3: Commit the changes using a GitHub Action.
+      # Step 4: Commit the changes using a GitHub Action.
       - name: Commit version bump changes
         uses: EndBug/add-and-commit@v9
         with:
