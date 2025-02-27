@@ -19,7 +19,7 @@
     <groupId>io.americanexpress.synapse</groupId>
     <artifactId>synapse</artifactId>
     <packaging>pom</packaging>
-    <version>0.4.10-SNAPSHOT</version>
+    <version>0.4.11-SNAPSHOT</version>
 
     <description>
         Synapse is a set of lightweight foundational framework modules for rapid development built-in with enterprise
@@ -47,9 +47,8 @@
         <kotlin.version>1.9.25</kotlin.version>
 
         <!--Spring Versions-->
-        <spring-boot-framework.version>3.2.4</spring-boot-framework.version>
+        <spring-boot-framework.version>3.4.2</spring-boot-framework.version>
         <spring-cloud-framework.version>2023.0.0</spring-cloud-framework.version>
-        <spring-data.version>3.4.2</spring-data.version>
 
         <!--Springdoc-->
         <springdoc.version>2.3.0</springdoc.version>
@@ -560,12 +559,12 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-jdbc</artifactId>
-                <version>${spring-data.version}</version>
+                <version>${spring-boot-framework.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-jpa</artifactId>
-                <version>${spring-data.version}</version>
+                <version>${spring-boot-framework.version}</version>
             </dependency>
 
             <!--Logging-->
