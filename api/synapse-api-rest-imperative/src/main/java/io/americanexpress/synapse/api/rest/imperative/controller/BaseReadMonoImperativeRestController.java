@@ -11,6 +11,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * {@code BaseReadMonoController} class specifies the prototypes for listening for requests from the consumer
@@ -49,7 +50,7 @@ public class BaseReadMonoImperativeRestController<
             @ApiResponse(responseCode = "403", description = "Forbidden"),
     })
     @PostMapping(INQUIRY_RESULTS)
-    public ResponseEntity<O> read(@RequestHeader HttpHeaders headers, I serviceRequest) {
+    public ResponseEntity<O> read(@RequestHeader HttpHeaders headers, @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
 
         final O serviceResponse = service.execute(serviceRequest);
