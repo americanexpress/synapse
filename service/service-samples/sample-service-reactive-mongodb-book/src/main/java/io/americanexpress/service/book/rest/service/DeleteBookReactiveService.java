@@ -33,7 +33,7 @@ public class DeleteBookReactiveService extends BaseDeleteReactiveService {
     /**
      * Instantiates a new DeleteBookReactiveService.
      *
-     * @param bookRepository the book client
+     * @param bookRepository the book repository
      */
     public DeleteBookReactiveService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;

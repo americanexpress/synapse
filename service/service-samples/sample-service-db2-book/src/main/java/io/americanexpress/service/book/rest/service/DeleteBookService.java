@@ -28,13 +28,13 @@ import org.springframework.stereotype.Service;
 public class DeleteBookService extends BaseDeleteService {
 
     /**
-     * The book client for querying the database.
+     * The book repository for querying the database.
      */
     private final BookRepository bookRepository;
 
     /**
      * Creates a new instance of {@code DeleteBookService} with the specified values.
-     * @param bookRepository the client for the database.
+     * @param bookRepository the repository for the database.
      */
     public DeleteBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;

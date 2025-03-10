@@ -33,7 +33,7 @@ public class CreateBookService extends BaseCreateService<CreateBookRequest, Crea
     /**
      * Instantiates a new CreateBookService.
      *
-     * @param bookRepository the book client
+     * @param bookRepository the book repository
      */
     public CreateBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;

@@ -34,7 +34,7 @@ public class GetBookService extends BaseGetMonoService<ReadBookResponse> {
     /**
      * Instantiates a new GetBookService.
      *
-     * @param bookRepository the book client
+     * @param bookRepository the book repository
      */
     public GetBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
