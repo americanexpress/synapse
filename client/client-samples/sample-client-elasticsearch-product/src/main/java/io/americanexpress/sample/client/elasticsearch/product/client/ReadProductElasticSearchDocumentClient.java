@@ -2,8 +2,9 @@ package io.americanexpress.sample.client.elasticsearch.product.client;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import io.americanexpress.sample.client.elasticsearch.product.model.Product;
-import io.americanexpress.synapse.client.elasticsearch.client.BaseReadElasticSearchDocumentClient;
+import io.americanexpress.synapse.client.elasticsearch.client.BaseReadElasticSearchDocumentSearchClient;
 import org.springframework.stereotype.Component;
+import static io.americanexpress.sample.client.elasticsearch.product.config.ProductElasticSearchConfig.INDEX_NAME;
 
 /**
  * {@code ReadProductElasticSearchDocumentClient} reads a document from ElasticSearch.
@@ -11,20 +12,14 @@ import org.springframework.stereotype.Component;
  * @author sshre31
  */
 @Component
-public class ReadProductElasticSearchDocumentClient extends BaseReadElasticSearchDocumentClient<Product> {
+public class ReadProductElasticSearchDocumentClient extends BaseReadElasticSearchDocumentSearchClient<Product> {
 
     /**
-     * Index name.
-     */
-    private static final String INDEX_NAME = "product";
-
-    /**
-     * Create an instance of BaseReadElasticSearchDocumentClient with the specified parameters.
+     * Create an instance of BaseReadElasticSearchDocumentSearchClient with the specified parameters.
      *
      * @param elasticsearchClient elasticsearchClient
-     * @param clazz clazz
      */
-    public ReadProductElasticSearchDocumentClient(ElasticsearchClient elasticsearchClient, Class<Product> clazz) {
-        super(elasticsearchClient, INDEX_NAME, clazz);
+    public ReadProductElasticSearchDocumentClient(ElasticsearchClient elasticsearchClient) {
+        super(elasticsearchClient, INDEX_NAME);
     }
 }

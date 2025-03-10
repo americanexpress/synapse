@@ -16,6 +16,11 @@ import org.springframework.core.env.Environment;
 public class ProductElasticSearchConfig extends BaseElasticSearchClientConfig {
 
     /**
+     * Index name.
+     */
+    public static final String INDEX_NAME = "products";
+
+    /**
      * Constructor taking in objectMapper & metricInterceptor.
      *
      * @param defaultObjectMapper the default object mapper

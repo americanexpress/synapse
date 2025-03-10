@@ -1,19 +1,13 @@
 package io.americanexpress.sample.client.elasticsearch.product.model;
 
-import java.util.List;
-import java.util.UUID;
+import io.americanexpress.synapse.client.elasticsearch.model.BaseElasticSearchData;
 
 /**
  * {@code Product} represents a product.
  *
  * @author sshre31
  */
-public class Product {
-
-    /**
-     * ID of this product.
-     */
-    private UUID id;
+public class Product extends BaseElasticSearchData {
 
     /**
      * Name of the product.
@@ -24,38 +18,6 @@ public class Product {
      * Description of the product.
      */
     private String description;
-
-    /**
-     * Test of the product.
-     */
-    private List<String> test;
-
-    /**
-     * Default constructor creates a new instance of Product with default values.
-     */
-    public Product(UUID id, String name, String description, List<String> test) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-    }
-
-    /**
-     * Get the id.
-     *
-     * @return the id
-     */
-    public UUID getId() {
-        return id;
-    }
-
-    /**
-     * Set the id.
-     *
-     * @param id the id to set
-     */
-    public void setId(UUID id) {
-        this.id = id;
-    }
 
     /**
      * Get the name.

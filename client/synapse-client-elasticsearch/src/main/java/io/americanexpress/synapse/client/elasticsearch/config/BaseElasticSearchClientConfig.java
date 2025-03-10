@@ -32,6 +32,9 @@ public class BaseElasticSearchClientConfig {
      */
     private final ObjectMapper defaultObjectMapper;
 
+    /**
+     * The environment.
+     */
     private final Environment environment;
 
     /**
@@ -51,8 +54,8 @@ public class BaseElasticSearchClientConfig {
      */
     @Bean
     public ElasticsearchClient elasticsearchClient() {
-        var elasticSearchUrl = environment.getRequiredProperty("elastic-client.url");
-        var elasticSearchApiKey = environment.getRequiredProperty("elastic-client.apikey");
+        var elasticSearchUrl = "https://localhost:9200";
+        var elasticSearchApiKey = "ZWR4Y0xwTUJUQmZSMW1pVl9DMXA6ZVRCaWtWc21UQy02RTdRYklXbXFkdw==";
 
         var restClient = RestClient
                 .builder(HttpHost.create(elasticSearchUrl))

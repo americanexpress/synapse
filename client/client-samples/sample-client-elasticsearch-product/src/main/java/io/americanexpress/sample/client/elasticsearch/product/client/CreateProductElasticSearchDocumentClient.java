@@ -2,8 +2,9 @@ package io.americanexpress.sample.client.elasticsearch.product.client;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import io.americanexpress.sample.client.elasticsearch.product.model.Product;
-import io.americanexpress.synapse.client.elasticsearch.client.BaseCreateElasticSearchDocumentClient;
+import io.americanexpress.synapse.client.elasticsearch.client.BaseCreateElasticSearchDocumentSearchClient;
 import org.springframework.stereotype.Component;
+import static io.americanexpress.sample.client.elasticsearch.product.config.ProductElasticSearchConfig.INDEX_NAME;
 
 /**
  * {@code CreateProductElasticSearchDocumentClient} creates a document in ElasticSearch.
@@ -11,12 +12,7 @@ import org.springframework.stereotype.Component;
  * @author sshre31
  */
 @Component
-public class CreateProductElasticSearchDocumentClient extends BaseCreateElasticSearchDocumentClient<Product> {
-
-    /**
-     * Index name.
-     */
-    private static final String INDEX_NAME = "product";
+public class CreateProductElasticSearchDocumentClient extends BaseCreateElasticSearchDocumentSearchClient<Product> {
 
     /**
      * Create an instance of CreateProductElasticSearchDocumentClient with the specified parameters.
@@ -24,6 +20,6 @@ public class CreateProductElasticSearchDocumentClient extends BaseCreateElasticS
      * @param elasticsearchClient elasticsearchClient
      */
     public CreateProductElasticSearchDocumentClient(ElasticsearchClient elasticsearchClient) {
-        super(elasticsearchClient, INDEX_NAME, Product.class);
+        super(elasticsearchClient, INDEX_NAME);
     }
 }

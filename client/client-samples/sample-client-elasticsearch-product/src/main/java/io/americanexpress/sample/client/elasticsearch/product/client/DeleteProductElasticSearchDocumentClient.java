@@ -2,8 +2,9 @@ package io.americanexpress.sample.client.elasticsearch.product.client;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import io.americanexpress.sample.client.elasticsearch.product.model.Product;
-import io.americanexpress.synapse.client.elasticsearch.client.BaseDeleteElasticSearchDocumentClient;
+import io.americanexpress.synapse.client.elasticsearch.client.BaseDeleteElasticSearchDocumentSearchClient;
 import org.springframework.stereotype.Component;
+import static io.americanexpress.sample.client.elasticsearch.product.config.ProductElasticSearchConfig.INDEX_NAME;
 
 /**
  * {@code DeleteProductElasticSearchDocumentClient} deletes a document from ElasticSearch.
@@ -11,20 +12,14 @@ import org.springframework.stereotype.Component;
  * @author sshre31
  */
 @Component
-public class DeleteProductElasticSearchDocumentClient extends BaseDeleteElasticSearchDocumentClient<Product> {
+public class DeleteProductElasticSearchDocumentClient extends BaseDeleteElasticSearchDocumentSearchClient<Product> {
 
     /**
-     * Index name.
-     */
-    private static final String INDEX_NAME = "product";
-
-    /**
-     * Create an instance of BaseDeleteElasticSearchDocumentClient with the specified parameters.
+     * Create an instance of BaseDeleteElasticSearchDocumentSearchClient with the specified parameters.
      *
      * @param elasticsearchClient elasticsearchClient
-     * @param clazz clazz
      */
-    public DeleteProductElasticSearchDocumentClient(ElasticsearchClient elasticsearchClient, Class<Product> clazz) {
-        super(elasticsearchClient, INDEX_NAME, clazz);
+    public DeleteProductElasticSearchDocumentClient(ElasticsearchClient elasticsearchClient) {
+        super(elasticsearchClient, INDEX_NAME);
     }
 }
