@@ -39,7 +39,7 @@ public class PolyResponseEntityCreator {
         final ResponseEntity<List<O>> responseEntity;
         List<O> pageContent = null;
         if (page != null) {
-            pageContent = page.getResponsesForPage();
+            pageContent = page.getResponses();
         }
         if (page == null || CollectionUtils.isEmpty(pageContent)) {
             responseEntity = new ResponseEntity<>(HttpStatus.NO_CONTENT);
