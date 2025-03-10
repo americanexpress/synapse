@@ -14,12 +14,6 @@
 package io.americanexpress.synapse.data.oracle.entity;
 
 
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
@@ -27,7 +21,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Version;
-import java.time.LocalDateTime;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.Instant;
 import java.util.Objects;
 
 /**
@@ -52,14 +52,14 @@ public abstract class BaseEntity {
      */
     @CreatedDate
     @Column(name = "created_date_time")
-    protected LocalDateTime createdDateTime;
+    protected Instant createdDateTime;
 
     /**
      * Last Modified Date Time
      */
     @LastModifiedDate
     @Column(name = "last_modified_date_time")
-    protected LocalDateTime lastModifiedDateTime;
+    protected Instant lastModifiedDateTime;
 
     /**
      * Created By
@@ -83,8 +83,9 @@ public abstract class BaseEntity {
     protected Long version;
 
     /**
-     * Gets id as a long
-     * @return
+     * Gets id as Long
+     *
+     * @return the ID
      */
     public Long getId() {
         return id;
@@ -92,6 +93,7 @@ public abstract class BaseEntity {
 
     /**
      * Sets id with provided long value
+     *
      * @param id
      */
     public void setId(Long id) {
@@ -99,40 +101,45 @@ public abstract class BaseEntity {
     }
 
     /**
-     * Gets createdDateTime as LocalDateTime
-     * @return
+     * Gets createdDateTime as Instant
+     *
+     * @return datetime of {@link Instant} that contains the zone data
      */
-    public LocalDateTime getCreatedDateTime() {
+    public Instant getCreatedDateTime() {
         return createdDateTime;
     }
 
     /**
-     * Sets createdDateTime with provided LocalDateTime
-     * @param createdDateTime
+     * Sets createdDateTime with provided Instant
+     *
+     * @param createdDateTime datetime of {@link Instant} that contains the zone data
      */
-    public void setCreatedDateTime(LocalDateTime createdDateTime) {
+    public void setCreatedDateTime(Instant createdDateTime) {
         this.createdDateTime = createdDateTime;
     }
 
     /**
-     * Gets lastModifiedDateTime as LocalDateTime
-     * @return
+     * Gets lastModifiedDateTime as Instant
+     *
+     * @return datetime of {@link Instant} that contains the zone data
      */
-    public LocalDateTime getLastModifiedDateTime() {
+    public Instant getLastModifiedDateTime() {
         return lastModifiedDateTime;
     }
 
     /**
-     * Sets lastModifiedDateTime with provided localDateTime
-     * @param lastModifiedDateTime
+     * Sets lastModifiedDateTime with provided Instant
+     *
+     * @param lastModifiedDateTime datetime of {@link Instant} that contains the zone data
      */
-    public void setLastModifiedDateTime(LocalDateTime lastModifiedDateTime) {
+    public void setLastModifiedDateTime(Instant lastModifiedDateTime) {
         this.lastModifiedDateTime = lastModifiedDateTime;
     }
 
     /**
      * Gets createdBy as a String
-     * @return
+     *
+     * @return a String with the AuditorAware value
      */
     public String getCreatedBy() {
         return createdBy;
@@ -140,7 +147,8 @@ public abstract class BaseEntity {
 
     /**
      * Sets createdBy with provided String.
-     * @param createdBy
+     *
+     * @param createdBy a String with the AuditorAware value
      */
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
@@ -148,7 +156,8 @@ public abstract class BaseEntity {
 
     /**
      * Gets lastModifiedBy as a string.
-     * @return
+     *
+     * @return AuditorAware value
      */
     public String getLastModifiedBy() {
         return lastModifiedBy;
@@ -156,14 +165,15 @@ public abstract class BaseEntity {
 
     /**
      * Sets lastModifiedBy with provided string.
-     * @param lastModifiedBy
+     *
+     * @param lastModifiedBy AuditorAware value
      */
     public void setLastModifiedBy(String lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;
     }
 
     /**
-     * Gets version as a long.
+     * Gets the version of the record.
      */
     public Long getVersion() {
         return version;
@@ -171,7 +181,8 @@ public abstract class BaseEntity {
 
     /**
      * Sets version with provided long.
-     * @param version
+     *
+     * @param version of the record based on how many times it has been updated
      */
     public void setVersion(Long version) {
         this.version = version;
@@ -179,6 +190,7 @@ public abstract class BaseEntity {
 
     /**
      * Compares object
+     *
      * @param o an object
      * @return a boolean
      */
@@ -193,19 +205,13 @@ public abstract class BaseEntity {
                 && Objects.equals(lastModifiedBy, that.lastModifiedBy) && Objects.equals(version, that.version);
     }
 
-    /**
-     * Gets hashcode of object
-     * @return
-     */
+
     @Override
     public int hashCode() {
         return Objects.hash(id, createdDateTime, lastModifiedDateTime, createdBy, lastModifiedBy, version);
     }
 
-    /**
-     * Builds object as a string.
-     * @return
-     */
+
     @Override
     public String toString() {
         return "BaseEntity{" +
