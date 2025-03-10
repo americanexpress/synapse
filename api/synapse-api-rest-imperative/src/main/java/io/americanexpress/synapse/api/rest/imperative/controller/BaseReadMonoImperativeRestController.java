@@ -7,11 +7,9 @@ import io.americanexpress.synapse.service.imperative.service.BaseService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import jakarta.validation.Valid;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
 /**
@@ -51,7 +49,7 @@ public class BaseReadMonoImperativeRestController<
             @ApiResponse(responseCode = "403", description = "Forbidden"),
     })
     @PostMapping(INQUIRY_RESULTS)
-    public ResponseEntity<O> read(@RequestHeader HttpHeaders headers, @RequestBody @Valid I serviceRequest) {
+    public ResponseEntity<O> read(@RequestHeader HttpHeaders headers, I serviceRequest) {
         logger.entry(serviceRequest);
 
         final O serviceResponse = service.execute(serviceRequest);
