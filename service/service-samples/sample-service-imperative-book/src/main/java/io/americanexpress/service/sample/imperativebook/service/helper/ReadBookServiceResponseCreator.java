@@ -15,6 +15,8 @@ package io.americanexpress.service.sample.imperativebook.service.helper;
 
 import io.americanexpress.service.sample.imperativebook.model.BaseBook;
 import io.americanexpress.service.sample.imperativebook.model.ReadBookServiceResponse;
+import io.americanexpress.service.sample.imperativebook.model.ReadPolyBookServiceRequest;
+import io.americanexpress.service.sample.imperativebook.model.ReadPolyBookServiceResponse;
 import org.springframework.stereotype.Component;
 
 /**
@@ -40,6 +42,22 @@ public class ReadBookServiceResponseCreator {
         readBookServiceResponse.setPublisher(request.getPublisher());
         readBookServiceResponse.setYear(request.getYear());
         
+        return readBookServiceResponse;
+    }
+
+    /**
+     * Creates the poly book service response.
+     *
+     * @param request the body received from the controller.
+     * @return response body to the controller.
+     */
+    public ReadPolyBookServiceResponse create(ReadPolyBookServiceRequest request) {
+        var readBookServiceResponse = new ReadPolyBookServiceResponse();
+        readBookServiceResponse.setTitle("Harry Potter");
+        readBookServiceResponse.setAuthor(request.getAuthor());
+        readBookServiceResponse.setCost(15);
+        readBookServiceResponse.setYear(2005);
+        readBookServiceResponse.setPublisher("Publishing Co.");
         return readBookServiceResponse;
     }
 }
