@@ -6,16 +6,16 @@ import co.elastic.clients.transport.rest_client.RestClientTransport;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.americanexpress.synapse.framework.exception.config.ExceptionConfig;
 import io.americanexpress.synapse.utilities.common.config.UtilitiesCommonConfig;
-import org.apache.http.Header;
 import org.apache.http.HttpHost;
-import org.apache.http.message.BasicHeader;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.elasticsearch.client.RestClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.env.Environment;
-import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 /**
  * {@code BaseElasticSearchClientConfig} specifies the base configuration for the ElasticSearch client.
@@ -54,14 +54,17 @@ public class BaseElasticSearchClientConfig {
      */
     @Bean
     public ElasticsearchClient elasticsearchClient() {
-        var elasticSearchUrl = "https://localhost:9200";
-        var elasticSearchApiKey = "ZWR4Y0xwTUJUQmZSMW1pVl9DMXA6ZVRCaWtWc21UQy02RTdRYklXbXFkdw==";
+        var elasticSearchUrl = environment.getRequiredProperty("elastic-client.url");
+        var elasticSearchUser = environment.getRequiredProperty("elastic-client.username");
+        var elasticSearchPassword = environment.getRequiredProperty("elastic-client.password");
+
+        var basicCredentialsProvider = new BasicCredentialsProvider();
+        basicCredentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(elasticSearchUser, elasticSearchPassword));
 
         var restClient = RestClient
                 .builder(HttpHost.create(elasticSearchUrl))
-                .setDefaultHeaders(new Header[]{
-                        new BasicHeader(AUTHORIZATION, "ApiKey " + elasticSearchApiKey)
-                })
+                .setHttpClientConfigCallback(httpAsyncClientBuilder ->
+                        httpAsyncClientBuilder.setDefaultCredentialsProvider(basicCredentialsProvider))
                 .build();
 
         var transport = new RestClientTransport(
