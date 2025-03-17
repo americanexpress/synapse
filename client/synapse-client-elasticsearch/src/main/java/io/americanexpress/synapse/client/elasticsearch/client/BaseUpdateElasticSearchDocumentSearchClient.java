@@ -17,7 +17,7 @@ public abstract class BaseUpdateElasticSearchDocumentSearchClient<T extends Base
      * @param elasticsearchClient elasticsearchClient
      * @param indexName indexName
      */
-    public BaseUpdateElasticSearchDocumentSearchClient(ElasticsearchClient elasticsearchClient, String indexName) {
+    protected BaseUpdateElasticSearchDocumentSearchClient(ElasticsearchClient elasticsearchClient, String indexName) {
         super(elasticsearchClient, indexName);
     }
 

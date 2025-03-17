@@ -20,7 +20,7 @@ public abstract class BaseCreateElasticSearchDocumentSearchClient<T extends Base
      * @param elasticsearchClient elasticsearchClient
      * @param indexName indexName
      */
-    public BaseCreateElasticSearchDocumentSearchClient(ElasticsearchClient elasticsearchClient,
+    protected BaseCreateElasticSearchDocumentSearchClient(ElasticsearchClient elasticsearchClient,
                                                        String indexName) {
         super(elasticsearchClient, indexName);
     }

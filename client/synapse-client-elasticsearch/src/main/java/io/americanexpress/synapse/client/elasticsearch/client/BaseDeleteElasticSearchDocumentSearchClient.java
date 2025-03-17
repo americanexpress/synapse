@@ -17,7 +17,7 @@ public abstract class BaseDeleteElasticSearchDocumentSearchClient<T extends Base
      * @param elasticsearchClient elasticsearchClient
      * @param indexName indexName
      */
-    public BaseDeleteElasticSearchDocumentSearchClient(ElasticsearchClient elasticsearchClient, String indexName) {
+    protected BaseDeleteElasticSearchDocumentSearchClient(ElasticsearchClient elasticsearchClient, String indexName) {
         super(elasticsearchClient, indexName);
     }
 

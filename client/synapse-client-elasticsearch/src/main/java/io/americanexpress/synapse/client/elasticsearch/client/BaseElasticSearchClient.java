@@ -36,7 +36,7 @@ public abstract class BaseElasticSearchClient<T extends BaseElasticSearchData> {
      * @param elasticsearchClient elasticsearchClient
      * @param indexName indexName
      */
-    public BaseElasticSearchClient(ElasticsearchClient elasticsearchClient, String indexName) {
+    protected BaseElasticSearchClient(ElasticsearchClient elasticsearchClient, String indexName) {
         this.elasticsearchClient = elasticsearchClient;
         this.indexName = indexName;
         initialize();
