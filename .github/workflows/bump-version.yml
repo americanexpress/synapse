@@ -1,0 +1,29 @@
+# .github/workflows/bump-version.yml
+name: Bump Version
+
+# Allows manual trigger with a newVersion input.
+on:
+  workflow_dispatch:
+    inputs:
+      newVersion:
+        description: 'New version to set'
+        required: true
+        default: '1.0.1'
+
+jobs:
+  bump-version:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Check out the repo.
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Use Maven Versions Plugin to update the version across all modules.
+      - name: Set Maven version
+        run: mvn versions:set -DnewVersion=${{ github.event.inputs.newVersion }} -DprocessAllModules=true
+
+      # Step 3: Commit the changes using a GitHub Action.
+      - name: Commit version bump changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: 'Bump version to ${{ github.event.inputs.newVersion }}'
