@@ -19,7 +19,7 @@
     <groupId>io.americanexpress.synapse</groupId>
     <artifactId>synapse</artifactId>
     <packaging>pom</packaging>
-    <version>0.4.10-SNAPSHOT</version>
+    <version>0.4.11-SNAPSHOT</version>
 
     <description>
         Synapse is a set of lightweight foundational framework modules for rapid development built-in with enterprise
@@ -47,33 +47,30 @@
         <kotlin.version>1.9.25</kotlin.version>
 
         <!--Spring Versions-->
-        <spring-boot-framework.version>3.2.4</spring-boot-framework.version>
-        <spring-cloud-framework.version>2023.0.0</spring-cloud-framework.version>
-        <spring-data.version>3.4.2</spring-data.version>
+        <spring-boot-framework.version>3.2.12</spring-boot-framework.version>
+        <spring-cloud-framework.version>2023.0.5</spring-cloud-framework.version>
+        <spring-data.version>3.2.12</spring-data.version>
 
         <!--Springdoc-->
-        <springdoc.version>2.3.0</springdoc.version>
+        <springdoc.version>2.5.0</springdoc.version>
 
         <!--Swagger-->
-        <swagger.version>2.2.20</swagger.version>
+        <swagger.version>2.2.28</swagger.version>
 
         <!-- GraphQL -->
         <spring-boot-graphql.version>15.1.0</spring-boot-graphql.version>
         <spring-boot-graphiql.version>11.1.0</spring-boot-graphiql.version>
 
         <!--Mock Dependency Versions-->
-        <mockito.version>5.10.0</mockito.version>
+        <mockito.version>5.15.2</mockito.version>
 
         <!--JUnit Versions-->
-        <junit-platform.version>1.10.2</junit-platform.version>
-        <junit-jupiter.version>5.10.2</junit-jupiter.version>
-
-        <!--Jackson-->
-        <jackson.version>2.16.1</jackson.version>
+        <junit-platform.version>1.10.5</junit-platform.version>
+        <junit-jupiter.version>5.10.5</junit-jupiter.version>
 
         <!--Logging-->
-        <log4j.version>2.23.0</log4j.version>
-        <slf4j.version>2.0.12</slf4j.version>
+        <log4j.version>2.24.3</log4j.version>
+        <slf4j.version>2.0.16</slf4j.version>
 
         <!--Plugins-->
         <native-plugin.version>0.10.4</native-plugin.version>
@@ -83,7 +80,7 @@
         <db2-jcc.version>11.5.0.0</db2-jcc.version>
 
         <!--TestContainers-->
-        <testcontainers.version>1.19.6</testcontainers.version>
+        <testcontainers.version>1.20.6</testcontainers.version>
     </properties>
 
     <modules>
@@ -525,16 +522,6 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>org.springframework.plugin</groupId>
-                <artifactId>spring-plugin-core</artifactId>
-                <version>2.0.0.RELEASE</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-ws</artifactId>
-                <version>1.4.7.RELEASE</version>
-            </dependency>
-            <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-test</artifactId>
                 <version>${spring-boot-framework.version}</version>
@@ -586,9 +573,9 @@
 
             <!--GraphQL-->
             <dependency>
-                <groupId>com.graphql-java</groupId>
+                <groupId>com.graphql-java-kickstart</groupId>
                 <artifactId>graphql-java-tools</artifactId>
-                <version>5.2.4</version>
+                <version>13.1.1</version>
                 <exclusions>
                     <exclusion>
                         <groupId>com.fasterxml.jackson.core</groupId>
@@ -632,16 +619,16 @@
                 <artifactId>commons-io</artifactId>
                 <version>2.15.1</version>
             </dependency>
-            <!--            <dependency>-->
-            <!--                <groupId>org.apache.commons</groupId>-->
-            <!--                <artifactId>commons-collections4</artifactId>-->
-            <!--                <version>4.4</version>-->
-            <!--            </dependency>-->
-            <!--            <dependency>-->
-            <!--                <groupId>org.apache.commons</groupId>-->
-            <!--                <artifactId>commons-lang3</artifactId>-->
-            <!--                <version>3.12.0</version>-->
-            <!--            </dependency>-->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>4.4</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.17.0</version>
+            </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-text</artifactId>
@@ -870,16 +857,16 @@
             <!--            </dependency>-->
 
             <!--Slf4j-->
-            <!--            <dependency>-->
-            <!--                <groupId>org.slf4j</groupId>-->
-            <!--                <artifactId>slf4j-ext</artifactId>-->
-            <!--                <version>${slf4j.version}</version>-->
-            <!--            </dependency>-->
-            <!--            <dependency>-->
-            <!--                <groupId>org.slf4j</groupId>-->
-            <!--                <artifactId>slf4j-api</artifactId>-->
-            <!--                <version>${slf4j.version}</version>-->
-            <!--            </dependency>-->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-ext</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
 
             <!--Couchbase-->
             <!--            <dependency>-->
@@ -1148,13 +1135,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.5.2</version>
-                    <dependencies>
-                        <dependency>
-                            <groupId>com.google.code.findbugs</groupId>
-                            <artifactId>jsr305</artifactId>
-                            <version>3.0.2</version>
-                        </dependency>
-                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
