@@ -65,8 +65,8 @@
         <mockito.version>5.15.2</mockito.version>
 
         <!--JUnit Versions-->
-        <junit-platform.version>1.11.4</junit-platform.version>
-        <junit-jupiter.version>5.11.4</junit-jupiter.version>
+        <junit-platform.version>1.10.5</junit-platform.version>
+        <junit-jupiter.version>5.10.5</junit-jupiter.version>
 
         <!--Logging-->
         <log4j.version>2.24.3</log4j.version>
