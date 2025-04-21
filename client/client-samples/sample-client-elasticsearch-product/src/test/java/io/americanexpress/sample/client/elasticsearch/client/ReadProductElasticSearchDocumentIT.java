@@ -32,13 +32,13 @@ class ReadProductElasticSearchDocumentIT {
 
     @Test
     void findAll_providedValidRequest_expectedSuccess() throws IOException {
-        var allProducts = readProductElasticSearchDocumentClient.findAll();
+        var allProducts = readProductElasticSearchDocumentClient.findAll(0, 10);
         assertNotNull(allProducts);
     }
 
     @Test
     void searchByKey_providedValidKeyword_expectedSuccess() throws IOException {
-        var products = readProductElasticSearchDocumentClient.searchByKey("name", "Ice Cream");
+        var products = readProductElasticSearchDocumentClient.searchByKey("name", "Ice Cream", 0, 10);
         assertNotNull(products);
     }
 

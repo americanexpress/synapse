@@ -3,10 +3,17 @@ package io.americanexpress.synapse.client.elasticsearch.client;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.search.Hit;
+import co.elastic.clients.elasticsearch.core.search.HitsMetadata;
+import co.elastic.clients.elasticsearch.core.search.TotalHits;
 import io.americanexpress.synapse.client.elasticsearch.model.BaseElasticSearchData;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * {@code BaseElasticSearchClient} is the base class for all ElasticSearch clients.
@@ -58,10 +65,41 @@ public abstract class BaseElasticSearchClient<T extends BaseElasticSearchData> {
      * @return the list of results
      */
     List<T> renderResults(SearchResponse<T> response) {
-        List<T> results = new ArrayList<>();
-        for (Hit<T> hit : response.hits().hits()) {
-            results.add(hit.source());
-        }
-        return results;
+        return Optional.ofNullable(response)
+                .map(SearchResponse::hits)
+                .map(HitsMetadata::hits)
+                .orElseGet(ArrayList::new)
+                .stream()
+                .map(Hit::source)
+                .toList();
+    }
+
+    /**
+     * Render the page results from the search response.
+     *
+     * @param response the search response
+     * @param page the page number
+     * @param size the page size
+     * @return the page of results
+     */
+    Page<T> renderPageResults(SearchResponse<T> response, int page, int size) {
+        var hitsMetadata = Optional.ofNullable(response)
+                .map(SearchResponse::hits)
+                .orElse(null);
+
+        long totalHits = Optional.ofNullable(hitsMetadata)
+                .map(HitsMetadata::total)
+                .map(TotalHits::value)
+                .orElse(0L);
+
+        List<T> results = Optional.ofNullable(hitsMetadata)
+                .map(HitsMetadata::hits)
+                .orElseGet(ArrayList::new)
+                .stream()
+                .map(Hit::source)
+                .toList();
+
+        var pageable = PageRequest.of(page, size);
+        return new PageImpl<>(results, pageable, totalHits);
     }
 }
