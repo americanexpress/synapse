@@ -1031,6 +1031,15 @@
             <!--                <artifactId>testcontainers</artifactId>-->
             <!--                <version>${testcontainers.version}</version>-->
             <!--            </dependency>-->
+
+            <!--Temporary dependencies to resolve critical vulnerabilities-->
+
+            <!-- https://mvnrepository.com/artifact/net.minidev/json-smart -->
+            <dependency>
+                <groupId>net.minidev</groupId>
+                <artifactId>json-smart</artifactId>
+                <version>2.5.2</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
