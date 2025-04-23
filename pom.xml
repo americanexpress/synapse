@@ -82,7 +82,7 @@
         <!--TestContainers-->
         <testcontainers.version>1.20.6</testcontainers.version>
         <!--Temporary dependencies to resolve critical vulnerabilities-->
-        <netty-common.version>4.1.117.Final</netty-common.version>
+        <netty-common.version>4.1.119.Final</netty-common.version>
         <tomcat-embed.version>10.1.40</tomcat-embed.version>
         <graphql-java-kickstart.version>14.0.0</graphql-java-kickstart.version>
         <kafka-clients.version>3.7.1</kafka-clients.version>
