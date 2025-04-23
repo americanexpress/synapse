@@ -1104,6 +1104,13 @@
                 <version>10.1.40</version>
             </dependency>
 
+            <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-annotations-api -->
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-annotations-api</artifactId>
+                <version>10.1.40</version>
+            </dependency>
+
             <!-- https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka -->
             <dependency>
                 <groupId>org.springframework.kafka</groupId>
