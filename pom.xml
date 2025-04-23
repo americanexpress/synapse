@@ -85,6 +85,7 @@
         <netty-common.version>4.1.117.Final</netty-common.version>
         <tomcat-embed.version>10.1.40</tomcat-embed.version>
         <graphql-java-kickstart.version>14.0.0</graphql-java-kickstart.version>
+        <kafka-clients.version>3.7.1</kafka-clients.version>
     </properties>
 
     <modules>
@@ -1051,6 +1052,11 @@
                 <groupId>org.apache.tomcat</groupId>
                 <artifactId>tomcat-annotations-api</artifactId>
                 <version>${tomcat-embed.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka-clients</artifactId>
+                <version>${kafka-clients.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
