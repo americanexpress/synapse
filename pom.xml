@@ -81,11 +81,6 @@
 
         <!--TestContainers-->
         <testcontainers.version>1.20.6</testcontainers.version>
-        <!--Temporary dependencies to resolve critical vulnerabilities-->
-        <netty-common.version>4.1.119.Final</netty-common.version>
-        <tomcat-embed.version>10.1.40</tomcat-embed.version>
-        <graphql-java-kickstart.version>14.0.0</graphql-java-kickstart.version>
-        <kafka-clients.version>3.7.1</kafka-clients.version>
     </properties>
 
     <modules>
@@ -370,6 +365,13 @@
                 <version>${project.version}</version>
             </dependency>
 
+            <!-- Subscriber -->
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-subscriber-kafka</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
             <!--Samples-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
@@ -580,7 +582,7 @@
             <dependency>
                 <groupId>com.graphql-java-kickstart</groupId>
                 <artifactId>graphql-java-tools</artifactId>
-                <version>${graphql-java-kickstart.version}</version>
+                <version>14.0.0</version>
                 <exclusions>
                     <exclusion>
                         <groupId>com.fasterxml.jackson.core</groupId>
@@ -1038,26 +1040,79 @@
             <!--            </dependency>-->
 
             <!--Temporary dependencies to resolve critical vulnerabilities-->
+
+            <!-- https://mvnrepository.com/artifact/net.minidev/json-smart -->
+            <dependency>
+                <groupId>net.minidev</groupId>
+                <artifactId>json-smart</artifactId>
+                <version>2.5.2</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/io.netty/netty-bom -->
             <dependency>
                 <groupId>io.netty</groupId>
-                <artifactId>netty-common</artifactId>
-                <version>${netty-common.version}</version>
+                <artifactId>netty-bom</artifactId>
+                <version>4.1.118.Final</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.json/json -->
+            <dependency>
+                <groupId>org.json</groupId>
+                <artifactId>json</artifactId>
+                <version>20231013</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.18.3</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.xerial.snappy/snappy-java -->
+            <dependency>
+                <groupId>org.xerial.snappy</groupId>
+                <artifactId>snappy-java</artifactId>
+                <version>1.1.10.7</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
+            <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>2.4</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-crypto -->
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-crypto</artifactId>
+                <version>6.4.5</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-core -->
             <dependency>
                 <groupId>org.apache.tomcat.embed</groupId>
                 <artifactId>tomcat-embed-core</artifactId>
-                <version>${tomcat-embed.version}</version>
+                <version>11.0.6</version>
             </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-annotations-api -->
             <dependency>
                 <groupId>org.apache.tomcat</groupId>
                 <artifactId>tomcat-annotations-api</artifactId>
-                <version>${tomcat-embed.version}</version>
+                <version>11.0.6</version>
             </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka -->
             <dependency>
-                <groupId>org.apache.kafka</groupId>
-                <artifactId>kafka-clients</artifactId>
-                <version>${kafka-clients.version}</version>
+                <groupId>org.springframework.kafka</groupId>
+                <artifactId>spring-kafka</artifactId>
+                <version>3.3.4</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 
