@@ -365,6 +365,13 @@
                 <version>${project.version}</version>
             </dependency>
 
+            <!-- Subscriber -->
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-subscriber-kafka</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
             <!--Samples-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
