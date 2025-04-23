@@ -81,6 +81,10 @@
 
         <!--TestContainers-->
         <testcontainers.version>1.20.6</testcontainers.version>
+        <!--Temporary dependencies to resolve critical vulnerabilities-->
+        <netty-common.version>4.1.117.Final</netty-common.version>
+        <tomcat-embed.version>10.1.40</tomcat-embed.version>
+        <graphql-java-kickstart.version>14.0.0</graphql-java-kickstart.version>
     </properties>
 
     <modules>
@@ -575,7 +579,7 @@
             <dependency>
                 <groupId>com.graphql-java-kickstart</groupId>
                 <artifactId>graphql-java-tools</artifactId>
-                <version>13.1.1</version>
+                <version>${graphql-java-kickstart.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>com.fasterxml.jackson.core</groupId>
@@ -1031,6 +1035,23 @@
             <!--                <artifactId>testcontainers</artifactId>-->
             <!--                <version>${testcontainers.version}</version>-->
             <!--            </dependency>-->
+
+            <!--Temporary dependencies to resolve critical vulnerabilities-->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-common</artifactId>
+                <version>${netty-common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-core</artifactId>
+                <version>${tomcat-embed.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-annotations-api</artifactId>
+                <version>${tomcat-embed.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
