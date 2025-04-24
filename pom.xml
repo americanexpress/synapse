@@ -1083,19 +1083,25 @@
                 <artifactId>spring-security-crypto</artifactId>
                 <version>6.4.5</version>
             </dependency>
-
-            <!-- https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-core -->
             <dependency>
                 <groupId>org.apache.tomcat.embed</groupId>
                 <artifactId>tomcat-embed-core</artifactId>
-                <version>11.0.6</version>
+                <version>10.1.40</version>
             </dependency>
-
-            <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-annotations-api -->
             <dependency>
                 <groupId>org.apache.tomcat</groupId>
                 <artifactId>tomcat-annotations-api</artifactId>
-                <version>11.0.6</version>
+                <version>10.1.40</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-websocket</artifactId>
+                <version>10.1.40</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-el</artifactId>
+                <version>10.1.40</version>
             </dependency>
 
             <!-- https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka -->
