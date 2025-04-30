@@ -33,6 +33,24 @@ import org.springframework.web.bind.annotation.RequestHeader;
  */
 public class BaseGetMonoController<O extends BaseServiceResponse, S extends BaseGetMonoService<O>> extends BaseController<S> {
 
+
+    /**
+     * Read response entity.
+     *
+     * @param headers containing the HTTP headers from the consumer
+     * @return the response entity
+     */
+    @Operation(summary = "Read operation.", description = "Read resources.")
+    @GetMapping("/")
+    public ResponseEntity<O> read(@RequestHeader HttpHeaders headers) {
+        logger.entry(headers);
+
+        final O response = service.read(headers);
+        ResponseEntity<O> responseEntity = MonoResponseEntityCreator.create(response);
+
+        logger.exit(responseEntity);
+        return responseEntity;
+    }
     /**
      * Read response entity.
      *

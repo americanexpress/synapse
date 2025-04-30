@@ -61,4 +61,32 @@ public abstract class BaseGetMonoReactiveController<O extends BaseServiceRespons
         logger.exit(responseEntity);
         return responseEntity;
     }
+
+
+    /**
+     * Get a single resource from the back end service.
+     *
+     * @param headers the headers
+     * @return response
+     */
+    @Operation(summary = "Reactive get mono", description = "Get resources reactively")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Ok"),
+            @ApiResponse(responseCode = "204", description = "No Content"),
+            @ApiResponse(responseCode = "400", description = "Bad Request"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
+    })
+    @GetMapping("/")
+    public Mono<ResponseEntity<O>> read(@RequestHeader HttpHeaders headers) {
+        logger.entry(headers);
+
+        var serviceResponse = service.read(headers);
+        var responseEntity = serviceResponse
+                .map(ResponseEntity::ok)
+                .defaultIfEmpty(ResponseEntity.noContent().build());
+
+        logger.exit(responseEntity);
+        return responseEntity;
+    }
 }

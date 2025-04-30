@@ -22,6 +22,31 @@ import org.springframework.http.HttpHeaders;
  */
 public abstract class BaseGetMonoService<O extends BaseServiceResponse> extends BaseService {
 
+
+    /**
+     * Gets a single resource.
+     *
+     * @param headers received from the controller
+     */
+    public O read(HttpHeaders headers) {
+
+        logger.entry(headers);
+
+        O response = executeRead(headers);
+
+        logger.exit(response);
+
+        return response;
+    }
+
+    /**
+     * Prototype for reading a resource.
+     * @param headers
+     * @return
+     */
+    protected abstract O executeRead(HttpHeaders headers);
+
+
     /**
      * Gets a single resource.
      *
