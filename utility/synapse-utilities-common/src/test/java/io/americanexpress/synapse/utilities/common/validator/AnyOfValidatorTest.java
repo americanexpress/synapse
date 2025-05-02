@@ -73,7 +73,6 @@ class AnyOfValidatorTest {
     void isValid_givenInvalidMethod_expectedFalse() {
         var builder = mock(ConstraintValidatorContext.ConstraintViolationBuilder.class);
         when(constraintValidatorContext.buildConstraintViolationWithTemplate(anyString())).thenReturn(builder);
-        when(constraintValidatorContext.getDefaultConstraintMessageTemplate()).thenReturn("At least one of the fields %s must be provided.");
         when(anyOf.fieldNames()).thenReturn(new String[] {"randomTestField"});
         anyOfValidator = new AnyOfValidator();
         anyOfValidator.initialize(anyOf);
