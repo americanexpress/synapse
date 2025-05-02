@@ -52,7 +52,7 @@ public class AnyOfValidator implements ConstraintValidator<AnyOf, Object> {
      */
     @Override
     public boolean isValid(Object object, ConstraintValidatorContext constraintValidatorContext) {
-        if(object == null || ArrayUtils.isEmpty(fieldNames) || fieldNames.length < 1) {
+        if(object == null || ArrayUtils.isEmpty(fieldNames)) {
             this.setErrorMessage(constraintValidatorContext, "Invalid configuration for @AnyOf annotation. At least one field must be provided.");
             return false;
         }

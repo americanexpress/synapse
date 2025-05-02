@@ -53,7 +53,7 @@ public class AllOfValidator implements ConstraintValidator<AllOf, Object> {
      */
     @Override
     public boolean isValid(Object object, ConstraintValidatorContext constraintValidatorContext) {
-        if(object == null || ArrayUtils.isEmpty(fieldNames) || fieldNames.length < 1) {
+        if(object == null || ArrayUtils.isEmpty(fieldNames)) {
             this.setErrorMessage(constraintValidatorContext, "Invalid configuration for @AllOf annotation. All of the fields must be provided.");
             return false;
         }
