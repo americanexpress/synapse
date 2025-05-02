@@ -26,10 +26,10 @@ import java.lang.annotation.Target;
  *
  * @author sahilzmaharjan
  */
-@Target({ElementType.TYPE})
-@Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = AnyOfValidator.class)
 @Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.TYPE})
 public @interface AnyOf {
 
     String message() default "At least one of the fields %s must be provided.";

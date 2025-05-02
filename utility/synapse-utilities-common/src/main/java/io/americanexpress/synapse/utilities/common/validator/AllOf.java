@@ -24,11 +24,12 @@ import java.lang.annotation.Target;
 /**
  * {@code AllOf} validates if all the fields are provided.
  *
+ * @author sahilzmaharjan
  */
-@Target({ElementType.TYPE})
-@Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = OneOfValidator.class)
 @Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.TYPE})
 public @interface AllOf {
 
     String message() default "All of the fields %s must be provided.";

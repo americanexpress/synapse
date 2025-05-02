@@ -45,7 +45,7 @@ public class AllOfValidator implements ConstraintValidator<AllOf, Object> {
     }
 
     /**
-     * Check if at least one of the fields is provided.
+     * Check if all the fields are provided.
      *
      * @param object object to validate.
      * @param constraintValidatorContext context in which constraint is evaluated.
