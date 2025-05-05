@@ -72,7 +72,7 @@ class AnyOfValidatorTest {
     }
 
     @Test
-    void isValid_givenInvalidMethod_expectedFalse() {
+    void isValid_givenInvalidField_expectedFalse() {
         var builder = mock(ConstraintValidatorContext.ConstraintViolationBuilder.class);
         when(constraintValidatorContext.buildConstraintViolationWithTemplate(anyString())).thenReturn(builder);
         when(anyOf.fieldNames()).thenReturn(new String[] {"randomTestField"});
