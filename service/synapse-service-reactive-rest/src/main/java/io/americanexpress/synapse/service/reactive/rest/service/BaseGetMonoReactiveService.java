@@ -23,6 +23,28 @@ import reactor.core.publisher.Mono;
  */
 public abstract class BaseGetMonoReactiveService<O extends BaseServiceResponse> extends BaseService {
 
+
+    /**
+     * Retrieves one resource.
+     *
+     * @param headers headers
+     * @return a mono read response
+     */
+    public Mono<O> read(HttpHeaders headers) {
+        logger.entry(headers);
+        final var response = executeRead(headers);
+        logger.exit();
+        return response;
+    }
+
+    /**
+     * Prototype for reading a resource.
+     *
+     * @param headers headers
+     * @return a mono read response
+     */
+    protected abstract Mono<O> executeRead(HttpHeaders headers);
+
     /**
      * Retrieves one resource.
      *
