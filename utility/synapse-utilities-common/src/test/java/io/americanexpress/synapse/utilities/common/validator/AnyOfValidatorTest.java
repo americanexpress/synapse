@@ -93,12 +93,14 @@ class AnyOfValidatorTest {
     }
 
     @ParameterizedTest
-    @CsvSource({",", "'   ','   '", "test,test", "'',''", ",''"})
+    @CsvSource({",", "'   ','   '", "'',''", ",''"})
     void isInvalid_givenObjectWithInvalidFields_expectedFalse(String value1, String value2) {
         var builder = mock(ConstraintValidatorContext.ConstraintViolationBuilder.class);
         when(constraintValidatorContext.buildConstraintViolationWithTemplate(anyString())).thenReturn(builder);
         when(constraintValidatorContext.getDefaultConstraintMessageTemplate()).thenReturn("At least one of the fields %s must be provided.");
         var sampleNestedObject  = new SampleNestedObject();
+        sampleNestedObject.setSomeText1(value1);
+        sampleNestedObject.setSomeText2(value2);
         assertFalse(anyOfValidator.isValid(sampleNestedObject, constraintValidatorContext));
         verify(constraintValidatorContext).buildConstraintViolationWithTemplate("At least one of the fields [someText1, someText2] must be provided.");
     }
