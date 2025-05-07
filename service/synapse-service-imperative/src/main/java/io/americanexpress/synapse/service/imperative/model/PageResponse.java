@@ -174,12 +174,11 @@ public class PageResponse<O extends BaseServiceResponse> implements BaseServiceR
     public void setPage(int p) {
         if (p >= maxPages) {
             this.page = maxPages;
-        } else {
+        } else
             if (p <= 1) {
                 this.page = 1;
             } else {
                 this.page = p;
-            }
         }
 
         // Determine where the sublist starts and ends
