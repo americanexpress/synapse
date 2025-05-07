@@ -13,6 +13,8 @@
  */
 package io.americanexpress.synapse.service.imperative.model;
 
+import jakarta.validation.constraints.Min;
+
 /**
  * {@code PageInformation} class specifies the parameters for a service request,
  * limiting the results to a subset of how many (size) and on which page (page).
@@ -21,12 +23,16 @@ public class PageInformation {
 
     /**
      * The page requested of the results.
+     * Must be greater than or equal to 1.
      */
+    @Min(value = 1)
     private int page;
 
     /**
      * The number of results per page.
+     * Must be greater than or equal to 1.
      */
+    @Min(value = 1)
     private int size;
 
     /**
