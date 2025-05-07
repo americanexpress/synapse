@@ -172,24 +172,11 @@ public class PageResponse<O extends BaseServiceResponse> implements BaseServiceR
      * @param p the page to set
      */
     public void setPage(int p) {
-        if (p >= maxPages) {
-            this.page = maxPages;
-        } else if (p <= 1) {
-            this.page = 1;
-        } else {
-            this.page = p;
-        }
-
-        // Determine where the sublist starts and ends
-        startingIndex = pageSize * (page - 1);
-        if (startingIndex < 0) {
-            startingIndex = 0;
-        }
-
-        endingIndex = startingIndex + pageSize;
-        if (endingIndex > responses.size()) {
-            endingIndex = responses.size();
-        }
+        this.page = Math.clamp(p, 1, maxPages);
+        // Calculate starting and ending indices for the sublist
+        int pageIndex = page - 1;
+        startingIndex = Math.max(0, pageSize * pageIndex);
+        endingIndex = Math.min(startingIndex + pageSize, responses.size());
     }
 
     /**
