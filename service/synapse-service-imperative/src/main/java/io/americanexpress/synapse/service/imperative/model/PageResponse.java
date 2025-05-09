@@ -65,6 +65,13 @@ public class PageResponse<O extends BaseServiceResponse> implements BaseServiceR
     private int maxPages;
 
     /**
+     * Default constructor for {@code PageResponse}.
+     * Initializes an empty instance with no parameters.
+     */
+    public PageResponse() {
+    }
+
+    /**
      * Argument constructor creates a new instance of PageResponse with given values.
      *
      * @param responses collection received as a response from the service
