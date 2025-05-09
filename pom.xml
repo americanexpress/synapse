@@ -46,9 +46,8 @@
         <kotlin.version>1.9.25</kotlin.version>
 
         <!--Spring Versions-->
-        <spring-boot-framework.version>3.2.12</spring-boot-framework.version>
+        <spring-boot-framework.version>3.3.11</spring-boot-framework.version>
         <spring-cloud-framework.version>2023.0.5</spring-cloud-framework.version>
-        <spring-data.version>3.2.12</spring-data.version>
 
         <!--Springdoc-->
         <springdoc.version>2.5.0</springdoc.version>
@@ -69,7 +68,7 @@
 
         <!--Logging-->
         <log4j.version>2.24.3</log4j.version>
-        <slf4j.version>2.0.16</slf4j.version>
+        <slf4j.version>2.0.17</slf4j.version>
 
         <!--Plugins-->
         <native-plugin.version>0.10.4</native-plugin.version>
@@ -498,81 +497,6 @@
                 <version>${project.version}</version>
             </dependency>
             <!--External Dependencies-->
-            <!--Temporary dependencies to resolve critical vulnerabilities-->
-            <!-- https://mvnrepository.com/artifact/net.minidev/json-smart -->
-            <dependency>
-                <groupId>net.minidev</groupId>
-                <artifactId>json-smart</artifactId>
-                <version>2.5.2</version>
-            </dependency>
-
-            <!-- https://mvnrepository.com/artifact/io.netty/netty-bom -->
-            <dependency>
-                <groupId>io.netty</groupId>
-                <artifactId>netty-bom</artifactId>
-                <version>4.1.118.Final</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <!-- https://mvnrepository.com/artifact/org.json/json -->
-            <dependency>
-                <groupId>org.json</groupId>
-                <artifactId>json</artifactId>
-                <version>20231013</version>
-            </dependency>
-
-            <!-- https://mvnrepository.com/artifact/org.xerial.snappy/snappy-java -->
-            <dependency>
-                <groupId>org.xerial.snappy</groupId>
-                <artifactId>snappy-java</artifactId>
-                <version>1.1.10.7</version>
-            </dependency>
-
-            <!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
-            <dependency>
-                <groupId>org.yaml</groupId>
-                <artifactId>snakeyaml</artifactId>
-                <version>2.4</version>
-            </dependency>
-
-            <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-crypto -->
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-crypto</artifactId>
-                <version>6.4.5</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.tomcat.embed</groupId>
-                <artifactId>tomcat-embed-core</artifactId>
-                <version>10.1.40</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.tomcat</groupId>
-                <artifactId>tomcat-annotations-api</artifactId>
-                <version>10.1.40</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.tomcat.embed</groupId>
-                <artifactId>tomcat-embed-websocket</artifactId>
-                <version>10.1.40</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.tomcat.embed</groupId>
-                <artifactId>tomcat-embed-el</artifactId>
-                <version>10.1.40</version>
-            </dependency>
-            <!--./END Temporary dependencies to resolve critical vulnerabilities-->
-            <!-- https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka -->
-            <dependency>
-                <groupId>org.springframework.kafka</groupId>
-                <artifactId>spring-kafka</artifactId>
-                <version>3.3.4</version>
-            </dependency>
 
             <dependency>
                 <groupId>com.github.stefanbirkner</groupId>
@@ -583,7 +507,7 @@
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.18.30</version>
+                <version>1.18.38</version>
                 <scope>provided</scope>
             </dependency>
 
@@ -624,16 +548,6 @@
                 <artifactId>spring-boot-starter-logging</artifactId>
                 <version>${spring-boot-framework.version}</version>
                 <scope>provided</scope> <!-- Exclude Spring Logging in favor of Log4j2 -->
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-data-jdbc</artifactId>
-                <version>${spring-data.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-data-jpa</artifactId>
-                <version>${spring-data.version}</version>
             </dependency>
 
             <!--Logging-->
