@@ -497,8 +497,6 @@
                 <version>${project.version}</version>
             </dependency>
             <!--External Dependencies-->
-            <!--Temporary dependencies to resolve critical vulnerabilities-->
-            <!--./END Temporary dependencies to resolve critical vulnerabilities-->
 
             <dependency>
                 <groupId>com.github.stefanbirkner</groupId>
