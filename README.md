@@ -551,7 +551,6 @@ for /greeting by returning a new instance of the Greeting class:
 
 /**
  * <code>GreetingController</code> class handles POST requests to /greetings/inquiry-results.
- * Inherits mono request-response behavior from Synapse base imperative controller.
  */
 @RestController
 @RequestMapping("/greetings")
