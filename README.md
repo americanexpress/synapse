@@ -118,7 +118,38 @@ This helps ensure the modules are named intuitive and organized within your IDE.
 
 ## Synapse Modules:
 
-### synapse-service-rest
+### synapse-api-rest-imperative (new)
+
+- This module provides a clean, imperative-style framework for building RESTful controller layers in Synapse-based 
+applications. It is recommended for developers who prefer imperative programming and want modular, maintainable API 
+layers.
+
+    - The module provides a set of generic, extensible base controller classes that simplify the development of RESTful 
+      endpoints for common CRUD operations (GET, POST, PUT, DELETE, etc.). 
+    - These base controllers follow convention over configuration and encapsulate standard patterns like request 
+      routing, input/output handling, and delegation to the service layer. Relies on generics to remain reusable across 
+      resource types
+    - Designed to promote clean separation of concerns, delegating business logic to service modules like 
+      `synapse-service-imperative`.
+    - An open to extension generic ControllerExceptionHandler that handles the most common types of errors happening in
+      an application. Can be subclassed to customize logic per method.
+    - Provides a health check endpoint out of the box.
+    - Built in interceptors for validating specified headers and logging metrics for observability and monitoring. 
+
+
+### synapse-service-imperative (new)
+
+- This module provides a structured, imperative-style foundation for writing the business logic layer in Synapse-based 
+applications. It is recommended for teams building REST APIs in a synchronous, blocking style who want to enforce best 
+practices in service layer design, independent of the api/transport layer.
+
+    - Offers base service class and patterns for implementing service classes using synchronous (imperative) programming.
+    - Focuses on isolating domain logic from the api/controller layer for better testability and separation of concerns.
+    - Encourages clean architecture by decoupling services from transport concerns.
+    - Supplies common models and service headers to promote consistency across services.
+    - A generic already implemented pagination solution out of the box.
+
+### synapse-service-rest (to be deprecated)
 
 - This module provides an abstraction framework used to help expose RESTful APIs. It provides several out-of-the-box
   functionalities like:
