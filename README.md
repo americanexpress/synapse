@@ -94,6 +94,10 @@ This layer is intended to be made modular and fine-grained to promote re-usabili
 ```
 application-name
     |
+    +- api
+    |   +- api-customer
+    |   +- api-relationship
+    |
     +- service
     |   +- service-customer
     |   +- service-notification
