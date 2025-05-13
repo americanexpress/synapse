@@ -541,7 +541,7 @@ public class GreetingApplication {
 
 ### Create a Resource Controller
 
-#### Using synapse-api-rest-imperative
+#### Using synapse-api-rest-imperative (new)
 
 In Spring’s approach to building RESTful web services, HTTP requests are handled by a controller. These components are
 identified by the @RestController annotation, and the GreetingController shown below handles read (using POST) requests 
@@ -619,6 +619,32 @@ public class GreetingConfig implements WebMvcConfigurer {
 ```
 
 ### Create a Resource Service
+
+#### Using synapse-service-imperative (new)
+
+```java
+/**
+ * The <code>GreetingService</code> handles business logic for the Greeting API
+ * using the imperative-style BaseService from Synapse.
+ */
+@Service
+public class GreetingService extends BaseService<GreetingRequest, GreetingResponse> {
+
+    private static final String template = "Hello, %s!";
+
+    @Override
+    protected GreetingResponse doExecute(GreetingRequest request) {
+        if (nonNull(request.getName())) {
+            return new GreetingResponse(String.format(template, request.getName()));
+        } else {
+            return new GreetingResponse(String.format(template, "World"));
+        }
+    }
+}
+
+```
+
+#### Using synapse-service-rest (to be deprecated)
 
 ```java
 package com.sample.bookstore.service;
