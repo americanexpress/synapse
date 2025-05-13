@@ -362,6 +362,41 @@ The following listing shows the pom.xml file that is created when you choose Mav
 </project>
 
 ```
+Now in this synapse upgrade we have separated the api layer. The following shows the pom.xml file for api layer that is 
+created when 
+you choose Maven:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+        <project xmlns="http://maven.apache.org/POM/4.0.0"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+        <parent>
+            <groupId>com.sample.bookstore</groupId>
+            <artifactId>api</artifactId>
+            <version>0.4.0-SNAPSHOT</version>
+        </parent>
+    
+        <modelVersion>4.0.0</modelVersion>
+        <groupId>com.sample.bookstore</groupId>
+        <artifactId>api-greeting</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+    
+        <properties>
+            <start-class>com.sample.bookstore.greeting.GreetingApiApplication</start-class>
+        </properties>
+    
+        <dependencies>
+            <dependency>            
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-api-rest-imperative</artifactId>
+            </dependency>
+        </dependencies>
+       ...
+</project>
+
+```
 
 ### Create a Resource Representation class
 
@@ -536,8 +571,29 @@ import org.springframework.web.bind.annotation.RestController;
 public class GreetingController extends BaseController<GreetingRequest, GreetingResponse, GreetingService> {
 }
 ```
+### Create a API Config 
 
-### Create a API Config
+#### Using synapse-api-rest-imperative (new)
+
+```java
+
+/**
+ *  <code>GreetingConfig</code> class sets configurations used in this module.
+ *   Extends {@link BaseApiImperativeRestConfig} to inherit core Synapse HTTP-layer setup.
+*/
+@Configuration
+@PropertySource("classpath:/service-greeting-application.properties")
+@ComponentScan(basePackages = "com.sample.bookstore")
+public class GreetingConfig extends BaseApiImperativeRestConfig {
+    
+            public GreetingConfig(ObjectMapper objectMapper, MetricInterceptor metricInterceptor) {
+                        super(objectMapper, metricInterceptor);
+            }
+}
+             
+```
+
+#### Using synapse-service-rest (to be deprecated)
 
 ```java
 package com.sample.bookstore.config;
