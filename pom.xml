@@ -864,11 +864,11 @@
             </dependency>
 
             <!--Couchbase-->
-            <!--            <dependency>-->
-            <!--                <groupId>com.couchbase.client</groupId>-->
-            <!--                <artifactId>java-client</artifactId>-->
-            <!--                <version>3.3.4</version>-->
-            <!--            </dependency>-->
+            <dependency>
+                <groupId>com.couchbase.client</groupId>
+                <artifactId>java-client</artifactId>
+                <version>3.7.9</version>
+            </dependency>
 
             <!--Spring Native-->
             <!--            <dependency>-->
