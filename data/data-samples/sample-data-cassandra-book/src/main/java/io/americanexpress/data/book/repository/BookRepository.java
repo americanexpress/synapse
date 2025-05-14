@@ -23,6 +23,7 @@ import java.util.UUID;
 
 /**
  * {@code BookRepository} is the dao repository to handle the queries for the books table.
+ * test
  */
 @Repository
 public interface BookRepository extends CassandraRepository<BookEntity, UUID> {
