@@ -79,8 +79,9 @@ public abstract class BasePostgresDataConfig {
         properties.setProperty("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
         properties.setProperty("hibernate.format_sql", environment.getRequiredProperty("hibernate.format_sql"));
         properties.setProperty("spring.datasource.initialization-mode", environment.getRequiredProperty("spring.datasource.initialization-mode"));
+        properties.setProperty("hibernate.cache.use_second_level_cache", "true");
         properties.setProperty("hibernate.cache.use_query_cache", "true");
-        properties.setProperty("hibernate.cache.provider_class", "org.ehcache.hibernate.EhCacheProvider");
+        properties.setProperty("hibernate.cache.provider_class", "org.ehcache.jsr107.EhcacheCachingProvider");
         return properties;
     }
 
