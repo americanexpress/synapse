@@ -14,6 +14,11 @@
 package io.americanexpress.synapse.data.postgres.config;
 
 import com.zaxxer.hikari.HikariDataSource;
+import org.ehcache.config.CacheConfiguration;
+import org.ehcache.config.builders.CacheConfigurationBuilder;
+import org.ehcache.config.builders.ExpiryPolicyBuilder;
+import org.ehcache.config.builders.ResourcePoolsBuilder;
+import org.ehcache.jsr107.Eh107Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
@@ -24,7 +29,11 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.cache.CacheManager;
+import javax.cache.Caching;
+import javax.cache.spi.CachingProvider;
 import javax.sql.DataSource;
+import java.time.Duration;
 import java.util.Properties;
 
 /**
@@ -97,6 +106,25 @@ public abstract class BasePostgresDataConfig {
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         setPackagesToScan(entityManagerFactoryBean);
         return entityManagerFactoryBean;
+    }
+
+    @Bean
+    public CacheManager cacheManager() {
+        CachingProvider cachingProvider = Caching.getCachingProvider();
+        CacheManager cacheManager = cachingProvider.getCacheManager();
+
+        CacheConfiguration<Object, Object> cacheConfiguration =
+                CacheConfigurationBuilder.newCacheConfigurationBuilder(
+                                Object.class, Object.class, ResourcePoolsBuilder.heap(1000))
+                        .withExpiry(ExpiryPolicyBuilder.timeToLiveExpiration(Duration.ofMinutes(10)))
+                        .build();
+
+        javax.cache.configuration.Configuration<Object, Object> configuration =
+                Eh107Configuration.fromEhcacheCacheConfiguration(cacheConfiguration);
+
+        cacheManager.createCache("defaultCache", configuration);
+
+        return cacheManager;
     }
 
     /**
