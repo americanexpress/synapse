@@ -20,6 +20,7 @@ import org.ehcache.config.builders.ExpiryPolicyBuilder;
 import org.ehcache.config.builders.ResourcePoolsBuilder;
 import org.ehcache.jsr107.Eh107Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -109,20 +110,25 @@ public abstract class BasePostgresDataConfig {
     }
 
     @Bean
+    @ConditionalOnMissingBean(CacheManager.class)
     public CacheManager cacheManager() {
+        String cacheName = environment.getProperty("synapse.second_level_cache_name", "default");
+        long entries = environment.getProperty("synapse.second_level_cache_heap_entries", Long.class, 1000L);
+        int minutes = environment.getProperty("synapse.second_level_cache_expiry_in_minutes", Integer.class, 10);
+
         CachingProvider cachingProvider = Caching.getCachingProvider();
         CacheManager cacheManager = cachingProvider.getCacheManager();
 
         CacheConfiguration<Object, Object> cacheConfiguration =
                 CacheConfigurationBuilder.newCacheConfigurationBuilder(
-                                Object.class, Object.class, ResourcePoolsBuilder.heap(1000))
-                        .withExpiry(ExpiryPolicyBuilder.timeToLiveExpiration(Duration.ofMinutes(10)))
+                                Object.class, Object.class, ResourcePoolsBuilder.heap(entries))
+                        .withExpiry(ExpiryPolicyBuilder.timeToLiveExpiration(Duration.ofMinutes(minutes)))
                         .build();
 
         javax.cache.configuration.Configuration<Object, Object> configuration =
                 Eh107Configuration.fromEhcacheCacheConfiguration(cacheConfiguration);
 
-        cacheManager.createCache("defaultCache", configuration);
+        cacheManager.createCache(cacheName, configuration);
 
         return cacheManager;
     }
