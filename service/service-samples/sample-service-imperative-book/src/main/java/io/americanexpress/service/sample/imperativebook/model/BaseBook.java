@@ -13,6 +13,8 @@
  */
 package io.americanexpress.service.sample.imperativebook.model;
 
+import jakarta.validation.constraints.NotEmpty;
+
 /**
  * BaseBook class is responsible for creating the base book.
  *
@@ -23,11 +25,13 @@ public class BaseBook {
     /**
      * Title of the book.
      */
+    @NotEmpty
     private String title;
 
     /**
      * Author of the book.
      */
+    @NotEmpty
     private String author;
 
     /**
