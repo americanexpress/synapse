@@ -14,12 +14,6 @@
 package io.americanexpress.synapse.data.postgres.config;
 
 import com.zaxxer.hikari.HikariDataSource;
-import org.ehcache.config.CacheConfiguration;
-import org.ehcache.config.builders.CacheConfigurationBuilder;
-import org.ehcache.config.builders.ExpiryPolicyBuilder;
-import org.ehcache.config.builders.ResourcePoolsBuilder;
-import org.ehcache.jsr107.Eh107Configuration;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -29,11 +23,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.cache.CacheManager;
-import javax.cache.Caching;
-import javax.cache.spi.CachingProvider;
 import javax.sql.DataSource;
-import java.time.Duration;
 import java.util.Properties;
 
 /**
@@ -90,6 +80,7 @@ public abstract class BasePostgresDataConfig {
         properties.setProperty("hibernate.cache.use_second_level_cache", "true");
         properties.setProperty("hibernate.cache.use_query_cache", "true");
         properties.setProperty("hibernate.cache.provider_class", "org.ehcache.jsr107.EhcacheCachingProvider");
+        properties.setProperty("hibernate.javax.cache.uri", environment.getProperty("hibernate.javax.cache.uri", "classpath:ehcache.xml"));
         return properties;
     }
 
@@ -105,30 +96,6 @@ public abstract class BasePostgresDataConfig {
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         setPackagesToScan(entityManagerFactoryBean);
         return entityManagerFactoryBean;
-    }
-
-    @Bean
-    @ConditionalOnMissingBean(CacheManager.class)
-    public CacheManager configureSecondLevelCacheManager() {
-        String cacheName = environment.getProperty("synapse.second_level_cache_name", "default");
-        long entries = environment.getProperty("synapse.second_level_cache_heap_entries", Long.class, 1000L);
-        int minutes = environment.getProperty("synapse.second_level_cache_expiry_in_minutes", Integer.class, 10);
-
-        CachingProvider cachingProvider = Caching.getCachingProvider();
-        CacheManager cacheManager = cachingProvider.getCacheManager();
-
-        CacheConfiguration<Object, Object> cacheConfiguration =
-                CacheConfigurationBuilder.newCacheConfigurationBuilder(
-                                Object.class, Object.class, ResourcePoolsBuilder.heap(entries))
-                        .withExpiry(ExpiryPolicyBuilder.timeToLiveExpiration(Duration.ofMinutes(minutes)))
-                        .build();
-
-        javax.cache.configuration.Configuration<Object, Object> configuration =
-                Eh107Configuration.fromEhcacheCacheConfiguration(cacheConfiguration);
-
-        cacheManager.createCache(cacheName, configuration);
-
-        return cacheManager;
     }
 
     /**
