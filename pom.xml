@@ -46,7 +46,7 @@
         <kotlin.version>1.9.25</kotlin.version>
 
         <!--Spring Versions-->
-        <spring-boot-framework.version>3.3.11</spring-boot-framework.version>
+        <spring-boot-framework.version>3.5.0</spring-boot-framework.version>
         <spring-cloud-framework.version>2023.0.5</spring-cloud-framework.version>
 
         <!--Springdoc-->
@@ -64,7 +64,7 @@
 
         <!--JUnit Versions-->
         <junit-platform.version>1.10.5</junit-platform.version>
-        <junit-jupiter.version>5.10.5</junit-jupiter.version>
+        <junit-jupiter.version>5.12.1</junit-jupiter.version>
 
         <!--Logging-->
         <log4j.version>2.24.3</log4j.version>
