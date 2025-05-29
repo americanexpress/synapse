@@ -46,7 +46,7 @@
         <kotlin.version>1.9.25</kotlin.version>
 
         <!--Spring Versions-->
-        <spring-boot-framework.version>3.3.11</spring-boot-framework.version>
+        <spring-boot-framework.version>3.3.12</spring-boot-framework.version>
         <spring-cloud-framework.version>2023.0.5</spring-cloud-framework.version>
 
         <!--Springdoc-->
