@@ -24,6 +24,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import javax.sql.DataSource;
 import java.util.Properties;
 
 /**
@@ -49,9 +50,8 @@ public abstract class BaseDb2Config {
      * @return a new instance of {@link HikariDataSource} configured for the required database connection
      */
     @Bean
-    public HikariDataSource dataSource() {
+    public DataSource dataSource() {
         var hikariDataSource = DataSourceBuilder.create().type(HikariDataSource.class).build();
-
         hikariDataSource.setUsername(environment.getProperty("spring.datasource.username"));
         hikariDataSource.setPassword(environment.getProperty("spring.datasource.password"));
         hikariDataSource.setJdbcUrl(environment.getProperty("spring.datasource.url"));
@@ -81,9 +81,9 @@ public abstract class BaseDb2Config {
      */
     @Bean
     @DependsOn("dataSource")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(HikariDataSource hikariDataSource) {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactory.setDataSource(hikariDataSource);
+        entityManagerFactory.setDataSource(dataSource);
         entityManagerFactory.setJpaProperties(setJpaProperties());
         entityManagerFactory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         setPackagesToScan(entityManagerFactory);
