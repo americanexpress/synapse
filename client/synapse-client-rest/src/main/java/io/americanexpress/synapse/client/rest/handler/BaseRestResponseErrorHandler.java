@@ -62,7 +62,11 @@ public abstract class BaseRestResponseErrorHandler extends BaseResponseErrorHand
         logError(httpResponse, developerMessage);
 
         //The first parameter is for the developer message to be populated in ControllerExceptionsHandler class.
-        throw new ApplicationClientException(developerMessage, ErrorCode.GENERIC_4XX_ERROR);
+        if (httpResponse.getStatusCode().is4xxClientError()) {
+            throw new ApplicationClientException(developerMessage, ErrorCode.GENERIC_4XX_ERROR);
+        } else {
+            throw new ApplicationClientException(developerMessage, ErrorCode.GENERIC_5XX_ERROR);
+        }
     }
 
     /**
