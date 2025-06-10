@@ -53,7 +53,7 @@
         <springdoc.version>2.5.0</springdoc.version>
 
         <!--Swagger-->
-        <swagger.version>2.2.28</swagger.version>
+        <swagger.version>2.2.32</swagger.version>
 
         <!-- GraphQL -->
         <spring-boot-graphql.version>15.1.0</spring-boot-graphql.version>
