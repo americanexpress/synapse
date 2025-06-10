@@ -18,11 +18,13 @@ import io.americanexpress.synapse.service.imperative.model.BaseServiceResponse;
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 import jakarta.validation.Valid;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * {@code BaseService} The base service every child controller should extend this parent service.
  * @author Francois Gutt
  */
+@Validated
 public abstract class BaseService<
                  I extends BaseServiceRequest,
                  O extends BaseServiceResponse> {
