@@ -14,6 +14,8 @@
 package io.americanexpress.data.book.config;
 
 import io.americanexpress.synapse.data.cassandra.config.BaseCassandraDataConfig;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -22,17 +24,45 @@ import org.springframework.data.cassandra.repository.config.EnableCassandraRepos
 /**
  * {@code BookDataConfig} is the configuration class to load all the properties for the book data module.
  */
+@ComponentScan(BookDataConfig.PACKAGE_NAME)
 @Configuration
+@EnableCassandraRepositories(BookDataConfig.PACKAGE_NAME)
 @PropertySource("classpath:/data-book-application.properties")
-@EnableCassandraRepositories("io.americanexpress.data.book")
 public class BookDataConfig extends BaseCassandraDataConfig {
 
+    public static final String PACKAGE_NAME = "io.americanexpress.data.book";
+    /**
+     * The environment.
+     */
+    private final Environment environment;
+
+    /**
+     * Constructor that initializes the base Cassandra data configuration with the environment and keyspace.
+     *
+     * @param environment the Spring environment containing properties.
+     */
     public BookDataConfig(Environment environment) {
         super(environment, "book");
+        this.environment = environment;
     }
 
+    /**
+     * Returns the base packages for entity scanning.
+     *
+     * @return an array of base package names.
+     */
     @Override
     public String[] getEntityBasePackages() {
         return new String[]{"io.americanexpress.data.book.entity"};
+    }
+
+    /**
+     * The time to live for the book.
+     *
+     * @return the time to live in seconds.
+     */
+    @Bean("bookTimeToLive")
+    public int bookTimeToLive() {
+        return environment.getProperty("book.time-to-live", Integer.class, 600);
     }
 }
