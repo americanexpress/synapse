@@ -47,7 +47,7 @@
 
         <!--Spring Versions-->
         <spring-boot-framework.version>3.5.0</spring-boot-framework.version>
-        <spring-cloud-framework.version>2023.0.5</spring-cloud-framework.version>
+        <spring-cloud-framework.version>2025.0.0</spring-cloud-framework.version>
 
         <!--Springdoc-->
         <springdoc.version>2.5.0</springdoc.version>
