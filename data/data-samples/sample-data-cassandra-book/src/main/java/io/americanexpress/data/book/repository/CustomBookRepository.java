@@ -14,7 +14,7 @@
 package io.americanexpress.data.book.repository;
 
 import io.americanexpress.data.book.entity.BookEntity;
-import io.americanexpress.synapse.data.cassandra.repository.CustomCassandraRepository;
+import io.americanexpress.synapse.data.cassandra.repository.BaseCustomCassandraRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.cassandra.core.CassandraTemplate;
 import org.springframework.stereotype.Repository;
@@ -25,10 +25,10 @@ import org.springframework.stereotype.Repository;
  * @author brenoreis
  */
 @Repository
-public class CustomBookRepository extends CustomCassandraRepository<BookEntity> {
+public class CustomBookRepository extends BaseCustomCassandraRepository<BookEntity> {
 
     /**
-     * Creates a new instance of {@code CustomCassandraRepository} given a Cassandra template and time to live.
+     * Creates a new instance of {@code CustomBookRepository} given a Cassandra template and time to live.
      *
      * @param cassandraTemplate the Cassandra template.
      * @param timeToLive        the time to live.

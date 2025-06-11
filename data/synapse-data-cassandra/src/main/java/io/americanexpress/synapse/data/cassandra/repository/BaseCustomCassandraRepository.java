@@ -5,13 +5,13 @@ import org.springframework.data.cassandra.core.InsertOptions;
 import java.time.Duration;
 
 /**
- * {@code CustomCassandraRepository} is the custom repository for Cassandra.
+ * {@code BaseCustomCassandraRepository} is the custom repository for Cassandra.
  * This Repository is used to add ttl to your entities records.
  * The ttl is taken from the bean created in the config which get the ttl value from the property file.
  *
  * @author breisalm
  */
-public abstract class CustomCassandraRepository<T> {
+public abstract class BaseCustomCassandraRepository<T> {
 
     /**
      * The Cassandra template.
@@ -24,13 +24,13 @@ public abstract class CustomCassandraRepository<T> {
     private final int timeToLive;
 
     /**
-     * Creates a new instance of {@code CustomCassandraRepository} given a Cassandra template and time to live.
+     * Creates a new instance of {@code BaseCustomCassandraRepository} given a Cassandra template and time to live.
      *
      * @param cassandraTemplate the Cassandra template.
      * @param timeToLive the time to live.
      */
-    protected CustomCassandraRepository(CassandraTemplate cassandraTemplate,
-                                        int timeToLive) {
+    protected BaseCustomCassandraRepository(CassandraTemplate cassandraTemplate,
+                                            int timeToLive) {
         this.cassandraTemplate = cassandraTemplate;
         this.timeToLive = timeToLive;
     }
