@@ -30,6 +30,7 @@ import java.util.Properties;
  * <code>BasePostgresDataConfig</code> class is used to hold the common configuration for all data-postgres modules.
  *
  * @author Gabriel Jimenez
+ * @author Aziz Ali
  */
 @Configuration
 @EnableTransactionManagement
@@ -62,7 +63,6 @@ public abstract class BasePostgresDataConfig {
         HikariDataSource dataSource = DataSourceBuilder.create().type(HikariDataSource.class).build();
         dataSource.setSchema(environment.getRequiredProperty("spring.jpa.properties.hibernate.default_schema"));
         dataSource.setLeakDetectionThreshold(2000);
-        dataSource.setDataSourceProperties(additionalHibernateSpringProperties());
         return dataSource;
     }
 
@@ -81,7 +81,8 @@ public abstract class BasePostgresDataConfig {
         properties.setProperty("hibernate.cache.use_query_cache", "true");
         properties.setProperty("hibernate.cache.provider_class", "org.ehcache.jsr107.EhcacheCachingProvider");
         properties.setProperty("hibernate.cache.region.factory_class", "org.hibernate.cache.jcache.internal.JCacheRegionFactory" );
-        properties.setProperty("hibernate.javax.cache.uri", environment.getProperty("hibernate.javax.cache.uri", "classpath:ehcache.xml"));
+        properties.setProperty("hibernate.javax.cache.uri",
+                               environment.getProperty("hibernate.javax.cache.uri", "classpath://ehcache.xml"));
         return properties;
     }
 
@@ -95,6 +96,7 @@ public abstract class BasePostgresDataConfig {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        entityManagerFactoryBean.setJpaProperties(additionalHibernateSpringProperties());
         setPackagesToScan(entityManagerFactoryBean);
         return entityManagerFactoryBean;
     }

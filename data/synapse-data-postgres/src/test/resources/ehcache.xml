@@ -9,10 +9,11 @@
     <service>
         <jsr107:defaults default-template="default"/>
     </service>
+
     <cache-template name="default">
         <expiry>
-            <ttl unit="minutes">10</ttl>
+            <ttl unit="seconds">3</ttl>
         </expiry>
-        <heap>1000</heap>
+        <heap unit="entries">10</heap>
     </cache-template>
 </config>
