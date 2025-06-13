@@ -15,8 +15,9 @@ package io.americanexpress.data.book.repository;
 
 import io.americanexpress.data.book.entity.BookEntity;
 import io.americanexpress.synapse.data.cassandra.repository.BaseCustomCassandraRepository;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.env.Environment;
 import org.springframework.data.cassandra.core.CassandraTemplate;
+import org.springframework.data.cassandra.core.InsertOptions;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -28,12 +29,28 @@ import org.springframework.stereotype.Repository;
 public class CustomBookRepository extends BaseCustomCassandraRepository<BookEntity> {
 
     /**
+     * The environment.
+     */
+    private final Environment environment;
+
+    /**
      * Creates a new instance of {@code CustomBookRepository} given a Cassandra template and time to live.
      *
      * @param cassandraTemplate the Cassandra template.
-     * @param timeToLive        the time to live.
+     * @param environment the environment.
      */
-    protected CustomBookRepository(CassandraTemplate cassandraTemplate, @Qualifier("bookTimeToLive") int timeToLive) {
-        super(cassandraTemplate, timeToLive);
+    protected CustomBookRepository(CassandraTemplate cassandraTemplate, Environment environment) {
+        super(cassandraTemplate);
+        this.environment = environment;
+    }
+
+    /**
+     * Gets the insert options for the entity.
+     *
+     * @return the insert options.
+     */
+    @Override
+    public InsertOptions getInsertOptions() {
+        return InsertOptions.builder().ttl(environment.getProperty("book.time-to-live", Integer.class, 3)).build();
     }
 }

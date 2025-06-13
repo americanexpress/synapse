@@ -2,12 +2,10 @@ package io.americanexpress.synapse.data.cassandra.repository;
 
 import org.springframework.data.cassandra.core.CassandraTemplate;
 import org.springframework.data.cassandra.core.InsertOptions;
-import java.time.Duration;
 
 /**
  * {@code BaseCustomCassandraRepository} is the custom repository for Cassandra.
- * This Repository is used to add ttl to your entities records.
- * The ttl is taken from the bean created in the config which get the ttl value from the property file.
+ * This Repository is used to add insert options for the entity.
  *
  * @author breisalm
  */
@@ -19,20 +17,12 @@ public abstract class BaseCustomCassandraRepository<T> {
     private final CassandraTemplate cassandraTemplate;
 
     /**
-     * The time to live.
-     */
-    private final int timeToLive;
-
-    /**
      * Creates a new instance of {@code BaseCustomCassandraRepository} given a Cassandra template and time to live.
      *
      * @param cassandraTemplate the Cassandra template.
-     * @param timeToLive the time to live.
      */
-    protected BaseCustomCassandraRepository(CassandraTemplate cassandraTemplate,
-                                            int timeToLive) {
+    protected BaseCustomCassandraRepository(CassandraTemplate cassandraTemplate) {
         this.cassandraTemplate = cassandraTemplate;
-        this.timeToLive = timeToLive;
     }
 
     /**
@@ -42,10 +32,11 @@ public abstract class BaseCustomCassandraRepository<T> {
      * @return the saved entity.
      */
     public T save(T entity) {
-        return cassandraTemplate.insert(entity,
-                        InsertOptions.builder()
-                                .ttl(Duration.ofSeconds(timeToLive))
-                                .build())
-                .getEntity();
+        return cassandraTemplate.insert(entity, getInsertOptions()).getEntity();
     }
+
+    /**
+     * Gets the insert options for the entity.
+     */
+    public abstract InsertOptions getInsertOptions();
 }

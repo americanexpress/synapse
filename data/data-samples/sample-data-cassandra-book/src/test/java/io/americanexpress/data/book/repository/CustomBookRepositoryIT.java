@@ -55,6 +55,7 @@ class CustomBookRepositoryIT {
     @Test
     void findByTitleAndAuthor_givenBook_expectedBookFound() throws InterruptedException {
         BookEntity bookEntity = new BookEntity("Alice In Wonderland", "Lewis Carroll");
+
         customBookRepository.save(bookEntity);
 
         Optional<BookEntity> book = bookRepository.findByTitleAndAuthor("Alice In Wonderland", "Lewis Carroll");

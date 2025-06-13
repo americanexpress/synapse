@@ -14,7 +14,6 @@
 package io.americanexpress.data.book.config;
 
 import io.americanexpress.synapse.data.cassandra.config.BaseCassandraDataConfig;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -31,10 +30,6 @@ import org.springframework.data.cassandra.repository.config.EnableCassandraRepos
 public class BookDataConfig extends BaseCassandraDataConfig {
 
     public static final String PACKAGE_NAME = "io.americanexpress.data.book";
-    /**
-     * The environment.
-     */
-    private final Environment environment;
 
     /**
      * Constructor that initializes the base Cassandra data configuration with the environment and keyspace.
@@ -43,7 +38,6 @@ public class BookDataConfig extends BaseCassandraDataConfig {
      */
     public BookDataConfig(Environment environment) {
         super(environment, "book");
-        this.environment = environment;
     }
 
     /**
@@ -54,15 +48,5 @@ public class BookDataConfig extends BaseCassandraDataConfig {
     @Override
     public String[] getEntityBasePackages() {
         return new String[]{"io.americanexpress.data.book.entity"};
-    }
-
-    /**
-     * The time to live for the book.
-     *
-     * @return the time to live in seconds.
-     */
-    @Bean("bookTimeToLive")
-    public int bookTimeToLive() {
-        return environment.getProperty("book.time-to-live", Integer.class, 600);
     }
 }
