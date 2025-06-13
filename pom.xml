@@ -52,6 +52,9 @@
         <!--Springdoc-->
         <springdoc.version>2.8.8</springdoc.version>
 
+        <!--Swagger-->
+        <swagger.version>2.2.31</swagger.version>
+
         <!-- GraphQL -->
         <spring-boot-graphql.version>15.1.0</spring-boot-graphql.version>
         <spring-boot-graphiql.version>11.1.0</spring-boot-graphiql.version>
@@ -60,7 +63,7 @@
         <mockito.version>5.15.2</mockito.version>
 
         <!--JUnit Versions-->
-        <junit-bom.version>5.13.1</junit-bom.version>
+        <junit.version>5.13.1</junit.version>
 
         <!--Logging-->
         <log4j.version>2.24.3</log4j.version>
@@ -735,7 +738,7 @@
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
-                <version>${junit-bom.version}</version>
+                <version>${junit.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -775,10 +778,23 @@
             <!--Springdoc-->
             <dependency>
                 <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi</artifactId>
+                <artifactId>springdoc-openapi-bom</artifactId>
                 <version>${springdoc.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <!--Swagger Annotations-->
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-annotations-jakarta</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-models-jakarta</artifactId>
+                <version>${swagger.version}</version>
             </dependency>
 
             <!--DB2-->
