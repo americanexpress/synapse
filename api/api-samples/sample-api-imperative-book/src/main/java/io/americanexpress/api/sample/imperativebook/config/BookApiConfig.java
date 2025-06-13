@@ -14,10 +14,12 @@
 package io.americanexpress.api.sample.imperativebook.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.americanexpress.service.sample.imperativebook.config.BookServiceConfig;
 import io.americanexpress.synapse.api.rest.imperative.config.BaseApiImperativeRestConfig;
 import io.americanexpress.synapse.api.rest.imperative.interceptor.MetricInterceptor;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 
 /**
@@ -29,9 +31,9 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
  * @author Aziz Ali
  */
 @ComponentScan({
-        "io.americanexpress.service.sample.imperativebook",
         "io.americanexpress.api.sample.imperativebook"
 })
+@Import(BookServiceConfig.class)
 @Configuration
 public class BookApiConfig extends BaseApiImperativeRestConfig {
 

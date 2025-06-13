@@ -17,16 +17,14 @@ import io.americanexpress.service.sample.imperativebook.model.CreateBookServiceR
 import io.americanexpress.service.sample.imperativebook.model.CreateBookServiceResponse;
 import io.americanexpress.service.sample.imperativebook.service.helper.CreateBookServiceResponseCreator;
 import io.americanexpress.synapse.service.imperative.service.BaseService;
-import org.springframework.stereotype.Component;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.stereotype.Service;
 
 /**
  * CreateBookService class is responsible for creating the book service.
  *
  * @author Francois Gutt
  */
-@Component
-@Validated
+@Service
 public class CreateBookService extends BaseService<
             CreateBookServiceRequest,
             CreateBookServiceResponse

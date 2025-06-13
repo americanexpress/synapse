@@ -16,16 +16,14 @@ package io.americanexpress.service.sample.imperativebook.service;
 import io.americanexpress.service.sample.imperativebook.model.DeleteBookServiceRequest;
 import io.americanexpress.service.sample.imperativebook.model.DeleteBookServiceResponse;
 import io.americanexpress.synapse.service.imperative.service.BaseService;
-import org.springframework.stereotype.Component;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.stereotype.Service;
 
 /**
  * DeleteBookService class is responsible for deleting the book service.
  *
  * @author Francois Gutt
  */
-@Component
-@Validated
+@Service
 public class DeleteBookService extends BaseService<
             DeleteBookServiceRequest,
             DeleteBookServiceResponse
