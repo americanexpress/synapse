@@ -111,7 +111,7 @@ public abstract class BaseRestClientUnitTest<I extends BaseClientRequest,
 
     @Test
     void callMonoService_givenClientRequestWithQueryParameter_expectedNonNullClientResponse() throws JsonProcessingException {
-    	
+
         // Create a mock server to test only this path variable URI
         // since it requires changing the expectations of the mockServer
         // that occurs @BeforeEach unit test method
@@ -134,7 +134,7 @@ public abstract class BaseRestClientUnitTest<I extends BaseClientRequest,
 
     @Test
     void callMonoService_givenClientRequestWithPathVariableAndQueryParameter_expectedNonNullClientResponse() throws JsonProcessingException {
-    	
+
         // Create a mock server to test only this path variable URI
         // since it requires changing the expectations of the mockServer
         // that occurs @BeforeEach unit test method
@@ -158,15 +158,15 @@ public abstract class BaseRestClientUnitTest<I extends BaseClientRequest,
     @Test
     void callMonoService_givenClientError_expectedApplicationClientException() throws IOException {
         responseActions.andRespond(withStatus(HttpStatus.BAD_REQUEST).contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(clientResponse)));
-        Assertions.assertThrows(ApplicationClientException.class, this::callMonoServiceAndAssertErrorResponse, CommonAssertionMessages.EXCEPTION_NOT_THROWN);
+        Assertions.assertThrows(ApplicationClientException.class, this::callMonoServiceAndAssert400ErrorResponse, CommonAssertionMessages.EXCEPTION_NOT_THROWN);
     }
 
     @Test
     void callMonoService_givenServerError_expectedApplicationClientException() throws IOException {
         responseActions.andRespond(withStatus(HttpStatus.INTERNAL_SERVER_ERROR).contentType(MediaType.APPLICATION_JSON).body(mapper.writeValueAsString(clientResponse)));
-        Assertions.assertThrows(ApplicationClientException.class, this::callMonoServiceAndAssertErrorResponse, CommonAssertionMessages.EXCEPTION_NOT_THROWN);
+        Assertions.assertThrows(ApplicationClientException.class, this::callMonoServiceAndAssert500ErrorResponse, CommonAssertionMessages.EXCEPTION_NOT_THROWN);
     }
-    
+
     private MockRestServiceServer getMockServer() {
         return MockRestServiceServer
             .bindTo(restClient.getRestTemplate())
@@ -174,25 +174,25 @@ public abstract class BaseRestClientUnitTest<I extends BaseClientRequest,
             .bufferContent()
             .build();
     }
-    
+
     private ResponseActions getResponseActions(MockRestServiceServer mockServer, String url) {
         URI uri = URI.create(url);
         return mockServer.expect(ExpectedCount.once(), requestTo(uri))
         	.andExpect(method(restClient.getHttpMethod()));
     }
-    
+
     private List<QueryParameter> mockQueryParameter() {
         List<QueryParameter> queryParameters = new ArrayList<>();
         QueryParameter queryParameter = new QueryParameter("name", "bob");
         queryParameters.add(queryParameter);
         return queryParameters;
     }
-    
+
     private String mockPathVariable() {
         return "11111111111";
     }
-    
-    private void callMonoServiceAndAssertErrorResponse() {
+
+    private void callMonoServiceAndAssert400ErrorResponse() {
         try {
             restClient.callMonoService(headers, clientRequest);
             mockServer.verify();
@@ -201,7 +201,18 @@ public abstract class BaseRestClientUnitTest<I extends BaseClientRequest,
             throw applicationClientException;
         }
     }
-    
+
+    private void callMonoServiceAndAssert500ErrorResponse() {
+        try {
+            restClient.callMonoService(headers, clientRequest);
+            mockServer.verify();
+        } catch (ApplicationClientException applicationClientException) {
+            assertEquals(ErrorCode.GENERIC_5XX_ERROR, applicationClientException.getErrorCode());
+            throw applicationClientException;
+        }
+    }
+
+
     protected abstract I mockDefaultClientRequest();
 
     protected abstract O mockDefaultClientResponse();
