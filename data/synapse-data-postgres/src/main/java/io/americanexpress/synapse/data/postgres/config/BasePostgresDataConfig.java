@@ -14,7 +14,6 @@
 package io.americanexpress.synapse.data.postgres.config;
 
 import com.zaxxer.hikari.HikariDataSource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -31,6 +30,7 @@ import java.util.Properties;
  * <code>BasePostgresDataConfig</code> class is used to hold the common configuration for all data-postgres modules.
  *
  * @author Gabriel Jimenez
+ * @author Aziz Ali
  */
 @Configuration
 @EnableTransactionManagement
@@ -41,7 +41,6 @@ public abstract class BasePostgresDataConfig {
     /**
      * Used to acquire environment variables.
      */
-    @Autowired
     protected Environment environment;
 
     /**
@@ -49,7 +48,7 @@ public abstract class BasePostgresDataConfig {
      *
      * @param environment the environment
      */
-    public BasePostgresDataConfig(Environment environment) {
+    protected BasePostgresDataConfig(Environment environment) {
         this.environment = environment;
     }
 
@@ -64,7 +63,6 @@ public abstract class BasePostgresDataConfig {
         HikariDataSource dataSource = DataSourceBuilder.create().type(HikariDataSource.class).build();
         dataSource.setSchema(environment.getRequiredProperty("spring.jpa.properties.hibernate.default_schema"));
         dataSource.setLeakDetectionThreshold(2000);
-        dataSource.setDataSourceProperties(additionalHibernateSpringProperties());
         return dataSource;
     }
 
@@ -79,8 +77,12 @@ public abstract class BasePostgresDataConfig {
         properties.setProperty("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
         properties.setProperty("hibernate.format_sql", environment.getRequiredProperty("hibernate.format_sql"));
         properties.setProperty("spring.datasource.initialization-mode", environment.getRequiredProperty("spring.datasource.initialization-mode"));
+        properties.setProperty("hibernate.cache.use_second_level_cache", "true");
         properties.setProperty("hibernate.cache.use_query_cache", "true");
-        properties.setProperty("hibernate.cache.provider_class", "org.ehcache.hibernate.EhCacheProvider");
+        properties.setProperty("hibernate.cache.provider_class", "org.ehcache.jsr107.EhcacheCachingProvider");
+        properties.setProperty("hibernate.cache.region.factory_class", "org.hibernate.cache.jcache.internal.JCacheRegionFactory" );
+        properties.setProperty("hibernate.javax.cache.uri",
+                               environment.getProperty("hibernate.javax.cache.uri", "classpath://ehcache.xml"));
         return properties;
     }
 
@@ -94,6 +96,7 @@ public abstract class BasePostgresDataConfig {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        entityManagerFactoryBean.setJpaProperties(additionalHibernateSpringProperties());
         setPackagesToScan(entityManagerFactoryBean);
         return entityManagerFactoryBean;
     }
@@ -101,7 +104,7 @@ public abstract class BasePostgresDataConfig {
     /**
      * Set the packages to Scan property to the entityManagerFactory.
      *
-     * @param entityManagerFactoryBean
+     * @param entityManagerFactoryBean the entity manager factory bean
      */
     protected abstract void setPackagesToScan(LocalContainerEntityManagerFactoryBean entityManagerFactoryBean);
 }
