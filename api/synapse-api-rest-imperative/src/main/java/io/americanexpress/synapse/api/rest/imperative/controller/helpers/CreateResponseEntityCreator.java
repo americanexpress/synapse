@@ -14,7 +14,6 @@
 package io.americanexpress.synapse.api.rest.imperative.controller.helpers;
 
 import io.americanexpress.synapse.service.imperative.model.BaseServiceResponse;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
@@ -26,6 +25,12 @@ import java.net.URI;
  * @author Francois Gutt
  */
 public class CreateResponseEntityCreator<O extends BaseServiceResponse> {
+
+    /**
+     * Private constructor for utility class.
+     */
+    private CreateResponseEntityCreator() {
+    }
 
     /**
      * Create the POST response entity by specifying the creation location in the HTTP headers.

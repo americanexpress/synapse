@@ -31,6 +31,12 @@ import org.springframework.util.CollectionUtils;
 public class PolyResponseEntityCreator {
 
     /**
+     * Private constructor for utility class.
+     */
+    private PolyResponseEntityCreator() {
+    }
+
+    /**
      * Creates a Poly ResponseEntity with pagination.
      * @param page will be used for pagination.
      * @return ResponseEntity that will have {@link BaseServiceResponse}
