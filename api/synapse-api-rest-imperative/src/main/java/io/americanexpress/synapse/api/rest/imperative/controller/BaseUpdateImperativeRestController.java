@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
  * @param <O> output response type
  * @author Francois Gutt
  */
-public class BaseUpdateImperativeRestController<
+public abstract class BaseUpdateImperativeRestController<
             I extends BaseServiceRequest,
             O extends BaseServiceResponse,
             S extends BaseService<I, O>

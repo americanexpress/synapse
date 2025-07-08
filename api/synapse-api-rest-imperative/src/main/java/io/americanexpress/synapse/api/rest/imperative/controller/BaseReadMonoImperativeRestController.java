@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @param <S> an object extending the {@link BaseService}
  * @author Gabriel Jimenez
  */
-public class BaseReadMonoImperativeRestController<
+public abstract class BaseReadMonoImperativeRestController<
             I extends BaseServiceRequest,
             O extends BaseServiceResponse,
             S extends BaseService<I, O>

@@ -26,6 +26,12 @@ import org.springframework.http.ResponseEntity;
 public class MonoResponseEntityCreator<O extends BaseServiceResponse> {
 
     /**
+     * Private constructor for utility class.
+     */
+    private MonoResponseEntityCreator() {
+    }
+
+    /**
      * Creates a response entity.
      * @param serviceResponse service response.
      * @return response entity.

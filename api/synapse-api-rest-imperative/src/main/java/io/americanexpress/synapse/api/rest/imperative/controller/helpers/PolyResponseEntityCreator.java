@@ -24,11 +24,16 @@ import org.springframework.util.CollectionUtils;
 
 /**
  * {@code PolyResponseEntityCreator} creates ResponseEntity for poly responses.
- * @param <O> a response extending {@link BaseServiceResponse}
  *
  * @author Francois Gutt
  */
 public class PolyResponseEntityCreator {
+
+    /**
+     * Private constructor for utility class.
+     */
+    private PolyResponseEntityCreator() {
+    }
 
     /**
      * Creates a Poly ResponseEntity with pagination.

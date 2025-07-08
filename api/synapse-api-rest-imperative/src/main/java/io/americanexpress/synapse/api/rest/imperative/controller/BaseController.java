@@ -23,7 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @param <S> the service
  * @author Francois Gutt
  */
-public class BaseController<S extends BaseService> {
+public abstract class BaseController<S extends BaseService> {
 
     /**
      * Service that will be called to get a single resource or multiple resources.

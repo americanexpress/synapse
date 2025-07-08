@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * @param <S> service type
  * @author Gabriel Jimenez
  */
-public class BaseDeleteImperativeRestController<
+public abstract class BaseDeleteImperativeRestController<
             I extends BaseServiceRequest,
             O extends BaseServiceResponse,
             S extends BaseService<I, O>
