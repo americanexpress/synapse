@@ -32,13 +32,38 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RequireIfPresent {
 
+    /**
+     * Message to be returned when validation fails.
+     *
+     * @return the validation error message.
+     */
     String message() default "Field '%s' is required when field '%s' is present.";
 
+    /**
+     * Groups for the constraint.
+     *
+     * @return the groups for the constraint.
+     */
     Class<?>[] groups() default {};
 
+    /**
+     * Payload for the constraint.
+     *
+     * @return the payload for the constraint.
+     */
     Class<? extends Payload>[] payload() default {};
 
+    /**
+     * Field to check for presence.
+     *
+     * @return the field to check for presence.
+     */
     String field();
 
+    /**
+     * Required field that must be present if the field is present.
+     *
+     * @return the required field that must be present.
+     */
     String requiredField();
 }
