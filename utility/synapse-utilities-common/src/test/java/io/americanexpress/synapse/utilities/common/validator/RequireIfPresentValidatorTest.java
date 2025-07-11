@@ -18,8 +18,6 @@ import jakarta.validation.ConstraintValidatorContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.*;
@@ -46,8 +44,8 @@ class RequireIfPresentValidatorTest {
 
     @BeforeEach
     void setup() {
-        when(requireIfPresent.requiredField()).thenReturn("someText1");
-        when(requireIfPresent.field()).thenReturn("someText2");
+        when(requireIfPresent.field()).thenReturn("someText1");
+        when(requireIfPresent.requiredField()).thenReturn("someText2");
         requireIfPresentValidator = new RequireIfPresentValidator();
         requireIfPresentValidator.initialize(requireIfPresent);
     }
@@ -55,31 +53,30 @@ class RequireIfPresentValidatorTest {
     @Test
     void isValid_givenFieldAndRequiredField_expectedTrue() {
         var object = new SampleNestedObject();
-        object.setSomeText1("someText1");
-        object.setSomeText2("someText2");
+        object.setSomeText1("field");
+        object.setSomeText2("requiredField");
 
         assertTrue(requireIfPresentValidator.isValid(object, constraintValidatorContext));
     }
 
     @Test
-    void isValid_givenNullObject_expectedFalse() {
-        var builder = mock(ConstraintValidatorContext.ConstraintViolationBuilder.class);
-        when(constraintValidatorContext.buildConstraintViolationWithTemplate(anyString())).thenReturn(builder);
-        assertFalse(requireIfPresentValidator.isValid(null, constraintValidatorContext));
-        verify(constraintValidatorContext).buildConstraintViolationWithTemplate("Invalid configuration for @RequireIfPresent annotation. Both field and requiredField must be provided.");
+    void isValid_givenEmptyFieldAndRequiredField_expectedTrue() {
+        var object = new SampleNestedObject();
+        object.setSomeText1("");
+        object.setSomeText2("requiredField");
+
+        assertTrue(requireIfPresentValidator.isValid(object, constraintValidatorContext));
     }
 
-    @CsvSource({"someText1,", ", someText2,", ", ,"})
-    @ParameterizedTest
-    void isValid_givenFieldAndRequiredFieldNull_expectedFalse(String field, String requiredField) {
+    @Test
+    void isValid_givenFieldAndEmptyRequiredField_expectedFalse() {
         var builder = mock(ConstraintValidatorContext.ConstraintViolationBuilder.class);
         when(constraintValidatorContext.buildConstraintViolationWithTemplate(anyString())).thenReturn(builder);
-
         var object = new SampleNestedObject();
-        object.setSomeText1(field);
-        object.setSomeText2(requiredField);
+        object.setSomeText1("field");
+        object.setSomeText2("");
 
         assertFalse(requireIfPresentValidator.isValid(object, constraintValidatorContext));
-        verify(constraintValidatorContext).buildConstraintViolationWithTemplate("Invalid configuration for @RequireIfPresent annotation. Both field and requiredField must be provided.");
+        verify(constraintValidatorContext).buildConstraintViolationWithTemplate("someText2 is required when someText1 is provided.");
     }
 }

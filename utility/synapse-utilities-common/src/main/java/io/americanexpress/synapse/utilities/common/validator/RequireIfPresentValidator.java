@@ -15,6 +15,7 @@ package io.americanexpress.synapse.utilities.common.validator;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
+import jakarta.validation.constraints.NotBlank;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -30,11 +31,13 @@ public class RequireIfPresentValidator implements ConstraintValidator<RequireIfP
     /**
      * Field to check for presence.
      */
+    @NotBlank
     private String field;
 
     /**
      * Required field that must be present if the field is present.
      */
+    @NotBlank
     private String requiredField;
 
     /**
@@ -59,24 +62,16 @@ public class RequireIfPresentValidator implements ConstraintValidator<RequireIfP
     public boolean isValid(Object object, ConstraintValidatorContext context) {
         try {
 
-            if (ObjectUtils.isEmpty(object)) {
-                setErrorMessage(context, "Invalid configuration for @RequireIfPresent annotation. Both field and requiredField must be provided.");
-                return false;
-            }
-
             var fieldValue = PropertyUtils.getProperty(object, field);
             var requiredFieldValue = PropertyUtils.getProperty(object, requiredField);
 
-            if (ObjectUtils.isEmpty(fieldValue) || ObjectUtils.isEmpty(requiredFieldValue)) {
-                setErrorMessage(context, "Invalid configuration for @RequireIfPresent annotation. Both field and requiredField must be provided.");
-                return false;
-            }
-
-            var isFieldPresent = !(fieldValue instanceof String) || StringUtils.isNotBlank((String) fieldValue);
-            var isRequiredFieldPresent = !(requiredFieldValue instanceof String) || StringUtils.isNotBlank((String) requiredFieldValue);
+            boolean isFieldPresent = !ObjectUtils.isEmpty(fieldValue) &&
+                                     (!fieldValue.getClass().equals(String.class) || StringUtils.isNotBlank((String) fieldValue));
+            boolean isRequiredFieldPresent = !ObjectUtils.isEmpty(requiredFieldValue) &&
+                                             (!requiredFieldValue.getClass().equals(String.class) || StringUtils.isNotBlank((String) requiredFieldValue));
 
             if (isFieldPresent && !isRequiredFieldPresent) {
-                setErrorMessage(context, "'%s' is required when '%s' is provided.");
+                setErrorMessage(context, requiredField + " is required when " + field + " is provided.");
                 return false;
             }
             return true;
