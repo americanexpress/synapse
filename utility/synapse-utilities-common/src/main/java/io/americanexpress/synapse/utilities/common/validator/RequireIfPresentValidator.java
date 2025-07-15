@@ -61,7 +61,6 @@ public class RequireIfPresentValidator implements ConstraintValidator<RequireIfP
     @Override
     public boolean isValid(Object object, ConstraintValidatorContext context) {
         try {
-
             var fieldValue = PropertyUtils.getProperty(object, field);
             var requiredFieldValue = PropertyUtils.getProperty(object, requiredField);
 
