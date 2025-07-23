@@ -16,21 +16,24 @@ package io.americanexpress.synapse.client.rest.config;
 import io.americanexpress.synapse.client.rest.client.BaseRestClient;
 import io.americanexpress.synapse.client.rest.handler.BaseRestResponseErrorHandler;
 import io.americanexpress.synapse.client.rest.helper.RestClientLoggingCustomizer;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.HttpClientBuilder;
+import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager;
+import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManagerBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
-import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
+
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * {@code BaseRestClientConfig} class specifies the prototypes for setting the configurations
@@ -51,13 +54,14 @@ public abstract class BaseRestClientConfig extends BaseClientConfig {
     /**
      * Initialize the client.
      *
+     * @deprecated as of 0.4.18, replaced by {@link #initializeClient(String, BaseRestClient, BaseRestResponseErrorHandler, long, long, int)}
+     *
      * @param destinationUrl             of the provider
      * @param restClient                 used to connect to the provider
      * @param restResponseErrorHandler   used to handle errors from the provider
      */
-    @SuppressWarnings("rawtypes")
-    protected void initializeClient(String destinationUrl, BaseRestClient restClient, BaseRestResponseErrorHandler restResponseErrorHandler) {
-
+    @Deprecated(since = "0.4.18")
+    protected void initializeClient(String destinationUrl, BaseRestClient<?,?,?> restClient, BaseRestResponseErrorHandler restResponseErrorHandler) {
         // Set the destination URL for the client
         restClient.setUrl(destinationUrl);
 
@@ -66,32 +70,69 @@ public abstract class BaseRestClientConfig extends BaseClientConfig {
         restTemplate.setErrorHandler(restResponseErrorHandler);
         restClient.setRestTemplate(restTemplate);
     }
-    
+
+    /**
+     * Initialize the client with the given url, connect timeout, read timeout and max connections.
+     *
+     * @param destinationUrl             of the provider
+     * @param restClient                 used to connect to the provider
+     * @param restResponseErrorHandler   used to handle errors from the provider
+     * @param connectTimeoutMillis       connection timeout in milliseconds
+     * @param readTimeoutMillis          read timeout in milliseconds
+     * @param maxConnections             maximum number of connections
+     */
+    protected void initializeClient(String destinationUrl, BaseRestClient<?,?,?> restClient, BaseRestResponseErrorHandler restResponseErrorHandler, long connectTimeoutMillis, long readTimeoutMillis, int maxConnections) {
+        // Set the destination URL for the client
+        restClient.setUrl(destinationUrl);
+
+
+        // Set the rest template for the REST client
+        RestTemplate restTemplate = defaultRestTemplate(connectTimeoutMillis, readTimeoutMillis, maxConnections);
+        restTemplate.setErrorHandler(restResponseErrorHandler);
+        restClient.setRestTemplate(restTemplate);
+    }
+
+    /**
+     * Generate the default REST template.
+     *
+     * @deprecated as of 0.4.18, replaced by {@link #defaultRestTemplate(long, long, int)}
+     *
+     * @return the default REST template
+     */
+    @Deprecated(since = "0.4.18")
+    public RestTemplate defaultRestTemplate() {
+        return defaultRestTemplate(2000, 10000, 20);
+    }
+
     /**
      * Generate the default REST template.
      *
      * @return the default REST template
      */
-    public RestTemplate defaultRestTemplate() {
-        RestTemplate restTemplate = new RestTemplateBuilder()
-        	.customizers(restClientLoggingCustomizer)
-        	.build();
-        
+    public RestTemplate defaultRestTemplate(long connectTimeoutMillis, long readTimeoutMillis, int maxConnections) {
+        PoolingHttpClientConnectionManager connectionManager = PoolingHttpClientConnectionManagerBuilder.create()
+                .setMaxConnTotal(maxConnections)
+                .setMaxConnPerRoute(maxConnections)
+                .build();
+
+        CloseableHttpClient httpClient = HttpClientBuilder.create()
+                .setConnectionManager(connectionManager)
+                .evictExpiredConnections()
+                .build();
+
+        HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
+        requestFactory.setConnectTimeout(Duration.ofMillis(connectTimeoutMillis));
+        requestFactory.setReadTimeout(Duration.ofMillis(readTimeoutMillis));
+
         List<HttpMessageConverter<?>> messagesConverters = new ArrayList<>();
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter(getObjectMapper());
         converter.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML));
         messagesConverters.add(converter);
-        restTemplate.setMessageConverters(messagesConverters);
-        restTemplate.setRequestFactory(defaultRequestFactory());
-        return restTemplate;
-    }
 
-    /**
-     * Generate the default request factory to allow support for proxy configurations.
-     *
-     * @return The client http request factory.
-     */
-    protected ClientHttpRequestFactory defaultRequestFactory() {
-        return new HttpComponentsClientHttpRequestFactory();
+        return new RestTemplateBuilder()
+                .customizers(restClientLoggingCustomizer)
+                .messageConverters(messagesConverters)
+                .requestFactory(() -> requestFactory)
+                .build();
     }
 }
