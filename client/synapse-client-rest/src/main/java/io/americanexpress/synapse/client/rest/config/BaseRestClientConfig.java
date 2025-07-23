@@ -29,7 +29,6 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
-
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -74,20 +73,19 @@ public abstract class BaseRestClientConfig extends BaseClientConfig {
     /**
      * Initialize the client with the given url, connect timeout, read timeout and max connections.
      *
-     * @param destinationUrl             of the provider
-     * @param restClient                 used to connect to the provider
-     * @param restResponseErrorHandler   used to handle errors from the provider
-     * @param connectTimeoutMillis       connection timeout in milliseconds
-     * @param readTimeoutMillis          read timeout in milliseconds
-     * @param maxConnections             maximum number of connections
+     * @param destinationUrl             of the provider.
+     * @param restClient                 used to connect to the provider.
+     * @param restResponseErrorHandler   used to handle errors from the provider.
+     * @param connectTimeoutMillis       connection timeout in milliseconds.
+     * @param readTimeoutMillis          read timeout in milliseconds.
+     * @param maxConnections             maximum number of connections.
      */
     protected void initializeClient(String destinationUrl, BaseRestClient<?,?,?> restClient, BaseRestResponseErrorHandler restResponseErrorHandler, long connectTimeoutMillis, long readTimeoutMillis, int maxConnections) {
         // Set the destination URL for the client
         restClient.setUrl(destinationUrl);
 
-
         // Set the rest template for the REST client
-        RestTemplate restTemplate = defaultRestTemplate(connectTimeoutMillis, readTimeoutMillis, maxConnections);
+        var restTemplate = defaultRestTemplate(connectTimeoutMillis, readTimeoutMillis, maxConnections);
         restTemplate.setErrorHandler(restResponseErrorHandler);
         restClient.setRestTemplate(restTemplate);
     }
@@ -110,22 +108,22 @@ public abstract class BaseRestClientConfig extends BaseClientConfig {
      * @return the default REST template
      */
     public RestTemplate defaultRestTemplate(long connectTimeoutMillis, long readTimeoutMillis, int maxConnections) {
-        PoolingHttpClientConnectionManager connectionManager = PoolingHttpClientConnectionManagerBuilder.create()
+        var connectionManager = PoolingHttpClientConnectionManagerBuilder.create()
                 .setMaxConnTotal(maxConnections)
                 .setMaxConnPerRoute(maxConnections)
                 .build();
 
-        CloseableHttpClient httpClient = HttpClientBuilder.create()
+        var httpClient = HttpClientBuilder.create()
                 .setConnectionManager(connectionManager)
                 .evictExpiredConnections()
                 .build();
 
-        HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
+        var requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
         requestFactory.setConnectTimeout(Duration.ofMillis(connectTimeoutMillis));
         requestFactory.setReadTimeout(Duration.ofMillis(readTimeoutMillis));
 
-        List<HttpMessageConverter<?>> messagesConverters = new ArrayList<>();
-        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter(getObjectMapper());
+        var messagesConverters = new ArrayList<HttpMessageConverter<?>>();
+        var converter = new MappingJackson2HttpMessageConverter(getObjectMapper());
         converter.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML));
         messagesConverters.add(converter);
 
