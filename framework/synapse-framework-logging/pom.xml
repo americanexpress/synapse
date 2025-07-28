@@ -45,6 +45,11 @@
             <artifactId>log4j-1.2-api</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+            <scope>runtime</scope>
+        </dependency>
 
         <!--Slf4j-->
         <dependency>
