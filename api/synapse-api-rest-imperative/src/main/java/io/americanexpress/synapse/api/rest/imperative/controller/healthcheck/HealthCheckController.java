@@ -31,7 +31,7 @@ public class HealthCheckController {
     /**
      * The health global Geographically Distributed High Availability (gdha) check endpoint.
      */
-    public static final String HEALTH_CHECK__GDHA_ENDPOINT = "/health-gdha";
+    public static final String HEALTH_CHECK_GDHA_ENDPOINT = "/health-gdha";
 
     /**
      * Health message used for the health check URIs.
@@ -52,7 +52,7 @@ public class HealthCheckController {
      *
      * @return a constant message to notify that the service is receiving a request
      */
-    @GetMapping(HEALTH_CHECK__GDHA_ENDPOINT)
+    @GetMapping(HEALTH_CHECK_GDHA_ENDPOINT)
     public String healthGdhaCheck() {
         return HEALTH_MESSAGE;
     }

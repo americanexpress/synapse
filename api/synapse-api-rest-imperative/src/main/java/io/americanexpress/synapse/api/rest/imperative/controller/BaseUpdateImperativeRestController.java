@@ -1,12 +1,14 @@
 package io.americanexpress.synapse.api.rest.imperative.controller;
 
-import io.americanexpress.synapse.api.rest.imperative.controller.helpers.CreateResponseEntityCreator;
+import io.americanexpress.synapse.api.rest.imperative.controller.helpers.MonoResponseEntityCreator;
 import io.americanexpress.synapse.service.imperative.model.BaseServiceRequest;
 import io.americanexpress.synapse.service.imperative.model.BaseServiceResponse;
 import io.americanexpress.synapse.service.imperative.service.BaseService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
 /**
@@ -30,10 +32,10 @@ public abstract class BaseUpdateImperativeRestController<
      * @return response to the consumer
      */
     @PutMapping
-    public ResponseEntity<O> update(@RequestHeader HttpHeaders headers, I serviceRequest) {
+    public ResponseEntity<O> update(@RequestHeader HttpHeaders headers, @RequestBody @Valid I serviceRequest) {
         logger.entry(serviceRequest);
         O serviceResponse = service.execute(serviceRequest);
-        ResponseEntity<O> responseEntity = CreateResponseEntityCreator.create(serviceResponse);
+        ResponseEntity<O> responseEntity = MonoResponseEntityCreator.create(serviceResponse);
         logger.exit();
         return responseEntity;
     }
