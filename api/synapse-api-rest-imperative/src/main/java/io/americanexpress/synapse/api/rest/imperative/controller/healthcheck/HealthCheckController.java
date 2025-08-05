@@ -31,6 +31,14 @@ public class HealthCheckController {
     /**
      * The health global Geographically Distributed High Availability (gdha) check endpoint.
      */
+    public static final String HEALTH_GDHA_CHECK_ENDPOINT = "/health-gdha";
+
+    /**
+     * The health global Geographically Distributed High Availability (gdha) check endpoint.
+     * Deprecated: This endpoint is deprecated and will be removed in a future release.
+     * Use {@link #HEALTH_GDHA_CHECK_ENDPOINT} instead.
+     */
+    @Deprecated
     public static final String HEALTH_CHECK__GDHA_ENDPOINT = "/health-gdha";
 
     /**
@@ -52,7 +60,7 @@ public class HealthCheckController {
      *
      * @return a constant message to notify that the service is receiving a request
      */
-    @GetMapping(HEALTH_CHECK__GDHA_ENDPOINT)
+    @GetMapping(HEALTH_GDHA_CHECK_ENDPOINT)
     public String healthGdhaCheck() {
         return HEALTH_MESSAGE;
     }
