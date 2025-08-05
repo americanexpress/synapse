@@ -34,6 +34,14 @@ public class HealthCheckController {
     public static final String HEALTH_GDHA_CHECK_ENDPOINT = "/health-gdha";
 
     /**
+     * The health global Geographically Distributed High Availability (gdha) check endpoint.
+     * Deprecated: This endpoint is deprecated and will be removed in a future release.
+     * Use {@link #HEALTH_GDHA_CHECK_ENDPOINT} instead.
+     */
+    @Deprecated
+    public static final String HEALTH_CHECK__GDHA_ENDPOINT = "/health-gdha";
+
+    /**
      * Health message used for the health check URIs.
      */
     static String HEALTH_MESSAGE = "App is healthy!";
