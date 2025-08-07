@@ -12,14 +12,15 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: synapse-{{ checksum "pom.xml" }}
-      - run: mvn -B clean package -DskipTests
+          keys:
+            - synapse-{{ checksum "pom.xml" }}
+            - synapse-
+      - run: mvn --batch-mode --define skipTests clean package
       - save_cache: # saves the project dependencies
           paths:
-            - ~/.m2
+            - ~/.m2/repository
           key: synapse-{{ checksum "pom.xml" }}
-      - run: mvn clean install -DskipTests
-      - run: mvn test
+      - run: mvn --batch-mode verify
       - store_test_results: # We use this timing data to optimize the future runs
           path: target/surefire-reports
 
@@ -29,7 +30,11 @@ jobs:
       - image: cimg/openjdk:21.0
     steps:
       - checkout
-      - run: mvn test
+      - restore_cache:
+          keys:
+            - synapse-{{ checksum "pom.xml" }}
+            - synapse-
+      - run: mvn --batch-mode test
       - store_test_results: # We use this timing data to optimize the future runs
           path: target/surefire-reports
 
@@ -40,7 +45,11 @@ jobs:
       - image: cimg/openjdk:21.0
     steps:
       - checkout
-      - run: mvn --settings ".circleci/settings.xml" --errors --debug --activate-profiles snapshot --define skipTests clean deploy # uses maven-deploy-plugin
+      - restore_cache:
+          keys:
+            - synapse-{{ checksum "pom.xml" }}
+            - synapse-
+      - run: mvn --settings ".circleci/settings.xml" --batch-mode --errors --debug --activate-profiles snapshot --define skipTests clean deploy # uses maven-deploy-plugin
 
 
   # SNAPSHOT to RELEASE Deploy to Maven Central
@@ -49,6 +58,10 @@ jobs:
       - image: cimg/openjdk:21.0
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - synapse-{{ checksum "pom.xml" }}
+            - synapse-
       - run:
           name: Configure Git
           command: |
@@ -57,7 +70,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "0a:8a:6d:3a:22:28:74:a8:9e:a6:72:5d:bc:2b:aa:fe"
-      - run: mvn --settings ".circleci/settings.xml" --errors --activate-profiles release -define scmCommentPrefix="[skip ci]" release:clean release:prepare release:perform  # uses maven-release-plugin
+      - run: mvn --settings ".circleci/settings.xml" --batch-mode --errors --activate-profiles release -define scmCommentPrefix="[skip ci]" release:clean release:prepare release:perform  # uses maven-release-plugin
 
   # RELEASE Deploy to Maven Central
   release-maven-central-deploy-job:
@@ -65,7 +78,11 @@ jobs:
       - image: cimg/openjdk:21.0
     steps:
       - checkout
-      - run: mvn --settings ".circleci/settings.xml" --errors --debug --activate-profiles release --define skipTests clean deploy # uses maven-deploy-plugin
+      - restore_cache:
+          keys:
+            - synapse-{{ checksum "pom.xml" }}
+            - synapse-
+      - run: mvn --settings ".circleci/settings.xml" --batch-mode --errors --debug --activate-profiles release --define skipTests clean deploy # uses maven-deploy-plugin
 
 #-------------------------------------------------------
 # Workflows that will schedule and execute jobs.
