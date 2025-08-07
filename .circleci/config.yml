@@ -40,7 +40,7 @@ jobs:
       - image: cimg/openjdk:21.0
     steps:
       - checkout
-      - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy
+      - run: mvn --settings ".circleci/settings.xml" --errors --debug --activate-profiles snapshot --define skipTests clean deploy # uses maven-deploy-plugin
 
 
   # SNAPSHOT to RELEASE Deploy to Maven Central
@@ -65,7 +65,7 @@ jobs:
       - image: cimg/openjdk:21.0
     steps:
       - checkout
-      - run: mvn --settings ".circleci/settings.xml" -DskipTests clean deploy -P release -e -X # uses maven-deploy-plugin
+      - run: mvn --settings ".circleci/settings.xml" --errors --debug --activate-profiles release --define skipTests clean deploy
 
 #-------------------------------------------------------
 # Workflows that will schedule and execute jobs.
