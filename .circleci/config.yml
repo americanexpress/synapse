@@ -15,7 +15,7 @@ jobs:
           keys:
             - synapse-{{ checksum "pom.xml" }}
             - synapse-
-      - run: mvn --batch-mode dependency:go-offline
+      - run: mvn --batch-mode clean package
       - save_cache: # saves the project dependencies
           paths:
             - ~/.m2/repository
@@ -34,7 +34,7 @@ jobs:
           keys:
             - synapse-{{ checksum "pom.xml" }}
             - synapse-
-      - run: mvn --batch-mode test
+      - run: mvn --batch-mode clean test
       - store_test_results: # We use this timing data to optimize the future runs
           path: target/surefire-reports
 
