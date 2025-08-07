@@ -15,7 +15,7 @@ jobs:
           keys:
             - synapse-{{ checksum "pom.xml" }}
             - synapse-
-      - run: mvn --batch-mode --define skipTests clean package
+      - run: mvn --batch-mode dependency:go-offline
       - save_cache: # saves the project dependencies
           paths:
             - ~/.m2/repository
