@@ -3,7 +3,7 @@
           xmlns='http://maven.apache.org/SETTINGS/1.0.0' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
     <servers>
         <server>
-            <id>ossrh</id>
+            <id>central</id>
             <username>${env.SONATYPE_MAVEN_CENTRAL_USERNAME}</username>
             <password>${env.SONATYPE_MAVEN_CENTRAL_PASSWORD}</password>
         </server>
@@ -20,7 +20,7 @@
     </servers>
     <profiles>
         <profile>
-            <id>ossrh</id>
+            <id>central</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
