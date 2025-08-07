@@ -49,7 +49,7 @@ jobs:
           keys:
             - synapse-{{ checksum "pom.xml" }}
             - synapse-
-      - run: mvn --settings ".circleci/settings.xml" --batch-mode --errors --debug --activate-profiles snapshot --define skipTests clean deploy # uses maven-deploy-plugin
+      - run: mvn --settings ".circleci/settings.xml" --batch-mode --errors --activate-profiles snapshot --define skipTests clean deploy # uses maven-deploy-plugin
 
 
   # SNAPSHOT to RELEASE Deploy to Maven Central
@@ -82,7 +82,7 @@ jobs:
           keys:
             - synapse-{{ checksum "pom.xml" }}
             - synapse-
-      - run: mvn --settings ".circleci/settings.xml" --batch-mode --errors --debug --activate-profiles release --define skipTests clean deploy # uses maven-deploy-plugin
+      - run: mvn --settings ".circleci/settings.xml" --batch-mode --errors --activate-profiles release --define skipTests clean deploy # uses maven-deploy-plugin
 
 #-------------------------------------------------------
 # Workflows that will schedule and execute jobs.

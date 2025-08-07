@@ -999,10 +999,11 @@
                             </goals>
                             <configuration>
                                 <gpgArguments>
+                                    <arg>--batch</arg>
+                                    <arg>--no-tty</arg>
                                     <arg>--pinentry-mode</arg>
                                     <arg>loopback</arg>
                                 </gpgArguments>
-                                <passphraseServerId>sign-artifacts</passphraseServerId>
                             </configuration>
                         </execution>
                     </executions>

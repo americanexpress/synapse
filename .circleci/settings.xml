@@ -12,11 +12,6 @@
             <username>${env.GITHUB_USERNAME}</username>
             <password>${env.GITHUB_EMAIL}</password>
         </server>
-        <server>
-            <id>sign-artifacts</id>
-            <privateKey>${env.ORG_GRADLE_PROJECT_signingKey_base64}</privateKey>
-            <passphrase>${env.ORG_GRADLE_PROJECT_signingPassword}</passphrase>
-        </server>
     </servers>
     <profiles>
         <profile>
@@ -25,8 +20,8 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <gpg.privatekey>${env.ORG_GRADLE_PROJECT_signingKey_base64}</gpg.privatekey>
-                <gpg.passphrase>${env.ORG_GRADLE_PROJECT_signingPassword}</gpg.passphrase>
+                <gpg.keyEnvName>ORG_GRADLE_PROJECT_signingKey_base64</gpg.keyEnvName>
+                <gpg.passphraseEnvName>ORG_GRADLE_PROJECT_signingPassword</gpg.passphraseEnvName>
             </properties>
         </profile>
     </profiles>
