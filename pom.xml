@@ -65,7 +65,7 @@
         <kotlin.version>2.1.21</kotlin.version>
 
         <!--Spring Versions-->
-        <spring-boot-framework.version>3.5.3</spring-boot-framework.version>
+        <spring-boot-framework.version>3.5.4</spring-boot-framework.version>
         <spring-cloud-framework.version>2025.0.0</spring-cloud-framework.version>
 
         <!--Springdoc-->
@@ -78,11 +78,11 @@
         <spring-boot-graphql.version>15.1.0</spring-boot-graphql.version>
         <spring-boot-graphiql.version>11.1.0</spring-boot-graphiql.version>
 
-        <!--Mock Dependency Versions-->
-        <mockito.version>5.15.2</mockito.version>
+        <!--Mockito Versions-->
+        <mockito.version>5.18.0</mockito.version>
 
         <!--JUnit Versions-->
-        <junit.version>5.13.1</junit.version>
+        <junit.version>5.13.4</junit.version>
 
         <!--Logging-->
         <log4j.version>2.24.3</log4j.version>
@@ -94,9 +94,6 @@
         <!--Db2-->
         <db2-db2jcc4.version>11.5</db2-db2jcc4.version>
         <db2-jcc.version>11.5.0.0</db2-jcc.version>
-
-        <!--TestContainers-->
-        <testcontainers.version>1.20.6</testcontainers.version>
     </properties>
 
     <modules>
@@ -802,6 +799,14 @@
                 <groupId>com.google.http-client</groupId>
                 <artifactId>google-http-client</artifactId>
                 <version>1.47.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-bom</artifactId>
+                <version>${mockito.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
             <dependency>
