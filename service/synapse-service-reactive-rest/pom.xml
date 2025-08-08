@@ -17,7 +17,7 @@
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
         <artifactId>service</artifactId>
-        <version>${revision}</version>
+        <version>0.4.18-SNAPSHOT</version>
     </parent>
 
     <artifactId>synapse-service-reactive-rest</artifactId>

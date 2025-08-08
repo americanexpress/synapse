@@ -17,7 +17,7 @@
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
         <artifactId>service-samples</artifactId>
-        <version>${revision}</version>
+        <version>0.4.18-SNAPSHOT</version>
     </parent>
 
     <artifactId>sample-service-rest-mysql-book</artifactId>
