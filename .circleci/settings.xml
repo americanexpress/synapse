@@ -20,7 +20,6 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <gpg.keyEnvName>ORG_GRADLE_PROJECT_signingKey_base64</gpg.keyEnvName>
                 <gpg.passphraseEnvName>ORG_GRADLE_PROJECT_signingPassword</gpg.passphraseEnvName>
             </properties>
         </profile>

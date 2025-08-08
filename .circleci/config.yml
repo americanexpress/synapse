@@ -1,10 +1,18 @@
 version: 2.1
 
+commands:
+  configure-gpg:
+    description: |
+      Configure GPG private keys.
+    steps:
+      - run:
+          command: echo $ORG_GRADLE_PROJECT_signingKey_base64 | base64 --decode | gpg --batch --no-tty --import --yes
+          name: Configure GPG private key for signing project artifacts in OSS Sonatype
+
 #-------------------------------------------------------
 # Jobs that will execute maven goals and git commands.
 #-------------------------------------------------------
 jobs:
-
   # Build and Test
   build-test-job:
     docker:
@@ -49,6 +57,7 @@ jobs:
           keys:
             - synapse-{{ checksum "pom.xml" }}
             - synapse-
+      - configure-gpg
       - run: mvn --settings ".circleci/settings.xml" --batch-mode --errors --debug --activate-profiles snapshot --define skipTests clean deploy # uses maven-deploy-plugin
 
 
@@ -62,6 +71,7 @@ jobs:
           keys:
             - synapse-{{ checksum "pom.xml" }}
             - synapse-
+      - configure-gpg
       - run:
           name: Configure Git
           command: |
@@ -82,6 +92,7 @@ jobs:
           keys:
             - synapse-{{ checksum "pom.xml" }}
             - synapse-
+      - configure-gpg
       - run: mvn --settings ".circleci/settings.xml" --batch-mode --errors --activate-profiles release --define skipTests clean deploy # uses maven-deploy-plugin
 
 #-------------------------------------------------------
