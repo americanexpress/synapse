@@ -3,31 +3,24 @@
           xmlns='http://maven.apache.org/SETTINGS/1.0.0' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
     <servers>
         <server>
-            <id>ossrh</id>
-            <username>${env.SONATYPE_MAVEN_CENTRAL_USERNAME}</username>
-            <password>${env.SONATYPE_MAVEN_CENTRAL_PASSWORD}</password>
+            <id>central</id>
+            <username>${env.MAVEN_CENTRAL_USERNAME}</username>
+            <password>${env.MAVEN_CENTRAL_PASSWORD}</password>
         </server>
         <server>
             <id>github</id>
             <username>${env.GITHUB_USERNAME}</username>
             <password>${env.GITHUB_EMAIL}</password>
         </server>
-        <server>
-            <id>sign-artifacts</id>
-            <privateKey>${env.ORG_GRADLE_PROJECT_signingKey_base64}</privateKey>
-            <passphrase>${env.ORG_GRADLE_PROJECT_signingPassword}</passphrase>
-        </server>
     </servers>
     <profiles>
         <profile>
-            <id>ossrh</id>
+            <id>central</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <gpg.executable>gpg2</gpg.executable>
-                <gpg.privatekey>${env.ORG_GRADLE_PROJECT_signingKey_base64}</gpg.privatekey>
-                <gpg.passphrase>${env.ORG_GRADLE_PROJECT_signingPassword}</gpg.passphrase>
+                <gpg.passphraseEnvName>ORG_GRADLE_PROJECT_signingPassword</gpg.passphraseEnvName>
             </properties>
         </profile>
     </profiles>

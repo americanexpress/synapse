@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!--
     Copyright 2020 American Express Travel Related Services Company, Inc.
 
@@ -13,14 +12,16 @@
     the License.
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>service-samples</artifactId>
-        <groupId>io.americanexpress.synapse</groupId>
-        <version>0.4.18-SNAPSHOT</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>io.americanexpress.synapse</groupId>
+        <artifactId>service-samples</artifactId>
+        <version>0.4.18-SNAPSHOT</version>
+    </parent>
+
     <artifactId>sample-service-reactive-mongodb-book</artifactId>
+    <name>${project.groupId}:${project.artifactId}</name>
 
     <!--Dependencies-->
     <dependencies>
