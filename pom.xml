@@ -606,6 +606,13 @@
             </dependency>
 
             <!--External Dependencies-->
+            <!--Temporary For Vulnerability Fix-->
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>testcontainers</artifactId>
+                <version>1.21.2</version>
+            </dependency>
+            <!--./END Temporary For Vulnerability Fix-->
             <dependency>
                 <groupId>com.github.stefanbirkner</groupId>
                 <artifactId>system-rules</artifactId>
