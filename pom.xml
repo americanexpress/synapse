@@ -65,7 +65,7 @@
         <kotlin.version>2.1.21</kotlin.version>
 
         <!--Spring Versions-->
-        <spring-boot-framework.version>3.5.4</spring-boot-framework.version>
+        <spring-boot-framework.version>3.5.5</spring-boot-framework.version>
         <spring-cloud-framework.version>2025.0.0</spring-cloud-framework.version>
 
         <!--Springdoc-->
@@ -606,13 +606,11 @@
             </dependency>
 
             <!--External Dependencies-->
-             <!--Temporary For Vulnerability Fix-->
-             <dependency>
-                <groupId>io.netty</groupId>
-                <artifactId>netty-bom</artifactId>
-                <version>4.1.124.Final</version>
-                <type>pom</type>
-                <scope>import</scope>
+            <!--Temporary For Vulnerability Fix-->
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>testcontainers</artifactId>
+                <version>1.21.2</version>
             </dependency>
             <!--./END Temporary For Vulnerability Fix-->
             <dependency>
