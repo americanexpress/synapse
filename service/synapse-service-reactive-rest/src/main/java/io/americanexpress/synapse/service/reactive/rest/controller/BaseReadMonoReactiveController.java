@@ -42,7 +42,7 @@ public abstract class BaseReadMonoReactiveController<I extends BaseServiceReques
     /**
      * The constant INQUIRY_RESULTS.
      */
-    public static final String INQUIRY_RESULTS = "/inquiry_results";
+    public static final String INQUIRY_RESULTS = "/inquiry-results";
 
     /**
      * Get a single resource from the back end service.

@@ -41,7 +41,7 @@ public abstract class BaseReadFluxReactiveController<I extends BaseServiceReques
     /**
      * The constant MULTIPLE_RESULTS.
      */
-    public static final String MULTIPLE_RESULTS = "/multiple_results";
+    public static final String MULTIPLE_RESULTS = "/multiple-results";
 
     /**
      * Get a list of multiple resources from the back end service.
