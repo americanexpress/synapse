@@ -39,7 +39,7 @@ import reactor.core.publisher.Flux;
 public abstract class BaseReadFluxReactiveController<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadFluxReactiveService<I, O>> extends BaseController<S> {
 
     /**
-     * The constant MULTIPLE_RESULTS.
+     * The constant MULTIPLE RESULTS.
      */
     public static final String MULTIPLE_RESULTS = "/multiple-results";
 
