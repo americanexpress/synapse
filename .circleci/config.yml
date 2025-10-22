@@ -107,18 +107,18 @@ workflows:
           filters:
             branches:
               only:
-                - /develop
-                - /feature.*/
-                - /bugfix.*/
-                - /dependabot.*/
+                - develop
+                - /^feature\/.*/
+                - /^bugfix\/.*/
+                - /^dependabot\/.*/
       - snapshot-maven-central-deploy-job:
           filters:
             branches:
               only:
-                - /develop
-                - /feature.*/
-                - /bugfix.*/
-                - /dependabot.*/
+                - develop
+                - /^feature\/.*/
+                - /^bugfix\/.*/
+                - /^dependabot\/.*/
           context:
             - maven_central_credentials
             - code_signing_credentials
@@ -153,12 +153,12 @@ workflows:
           filters:
             branches:
               only:
-                - /release.*/
+                - /^release\/.*/
       - snapshot-release-maven-central-deploy-job:
           filters:
             branches:
               only:
-                - /release.*/
+                - /^release\/.*/
           context:
             - maven_central_credentials
             - code_signing_credentials
