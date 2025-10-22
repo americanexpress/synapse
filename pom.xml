@@ -62,7 +62,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!--Kotlin-->
-        <kotlin.version>2.1.21</kotlin.version>
+        <kotlin.version>2.2.0</kotlin.version>
 
         <!--Spring Versions-->
         <spring-boot-framework.version>3.5.6</spring-boot-framework.version>
