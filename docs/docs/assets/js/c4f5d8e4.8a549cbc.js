@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkdocs=globalThis.webpackChunkdocs||[]).push([[634],{6511:(s,a,c)=>{c.r(a),c.d(a,{default:()=>o});c(6540);var e=c(6347),n=c(4848);function o(){return(0,n.jsx)(e.rd,{to:"/synapse/docs/synapse"})}}}]);
