@@ -1,8 +1,8 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const lightCodeTheme = require('prism-react-renderer').themes.github
+const darkCodeTheme = require('prism-react-renderer').themes.dracula
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -11,7 +11,6 @@ const config = {
   url: 'https://americanexpress.io',
   baseUrl: '/synapse/docs/',
   onBrokenLinks: 'warn',
-  onBrokenMarkdownLinks: 'warn',
   favicon: 'img/logo.png',
 
   // GitHub pages deployment config.
@@ -26,6 +25,12 @@ const config = {
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
+  },
+
+  markdown: {
+      hooks: {
+        onBrokenMarkdownLinks: 'warn'
+      },
   },
 
   presets: [
