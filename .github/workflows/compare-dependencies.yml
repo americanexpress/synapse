@@ -1,0 +1,194 @@
+name: Compare Dependencies
+
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        description: 'Maven package (e.g., org.springframework.boot:spring-boot-dependencies)'
+        required: true
+        default: 'org.springframework.boot:spring-boot-dependencies'
+        type: string
+      version:
+        description: 'Version to compare against (e.g., 3.5.9)'
+        required: true
+        default: '3.5.9'
+        type: string
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'zulu'
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Run Maven versions:compare-dependencies
+        id: compare
+        run: |
+          mvn versions:compare-dependencies -DremotePom=${{ inputs.package }}:${{ inputs.version }} > compare-output.txt 2>&1 || true
+          cat compare-output.txt
+
+      - name: Parse and generate summary
+        id: summary
+        env:
+          PACKAGE: ${{ inputs.package }}
+          VERSION: ${{ inputs.version }}
+        run: |
+          python3 << 'EOF'
+          import re
+          import os
+          
+          downgrades = set()
+          upgrades = []
+          notable_upgrades = []
+          
+          # Notable upgrade patterns (major version changes, security updates, etc.)
+          notable_patterns = [
+              r'spring-boot',
+              r'spring-framework',
+              r'spring-security',
+              r'hibernate',
+              r'junit',
+              r'mockito',
+              r'log4j',
+              r'jackson',
+              r'netty',
+              r'tomcat',
+              r'jetty',
+          ]
+          
+          def is_notable(dep_name):
+              dep_lower = dep_name.lower()
+              return any(pattern in dep_lower for pattern in notable_patterns)
+          
+          def compare_versions(old_ver, new_ver):
+              """Compare two version strings. Returns -1 if downgrade, 1 if upgrade, 0 if same."""
+              old_parts = re.findall(r'\d+', old_ver)
+              new_parts = re.findall(r'\d+', new_ver)
+              
+              if not old_parts or not new_parts:
+                  return 0
+              
+              for i in range(min(len(old_parts), len(new_parts))):
+                  old_num = int(old_parts[i])
+                  new_num = int(new_parts[i])
+                  if new_num < old_num:
+                      return -1
+                  elif new_num > old_num:
+                      return 1
+              
+              # If all compared parts are equal, check minor version
+              if len(old_parts) >= 2 and len(new_parts) >= 2:
+                  if int(new_parts[1]) < int(old_parts[1]):
+                      return -1
+                  elif int(new_parts[1]) > int(old_parts[1]):
+                      return 1
+              
+              return 0
+          
+          with open('compare-output.txt', 'r') as f:
+              for line in f:
+                  if '[INFO]   ' in line and ' -> ' in line:
+                      match = re.search(r'\[INFO\]\s+([^\s].*?)\s+\.+\s+([0-9.]+[^\s]*)\s+->\s+([0-9.]+[^\s]*)', line)
+                      if match:
+                          dep = match.group(1).strip()
+                          old_ver = match.group(2).strip()
+                          new_ver = match.group(3).strip()
+                          
+                          comparison = compare_versions(old_ver, new_ver)
+                          
+                          if comparison < 0:
+                              downgrades.add(f'{dep}: {old_ver} -> {new_ver}')
+                          elif comparison > 0:
+                              upgrade_entry = f'{dep}: {old_ver} -> {new_ver}'
+                              upgrades.append(upgrade_entry)
+                              if is_notable(dep):
+                                  notable_upgrades.append(upgrade_entry)
+          
+          # Generate summary
+          package = os.environ.get('PACKAGE', 'unknown')
+          version = os.environ.get('VERSION', 'unknown')
+          
+          summary_lines = []
+          summary_lines.append("# Dependency Comparison Summary")
+          summary_lines.append(f"\n**Comparing against:** `{package}:{version}`\n")
+          
+          if downgrades:
+              summary_lines.append("## ⚠️ DOWNGRADES (Most Important)")
+              summary_lines.append("")
+              for d in sorted(downgrades):
+                  summary_lines.append(f"- `{d}`")
+              summary_lines.append(f"\n**Total downgrades:** {len(downgrades)}\n")
+          else:
+              summary_lines.append("## ✅ No Downgrades Found\n")
+          
+          if notable_upgrades:
+              summary_lines.append("## 📈 Notable Upgrades")
+              summary_lines.append("")
+              for u in sorted(notable_upgrades):
+                  summary_lines.append(f"- `{u}`")
+              summary_lines.append(f"\n**Total notable upgrades:** {len(notable_upgrades)}\n")
+          
+          if upgrades:
+              summary_lines.append("## 📦 All Upgrades")
+              summary_lines.append(f"\n**Total upgrades:** {len(upgrades)}\n")
+              summary_lines.append("<details>")
+              summary_lines.append("<summary>Click to expand full upgrade list</summary>")
+              summary_lines.append("")
+              for u in sorted(upgrades):
+                  summary_lines.append(f"- `{u}`")
+              summary_lines.append("</details>")
+          
+          summary = "\n".join(summary_lines)
+          
+          # Write summary to file
+          with open('summary.md', 'w') as f:
+              f.write(summary)
+          
+          # Also print to console
+          print("\n" + "="*80)
+          print(summary)
+          print("="*80)
+          EOF
+
+      - name: Display summary
+        run: |
+          cat summary.md
+
+      - name: Add job summary
+        run: |
+          cat summary.md >> $GITHUB_STEP_SUMMARY
+
+      - name: Comment on workflow (if PR)
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const summary = fs.readFileSync('summary.md', 'utf8');
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: summary
+            });
+
+      - name: Upload summary as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependency-comparison-summary
+          path: summary.md
+          retention-days: 30
+
