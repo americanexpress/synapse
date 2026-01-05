@@ -1,0 +1,238 @@
+name: Compare Dependencies
+
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        description: 'Maven package (e.g., org.springframework.boot:spring-boot-dependencies)'
+        required: true
+        default: 'org.springframework.boot:spring-boot-dependencies'
+        type: string
+      version:
+        description: 'Version to compare against (e.g., 3.5.9)'
+        required: true
+        default: '3.5.9'
+        type: string
+
+jobs:
+  compare:
+    permissions:
+      contents: read
+      issues: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'zulu'
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Run Maven versions:compare-dependencies
+        id: compare
+        run: |
+          mvn versions:compare-dependencies -DremotePom=${{ inputs.package }}:${{ inputs.version }} > compare-output.txt 2>&1 || true
+          cat compare-output.txt
+
+      - name: Parse and generate summary
+        id: summary
+        env:
+          PACKAGE: ${{ inputs.package }}
+          VERSION: ${{ inputs.version }}
+        run: |
+          python3 << 'EOF'
+          import re
+          import os
+          
+          downgrades = set()
+          major_upgrades = []
+          minor_upgrades = []
+          
+          def get_version_type(old_ver, new_ver):
+              """
+              Compare two version strings.
+              Returns: 'downgrade', 'major', 'minor', 'patch', or 'same'
+              """
+              old_parts = re.findall(r'\d+', old_ver)
+              new_parts = re.findall(r'\d+', new_ver)
+              
+              if not old_parts or not new_parts:
+                  return 'same'
+              
+              # Compare major version (first number)
+              old_major = int(old_parts[0])
+              new_major = int(new_parts[0])
+              
+              if new_major < old_major:
+                  return 'downgrade'
+              elif new_major > old_major:
+                  return 'major'
+              
+              # Major versions are equal, check minor version
+              if len(old_parts) >= 2 and len(new_parts) >= 2:
+                  old_minor = int(old_parts[1])
+                  new_minor = int(new_parts[1])
+                  
+                  if new_minor < old_minor:
+                      return 'downgrade'
+                  elif new_minor > old_minor:
+                      return 'minor'
+              
+              # Major and minor are equal - this is a patch upgrade (we ignore these)
+              return 'patch'
+          
+          with open('compare-output.txt', 'r') as f:
+              for line in f:
+                  if '[INFO]   ' in line and ' -> ' in line:
+                      match = re.search(r'\[INFO\]\s+([^\s].*?)\s+\.+\s+([0-9.]+[^\s]*)\s+->\s+([0-9.]+[^\s]*)', line)
+                      if match:
+                          dep = match.group(1).strip()
+                          old_ver = match.group(2).strip()
+                          new_ver = match.group(3).strip()
+                          
+                          version_type = get_version_type(old_ver, new_ver)
+                          entry = f'{dep}: {old_ver} -> {new_ver}'
+                          
+                          if version_type == 'downgrade':
+                              downgrades.add(entry)
+                          elif version_type == 'major':
+                              major_upgrades.append(entry)
+                          elif version_type == 'minor':
+                              minor_upgrades.append(entry)
+                          # Ignore patch upgrades
+          
+          # Generate summary
+          package = os.environ.get('PACKAGE', 'unknown')
+          version = os.environ.get('VERSION', 'unknown')
+          
+          summary_lines = []
+          summary_lines.append("# Dependency Comparison Summary")
+          summary_lines.append(f"\n**Comparing against:** `{package}:{version}`\n")
+          
+          if downgrades:
+              summary_lines.append("## ⚠️ DOWNGRADES (Most Important)")
+              summary_lines.append("")
+              for d in sorted(downgrades):
+                  summary_lines.append(f"- `{d}`")
+              summary_lines.append(f"\n**Total downgrades:** {len(downgrades)}\n")
+          else:
+              summary_lines.append("## ✅ No Downgrades Found\n")
+          
+          if major_upgrades:
+              summary_lines.append("## 🔴 Major Upgrades (x.0.0)")
+              summary_lines.append("")
+              for u in sorted(set(major_upgrades)):
+                  summary_lines.append(f"- `{u}`")
+              summary_lines.append(f"\n**Total major upgrades:** {len(set(major_upgrades))}\n")
+          else:
+              summary_lines.append("## ✅ No Major Upgrades Found\n")
+          
+          if minor_upgrades:
+              summary_lines.append("## 🟡 Minor Upgrades (0.x.0)")
+              summary_lines.append("")
+              for u in sorted(set(minor_upgrades)):
+                  summary_lines.append(f"- `{u}`")
+              summary_lines.append(f"\n**Total minor upgrades:** {len(set(minor_upgrades))}\n")
+          else:
+              summary_lines.append("## ✅ No Minor Upgrades Found\n")
+          
+          summary = "\n".join(summary_lines)
+          
+          # Write full summary to file
+          with open('summary.md', 'w') as f:
+              f.write(summary)
+          
+          # Create truncated summary for step summary (GitHub limit: 1024k)
+          # Include downgrades and limited major/minor upgrades
+          step_summary_lines = []
+          step_summary_lines.append("# Dependency Comparison Summary")
+          step_summary_lines.append(f"\n**Comparing against:** `{package}:{version}`\n")
+          
+          if downgrades:
+              step_summary_lines.append("## ⚠️ DOWNGRADES (Most Important)")
+              step_summary_lines.append("")
+              for d in sorted(downgrades):
+                  step_summary_lines.append(f"- `{d}`")
+              step_summary_lines.append(f"\n**Total downgrades:** {len(downgrades)}\n")
+          else:
+              step_summary_lines.append("## ✅ No Downgrades Found\n")
+          
+          if major_upgrades:
+              unique_major = sorted(set(major_upgrades))
+              step_summary_lines.append("## 🔴 Major Upgrades (x.0.0)")
+              step_summary_lines.append("")
+              # Show first 50 major upgrades
+              for u in unique_major[:50]:
+                  step_summary_lines.append(f"- `{u}`")
+              if len(unique_major) > 50:
+                  step_summary_lines.append(f"\n... and {len(unique_major) - 50} more major upgrades")
+              step_summary_lines.append(f"\n**Total major upgrades:** {len(unique_major)}\n")
+          else:
+              step_summary_lines.append("## ✅ No Major Upgrades Found\n")
+          
+          if minor_upgrades:
+              unique_minor = sorted(set(minor_upgrades))
+              step_summary_lines.append("## 🟡 Minor Upgrades (0.x.0)")
+              step_summary_lines.append("")
+              # Show first 50 minor upgrades
+              for u in unique_minor[:50]:
+                  step_summary_lines.append(f"- `{u}`")
+              if len(unique_minor) > 50:
+                  step_summary_lines.append(f"\n... and {len(unique_minor) - 50} more minor upgrades")
+              step_summary_lines.append(f"\n**Total minor upgrades:** {len(unique_minor)}\n")
+          else:
+              step_summary_lines.append("## ✅ No Minor Upgrades Found\n")
+          
+          step_summary_lines.append("---\n")
+          step_summary_lines.append("📦 **Full details available in the workflow artifact:** `dependency-comparison-summary`")
+          
+          step_summary = "\n".join(step_summary_lines)
+          
+          # Write truncated summary for step summary
+          with open('step-summary.md', 'w') as f:
+              f.write(step_summary)
+          
+          # Also print to console
+          print("\n" + "="*80)
+          print(summary)
+          print("="*80)
+          EOF
+
+      - name: Display summary
+        run: |
+          cat summary.md
+
+      - name: Add job summary
+        run: |
+          cat step-summary.md >> $GITHUB_STEP_SUMMARY
+
+      - name: Comment on workflow (if PR)
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const summary = fs.readFileSync('summary.md', 'utf8');
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: summary
+            });
+
+      - name: Upload summary as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependency-comparison-summary
+          path: summary.md
+          retention-days: 30
+
