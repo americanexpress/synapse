@@ -13,6 +13,8 @@ on:
         required: true
         default: '3.5.9'
         type: string
+  push:
+    branches: [ feature/add-compare-dependencies-workflow ]
 
 jobs:
   compare:
