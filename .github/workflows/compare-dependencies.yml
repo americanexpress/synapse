@@ -158,9 +158,44 @@ jobs:
           
           summary = "\n".join(summary_lines)
           
-          # Write summary to file
+          # Write full summary to file
           with open('summary.md', 'w') as f:
               f.write(summary)
+          
+          # Create truncated summary for step summary (GitHub limit: 1024k)
+          # Only include downgrades and limited notable upgrades
+          step_summary_lines = []
+          step_summary_lines.append("# Dependency Comparison Summary")
+          step_summary_lines.append(f"\n**Comparing against:** `{package}:{version}`\n")
+          
+          if downgrades:
+              step_summary_lines.append("## ⚠️ DOWNGRADES (Most Important)")
+              step_summary_lines.append("")
+              for d in sorted(downgrades):
+                  step_summary_lines.append(f"- `{d}`")
+              step_summary_lines.append(f"\n**Total downgrades:** {len(downgrades)}\n")
+          else:
+              step_summary_lines.append("## ✅ No Downgrades Found\n")
+          
+          if notable_upgrades:
+              step_summary_lines.append("## 📈 Notable Upgrades (First 50)")
+              step_summary_lines.append("")
+              unique_notable = sorted(set(notable_upgrades))[:50]
+              for u in unique_notable:
+                  step_summary_lines.append(f"- `{u}`")
+              total_unique = len(set(notable_upgrades))
+              if total_unique > 50:
+                  step_summary_lines.append(f"\n... and {total_unique - 50} more notable upgrades")
+              step_summary_lines.append(f"\n**Total notable upgrades:** {total_unique}\n")
+          
+          step_summary_lines.append("---\n")
+          step_summary_lines.append("📦 **Full details available in the workflow artifact:** `dependency-comparison-summary`")
+          
+          step_summary = "\n".join(step_summary_lines)
+          
+          # Write truncated summary for step summary
+          with open('step-summary.md', 'w') as f:
+              f.write(step_summary)
           
           # Also print to console
           print("\n" + "="*80)
@@ -174,7 +209,7 @@ jobs:
 
       - name: Add job summary
         run: |
-          cat summary.md >> $GITHUB_STEP_SUMMARY
+          cat step-summary.md >> $GITHUB_STEP_SUMMARY
 
       - name: Comment on workflow (if PR)
         if: github.event_name == 'pull_request'
