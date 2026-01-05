@@ -13,6 +13,8 @@ on:
         required: true
         default: '3.5.9'
         type: string
+  push:
+    branches: [ feature/add-compare-dependencies-workflow ]
 
 jobs:
   compare:
@@ -40,14 +42,14 @@ jobs:
       - name: Run Maven versions:compare-dependencies
         id: compare
         run: |
-          mvn versions:compare-dependencies -DremotePom=${{ inputs.package }}:${{ inputs.version }} > compare-output.txt 2>&1 || true
+          mvn versions:compare-dependencies -DremotePom=${{ inputs.package || 'org.springframework.boot:spring-boot-dependencies' }}:${{ inputs.version || '3.5.9' }} > compare-output.txt 2>&1 || true
           cat compare-output.txt
 
       - name: Parse and generate summary
         id: summary
         env:
-          PACKAGE: ${{ inputs.package }}
-          VERSION: ${{ inputs.version }}
+          PACKAGE: ${{ inputs.package || 'org.springframework.boot:spring-boot-dependencies' }}
+          VERSION: ${{ inputs.version || '3.5.9' }}
         run: |
           python3 << 'EOF'
           import re
