@@ -144,7 +144,8 @@ jobs:
               for u in sorted(set(minor_upgrades)):
                   summary_lines.append(f"- `{u}`")
               summary_lines.append(f"\n**Total minor upgrades:** {len(set(minor_upgrades))}\n")
-          
+          else:
+              summary_lines.append("## ✅ No Minor Upgrades Found\n")
           
           summary = "\n".join(summary_lines)
           
@@ -190,6 +191,8 @@ jobs:
               if len(unique_minor) > 50:
                   step_summary_lines.append(f"\n... and {len(unique_minor) - 50} more minor upgrades")
               step_summary_lines.append(f"\n**Total minor upgrades:** {len(unique_minor)}\n")
+          else:
+              step_summary_lines.append("## ✅ No Minor Upgrades Found\n")
           
           step_summary_lines.append("---\n")
           step_summary_lines.append("📦 **Full details available in the workflow artifact:** `dependency-comparison-summary`")
