@@ -143,9 +143,6 @@ jobs:
                   summary_lines.append(f"- `{u}`")
               summary_lines.append(f"\n**Total minor upgrades:** {len(set(minor_upgrades))}\n")
           
-          # Note about patch upgrades being ignored
-          summary_lines.append("---\n")
-          summary_lines.append("ℹ️ **Note:** Patch-level upgrades (0.0.x) are excluded from this summary.")
           
           summary = "\n".join(summary_lines)
           
@@ -192,7 +189,6 @@ jobs:
           
           step_summary_lines.append("---\n")
           step_summary_lines.append("📦 **Full details available in the workflow artifact:** `dependency-comparison-summary`")
-          step_summary_lines.append("\nℹ️ **Note:** Patch-level upgrades (0.0.x) are excluded from this summary.")
           
           step_summary = "\n".join(step_summary_lines)
           
