@@ -135,6 +135,8 @@ jobs:
               for u in sorted(set(major_upgrades)):
                   summary_lines.append(f"- `{u}`")
               summary_lines.append(f"\n**Total major upgrades:** {len(set(major_upgrades))}\n")
+          else:
+              summary_lines.append("## ✅ No Major Upgrades Found\n")
           
           if minor_upgrades:
               summary_lines.append("## 🟡 Minor Upgrades (0.x.0)")
@@ -175,6 +177,8 @@ jobs:
               if len(unique_major) > 50:
                   step_summary_lines.append(f"\n... and {len(unique_major) - 50} more major upgrades")
               step_summary_lines.append(f"\n**Total major upgrades:** {len(unique_major)}\n")
+          else:
+              step_summary_lines.append("## ✅ No Major Upgrades Found\n")
           
           if minor_upgrades:
               unique_minor = sorted(set(minor_upgrades))
