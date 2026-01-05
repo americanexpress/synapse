@@ -16,6 +16,9 @@ on:
 
 jobs:
   compare:
+    permissions:
+      contents: read
+      issues: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
