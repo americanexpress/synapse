@@ -82,7 +82,7 @@
         <mockito.version>5.20.0</mockito.version>
 
         <!--JUnit Versions-->
-        <junit.version>5.13.4</junit.version>
+        <junit.version>6.0.2</junit.version>
 
         <!--Logging-->
         <log4j.version>2.24.3</log4j.version>
