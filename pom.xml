@@ -89,7 +89,7 @@
         <slf4j.version>2.0.17</slf4j.version>
 
         <!--Plugins-->
-        <native-plugin.version>0.11.2</native-plugin.version>
+        <native-plugin.version>0.11.3</native-plugin.version>
 
         <!--Db2-->
         <db2-db2jcc4.version>11.5</db2-db2jcc4.version>
