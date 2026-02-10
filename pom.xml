@@ -612,6 +612,14 @@
                 <artifactId>testcontainers</artifactId>
                 <version>1.21.2</version>
             </dependency>
+            <!-- CVE-2026-24400 (High/8.2) - Fixed in 3.27.7, added 2026-02-10
+                 TODO: Remove this override when spring-boot-dependencies includes assertj-core >= 3.27.7
+                 Check: mvn dependency:tree | grep assertj-core -->
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>3.27.7</version>
+            </dependency>
             <!--./END Temporary For Vulnerability Fix-->
             <dependency>
                 <groupId>com.github.stefanbirkner</groupId>
