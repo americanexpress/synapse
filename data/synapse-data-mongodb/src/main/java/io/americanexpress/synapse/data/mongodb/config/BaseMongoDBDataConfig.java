@@ -31,9 +31,19 @@ import org.springframework.data.mongodb.config.EnableMongoAuditing;
 public abstract class BaseMongoDBDataConfig extends AbstractMongoClientConfiguration implements BaseMongoDBConfig {
 
     /**
+     * The spring data mongodb prefix.
+     */
+    private static final String SPRING_DATA_MONGODB = "spring.data.mongodb.";
+
+    /**
      * Used to acquire environment variables.
      */
     protected Environment environment;
+
+    /**
+     * The properties prefix.
+     */
+    private String propertiesPrefix;
 
     /**
      * Instantiates a new Base MongoDB data config.
@@ -44,16 +54,20 @@ public abstract class BaseMongoDBDataConfig extends AbstractMongoClientConfigura
         this.environment = environment;
     }
 
+    protected BaseMongoDBDataConfig(Environment environment, String databaseName) {
+        this.environment = environment;
+        this.propertiesPrefix = SPRING_DATA_MONGODB + databaseName + ".";
+    }
+
     @Override
     protected String getDatabaseName() {
-        return environment.getRequiredProperty("spring.data.mongodb.database");
+        return environment.getRequiredProperty(propertiesPrefix + "database");
     }
 
     @Override
     public MongoClient mongoClient() {
-        ConnectionString connectionString = new ConnectionString(environment.getRequiredProperty("spring.data.mongodb.uri"));
+        ConnectionString connectionString = new ConnectionString(environment.getRequiredProperty(propertiesPrefix + "uri"));
         MongoClientSettings mongoClientSettings = setMongoClientSettings(connectionString);
         return MongoClients.create(mongoClientSettings);
     }
-
 }

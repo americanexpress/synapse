@@ -40,7 +40,7 @@ public class BookDataConfig extends BaseMongoDBDataConfig {
      * @param environment the environment
      */
     public BookDataConfig(Environment environment) {
-        super(environment);
+        super(environment, "book");
     }
 
 }
