@@ -628,7 +628,7 @@
                 <artifactId>commons-configuration2</artifactId>
                 <version>2.10.1</version>
             </dependency>
-            <!-- CVE-2025-48976 (High/7.5) - Fixed in 1.6, added 2026-02-11
+            <!-- CVE-2025-48976 (High/7.5) - Fixed in 1.6.0, added 2026-02-11
                  TODO: Remove this override when spring-boot-dependencies includes commons-fileupload >= 1.6
                  Check: mvn dependency:tree | grep commons-fileupload -->
             <dependency>
