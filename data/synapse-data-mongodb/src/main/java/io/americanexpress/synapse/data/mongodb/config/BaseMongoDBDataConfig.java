@@ -38,12 +38,12 @@ public abstract class BaseMongoDBDataConfig extends AbstractMongoClientConfigura
     /**
      * Used to acquire environment variables.
      */
-    protected Environment environment;
+    protected final Environment environment;
 
     /**
      * The properties prefix.
      */
-    private String propertiesPrefix;
+    private final String propertiesPrefix;
 
     /**
      * Instantiates a new Base MongoDB data config.
@@ -52,6 +52,7 @@ public abstract class BaseMongoDBDataConfig extends AbstractMongoClientConfigura
      */
     protected BaseMongoDBDataConfig(Environment environment) {
         this.environment = environment;
+        this.propertiesPrefix = SPRING_DATA_MONGODB;
     }
 
     protected BaseMongoDBDataConfig(Environment environment, String databaseName) {
