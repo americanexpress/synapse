@@ -53,6 +53,8 @@ import java.time.LocalDateTime;
 public class UtilitiesCommonConfig {
 
     public static final String SYNAPSE_OBJECT_MAPPER = "synapseObjectMapper";
+    
+    public static final String SYNAPSE_NULL_ONLY_OBJECT_MAPPER = "synapseNullOnlyObjectMapper";
     /**
      * Used to retrieve the ObjectMapper that provides serialization and deserialization
      * for camelCase and non-empty fields.
