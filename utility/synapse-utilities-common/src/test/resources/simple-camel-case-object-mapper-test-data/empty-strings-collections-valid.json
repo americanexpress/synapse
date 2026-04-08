@@ -1,0 +1,13 @@
+{
+  "someName" : "Stephen Strange",
+  "someNumber" : 123,
+  "sampleNestedObject" : {
+    "someText1" : "",
+    "someText2" : " "
+  },
+  "sampleNestedCollectionsObject": {
+    "someStringCollection": [],
+    "someStringArray": []
+  },
+  "someLocalDate" : "2018-04-01"
+}

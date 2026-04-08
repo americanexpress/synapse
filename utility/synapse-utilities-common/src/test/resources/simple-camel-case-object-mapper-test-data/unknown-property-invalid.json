@@ -1,0 +1,10 @@
+{
+  "someName" : "Stephen Strange",
+  "someNumber" : 123,
+  "sampleNestedObject" : {
+    "someText1" : "",
+    "someText2" : " "
+  },
+  "someLocalDate" : "2018-04-01",
+  "someUnknownProperty" : "This property is not defined in the Java class and should fail to deserialization"
+}
