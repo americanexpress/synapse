@@ -45,41 +45,46 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <!--Build Docker Image-->
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <classifier>exec</classifier>
-                    <image>
-                        <builder>${builder}</builder>
-                        <env>
-                            <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
-                            <BP_NATIVE_IMAGE_BUILD_ARGUMENTS>${native.build.args}</BP_NATIVE_IMAGE_BUILD_ARGUMENTS>
-                        </env>
-                    </image>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>process-aot</id>
-                        <goals>
-                            <goal>process-aot</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.graalvm.buildtools</groupId>
-                <artifactId>native-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>${main.class}</mainClass>
-                    <imageName>${project.artifactId}</imageName>
-                    <buildArgs>${native.build.args}</buildArgs>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+    <profiles>
+        <profile>
+            <id>native</id>
+            <build>
+                <plugins>
+                    <!-- Build Docker image and native executable only when -Pnative is enabled -->
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                        <configuration>
+                            <classifier>exec</classifier>
+                            <image>
+                                <builder>${builder}</builder>
+                                <env>
+                                    <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
+                                    <BP_NATIVE_IMAGE_BUILD_ARGUMENTS>${native.build.args}</BP_NATIVE_IMAGE_BUILD_ARGUMENTS>
+                                </env>
+                            </image>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>process-aot</id>
+                                <goals>
+                                    <goal>process-aot</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.graalvm.buildtools</groupId>
+                        <artifactId>native-maven-plugin</artifactId>
+                        <configuration>
+                            <mainClass>${main.class}</mainClass>
+                            <imageName>${project.artifactId}</imageName>
+                            <buildArgs>${native.build.args}</buildArgs>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
 

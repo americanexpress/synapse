@@ -57,6 +57,7 @@
         <java.version>21</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.plugin.version>3.15.0</maven.compiler.plugin.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -1013,7 +1014,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.15.0</version>
+                    <version>${maven.compiler.plugin.version}</version>
                     <configuration>
                         <source>${java.version}</source>
                         <target>${java.version}</target>
@@ -1090,17 +1091,12 @@
                     <version>3.28.0</version>
                 </plugin>
                 <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>cobertura-maven-plugin</artifactId>
-                    <version>2.7</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>findbugs-maven-plugin</artifactId>
-                    <version>3.0.5</version>
+                    <groupId>com.github.spotbugs</groupId>
+                    <artifactId>spotbugs-maven-plugin</artifactId>
+                    <version>4.9.8.1</version>
                     <configuration>
                         <xmlOutput>true</xmlOutput>
-                        <!-- Optional directory to put findbugs xdoc xml report -->
+                        <!-- Keep report output location stable for existing CI parsing -->
                         <xmlOutputDirectory>target/site</xmlOutputDirectory>
                     </configuration>
                 </plugin>
