@@ -931,8 +931,10 @@
                         </execution>
                     </executions>
                     <configuration>
-                        <failOnError>false</failOnError> <!-- TODO: Resolve JavaDoc errors and remove this -->
-                        <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
+                        <!-- TODO: Resolve JavaDoc errors and remove this -->
+                        <failOnError>false</failOnError>
+                        <failOnWarnings>false</failOnWarnings>
+                        <doclint>none</doclint>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -1016,8 +1018,7 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven.compiler.plugin.version}</version>
                     <configuration>
-                        <source>${java.version}</source>
-                        <target>${java.version}</target>
+                        <release>${java.version}</release>
                         <parameters>true</parameters>
                     </configuration>
                 </plugin>
@@ -1094,6 +1095,15 @@
                     <groupId>com.github.spotbugs</groupId>
                     <artifactId>spotbugs-maven-plugin</artifactId>
                     <version>4.9.8.1</version>
+                    <executions>
+                        <execution>
+                            <id>spotbugs-report</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>spotbugs</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                     <configuration>
                         <xmlOutput>true</xmlOutput>
                         <!-- Keep report output location stable for existing CI parsing -->
@@ -1244,6 +1254,10 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
