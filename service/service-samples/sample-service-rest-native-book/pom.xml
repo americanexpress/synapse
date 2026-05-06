@@ -17,7 +17,7 @@
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
         <artifactId>service-samples</artifactId>
-        <version>0.4.11-SNAPSHOT</version>
+        <version>0.4.25-SNAPSHOT</version>
     </parent>
 
     <artifactId>sample-service-rest-native-book</artifactId>
@@ -39,27 +39,9 @@
     </properties>
     <!--Dependencies-->
     <dependencies>
-        <!--Synapse-->
-        <!--        <dependency>-->
-        <!--            <groupId>io.americanexpress.synapse</groupId>-->
-        <!--            <artifactId>synapse-service-rest</artifactId>-->
-        <!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-function-web</artifactId>
-            <version>3.2.7</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.experimental</groupId>
-            <artifactId>spring-native</artifactId>
-            <version>0.12.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-dependencies</artifactId>
-            <version>2021.0.4</version>
-            <type>pom</type>
-            <scope>import</scope>
         </dependency>
     </dependencies>
 
@@ -89,21 +71,13 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.graalvm.nativeimage</groupId>
-                <artifactId>native-image-maven-plugin</artifactId>
+                <groupId>org.graalvm.buildtools</groupId>
+                <artifactId>native-maven-plugin</artifactId>
                 <configuration>
                     <mainClass>${main.class}</mainClass>
                     <imageName>${project.artifactId}</imageName>
                     <buildArgs>${native.build.args}</buildArgs>
                 </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>native-image</goal>
-                        </goals>
-                        <phase>package</phase>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

@@ -64,13 +64,6 @@
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
         </dependency>
-        <dependency>
-            <!-- https://github.com/spring-projects/spring-data-couchbase/issues/1929 -->
-            <groupId>com.querydsl</groupId>
-            <artifactId>querydsl-apt</artifactId>
-            <version>5.0.0</version>
-            <classifier>jakarta</classifier>
-        </dependency>
     </dependencies>
 
     <build>
