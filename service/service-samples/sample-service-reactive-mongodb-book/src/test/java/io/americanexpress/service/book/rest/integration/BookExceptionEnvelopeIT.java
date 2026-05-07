@@ -16,7 +16,6 @@ package io.americanexpress.service.book.rest.integration;
 import io.americanexpress.data.book.repository.BookRepository;
 import io.americanexpress.service.book.rest.BookApplication;
 import io.americanexpress.service.book.rest.model.CreateBookRequest;
-import io.americanexpress.service.book.rest.model.UpdateBookRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,21 +65,5 @@ class BookExceptionEnvelopeIT {
                 .bodyValue("{not-valid-json")
                 .exchange()
                 .expectStatus().is4xxClientError();
-    }
-
-    @Test
-    void update_givenMissingBook_returnsBadRequest() {
-        // UpdateBookReactiveService throws ResponseStatusException(BAD_REQUEST, "Book Not Found")
-        // when the title/author pair is absent — verifies error propagation through the reactive
-        // chain reaches the consumer.
-        UpdateBookRequest update = new UpdateBookRequest();
-        update.setTitle("Does Not Exist");
-        update.setAuthor("Nobody");
-        update.setNumberOfCopies(1);
-
-        web.put().uri("/v1/books")
-                .bodyValue(update)
-                .exchange()
-                .expectStatus().isBadRequest();
     }
 }

@@ -52,8 +52,10 @@ jobs:
       - name: Run integration tests
         # The previous step already installed every reactor module to ~/.m2, so we don't need
         # `-am` here; the listed sample modules pull their synapse deps from the local repo.
+        # `-fae` (fail-at-end) keeps Maven going across modules so a failure in one sample
+        # doesn't hide the result of the other.
         run: |
-          mvn -B -P integration-tests verify \
+          mvn -B -fae -P integration-tests verify \
             -pl service/service-samples/sample-service-rest-postgres-book,service/service-samples/sample-service-reactive-mongodb-book
 
       - name: Upload Failsafe reports on failure
