@@ -1,0 +1,39 @@
+/*
+ * Copyright 2020 American Express Travel Related Services Company, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
+ */
+package io.americanexpress.service.book.rest.integration;
+
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.testcontainers.containers.MongoDBContainer;
+import org.testcontainers.utility.DockerImageName;
+
+/**
+ * Singleton MongoDB container shared across every IT in this module so Spring's
+ * test-context cache can reuse one application context for all suites.
+ */
+final class BookMongoContainer {
+
+    private static final MongoDBContainer INSTANCE =
+            new MongoDBContainer(DockerImageName.parse("mongo:7"));
+
+    static {
+        INSTANCE.start();
+    }
+
+    private BookMongoContainer() {}
+
+    static void registerProperties(DynamicPropertyRegistry registry) {
+        registry.add("spring.data.mongodb.uri", INSTANCE::getReplicaSetUrl);
+        registry.add("spring.data.mongodb.database", () -> "synapse_it");
+    }
+}

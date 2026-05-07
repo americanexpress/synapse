@@ -1,0 +1,67 @@
+name: Integration Tests
+
+# Boots selected sample apps against real Postgres / MongoDB containers (Testcontainers) and
+# exercises synapse's controller, data-adapter, exception, and api-docs surfaces end-to-end.
+#
+# Default run: push or PR to develop -> runs against develop.
+# Custom run: workflow_dispatch with a `branch` input -> checks out that branch and tests it.
+# This is how a contributor verifies a branch (e.g. a synapse-data-mongodb patch) doesn't break
+# the routes/objects the framework ships, without setting up Docker locally.
+
+on:
+  push:
+    branches: [develop]
+  pull_request:
+    branches: [develop]
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to integration-test (defaults to develop)'
+        required: false
+        default: 'develop'
+        type: string
+
+jobs:
+  integration-tests:
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch || github.ref }}
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'zulu'
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Install reactor (so sample apps resolve the checked-out synapse jars)
+        run: mvn -B -DskipTests -DskipITs install
+
+      - name: Run integration tests
+        # The previous step already installed every reactor module to ~/.m2, so we don't need
+        # `-am` here; the listed sample modules pull their synapse deps from the local repo.
+        run: |
+          mvn -B -P integration-tests verify \
+            -pl service/service-samples/sample-service-rest-postgres-book,service/service-samples/sample-service-reactive-mongodb-book
+
+      - name: Upload Failsafe reports on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: failsafe-reports
+          path: |
+            **/target/failsafe-reports/
+            **/target/surefire-reports/
+          retention-days: 14
