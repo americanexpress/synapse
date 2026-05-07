@@ -31,6 +31,8 @@ jobs:
   integration-tests:
     permissions:
       contents: read
+      checks: write   # required by mikepenz/action-junit-report to publish the test-results check
+      pull-requests: write
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -63,6 +65,20 @@ jobs:
         run: |
           mvn -B -fae -P integration-tests verify \
             -pl service/service-samples/sample-service-rest-postgres-book,service/service-samples/sample-service-reactive-mongodb-book
+
+      - name: Publish test report
+        # Always runs so the summary table is available on both green and red runs. The action
+        # itself reports failures back to the job, so the previous Maven step can stay green if
+        # we ever want to inspect reports without failing the workflow.
+        uses: mikepenz/action-junit-report@v5
+        if: always()
+        with:
+          report_paths: '**/target/failsafe-reports/TEST-*.xml'
+          check_name: Integration Test Results
+          detailed_summary: true
+          include_passed: true
+          require_tests: true
+          fail_on_failure: false   # the Maven verify step already fails the job on test failures
 
       - name: Upload Failsafe reports on failure
         if: failure()
