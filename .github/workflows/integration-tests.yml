@@ -21,6 +21,12 @@ on:
         default: 'develop'
         type: string
 
+# Opt into Node.js 24 for the @v4 javascript actions below (checkout, setup-java, cache,
+# upload-artifact). Node 20 will be removed from the runner in September 2026; opting in
+# now silences the deprecation warning and avoids a forced switch later.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   integration-tests:
     permissions:
