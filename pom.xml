@@ -630,7 +630,7 @@
                 <artifactId>testcontainers</artifactId>
                 <version>1.21.2</version>
             </dependency>
-            <!-- CVE-2025-48924 (High/7.5) - Fixed in 3.18.0, added 2025-07-11
+            <!-- CVE-2025-48924 (High/7.5) - Fixed in 3.18.0; pinned to 3.20.0, added 2025-07-11
                  TODO: Remove this override when spring-boot-dependencies includes commons-lang3 >= 3.18.0
                  Check: mvn dependency:tree | grep commons-lang3 -->
             <dependency>
@@ -645,6 +645,14 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-configuration2</artifactId>
                 <version>2.14.0</version>
+            </dependency>
+            <!-- CVE-2025-48976 (High/7.5) - Fixed in 1.6.0, added 2026-02-11
+                 TODO: Remove this override when spring-boot-dependencies includes commons-fileupload >= 1.6.0
+                 Check: mvn dependency:tree | grep commons-fileupload -->
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>1.6.0</version>
             </dependency>
             <!--./END Temporary For Vulnerability Fix-->
             <dependency>
