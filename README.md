@@ -8,7 +8,7 @@
 - Tired of spending countless hours, days, or months in getting your foundational frameworks robust and reliable?
 - Are you looking to speed up development time while at the same time ensuring your development team is building
   application code in a robust manner,
-- following good design principles and patterns?
+- Are you following good design principles and patterns?
   If any of these sound like situations you have experienced or situations you simply want to avoid, then Synapse is
   what
   you need.
@@ -17,7 +17,7 @@ Synapse is a concept to develop at the highest upmost quality. The concept revol
 utilizing
 the most effective, efficient and battle endured design patterns and design principles.
 
-set of lightweight modules designed to speed up development time and help developers build out their
+It contains a set of lightweight modules designed to speed up development time and help developers build out their
 applications. The modules are focused towards server side implementation. Synapse serves as a wide range tool-suite
 for developers to facilitate rapid development, with high quality built-in. It is designed with the purpose of helping
 developers create web services in a quick and easy way following strict conventions. Synapse provides an abstraction
