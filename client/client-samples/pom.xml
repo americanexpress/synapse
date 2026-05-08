@@ -17,7 +17,7 @@
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
         <artifactId>client</artifactId>
-        <version>0.4.25-SNAPSHOT</version>
+        <version>0.4.25</version>
     </parent>
 
     <artifactId>client-samples</artifactId>
