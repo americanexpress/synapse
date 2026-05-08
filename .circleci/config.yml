@@ -8,6 +8,46 @@ commands:
       - run:
           command: echo $ORG_GRADLE_PROJECT_signingKey_base64 | base64 --decode | gpg --batch --no-tty --import --yes
           name: Configure GPG private key for signing project artifacts in OSS Sonatype
+  validate-archetype-templates:
+    description: |
+      Ensure archetype templates keep tokenized values so release/version changes are automatic.
+    steps:
+      - run:
+          name: Validate archetype templates
+          command: |
+            set -euo pipefail
+
+            err=0
+
+            while IFS= read -r -d '' f; do
+              if ! grep -q '<synapse.version>@project.version@</synapse.version>' "$f"; then
+                echo "ERROR: $f must contain <synapse.version>@project.version@</synapse.version>"
+                err=1
+              fi
+              if ! grep -q '<artifactId>maven-compiler-plugin</artifactId>' "$f"; then
+                echo "ERROR: $f missing maven-compiler-plugin"
+                err=1
+              fi
+              if ! grep -q '<version>@maven.compiler.plugin.version@</version>' "$f"; then
+                echo "ERROR: $f must contain <version>@maven.compiler.plugin.version@</version> for maven-compiler-plugin"
+                err=1
+              fi
+            done < <(find archetype -path '*/src/main/resources/archetype-resources/pom.xml' -type f -print0)
+
+            while IFS= read -r -d '' f; do
+              if ! grep -q 'requiredProperty key="javaVersion"' "$f"; then
+                echo "ERROR: $f missing requiredProperty key=\"javaVersion\""
+                err=1
+              fi
+              if ! grep -q '<defaultValue>@maven.compiler.source@</defaultValue>' "$f"; then
+                echo "ERROR: $f must contain <defaultValue>@maven.compiler.source@</defaultValue>"
+                err=1
+              fi
+            done < <(find archetype -path '*/src/main/resources/META-INF/maven/archetype-metadata.xml' -type f -print0)
+
+            if [ "$err" -ne 0 ]; then
+              exit 1
+            fi
 
 #-------------------------------------------------------
 # Jobs that will execute maven goals and git commands.
@@ -19,16 +59,17 @@ jobs:
       - image: cimg/openjdk:21.0
     steps:
       - checkout
+      - validate-archetype-templates
       - restore_cache:
           keys:
             - synapse-{{ checksum "pom.xml" }}
             - synapse-
-      - run: mvn --batch-mode --define style.color=always clean package
+      - run: ./mvnw --batch-mode --define style.color=always clean package
       - save_cache: # saves the project dependencies
           paths:
             - ~/.m2/repository
           key: synapse-{{ checksum "pom.xml" }}
-      - run: mvn --batch-mode --define style.color=always verify
+      - run: ./mvnw --batch-mode --define style.color=always verify
       - store_test_results: # We use this timing data to optimize the future runs
           path: target/surefire-reports
 
@@ -38,11 +79,12 @@ jobs:
       - image: cimg/openjdk:21.0
     steps:
       - checkout
+      - validate-archetype-templates
       - restore_cache:
           keys:
             - synapse-{{ checksum "pom.xml" }}
             - synapse-
-      - run: mvn --batch-mode --define style.color=always clean test
+      - run: ./mvnw --batch-mode --define style.color=always clean test
       - store_test_results: # We use this timing data to optimize the future runs
           path: target/surefire-reports
 
@@ -58,7 +100,7 @@ jobs:
             - synapse-{{ checksum "pom.xml" }}
             - synapse-
       - configure-gpg
-      - run: mvn --settings ".circleci/settings.xml" --batch-mode --define style.color=always --errors --activate-profiles snapshot --define skipTests clean deploy # uses maven-deploy-plugin
+      - run: ./mvnw --settings ".circleci/settings.xml" --batch-mode --define style.color=always --errors --activate-profiles snapshot --define skipTests clean deploy # uses maven-deploy-plugin
 
 
   # SNAPSHOT to RELEASE Deploy to Maven Central
@@ -80,7 +122,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "0a:8a:6d:3a:22:28:74:a8:9e:a6:72:5d:bc:2b:aa:fe"
-      - run: mvn --settings ".circleci/settings.xml" --batch-mode --define style.color=always --errors --activate-profiles release -define scmCommentPrefix="[skip ci]" release:clean release:prepare release:perform  # uses maven-release-plugin
+      - run: ./mvnw --settings ".circleci/settings.xml" --batch-mode --define style.color=always --errors --activate-profiles release --define scmCommentPrefix="[skip ci]" release:clean release:prepare release:perform  # uses maven-release-plugin
 
   # RELEASE Deploy to Maven Central
   release-maven-central-deploy-job:
@@ -93,7 +135,7 @@ jobs:
             - synapse-{{ checksum "pom.xml" }}
             - synapse-
       - configure-gpg
-      - run: mvn --settings ".circleci/settings.xml" --batch-mode --define style.color=always --errors --activate-profiles release --define skipTests clean deploy # uses maven-deploy-plugin
+      - run: ./mvnw --settings ".circleci/settings.xml" --batch-mode --define style.color=always --errors --activate-profiles release --define skipTests clean deploy # uses maven-deploy-plugin
 
 #-------------------------------------------------------
 # Workflows that will schedule and execute jobs.

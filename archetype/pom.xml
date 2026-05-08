@@ -24,6 +24,27 @@
     <name>${project.groupId}:${project.artifactId}</name>
     <packaging>pom</packaging>
 
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <!-- Only filter explicit @...@ tokens to preserve archetype ${...} placeholders -->
+                    <useDefaultDelimiters>false</useDefaultDelimiters>
+                    <delimiters>
+                        <delimiter>@</delimiter>
+                    </delimiters>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
     <modules>
         <module>synapse-archetype-client-graphql</module>
         <module>synapse-archetype-client-rest-delete</module>
