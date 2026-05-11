@@ -17,7 +17,7 @@
     <parent>
         <groupId>io.americanexpress.synapse</groupId>
         <artifactId>service-samples</artifactId>
-        <version>0.4.25-SNAPSHOT</version>
+        <version>0.4.26-SNAPSHOT</version>
     </parent>
 
     <artifactId>sample-service-rest-native-book</artifactId>
@@ -25,7 +25,7 @@
 
     <properties>
         <!-- This property is needed to prevent a conflict between various build plugins -->
-        <classifier/>
+        <classifier />
 
         <!-- Specify main class to allow your native-image-maven-plugin to find it -->
         <main.class>io.americanexpress.service.book.rest.BookApplication</main.class>
@@ -35,7 +35,7 @@
         <builder>paketobuildpacks/builder:base</builder>
 
         <!-- You can add additional native build arguments with this property -->
-        <native.build.args/>
+        <native.build.args />
     </properties>
     <!--Dependencies-->
     <dependencies>
