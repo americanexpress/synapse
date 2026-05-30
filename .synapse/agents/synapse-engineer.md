@@ -136,5 +136,21 @@ service: `synapse-service-rest`, `-reactive-rest`, `-graphql`, `-test` · client
 6. Verify: `./mvnw -pl <module> -am clean test` (root reactor: `./mvnw clean package`).
 7. When fuzzy, read the nearest `*-samples` module and copy its structure.
 
+## Maintenance duty — keep `CONTEXT.md` current
+
+You own the freshness of **`/CONTEXT.md`** (the repo's living context for AI agents). Before finishing
+any task, check whether your change affects what it records and, if so, update it **in the same change**:
+
+- Changed a base-class signature / added an operation → update `.synapse/catalog.json` first, then
+  `CONTEXT.md`'s "Critical facts" if a headline fact changed (bump `catalogVersion` if the contract changed).
+- Bumped the framework or catalog version → update the snapshot line and the `_Last updated_` stamp.
+- Added/moved/removed tooling → update the "AI-agent tooling map".
+- Resolved or opened a tracked item (PR merged, CI fixed, proposal accepted) → update "Open items".
+- Branch/PR status changed → update "Current snapshot".
+
+Always refresh the `_Last updated_` line and append a one-line entry to the `CONTEXT.md` "Update log".
+Follow the Update protocol in `CONTEXT.md` verbatim. Treat a stale `CONTEXT.md` as a defect — fix it as
+part of the work, don't defer it.
+
 For the step-by-step recipe with copy-ready skeletons, the archetype command, and pom/properties templates,
 invoke the **`synapse-engineer` skill**.
