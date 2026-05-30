@@ -108,9 +108,11 @@ from source. When implementing code *with* Synapse, start here:
 - **`.synapse/mcp/`** + **`.mcp.json`** — a zero-dependency MCP server exposing the same catalog to any
   MCP client as `list_base_classes` / `scaffold_operation` / `validate_module`. Self-test:
   `python3 .synapse/mcp/synapse_mcp.py --selftest`.
-- **`.claude/agents/synapse-engineer.md`** + **`.claude/skills/synapse-engineer/`** — a Claude Code agent
-  (delegate to it for Synapse work) and a skill with the decision tables, copy-ready skeletons, test
-  scaffolding, and the `mvn archetype:generate` recipe.
+- **`.synapse/agents/synapse-engineer.md`** + **`.synapse/skills/synapse-engineer/`** — a provider-agnostic
+  agent persona and scaffolding skill (plain Markdown, no Claude-specific format) with the decision tables,
+  copy-ready skeletons, test scaffolding, and the `mvn archetype:generate` recipe. Any AI runtime can load
+  them. Claude Code users symlink them in once: `ln -s ../../.synapse/agents .claude/agents` and
+  `ln -s ../../.synapse/skills .claude/skills` (`.claude/` is gitignored as provider-specific local state).
 - **`docs/agent/archunit/`** — ArchUnit convention tests (template) giving agents a deterministic verify loop.
 - **`docs/agent/RECOMMENDATIONS.md`** — proposed framework-level changes for `@americanexpress/synapse-team`
   (resolve the dual imperative API family, normalize per-DB property keys, generate the catalog from source,

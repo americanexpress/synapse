@@ -161,5 +161,5 @@ buildNumber.properties
 !/.mvn/wrapper/maven-wrapper.jar
 
 
-# Claude Code harness artifact
-.claude/scheduled_tasks.lock
+# Claude Code local state (provider-specific; the agent/skill live in .synapse/)
+.claude/
