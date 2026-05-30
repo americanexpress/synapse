@@ -17,7 +17,7 @@ verify loop.
 |---|---|---|
 | A1 | **Machine-readable catalog** of every base class, operation, override method, generics, HTTP verb/path, config triple, ErrorCodes, archetypes. The single source of truth for the skill + MCP server. | `.synapse/catalog.json`, `.synapse/catalog.schema.json` |
 | A2 | **MCP server** (Python stdlib, zero deps) exposing `list_base_classes`, `scaffold_operation`, `validate_module` to any MCP client. | `.synapse/mcp/`, `.mcp.json` |
-| A3 | **Claude Code agent + skill** (`synapse-engineer`) with verified base-class decision tables and skeletons. | `.claude/agents/`, `.claude/skills/` |
+| A3 | **Provider-agnostic agent + skill** (`synapse-engineer`, plain Markdown) with verified base-class decision tables and skeletons; any AI runtime can load them. | `.synapse/agents/`, `.synapse/skills/` |
 | A4 | **Archetype catalog version fix** — `archetype/archetype-catalog.xml` was pinned to `0.3.32-SNAPSHOT` while the project is `0.4.28-SNAPSHOT`, so headless `archetype:generate` from the catalog resolved the wrong (often unavailable) version. Synced to `0.4.28-SNAPSHOT`. | `archetype/archetype-catalog.xml` |
 | A5 | **`@implSpec` Javadoc** demonstrated on the create base classes — self-describing "extend me, override `executeCreate`, don't add `@PostMapping`" guidance agents read directly. | `BaseCreateController.java`, `BaseCreateService.java` |
 | A6 | **ArchUnit convention tests** template — a deterministic verify loop. | `docs/agent/archunit/` |

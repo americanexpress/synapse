@@ -4,8 +4,10 @@ A zero-dependency [Model Context Protocol](https://modelcontextprotocol.io) serv
 Synapse base-class catalog (`.synapse/catalog.json`) to AI coding agents, so any MCP-capable runtime
 generates correct, idiomatic Synapse code instead of re-deriving signatures from source.
 
-It is the runtime-agnostic counterpart to the `synapse-engineer` Claude Code agent/skill: the skill is
-for Claude Code; this server works with **any** MCP client (Claude Code, Cursor, custom agents, …).
+It complements the provider-agnostic `synapse-engineer` agent/skill in `.synapse/agents/` and
+`.synapse/skills/` (plain Markdown any runtime can load): those carry the human-readable recipe, while
+this server exposes the same catalog as callable tools to **any** MCP client (Claude Code, Cursor,
+custom agents, …).
 
 ## Requirements
 
