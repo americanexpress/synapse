@@ -98,6 +98,9 @@ place to see how the base classes are meant to be extended.
 This repo ships a layer that lets AI coding agents use Synapse correctly without re-deriving signatures
 from source. When implementing code *with* Synapse, start here:
 
+- **`CONTEXT.md`** — living "where things stand now" context (current versions, tooling map, open items,
+  critical gotchas). Read it first to get oriented; the `synapse-engineer` agent keeps it current per its
+  [Update protocol](CONTEXT.md#update-protocol).
 - **`.synapse/catalog.json`** — authoritative machine-readable catalog of every base class: generics,
   the exact `protected abstract execute*` method to override, HTTP verb/path, the controller↔service↔config
   triple, `ErrorCode`s, and archetype coordinates (schema in `.synapse/catalog.schema.json`). Prefer it

@@ -229,3 +229,17 @@ into `src/test/java`, set `APP_PACKAGE`, add `com.tngtech.archunit:archunit-juni
   per operation, grouped under a shared `@RequestMapping` base path.
 - **Build/test**: `./mvnw -pl <module-path> -am clean test` (root reactor: `./mvnw clean package`).
 - When in doubt, read the nearest `*-samples` module and mirror it.
+
+## Step 6 — Update `CONTEXT.md` (do not skip)
+
+`/CONTEXT.md` is the repo's living context for AI agents; keeping it current is part of every task.
+Before you finish, update it in the **same change** if your work touched anything it records:
+
+- Base-class signature / new operation → update `.synapse/catalog.json`, then `CONTEXT.md` "Critical facts".
+- Framework or catalog version bump → snapshot line + `_Last updated_` stamp.
+- Tooling added/moved/removed → "AI-agent tooling map".
+- Tracked item resolved/opened (PR merged, CI fixed) → "Open items".
+- Branch/PR status change → "Current snapshot".
+
+Always refresh `_Last updated_` and append a one-line entry to the `CONTEXT.md` "Update log". The full
+rules live in `CONTEXT.md` → **Update protocol**. A stale `CONTEXT.md` is a defect; fix it now, not later.
