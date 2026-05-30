@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://americanexpress.github.io/synapse/agent/catalog.schema.json",
+  "title": "Synapse Agent Catalog",
+  "description": "Machine-readable catalog of Synapse base classes, operations, and conventions, consumed by AI coding agents (the synapse-engineer skill and MCP server) so they generate correct code without re-deriving signatures from source. SHOULD be generated from the framework source (annotation processor / Maven plugin) so it cannot drift. See docs/agent/RECOMMENDATIONS.md #1.",
+  "type": "object",
+  "required": ["catalogVersion", "framework", "families", "exceptions", "archetypes"],
+  "properties": {
+    "catalogVersion": { "type": "string", "description": "Schema/contract version of this catalog." },
+    "framework": {
+      "type": "object",
+      "required": ["groupId", "frameworkVersion", "java"],
+      "properties": {
+        "groupId": { "type": "string" },
+        "frameworkVersion": { "type": "string" },
+        "java": { "type": "string" },
+        "springBoot": { "type": "string" },
+        "jakarta": { "type": "boolean" },
+        "loggingFacade": { "type": "string" }
+      }
+    },
+    "notes": { "type": "array", "items": { "type": "string" } },
+    "families": {
+      "type": "object",
+      "description": "Layer families. Each operation pairs a controller with a service and names the protected abstract method to override.",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "basePackage": { "type": "string" },
+          "artifact": { "type": "string" },
+          "operations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "controller", "service"],
+              "properties": {
+                "id": { "type": "string" },
+                "httpMethod": { "type": "string", "enum": ["GET", "POST", "PUT", "DELETE", "PATCH"] },
+                "path": { "type": "string" },
+                "successStatus": { "type": "integer" },
+                "controller": {
+                  "type": "object",
+                  "required": ["class"],
+                  "properties": { "class": { "type": "string" }, "generics": { "type": "string" } }
+                },
+                "service": {
+                  "type": "object",
+                  "required": ["class", "override"],
+                  "properties": { "class": { "type": "string" }, "generics": { "type": "string" }, "override": { "type": "string", "description": "The exact protected abstract method signature the subclass must implement." } }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "exceptions": { "type": "object" },
+    "archetypes": { "type": "object" },
+    "testing": { "type": "object" },
+    "samples": { "type": "object" }
+  }
+}
