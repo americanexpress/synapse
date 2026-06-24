@@ -67,7 +67,7 @@
 
         <!--Spring Versions-->
         <spring-boot-framework.version>3.5.15</spring-boot-framework.version>
-        <spring-cloud-framework.version>2025.0.2</spring-cloud-framework.version>
+        <spring-cloud-framework.version>2025.0.3</spring-cloud-framework.version>
 
         <!--Springdoc-->
         <springdoc.version>2.8.17</springdoc.version>
