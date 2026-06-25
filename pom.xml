@@ -66,8 +66,8 @@
         <kotlin.version>2.3.20</kotlin.version>
 
         <!--Spring Versions-->
-        <spring-boot-framework.version>3.5.14</spring-boot-framework.version>
-        <spring-cloud-framework.version>2025.0.2</spring-cloud-framework.version>
+        <spring-boot-framework.version>3.5.15</spring-boot-framework.version>
+        <spring-cloud-framework.version>2025.0.3</spring-cloud-framework.version>
 
         <!--Springdoc-->
         <springdoc.version>2.8.17</springdoc.version>
@@ -625,23 +625,6 @@
 
             <!--External Dependencies-->
             <!--Temporary For Vulnerability Fix-->
-            <dependency>
-                <groupId>io.netty</groupId>
-                <artifactId>netty-bom</artifactId>
-                <version>4.1.134.Final</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.tomcat.embed</groupId>
-                <artifactId>tomcat-embed-core</artifactId>
-                <version>10.1.55</version>
-            </dependency>
-            <dependency>
-                <groupId>org.testcontainers</groupId>
-                <artifactId>testcontainers</artifactId>
-                <version>1.21.2</version>
-            </dependency>
             <!-- CVE-2025-48924 (High/7.5) - Fixed in 3.18.0; pinned to 3.20.0, added 2025-07-11
                  TODO: Remove this override when spring-boot-dependencies includes commons-lang3 >= 3.18.0
                  Check: mvn dependency:tree | grep commons-lang3 -->
