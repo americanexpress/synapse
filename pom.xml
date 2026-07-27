@@ -625,6 +625,42 @@
 
             <!--External Dependencies-->
             <!--Temporary For Vulnerability Fix-->
+            <!-- 20 CVEs across netty-codec-http/http2/stomp/haproxy/xml/redis/dns/compression and
+                 netty-handler-ssl-ocsp (memory exhaustion, CR/LF injection, zip bomb, OCSP cert
+                 validation) - Fixed in 4.1.136.Final, added 2026-07-27.
+                 Spring Boot 3.5.15/3.5.16 still manage netty 4.1.135.Final. Stay on the 4.1.x line
+                 that Boot/reactor-netty are tested against - do NOT move to 4.2.x here.
+                 TODO: Remove this override when spring-boot-dependencies includes netty >= 4.1.136.Final
+                 Check: mvn dependency:tree | grep io.netty -->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-bom</artifactId>
+                <version>4.1.136.Final</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- CVE-2026-55956 (Moderate) default servlet security constraints ignored method, plus
+                 CVE-2026-59084, CVE-2026-59083, CVE-2026-55955, CVE-2026-55276, CVE-2026-53434,
+                 CVE-2026-53404, CVE-2026-50229 (Low) - Fixed in 10.1.57, added 2026-07-27.
+                 Spring Boot 3.5.15/3.5.16 still manage tomcat 10.1.55. All three embed artifacts are
+                 pinned together so the Tomcat version stays internally consistent.
+                 TODO: Remove this override when spring-boot-dependencies includes tomcat >= 10.1.57
+                 Check: mvn dependency:tree | grep tomcat-embed -->
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-core</artifactId>
+                <version>10.1.57</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-el</artifactId>
+                <version>10.1.57</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-websocket</artifactId>
+                <version>10.1.57</version>
+            </dependency>
             <!-- CVE-2025-48924 (High/7.5) - Fixed in 3.18.0; pinned to 3.20.0, added 2025-07-11
                  TODO: Remove this override when spring-boot-dependencies includes commons-lang3 >= 3.18.0
                  Check: mvn dependency:tree | grep commons-lang3 -->
