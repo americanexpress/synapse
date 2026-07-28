@@ -66,7 +66,7 @@
         <kotlin.version>2.3.20</kotlin.version>
 
         <!--Spring Versions-->
-        <spring-boot-framework.version>3.5.15</spring-boot-framework.version>
+        <spring-boot-framework.version>3.5.16</spring-boot-framework.version>
         <spring-cloud-framework.version>2025.0.3</spring-cloud-framework.version>
 
         <!--Springdoc-->
@@ -86,7 +86,7 @@
         <junit.version>5.14.4</junit.version>
 
         <!--Logging-->
-        <log4j.version>2.25.4</log4j.version>
+        <log4j.version>2.25.5</log4j.version>
         <slf4j.version>2.0.17</slf4j.version>
 
         <!--Db2-->
@@ -625,6 +625,42 @@
 
             <!--External Dependencies-->
             <!--Temporary For Vulnerability Fix-->
+            <!-- 20 CVEs across netty-codec-http/http2/stomp/haproxy/xml/redis/dns/compression and
+                 netty-handler-ssl-ocsp (memory exhaustion, CR/LF injection, zip bomb, OCSP cert
+                 validation) - Fixed in 4.1.136.Final, added 2026-07-27.
+                 Spring Boot 3.5.15/3.5.16 still manage netty 4.1.135.Final. Stay on the 4.1.x line
+                 that Boot/reactor-netty are tested against - do NOT move to 4.2.x here.
+                 TODO: Remove this override when spring-boot-dependencies includes netty >= 4.1.136.Final
+                 Check: mvn dependency:tree | grep io.netty -->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-bom</artifactId>
+                <version>4.1.136.Final</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- CVE-2026-55956 (Moderate) default servlet security constraints ignored method, plus
+                 CVE-2026-59084, CVE-2026-59083, CVE-2026-55955, CVE-2026-55276, CVE-2026-53434,
+                 CVE-2026-53404, CVE-2026-50229 (Low) - Fixed in 10.1.57, added 2026-07-27.
+                 Spring Boot 3.5.15/3.5.16 still manage tomcat 10.1.55. All three embed artifacts are
+                 pinned together so the Tomcat version stays internally consistent.
+                 TODO: Remove this override when spring-boot-dependencies includes tomcat >= 10.1.57
+                 Check: mvn dependency:tree | grep tomcat-embed -->
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-core</artifactId>
+                <version>10.1.57</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-el</artifactId>
+                <version>10.1.57</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-websocket</artifactId>
+                <version>10.1.57</version>
+            </dependency>
             <!-- CVE-2025-48924 (High/7.5) - Fixed in 3.18.0; pinned to 3.20.0, added 2025-07-11
                  TODO: Remove this override when spring-boot-dependencies includes commons-lang3 >= 3.18.0
                  Check: mvn dependency:tree | grep commons-lang3 -->
@@ -649,6 +685,50 @@
                 <artifactId>commons-fileupload</artifactId>
                 <version>1.6.0</version>
             </dependency>
+            <!-- CVE-2026-59889, CVE-2026-54515, GHSA-mhm7-754m-9p8w (Moderate) - @JsonView and
+                 @JsonIgnoreProperties bypasses on deserialization - Fixed in 2.21.5, added 2026-07-27.
+                 Spring Boot 3.5.15/3.5.16 manage jackson-bom 2.21.4. Stays on the 2.21.x line.
+                 NOTE: this import must remain ABOVE the spring-boot-dependencies import or it is a no-op.
+                 TODO: Remove this override when spring-boot-dependencies includes jackson-bom >= 2.21.5
+                 Check: mvn dependency:tree | grep jackson-databind -->
+            <dependency>
+                <groupId>com.fasterxml.jackson</groupId>
+                <artifactId>jackson-bom</artifactId>
+                <version>2.21.5</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- CVE-2026-54291 (High) - silent channel-binding authentication downgrade - Fixed in
+                 42.7.12; pinned to 42.7.13, added 2026-07-27.
+                 Spring Boot 3.5.15/3.5.16 manage postgresql 42.7.11.
+                 TODO: Remove this override when spring-boot-dependencies includes postgresql >= 42.7.12
+                 Check: mvn dependency:tree | grep org.postgresql -->
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>42.7.13</version>
+            </dependency>
+            <!-- CVE-2026-59949 (Moderate) - native XXHash can crash the JVM on invalid byte array
+                 ranges - Fixed in 1.11.1, added 2026-07-27. Pulled in transitively by
+                 kafka-clients 3.9.2 via spring-kafka; Spring Boot manages kafka, not lz4.
+                 TODO: Remove this override when kafka-clients ships lz4-java >= 1.11.1
+                 Check: mvn dependency:tree | grep lz4 -->
+            <dependency>
+                <groupId>at.yawk.lz4</groupId>
+                <artifactId>lz4-java</artifactId>
+                <version>1.11.1</version>
+            </dependency>
+            <!-- CVE-2024-26308, CVE-2024-25710 (Moderate) - Fixed in 1.26.0; pinned to 1.28.0,
+                 added 2026-07-27. Only the test-scoped path was vulnerable: testcontainers 1.21.4
+                 pulls 1.24.0 while spring-boot-loader-tools already pulls 1.27.1, so this pin also
+                 removes that version split.
+                 TODO: Remove this override when testcontainers ships commons-compress >= 1.26.0
+                 Check: mvn dependency:tree | grep commons-compress -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-compress</artifactId>
+                <version>1.28.0</version>
+            </dependency>
             <!--./END Temporary For Vulnerability Fix-->
             <dependency>
                 <groupId>com.github.stefanbirkner</groupId>
@@ -661,6 +741,19 @@
                 <artifactId>lombok</artifactId>
                 <version>1.18.46</version>
                 <scope>provided</scope>
+            </dependency>
+
+            <!--Logging BOM-->
+            <!-- MUST stay ABOVE the spring-boot-dependencies import below. Maven resolves
+                 dependencyManagement first-declaration-wins, so if spring-boot-dependencies is
+                 imported first its log4j2.version (2.24.3) silently wins and ${log4j.version} has
+                 no effect at all. Verify with: mvn dependency:tree | grep log4j-core -->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-bom</artifactId>
+                <version>${log4j.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
             <!--Spring Dependencies-->
@@ -703,13 +796,6 @@
             </dependency>
 
             <!--Logging-->
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-bom</artifactId>
-                <version>${log4j.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
             <dependency>
                 <groupId>com.lmax</groupId>
                 <artifactId>disruptor</artifactId>
