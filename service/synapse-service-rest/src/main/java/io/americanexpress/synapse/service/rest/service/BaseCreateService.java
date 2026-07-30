@@ -46,6 +46,19 @@ public abstract class BaseCreateService<I extends BaseServiceRequest, O extends 
      * @param request body received from the controller
      * @return response body to the controller
      */
+    /**
+     * Create the resource. This is the single extension point for create operations.
+     *
+     * @implSpec Implement this method (not the public {@code create}) with the create business logic.
+     * Return the populated response; on invalid input or business-rule failure throw
+     * {@code io.americanexpress.synapse.framework.exception.ApplicationClientException} with an
+     * {@code ErrorCode} (4XX), or {@code ApplicationServerException} (5XX) for unexpected failures —
+     * the framework's {@code ControllerExceptionHandler} renders the standard error response.
+     *
+     * @param headers the HTTP headers
+     * @param request the input request to create
+     * @return the created resource response
+     */
     protected abstract O executeCreate(HttpHeaders headers, I request);
 
 }
