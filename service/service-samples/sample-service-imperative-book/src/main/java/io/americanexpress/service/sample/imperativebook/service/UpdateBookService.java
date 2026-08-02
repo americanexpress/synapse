@@ -18,6 +18,7 @@ import io.americanexpress.service.sample.imperativebook.model.UpdateBookServiceR
 import io.americanexpress.service.sample.imperativebook.service.helper.UpdateBookServiceResponseCreator;
 import io.americanexpress.synapse.service.imperative.service.BaseService;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * UpdateBookService class is responsible for updating the book service.
@@ -25,6 +26,7 @@ import org.springframework.stereotype.Component;
  * @author Francois Gutt
  */
 @Component
+@Validated
 public class UpdateBookService extends BaseService<
             UpdateBookServiceRequest,
             UpdateBookServiceResponse
@@ -51,7 +53,6 @@ public class UpdateBookService extends BaseService<
      */
     @Override
     protected UpdateBookServiceResponse doExecute(UpdateBookServiceRequest request) {
-        var response = updateBookServiceResponseCreator.create(request);
-        return response;
+        return updateBookServiceResponseCreator.create(request);
     }
 }

@@ -18,6 +18,7 @@ import io.americanexpress.service.sample.imperativebook.model.ReadBookServiceRes
 import io.americanexpress.service.sample.imperativebook.service.helper.ReadBookServiceResponseCreator;
 import io.americanexpress.synapse.service.imperative.service.BaseService;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * {@code ReadBookService} class is responsible for reading the book service.
@@ -25,6 +26,7 @@ import org.springframework.stereotype.Component;
  * @author Francois Gutt
  */
 @Component
+@Validated
 public class ReadBookService extends BaseService<
             ReadBookServiceRequest,
             ReadBookServiceResponse
