@@ -94,6 +94,10 @@ This layer is intended to be made modular and fine-grained to promote re-usabili
 ```
 application-name
     |
+    +- api
+    |   +- api-customer
+    |   +- api-relationship
+    |
     +- service
     |   +- service-customer
     |   +- service-notification
@@ -118,7 +122,38 @@ This helps ensure the modules are named intuitive and organized within your IDE.
 
 ## Synapse Modules:
 
-### synapse-service-rest
+### synapse-api-rest-imperative (new)
+
+- This module provides a clean, imperative-style framework for building RESTful controller layers in Synapse-based
+  applications. It is recommended for developers who prefer imperative programming and want modular, maintainable API
+  layers.
+
+    - The module provides a set of generic, extensible base controller classes that simplify the development of RESTful
+      endpoints for common CRUD operations (GET, POST, PUT, DELETE, etc.).
+    - These base controllers follow convention over configuration and encapsulate standard patterns like request
+      routing, input/output handling, and delegation to the service layer. Relies on generics to remain reusable across
+      resource types
+    - Designed to promote clean separation of concerns, delegating business logic to service modules like
+      `synapse-service-imperative`.
+    - An open to extension generic ControllerExceptionHandler that handles the most common types of errors happening in
+      an application. Can be subclassed to customize logic per method.
+    - Provides a health check endpoint out of the box.
+    - Built in interceptors for validating specified headers and logging metrics for observability and monitoring.
+
+
+### synapse-service-imperative (new)
+
+- This module provides a structured, imperative-style foundation for writing the business logic layer in Synapse-based
+  applications. It is recommended for teams building REST APIs in a synchronous, blocking style who want to enforce best
+  practices in service layer design, independent of the api/transport layer.
+
+    - Offers base service class and patterns for implementing service classes using synchronous (imperative) programming.
+    - Focuses on isolating domain logic from the api/controller layer for better testability and separation of concerns.
+    - Encourages clean architecture by decoupling services from transport concerns.
+    - Supplies common models and service headers to promote consistency across services.
+    - A generic already implemented pagination solution out of the box.
+
+### synapse-service-rest (to be deprecated)
 
 - This module provides an abstraction framework used to help expose RESTful APIs. It provides several out-of-the-box
   functionalities like:
@@ -362,6 +397,42 @@ The following listing shows the pom.xml file that is created when you choose Mav
 </project>
 
 ```
+#### Using synapse-api-rest-imperative (new)
+Now in this synapse upgrade we have separated the api layer. The following shows the pom.xml file for api layer that is 
+created when 
+you choose Maven:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+        <project xmlns="http://maven.apache.org/POM/4.0.0"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+        <parent>
+            <groupId>com.sample.bookstore</groupId>
+            <artifactId>api</artifactId>
+            <version>0.4.0-SNAPSHOT</version>
+        </parent>
+    
+        <modelVersion>4.0.0</modelVersion>
+        <groupId>com.sample.bookstore</groupId>
+        <artifactId>api-greeting</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+    
+        <properties>
+            <start-class>com.sample.bookstore.greeting.GreetingApiApplication</start-class>
+        </properties>
+    
+        <dependencies>
+            <dependency>            
+                <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-api-rest-imperative</artifactId>
+            </dependency>
+        </dependencies>
+       ...
+</project>
+
+```
 
 ### Create a Resource Representation class
 
@@ -507,6 +578,26 @@ public class GreetingApplication {
 
 ### Create a Resource Controller
 
+#### Using synapse-api-rest-imperative (new)
+
+In Spring’s approach to building RESTful web services, HTTP requests are handled by a controller. These components are
+identified by the @RestController annotation, and the GreetingController shown below handles read (using POST) requests
+for /greeting by returning a new instance of the Greeting class:
+
+```java
+
+/**
+ * <code>GreetingController</code> class handles POST requests to /greetings/inquiry-results.
+ */
+@RestController
+@RequestMapping("/greetings")
+public class GreetingController extends BaseReadMonoImperativeRestController<GreetingRequest, GreetingResponse, GreetingService> {
+}
+
+```
+
+#### Using synapse-service-rest (to be deprecated)
+
 In Spring’s approach to building RESTful web services, HTTP requests are handled by a controller. These components are
 identified by the @RestController annotation, and the GreetingController shown in the following listing (from
 src/main/java/com/example/restservice/GreetingController.java)
@@ -537,7 +628,29 @@ public class GreetingController extends BaseController<GreetingRequest, Greeting
 }
 ```
 
-### Create a API Config
+### Create a API Config 
+
+#### Using synapse-api-rest-imperative (new)
+
+```java
+
+/**
+ *  <code>GreetingConfig</code> class sets configurations used in this module.
+ *   Extends {@link BaseApiImperativeRestConfig} to inherit core Synapse HTTP-layer setup.
+*/
+@Configuration
+@PropertySource("classpath:/service-greeting-application.properties")
+@ComponentScan(basePackages = "com.sample.bookstore")
+public class GreetingConfig extends BaseApiImperativeRestConfig {
+    
+            public GreetingConfig(ObjectMapper objectMapper, MetricInterceptor metricInterceptor) {
+                        super(objectMapper, metricInterceptor);
+            }
+}
+             
+```
+
+#### Using synapse-service-rest (to be deprecated)
 
 ```java
 package com.sample.bookstore.config;
@@ -563,6 +676,32 @@ public class GreetingConfig implements WebMvcConfigurer {
 ```
 
 ### Create a Resource Service
+
+#### Using synapse-service-imperative (new)
+
+```java
+/**
+ * The <code>GreetingService</code> handles business logic for the Greeting API
+ * using the imperative-style BaseService from Synapse.
+ */
+@Service
+public class GreetingService extends BaseService<GreetingRequest, GreetingResponse> {
+
+    private static final String template = "Hello, %s!";
+
+    @Override
+    protected GreetingResponse doExecute(GreetingRequest request) {
+        if (nonNull(request.getName())) {
+            return new GreetingResponse(String.format(template, request.getName()));
+        } else {
+            return new GreetingResponse(String.format(template, "World"));
+        }
+    }
+}
+
+```
+
+#### Using synapse-service-rest (to be deprecated)
 
 ```java
 package com.sample.bookstore.service;
