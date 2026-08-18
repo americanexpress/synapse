@@ -23,9 +23,9 @@ public class PageInformation {
 
     /**
      * The page requested of the results.
-     * Must be greater than or equal to 1.
+     * Must be greater than or equal to 0.
      */
-    @Min(value = 1)
+    @Min(value = 0)
     private int page;
 
     /**
