@@ -1,0 +1,75 @@
+package io.americanexpress.synapse.client.elasticsearch.config;
+
+import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.json.jackson.JacksonJsonpMapper;
+import co.elastic.clients.transport.rest_client.RestClientTransport;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.americanexpress.synapse.framework.exception.config.ExceptionConfig;
+import io.americanexpress.synapse.utilities.common.config.UtilitiesCommonConfig;
+import org.apache.http.HttpHost;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.elasticsearch.client.RestClient;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.core.env.Environment;
+
+/**
+ * {@code BaseElasticSearchClientConfig} specifies the base configuration for the ElasticSearch client.
+ *
+ * @author sshre31
+ */
+@Configuration
+@ComponentScan(basePackages = "io.americanexpress.synapse.client.elasticsearch")
+@Import({ExceptionConfig.class, UtilitiesCommonConfig.class})
+public class BaseElasticSearchClientConfig {
+
+    /**
+     * Default object mapper.
+     */
+    private final ObjectMapper defaultObjectMapper;
+
+    /**
+     * The environment.
+     */
+    private final Environment environment;
+
+    /**
+     * Constructor taking in objectMapper & metricInterceptor.
+     *
+     * @param defaultObjectMapper   the default object mapper
+     */
+    public BaseElasticSearchClientConfig(ObjectMapper defaultObjectMapper, Environment environment) {
+        this.defaultObjectMapper = defaultObjectMapper;
+        this.environment = environment;
+    }
+
+    /**
+     * Creates an instance of {@link ElasticsearchClient} to interact with the ElasticSearch cluster.
+     *
+     * @return the {@link ElasticsearchClient} instance.
+     */
+    @Bean
+    public ElasticsearchClient elasticsearchClient() {
+        var elasticSearchUrl = environment.getRequiredProperty("elastic-client.url");
+        var elasticSearchUser = environment.getRequiredProperty("elastic-client.username");
+        var elasticSearchPassword = environment.getRequiredProperty("elastic-client.password");
+
+        var basicCredentialsProvider = new BasicCredentialsProvider();
+        basicCredentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(elasticSearchUser, elasticSearchPassword));
+
+        var restClient = RestClient
+                .builder(HttpHost.create(elasticSearchUrl))
+                .setHttpClientConfigCallback(httpAsyncClientBuilder ->
+                        httpAsyncClientBuilder.setDefaultCredentialsProvider(basicCredentialsProvider))
+                .build();
+
+        var transport = new RestClientTransport(
+                restClient, new JacksonJsonpMapper(defaultObjectMapper));
+
+        return new ElasticsearchClient(transport);
+    }
+}
