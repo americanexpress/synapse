@@ -24,7 +24,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 import static io.americanexpress.synapse.service.rest.model.ServiceHeaderKey.CORRELATION_IDENTIFIER_KEY;
@@ -32,7 +31,7 @@ import static io.americanexpress.synapse.service.rest.model.ServiceHeaderKey.USE
 
 /**
  * {@code BaseHttpInterceptor} class specifies the prototypes for performing HTTP header validations for a service.
- *
+ * 
  * @author Paolo Claudio
  */
 public abstract class BaseHttpInterceptor implements HandlerInterceptor {
@@ -42,12 +41,18 @@ public abstract class BaseHttpInterceptor implements HandlerInterceptor {
      */
     private final XLogger logger = XLoggerFactory.getXLogger(getClass());
 
-
+    
     /**
      * Required HTTP header names.
      */
-    protected Collection<String> requiredHttpHeaderNames = new ArrayList<>(Arrays.asList(HttpHeaders.CONTENT_TYPE, CORRELATION_IDENTIFIER_KEY.getValue(), USE_CASE_NAME_KEY.getValue()));
+    protected List<String> requiredHttpHeaderNames = new ArrayList<>(Arrays.asList(HttpHeaders.CONTENT_TYPE, CORRELATION_IDENTIFIER_KEY.getValue(), USE_CASE_NAME_KEY.getValue()));
 
+    /**
+     * Should not filter URIs.
+     * Specifies list of paths that should not be filtered.
+     * This might include health and actuator endpoints.
+     */
+    protected List<String> urisExcludedFromFilter = new ArrayList<>();
 
     /**
      * Validate the required HTTP headers.
@@ -62,12 +67,14 @@ public abstract class BaseHttpInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         logger.entry(request, response, handler);
 
-        // If any of the required HTTP headers are missing, this request is invalid
-        String httpHeaderValue;
-        for (String requiredHttpHeaderName : getRequiredHttpHeaderNames()) {
-            httpHeaderValue = request.getHeader(requiredHttpHeaderName);
-            if (httpHeaderValue == null) {
-                throw new ApplicationClientException("Request HTTP Header " + requiredHttpHeaderName + " is missing.", ErrorCode.MISSING_HTTP_HEADER_ERROR, requiredHttpHeaderName);
+        if(!shouldNotFilter(request)){
+            // If any of the required HTTP headers are missing, this request is invalid
+            String httpHeaderValue;
+            for (String requiredHttpHeaderName : getRequiredHttpHeaderNames()) {
+                httpHeaderValue = request.getHeader(requiredHttpHeaderName);
+                if (httpHeaderValue == null) {
+                    throw new ApplicationClientException("Request HTTP Header " + requiredHttpHeaderName + " is missing.", ErrorCode.MISSING_HTTP_HEADER_ERROR, requiredHttpHeaderName);
+                }
             }
         }
 
@@ -84,6 +91,18 @@ public abstract class BaseHttpInterceptor implements HandlerInterceptor {
     protected List<String> getRequiredHttpHeaderNames() {
         // Note: it is possible that a service needs no request HTTP header validation
         // Should a service require request HTTP header validation, then override this method
-        return new ArrayList<>();
+        return requiredHttpHeaderNames;
+    }
+
+    /**
+     * Subclasses can override this method to control what requests should not be filtered.
+     * for example override the method with the following to prevent
+     * health endpoint : return request.getRequestURI().equals("/health")
+     *
+     * @param request the incoming request
+     * @return true if url should not be filtered
+     */
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        return urisExcludedFromFilter.contains(request.getRequestURI());
     }
 }
