@@ -59,6 +59,12 @@ public class UtilitiesCommonConfig {
      */
     public static final String SYNAPSE_CAMEL_CASE_OBJECT_MAPPER = "synapseCamelCaseObjectMapper";
 
+    /**
+     * Used to retrieve the ObjectMapper that provides serialization and deserialization
+     * for camelCase with non-null fields.
+     */
+    public static final String SYNAPSE_SIMPLE_CAMEL_CASE_OBJECT_MAPPER = "synapseSimpleCamelCaseObjectMapper";
+
     public static final String SYNAPSE_INCLUDE_EMPTY_OBJECT_MAPPER = "synapseIncludeEmptyObjectMapper";
 
     public static final String SYNAPSE_XML_OBJECT_MAPPER = "synapseXmlObjectMapper";
@@ -132,6 +138,21 @@ public class UtilitiesCommonConfig {
     public ObjectMapper camelCaseObjectMapper() {
         final ObjectMapper mapper = getInitialObjectMapper();
         mapper.setSerializationInclusion(Include.NON_EMPTY);
+        mapper.setPropertyNamingStrategy(PropertyNamingStrategies.LOWER_CAMEL_CASE);
+        return mapper;
+    }
+
+    /**
+     * Get the ObjectMapper that provides serialization and deserialization for camelCase, non-null fields and
+     * fail on unknown properties on deserialization.
+     *
+     * @return the ObjectMapper
+     */
+    @Bean(SYNAPSE_SIMPLE_CAMEL_CASE_OBJECT_MAPPER)
+    public ObjectMapper simpleCamelCaseObjectMapper() {
+        final ObjectMapper mapper = getInitialObjectMapper();
+        mapper.setSerializationInclusion(Include.NON_NULL);
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
         mapper.setPropertyNamingStrategy(PropertyNamingStrategies.LOWER_CAMEL_CASE);
         return mapper;
     }
