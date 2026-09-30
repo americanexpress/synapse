@@ -659,7 +659,7 @@
             <dependency>
                 <groupId>org.apache.tomcat.embed</groupId>
                 <artifactId>tomcat-embed-websocket</artifactId>
-                <version>10.1.57</version>
+                <version>11.0.26</version>
             </dependency>
             <!-- CVE-2025-48924 (High/7.5) - Fixed in 3.18.0; pinned to 3.20.0, added 2025-07-11
                  TODO: Remove this override when spring-boot-dependencies includes commons-lang3 >= 3.18.0
