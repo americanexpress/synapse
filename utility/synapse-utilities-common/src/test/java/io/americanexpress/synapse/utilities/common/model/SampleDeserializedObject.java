@@ -23,6 +23,8 @@ public class SampleDeserializedObject {
 
     private SampleNestedObject sampleNestedObject;
 
+    private SampleNestedCollectionsObject  sampleNestedCollectionsObject;
+
     private LocalDate someLocalDate;
 
     public String getSomeName() {
@@ -47,6 +49,14 @@ public class SampleDeserializedObject {
 
     public void setSampleNestedObject(SampleNestedObject sampleNestedObject) {
         this.sampleNestedObject = sampleNestedObject;
+    }
+
+    public SampleNestedCollectionsObject getSampleNestedCollectionsObject() {
+        return sampleNestedCollectionsObject;
+    }
+
+    public void setSampleNestedCollectionsObject(SampleNestedCollectionsObject sampleNestedCollectionsObject) {
+        this.sampleNestedCollectionsObject = sampleNestedCollectionsObject;
     }
 
     public LocalDate getSomeLocalDate() {
