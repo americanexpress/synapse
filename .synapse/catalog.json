@@ -1,0 +1,202 @@
+{
+  "$schema": "./catalog.schema.json",
+  "catalogVersion": "1",
+  "framework": {
+    "groupId": "io.americanexpress.synapse",
+    "frameworkVersion": "0.4.28-SNAPSHOT",
+    "java": "21",
+    "springBoot": "3.5.x",
+    "jakarta": true,
+    "loggingFacade": "org.slf4j.ext.XLogger (XLoggerFactory.getXLogger), use logger.entry()/exit()"
+  },
+  "notes": [
+    "Build each operation by extending a Base*Controller + Base*Service pair; override the protected abstract execute* method, not the public method.",
+    "Two parallel imperative families exist. PREFER 'service.rest' (granular execute* methods) used by all samples. The 'api.rest.imperative' family (unified BaseService<I,O>.execute) is newer/experimental; do not mix the two. See docs/agent/RECOMMENDATIONS.md #2.",
+    "BaseServiceRequest is an INTERFACE (implements). BaseServiceResponse is an abstract class with a String id (extends).",
+    "Reads are POST-with-body at /inquiry_results (one) and /multiple_results (many); only get-by-id is a real GET /{id}.",
+    "Synapse provides NO base repository: repositories extend Spring Data JpaRepository<Entity, Long> directly.",
+    "Never write a @RestControllerAdvice: importing the layer config registers ControllerExceptionHandler automatically."
+  ],
+  "families": {
+    "imperativeRest": {
+      "basePackage": "io.americanexpress.synapse.service.rest",
+      "artifact": "synapse-service-rest",
+      "appConfig": {
+        "import": "io.americanexpress.synapse.service.rest.config.ServiceRestConfig",
+        "pattern": "@Configuration @PropertySource(\"classpath:<app>.properties\") @ComponentScan(basePackages=\"<app.pkg>\") @Import({<YourDataConfig>.class, ServiceRestConfig.class})"
+      },
+      "models": {
+        "request": { "type": "io.americanexpress.synapse.service.rest.model.BaseServiceRequest", "kind": "interface", "use": "implements", "validation": "jakarta.validation.constraints on fields; @Valid enforced by base controller" },
+        "response": { "type": "io.americanexpress.synapse.service.rest.model.BaseServiceResponse", "kind": "abstract class", "use": "extends", "inherits": "String id (getId/setId)" },
+        "paginatedRequest": { "type": "io.americanexpress.synapse.service.rest.model.BasePaginatedServiceRequest", "use": "implements/extends for poly reads", "carries": "PageInformation{int page,int size}" }
+      },
+      "operations": [
+        {
+          "id": "create",
+          "httpMethod": "POST",
+          "path": "",
+          "successStatus": 201,
+          "controller": { "class": "BaseCreateController", "generics": "<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseCreateService<I,O>>" },
+          "service": { "class": "BaseCreateService", "generics": "<I extends BaseServiceRequest, O extends BaseServiceResponse>", "override": "protected O executeCreate(HttpHeaders headers, I request)" }
+        },
+        {
+          "id": "readMono",
+          "httpMethod": "POST",
+          "path": "/inquiry_results",
+          "successStatus": 200,
+          "controller": { "class": "BaseReadMonoController", "generics": "<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadMonoService<I,O>>" },
+          "service": { "class": "BaseReadMonoService", "generics": "<I extends BaseServiceRequest, O extends BaseServiceResponse>", "override": "protected O executeRead(HttpHeaders headers, I request)" }
+        },
+        {
+          "id": "readPoly",
+          "httpMethod": "POST",
+          "path": "/multiple_results",
+          "successStatus": 200,
+          "returns": "List<O> (service returns Page<O>)",
+          "controller": { "class": "BaseReadPolyController", "generics": "<I extends BaseServiceRequest, O extends BaseServiceResponse, S extends BaseReadPolyService<I,O>>" },
+          "service": { "class": "BaseReadPolyService", "generics": "<I extends BaseServiceRequest, O extends BaseServiceResponse>", "override": "protected org.springframework.data.domain.Page<O> executeRead(HttpHeaders headers, I request)" }
+        },
+        {
+          "id": "getMono",
+          "httpMethod": "GET",
+          "path": "/{id}",
+          "successStatus": 200,
+          "note": "Get-by-id; service generic carries only <O>, reads by String identifier.",
+          "controller": { "class": "BaseGetMonoController", "generics": "<O extends BaseServiceResponse, S extends BaseGetMonoService<O>>" },
+          "service": { "class": "BaseGetMonoService", "generics": "<O extends BaseServiceResponse>", "override": "protected O executeRead(HttpHeaders headers, String identifier)" }
+        },
+        {
+          "id": "update",
+          "httpMethod": "PUT",
+          "path": "",
+          "successStatus": 204,
+          "note": "Controller returns void; service generic carries only <I>.",
+          "controller": { "class": "BaseUpdateController", "generics": "<I extends BaseServiceRequest, S extends BaseUpdateService<I>>" },
+          "service": { "class": "BaseUpdateService", "generics": "<I extends BaseServiceRequest>", "override": "protected void executeUpdate(HttpHeaders headers, I request)" }
+        },
+        {
+          "id": "delete",
+          "httpMethod": "DELETE",
+          "path": "/{identifier}",
+          "successStatus": 204,
+          "controller": { "class": "BaseDeleteController", "generics": "<S extends BaseDeleteService>" },
+          "service": { "class": "BaseDeleteService", "generics": "(none)", "override": "protected void executeDelete(HttpHeaders headers, String identifier)" }
+        }
+      ]
+    },
+    "reactiveRest": {
+      "basePackage": "io.americanexpress.synapse.service.reactive.rest",
+      "artifact": "synapse-service-reactive-rest",
+      "appConfig": {
+        "extends": "io.americanexpress.synapse.service.reactive.rest.config.BaseServiceReactiveRestConfig",
+        "pattern": "@Configuration @EnableWebFlux(via base) class AppConfig extends BaseServiceReactiveRestConfig { AppConfig(ObjectMapper m){ super(m);} }",
+        "note": "Reactive models live in io.americanexpress.synapse.service.reactive.rest.model (own BaseServiceRequest interface + BaseServiceResponse abstract)."
+      },
+      "operations": [
+        { "id": "create", "httpMethod": "POST", "path": "", "successStatus": 201, "controller": { "class": "BaseCreateReactiveController", "generics": "<I,O,S extends BaseCreateReactiveService<I,O>>" }, "service": { "class": "BaseCreateReactiveService", "override": "protected Mono<O> executeCreate(HttpHeaders headers, I request)" } },
+        { "id": "getMono", "httpMethod": "GET", "path": "/{id}", "controller": { "class": "BaseGetMonoReactiveController", "generics": "<O,S extends BaseGetMonoReactiveService<O>>" }, "service": { "class": "BaseGetMonoReactiveService", "override": "protected Mono<O> executeRead(HttpHeaders headers, String request)" } },
+        { "id": "getFlux", "httpMethod": "GET", "path": "", "returns": "Flux<O>", "controller": { "class": "BaseGetFluxReactiveController", "generics": "<O,S extends BaseGetFluxReactiveService<O>>" }, "service": { "class": "BaseGetFluxReactiveService", "override": "protected Flux<O> executeRead(HttpHeaders headers)" } },
+        { "id": "readMono", "httpMethod": "POST", "path": "/inquiry_results", "controller": { "class": "BaseReadMonoReactiveController", "generics": "<I,O,S extends BaseReadMonoReactiveService<I,O>>" }, "service": { "class": "BaseReadMonoReactiveService", "override": "protected Mono<O> executeRead(HttpHeaders headers, I request)" } },
+        { "id": "readFlux", "httpMethod": "POST", "path": "/multiple_results", "returns": "ResponseEntity<Flux<O>>", "controller": { "class": "BaseReadFluxReactiveController", "generics": "<I,O,S extends BaseReadFluxReactiveService<I,O>>" }, "service": { "class": "BaseReadFluxReactiveService", "override": "protected Flux<O> executeRead(HttpHeaders headers, I request)" } },
+        { "id": "update", "httpMethod": "PUT", "path": "", "successStatus": 204, "controller": { "class": "BaseUpdateReactiveController", "generics": "<I,S extends BaseUpdateReactiveService<I>>" }, "service": { "class": "BaseUpdateReactiveService", "override": "protected Mono<Void> executeUpdate(HttpHeaders headers, I request)" } },
+        { "id": "delete", "httpMethod": "DELETE", "path": "/{identifier}", "successStatus": 204, "controller": { "class": "BaseDeleteReactiveController", "generics": "<S extends BaseDeleteReactiveService>" }, "service": { "class": "BaseDeleteReactiveService", "override": "protected Mono<Void> executeDelete(HttpHeaders headers, String identifier)" } }
+      ]
+    },
+    "data": {
+      "baseEntity": {
+        "jpa": {
+          "class": "io.americanexpress.synapse.data.jpa.entity.BaseEntity",
+          "artifact": "synapse-data-jpa",
+          "annotations": ["@MappedSuperclass", "@EntityListeners(AuditingEntityListener.class)"],
+          "id": "Long id @Id @GeneratedValue(strategy=GenerationType.IDENTITY)",
+          "auditFields": "Instant createdDateTime(created_date_time), Instant lastModifiedDateTime(last_modified_date_time), String createdBy(created_by), String lastModifiedBy(last_modified_by), Long version(@Version)",
+          "use": "@Entity @Table(name=\"...\") public class XEntity extends BaseEntity"
+        },
+        "mongodb": { "class": "io.americanexpress.synapse.data.mongodb.entity.BaseEntity", "artifact": "synapse-data-mongodb", "id": "String (subclass adds @Id)", "auditFields": "LocalDateTime created/lastModified, String createdBy/lastModifiedBy, Long version", "note": "Different id + timestamp types than JPA — do not cross imports." },
+        "jdbc": { "class": "io.americanexpress.synapse.data.jdbc.entity.BaseEntity", "artifact": "synapse-data-jdbc", "id": "Long (Spring Data JDBC @Id)", "note": "Spring Data Relational @Column, no ORM." }
+      },
+      "repository": {
+        "pattern": "@Repository public interface XRepository extends org.springframework.data.jpa.repository.JpaRepository<XEntity, Long> { ... derived finders ... }",
+        "note": "No Synapse base repository exists. Use Spring Data interfaces directly."
+      },
+      "auditingConfig": "io.americanexpress.synapse.data.jpa.config.InstantJpaAuditingDataConfig (@EnableJpaAuditing(dateTimeProviderRef=\"instantDateTimeProvider\"))",
+      "dbConfigs": {
+        "pattern": "@Configuration @PropertySource(...) @EnableJpaRepositories(basePackages=\"...dao\") class XDataConfig extends Base<DB>DataConfig { XDataConfig(Environment e){super(e);} @Override protected void setPackagesToScan(LocalContainerEntityManagerFactoryBean emf){ emf.setPackagesToScan(\"...entity\"); } }",
+        "modules": {
+          "synapse-data-postgres": { "config": "BasePostgresDataConfig", "driver": "org.postgresql:postgresql", "propertyKeys": "spring.datasource.{url,username,password,driver-class-name}, Hikari pool, spring.jpa.properties.hibernate.default_schema" },
+          "synapse-data-mysql": { "config": "BaseMySqlDataConfig", "driver": "com.mysql:mysql-connector-j", "propertyKeys": "spring.mysql.datasource.{url,username,password,port} (NOTE: non-standard prefix — see RECOMMENDATIONS.md #6)" },
+          "synapse-data-mssql": { "config": "BaseMssqlDataConfig" },
+          "synapse-data-oracle": { "config": "BaseOracleDataConfig" },
+          "synapse-data-db2": { "config": "BaseDb2DataConfig" },
+          "synapse-data-jdbc": { "config": "SynapseJdbcDataConfig", "propertyKeys": "spring.datasource.*" },
+          "synapse-data-mongodb": { "config": "BaseMongoDBDataConfig", "propertyKeys": "spring.data.mongodb.{database,uri}" }
+        },
+        "otherModules": ["synapse-data-cassandra", "synapse-data-couchbase", "synapse-data-redis"]
+      }
+    },
+    "client": {
+      "rest": {
+        "artifact": "synapse-client-rest",
+        "baseClass": "io.americanexpress.synapse.client.rest.client.BaseRestClient",
+        "generics": "<I extends BaseClientRequest, O extends BaseClientResponse, H extends BaseClientHttpHeadersFactory<I>>",
+        "ctor": "super(httpHeadersFactory, HttpMethod.<VERB>)",
+        "callMethods": ["O callMonoService(HttpHeaders, I, String... pathVariables)", "List<O> callPolyService(HttpHeaders, I, ParameterizedTypeReference<List<O>>, String... pathVariables)"],
+        "headersFactory": "extend BaseClientHttpHeadersFactory<I>; override: public HttpHeaders create(HttpHeaders clientHeaders, I request, String url)",
+        "errorHandler": "BaseRestResponseErrorHandler (throws ApplicationClientException on 4xx/5xx)",
+        "loggingInterceptor": "RestClientLoggingInterceptor",
+        "config": "extend BaseRestClientConfig; call initializeClient(url, client, errorHandler, connectTimeout, readTimeout, maxConnections)",
+        "models": "BaseClientRequest / BaseClientResponse are marker interfaces"
+      },
+      "reactive": { "baseClass": "io.americanexpress.synapse.client.rest.client.BaseReactiveRestClient", "returns": "Mono<O>/Flux<O>", "note": "Uses WebClient; ctor takes BaseReactiveRestResponseErrorHandler" },
+      "soap": { "artifact": "synapse-client-soap", "baseClass": "io.americanexpress.synapse.client.soap.client.BaseSoapClient", "url": "${client.url}", "deps": "WebServiceOperations template, Jaxb2Marshaller" },
+      "graphql": { "artifact": "synapse-client-graphql", "baseClass": "io.americanexpress.synapse.client.graphql.client.BaseGraphQLClient", "note": "always POST; callPolyService unsupported" }
+    }
+  },
+  "exceptions": {
+    "package": "io.americanexpress.synapse.framework.exception",
+    "artifact": "synapse-framework-exception",
+    "client": { "class": "ApplicationClientException", "ctor": "ApplicationClientException(String developerMessage, ErrorCode errorCode, String... messageArguments)", "use": "4XX / business validation failures" },
+    "server": { "class": "ApplicationServerException", "ctor": "ApplicationServerException(Throwable cause)", "use": "wrap checked/unexpected exceptions → 5XX" },
+    "idiom": "throw new ApplicationClientException(ErrorCode.NOT_FOUND.getMessage(), ErrorCode.NOT_FOUND, (String[]) null);",
+    "handler": "ControllerExceptionHandler (@RestControllerAdvice, auto-registered by layer config) emits ErrorResponse{code,message,moreInfo,developerMessage}",
+    "errorCodes": [
+      { "name": "GENERIC_4XX_ERROR", "status": 400 },
+      { "name": "MISSING_HTTP_HEADER_ERROR", "status": 400 },
+      { "name": "UNAUTHORIZED", "status": 401 },
+      { "name": "FORBIDDEN", "status": 403 },
+      { "name": "NOT_FOUND", "status": 404 },
+      { "name": "RESOURCE_OUT_OF_SYNC", "status": 409 },
+      { "name": "LOCKED", "status": 423 },
+      { "name": "TOO_MANY_REQUESTS", "status": 429 },
+      { "name": "AUTHENTICATION_ERROR", "status": 403 },
+      { "name": "GENERIC_5XX_ERROR", "status": 500 }
+    ]
+  },
+  "archetypes": {
+    "catalogFile": "archetype/archetype-catalog.xml",
+    "groupId": "io.americanexpress.synapse",
+    "version": "0.4.28-SNAPSHOT",
+    "command": "mvn archetype:generate -DarchetypeGroupId=io.americanexpress.synapse -DarchetypeArtifactId=<archetype> -DarchetypeVersion=<releasedVersion> -DgroupId=<grp> -DartifactId=<art> -Dversion=0.0.1-SNAPSHOT -DjavaVersion=21 -Dauthor=<a> -DapiName=<n> -DclassName=<C> -DbaseUrl=/v1/<r> -DinteractiveMode=false",
+    "requiredProperties": ["groupId", "artifactId", "version", "javaVersion", "author", "apiName", "className", "baseUrl (service) / url (client)"],
+    "ids": [
+      "synapse-archetype-service-rest-get", "synapse-archetype-service-rest-post", "synapse-archetype-service-rest-put", "synapse-archetype-service-rest-delete",
+      "synapse-archetype-service-rest-reactive-get", "synapse-archetype-service-rest-reactive-post", "synapse-archetype-service-rest-reactive-put",
+      "synapse-archetype-client-rest", "synapse-archetype-client-rest-get", "synapse-archetype-client-rest-post", "synapse-archetype-client-rest-put", "synapse-archetype-client-rest-delete",
+      "synapse-archetype-client-rest-reactive", "synapse-archetype-client-rest-reactive-get", "synapse-archetype-client-rest-reactive-post", "synapse-archetype-client-rest-reactive-put", "synapse-archetype-client-rest-reactive-delete",
+      "synapse-archetype-client-graphql", "synapse-archetype-data-postgres"
+    ]
+  },
+  "testing": {
+    "artifacts": ["synapse-service-test", "synapse-framework-test"],
+    "baseClasses": {
+      "controllerSliceTest": "io.americanexpress.synapse.service.test.controller.BaseControllerTest",
+      "controllerIT": "io.americanexpress.synapse.service.test.controller.BaseControllerIT",
+      "perOperationUnitTests": ["BaseCreateMonoControllerUnitTest", "BaseReadMonoControllerUnitTest", "BaseReadPolyControllerUnitTest", "BaseGetMonoControllerUnitTest", "BaseUpdateControllerUnitTest", "BaseDeleteControllerUnitTest"]
+    }
+  },
+  "samples": {
+    "imperativeRestWithDb": "service/service-samples/sample-service-rest-mysql-book (+ data/data-samples/sample-data-mysql-book)",
+    "reactiveRest": "service/service-samples/sample-service-reactive-rest-book",
+    "graphql": "service/service-samples/sample-service-graphql-book"
+  }
+}

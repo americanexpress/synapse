@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "synapse": {
+      "command": "python3",
+      "args": [".synapse/mcp/synapse_mcp.py"]
+    }
+  }
+}

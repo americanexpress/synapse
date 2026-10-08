@@ -31,6 +31,12 @@ import jakarta.validation.Valid;
  * {@code BaseCreateController} class specifies the abstraction for listening for requests from the consumer
  * to Create (POST) a resource. This controller expects only one entry as request.
  *
+ * @implSpec To expose a create (HTTP POST) endpoint, extend this class and supply the type arguments;
+ * the {@code @PostMapping}, {@code @Valid} validation, Swagger documentation and {@code ResponseEntity}
+ * wrapping are inherited. Do <strong>not</strong> add verb mappings ({@code @PostMapping} etc.) on the
+ * subclass — declare only {@code @RestController} and {@code @RequestMapping("<base path>")}. Put the
+ * business logic in the paired service's {@code executeCreate} method, not here.
+ *
  * @param <I> input request type
  * @param <O> output response type
  * @param <S> service type
