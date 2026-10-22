@@ -65,12 +65,20 @@ public class RestClientLoggingInterceptor implements ClientHttpRequestIntercepto
     public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution)
             throws IOException {
 
+        long start = System.nanoTime();
         ClientHttpResponse response = execution.execute(request, body);
+        long durationMs = (System.nanoTime() - start) / 1_000_000;
 
         HttpStatus.Series httpStatusSeries = ((HttpStatus)response.getStatusCode()).series();
         if (httpStatusSeries == HttpStatus.Series.CLIENT_ERROR || httpStatusSeries == HttpStatus.Series.SERVER_ERROR) {
-            logger.info(restClientLogFormatter.formatClientRequest(request, body));
-            logger.info(restClientLogFormatter.formatClientResponse(response));
+            logger.info("Client call failed: HTTP Method={}, URI={}, HTTP Status={}, Duration={}ms",
+                    request.getMethod(), restClientLogFormatter.sanitizeUri(request.getURI()),
+                    response.getStatusCode(), durationMs);
+            // Opt-in diagnostics only: redacted headers and bodies, never at INFO
+            if (restClientLogFormatter.isPayloadIncluded() && logger.isDebugEnabled()) {
+                logger.debug(restClientLogFormatter.formatClientRequest(request, body));
+                logger.debug(restClientLogFormatter.formatClientResponse(response));
+            }
         }
 
         return response;
