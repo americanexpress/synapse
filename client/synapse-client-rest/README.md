@@ -5,7 +5,11 @@
   functionalities like:
 
     - An open to extension BaseRestClient with several overloaded methods for every single possible restful call.
-    - A configurable ClientLoggingInterceptor that logs the request and response parameters at a configurable log level.
+    - A ClientLoggingInterceptor that, for 4xx/5xx responses, logs only non-sensitive metadata at INFO (method,
+      sanitized URI, status, duration, Correlation-ID). Headers and bodies are never logged by default. For
+      diagnostics, set `synapse.client.rest.logging.include-payload=true`; redacted headers/bodies are then logged at
+      DEBUG. Redaction is best-effort name matching (authorization, cookie, token, secret, password, api key, ...);
+      add more names with `synapse.client.rest.logging.redacted-names=ssn,cvv`.
     - An open to extension BaseRestResponseErrorHandler that handles the errors generated when calling the external
       restful APIs. This error handler has several default functionalities but is also open to extension. The
       functionalities are:
