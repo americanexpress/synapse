@@ -43,6 +43,14 @@ implementation 'io.americanexpress.synapse:synapse-client-rest:0.3.32-SNAPSHOT'
   - BasePutReactiveRestClient
   - BaseDeleteReactiveRestClient
 
+## Logging of sensitive data
+- Property `synapse.client.rest.logging.redact-sensitive-logs` (default `true`) keeps sensitive data out of the logs
+  and of the developer message of the thrown `ApplicationClientException`. When `true`, 4xx/5xx responses are logged
+  at INFO with the method, URI (user info, query and fragment replaced by `[REDACTED]`), status and Correlation-ID
+  only; headers and bodies are not logged and the response body is not added to the developer message.
+- Set it to `false` to restore the previous behavior (full request/response including headers and bodies are logged
+  and the response body is part of the developer message). This may expose credentials or personal data.
+
 ## Examples
 Examples of utilizing the synapse-client-rest module can be found in the following modules:
 - sample-client-weather
