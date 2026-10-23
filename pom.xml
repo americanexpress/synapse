@@ -80,7 +80,7 @@
         <spring-boot-graphiql.version>11.1.0</spring-boot-graphiql.version>
 
         <!--Mockito Versions-->
-        <mockito.version>5.23.0</mockito.version>
+        <mockito.version>5.24.0</mockito.version>
 
         <!--JUnit Versions-->
         <junit.version>5.14.4</junit.version>
