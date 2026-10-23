@@ -15,6 +15,7 @@ package io.americanexpress.synapse.client.rest.handler;
 
 import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatusCode;
 
 /**
@@ -32,6 +33,13 @@ abstract class BaseResponseErrorHandler {
 	protected final XLogger logger = XLoggerFactory.getXLogger(getClass());
 
 	/**
+	 * When {@code synapse.client.rest.logging.redact-sensitive-logs=false} response bodies are kept out of
+	 * developer messages and logs
+	 */
+	@Value("${synapse.client.rest.logging.redact-sensitive-logs:true}")
+	protected boolean redactSensitiveLogs = true;
+
+	/**
 	 * External provider error message.
 	 */
     protected final String EXTERNAL_PROVIDER_ERROR = "There was an error from the external provider in " + getClass().getName() + ". Error message: ";
@@ -39,10 +47,13 @@ abstract class BaseResponseErrorHandler {
     /**
      * Build the developer message.
      * @param statusCode containing the HTTP status code
-     * @param responseBody the response body
+     * @param responseBody the response body, omitted from the message unless sensitive log redaction is disabled
      * @return the developer message
      */
     protected String buildDeveloperMessage(HttpStatusCode statusCode, String responseBody) {
-        return EXTERNAL_PROVIDER_ERROR + " " + statusCode.toString() + " " + responseBody;
+        if (redactSensitiveLogs) {
+            return EXTERNAL_PROVIDER_ERROR + " " + statusCode;
+        }
+        return EXTERNAL_PROVIDER_ERROR + " " + statusCode + " " + responseBody;
     }
 }

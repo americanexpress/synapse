@@ -17,10 +17,12 @@ import org.slf4j.ext.XLogger;
 import org.slf4j.ext.XLoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
+import io.americanexpress.synapse.client.rest.model.ClientHeaderKey;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -62,17 +64,34 @@ public class RestClientLoggingInterceptor implements ClientHttpRequestIntercepto
      * @throws IOException whenever an issue occurs while trying to perform the input/output operation
      */
     @Override
-    public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution)
-            throws IOException {
-
+    @NonNull
+    public ClientHttpResponse intercept(@NonNull HttpRequest request, @NonNull byte[] body,
+                                        @NonNull ClientHttpRequestExecution execution) throws IOException {
         ClientHttpResponse response = execution.execute(request, body);
-
-        HttpStatus.Series httpStatusSeries = ((HttpStatus)response.getStatusCode()).series();
-        if (httpStatusSeries == HttpStatus.Series.CLIENT_ERROR || httpStatusSeries == HttpStatus.Series.SERVER_ERROR) {
-            logger.info(restClientLogFormatter.formatClientRequest(request, body));
-            logger.info(restClientLogFormatter.formatClientResponse(response));
-        }
-
+        logFailure(request, body, response);
         return response;
+    }
+
+    /**
+     * Log failed calls. Logging must never break the actual call, so any failure here is swallowed.
+     */
+    private void logFailure(HttpRequest request, byte[] body, ClientHttpResponse response) {
+        try {
+            HttpStatusCode status = response.getStatusCode();
+            if (!status.is4xxClientError() && !status.is5xxServerError()) {
+                return;
+            }
+            if (restClientLogFormatter.isRedactSensitiveLogs()) {
+                logger.info("Client call failed: HTTP Method={}, URI={}, HTTP Status={}, Correlation-ID={}",
+                        request.getMethod(), restClientLogFormatter.redactSensitiveDataFromUri(request.getURI()),
+                        status, request.getHeaders().getFirst(ClientHeaderKey.CORRELATION_IDENTIFIER_KEY.getValue()));
+            } else {
+                logger.info(restClientLogFormatter.formatClientRequest(request, body));
+                logger.info(restClientLogFormatter.formatClientResponse(response));
+            }
+        } catch (Exception e) {
+            // Only the exception type is logged since its message could contain sensitive data
+            logger.warn("Unable to log the failed client call: {}", e.getClass().getName());
+        }
     }
 }
