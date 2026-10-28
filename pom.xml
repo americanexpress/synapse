@@ -286,6 +286,11 @@
             <!--Client-->
             <dependency>
                 <groupId>io.americanexpress.synapse</groupId>
+                <artifactId>synapse-client-elasticsearch</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.americanexpress.synapse</groupId>
                 <artifactId>synapse-client-graphql</artifactId>
                 <version>${project.version}</version>
             </dependency>
