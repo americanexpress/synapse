@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
 /**
@@ -32,7 +33,7 @@ public abstract class BaseCreateImperativeRestController<
      */
     @PostMapping
     @Operation(tags = "Create Operation", summary = "Creates a resource")
-    public ResponseEntity<O> create(@RequestHeader HttpHeaders headers, I serviceRequest) {
+    public ResponseEntity<O> create(@RequestHeader HttpHeaders headers, @RequestBody I serviceRequest) {
         logger.entry(serviceRequest);
         O serviceResponse = service.execute(serviceRequest);
         ResponseEntity<O> responseEntity = CreateResponseEntityCreator.create(serviceResponse);
