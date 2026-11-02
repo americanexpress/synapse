@@ -67,7 +67,7 @@ public class CryptoUtil {
 
         String encrypted = null;
         if (textEncryptor != null && text != null) {
-            encrypted = textEncryptor.encrypt(text).replace("/", "_").replace("\\+", "-");
+            encrypted = textEncryptor.encrypt(text).replace("/", "_").replace("+", "-");
         }
         return encrypted;
     }
@@ -82,7 +82,7 @@ public class CryptoUtil {
         logger.entry(text);
         String decrypted = text;
         if (!StringUtils.isNumeric(text) && (textEncryptor != null && text != null)) {
-            String encrypted = text.replace("_", "/").replace("-", "\\+");
+            String encrypted = text.replace("_", "/").replace("-", "+");
             decrypted = textEncryptor.decrypt(encrypted);
         }
         return decrypted;
