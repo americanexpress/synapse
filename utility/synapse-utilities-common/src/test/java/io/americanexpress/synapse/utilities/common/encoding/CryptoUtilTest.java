@@ -17,19 +17,28 @@ import io.americanexpress.synapse.utilities.common.cryptography.CryptoUtil;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
  * {@code CryptoUtilTest} tests the {@link CryptoUtil}.
  */
 class CryptoUtilTest {
 
-    private static final String ENCRYPTED_VALUE = "feR+vAk+Ysys9pOeEWupVQ==";
+    private static final String ENCRYPTED_VALUE = "feR-vAk-Ysys9pOeEWupVQ==";
+
+    private static final String LEGACY_ENCRYPTED_VALUE = "feR+vAk+Ysys9pOeEWupVQ==";
 
     private static final String DECRYPTED_VALUE = "184981684091";
 
     @Test
     void tryJasyptDecrypt_givenEncryptedString_expectedDecryptedString() {
         String decrypted = CryptoUtil.tryDecrypt(ENCRYPTED_VALUE);
+        assertEquals(DECRYPTED_VALUE, decrypted);
+    }
+
+    @Test
+    void tryJasyptDecrypt_givenLegacyEncryptedString_expectedDecryptedString() {
+        String decrypted = CryptoUtil.tryDecrypt(LEGACY_ENCRYPTED_VALUE);
         assertEquals(DECRYPTED_VALUE, decrypted);
     }
 
@@ -43,6 +52,12 @@ class CryptoUtilTest {
     }
 
     @Test
+    void jasyptDecrypt_givenLegacyEncryptedString_expectedDecryptedString() {
+        String decrypted = CryptoUtil.decrypt(LEGACY_ENCRYPTED_VALUE);
+        assertEquals(DECRYPTED_VALUE, decrypted);
+    }
+
+    @Test
     void tryJasyptEncrypt_givenDecryptedString_expectedEncryptedString() {
         String decrypted = CryptoUtil.tryEncrypt(DECRYPTED_VALUE);
         assertEquals(ENCRYPTED_VALUE, decrypted);
@@ -52,5 +67,22 @@ class CryptoUtilTest {
     void jasyptEncrypt_givenDecryptedString_expectedEncryptedString() {
         String encrypt = CryptoUtil.encrypt(DECRYPTED_VALUE);
         assertEquals(ENCRYPTED_VALUE, encrypt);
+    }
+
+    @Test
+    void encrypt_neverContainsPlusOrSlash() {
+        String encrypted = CryptoUtil.encrypt(DECRYPTED_VALUE);
+        assertFalse(encrypted.contains("+"), "Encrypted string should not contain '+'");
+        assertFalse(encrypted.contains("/"), "Encrypted string should not contain '/'");
+    }
+
+    @Test
+    void roundTrip_givenArbitraryString_expectedDecryptedMatchesOriginal() {
+        String original = "AmericanExpress-Synapse-Testing-2026!";
+        String encrypted = CryptoUtil.encrypt(original);
+        assertFalse(encrypted.contains("+"));
+        assertFalse(encrypted.contains("/"));
+        String decrypted = CryptoUtil.decrypt(encrypted);
+        assertEquals(original, decrypted);
     }
 }
